@@ -108,7 +108,7 @@ void WriteTGA( char *filename, byte *data, int width, int height ) {
 	byte    *buffer;
 	int i, c;
 
-	buffer = Z_Malloc( width * height * 4 + 18 );
+	buffer = ri.Hunk_AllocateTempMemory( width * height * 4 + 18 );
 	Com_Memset( buffer, 0, 18 );
 	buffer[2] = 2;      // uncompressed type
 	buffer[12] = width & 255;
@@ -129,7 +129,7 @@ void WriteTGA( char *filename, byte *data, int width, int height ) {
 
 	ri.FS_WriteFile( filename, buffer, c );
 
-	Z_Free( buffer );
+	ri.Hunk_FreeTempMemory( buffer );
 }
 
 static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, int *yOut, int *maxHeight, stbtt_fontinfo *font, float fontSize, const unsigned char c, qboolean calcHeight ) {
@@ -324,9 +324,9 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 	// make a 256x256 image buffer, once it is full, register it, clean it and keep going
 	// until all glyphs are rendered
 
-	out = Z_Malloc( 1024 * 1024 );
+	out = malloc( 1024 * 1024 );
 	if ( out == NULL ) {
-		ri.Printf( PRINT_ALL, "RE_RegisterFont: Z_Malloc failure during output image creation.\n" );
+		ri.Printf( PRINT_ALL, "RE_RegisterFont: malloc failure during output image creation.\n" );
 		ri.FS_FreeFile( faceData );
 		return;
 	}
@@ -355,7 +355,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 
 			scaledSize = 256 * 256;
 			newSize = scaledSize * 4;
-			imageBuff = Z_Malloc( newSize );
+			imageBuff = malloc( newSize );
 			left = 0;
 			max = 0;
 			satLevels = 255;
@@ -392,7 +392,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 			Com_Memset( out, 0, 1024 * 1024 );
 			xOut = 0;
 			yOut = 0;
-			Z_Free( imageBuff );
+			free( imageBuff );
 			i++;
 		} else {
 			memcpy( &font->glyphs[i], glyph, sizeof( glyphInfo_t ) );
@@ -408,7 +408,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 		ri.FS_WriteFile( va( "fonts/fontImage_%i.dat", pointSize ), font, sizeof( fontInfo_t ) );
 	}
 
-	Z_Free( out );
+	free( out );
 
 	ri.FS_FreeFile( faceData );
 }
