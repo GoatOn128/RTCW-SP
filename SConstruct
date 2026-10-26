@@ -106,7 +106,7 @@ if IS_WINDOWS:
     '-Wno-pointer-sign', '-Wno-deprecated-declarations'])
     env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
     '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign', '-Wno-deprecated-declarations', '-Wno-writable-strings', '-Wno-deprecated-copy'])
+    '-Wno-pointer-sign', '-Wno-deprecated-declarations', '-Wno-writable-strings', '-Wno-deprecated-copy', '-Wno-deprecated-copy-with-user-provided-copy'])
     # ASLR: let the loader relocate every image at launch
     env.Append(LINKFLAGS=['/DYNAMICBASE'] + (['/HIGHENTROPYVA'] if ARCH == 'x64' else []))
     if CONFIG == 'debug':
@@ -141,7 +141,7 @@ else:
     '-Wno-pointer-sign'])
     env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
     '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign', '-Wno-writable-strings', '-Wno-deprecated-copy'])
+    '-Wno-pointer-sign', '-Wno-writable-strings', '-Wno-deprecated-copy', '-Wno-deprecated-copy-with-user-provided-copy'])
 
 # Shared derived-object cache, big win on CI when restored
 env.CacheDir('.scons_cache')
