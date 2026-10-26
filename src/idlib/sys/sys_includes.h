@@ -71,6 +71,11 @@ If you have questions concerning this license or the applicable additional terms
 #include <malloc.h>                         // no malloc.h on mac or unix
 #include <windows.h>                        // for qgl.h
 #undef FindText                             // fix namespace pollution
+#else
+// clang supplies the SSE intrinsic headers the idlib vector code
+// needs; on Windows the same types come from intrin.h above
+#include <xmmintrin.h>
+#include <emmintrin.h>
 #endif /* _WIN32 */
 
 /*
