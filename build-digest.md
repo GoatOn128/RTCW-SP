@@ -1,28 +1,68 @@
 # Build digest
 
-commit: 674e2807716d
+commit: 29be5398f557
 
-- ubuntu-latest-x64-debug: cancelled
+- ubuntu-latest-x64-debug: failure
 - ubuntu-latest-x64-release: failure
 - ubuntu-latest-x86-debug: failure
 - ubuntu-latest-x86-release: failure
-- uncrustify: success
 - windows-latest-x64-debug: failure
-- windows-latest-x64-release: failure
+- windows-latest-x64-release: cancelled
 - windows-latest-x86-debug: failure
 - windows-latest-x86-release: failure
 
 ## ubuntu-latest-x64-debug
 
-status: cancelled
+status: failure
 
-errors: 0
+errors: 5
 warnings: 0 in 0 kinds
 
 ### errors
 
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_main.c:2412:(.text+0x2280): undefined reference to `Sys_ProcessorCount'
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x47c): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x48d): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x64-debug/WolfSP] Error 1
 
 ### failure context
+
+- build/linux-x64-debug/WolfSP
+
+```
+clang -o build/linux-x64-debug/client/obj/games/botlib/be_ai_move.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Is
+clang -o build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Is
+clang -o build/linux-x64-debug/client/obj/games/botlib/be_ai_weight.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -
+clang -o build/linux-x64-debug/client/obj/games/botlib/be_ea.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x64-debug/client/obj/games/botlib/be_interface.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_crc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_libvar.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_log.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_memory.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_precomp.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isr
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_script.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x64-debug/client/obj/games/botlib/l_struct.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Is
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_characters.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_debug.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+clang++ -o build/linux-x64-debug/WolfSP -m64 -pie build/linux-x64-debug/client/obj/client/cl_cgame.c.o build/linux-x64-debug/client/obj/client/cl_cin.c.o build/linux-x64-debug/client/obj/client/cl_console.c.o build/linux-x64-debug/client/obj/client/cl_input.c.o build/linux-x64-debug/client/obj/client/cl_keys.c.o build/linux-x64-debug/client/obj/client/cl_main.c.o build/linux-x64-debug/client/obj/c
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_events.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/cli
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_fight.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_func_attack.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isr
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/client/cl_main.c.o:(.bss+0x2020b0): multiple definition of `cge'; build/linux-x64-debug/client/obj/client/cl_cgame.c.o:(.bss+0x2000): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/unix_main.c.o:(.bss+0xc808): multiple definition of `re'; build/linux-x64-debug/client/obj/client/cl_main.c.o:(.bss+0x1dbc80): first defined here
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_func_boss1.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_funcs.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+clang -o build/linux-x64-debug/game/obj/games/game/ai_cast_script.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/cli
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/client/cl_main.c.o: in function `CL_InitRef':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_main.c:2412:(.text+0x2280): undefined reference to `Sys_ProcessorCount'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/client/cl_qgl.c.o: in function `QGL_FillImportTable':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x47c): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x48d): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x64-debug/WolfSP] Error 1
+```
 
 
 ### warning kinds
@@ -31,320 +71,168 @@ warnings: 0 in 0 kinds
 
 status: failure
 
-errors: 21
-warnings: 27 in 2 kinds
+errors: 5
+warnings: 0 in 0 kinds
 
 ### errors
 
-src/client/cl_keys.c:1731:25: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1731:31: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1746:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1746:19: error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src/client/cl_keys.c:1752:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1752:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1756:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1756:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1765:12: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1765:18: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1784:41: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:13: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:19: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.c.o] Error 1
+cl_main.c:(.text+0x2176): undefined reference to `Sys_ProcessorCount'
+cl_qgl.c:(.text+0x478): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: cl_qgl.c:(.text+0x489): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x64-release/WolfSP] Error 1
 
 ### failure context
 
-- build/linux-x64-release/client/obj/client/cl_keys.c.o
+- build/linux-x64-release/WolfSP
 
 ```
-      |                                        ^~~~~~~~~~~~
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
- 1786 |                 } else if ( cls.keyCatchers & KEYCATCH_CGAME && cgvm ) {
-      |                                                                 ^~~~
-src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                         ^
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                  ^~~~
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                              ^
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                       ^~~~
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                             ^~~~~~~~~~~~~~~~~~
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
- 1825 |                 if ( uivm ) {
-      |                      ^~~~
-src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1826 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-27 warnings and 20 errors generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.c.o] Error 1
+clang -o build/linux-x64-release/client/obj/games/botlib/be_ai_move.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isr
+clang -o build/linux-x64-release/client/obj/games/botlib/be_ai_weap.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isr
+clang -o build/linux-x64-release/client/obj/games/botlib/be_ai_weight.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -I
+clang -o build/linux-x64-release/client/obj/games/botlib/be_ea.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x64-release/client/obj/games/botlib/be_interface.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -I
+clang -o build/linux-x64-release/client/obj/games/botlib/l_crc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x64-release/client/obj/games/botlib/l_libvar.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x64-release/client/obj/games/botlib/l_log.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x64-release/client/obj/games/botlib/l_memory.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x64-release/client/obj/games/botlib/l_precomp.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc
+clang -o build/linux-x64-release/client/obj/games/botlib/l_script.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x64-release/client/obj/games/botlib/l_struct.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isrc -Isr
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_characters.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_debug.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_events.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Is
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_fight.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_func_attack.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDL
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_func_boss1.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL
+clang++ -o build/linux-x64-release/WolfSP -m64 -pie build/linux-x64-release/client/obj/client/cl_cgame.c.o build/linux-x64-release/client/obj/client/cl_cin.c.o build/linux-x64-release/client/obj/client/cl_console.c.o build/linux-x64-release/client/obj/client/cl_input.c.o build/linux-x64-release/client/obj/client/cl_keys.c.o build/linux-x64-release/client/obj/client/cl_main.c.o build/linux-x64-rele
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_main.c.o:(.bss+0x2020b0): multiple definition of `cge'; build/linux-x64-release/client/obj/client/cl_cgame.c.o:(.bss+0x2000): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/unix_main.c.o:(.bss+0xc808): multiple definition of `re'; build/linux-x64-release/client/obj/client/cl_main.c.o:(.bss+0x1dbc80): first defined here
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_funcs.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x64-release/game/obj/games/game/ai_cast_script.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Is
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_main.c.o: in function `CL_InitRef':
+cl_main.c:(.text+0x2176): undefined reference to `Sys_ProcessorCount'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_qgl.c.o: in function `QGL_FillImportTable':
+cl_qgl.c:(.text+0x478): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: cl_qgl.c:(.text+0x489): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x64-release/WolfSP] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src/client/cl_keys.c:197:5: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:450:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:452:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:469:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:470:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:474:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:475:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:476:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:477:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:478:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:535:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:541:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:570:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:595:9: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:607:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:666:16: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:667:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:680:4: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-- [9x] -implicit-function-declaration
-  - src/client/cl_keys.c:1731:16: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1746:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1752:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1756:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1765:3: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1785:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
 
 ## ubuntu-latest-x86-debug
 
 status: failure
 
-errors: 21
-warnings: 27 in 2 kinds
+errors: 7
+warnings: 0 in 0 kinds
 
 ### errors
 
-src/client/cl_keys.c:1731:25: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1731:31: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1746:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1746:19: error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src/client/cl_keys.c:1752:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1752:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1756:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1756:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1765:12: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1765:18: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1784:41: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:13: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:19: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.c.o] Error 1
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_main.c:2412:(.text+0x2d67): undefined reference to `Sys_ProcessorCount'
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x5b5): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x5bd): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x5c9): undefined reference to `qglPNTrianglesfATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x5d1): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x86-debug/WolfSP] Error 1
 
 ### failure context
 
-- build/linux-x86-debug/client/obj/client/cl_keys.c.o
+- build/linux-x86-debug/WolfSP
 
 ```
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
- 1786 |                 } else if ( cls.keyCatchers & KEYCATCH_CGAME && cgvm ) {
-      |                                                                 ^~~~
-src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                         ^
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                  ^~~~
-clang -o build/linux-x86-debug/client/obj/client/cl_qgl.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/re
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                              ^
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                       ^~~~
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                             ^~~~~~~~~~~~~~~~~~
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
- 1825 |                 if ( uivm ) {
-      |                      ^~~~
-src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1826 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-27 warnings and 20 errors generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.c.o] Error 1
+clang -o build/linux-x86-debug/client/obj/games/botlib/be_ai_weap.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Is
+clang -o build/linux-x86-debug/client/obj/games/botlib/be_ai_weight.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -
+clang -o build/linux-x86-debug/client/obj/games/botlib/be_ea.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x86-debug/client/obj/games/botlib/be_interface.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_crc.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_libvar.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_log.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qc
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_memory.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_precomp.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isr
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_script.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x86-debug/client/obj/games/botlib/l_struct.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Is
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_characters.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_debug.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+clang++ -o build/linux-x86-debug/WolfSP -m32 -pie build/linux-x86-debug/client/obj/client/cl_cgame.c.o build/linux-x86-debug/client/obj/client/cl_cin.c.o build/linux-x86-debug/client/obj/client/cl_console.c.o build/linux-x86-debug/client/obj/client/cl_input.c.o build/linux-x86-debug/client/obj/client/cl_keys.c.o build/linux-x86-debug/client/obj/client/cl_main.c.o build/linux-x86-debug/client/obj/c
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_events.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/cli
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_fight.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_func_attack.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isr
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/cl_main.c.o:(.bss+0x201ed8): multiple definition of `cge'; build/linux-x86-debug/client/obj/client/cl_cgame.c.o:(.bss+0x2000): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/unix_main.c.o:(.bss+0xbfec): multiple definition of `re'; build/linux-x86-debug/client/obj/client/cl_main.c.o:(.bss+0x1dbc74): first defined here
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_func_boss1.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc
+clang -o build/linux-x86-debug/game/obj/games/game/ai_cast_funcs.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -g -O0 -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DGAMEDLL -Isrc -Isrc/games/game -Isrc/clie
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/cl_main.c.o: in function `CL_InitRef':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_main.c:2412:(.text+0x2d67): undefined reference to `Sys_ProcessorCount'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/cl_qgl.c.o: in function `QGL_FillImportTable':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x5b5): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:169:(.text+0x5bd): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x5c9): undefined reference to `qglPNTrianglesfATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_qgl.c:170:(.text+0x5d1): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x86-debug/WolfSP] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src/client/cl_keys.c:197:5: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:450:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:452:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:469:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:470:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:474:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:475:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:476:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:477:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:478:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:535:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:541:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:570:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:595:9: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:607:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:666:16: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:667:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:680:4: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-- [9x] -implicit-function-declaration
-  - src/client/cl_keys.c:1731:16: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1746:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1752:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1756:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1765:3: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1785:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
 
 ## ubuntu-latest-x86-release
 
 status: failure
 
-errors: 21
-warnings: 27 in 2 kinds
-
-### errors
-
-src/client/cl_keys.c:1731:25: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1731:31: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1746:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1746:19: error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src/client/cl_keys.c:1752:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1752:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1756:14: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1756:20: error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src/client/cl_keys.c:1765:12: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1765:18: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1784:41: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:13: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1785:19: error: use of undeclared identifier 'UI_KEY_EVENT'
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build/linux-x86-release/client/obj/client/cl_keys.c.o] Error 1
-
-### failure context
-
-- build/linux-x86-release/client/obj/client/cl_keys.c.o
-
-```
-      |                                        ^~~~~~~~~~~~
-src/client/cl_keys.c:1786:51: error: use of undeclared identifier 'cgvm'
- 1786 |                 } else if ( cls.keyCatchers & KEYCATCH_CGAME && cgvm ) {
-      |                                                                 ^~~~
-src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                         ^
-src/client/cl_keys.c:1787:13: error: use of undeclared identifier 'cgvm'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                  ^~~~
-src/client/cl_keys.c:1787:19: error: use of undeclared identifier 'CG_KEY_EVENT'
- 1787 |                         VM_Call( cgvm, CG_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                              ^
-src/client/cl_keys.c:1813:20: error: use of undeclared identifier 'uivm'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                       ^~~~
-src/client/cl_keys.c:1813:26: error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
- 1813 |                                         if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
-      |                                                             ^~~~~~~~~~~~~~~~~~
-src/client/cl_keys.c:1825:8: error: use of undeclared identifier 'uivm'
- 1825 |                 if ( uivm ) {
-      |                      ^~~~
-src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
- 1826 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-27 warnings and 20 errors generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_keys.c.o] Error 1
-```
-
-
-### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src/client/cl_keys.c:197:5: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:450:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:452:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:469:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:470:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:474:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:475:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:476:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:477:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:478:7: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:535:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:541:8: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:570:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:595:9: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:607:13: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:666:16: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:667:12: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src/client/cl_keys.c:680:4: warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-- [9x] -implicit-function-declaration
-  - src/client/cl_keys.c:1731:16: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1746:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1752:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1756:5: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1765:3: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1785:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1787:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1813:11: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-  - src/client/cl_keys.c:1826:4: warning: implicit declaration of function 'VM_Call' [-Wimplicit-function-declaration]
-
-## uncrustify
-
-status: success
-
-errors: 1
+errors: 5
 warnings: 0 in 0 kinds
 
 ### errors
 
-src/client/cl_keys.c(1819,1): error: PATCH: leftover: //					if(VM_Call( uie, UI_GET_ACTIVE_MENU) == UIMENU_HELP)
+cl_main.c:(.text+0x23f6): undefined reference to `Sys_ProcessorCount'
+cl_qgl.c:(.text+0x4a4): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: cl_qgl.c:(.text+0x4b2): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x86-release/WolfSP] Error 1
 
 ### failure context
+
+- build/linux-x86-release/WolfSP
+
+```
+clang -o build/linux-x86-release/client/obj/games/botlib/be_ai_move.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isr
+clang -o build/linux-x86-release/client/obj/games/botlib/be_ai_weap.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isr
+clang -o build/linux-x86-release/client/obj/games/botlib/be_ai_weight.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -I
+clang -o build/linux-x86-release/client/obj/games/botlib/be_ea.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x86-release/client/obj/games/botlib/be_interface.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -I
+clang -o build/linux-x86-release/client/obj/games/botlib/l_crc.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x86-release/client/obj/games/botlib/l_libvar.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x86-release/client/obj/games/botlib/l_log.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/gam
+clang -o build/linux-x86-release/client/obj/games/botlib/l_memory.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x86-release/client/obj/games/botlib/l_precomp.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc
+clang -o build/linux-x86-release/client/obj/games/botlib/l_script.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x86-release/client/obj/games/botlib/l_struct.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIE -DNDEBUG -DBOTLIB -Isrc -Isrc/
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isrc -Isr
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_characters.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_debug.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_events.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Is
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_fight.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_func_attack.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDL
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_func_boss1.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL
+clang++ -o build/linux-x86-release/WolfSP -m32 -pie build/linux-x86-release/client/obj/client/cl_cgame.c.o build/linux-x86-release/client/obj/client/cl_cin.c.o build/linux-x86-release/client/obj/client/cl_console.c.o build/linux-x86-release/client/obj/client/cl_input.c.o build/linux-x86-release/client/obj/client/cl_keys.c.o build/linux-x86-release/client/obj/client/cl_main.c.o build/linux-x86-rele
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_funcs.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Isr
+clang -o build/linux-x86-release/game/obj/games/game/ai_cast_script.c.o -c -std=gnu89 -Wall -fsigned-char -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -O2 -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -fPIC -fPIC -DNDEBUG -DGAMEDLL -Is
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-release/client/obj/client/cl_main.c.o:(.bss+0x201ed8): multiple definition of `cge'; build/linux-x86-release/client/obj/client/cl_cgame.c.o:(.bss+0x2000): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-release/client/obj/sys/unix/unix_main.c.o:(.bss+0xbfe4): multiple definition of `re'; build/linux-x86-release/client/obj/client/cl_main.c.o:(.bss+0x1dbc74): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-release/client/obj/client/cl_main.c.o: in function `CL_InitRef':
+cl_main.c:(.text+0x23f6): undefined reference to `Sys_ProcessorCount'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-release/client/obj/client/cl_qgl.c.o: in function `QGL_FillImportTable':
+cl_qgl.c:(.text+0x4a4): undefined reference to `qglPNTrianglesiATI'
+/usr/bin/x86_64-linux-gnu-ld.bfd: cl_qgl.c:(.text+0x4b2): undefined reference to `qglPNTrianglesfATI'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [build/linux-x86-release/WolfSP] Error 1
+```
 
 
 ### warning kinds
@@ -353,367 +241,211 @@ src/client/cl_keys.c(1819,1): error: PATCH: leftover: //					if(VM_Call( uie, UI
 
 status: failure
 
-errors: 21
-warnings: 18 in 1 kinds
+errors: 2
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\cl_keys.c(1731,16): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1731,25): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1731,31): error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src\client\cl_keys.c(1746,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1746,13): error: use of undeclared identifier 'cgvm'
-src\client\cl_keys.c(1746,19): error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src\client\cl_keys.c(1752,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1752,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1752,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1756,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.c.obj] Error 1
+lld-link: error: duplicate symbol: cge
+scons: *** [build\windows-x64-debug\WolfSP.exe] Error 1
 
 ### failure context
 
-- build\windows-x64-debug\client\obj\client\cl_keys.c.obj
+- build\windows-x64-debug\WolfSP.exe
 
 ```
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                          ^~~~
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                                ^~~~~~~~~~~~~~~~~~
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                 ^
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                          ^~~~
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                ^~~~~~~~~~~~
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
- 1784 |                 if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-      |                                                       ^~~~
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                  ^~~~
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-18 warnings and 20 errors generated.
-clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_qgl.c.obj /c src\client\cl_qgl.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDOWS /D_CRT_
-scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.c.obj] Error 1
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_ai_goal.c.obj /c src\games\botlib\be_ai_goal.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_ai_move.c.obj /c src\games\botlib\be_ai_move.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_ai_weap.c.obj /c src\games\botlib\be_ai_weap.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_ai_weight.c.obj /c src\games\botlib\be_ai_weight.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /D
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_ea.c.obj /c src\games\botlib\be_ea.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_interface.c.obj /c src\games\botlib\be_interface.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /D
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_crc.c.obj /c src\games\botlib\l_crc.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_libvar.c.obj /c src\games\botlib\l_libvar.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast.c.obj /c src\games\game\ai_cast.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_characters.c.obj /c src\games\game\ai_cast_characters.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_debug.c.obj /c src\games\game\ai_cast_debug.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmp23b2rdy4.lnk for command line:
+lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /DEBUG /SUBSYSTEM:WINDOWS /OUT:build\windows-x64-debug\WolfSP.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib opengl32.lib shell32.lib build\windows-x64-debug\client\obj\client\cl_cgame.c.obj build\windows-x64-debug\client\obj\client\cl_cin.c.obj build\windows-x64-debug\client\obj\client\cl_console.c.obj build\windows-x64-debug\client\obj\cl
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmp23b2rdy4.lnk
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_events.c.obj /c src\games\game\ai_cast_events.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWI
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_fight.c.obj /c src\games\game\ai_cast_fight.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_func_attack.c.obj /c src\games\game\ai_cast_func_attack.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_func_boss1.c.obj /c src\games\game\ai_cast_func_boss1.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_funcs.c.obj /c src\games\game\ai_cast_funcs.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_script.c.obj /c src\games\game\ai_cast_script.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWI
+lld-link: error: duplicate symbol: cge
+>>> defined at build\windows-x64-debug\client\obj\client\cl_cgame.c.obj
+>>> defined at build\windows-x64-debug\client\obj\client\cl_main.c.obj
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_script_actions.c.obj /c src\games\game\ai_cast_script_actions.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarati
+clang-cl /Fobuild\windows-x64-debug\game\obj\games\game\ai_cast_script_ents.c.obj /c src\games\game\ai_cast_script_ents.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z
+scons: *** [build\windows-x64-debug\WolfSP.exe] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src\client\cl_keys.c(197,5): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(450,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(452,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(469,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(470,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(474,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(475,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(476,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(477,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(478,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(535,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(541,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(570,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(595,9): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(607,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(666,16): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(667,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(680,4): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
 
 ## windows-latest-x64-release
 
-status: failure
+status: cancelled
 
-errors: 21
-warnings: 18 in 1 kinds
+errors: 2
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\cl_keys.c(1731,16): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1731,25): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1731,31): error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src\client\cl_keys.c(1746,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1746,13): error: use of undeclared identifier 'cgvm'
-src\client\cl_keys.c(1746,19): error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src\client\cl_keys.c(1752,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1752,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1752,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1756,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Error 1
+lld-link: error: duplicate symbol: cge
+scons: *** [build\windows-x64-release\WolfSP.exe] Error 1
 
 ### failure context
 
-- build\windows-x64-release\client\obj\client\cl_keys.c.obj
+- build\windows-x64-release\WolfSP.exe
 
 ```
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                          ^~~~
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                                ^~~~~~~~~~~~~~~~~~
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                 ^
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                          ^~~~
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                ^~~~~~~~~~~~
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
- 1784 |                 if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-      |                                                       ^~~~
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                  ^~~~
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-18 warnings and 20 errors generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS /D_CR
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Error 1
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_char.c.obj /c src\games\botlib\be_ai_char.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_chat.c.obj /c src\games\botlib\be_ai_chat.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_gen.c.obj /c src\games\botlib\be_ai_gen.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_goal.c.obj /c src\games\botlib\be_ai_goal.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_move.c.obj /c src\games\botlib\be_ai_move.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_weap.c.obj /c src\games\botlib\be_ai_weap.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ai_weight.c.obj /c src\games\botlib\be_ai_weight.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWI
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_ea.c.obj /c src\games\botlib\be_ea.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_interface.c.obj /c src\games\botlib\be_interface.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWI
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_crc.c.obj /c src\games\botlib\l_crc.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_libvar.c.obj /c src\games\botlib\l_libvar.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast.c.obj /c src\games\game\ai_cast.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS /
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_characters.c.obj /c src\games\game\ai_cast_characters.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_debug.c.obj /c src\games\game\ai_cast_debug.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmpt8wys2y5.lnk for command line:
+lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /SUBSYSTEM:WINDOWS /OUT:build\windows-x64-release\WolfSP.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib opengl32.lib shell32.lib build\windows-x64-release\client\obj\client\cl_cgame.c.obj build\windows-x64-release\client\obj\client\cl_cin.c.obj build\windows-x64-release\client\obj\client\cl_console.c.obj build\windows-x64-release\client\obj
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmpt8wys2y5.lnk
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_events.c.obj /c src\games\game\ai_cast_events.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN3
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_fight.c.obj /c src\games\game\ai_cast_fight.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_func_attack.c.obj /c src\games\game\ai_cast_func_attack.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations 
+lld-link: error: duplicate symbol: cge
+>>> defined at build\windows-x64-release\client\obj\client\cl_cgame.c.obj
+>>> defined at build\windows-x64-release\client\obj\client\cl_main.c.obj
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_func_boss1.c.obj /c src\games\game\ai_cast_func_boss1.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\ai_cast_funcs.c.obj /c src\games\game\ai_cast_funcs.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+scons: *** [build\windows-x64-release\WolfSP.exe] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src\client\cl_keys.c(197,5): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(450,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(452,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(469,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(470,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(474,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(475,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(476,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(477,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(478,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(535,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(541,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(570,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(595,9): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(607,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(666,16): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(667,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(680,4): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
 
 ## windows-latest-x86-debug
 
 status: failure
 
-errors: 21
-warnings: 18 in 1 kinds
+errors: 2
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\cl_keys.c(1731,16): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1731,25): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1731,31): error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src\client\cl_keys.c(1746,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1746,13): error: use of undeclared identifier 'cgvm'
-src\client\cl_keys.c(1746,19): error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src\client\cl_keys.c(1752,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1752,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1752,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1756,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build\windows-x86-debug\client\obj\client\cl_keys.c.obj] Error 1
+lld-link: error: duplicate symbol: _cge
+scons: *** [build\windows-x86-debug\WolfSP.exe] Error 1
 
 ### failure context
 
-- build\windows-x86-debug\client\obj\client\cl_keys.c.obj
+- build\windows-x86-debug\WolfSP.exe
 
 ```
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                          ^~~~
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                                ^~~~~~~~~~~~~~~~~~
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                 ^
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                          ^~~~
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                ^~~~~~~~~~~~
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
- 1784 |                 if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-      |                                                       ^~~~
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                  ^~~~
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-18 warnings and 20 errors generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_qgl.c.obj /c src\client\cl_qgl.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDOWS /D_CRT_
-scons: *** [build\windows-x86-debug\client\obj\client\cl_keys.c.obj] Error 1
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_ai_goal.c.obj /c src\games\botlib\be_ai_goal.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_ai_move.c.obj /c src\games\botlib\be_ai_move.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_ai_weap.c.obj /c src\games\botlib\be_ai_weap.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_ai_weight.c.obj /c src\games\botlib\be_ai_weight.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /D
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_ea.c.obj /c src\games\botlib\be_ea.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_interface.c.obj /c src\games\botlib\be_interface.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /D
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_crc.c.obj /c src\games\botlib\l_crc.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_libvar.c.obj /c src\games\botlib\l_libvar.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDO
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast.c.obj /c src\games\game\ai_cast.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_characters.c.obj /c src\games\game\ai_cast_characters.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_debug.c.obj /c src\games\game\ai_cast_debug.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_events.c.obj /c src\games\game\ai_cast_events.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWI
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmp4s5doud6.lnk for command line:
+lld-link /nologo /DYNAMICBASE /DEBUG /SUBSYSTEM:WINDOWS /OUT:build\windows-x86-debug\WolfSP.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib opengl32.lib shell32.lib build\windows-x86-debug\client\obj\client\cl_cgame.c.obj build\windows-x86-debug\client\obj\client\cl_cin.c.obj build\windows-x86-debug\client\obj\client\cl_console.c.obj build\windows-x86-debug\client\obj\client\cl_input.c
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmp4s5doud6.lnk
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_fight.c.obj /c src\games\game\ai_cast_fight.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_func_attack.c.obj /c src\games\game\ai_cast_func_attack.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_func_boss1.c.obj /c src\games\game\ai_cast_func_boss1.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_funcs.c.obj /c src\games\game\ai_cast_funcs.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWIN3
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_script.c.obj /c src\games\game\ai_cast_script.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z7 /Od /DWI
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_script_actions.c.obj /c src\games\game\ai_cast_script_actions.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarati
+lld-link: error: duplicate symbol: _cge
+>>> defined at build\windows-x86-debug\client\obj\client\cl_cgame.c.obj
+>>> defined at build\windows-x86-debug\client\obj\client\cl_main.c.obj
+clang-cl /Fobuild\windows-x86-debug\game\obj\games\game\ai_cast_script_ents.c.obj /c src\games\game\ai_cast_script_ents.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /Z
+scons: *** [build\windows-x86-debug\WolfSP.exe] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src\client\cl_keys.c(197,5): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(450,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(452,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(469,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(470,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(474,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(475,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(476,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(477,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(478,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(535,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(541,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(570,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(595,9): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(607,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(666,16): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(667,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(680,4): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
 
 ## windows-latest-x86-release
 
 status: failure
 
-errors: 21
-warnings: 18 in 1 kinds
+errors: 2
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\cl_keys.c(1731,16): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1731,25): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1731,31): error: use of undeclared identifier 'UI_GET_ACTIVE_MENU'
-src\client\cl_keys.c(1746,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1746,13): error: use of undeclared identifier 'cgvm'
-src\client\cl_keys.c(1746,19): error: use of undeclared identifier 'CG_EVENT_HANDLING'
-src\client\cl_keys.c(1752,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1752,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1752,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1756,5): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.c.obj] Error 1
+lld-link: error: duplicate symbol: _cge
+scons: *** [build\windows-x86-release\WolfSP.exe] Error 1
 
 ### failure context
 
-- build\windows-x86-release\client\obj\client\cl_keys.c.obj
+- build\windows-x86-release\WolfSP.exe
 
 ```
-      |                                 ^
-src\client\cl_keys.c(1756,14): error: use of undeclared identifier 'uivm'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                          ^~~~
-src\client\cl_keys.c(1756,20): error: use of undeclared identifier 'UI_SET_ACTIVE_MENU'
- 1756 |                                 VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
-      |                                                ^~~~~~~~~~~~~~~~~~
-src\client\cl_keys.c(1765,3): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                 ^
-src\client\cl_keys.c(1765,12): error: use of undeclared identifier 'uivm'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                          ^~~~
-src\client\cl_keys.c(1765,18): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1765 |                 VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                ^~~~~~~~~~~~
-src\client\cl_keys.c(1784,41): error: use of undeclared identifier 'uivm'
- 1784 |                 if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-      |                                                       ^~~~
-src\client\cl_keys.c(1785,4): error: call to undeclared function 'VM_Call'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                         ^
-src\client\cl_keys.c(1785,13): error: use of undeclared identifier 'uivm'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                  ^~~~
-src\client\cl_keys.c(1785,19): error: use of undeclared identifier 'UI_KEY_EVENT'
- 1785 |                         VM_Call( uivm, UI_KEY_EVENT, key, down );
-      |                                        ^~~~~~~~~~~~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-18 warnings and 20 errors generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.c.obj] Error 1
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_ai_move.c.obj /c src\games\botlib\be_ai_move.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_ai_weap.c.obj /c src\games\botlib\be_ai_weap.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_ai_weight.c.obj /c src\games\botlib\be_ai_weight.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWI
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_ea.c.obj /c src\games\botlib\be_ea.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_interface.c.obj /c src\games\botlib\be_interface.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWI
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_crc.c.obj /c src\games\botlib\l_crc.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_libvar.c.obj /c src\games\botlib\l_libvar.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_W
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast.c.obj /c src\games\game\ai_cast.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 /D_WINDOWS /
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_characters.c.obj /c src\games\game\ai_cast_characters.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_debug.c.obj /c src\games\game\ai_cast_debug.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmpg9f626ec.lnk for command line:
+lld-link /nologo /DYNAMICBASE /SUBSYSTEM:WINDOWS /OUT:build\windows-x86-release\WolfSP.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib opengl32.lib shell32.lib build\windows-x86-release\client\obj\client\cl_cgame.c.obj build\windows-x86-release\client\obj\client\cl_cin.c.obj build\windows-x86-release\client\obj\client\cl_console.c.obj build\windows-x86-release\client\obj\client\cl_inpu
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmpg9f626ec.lnk
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_events.c.obj /c src\games\game\ai_cast_events.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN3
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_fight.c.obj /c src\games\game\ai_cast_fight.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_func_attack.c.obj /c src\games\game\ai_cast_func_attack.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations 
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_func_boss1.c.obj /c src\games\game\ai_cast_func_boss1.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_funcs.c.obj /c src\games\game\ai_cast_funcs.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+lld-link: error: duplicate symbol: _cge
+>>> defined at build\windows-x86-release\client\obj\client\cl_cgame.c.obj
+>>> defined at build\windows-x86-release\client\obj\client\cl_main.c.obj
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_script.c.obj /c src\games\game\ai_cast_script.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN3
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_script_actions.c.obj /c src\games\game\ai_cast_script_actions.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declara
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_script_ents.c.obj /c src\games\game\ai_cast_script_ents.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations 
+clang-cl /Fobuild\windows-x86-release\game\obj\games\game\ai_cast_sight.c.obj /c src\games\game\ai_cast_sight.c /nologo /W4 -m32 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations /O2 /DWIN32 
+scons: *** [build\windows-x86-release\WolfSP.exe] Error 1
 ```
 
 
 ### warning kinds
-
-- [18x] -invalid-source-encoding
-  - src\client\cl_keys.c(197,5): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(450,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(452,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(469,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(470,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(474,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(475,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(476,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(477,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(478,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(535,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(541,8): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(570,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(595,9): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(607,13): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(666,16): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(667,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-  - src\client\cl_keys.c(680,4): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
 
