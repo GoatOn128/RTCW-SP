@@ -30,8 +30,8 @@ If you have questions concerning this license or the applicable additional terms
 #  error You should not be including this file on this platform
 #endif
 
-#ifndef __GLW_WIN_H__
-#define __GLW_WIN_H__
+#ifndef GLW_WIN_H
+#define GLW_WIN_H
 
 typedef struct
 {

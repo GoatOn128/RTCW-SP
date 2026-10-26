@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __MATH_VECTOR_H__
-#define __MATH_VECTOR_H__
+#ifndef MATH_VECTOR_H
+#define MATH_VECTOR_H
 
 #if defined( _WIN32 )
 #pragma warning(disable : 4244)
@@ -584,4 +584,4 @@ ID_INLINE float& idVec5_t::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 
-#endif /* !__MATH_VECTOR_H__ */
+#endif /* !MATH_VECTOR_H */

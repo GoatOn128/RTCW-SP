@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __MATH_ANGLES_H__
-#define __MATH_ANGLES_H__
+#ifndef MATH_ANGLES_H
+#define MATH_ANGLES_H
 
 #include <stdlib.h>
 #include <assert.h>
@@ -200,4 +200,4 @@ inline angles_t& angles_t::Zero( void ) {
 	return *this;
 }
 
-#endif /* !__MATH_ANGLES_H__ */
+#endif /* !MATH_ANGLES_H */

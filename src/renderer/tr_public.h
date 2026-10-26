@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __TR_PUBLIC_H
-#define __TR_PUBLIC_H
+#ifndef TR_PUBLIC_H
+#define TR_PUBLIC_H
 
 #include "../cgame/tr_types.h"
 
@@ -180,4 +180,4 @@ typedef struct {
 // returned.
 refexport_t*GetRefAPI( int apiVersion, refimport_t *rimp );
 
-#endif  // __TR_PUBLIC_H
+#endif  // TR_PUBLIC_H

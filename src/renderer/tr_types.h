@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __TR_TYPES_H
-#define __TR_TYPES_H
+#ifndef TR_TYPES_H
+#define TR_TYPES_H
 
 
 #define MAX_CORONAS     32          //----(SA)	not really a reason to limit this other than trying to keep a reasonable count
@@ -340,4 +340,4 @@ typedef struct {
 #endif  // !defined _WIN32
 
 
-#endif  // __TR_TYPES_H
+#endif  // TR_TYPES_H
