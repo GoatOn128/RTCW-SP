@@ -39,6 +39,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include <unistd.h>   // AH - for size_t
 #include <string.h>
+#include <math.h>
 
 // bk001207 - we need something under Linux, too. Mac?
 #if 1 // defined(C_ONLY) // bk010102 - dedicated?
@@ -346,3 +347,11 @@ void Com_Prefetch( const void *s, const unsigned int bytes, e_prefetch type ) {
 }
 
 #endif
+
+// portable replacement for the dropped snapvector.nasm: the engine calls
+// Sys_SnapVector through the SNAPVECTOR syscall on every unix platform
+void Sys_SnapVector( float *v ) {
+	v[0] = rint( v[0] );
+	v[1] = rint( v[1] );
+	v[2] = rint( v[2] );
+}

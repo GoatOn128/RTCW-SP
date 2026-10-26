@@ -24,7 +24,10 @@ def main():
             statuses[parts[0]] = parts[1]
 
     digest = ["# Build digest\n\n"]
-    digest.append("commit: %s\n\n" % os.environ.get("GITHUB_SHA", "unknown")[:12])
+    # publish runs on a workflow_run event where GITHUB_SHA points at the
+    # default branch head, not the built commit: COMMIT_SHA wins when set
+    commit = os.environ.get("COMMIT_SHA") or os.environ.get("GITHUB_SHA", "unknown")
+    digest.append("commit: %s\n\n" % commit[:12])
     for leg in sorted(statuses):
         digest.append("- %s: %s\n" % (leg, statuses[leg]))
     digest.append("\n")

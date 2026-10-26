@@ -1,0 +1,107 @@
+name: publish
+
+on:
+  workflow_run:
+    workflows: [format, build-ubuntu, build-windows]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    # a cancelled run (superseded by a newer push) must not publish its
+    # partial logs: they race with the live run and corrupt the committed
+    # build.log and build-digest.md. pull_request cycles stay in the
+    # artifacts only
+    if: github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      - name: find sibling runs
+        id: runs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -eu
+          # publish once every workflow finished for the same head
+          # commit: earlier triggers exit here and the last one works
+          for wf in ci-format.yml ci-ubuntu.yml ci-windows.yml; do
+            id=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${wf}/runs?head_sha=${HEAD_SHA}&event=push&per_page=1" --jq '.workflow_runs[0].id // empty')
+            if [ -z "$id" ]; then
+              echo "no push run for ${wf} yet"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${id}" --jq .status)
+            if [ "$status" != "completed" ]; then
+              echo "${wf} is ${status}"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            case "$wf" in
+              ci-format.yml) echo "run_format=$id" >> "$GITHUB_OUTPUT" ;;
+              ci-ubuntu.yml) echo "run_ubuntu=$id" >> "$GITHUB_OUTPUT" ;;
+              ci-windows.yml) echo "run_windows=$id" >> "$GITHUB_OUTPUT" ;;
+            esac
+          done
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+      - name: download format logs
+        if: steps.runs.outputs.skip != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.runs.outputs.run_format }}
+          github-token: ${{ github.token }}
+          pattern: logs-*
+          merge-multiple: true
+          path: logs
+      - name: download ubuntu logs
+        if: steps.runs.outputs.skip != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.runs.outputs.run_ubuntu }}
+          github-token: ${{ github.token }}
+          pattern: logs-*
+          merge-multiple: true
+          path: logs
+      - name: download windows logs
+        if: steps.runs.outputs.skip != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.runs.outputs.run_windows }}
+          github-token: ${{ github.token }}
+          pattern: logs-*
+          merge-multiple: true
+          path: logs
+      - uses: actions/checkout@v4
+        if: steps.runs.outputs.skip != 'true'
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+      - name: assemble
+        if: steps.runs.outputs.skip != 'true'
+        env:
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          if ls logs/status-* >/dev/null 2>&1; then
+            python .github/scripts/assemble.py
+          else
+            echo "no build logs to publish"
+            exit 0
+          fi
+      - name: commit
+        if: steps.runs.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          touch build.log build-digest.md
+          git add build.log build-digest.md
+          git diff --cached --quiet && exit 0
+          git commit -m "CI: publish build log and digest [skip ci]"
+          if ! git push; then
+            # -X theirs: on a push race the newest output wins instead of
+            # committing conflict markers
+            git pull --rebase -X theirs origin ${{ github.event.workflow_run.head_branch }}
+            git push
+          fi

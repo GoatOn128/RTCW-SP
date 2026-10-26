@@ -45,7 +45,9 @@ int     *snd_p;
 int snd_linear_count;
 short   *snd_out;
 
-#if !( defined __linux__ && defined __i386__ )
+// the unix snd_mixa.s file is no longer assembled, so every platform
+// uses the portable C version (id386 is forced to 0 in q_shared.h)
+#if 1
 #if !id386
 
 /*

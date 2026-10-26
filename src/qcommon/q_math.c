@@ -670,7 +670,9 @@ int BoxOnPlaneSide2 (vec3_t emins, vec3_t emaxs, struct cplane_s *p)
 
 ==================
 */
-#if !( defined __linux__ && defined __i386__ && !defined C_ONLY )
+// the unix asm files are no longer assembled, so every platform uses the
+// portable C version below (id386 is forced to 0 in q_shared.h)
+#if 1
 #if defined __LCC__ || defined C_ONLY || !id386
 
 int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
@@ -1413,5 +1415,31 @@ void VectorScale( const vec3_t in, vec_t scale, vec3_t out ) {
 }
 
 void VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
+	VectorMA_( veca, scale, vecb, vecc );
+}
+
+// the savegame function table in g_save.c references these by their plain
+// names, so the game module needs real definitions
+void _VectorScale( const vec3_t in, vec_t scale, vec3_t out ) {
+	VectorScale_( in, scale, out );
+}
+
+void _VectorCopy( const vec3_t in, vec3_t out ) {
+	VectorCopy_( in, out );
+}
+
+void _VectorAdd( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+	VectorAdd_( veca, vecb, out );
+}
+
+void _VectorSubtract( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+	VectorSubtract_( veca, vecb, out );
+}
+
+vec_t _DotProduct( const vec3_t v1, const vec3_t v2 ) {
+	return DotProduct_( v1, v2 );
+}
+
+void _VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
 	VectorMA_( veca, scale, vecb, vecc );
 }

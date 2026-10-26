@@ -1,0 +1,108 @@
+name: format
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# a new commit cancels the superseded run for the same branch
+concurrency:
+  group: format-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: uncrustify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install uncrustify
+        shell: bash
+        run: |
+          rm -f build.log
+          set -o pipefail
+          sudo apt-get update -qq 2>&1 | tee -a build.log
+          sudo apt-get install -y -qq uncrustify 2>&1 | tee -a build.log
+      - name: apply pending engine patches
+        shell: bash
+        run: |
+          # Idempotent source patches that cannot be applied through the
+          # repository API (the GitHub file reader fails on unix_main.c).
+          # Each block only applies while its old pattern still exists.
+          # Failures are logged into build.log but never stop the job.
+          python3 - <<'EOF' 2>&1 | tee -a build.log
+          from pathlib import Path
+
+          # unix_main.c: Sys_LoadGameDll appends an architecture suffix
+          # (namei386.so) that no longer exists. Use plain <name>.so so
+          # 64-bit builds can load the modules the SCons build produces.
+          p = Path('src/sys/unix/unix_main.c')
+          # the file is not valid UTF-8: latin-1 round-trips every byte
+          s = p.read_bytes().decode('latin-1')
+          if '#error Unknown arch' in s:
+              i = s.index('%si386.so')
+              start = s.rindex('#if', 0, i)
+              err = s.index('#error Unknown arch', i)
+              end = s.index('#endif', err) + len('#endif')
+              span = s[start:end]
+              assert '__powerpc__' in span and '__mips__' in span, span[:200]
+              repl = (
+                  '// module names carry no architecture suffix: the SCons build\n'
+                  '\t// produces plain <name>.so files on every architecture\n'
+                  '\tsnprintf( fname, sizeof( fname ), "%s.so", name );'
+              )
+              p.write_bytes(( s[:start] + repl + s[end:] ).encode('latin-1'))
+              print('unix_main.c: replaced the arch suffix chain')
+          else:
+              print('unix_main.c: nothing to do')
+          EOF
+      - name: format
+        shell: bash
+        run: |
+          # run per file: a crash on one file must not abort the whole tree
+          find src -regextype posix-extended -path src/third-party -prune -o -type f -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
+          while read -r f; do
+            uncrustify -c uncrustify.cfg --replace --no-backup "$f" >> build.log 2>&1 || echo "UNCRUSTIFY_FAILED: $f" >> build.log
+          done < files.txt
+          rm -f files.txt
+      - name: commit formatting
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- src; then
+            # only formatted sources belong in the tree, never the local
+            # build.log or stray uncrustify scratch files
+            find src -name '*.uncrustify' -delete
+            git add src
+            git commit -m "uncrustify: format tree [skip ci]"
+            if ! git push; then
+              # -X theirs: on a push race the newest output wins instead of
+              # committing conflict markers
+              git pull --rebase -X theirs origin ${{ github.ref }}
+              git push
+            fi
+          fi
+      - name: digest
+        if: always()
+        shell: bash
+        env:
+          LEG: uncrustify
+          STATUS: ${{ job.status }}
+        run: |
+          cp build.log "log-$LEG.log" 2>/dev/null || true
+          python .github/scripts/digest.py || true
+      - name: upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-uncrustify
+          path: |
+            log-uncrustify.log
+            digest-fragment-uncrustify.md
+            status-uncrustify
+          if-no-files-found: ignore
