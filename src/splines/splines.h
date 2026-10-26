@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __SPLINES_H
-#define __SPLINES_H
+#ifndef SPLINES_H
+#define SPLINES_H
 
 extern "C" {
 #ifdef Q3RADIANT

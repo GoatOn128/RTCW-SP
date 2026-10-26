@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __Q_SHARED_H
-#define __Q_SHARED_H
+#ifndef Q_SHARED_H
+#define Q_SHARED_H
 
 // q_splineshared.h -- included first by ALL program modules.
 // these are the definitions that have no dependance on
@@ -812,4 +812,4 @@ void Info_NextPair( const char *( *s ), char key[MAX_INFO_KEY], char value[MAX_I
 //#include "../shared/idflags.h"
 #endif  // __cplusplus
 
-#endif  // __Q_SHARED_H
+#endif  // Q_SHARED_H

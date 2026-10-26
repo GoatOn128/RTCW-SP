@@ -28,8 +28,8 @@ If you have questions concerning this license or the applicable additional terms
 
 //need to rewrite this
 
-#ifndef __UTIL_STR_H__
-#define __UTIL_STR_H__
+#ifndef UTIL_STR_H
+#define UTIL_STR_H
 
 #include <assert.h>
 #include <string.h>
