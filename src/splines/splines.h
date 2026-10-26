@@ -86,7 +86,7 @@ int selectPointByRay( const idVec3 origin, const idVec3 direction, bool single )
 		temp2 = temp;
 		temp -= origin;
 		d = DotProduct( temp, direction );
-		__VectorMA( origin, d, direction, temp );
+		VectorMA_( origin, d, direction, temp );
 		temp2 -= temp;
 		d = temp2.Length();
 		if ( d <= bestd ) {
