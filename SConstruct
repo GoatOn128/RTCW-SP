@@ -100,6 +100,15 @@ if IS_WINDOWS:
     # Keep it building until the qgl layer is replaced with glad.
     env.Append(CCFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
     env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
+    # legacy warning classes that carry no signal for this 2001-era tree
+    env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
+    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
+    '-Wno-pointer-sign', '-Wno-deprecated-declarations'])
+    env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
+    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
+    '-Wno-pointer-sign', '-Wno-deprecated-declarations', '-Wno-writable-strings', '-Wno-deprecated-copy'])
+    # ASLR: let the loader relocate every image at launch
+    env.Append(LINKFLAGS=['/DYNAMICBASE'] + (['/HIGHENTROPYVA'] if ARCH == 'x64' else []))
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['/Z7', '/Od'], CXXFLAGS=['/Z7', '/Od'], LINKFLAGS=['/DEBUG'])
     else:
@@ -126,6 +135,13 @@ else:
     else:
         env.Append(CPPDEFINES=['NDEBUG'])
         env.Append(CCFLAGS=['-O2', '-fno-strict-aliasing'], CXXFLAGS=['-O2', '-fno-strict-aliasing'])
+    # legacy warning classes that carry no signal for this 2001-era tree
+    env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
+    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
+    '-Wno-pointer-sign'])
+    env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
+    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
+    '-Wno-pointer-sign', '-Wno-writable-strings', '-Wno-deprecated-copy'])
 
 # Shared derived-object cache, big win on CI when restored
 env.CacheDir('.scons_cache')
@@ -215,6 +231,8 @@ if IS_WINDOWS:
     client_env.Append(LIBS=['user32', 'gdi32', 'winmm', 'wsock32', 'advapi32', 'opengl32', 'shell32'])
 else:
     client_env.Append(LIBS=['dl', 'm', 'X11', 'Xext', 'Xxf86dga', 'Xxf86vm'])
+    # ASLR: position independent executable, randomized at load time
+    client_env.Append(CCFLAGS=['-fPIE'], CXXFLAGS=['-fPIE'], LINKFLAGS=['-pie'])
 
 sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 
