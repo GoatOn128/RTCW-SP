@@ -34,163 +34,163 @@ If you have questions concerning this license or the applicable additional terms
 cgameImport_t *cgameImport = NULL;
 
 void    trap_Print( const char *fmt ) {
-	gameImport->CG_PRINT( fmt );
+	cgameImport->CG_PRINT( fmt );
 }
 
 void    trap_Error( const char *fmt ) {
-	gameImport->CG_ERROR( fmt );
+	cgameImport->CG_ERROR( fmt );
 }
 
 int     trap_Milliseconds( void ) {
-	return gameImport->CG_MILLISECONDS();
+	return cgameImport->CG_MILLISECONDS();
 }
 
 void    trap_Cvar_Register( vmCvar_t *vmCvar, const char *varName, const char *defaultValue, int flags ) {
-	gameImport->CG_CVAR_REGISTER( vmCvar, varName, defaultValue, flags );
+	cgameImport->CG_CVAR_REGISTER( vmCvar, varName, defaultValue, flags );
 }
 
 void    trap_Cvar_Update( vmCvar_t *vmCvar ) {
-	gameImport->CG_CVAR_UPDATE( vmCvar );
+	cgameImport->CG_CVAR_UPDATE( vmCvar );
 }
 
 void    trap_Cvar_Set( const char *var_name, const char *value ) {
-	gameImport->CG_CVAR_SET( var_name, value );
+	cgameImport->CG_CVAR_SET( var_name, value );
 }
 
 void trap_Cvar_VariableStringBuffer( const char *var_name, char *buffer, int bufsize ) {
-	gameImport->CG_CVAR_VARIABLESTRINGBUFFER( var_name, buffer, bufsize );
+	cgameImport->CG_CVAR_VARIABLESTRINGBUFFER( var_name, buffer, bufsize );
 }
 
 int     trap_Argc( void ) {
-	return gameImport->CG_ARGC();
+	return cgameImport->CG_ARGC();
 }
 
 void    trap_Argv( int n, char *buffer, int bufferLength ) {
-	gameImport->CG_ARGV( n, buffer, bufferLength );
+	cgameImport->CG_ARGV( n, buffer, bufferLength );
 }
 
 void    trap_Args( char *buffer, int bufferLength ) {
-	gameImport->CG_ARGS( buffer, bufferLength );
+	cgameImport->CG_ARGS( buffer, bufferLength );
 }
 
 int     trap_FS_FOpenFile( const char *qpath, fileHandle_t *f, fsMode_t mode ) {
-	return gameImport->CG_FS_FOPENFILE( qpath, f, mode );
+	return cgameImport->CG_FS_FOPENFILE( qpath, f, mode );
 }
 
 void    trap_FS_Read( void *buffer, int len, fileHandle_t f ) {
-	gameImport->CG_FS_READ( buffer, len, f );
+	cgameImport->CG_FS_READ( buffer, len, f );
 }
 
 void    trap_FS_Write( const void *buffer, int len, fileHandle_t f ) {
-	gameImport->CG_FS_WRITE( buffer, len, f );
+	cgameImport->CG_FS_WRITE( buffer, len, f );
 }
 
 void    trap_FS_FCloseFile( fileHandle_t f ) {
-	gameImport->CG_FS_FCLOSEFILE( f );
+	cgameImport->CG_FS_FCLOSEFILE( f );
 }
 
 void    trap_SendConsoleCommand( const char *text ) {
-	gameImport->CG_SENDCONSOLECOMMAND( text );
+	cgameImport->CG_SENDCONSOLECOMMAND( text );
 }
 
 void    trap_AddCommand( const char *cmdName ) {
-	gameImport->CG_ADDCOMMAND( cmdName );
+	cgameImport->CG_ADDCOMMAND( cmdName );
 }
 
 void    trap_SendClientCommand( const char *s ) {
-	gameImport->CG_SENDCLIENTCOMMAND( s );
+	cgameImport->CG_SENDCLIENTCOMMAND( s );
 }
 
 void    trap_UpdateScreen( void ) {
-	gameImport->CG_UPDATESCREEN();
+	cgameImport->CG_UPDATESCREEN();
 }
 
 void    trap_CM_LoadMap( const char *mapname ) {
-	gameImport->CG_CM_LOADMAP( mapname );
+	cgameImport->CG_CM_LOADMAP( mapname );
 }
 
 int     trap_CM_NumInlineModels( void ) {
-	return gameImport->CG_CM_NUMINLINEMODELS();
+	return cgameImport->CG_CM_NUMINLINEMODELS();
 }
 
 clipHandle_t trap_CM_InlineModel( int index ) {
-	return gameImport->CG_CM_INLINEMODEL( index );
+	return cgameImport->CG_CM_INLINEMODEL( index );
 }
 
 clipHandle_t trap_CM_TempBoxModel( const vec3_t mins, const vec3_t maxs ) {
-	return gameImport->CG_CM_TEMPBOXMODEL( mins, maxs );
+	return cgameImport->CG_CM_TEMPBOXMODEL( mins, maxs );
 }
 
 clipHandle_t trap_CM_TempCapsuleModel( const vec3_t mins, const vec3_t maxs ) {
-	return gameImport->CG_CM_TEMPCAPSULEMODEL( mins, maxs );
+	return cgameImport->CG_CM_TEMPCAPSULEMODEL( mins, maxs );
 }
 
 int     trap_CM_PointContents( const vec3_t p, clipHandle_t model ) {
-	return gameImport->CG_CM_POINTCONTENTS( p, model );
+	return cgameImport->CG_CM_POINTCONTENTS( p, model );
 }
 
 int     trap_CM_TransformedPointContents( const vec3_t p, clipHandle_t model, const vec3_t origin, const vec3_t angles ) {
-	return gameImport->CG_CM_TRANSFORMEDPOINTCONTENTS( p, model, origin, angles );
+	return cgameImport->CG_CM_TRANSFORMEDPOINTCONTENTS( p, model, origin, angles );
 }
 
 void    trap_CM_BoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
 						  const vec3_t mins, const vec3_t maxs,
 						  clipHandle_t model, int brushmask ) {
-	gameImport->CG_CM_BOXTRACE( results, start, end, mins, maxs, model, brushmask );
+	cgameImport->CG_CM_BOXTRACE( results, start, end, mins, maxs, model, brushmask );
 }
 
 void    trap_CM_TransformedBoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
 									 const vec3_t mins, const vec3_t maxs,
 									 clipHandle_t model, int brushmask,
 									 const vec3_t origin, const vec3_t angles ) {
-	gameImport->CG_CM_TRANSFORMEDBOXTRACE( results, start, end, mins, maxs, model, brushmask, origin, angles );
+	cgameImport->CG_CM_TRANSFORMEDBOXTRACE( results, start, end, mins, maxs, model, brushmask, origin, angles );
 }
 
 void    trap_CM_CapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
 							  const vec3_t mins, const vec3_t maxs,
 							  clipHandle_t model, int brushmask ) {
-	gameImport->CG_CM_CAPSULETRACE( results, start, end, mins, maxs, model, brushmask );
+	cgameImport->CG_CM_CAPSULETRACE( results, start, end, mins, maxs, model, brushmask );
 }
 
 void    trap_CM_TransformedCapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
 										 const vec3_t mins, const vec3_t maxs,
 										 clipHandle_t model, int brushmask,
 										 const vec3_t origin, const vec3_t angles ) {
-	gameImport->CG_CM_TRANSFORMEDCAPSULETRACE( results, start, end, mins, maxs, model, brushmask, origin, angles );
+	cgameImport->CG_CM_TRANSFORMEDCAPSULETRACE( results, start, end, mins, maxs, model, brushmask, origin, angles );
 }
 
 int     trap_CM_MarkFragments( int numPoints, const vec3_t *points,
 							   const vec3_t projection,
 							   int maxPoints, vec3_t pointBuffer,
 							   int maxFragments, markFragment_t *fragmentBuffer ) {
-	return gameImport->CG_CM_MARKFRAGMENTS( numPoints, points, projection, maxPoints, pointBuffer, maxFragments, fragmentBuffer );
+	return cgameImport->CG_CM_MARKFRAGMENTS( numPoints, points, projection, maxPoints, pointBuffer, maxFragments, fragmentBuffer );
 }
 
 void    trap_S_StartSound( vec3_t origin, int entityNum, int entchannel, sfxHandle_t sfx ) {
-	gameImport->CG_S_STARTSOUND( origin, entityNum, entchannel, sfx );
+	cgameImport->CG_S_STARTSOUND( origin, entityNum, entchannel, sfx );
 }
 
 //----(SA)	added
 void    trap_S_StartSoundEx( vec3_t origin, int entityNum, int entchannel, sfxHandle_t sfx, int flags ) {
-	gameImport->CG_S_STARTSOUNDEX( origin, entityNum, entchannel, sfx, flags );
+	cgameImport->CG_S_STARTSOUNDEX( origin, entityNum, entchannel, sfx, flags );
 }
 //----(SA)	end
 
 void    trap_S_StartLocalSound( sfxHandle_t sfx, int channelNum ) {
-	gameImport->CG_S_STARTLOCALSOUND( sfx, channelNum );
+	cgameImport->CG_S_STARTLOCALSOUND( sfx, channelNum );
 }
 
 void    trap_S_ClearLoopingSounds( qboolean killall ) {
-	gameImport->CG_S_CLEARLOOPINGSOUNDS( killall );
+	cgameImport->CG_S_CLEARLOOPINGSOUNDS( killall );
 }
 
 void    trap_S_AddLoopingSound( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int volume ) {
-	gameImport->CG_S_ADDLOOPINGSOUND( entityNum, origin, velocity, 1250, sfx, volume );     // volume was previously removed from CG_S_ADDLOOPINGSOUND.  I added 'range'
+	cgameImport->CG_S_ADDLOOPINGSOUND( entityNum, origin, velocity, 1250, sfx, volume );     // volume was previously removed from CG_S_ADDLOOPINGSOUND.  I added 'range'
 }
 
 //----(SA)	added
 void    trap_S_AddRangedLoopingSound( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int range ) {
-	gameImport->CG_S_ADDLOOPINGSOUND( entityNum, origin, velocity, range, sfx, 255 );   // RF, assume full volume, since thats how it worked before
+	cgameImport->CG_S_ADDLOOPINGSOUND( entityNum, origin, velocity, range, sfx, 255 );   // RF, assume full volume, since thats how it worked before
 }
 //----(SA)	end
 
@@ -199,306 +199,306 @@ void    trap_S_AddRealLoopingSound( int entityNum, const vec3_t origin, const ve
 }
 
 void    trap_S_StopLoopingSound( int entityNum ) {
-	gameImport->CG_S_STOPLOOPINGSOUND( entityNum );
+	cgameImport->CG_S_STOPLOOPINGSOUND( entityNum );
 }
 
 //----(SA)	added
 void    trap_S_StopStreamingSound( int entityNum ) {
-	gameImport->CG_S_STOPSTREAMINGSOUND( entityNum );
+	cgameImport->CG_S_STOPSTREAMINGSOUND( entityNum );
 }
 //----(SA)	end
 
 void    trap_S_UpdateEntityPosition( int entityNum, const vec3_t origin ) {
-	gameImport->CG_S_UPDATEENTITYPOSITION( entityNum, origin );
+	cgameImport->CG_S_UPDATEENTITYPOSITION( entityNum, origin );
 }
 
 // Ridah, talking animations
 int     trap_S_GetVoiceAmplitude( int entityNum ) {
-	return gameImport->CG_S_GETVOICEAMPLITUDE( entityNum );
+	return cgameImport->CG_S_GETVOICEAMPLITUDE( entityNum );
 }
 // done.
 
 void    trap_S_Respatialize( int entityNum, const vec3_t origin, vec3_t axis[3], int inwater ) {
-	gameImport->CG_S_RESPATIALIZE( entityNum, origin, axis, inwater );
+	cgameImport->CG_S_RESPATIALIZE( entityNum, origin, axis, inwater );
 }
 
 sfxHandle_t trap_S_RegisterSound( const char *sample ) {
 	CG_DrawInformation();
-	return gameImport->CG_S_REGISTERSOUND( sample );
+	return cgameImport->CG_S_REGISTERSOUND( sample );
 }
 
 void    trap_S_StartBackgroundTrack( const char *intro, const char *loop, int fadeupTime ) {
-	gameImport->CG_S_STARTBACKGROUNDTRACK( intro, loop, fadeupTime );
+	cgameImport->CG_S_STARTBACKGROUNDTRACK( intro, loop, fadeupTime );
 }
 
 void    trap_S_FadeBackgroundTrack( float targetvol, int time, int num ) {   // yes, i know.  fadebackground coming in, fadestreaming going out.  will have to see where functionality leads...
-	gameImport->CG_S_FADESTREAMINGSOUND( targetvol, time, num ); // 'num' is '0' if it's music, '1' if it's "all streaming sounds"
+	cgameImport->CG_S_FADESTREAMINGSOUND( targetvol, time, num ); // 'num' is '0' if it's music, '1' if it's "all streaming sounds"
 }
 
 void    trap_S_FadeAllSound( float targetvol, int time ) {
-	gameImport->CG_S_FADEALLSOUNDS( targetvol, time );
+	cgameImport->CG_S_FADEALLSOUNDS( targetvol, time );
 }
 
 //----(SA)	end
 
 void    trap_S_StartStreamingSound( const char *intro, const char *loop, int entnum, int channel, int attenuation ) {
-	gameImport->CG_S_STARTSTREAMINGSOUND( intro, loop, entnum, channel, attenuation );
+	cgameImport->CG_S_STARTSTREAMINGSOUND( intro, loop, entnum, channel, attenuation );
 }
 
 void    trap_R_LoadWorldMap( const char *mapname ) {
-	gameImport->CG_R_LOADWORLDMAP( mapname );
+	cgameImport->CG_R_LOADWORLDMAP( mapname );
 }
 
 qhandle_t trap_R_RegisterModel( const char *name ) {
 	CG_DrawInformation();
-	return gameImport->CG_R_REGISTERMODEL( name );
+	return cgameImport->CG_R_REGISTERMODEL( name );
 }
 
 //----(SA)	added
 qboolean trap_R_GetSkinModel( qhandle_t skinid, const char *type, char *name ) {
-	return gameImport->CG_R_GETSKINMODEL( skinid, type, name );
+	return cgameImport->CG_R_GETSKINMODEL( skinid, type, name );
 }
 
 qhandle_t trap_R_GetShaderFromModel( qhandle_t modelid, int surfnum, int withlightmap ) {
-	return gameImport->CG_R_GETMODELSHADER( modelid, surfnum, withlightmap );
+	return cgameImport->CG_R_GETMODELSHADER( modelid, surfnum, withlightmap );
 }
 //----(SA)	end
 
 qhandle_t trap_R_RegisterSkin( const char *name ) {
 	CG_DrawInformation();
-	return gameImport->CG_R_REGISTERSKIN( name );
+	return cgameImport->CG_R_REGISTERSKIN( name );
 }
 
 qhandle_t trap_R_RegisterShader( const char *name ) {
 	CG_DrawInformation();
-	return gameImport->CG_R_REGISTERSHADER( name );
+	return cgameImport->CG_R_REGISTERSHADER( name );
 }
 
 qhandle_t trap_R_RegisterShaderNoMip( const char *name ) {
 	CG_DrawInformation();
-	return gameImport->CG_R_REGISTERSHADERNOMIP( name );
+	return cgameImport->CG_R_REGISTERSHADERNOMIP( name );
 }
 
 void trap_R_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
-	gameImport->CG_R_REGISTERFONT( fontName, pointSize, font );
+	cgameImport->CG_R_REGISTERFONT( fontName, pointSize, font );
 }
 
 void    trap_R_ClearScene( void ) {
-	gameImport->CG_R_CLEARSCENE();
+	cgameImport->CG_R_CLEARSCENE();
 }
 
 void    trap_R_AddRefEntityToScene( const refEntity_t *re ) {
-	gameImport->CG_R_ADDREFENTITYTOSCENE( re );
+	cgameImport->CG_R_ADDREFENTITYTOSCENE( re );
 }
 
 void    trap_R_AddPolyToScene( qhandle_t hShader, int numVerts, const polyVert_t *verts ) {
-	gameImport->CG_R_ADDPOLYTOSCENE( hShader, numVerts, verts );
+	cgameImport->CG_R_ADDPOLYTOSCENE( hShader, numVerts, verts );
 }
 
 // Ridah
 void    trap_R_AddPolysToScene( qhandle_t hShader, int numVerts, const polyVert_t *verts, int numPolys ) {
-	gameImport->CG_R_ADDPOLYSTOSCENE( hShader, numVerts, verts, numPolys );
+	cgameImport->CG_R_ADDPOLYSTOSCENE( hShader, numVerts, verts, numPolys );
 }
 
 void    trap_RB_ZombieFXAddNewHit( int entityNum, const vec3_t hitPos, const vec3_t hitDir ) {
-	gameImport->CG_RB_ZOMBIEFXADDNEWHIT( entityNum, hitPos, hitDir );
+	cgameImport->CG_RB_ZOMBIEFXADDNEWHIT( entityNum, hitPos, hitDir );
 }
 // done.
 
 void    trap_R_AddLightToScene( const vec3_t org, float intensity, float r, float g, float b, int overdraw ) {
-	gameImport->CG_R_ADDLIGHTTOSCENE( org, intensity, r, g, b, overdraw );
+	cgameImport->CG_R_ADDLIGHTTOSCENE( org, intensity, r, g, b, overdraw );
 }
 
 //----(SA)
 void    trap_R_AddCoronaToScene( const vec3_t org, float r, float g, float b, float scale, int id, int flags ) {
-	gameImport->CG_R_ADDCORONATOSCENE( org, r, g, b, scale, id, flags );
+	cgameImport->CG_R_ADDCORONATOSCENE( org, r, g, b, scale, id, flags );
 }
 //----(SA)
 
 //----(SA)
 void    trap_R_SetFog( int fogvar, int var1, int var2, float r, float g, float b, float density ) {
-	gameImport->CG_R_SETFOG( fogvar, var1, var2, r, g, b, density );
+	cgameImport->CG_R_SETFOG( fogvar, var1, var2, r, g, b, density );
 }
 //----(SA)
 void    trap_R_RenderScene( const refdef_t *fd ) {
-	gameImport->CG_R_RENDERSCENE( fd );
+	cgameImport->CG_R_RENDERSCENE( fd );
 }
 
 void    trap_R_SetColor( const float *rgba ) {
-	gameImport->CG_R_SETCOLOR( rgba );
+	cgameImport->CG_R_SETCOLOR( rgba );
 }
 
 void    trap_R_DrawStretchPic( float x, float y, float w, float h,
 							   float s1, float t1, float s2, float t2, qhandle_t hShader ) {
-	gameImport->CG_R_DRAWSTRETCHPIC( x, y, w, h, s1, t1, s2, t2, hShader );
+	cgameImport->CG_R_DRAWSTRETCHPIC( x, y, w, h, s1, t1, s2, t2, hShader );
 }
 
 void    trap_R_DrawStretchPicGradient(  float x, float y, float w, float h,
 										float s1, float t1, float s2, float t2, qhandle_t hShader,
 										const float *gradientColor, int gradientType ) {
-	gameImport->CG_R_DRAWSTRETCHPIC_GRADIENT( x, y, w, h, s1, t1, s2, t2, hShader, gradientColor, gradientType  );
+	cgameImport->CG_R_DRAWSTRETCHPIC_GRADIENT( x, y, w, h, s1, t1, s2, t2, hShader, gradientColor, gradientType  );
 }
 
 void    trap_R_ModelBounds( clipHandle_t model, vec3_t mins, vec3_t maxs ) {
-	gameImport->CG_R_MODELBOUNDS( model, mins, maxs );
+	cgameImport->CG_R_MODELBOUNDS( model, mins, maxs );
 }
 
 int     trap_R_LerpTag( orientation_t *tag, const refEntity_t *refent, const char *tagName, int startIndex ) {
-	return gameImport->CG_R_LERPTAG( tag, refent, tagName, startIndex );
+	return cgameImport->CG_R_LERPTAG( tag, refent, tagName, startIndex );
 }
 
 void    trap_R_RemapShader( const char *oldShader, const char *newShader, const char *timeOffset ) {
-	gameImport->CG_R_REMAP_SHADER( oldShader, newShader, timeOffset );
+	cgameImport->CG_R_REMAP_SHADER( oldShader, newShader, timeOffset );
 }
 
 void        trap_GetGlconfig( glconfig_t *glconfig ) {
-	gameImport->CG_GETGLCONFIG( glconfig );
+	cgameImport->CG_GETGLCONFIG( glconfig );
 }
 
 void        trap_GetGameState( gameState_t *gamestate ) {
-	gameImport->CG_GETGAMESTATE( gamestate );
+	cgameImport->CG_GETGAMESTATE( gamestate );
 }
 
 void        trap_GetCurrentSnapshotNumber( int *snapshotNumber, int *serverTime ) {
-	gameImport->CG_GETCURRENTSNAPSHOTNUMBER( snapshotNumber, serverTime );
+	cgameImport->CG_GETCURRENTSNAPSHOTNUMBER( snapshotNumber, serverTime );
 }
 
 qboolean    trap_GetSnapshot( int snapshotNumber, snapshot_t *snapshot ) {
-	return gameImport->CG_GETSNAPSHOT( snapshotNumber, snapshot );
+	return cgameImport->CG_GETSNAPSHOT( snapshotNumber, snapshot );
 }
 
 qboolean    trap_GetServerCommand( int serverCommandNumber ) {
-	return gameImport->CG_GETSERVERCOMMAND( serverCommandNumber );
+	return cgameImport->CG_GETSERVERCOMMAND( serverCommandNumber );
 }
 
 int         trap_GetCurrentCmdNumber( void ) {
-	return gameImport->CG_GETCURRENTCMDNUMBER();
+	return cgameImport->CG_GETCURRENTCMDNUMBER();
 }
 
 qboolean    trap_GetUserCmd( int cmdNumber, usercmd_t *ucmd ) {
-	return gameImport->CG_GETUSERCMD( cmdNumber, ucmd );
+	return cgameImport->CG_GETUSERCMD( cmdNumber, ucmd );
 }
 
 void        trap_SetUserCmdValue( int stateValue, int holdableValue, float sensitivityScale, int cld ) {    //----(SA)	// NERVE - SMF - added cld
-	gameImport->CG_SETUSERCMDVALUE( stateValue, holdableValue, sensitivityScale, cld );
+	cgameImport->CG_SETUSERCMDVALUE( stateValue, holdableValue, sensitivityScale, cld );
 }
 
 void        testPrintInt( char *string, int i ) {
-	gameImport->CG_TESTPRINTINT( string, i );
+	cgameImport->CG_TESTPRINTINT( string, i );
 }
 
 void        testPrintFloat( char *string, float f ) {
-	gameImport->CG_TESTPRINTFLOAT( string, f );
+	cgameImport->CG_TESTPRINTFLOAT( string, f );
 }
 
 int trap_MemoryRemaining( void ) {
-	return gameImport->CG_MEMORY_REMAINING();
+	return cgameImport->CG_MEMORY_REMAINING();
 }
 
 qboolean trap_loadCamera( int camNum, const char *name ) {
-	return gameImport->CG_LOADCAMERA( camNum, name );
+	return cgameImport->CG_LOADCAMERA( camNum, name );
 }
 
 void trap_startCamera( int camNum, int time ) {
-	gameImport->CG_STARTCAMERA( camNum, time );
+	cgameImport->CG_STARTCAMERA( camNum, time );
 }
 
 //----(SA)	added
 void trap_stopCamera( int camNum ) {
-	gameImport->CG_STOPCAMERA( camNum );
+	cgameImport->CG_STOPCAMERA( camNum );
 }
 //----(SA)	end
 
 qboolean trap_getCameraInfo( int camNum, int time, vec3_t *origin, vec3_t *angles, float *fov ) {
-	return gameImport->CG_GETCAMERAINFO( camNum, time, origin, angles, fov );
+	return cgameImport->CG_GETCAMERAINFO( camNum, time, origin, angles, fov );
 }
 
 
 qboolean trap_Key_IsDown( int keynum ) {
-	return gameImport->CG_KEY_ISDOWN( keynum );
+	return cgameImport->CG_KEY_ISDOWN( keynum );
 }
 
 int trap_Key_GetCatcher( void ) {
-	return gameImport->CG_KEY_GETCATCHER();
+	return cgameImport->CG_KEY_GETCATCHER();
 }
 
 void trap_Key_SetCatcher( int catcher ) {
-	gameImport->CG_KEY_SETCATCHER( catcher );
+	cgameImport->CG_KEY_SETCATCHER( catcher );
 }
 
 int trap_Key_GetKey( const char *binding ) {
-	return gameImport->CG_KEY_GETKEY( binding );
+	return cgameImport->CG_KEY_GETKEY( binding );
 }
 
 
 int trap_PC_AddGlobalDefine( char *define ) {
-	return gameImport->CG_PC_ADD_GLOBAL_DEFINE( define );
+	return cgameImport->CG_PC_ADD_GLOBAL_DEFINE( define );
 }
 
 int trap_PC_LoadSource( const char *filename ) {
-	return gameImport->CG_PC_LOAD_SOURCE( filename );
+	return cgameImport->CG_PC_LOAD_SOURCE( filename );
 }
 
 int trap_PC_FreeSource( int handle ) {
-	return gameImport->CG_PC_FREE_SOURCE( handle );
+	return cgameImport->CG_PC_FREE_SOURCE( handle );
 }
 
 int trap_PC_ReadToken( int handle, pc_token_t *pc_token ) {
-	return gameImport->CG_PC_READ_TOKEN( handle, pc_token );
+	return cgameImport->CG_PC_READ_TOKEN( handle, pc_token );
 }
 
 
 int trap_PC_SourceFileAndLine( int handle, char *filename, int *line ) {
-	return gameImport->CG_PC_SOURCE_FILE_AND_LINE( handle, filename, line );
+	return cgameImport->CG_PC_SOURCE_FILE_AND_LINE( handle, filename, line );
 }
 
 void    trap_S_StopBackgroundTrack( void ) {
-	gameImport->CG_S_STOPBACKGROUNDTRACK();
+	cgameImport->CG_S_STOPBACKGROUNDTRACK();
 }
 
 int trap_RealTime( qtime_t *qtime ) {
-	return gameImport->CG_REAL_TIME( qtime );
+	return cgameImport->CG_REAL_TIME( qtime );
 }
 
 void trap_SnapVector( float *v ) {
-	gameImport->CG_SNAPVECTOR( v );
+	cgameImport->CG_SNAPVECTOR( v );
 }
 
 void trap_SendMoveSpeedsToGame( int entnum, char *movespeeds ) {
-	gameImport->CG_SENDMOVESPEEDSTOGAME( entnum, movespeeds );
+	cgameImport->CG_SENDMOVESPEEDSTOGAME( entnum, movespeeds );
 }
 
 // this returns a handle.  arg0 is the name in the format "idlogo.roq", set arg1 to NULL, alteredstates to qfalse (do not alter gamestate)
 int trap_CIN_PlayCinematic( const char *arg0, int xpos, int ypos, int width, int height, int bits ) {
-	return gameImport->CG_CIN_PLAYCINEMATIC( arg0, xpos, ypos, width, height, bits );
+	return cgameImport->CG_CIN_PLAYCINEMATIC( arg0, xpos, ypos, width, height, bits );
 }
 
 // stops playing the cinematic and ends it.  should always return FMV_EOF
 // cinematics must be stopped in reverse order of when they are started
 e_status trap_CIN_StopCinematic( int handle ) {
-	return gameImport->CG_CIN_STOPCINEMATIC( handle );
+	return cgameImport->CG_CIN_STOPCINEMATIC( handle );
 }
 
 
 // will run a frame of the cinematic but will not draw it.  Will return FMV_EOF if the end of the cinematic has been reached.
 e_status trap_CIN_RunCinematic( int handle ) {
-	return gameImport->CG_CIN_RUNCINEMATIC( handle );
+	return cgameImport->CG_CIN_RUNCINEMATIC( handle );
 }
 
 
 // draws the current frame
 void trap_CIN_DrawCinematic( int handle ) {
-	gameImport->CG_CIN_DRAWCINEMATIC( handle );
+	cgameImport->CG_CIN_DRAWCINEMATIC( handle );
 }
 
 
 // allows you to resize the animation dynamically
 void trap_CIN_SetExtents( int handle, int x, int y, int w, int h ) {
-	gameImport->CG_CIN_SETEXTENTS( handle, x, y, w, h );
+	cgameImport->CG_CIN_SETEXTENTS( handle, x, y, w, h );
 }
 
 qboolean trap_GetEntityToken( char *buffer, int bufferSize ) {
-	return gameImport->CG_GET_ENTITY_TOKEN( buffer, bufferSize );
+	return cgameImport->CG_GET_ENTITY_TOKEN( buffer, bufferSize );
 }
 
 //----(SA)	added
@@ -506,19 +506,19 @@ qboolean trap_GetEntityToken( char *buffer, int bufferSize ) {
 extern void Menus_OpenByName( const char *p );
 
 void trap_UI_Popup( const char *arg0 ) {
-	gameImport->CG_INGAME_POPUP( arg0 );
+	cgameImport->CG_INGAME_POPUP( arg0 );
 }
 
 // NERVE - SMF
 void trap_UI_LimboChat( const char *arg0 ) {
-	gameImport->CG_LIMBOCHAT( arg0 );
+	cgameImport->CG_LIMBOCHAT( arg0 );
 }
 
 void trap_UI_ClosePopup( const char *arg0 ) {
-	gameImport->CG_INGAME_CLOSEPOPUP( arg0 );
+	cgameImport->CG_INGAME_CLOSEPOPUP( arg0 );
 }
 // -NERVE - SMF
 
 qboolean trap_GetModelInfo( int clientNum, char *modelName, animModelInfo_t **modelInfo ) {
-	return gameImport->CG_GETMODELINFO( clientNum, modelName, modelInfo );
+	return cgameImport->CG_GETMODELINFO( clientNum, modelName, modelInfo );
 }

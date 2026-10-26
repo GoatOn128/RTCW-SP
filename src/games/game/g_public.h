@@ -141,7 +141,7 @@ typedef struct {
 	int ( *G_FS_FOPEN_FILE )( const char *qpath, fileHandle_t *file, fsMode_t mode );
 	int ( *G_FS_READ )( void *buffer, int len, fileHandle_t f );
 	int ( *G_FS_WRITE )( const void *buffer, int len, fileHandle_t f );
-	void ( *G_FS_RENAME )( const char *from, const char *to );
+	int ( *G_FS_RENAME )( const char *from, const char *to );
 	void ( *G_FS_FCLOSE_FILE )( fileHandle_t f );
 	void ( *G_SEND_CONSOLE_COMMAND )( int exec_when, const char *text );
 	void ( *G_LOCATE_GAME_DATA )( sharedEntity_t *gEnts, int numGEntities, int sizeofGEntity_t, playerState_t *clients, int sizeofGameClient );
