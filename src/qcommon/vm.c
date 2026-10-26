@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 6049995a0fd2b9c431438bb4bf34cb8e5938dba2)
 /*
 ===========================================================================
 
@@ -502,7 +503,7 @@ vm_t *VM_Create( const char *module, int ( *systemCalls )( int * ),
 		}
 
 		Com_Printf( "Failed to load dll, looking for qvm.\n" );
-		interpret = VMI_COMPILED;
+		interpret = VMI_INTERPRETED;
 	}
 
 	// load the image
@@ -556,13 +557,11 @@ vm_t *VM_Create( const char *module, int ( *systemCalls )( int * ),
 	// copy or compile the instructions
 	vm->codeLength = header->codeLength;
 
-	if ( interpret >= VMI_COMPILED ) {
-		vm->compiled = qtrue;
-		VM_Compile( vm, header );
-	} else {
-		vm->compiled = qfalse;
-		VM_PrepareInterpreter( vm, header );
-	}
+	// only the interpreter remains until the VM module system is
+	// replaced with the Doom 3 style game dll loading
+	vm->compiled = qfalse;
+	VM_PrepareInterpreter( vm, header );
+}
 
 	// free the original file
 	FS_FreeFile( header );
@@ -849,13 +848,12 @@ void VM_LogSyscalls( int *args ) {
 			 args[0], args[1], args[2], args[3], args[4] );
 }
 
-#ifdef __MACOS__
-#define DLL_ONLY    //DAJ
-#endif
-#ifdef DLL_ONLY // bk010215 - for DLL_ONLY dedicated servers/builds w/o VM
+// The compiled VM backend (vm_x86.c) is gone: its MSVC inline assembly
+// cannot be built with clang-cl, and the engine loads native game
+// modules. Stubs keep the remaining vm code linking until the module
+// system is replaced with the Doom 3 style game dll loading.
 int VM_CallCompiled( vm_t *vm, int *args ) {
 	return( 0 );
 }
 
 void VM_Compile( vm_t *vm, vmHeader_t *header ) {}
-#endif // DLL_ONLY

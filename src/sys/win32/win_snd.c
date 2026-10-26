@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: b90751031577a0c36c7a98a6c0ce1a0cba4ba6ee)
 /*
 ===========================================================================
 
@@ -310,7 +311,7 @@ Makes sure dma.buffer is valid
 void SNDDMA_BeginPainting( void ) {
 	int reps;
 	DWORD dwSize2;
-	DWORD   *pbuf, *pbuf2;
+	void    *pbuf, *pbuf2;
 	HRESULT hresult;
 	DWORD dwStatus;
 

@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: ae2993d47c7e9b773f1f7e47af8092af44bc9abe)
 # RTCW-SP SCons build
 #
 # Full SCons port of the project. Replaces the legacy cons scripts
@@ -95,6 +96,11 @@ if IS_WINDOWS:
     # /W4, not -Wall: clang-cl maps -Wall onto every warning it knows
     # and floods the log with tens of thousands of warnings
     env.Append(CCFLAGS=['/W4', arch_flag], CXXFLAGS=['/W4', arch_flag])
+    # win_qgl.c assigns GetProcAddress results (FARPROC) to the qgl
+    # function pointers wholesale; MSVC allowed it, clang-cl does not.
+    # Keep it building until the qgl layer is replaced with glad.
+    env.Append(CCFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
+    env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['/Z7', '/Od'], CXXFLAGS=['/Z7', '/Od'], LINKFLAGS=['/DEBUG'])
     else:
@@ -186,10 +192,9 @@ jpeg_files = ['src/third-party/jpeg-6/' + f for f in [
     'jidctflt.c', 'jmemmgr.c', 'jmemnobs.c', 'jutils.c',
 ]]
 
+# vm_x86.c (the compiled VM backend) is gone: its MSVC inline assembly
+# cannot be built with clang-cl. Only the interpreter remains.
 vm_files = ['src/qcommon/vm.c', 'src/qcommon/vm_interpreted.c']
-if ARCH == 'x86':
-    # vm_x86.c is 32-bit x86 only (inline asm)
-    vm_files.append('src/qcommon/vm_x86.c')
 
 unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',

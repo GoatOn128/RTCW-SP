@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: a08811272415e0ac4cd5d7b631d60e58c7893363)
 /*
  * jmorecfg.h
  *
@@ -149,7 +150,13 @@ typedef unsigned short UINT16;
 typedef unsigned int UINT16;
 #endif /* HAVE_UNSIGNED_SHORT */
 
+/* basetsd.h, pulled in through the Windows headers, already typedefs
+ * INT32 as int; use the same type there so the two definitions agree. */
+#ifdef _WIN32
+typedef int INT32;
+#else
 typedef long INT32;
+#endif
 
 /* INT16 must hold at least the values -32768..32767. */
 

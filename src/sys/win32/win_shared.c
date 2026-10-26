@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 0da867e6f299073f5d456cde521194a9fc392a17)
 /*
 ===========================================================================
 
@@ -39,6 +40,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <direct.h>
 #include <io.h>
 #include <conio.h>
+#include <intrin.h>
 
 /*
 ================
@@ -65,45 +67,18 @@ Sys_SnapVector
 ================
 */
 long fastftol( float f ) {
-	static int tmp;
-	__asm fld f
-	__asm fistp tmp
-	__asm mov eax, tmp
+	return ( long ) f;
 }
 
 void Sys_SnapVector( float *v ) {
 	int i;
-	float f;
 
-	f = *v;
-	__asm fld f;
-	__asm fistp i;
-	*v = i;
-	v++;
-	f = *v;
-	__asm fld f;
-	__asm fistp i;
-	*v = i;
-	v++;
-	f = *v;
-	__asm fld f;
-	__asm fistp i;
-	*v = i;
-	/*
-	*v = fastftol(*v);
-	v++;
-	*v = fastftol(*v);
-	v++;
-	*v = fastftol(*v);
-	*/
+	// inline assembly is gone; round each component to the nearest
+	// integer like the old fistp sequence did
+	for ( i = 0 ; i < 3 ; i++ ) {
+		v[i] = ( float ) ( int ) ( v[i] + ( v[i] >= 0.0f ? 0.5f : -0.5f ) );
+	}
 }
-
-/*
-**
-** Disable all optimizations temporarily so this code works correctly!
-**
-*/
-#pragma optimize( "", off )
 
 /*
 ** --------------------------------------------------------------------------------
@@ -113,51 +88,20 @@ void Sys_SnapVector( float *v ) {
 ** --------------------------------------------------------------------------------
 */
 static void CPUID( int func, unsigned regs[4] ) {
-	unsigned regEAX, regEBX, regECX, regEDX;
+	int cpuidRegs[4];
 
-	__asm mov eax, func
-	__asm __emit 00fh
-	__asm __emit 0a2h
-	__asm mov regEAX, eax
-	__asm mov regEBX, ebx
-	__asm mov regECX, ecx
-	__asm mov regEDX, edx
-
-			  regs[0] = regEAX;
-	regs[1] = regEBX;
-	regs[2] = regECX;
-	regs[3] = regEDX;
+	// the compiler intrinsic replaces the old inline assembly, which
+	// clang-cl cannot build
+	__cpuid( cpuidRegs, func );
+	regs[0] = cpuidRegs[0];
+	regs[1] = cpuidRegs[1];
+	regs[2] = cpuidRegs[2];
+	regs[3] = cpuidRegs[3];
 }
 
+// every CPU that can run the engine supports the CPUID instruction, so
+// the old EFLAGS ID-bit toggle (inline assembly) is no longer needed
 static int IsPentium( void ) {
-	__asm
-	{
-		pushfd                      // save eflags
-		pop eax
-		test eax, 0x00200000        // check ID bit
-		jz set21                    // bit 21 is not set, so jump to set_21
-		and eax, 0xffdfffff         // clear bit 21
-		push eax                    // save new value in register
-		popfd                       // store new value in flags
-		pushfd
-		pop eax
-		test eax, 0x00200000        // check ID bit
-		jz good
-		jmp err                     // cpuid not supported
-set21:
-		or eax, 0x00200000          // set ID bit
-		push eax                    // store new value
-		popfd                       // store new value in EFLAGS
-		pushfd
-		pop eax
-		test eax, 0x00200000        // if bit 21 is on
-		jnz good
-		jmp err
-	}
-
-err:
-	return qfalse;
-good:
 	return qtrue;
 }
 
@@ -359,13 +303,6 @@ int Sys_GetProcessorId( void ) {
 int Sys_GetHighQualityCPU() {
 	return ( !IsP3() && !IsAthlon() ) ? 0 : 1;
 }
-
-/*
-**
-** Re-enable optimizations back to what they were
-**
-*/
-#pragma optimize( "", on )
 
 
 //============================================
