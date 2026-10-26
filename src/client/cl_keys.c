@@ -1815,10 +1815,6 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 					}
 				}
 
-//				if(!Q_stricmp("help", kb)) {
-//					if(VM_Call( uie, UI_GET_ACTIVE_MENU) == UIMENU_HELP)
-//						key = K_ESCAPE;
-///				}
 			}
 		}
 
