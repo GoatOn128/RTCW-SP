@@ -328,6 +328,12 @@ extern clientStatic_t cls;
 extern cgameExport_t *cge;      // cgame module export
 extern uiExport_t *uie;      // ui module export
 extern refexport_t re;          // interface to refresh .dll
+extern refimport_t ri;          // import struct handed to the renderer module
+extern qglimport_t qglImport;   // GL function table handed to the renderer module
+void QGL_FillImportTable( void );
+void CL_RegisterVideoCvars( void );
+qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode );
+void R_ModeList_f( void );
 
 
 //

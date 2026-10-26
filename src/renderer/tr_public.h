@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../cgame/tr_types.h"
 
-#define REF_API_VERSION     8
+#define REF_API_VERSION     9
 
 //
 // these are the functions exported by the refresh module
@@ -119,6 +119,21 @@ typedef struct {
 } refexport_t;
 
 //
+// OpenGL function table defined in qgl.h and filled by the engine; the
+// renderer module receives it through refimport_t
+typedef struct qglimport_s qglimport_t;
+
+// platform window and GL management provided by the engine glimp code
+void GLimp_Init( void );
+void GLimp_Shutdown( void );
+void GLimp_EndFrame( void );
+qboolean GLimp_SpawnRenderThread( void ( *function )( void ) );
+void *GLimp_RendererSleep( void );
+void GLimp_FrontEndSleep( void );
+void GLimp_WakeRenderer( void *data );
+void GLimp_LogComment( char *comment );
+void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned char blue[256] );
+
 // these are the functions imported by the refresh module
 //
 typedef struct {
@@ -171,6 +186,26 @@ typedef struct {
 	void ( *CIN_UploadCinematic )( int handle );
 	int ( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
 	e_status ( *CIN_RunCinematic )( int handle );
+
+	// platform support the renderer module calls back through the import table
+	void ( *GLimp_Init )( void );
+	void ( *GLimp_Shutdown )( void );
+	void ( *GLimp_EndFrame )( void );
+	void ( *GLimp_LogComment )( char *comment );
+	qboolean ( *GLimp_SpawnRenderThread )( void ( *function )( void ) );
+	void *( *GLimp_RendererSleep )( void );
+	void ( *GLimp_FrontEndSleep )( void );
+	void ( *GLimp_WakeRenderer )( void *data );
+	void ( *GLimp_SetGamma )( unsigned char red[256], unsigned char green[256], unsigned char blue[256] );
+
+	unsigned int ( *Sys_ProcessorCount )( void );
+	qboolean ( *Sys_LowPhysicalMemory )( void );
+
+	// fill the GL import table after the platform GL context is up
+	void ( *QGL_FillImportTable )( void );
+
+	qglimport_t *qgl;
+	glconfig_t *glConfig;
 
 } refimport_t;
 

@@ -147,12 +147,12 @@ renderer_files = ['src/renderer/' + f for f in [
     'tr_curve.c', 'tr_flares.c', 'tr_font.c', 'tr_image.c', 'tr_init.c',
     'tr_light.c', 'tr_main.c', 'tr_marks.c', 'tr_mesh.c', 'tr_model.c',
     'tr_noise.c', 'tr_scene.c', 'tr_shade.c', 'tr_shade_calc.c',
-    'tr_shader.c', 'tr_shadows.c', 'tr_sky.c', 'tr_surface.c', 'tr_world.c',
+    'tr_shader.c', 'tr_shadows.c', 'tr_sky.c', 'tr_surface.c', 'tr_world.c', 'tr_module.c',
 ]]
 
 client_files = ['src/client/' + f for f in [
     'cl_cgame.c', 'cl_cin.c', 'cl_console.c', 'cl_input.c', 'cl_keys.c',
-    'cl_main.c', 'cl_net_chan.c', 'cl_parse.c', 'cl_scrn.c', 'cl_ui.c',
+    'cl_main.c', 'cl_net_chan.c', 'cl_parse.c', 'cl_qgl.c', 'cl_scrn.c', 'cl_ui.c',
     'snd_adpcm.c', 'snd_dma.c', 'snd_mem.c', 'snd_mix.c', 'snd_wavelet.c',
 ]]
 
@@ -219,7 +219,7 @@ else:
 sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 
 client_sources = (
-    renderer_files + client_files + qcommon_files + server_files +
+    client_files + qcommon_files + server_files +
     ['src/qcommon/q_shared.c', 'src/qcommon/q_math.c'] +
     sys_files + splines_files
 )
@@ -305,4 +305,24 @@ else:
 ui_target = os.path.join(BUILD_DIR, 'ui' + DLL)
 ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files, shared=not IS_WINDOWS))
 
-Default(client_target, game_target, cgame_target, ui_target)
+# ---------------------------------------------------------------- renderer
+
+renderer_module_files = renderer_files + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+
+renderer_env = env.Clone()
+renderer_env.Append(CPPDEFINES=['REFDLL'])
+if IS_WINDOWS:
+    renderer_env.Append(LINKFLAGS=['/DEF:src/renderer/renderer.def'])
+else:
+    renderer_env.Append(LIBS=['dl', 'm'])
+    renderer_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
+renderer_target = os.path.join(BUILD_DIR, 'renderer_gl' + DLL)
+renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=not IS_WINDOWS)
+# jpeg-6 is vendored legacy C kept in its original form, same as the client
+# build; tr_image.c calls it directly
+renderer_jpeg_env = renderer_env.Clone()
+renderer_jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+renderer_objs += module_objects(renderer_jpeg_env, 'renderer', jpeg_files, shared=not IS_WINDOWS)
+renderer_env.SharedLibrary(renderer_target, renderer_objs)
+
+Default(client_target, game_target, cgame_target, ui_target, renderer_target)

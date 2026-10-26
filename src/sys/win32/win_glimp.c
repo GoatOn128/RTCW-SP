@@ -1486,7 +1486,6 @@ void GLimp_Shutdown( void ) {
 	QGL_Shutdown();
 
 	memset( &glConfig, 0, sizeof( glConfig ) );
-	memset( &glState, 0, sizeof( glState ) );
 }
 
 /*

@@ -94,6 +94,15 @@ cgameExport_t        *cge;
 // Structure containing functions exported from refresh DLL
 refexport_t re;
 
+// import struct handed to the renderer module, the GL table for it, and
+// the handle of the loaded module
+refimport_t ri;
+glconfig_t glConfig;               // written by the platform GL layer
+static void *ref_library = NULL;
+static cvar_t *cl_renderer = NULL;
+
+typedef refexport_t * ( *GetRefAPI_t )( int apiVersion, refimport_t *rimp );
+
 ping_t cl_pinglist[MAX_PINGREQUESTS];
 
 typedef struct serverStatus_s
@@ -2265,11 +2274,18 @@ CL_ShutdownRef
 ============
 */
 void CL_ShutdownRef( void ) {
+	Cmd_RemoveCommand( "modelist" );
+
 	if ( !re.Shutdown ) {
 		return;
 	}
 	re.Shutdown( qtrue );
 	memset( &re, 0, sizeof( re ) );
+
+	if ( ref_library ) {
+		Sys_UnloadModule( ref_library );
+		ref_library = NULL;
+	}
 }
 
 /*
@@ -2339,10 +2355,16 @@ CL_InitRef
 ============
 */
 void CL_InitRef( void ) {
-	refimport_t ri;
 	refexport_t *ret;
+	GetRefAPI_t GetRefAPI_fn;
 
 	Com_Printf( "----- Initializing Renderer ----\n" );
+
+	// video cvars the engine platform layer reads
+	CL_RegisterVideoCvars();
+	Cmd_AddCommand( "modelist", R_ModeList_f );
+
+	memset( &ri, 0, sizeof( ri ) );
 
 	ri.Cmd_AddCommand = Cmd_AddCommand;
 	ri.Cmd_RemoveCommand = Cmd_RemoveCommand;
@@ -2377,7 +2399,37 @@ void CL_InitRef( void ) {
 	ri.CIN_PlayCinematic = CIN_PlayCinematic;
 	ri.CIN_RunCinematic = CIN_RunCinematic;
 
-	ret = GetRefAPI( REF_API_VERSION, &ri );
+	// platform support the renderer module calls back through the import table
+	ri.GLimp_Init = GLimp_Init;
+	ri.GLimp_Shutdown = GLimp_Shutdown;
+	ri.GLimp_EndFrame = GLimp_EndFrame;
+	ri.GLimp_LogComment = GLimp_LogComment;
+	ri.GLimp_SpawnRenderThread = GLimp_SpawnRenderThread;
+	ri.GLimp_RendererSleep = GLimp_RendererSleep;
+	ri.GLimp_FrontEndSleep = GLimp_FrontEndSleep;
+	ri.GLimp_WakeRenderer = GLimp_WakeRenderer;
+	ri.GLimp_SetGamma = GLimp_SetGamma;
+	ri.Sys_ProcessorCount = Sys_ProcessorCount;
+	ri.Sys_LowPhysicalMemory = Sys_LowPhysicalMemory;
+	ri.QGL_FillImportTable = QGL_FillImportTable;
+	ri.qgl = &qglImport;
+	ri.glConfig = &glConfig;
+
+	// load the renderer module named by the cl_renderer cvar
+	cl_renderer = Cvar_Get( "cl_renderer", "gl", CVAR_ARCHIVE );
+	ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
+	if ( !ref_library ) {
+		Com_Error( ERR_FATAL, "Failed to load renderer_%s", cl_renderer->string );
+	}
+
+	GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
+	if ( !GetRefAPI_fn ) {
+		Sys_UnloadModule( ref_library );
+		ref_library = NULL;
+		Com_Error( ERR_FATAL, "renderer_%s does not export GetRefAPI", cl_renderer->string );
+	}
+
+	ret = GetRefAPI_fn( REF_API_VERSION, &ri );
 
 #if 0 // MrE defined __USEA3D && defined __A3D_GEOM
 	hA3Dg_ExportRenderGeom( ret );
@@ -2386,6 +2438,8 @@ void CL_InitRef( void ) {
 	Com_Printf( "-------------------------------\n" );
 
 	if ( !ret ) {
+		Sys_UnloadModule( ref_library );
+		ref_library = NULL;
 		Com_Error( ERR_FATAL, "Couldn't initialize refresh" );
 	}
 

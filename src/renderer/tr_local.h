@@ -1048,7 +1048,11 @@ typedef struct {
 
 extern backEndState_t backEnd;
 extern trGlobals_t tr;
+#ifdef REFDLL
+#define glConfig ( *ri.glConfig )
+#else
 extern glconfig_t glConfig;         // outside of TR since it shouldn't be cleared during ref re-init
+#endif
 extern glstate_t glState;           // outside of TR since it shouldn't be cleared during ref re-init
 
 
@@ -1372,6 +1376,18 @@ IMPLEMENTATION SPECIFIC FUNCTIONS
 ====================================================================
 */
 
+#ifdef REFDLL
+// the renderer module reaches the platform layer through the import table
+#define GLimp_Init() ri.GLimp_Init()
+#define GLimp_Shutdown() ri.GLimp_Shutdown()
+#define GLimp_EndFrame() ri.GLimp_EndFrame()
+#define GLimp_SpawnRenderThread( function ) ri.GLimp_SpawnRenderThread( function )
+#define GLimp_RendererSleep() ri.GLimp_RendererSleep()
+#define GLimp_FrontEndSleep() ri.GLimp_FrontEndSleep()
+#define GLimp_WakeRenderer( data ) ri.GLimp_WakeRenderer( data )
+#define GLimp_LogComment( comment ) ri.GLimp_LogComment( comment )
+#define GLimp_SetGamma( red, green, blue ) ri.GLimp_SetGamma( red, green, blue )
+#else
 void        GLimp_Init( void );
 void        GLimp_Shutdown( void );
 void        GLimp_EndFrame( void );
@@ -1386,6 +1402,7 @@ void        GLimp_LogComment( char *comment );
 void GLimp_SetGamma( unsigned char red[256],
 					 unsigned char green[256],
 					 unsigned char blue[256] );
+#endif
 
 
 /*
