@@ -1643,4 +1643,3 @@ int BotMatchMessage( bot_state_t *bs, char *message ) {
 	}
 	return qtrue;
 }
-

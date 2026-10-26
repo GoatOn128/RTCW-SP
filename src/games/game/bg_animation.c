@@ -2143,4 +2143,3 @@ float BG_AnimGetFootstepGap( playerState_t *ps, float xyspeed ) {
 
 	return gap;
 }
-

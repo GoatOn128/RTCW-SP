@@ -228,4 +228,3 @@ ID_INLINE mat3_t SkewSymmetric( idVec3 const &src ) {
 extern mat3_t mat3_default;
 
 #endif /* !__MATH_MATRIX_H__ */
-

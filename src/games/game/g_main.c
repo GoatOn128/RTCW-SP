@@ -2586,4 +2586,3 @@ void G_RunFrame( int levelTime ) {
 	CheckReloadStatus();
 
 }
-

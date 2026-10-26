@@ -1390,4 +1390,3 @@ typedef enum
 	shard_ceramic,
 	shard_rubble
 } shards_t;
-

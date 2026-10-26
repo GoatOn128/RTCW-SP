@@ -2039,4 +2039,3 @@ void G_RetrieveMoveSpeedsFromClient( int entnum, char *text ) {
 		anim->stepGap = atoi( token );
 	}
 }
-
