@@ -92,31 +92,7 @@ static const char *teamArenaGameTypes[] = {
 static int const numTeamArenaGameTypes = sizeof( teamArenaGameTypes ) / sizeof( const char* );
 
 
-static const char *teamArenaGameNames[] = {
-	"Free For All",
-	"Tournament",
-	"Single Player",
-	"Team Deathmatch",
-	"Capture the Flag",
-	"One Flag CTF",
-	"Overload",
-	"Harvester",
-	"Team Tournament",
-};
-
-static int const numTeamArenaGameNames = sizeof( teamArenaGameNames ) / sizeof( const char* );
-
-
 static const int numServerFilters = sizeof( serverFilters ) / sizeof( serverFilter_t );
-
-static const char *sortKeys[] = {
-	"Server Name",
-	"Map Name",
-	"Open Player Spots",
-	"Game Type",
-	"Ping Time"
-};
-static const int numSortKeys = sizeof( sortKeys ) / sizeof( const char* );
 
 static char* netnames[] = {
 	"???",
@@ -1456,7 +1432,7 @@ static void UI_DrawMapLevelshot( rectDef_t *rect ) {
 
 	DC->getCVarString( "mapname", levelname, sizeof( levelname ) );
 
-	if ( levelname && levelname[0] != 0 ) {
+	if ( levelname[0] != 0 ) {
 		levelshot = trap_R_RegisterShaderNoMip( va( "levelshots/%s.tga", levelname ) );
 	}
 
@@ -1514,9 +1490,7 @@ void UI_FilledBar( float x, float y, float w, float h, float *startColor, float 
 		if ( endColor ) {
 			endColor[3] *= ui_hudAlpha.value;
 		}
-		if ( backgroundcolor ) {
 			backgroundcolor[3] *= ui_hudAlpha.value;
-		}
 	}
 
 	if ( flags & BAR_LERP_COLOR ) {
