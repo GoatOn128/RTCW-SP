@@ -3818,5 +3818,5 @@ void GLimp_LogNewFrame( void ) {
 
 // ATI PN-triangles extension pointers, the Windows
 // definitions live in win_qgl.c
-void ( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param ) = 0;
-void ( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param ) = 0;
+void( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param ) = 0;
+void( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param ) = 0;
