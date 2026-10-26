@@ -38,6 +38,11 @@ If you have questions concerning this license or the applicable additional terms
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+
+// defined in extractfuncs.c, the original build declared this through
+// the bspc qbsp header
+extern int verbose;
 
 #define MAX_LOGFILENAMESIZE     1024
 

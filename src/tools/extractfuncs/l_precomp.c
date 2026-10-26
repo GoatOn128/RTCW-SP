@@ -43,6 +43,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <limits.h>
 #include <string.h>
 #include <stdarg.h>
+#include <ctype.h>
 #include <time.h>
 #include <math.h>
 #include "l_memory.h"

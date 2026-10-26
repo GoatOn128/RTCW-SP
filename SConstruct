@@ -339,6 +339,6 @@ if IS_WINDOWS:
 else:
     extractfuncs_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 extractfuncs_target = os.path.join(BUILD_DIR, 'extractfuncs' + EXE)
-extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs', extractfuncs_files))
+extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs_tool', extractfuncs_files))
 
 Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target)

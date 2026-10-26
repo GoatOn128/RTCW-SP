@@ -36,6 +36,7 @@ If you have questions concerning this license or the applicable additional terms
  *****************************************************************************/
 
 #include <stdlib.h>
+#include <string.h>
 #include "l_memory.h"
 #include "l_log.h"
 

@@ -35,6 +35,8 @@ If you have questions concerning this license or the applicable additional terms
 // Tab Size:     3
 //===========================================================================
 
+#include <stdio.h>
+
 //open a log file
 void Log_Open( char *filename );
 //close the current log file
