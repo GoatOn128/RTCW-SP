@@ -40,6 +40,9 @@ If you have questions concerning this license or the applicable additional terms
 #include "../game/q_shared.h"
 #include "../qcommon/qcommon.h"
 
+// engine-internal filesystem helper, it has no shared header
+char *FS_BuildOSPath( const char *base, const char *game, const char *qpath );
+
 //=============================================================================
 
 // Used to determine CD Path

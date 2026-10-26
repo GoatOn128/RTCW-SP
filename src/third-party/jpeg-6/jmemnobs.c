@@ -8,7 +8,7 @@
  * This file provides a really simple implementation of the system-
  * dependent portion of the JPEG memory manager.  This implementation
  * assumes that no backing-store files are needed: all required space
- * can be obtained from ri.Z_Malloc().
+ * can be obtained from malloc.
  * This is very portable in the sense that it'll compile on almost anything,
  * but you'd better have lots of main memory (or virtual memory) if you want
  * to process big images.
@@ -29,7 +29,7 @@
 
 GLOBAL void *
 jpeg_get_small( j_common_ptr cinfo, size_t sizeofobject ) {
-	return Z_Malloc( sizeofobject );
+	return malloc( sizeofobject );
 }
 
 GLOBAL void
@@ -47,7 +47,7 @@ jpeg_free_small( j_common_ptr cinfo, void * object, size_t sizeofobject ) {
 
 GLOBAL void FAR *
 jpeg_get_large( j_common_ptr cinfo, size_t sizeofobject ) {
-	return Z_Malloc( sizeofobject );
+	return malloc( sizeofobject );
 }
 
 GLOBAL void

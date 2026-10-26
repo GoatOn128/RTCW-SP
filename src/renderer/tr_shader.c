@@ -38,6 +38,7 @@ static shaderStage_t stages[MAX_SHADER_STAGES];
 static shader_t shader;
 static texModInfo_t texMods[MAX_SHADER_STAGES][TR_MAX_TEXMODS];
 static qboolean deferLoad;
+static char sunShaderNameBuf[MAX_QPATH];
 
 #define FILE_HASH_SIZE      4096
 
@@ -1547,7 +1548,8 @@ static qboolean ParseShader( char **text ) {
 				ri.Printf( PRINT_WARNING, "WARNING: missing shader name for 'sunshader'\n" );
 				continue;
 			}
-			tr.sunShaderName = CopyString( token );
+			Q_strncpyz( sunShaderNameBuf, token, sizeof( sunShaderNameBuf ) );
+			tr.sunShaderName = sunShaderNameBuf;
 		}
 //----(SA)	added
 		else if ( !Q_stricmp( token, "lightgridmulamb" ) ) { // ambient multiplier for lightgrid

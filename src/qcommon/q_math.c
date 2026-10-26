@@ -1443,3 +1443,26 @@ vec_t _DotProduct( const vec3_t v1, const vec3_t v2 ) {
 void _VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
 	VectorMA_( veca, scale, vecb, vecc );
 }
+
+/*
+=====================
+Q_acos
+
+The MSVC acos does not always return a value between -PI and PI.
+Moved here from qcommon/common.c so the renderer module, which
+compiles q_math.c but not common.c, gets the symbol too.
+=====================
+*/
+float Q_acos( float c ) {
+	float angle;
+
+	angle = acos( c );
+
+	if ( angle > M_PI ) {
+		return (float)M_PI;
+	}
+	if ( angle < -M_PI ) {
+		return (float)M_PI;
+	}
+	return angle;
+}
