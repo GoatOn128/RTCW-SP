@@ -34,7 +34,7 @@ jobs:
           # repository API (the GitHub file reader fails on unix_main.c).
           # Each block only applies while its old pattern still exists.
           # Failures are logged into build.log but never stop the job.
-          python3 - <<'EOF' 2>&1 | tee -a build.log
+          python3 - <<'EOF' 2>&1 | tee -a build.log || echo "src/client/cl_keys.c(1,1): error: the engine patch step failed, see the raw uncrustify leg log" >> build.log
           from pathlib import Path
           import re
 
@@ -88,6 +88,32 @@ jobs:
           else:
               print('cl_keys.c: nothing to do')
           EOF
+      - name: land the cl_keys fix
+        shell: bash
+        run: |
+          # cl_keys.c is not readable through the repository API, so the
+          # patch above is its only writer: commit it on its own before
+          # the formatting pass so a later failure cannot hold the
+          # engine fix hostage.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- src/client/cl_keys.c; then
+            git add src/client/cl_keys.c
+            git commit -m "Replace the cl_keys.c VM calls and fix its source encoding [skip ci]"
+            # the checkout is detached, so the refspec must name the
+            # branch explicitly; -X theirs: on a push race the newest
+            # output wins instead of committing conflict markers
+            pushed=0
+            for attempt in 1 2 3; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                pushed=1
+                break
+              fi
+              git fetch origin "${GITHUB_REF_NAME}" || break
+              git rebase -X theirs "FETCH_HEAD" || break
+            done
+            test "$pushed" = 1
+          fi
       - name: format
         shell: bash
         run: |
@@ -108,12 +134,19 @@ jobs:
             find src -name '*.uncrustify' -delete
             git add src
             git commit -m "uncrustify: format tree [skip ci]"
-            if ! git push; then
-              # -X theirs: on a push race the newest output wins instead of
-              # committing conflict markers
-              git pull --rebase -X theirs origin ${{ github.ref }}
-              git push
-            fi
+            # the checkout is detached, so the refspec must name the
+            # branch explicitly; -X theirs: on a push race the newest
+            # output wins instead of committing conflict markers
+            pushed=0
+            for attempt in 1 2 3; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                pushed=1
+                break
+              fi
+              git fetch origin "${GITHUB_REF_NAME}" || break
+              git rebase -X theirs "FETCH_HEAD" || break
+            done
+            test "$pushed" = 1
           fi
       - name: digest
         if: always()
