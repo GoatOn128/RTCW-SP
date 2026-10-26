@@ -37,69 +37,93 @@ jobs:
           python3 - <<'EOF' 2>&1 | tee -a build.log || echo "src/client/cl_keys.c(1,1): error: the engine patch step failed, see the raw uncrustify leg log" >> build.log
           from pathlib import Path
           import re
+          import traceback
+
+          # pseudo-diagnostics in this format are picked up by digest.py, so a
+          # patch failure reaches the published digest instead of dying blind
+          def diag( path, line, msg ):
+              print( f'{path}({line},1): error: PATCH: {msg}' )
 
           # unix_main.c: Sys_LoadGameDll appends an architecture suffix
-          # (namei386.so) that no longer exists. Use plain <name>.so so
-          # 64-bit builds can load the modules the SCons build produces.
-          p = Path('src/sys/unix/unix_main.c')
-          # the file is not valid UTF-8: latin-1 round-trips every byte
-          s = p.read_bytes().decode('latin-1')
-          if '#error Unknown arch' in s:
-              i = s.index('%si386.so')
-              start = s.rindex('#if', 0, i)
-              err = s.index('#error Unknown arch', i)
-              end = s.index('#endif', err) + len('#endif')
-              span = s[start:end]
-              assert '__powerpc__' in span and '__mips__' in span, span[:200]
-              repl = (
-                  '// module names carry no architecture suffix: the SCons build\n'
-                  '\t// produces plain <name>.so files on every architecture\n'
-                  '\tsnprintf( fname, sizeof( fname ), "%s.so", name );'
-              )
-              p.write_bytes(( s[:start] + repl + s[end:] ).encode('latin-1'))
-              print('unix_main.c: replaced the arch suffix chain')
-          else:
-              print('unix_main.c: nothing to do')
+          # (namei386.so) that no longer exists. Use plain <name>.so so 64-bit
+          # builds can load the modules the SCons build produces.
+          try:
+              p = Path('src/sys/unix/unix_main.c')
+              # the file is not valid UTF-8: latin-1 round-trips every byte
+              s = p.read_bytes().decode('latin-1')
+              if '#error Unknown arch' in s:
+                  i = s.index('%si386.so')
+                  start = s.rindex('#if', 0, i)
+                  err = s.index('#error Unknown arch', i)
+                  end = s.index('#endif', err) + len('#endif')
+                  span = s[start:end]
+                  if '__powerpc__' in span and '__mips__' in span:
+                      repl = (
+                          '// module names carry no architecture suffix: the SCons build\n'
+                          '\t// produces plain <name>.so files on every architecture\n'
+                          '\tsnprintf( fname, sizeof( fname ), "%s.so", name );'
+                      )
+                      p.write_bytes(( s[:start] + repl + s[end:] ).encode('latin-1'))
+                      print('unix_main.c: replaced the arch suffix chain')
+                  else:
+                      # the real chain differs from what this patch expects: dump
+                      # it into the digest so the next patch can match it exactly
+                      base = s[:start].count('\n') + 1
+                      for n, text in enumerate( span.splitlines()[:25], base ):
+                          diag( 'src/sys/unix/unix_main.c', n, text )
+              else:
+                  print('unix_main.c: nothing to do')
+          except Exception:
+              for line in traceback.format_exc().strip().splitlines()[-4:]:
+                  diag( 'src/sys/unix/unix_main.c', 1, line )
 
-          # cl_keys.c: stored with mixed Latin-1 bytes, so neither the
-          # GitHub file API nor uncrustify can read it. Rewrite the
-          # VM-era calls and transcode the whole file to UTF-8 in one pass.
-          p = Path('src/client/cl_keys.c')
-          raw = p.read_bytes()
-          s = None
-          for enc in ('utf-8', 'latin-1'):
-              try:
-                  s = raw.decode(enc)
-                  break
-              except UnicodeDecodeError:
-                  pass
-          assert s is not None
-          if 'VM_Call' in s or 'uivm' in s or 'cgvm' in s:
-              s = s.replace('VM_Call( uivm, UI_GET_ACTIVE_MENU )', 'uie->GetActiveMenu()')
-              s = re.sub(r'VM_Call\( uivm, UI_SET_ACTIVE_MENU, ([^)]*) \)', r'uie->SetActiveMenu( \1 )', s)
-              s = re.sub(r'VM_Call\( uivm, UI_KEY_EVENT, ([^)]*) \)', r'uie->KeyEvent( \1 )', s)
-              s = re.sub(r'VM_Call\( cgvm, CG_KEY_EVENT, ([^)]*) \)', r'cge->KeyEvent( \1 )', s)
-              s = re.sub(r'VM_Call\( cgvm, CG_EVENT_HANDLING, ([^)]*) \)', r'cge->EventHandling( \1 )', s)
-              s = re.sub(r'\buivm\b', 'uie', s)
-              s = re.sub(r'\bcgvm\b', 'cge', s)
-              assert 'VM_Call' not in s and 'uivm' not in s and 'cgvm' not in s
-              p.write_bytes(s.encode('utf-8'))
-              print('cl_keys.c: replaced the VM calls and transcoded to UTF-8')
-          else:
-              print('cl_keys.c: nothing to do')
+          # cl_keys.c: stored with mixed Latin-1 bytes, so neither the GitHub
+          # file API nor uncrustify can read it. Rewrite the VM-era calls and
+          # transcode the whole file to UTF-8 in one pass.
+          try:
+              p = Path('src/client/cl_keys.c')
+              raw = p.read_bytes()
+              s = None
+              for enc in ('utf-8', 'latin-1'):
+                  try:
+                      s = raw.decode(enc)
+                      break
+                  except UnicodeDecodeError:
+                      pass
+              assert s is not None
+              if 'VM_Call' in s or 'uivm' in s or 'cgvm' in s:
+                  s = s.replace('VM_Call( uivm, UI_GET_ACTIVE_MENU )', 'uie->GetActiveMenu()')
+                  s = re.sub(r'VM_Call\( uivm, UI_SET_ACTIVE_MENU, ([^)]*) \)', r'uie->SetActiveMenu( \1 )', s)
+                  s = re.sub(r'VM_Call\( uivm, UI_KEY_EVENT, ([^)]*) \)', r'uie->KeyEvent( \1 )', s)
+                  s = re.sub(r'VM_Call\( cgvm, CG_KEY_EVENT, ([^)]*) \)', r'cge->KeyEvent( \1 )', s)
+                  s = re.sub(r'VM_Call\( cgvm, CG_EVENT_HANDLING, ([^)]*) \)', r'cge->EventHandling( \1 )', s)
+                  s = re.sub(r'\buivm\b', 'uie', s)
+                  s = re.sub(r'\bcgvm\b', 'cge', s)
+                  # anything the rewrite leaves behind is logged for the digest,
+                  # but the file is always written so the builds can run on it
+                  for n, text in enumerate( s.splitlines(), 1 ):
+                      if re.search( r'VM_Call\s*\(', text ) or re.search( r'\buivm\b|\bcgvm\b', text ):
+                          diag( 'src/client/cl_keys.c', n, 'leftover: ' + text.strip() )
+                  p.write_bytes(s.encode('utf-8'))
+                  print('cl_keys.c: replaced the VM calls and transcoded to UTF-8')
+              else:
+                  print('cl_keys.c: nothing to do')
+          except Exception:
+              for line in traceback.format_exc().strip().splitlines()[-4:]:
+                  diag( 'src/client/cl_keys.c', 1, line )
           EOF
-      - name: land the cl_keys fix
+      - name: land the engine patches
         shell: bash
         run: |
-          # cl_keys.c is not readable through the repository API, so the
-          # patch above is its only writer: commit it on its own before
-          # the formatting pass so a later failure cannot hold the
-          # engine fix hostage.
+          # cl_keys.c and unix_main.c are not readable through the
+          # repository API, so the patch above is their only writer:
+          # commit them on their own before the formatting pass so a
+          # later failure cannot hold the engine fix hostage.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- src/client/cl_keys.c; then
-            git add src/client/cl_keys.c
-            git commit -m "Replace the cl_keys.c VM calls and fix its source encoding [skip ci]"
+          if ! git diff --quiet -- src/client/cl_keys.c src/sys/unix/unix_main.c; then
+            git add src/client/cl_keys.c src/sys/unix/unix_main.c
+            git commit -m "Apply the cl_keys.c and unix_main.c engine patches"
             # the checkout is detached, so the refspec must name the
             # branch explicitly; -X theirs: on a push race the newest
             # output wins instead of committing conflict markers
