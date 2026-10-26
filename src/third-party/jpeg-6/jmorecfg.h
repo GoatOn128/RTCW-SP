@@ -1,4 +1,3 @@
-successfully downloaded text file (SHA: a08811272415e0ac4cd5d7b631d60e58c7893363)
 /*
  * jmorecfg.h
  *

@@ -1,4 +1,3 @@
-successfully downloaded text file (SHA: ae2993d47c7e9b773f1f7e47af8092af44bc9abe)
 # RTCW-SP SCons build
 #
 # Full SCons port of the project. Replaces the legacy cons scripts
