@@ -89,7 +89,7 @@ typedef struct {
 	void ( *CG_ARGV )( int n, char *buffer, int bufferLength );
 	void ( *CG_ARGS )( char *buffer, int bufferLength );
 	int ( *CG_FS_FOPENFILE )( const char *qpath, fileHandle_t *f, fsMode_t mode );
-	void ( *CG_FS_READ )( void *buffer, int len, fileHandle_t f );
+	int ( *CG_FS_READ )( void *buffer, int len, fileHandle_t f );
 	int ( *CG_FS_WRITE )( const void *buffer, int len, fileHandle_t f );
 	void ( *CG_FS_FCLOSEFILE )( fileHandle_t f );
 	void ( *CG_SENDCONSOLECOMMAND )( const char *text );
