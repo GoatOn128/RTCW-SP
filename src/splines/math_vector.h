@@ -147,6 +147,7 @@ idVec3() {
 };
 #endif
 idVec3( const float x, const float y, const float z );
+idVec3( const idVec3 &a );
 
 operator float*();
 
@@ -200,6 +201,12 @@ ID_INLINE idVec3::idVec3( const float x, const float y, const float z ) {
 #ifdef  FAT_VEC3
 	this->dist = 0.0f;
 #endif
+}
+
+ID_INLINE idVec3::idVec3( const idVec3 &a ) {
+	x = a.x;
+	y = a.y;
+	z = a.z;
 }
 
 ID_INLINE float idVec3::operator[]( const int index ) const {

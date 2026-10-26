@@ -45,6 +45,7 @@ float w;
 
 quat_t();
 quat_t( float x, float y, float z, float w );
+quat_t( const quat_t &a );
 
 friend void     toQuat( idVec3_t &src, quat_t &dst );
 friend void     toQuat( angles_t &src, quat_t &dst );
@@ -86,6 +87,13 @@ inline quat_t::quat_t( float x, float y, float z, float w ) {
 	this->y = y;
 	this->z = z;
 	this->w = w;
+}
+
+inline quat_t::quat_t( const quat_t &a ) {
+	this->x = a.x;
+	this->y = a.y;
+	this->z = a.z;
+	this->w = a.w;
 }
 
 inline float *quat_t::vec4( void ) {

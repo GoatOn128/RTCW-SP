@@ -84,7 +84,7 @@ typedef struct
 
 static WinConData s_wcd;
 
-static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) {
+static LRESULT CALLBACK ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) {
 	char *cmdString;
 	static qboolean s_timePolarity;
 
@@ -280,7 +280,7 @@ void Sys_CreateConsole( void ) {
 	memset( &wc, 0, sizeof( wc ) );
 
 	wc.style         = 0;
-	wc.lpfnWndProc   = (WNDPROC) ConWndProc;
+	wc.lpfnWndProc   = ConWndProc;
 	wc.cbClsExtra    = 0;
 	wc.cbWndExtra    = 0;
 	wc.hInstance     = g_wv.hInstance;

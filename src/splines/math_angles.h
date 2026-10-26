@@ -48,6 +48,7 @@ float roll;
 angles_t();
 angles_t( float pitch, float yaw, float roll );
 angles_t( const idVec3 &vec );
+angles_t( const angles_t &a );
 
 friend void     toAngles( idVec3 &src, angles_t &dst );
 friend void     toAngles( quat_t &src, angles_t &dst );
@@ -102,6 +103,12 @@ inline angles_t::angles_t( const idVec3 &vec ) {
 	this->pitch = vec.x;
 	this->yaw   = vec.y;
 	this->roll  = vec.z;
+}
+
+inline angles_t::angles_t( const angles_t &a ) {
+	this->pitch = a.pitch;
+	this->yaw   = a.yaw;
+	this->roll  = a.roll;
 }
 
 inline float angles_t::operator[]( int index ) const {

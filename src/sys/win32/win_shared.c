@@ -268,7 +268,7 @@ static int IsAthlon() {
 int Sys_GetProcessorId( void ) {
 #if defined _M_ALPHA
 	return CPUID_AXP;
-#elif !defined _M_IX86
+#elif !defined _M_IX86 && !defined _M_X64
 	return CPUID_GENERIC;
 #else
 
