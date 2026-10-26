@@ -440,28 +440,28 @@ static clipHandle_t CL_CM_TempCapsuleModel( const vec3_t mins, const vec3_t maxs
 }
 
 static void CL_CM_BoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
-						  const vec3_t mins, const vec3_t maxs,
-						  clipHandle_t model, int brushmask ) {
+							const vec3_t mins, const vec3_t maxs,
+							clipHandle_t model, int brushmask ) {
 	CM_BoxTrace( results, start, end, mins, maxs, model, brushmask, qfalse );
 }
 
 static void CL_CM_TransformedBoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
-								   const vec3_t mins, const vec3_t maxs,
-								   clipHandle_t model, int brushmask,
-								   const vec3_t origin, const vec3_t angles ) {
+									   const vec3_t mins, const vec3_t maxs,
+									   clipHandle_t model, int brushmask,
+									   const vec3_t origin, const vec3_t angles ) {
 	CM_TransformedBoxTrace( results, start, end, mins, maxs, model, brushmask, origin, angles, qfalse );
 }
 
 static void CL_CM_CapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
-								 const vec3_t mins, const vec3_t maxs,
-								 clipHandle_t model, int brushmask ) {
+								const vec3_t mins, const vec3_t maxs,
+								clipHandle_t model, int brushmask ) {
 	CM_BoxTrace( results, start, end, mins, maxs, model, brushmask, qtrue );
 }
 
 static void CL_CM_TransformedCapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
-									  const vec3_t mins, const vec3_t maxs,
-									  clipHandle_t model, int brushmask,
-									  const vec3_t origin, const vec3_t angles ) {
+										   const vec3_t mins, const vec3_t maxs,
+										   clipHandle_t model, int brushmask,
+										   const vec3_t origin, const vec3_t angles ) {
 	CM_TransformedBoxTrace( results, start, end, mins, maxs, model, brushmask, origin, angles, qtrue );
 }
 
