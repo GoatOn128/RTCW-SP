@@ -203,7 +203,7 @@ ID_INLINE void idHashIndex::Add( const int key, const int index ) {
 	assert( index >= 0 );
 	if ( hash == INVALID_INDEX ) {
 		Allocate( hashSize, index >= indexSize ? index + 1 : indexSize );
-	} else if ( index >= indexSize )   {
+	} else if ( index >= indexSize ) {
 		ResizeIndex( index + 1 );
 	}
 	h = key & hashMask;

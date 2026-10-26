@@ -270,10 +270,10 @@ bool idStr::Filter( const char *filter, const char *name, bool casesensitive ) {
 				}
 				name += index + strlen( buf );
 			}
-		} else if ( *filter == '?' )     {
+		} else if ( *filter == '?' ) {
 			filter++;
 			name++;
-		} else if ( *filter == '[' )     {
+		} else if ( *filter == '[' ) {
 			if ( *( filter + 1 ) == '[' ) {
 				if ( *name != '[' ) {
 					return false;
@@ -2043,7 +2043,7 @@ idStr idStr::FormatNumber( int number ) {
 				string += va( "%3.3i,", li->count );
 			}
 			found = true;
-		} else if ( found )   {
+		} else if ( found ) {
 			string += va( "%3.3i,", li->count );
 		}
 	}

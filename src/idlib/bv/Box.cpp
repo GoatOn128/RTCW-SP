@@ -586,7 +586,7 @@ static bool BoxPlaneClip( const float denom, const float numer, float &scale0, f
 			scale0 = numer / denom;
 		}
 		return true;
-	} else if ( denom < 0.0f )   {
+	} else if ( denom < 0.0f ) {
 		if ( numer > denom * scale0 ) {
 			return false;
 		}

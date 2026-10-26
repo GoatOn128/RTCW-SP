@@ -134,7 +134,7 @@ void idRotation::Normalize180() {
 	angle -= floor( angle / 360.0f ) * 360.0f;
 	if ( angle > 180.0f ) {
 		angle -= 360.0f;
-	} else if ( angle < -180.0f )   {
+	} else if ( angle < -180.0f ) {
 		angle += 360.0f;
 	}
 }
@@ -148,7 +148,7 @@ void idRotation::Normalize360() {
 	angle -= floor( angle / 360.0f ) * 360.0f;
 	if ( angle > 360.0f ) {
 		angle -= 360.0f;
-	} else if ( angle < 0.0f )   {
+	} else if ( angle < 0.0f ) {
 		angle += 360.0f;
 	}
 }

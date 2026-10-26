@@ -339,7 +339,7 @@ ID_INLINE int idPlane::Side( const idVec3 &v, const float epsilon ) const {
 	float dist = Distance( v );
 	if ( dist > epsilon ) {
 		return PLANESIDE_FRONT;
-	} else if ( dist < -epsilon )   {
+	} else if ( dist < -epsilon ) {
 		return PLANESIDE_BACK;
 	} else {
 		return PLANESIDE_ON;

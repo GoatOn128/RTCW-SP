@@ -40,18 +40,18 @@ int idPlane::Type() const {
 	if ( Normal()[0] == 0.0f ) {
 		if ( Normal()[1] == 0.0f ) {
 			return Normal()[2] > 0.0f ? PLANETYPE_Z : PLANETYPE_NEGZ;
-		} else if ( Normal()[2] == 0.0f )   {
+		} else if ( Normal()[2] == 0.0f ) {
 			return Normal()[1] > 0.0f ? PLANETYPE_Y : PLANETYPE_NEGY;
 		} else {
 			return PLANETYPE_ZEROX;
 		}
-	} else if ( Normal()[1] == 0.0f )   {
+	} else if ( Normal()[1] == 0.0f ) {
 		if ( Normal()[2] == 0.0f ) {
 			return Normal()[0] > 0.0f ? PLANETYPE_X : PLANETYPE_NEGX;
 		} else {
 			return PLANETYPE_ZEROY;
 		}
-	} else if ( Normal()[2] == 0.0f )   {
+	} else if ( Normal()[2] == 0.0f ) {
 		return PLANETYPE_ZEROZ;
 	} else {
 		return PLANETYPE_NONAXIAL;

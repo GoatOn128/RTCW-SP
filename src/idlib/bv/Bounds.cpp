@@ -192,7 +192,7 @@ bool idBounds::RayIntersection( const idVec3 &start, const idVec3 &dir, float &s
 	for ( i = 0; i < 3; i++ ) {
 		if ( start[i] < b[0][i] ) {
 			side = 0;
-		} else if ( start[i] > b[1][i] )   {
+		} else if ( start[i] > b[1][i] ) {
 			side = 1;
 		} else {
 			inside++;
@@ -346,7 +346,7 @@ idBounds BoundsForPointRotation( const idVec3 &start, const idRotation &rotation
 				bounds[0][i] = origin[i] - idMath::Sqrt( radiusSqr * ( 1.0f - axis[i] * axis[i] ) );
 				bounds[1][i] = Max( start[i], end[i] );
 			}
-		} else if ( start[i] > end[i] )   {
+		} else if ( start[i] > end[i] ) {
 			bounds[0][i] = end[i];
 			bounds[1][i] = start[i];
 		} else {

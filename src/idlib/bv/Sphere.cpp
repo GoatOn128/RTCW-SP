@@ -86,7 +86,7 @@ bool idSphere::LineIntersection( const idVec3 &start, const idVec3 &end ) const 
 	a = -s * r;
 	if ( a <= 0 ) {
 		return ( s * s < radius * radius );
-	} else if ( a >= r * r )   {
+	} else if ( a >= r * r ) {
 		return ( e * e < radius * radius );
 	} else {
 		r = s + ( a / ( r * r ) ) * r;

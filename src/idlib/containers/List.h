@@ -715,7 +715,7 @@ ID_INLINE int idList<_type_,_tag_>::Insert( _type_ const & obj, int index ) {
 
 	if ( index < 0 ) {
 		index = 0;
-	} else if ( index > num )   {
+	} else if ( index > num ) {
 		index = num;
 	}
 	for ( int i = num; i > index; --i ) {
