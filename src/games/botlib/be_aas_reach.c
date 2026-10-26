@@ -958,7 +958,7 @@ int AAS_Reachability_Step_Barrier_WaterJump_WalkOffLedge( int area1num, int area
 	int ground_bestarea2groundedgenum, ground_foundreach;
 	int water_bestarea2groundedgenum, water_foundreach;
 	int side1, area1swim, faceside1, groundface1num;
-	float dist, dist1, dist2, diff, invgravitydot, ortdot;
+	float dist, dist1, dist2, diff, ortdot;
 	float x1, x2, x3, x4, y1, y2, y3, y4, tmp, y;
 	float length, ground_bestlength, water_bestlength, ground_bestdist, water_bestdist;
 	vec3_t v1, v2, v3, v4, tmpv, p1area1, p1area2, p2area1, p2area2;
@@ -1084,7 +1084,6 @@ int AAS_Reachability_Step_Barrier_WaterJump_WalkOffLedge( int area1num, int area
 					//edges if they overlap in the direction orthogonal to
 					//the gravity direction
 					CrossProduct( invgravity, normal, ort );
-					invgravitydot = DotProduct( invgravity, invgravity );
 					ortdot = DotProduct( ort, ort );
 					//projection into the step plane
 					//NOTE: since gravity is vertical this is just the z coordinate
