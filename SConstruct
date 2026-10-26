@@ -35,6 +35,12 @@ IS_WINDOWS = pyplatform.system() == 'Windows'
 PLATFORM_NAME = 'windows' if IS_WINDOWS else pyplatform.system().lower()
 BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 
+# Spell out the platform suffixes. When a target name has no suffix SCons
+# adds its own (.exe/.dll), and Default() would then point at a name that
+# no node answers to, so keep everything on the final file names.
+EXE = '.exe' if IS_WINDOWS else ''
+DLL = '.dll' if IS_WINDOWS else ''
+
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
 ''')
@@ -65,7 +71,15 @@ common_cpppath = [
 def make_variant(module):
     vdir = os.path.join(BUILD_DIR, module)
     VariantDir(os.path.join(vdir, 'src'), 'src')
-    return lambda p: os.path.join(vdir, 'src', p)
+
+    def vpath(p):
+        # sources are listed as src/... but the variant dir root already
+        # stands for src, so strip that part off before joining
+        if p.startswith('src/'):
+            p = p[len('src/'):]
+        return os.path.join(vdir, 'src', p)
+
+    return vpath
 
 client_v = make_variant('client')
 game_v = make_variant('game')
@@ -208,7 +222,8 @@ botlib_env = client_env.Clone()
 botlib_env.Append(CPPDEFINES=['BOTLIB'])
 client_sources += botlib_env.Object([client_v(p) for p in botlib_files])
 
-client_env.Program(os.path.join(BUILD_DIR, 'WolfSP'), client_sources)
+client_target = os.path.join(BUILD_DIR, 'WolfSP' + EXE)
+client_env.Program(client_target, client_sources)
 
 # ---------------------------------------------------------------- modules
 
@@ -234,7 +249,8 @@ if IS_WINDOWS:
     game_env.Append(LINKFLAGS=['/DEF:src/games/game/game.def'])
 else:
     game_env.Append(LIBS=['dl', 'm'])
-game_env.SharedLibrary(os.path.join(BUILD_DIR, 'qagame'), [game_v(p) for p in game_files])
+game_target = os.path.join(BUILD_DIR, 'qagame' + DLL)
+game_env.SharedLibrary(game_target, [game_v(p) for p in game_files])
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -254,7 +270,8 @@ if IS_WINDOWS:
     cgame_env.Append(LINKFLAGS=['/DEF:src/games/cgame/cgame.def'])
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
-cgame_env.SharedLibrary(os.path.join(BUILD_DIR, 'cgame'), [cgame_v(p) for p in cgame_files])
+cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
+cgame_env.SharedLibrary(cgame_target, [cgame_v(p) for p in cgame_files])
 
 ui_files = ['src/games/game/' + f for f in [
     'bg_misc.c', 'q_math.c', 'q_shared.c',
@@ -268,11 +285,7 @@ if IS_WINDOWS:
     ui_env.Append(LINKFLAGS=['/DEF:src/games/ui/ui.def'])
 else:
     ui_env.Append(LIBS=['dl', 'm'])
-ui_env.SharedLibrary(os.path.join(BUILD_DIR, 'ui'), [ui_v(p) for p in ui_files])
+ui_target = os.path.join(BUILD_DIR, 'ui' + DLL)
+ui_env.SharedLibrary(ui_target, [ui_v(p) for p in ui_files])
 
-Default(
-    os.path.join(BUILD_DIR, 'WolfSP'),
-    os.path.join(BUILD_DIR, 'qagame'),
-    os.path.join(BUILD_DIR, 'cgame'),
-    os.path.join(BUILD_DIR, 'ui'),
-)
+Default(client_target, game_target, cgame_target, ui_target)
