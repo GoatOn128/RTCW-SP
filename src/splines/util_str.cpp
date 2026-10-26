@@ -465,7 +465,6 @@ void TestStringClass
 (
 	void
 ) {
-	char ch;                            // ch == ?
 	idStr   *t;                         // t == ?
 	idStr a;                                // a.len == 0, a.data == "\0"
 	idStr b;                                // b.len == 0, b.data == "\0"
@@ -506,15 +505,15 @@ void TestStringClass
 	// a.len == 11, a.data == "testtestwow\0"	ASSERT!
 
 	a = "test";                          // a.len == 4, a.data == "test\0"
-	ch = a[ 0 ];                        // ch == 't'
-	ch = a[ -1 ];                       // ch == 0											ASSERT!
-	ch = a[ 1000 ];                 // ch == 0											ASSERT!
-	ch = a[ 0 ];                        // ch == 't'
-	ch = a[ 1 ];                        // ch == 'e'
-	ch = a[ 2 ];                        // ch == 's'
-	ch = a[ 3 ];                        // ch == 't'
-	ch = a[ 4 ];                        // ch == '\0'										ASSERT!
-	ch = a[ 5 ];                        // ch == '\0'										ASSERT!
+	(void)a[ 0 ];;                        // ch == 't'
+	(void)a[ -1 ];;                       // ch == 0											ASSERT!
+	(void)a[ 1000 ];;                 // ch == 0											ASSERT!
+	(void)a[ 0 ];;                        // ch == 't'
+	(void)a[ 1 ];;                        // ch == 'e'
+	(void)a[ 2 ];;                        // ch == 's'
+	(void)a[ 3 ];;                        // ch == 't'
+	(void)a[ 4 ];;                        // ch == '\0'										ASSERT!
+	(void)a[ 5 ];;                        // ch == '\0'										ASSERT!
 
 	a[ 1 ] = 'b';                        // a.len == 4, a.data == "tbst\0"
 	a[ -1 ] = 'b';                       // a.len == 4, a.data == "tbst\0"			ASSERT!

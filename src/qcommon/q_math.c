@@ -1081,36 +1081,36 @@ vec_t VectorNormalize2( const vec3_t v, vec3_t out ) {
 
 }
 
-void _VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
+void VectorMA_( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
 	vecc[0] = veca[0] + scale * vecb[0];
 	vecc[1] = veca[1] + scale * vecb[1];
 	vecc[2] = veca[2] + scale * vecb[2];
 }
 
 
-vec_t _DotProduct( const vec3_t v1, const vec3_t v2 ) {
+vec_t DotProduct_( const vec3_t v1, const vec3_t v2 ) {
 	return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 }
 
-void _VectorSubtract( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+void VectorSubtract_( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
 	out[0] = veca[0] - vecb[0];
 	out[1] = veca[1] - vecb[1];
 	out[2] = veca[2] - vecb[2];
 }
 
-void _VectorAdd( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+void VectorAdd_( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
 	out[0] = veca[0] + vecb[0];
 	out[1] = veca[1] + vecb[1];
 	out[2] = veca[2] + vecb[2];
 }
 
-void _VectorCopy( const vec3_t in, vec3_t out ) {
+void VectorCopy_( const vec3_t in, vec3_t out ) {
 	out[0] = in[0];
 	out[1] = in[1];
 	out[2] = in[2];
 }
 
-void _VectorScale( const vec3_t in, vec_t scale, vec3_t out ) {
+void VectorScale_( const vec3_t in, vec_t scale, vec3_t out ) {
 	out[0] = in[0] * scale;
 	out[1] = in[1] * scale;
 	out[2] = in[2] * scale;

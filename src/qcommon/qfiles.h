@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __QFILES_H__
-#define __QFILES_H__
+#ifndef QFILES_H__
+#define QFILES_H__
 
 //
 // qfiles.h: quake file formats
@@ -99,7 +99,7 @@ TGA files are used for 24/32 bit images
 ========================================================================
 */
 
-typedef struct _TargaHeader {
+typedef struct TargaHeader {
 	unsigned char id_length, colormap_type, image_type;
 	unsigned short colormap_index, colormap_length;
 	unsigned char colormap_size;

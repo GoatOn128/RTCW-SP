@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __Q_SHARED_H
-#define __Q_SHARED_H
+#ifndef Q_SHARED_H
+#define Q_SHARED_H
 
 // q_shared.h -- included first by ALL program modules.
 // A user mod should never modify this file
@@ -513,12 +513,12 @@ void ByteToDir( int b, vec3_t dir );
 
 #else
 
-#define DotProduct( x,y )         _DotProduct( x,y )
-#define VectorSubtract( a,b,c )   _VectorSubtract( a,b,c )
-#define VectorAdd( a,b,c )        _VectorAdd( a,b,c )
-#define VectorCopy( a,b )         _VectorCopy( a,b )
-#define VectorScale( v, s, o )    _VectorScale( v,s,o )
-#define VectorMA( v, s, b, o )    _VectorMA( v,s,b,o )
+#define DotProduct( x,y )         DotProduct_( x,y )
+#define VectorSubtract( a,b,c )   VectorSubtract_( a,b,c )
+#define VectorAdd( a,b,c )        VectorAdd_( a,b,c )
+#define VectorCopy( a,b )         VectorCopy_( a,b )
+#define VectorScale( v, s, o )    VectorScale_( v,s,o )
+#define VectorMA( v, s, b, o )    VectorMA_( v,s,b,o )
 
 #endif
 
@@ -545,12 +545,12 @@ typedef struct {
 #define SnapVector( v ) {v[0] = ( (int)( v[0] ) ); v[1] = ( (int)( v[1] ) ); v[2] = ( (int)( v[2] ) );}
 
 // just in case you do't want to use the macros
-vec_t _DotProduct( const vec3_t v1, const vec3_t v2 );
-void _VectorSubtract( const vec3_t veca, const vec3_t vecb, vec3_t out );
-void _VectorAdd( const vec3_t veca, const vec3_t vecb, vec3_t out );
-void _VectorCopy( const vec3_t in, vec3_t out );
-void _VectorScale( const vec3_t in, float scale, vec3_t out );
-void _VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc );
+vec_t DotProduct_( const vec3_t v1, const vec3_t v2 );
+void VectorSubtract_( const vec3_t veca, const vec3_t vecb, vec3_t out );
+void VectorAdd_( const vec3_t veca, const vec3_t vecb, vec3_t out );
+void VectorCopy_( const vec3_t in, vec3_t out );
+void VectorScale_( const vec3_t in, float scale, vec3_t out );
+void VectorMA_( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc );
 
 unsigned ColorBytes3( float r, float g, float b );
 unsigned ColorBytes4( float r, float g, float b, float a );
@@ -1508,7 +1508,7 @@ typedef enum {
 	FMV_ID_WAIT
 } e_status;
 
-typedef enum _flag_status {
+typedef enum flag_status {
 	FLAG_ATBASE = 0,
 	FLAG_TAKEN,         // CTF
 	FLAG_TAKEN_RED,     // One Flag CTF
@@ -1539,4 +1539,4 @@ typedef enum {
 	MAX_LANGUAGES
 } languages_t;
 
-#endif  // __Q_SHARED_H
+#endif  // Q_SHARED_H

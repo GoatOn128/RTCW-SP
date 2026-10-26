@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __MATH_QUATERNION_H__
-#define __MATH_QUATERNION_H__
+#ifndef MATH_QUATERNION_H__
+#define MATH_QUATERNION_H__
 
 #include <assert.h>
 #include <math.h>
@@ -164,7 +164,7 @@ inline int operator==( quat_t a, quat_t b ) {
 }
 
 inline int operator!=( quat_t a, quat_t b ) {
-	return ( ( a.x != b.x ) || ( a.y != b.y ) || ( a.z != b.z ) && ( a.w != b.w ) );
+	return ( ( a.x != b.x ) || ( a.y != b.y ) || ( ( a.z != b.z ) && ( a.w != b.w ) ) );
 }
 
 inline float quat_t::Length( void ) {
@@ -194,4 +194,4 @@ inline quat_t quat_t::operator-() {
 	return quat_t( -x, -y, -z, -w );
 }
 
-#endif /* !__MATH_QUATERNION_H__ */
+#endif /* !MATH_QUATERNION_H__ */
