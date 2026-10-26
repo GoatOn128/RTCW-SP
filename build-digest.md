@@ -1,12 +1,12 @@
 # Build digest
 
-commit: c6410dc235fb
+commit: 22c17b0d4a33
 
 - ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
 - ubuntu-latest-x86-debug: success
 - ubuntu-latest-x86-release: success
-- uncrustify: success
+- uncrustify: failure
 - windows-latest-x64-debug: success
 - windows-latest-x64-release: success
 - windows-latest-x86-debug: success
@@ -74,7 +74,7 @@ warnings: 0 in 0 kinds
 
 ## uncrustify
 
-status: success
+status: failure
 
 errors: 0
 warnings: 0 in 0 kinds
