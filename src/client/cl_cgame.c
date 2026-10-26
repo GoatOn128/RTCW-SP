@@ -399,6 +399,17 @@ void CL_CM_LoadMap( const char *mapname ) {
 	CM_LoadMap( mapname, qtrue, &checksum );
 }
 
+
+// native cgame module interface (Doom3 style): the engine loads the
+// module with Sys_LoadModule and exchanges structs of function pointers
+
+static cgameImport_t cl_cgameImport;    // engine functions handed to the cgame module
+static void *cgame_library = NULL;      // handle from Sys_LoadModule
+
+cgameExport_t *cge = NULL;              // cgame module export
+
+typedef cgameExport_t *( *GetCgameAPI_t )( int apiVersion, cgameImport_t *import );
+
 /*
 ====================
 CL_ShutdonwCGame
@@ -417,15 +428,6 @@ void CL_ShutdownCGame( void ) {
 	cge = NULL;
 }
 
-// native cgame module interface (Doom3 style): the engine loads the
-// module with Sys_LoadModule and exchanges structs of function pointers
-
-static cgameImport_t cl_cgameImport;    // engine functions handed to the cgame module
-static void *cgame_library = NULL;      // handle from Sys_LoadModule
-
-cgameExport_t *cge = NULL;              // cgame module export
-
-typedef cgameExport_t *( *GetCgameAPI_t )( int apiVersion, cgameImport_t *import );
 
 static void CL_CgamePrint( const char *string ) {
 	Com_Printf( "%s", string );
