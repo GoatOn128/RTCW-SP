@@ -32,6 +32,8 @@ def main():
             if os.path.exists("build.log"):
                 with open("build.log", errors="replace") as fh:
                     lines = fh.read().splitlines()
+            else:
+                lines = ["no build.log: the job failed before or during early setup, before scons produced output"]
             errors = [l for l in lines if ERROR_RE.search(l)]
             warnings = [l for l in lines if WARNING_RE.search(l)]
             f.write("errors: " + str(len(errors)) + "\n")

@@ -87,9 +87,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-          cache: 'pip'
       - name: install scons
-        run: pip install scons
+        shell: bash
+        run: |
+          set -o pipefail
+          pip install scons 2>&1 | tee -a build.log
       - name: install linux deps
         if: runner.os == 'Linux'
         shell: bash
