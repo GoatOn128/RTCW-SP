@@ -315,9 +315,9 @@ int vmMain( int command, int arg0, int arg1, int arg2, int arg3, int arg4, int a
 		return BotAIStartFrame( arg0 );
 	// Ridah, Cast AI
 	case AICAST_VISIBLEFROMPOS:
-		return AICast_VisibleFromPos( (float *)arg0, arg1, (float *)arg2, arg3, arg4 );
+		return AICast_VisibleFromPos( (float *)(size_t)arg0, arg1, (float *)(size_t)arg2, arg3, arg4 );
 	case AICAST_CHECKATTACKATPOS:
-		return AICast_CheckAttackAtPos( arg0, arg1, (float *)arg2, arg3, arg4 );
+		return AICast_CheckAttackAtPos( arg0, arg1, (float *)(size_t)arg2, arg3, arg4 );
 	// done.
 
 	case GAME_RETRIEVE_MOVESPEEDS_FROM_CLIENT:
@@ -2586,3 +2586,4 @@ void G_RunFrame( int levelTime ) {
 	CheckReloadStatus();
 
 }
+

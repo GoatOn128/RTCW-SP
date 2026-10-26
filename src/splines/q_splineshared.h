@@ -432,8 +432,8 @@ extern mat3_t axisDefault;
 #define CHECK_NAN( x ) assert( !IS_NAN( x ) )
 #define CHECK_NAN_VEC( v ) assert( !IS_NAN( v[0] ) && !IS_NAN( v[1] ) && !IS_NAN( v[2] ) )
 #else
-#define CHECK_NAN
-#define CHECK_NAN_VEC
+#define CHECK_NAN( x ) ( (void)0 )
+#define CHECK_NAN_VEC( v ) ( (void)0 )
 #endif
 
 float Q_fabs( float f );

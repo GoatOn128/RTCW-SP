@@ -88,7 +88,7 @@ if IS_WINDOWS:
     env['AR'] = 'llvm-lib'
     env.Append(CPPDEFINES=['WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
-    env.Append(CCFLAGS=[arch_flag], CXXFLAGS=[arch_flag])
+    env.Append(CCFLAGS=['-Wall', arch_flag], CXXFLAGS=['-Wall', arch_flag])
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['/Z7', '/Od'], CXXFLAGS=['/Z7', '/Od'], LINKFLAGS=['/DEBUG'])
     else:
@@ -103,9 +103,11 @@ else:
     )
     env['AS'] = 'clang'
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
-    # gnu89 keeps the 2001-era C code compiling under modern clang
-    env.Append(CCFLAGS=['-Wall', '-fsigned-char', '-std=gnu89', arch_flag])
-    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', arch_flag])
+    # gnu89 keeps the 2001-era C code compiling under modern clang.
+    # The splines code is C++98-era, so build it as gnu++98.
+    env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
+    env.Append(CFLAGS=['-std=gnu89'])
+    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
     env.Append(ASFLAGS=['-c', '-x', 'assembler-with-cpp', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
     if CONFIG == 'debug':
@@ -209,7 +211,7 @@ sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 
 client_sources = (
     renderer_files + client_files + qcommon_files + server_files +
-    ['src/games/game/q_shared.c', 'src/games/game/q_math.c'] +
+    ['src/qcommon/q_shared.c', 'src/qcommon/q_math.c'] +
     vm_files + sys_files + splines_files + jpeg_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
@@ -235,10 +237,10 @@ game_files = ['src/games/game/' + f for f in [
     'g_missile.c', 'g_mover.c', 'g_props.c', 'g_save.c', 'g_script.c',
     'g_script_actions.c', 'g_session.c', 'g_spawn.c', 'g_svcmds.c',
     'g_syscalls.c', 'g_target.c', 'g_team.c', 'g_tramcar.c', 'g_trigger.c',
-    'g_utils.c', 'g_weapon.c', 'q_math.c', 'q_shared.c',
+    'g_utils.c', 'g_weapon.c',
 ]] + ['src/games/botai/' + f for f in [
     'ai_chat.c', 'ai_cmd.c', 'ai_dmnet.c', 'ai_dmq3.c', 'ai_main.c', 'ai_team.c',
-]]
+]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
 game_env = env.Clone()
 game_env.Append(CPPDEFINES=['GAMEDLL'])
@@ -251,7 +253,6 @@ game_env.SharedLibrary(game_target, module_objects(game_env, 'game', game_files)
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
-    'q_math.c', 'q_shared.c',
 ]] + ['src/games/cgame/' + f for f in [
     'cg_consolecmds.c', 'cg_draw.c', 'cg_drawtools.c', 'cg_effects.c',
     'cg_ents.c', 'cg_event.c', 'cg_flamethrower.c', 'cg_info.c',
@@ -259,7 +260,7 @@ cgame_files = ['src/games/game/' + f for f in [
     'cg_particles.c', 'cg_players.c', 'cg_playerstate.c', 'cg_predict.c',
     'cg_scoreboard.c', 'cg_servercmds.c', 'cg_snapshot.c', 'cg_sound.c',
     'cg_syscalls.c', 'cg_trails.c', 'cg_view.c', 'cg_weapons.c',
-]] + ['src/games/ui/ui_shared.c']
+]] + ['src/games/ui/ui_shared.c'] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
 cgame_env = env.Clone()
 cgame_env.Append(CPPDEFINES=['CGAMEDLL'])
@@ -271,11 +272,11 @@ cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
 cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files))
 
 ui_files = ['src/games/game/' + f for f in [
-    'bg_misc.c', 'q_math.c', 'q_shared.c',
+    'bg_misc.c',
 ]] + ['src/games/ui/' + f for f in [
     'ui_atoms.c', 'ui_gameinfo.c', 'ui_main.c', 'ui_players.c',
     'ui_shared.c', 'ui_syscalls.c', 'ui_util.c',
-]]
+]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
 ui_env = env.Clone()
 if IS_WINDOWS:
