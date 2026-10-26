@@ -10,12 +10,13 @@
 #   scons arch=x86 config=debug -j4
 #   scons arch=x64 config=release -j4
 #
-# Targets:
-#   build/WolfSP   - client binary (.exe on Windows)
-#   build/qagame   - game module   (.dll on Windows, .so on Linux)
-#   build/cgame    - cgame module
-#   build/ui       - ui module
+# Targets (under build/<platform>-<arch>-<config>/):
+#   WolfSP   - client binary (.exe on Windows)
+#   qagame   - game module   (.dll on Windows, .so on Linux)
+#   cgame    - cgame module
+#   ui       - ui module
 
+import os
 import platform as pyplatform
 
 EnsurePythonVersion(3, 6)
@@ -31,6 +32,8 @@ if CONFIG not in ('debug', 'release'):
     Exit(1)
 
 IS_WINDOWS = pyplatform.system() == 'Windows'
+PLATFORM_NAME = 'windows' if IS_WINDOWS else pyplatform.system().lower()
+BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
@@ -56,12 +59,27 @@ common_cpppath = [
     'src/third-party/jpeg-6',
 ]
 
+# One variant tree per build target: the same source file is compiled
+# with different defines for each module, so their objects must never
+# land in the same directory.
+def make_variant(module):
+    vdir = os.path.join(BUILD_DIR, module)
+    VariantDir(os.path.join(vdir, 'src'), 'src')
+    return lambda p: os.path.join(vdir, 'src', p)
+
+client_v = make_variant('client')
+game_v = make_variant('game')
+cgame_v = make_variant('cgame')
+ui_v = make_variant('ui')
+
 if IS_WINDOWS:
+    # SCons names the 64 bit msvc target 'amd64'
+    TARGET_ARCH = 'x86' if ARCH == 'x86' else 'amd64'
     env = Environment(
         tools=['default'],
         CC='clang-cl',
         CXX='clang-cl',
-        TARGET_ARCH=ARCH,
+        TARGET_ARCH=TARGET_ARCH,
         CPPPATH=common_cpppath,
     )
     env['LINK'] = 'clang-cl'
@@ -149,8 +167,6 @@ jpeg_files = ['src/third-party/jpeg-6/' + f for f in [
     'jidctflt.c', 'jmemmgr.c', 'jmemnobs.c', 'jutils.c',
 ]]
 
-game_shared_files = ['src/games/game/q_shared.c', 'src/games/game/q_math.c']
-
 vm_files = ['src/qcommon/vm.c', 'src/qcommon/vm_interpreted.c']
 if ARCH == 'x86':
     # vm_x86.c is 32-bit x86 only (inline asm)
@@ -172,23 +188,27 @@ win_sys_files = ['src/sys/win32/' + f for f in [
 # ---------------------------------------------------------------- client
 
 client_env = env.Clone()
-sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 if IS_WINDOWS:
     client_env.Append(LINKFLAGS=['/SUBSYSTEM:WINDOWS'])
     client_env.Append(LIBS=['user32', 'gdi32', 'winmm', 'wsock32', 'advapi32', 'opengl32', 'shell32'])
 else:
     client_env.Append(LIBS=['dl', 'm', 'X11', 'Xext', 'Xxf86dga', 'Xxf86vm'])
 
-botlib_env = env.Clone()
-botlib_env.Append(CPPDEFINES=['BOTLIB'])
-botlib_objects = botlib_env.Object(botlib_files)
+sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 
 client_sources = (
     renderer_files + client_files + qcommon_files + server_files +
-    game_shared_files + vm_files + sys_files +
-    splines_files + botlib_objects + jpeg_files
+    ['src/games/game/q_shared.c', 'src/games/game/q_math.c'] +
+    vm_files + sys_files + splines_files + jpeg_files
 )
-client_env.Program('build/WolfSP', client_sources)
+client_sources = [client_v(p) for p in client_sources]
+
+# botlib needs its own define but is linked into the client binary
+botlib_env = client_env.Clone()
+botlib_env.Append(CPPDEFINES=['BOTLIB'])
+client_sources += botlib_env.Object([client_v(p) for p in botlib_files])
+
+client_env.Program(os.path.join(BUILD_DIR, 'WolfSP'), client_sources)
 
 # ---------------------------------------------------------------- modules
 
@@ -214,7 +234,7 @@ if IS_WINDOWS:
     game_env.Append(LINKFLAGS=['/DEF:src/games/game/game.def'])
 else:
     game_env.Append(LIBS=['dl', 'm'])
-game_env.SharedLibrary('build/qagame', game_files)
+game_env.SharedLibrary(os.path.join(BUILD_DIR, 'qagame'), [game_v(p) for p in game_files])
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -234,7 +254,7 @@ if IS_WINDOWS:
     cgame_env.Append(LINKFLAGS=['/DEF:src/games/cgame/cgame.def'])
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
-cgame_env.SharedLibrary('build/cgame', cgame_files)
+cgame_env.SharedLibrary(os.path.join(BUILD_DIR, 'cgame'), [cgame_v(p) for p in cgame_files])
 
 ui_files = ['src/games/game/' + f for f in [
     'bg_misc.c', 'q_math.c', 'q_shared.c',
@@ -248,6 +268,11 @@ if IS_WINDOWS:
     ui_env.Append(LINKFLAGS=['/DEF:src/games/ui/ui.def'])
 else:
     ui_env.Append(LIBS=['dl', 'm'])
-ui_env.SharedLibrary('build/ui', ui_files)
+ui_env.SharedLibrary(os.path.join(BUILD_DIR, 'ui'), [ui_v(p) for p in ui_files])
 
-Default('build/WolfSP', 'build/qagame', 'build/cgame', 'build/ui')
+Default(
+    os.path.join(BUILD_DIR, 'WolfSP'),
+    os.path.join(BUILD_DIR, 'qagame'),
+    os.path.join(BUILD_DIR, 'cgame'),
+    os.path.join(BUILD_DIR, 'ui'),
+)
