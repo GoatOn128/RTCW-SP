@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __KEYCODES_H__
-#define __KEYCODES_H__
+#ifndef KEYCODES_H
+#define KEYCODES_H
 
 //
 // these are the key numbers that should be passed to KeyEvent
