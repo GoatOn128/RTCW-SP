@@ -53,6 +53,9 @@ If you have questions concerning this license or the applicable additional terms
 
 static char sys_cmdline[MAX_STRING_CHARS];
 
+// renderer module export, the client fills it in CL_InitRef
+refexport_t re;
+
 /*
 ==================
 Sys_LowPhysicalMemory()
@@ -63,6 +66,19 @@ qboolean Sys_LowPhysicalMemory() {
 	MEMORYSTATUS stat;
 	GlobalMemoryStatus( &stat );
 	return ( stat.dwTotalPhys <= MEM_THRESHOLD ) ? qtrue : qfalse;
+}
+
+/*
+==================
+Sys_ProcessorCount()
+==================
+*/
+
+unsigned int Sys_ProcessorCount( void ) {
+	SYSTEM_INFO info;
+
+	GetSystemInfo( &info );
+	return info.dwNumberOfProcessors;
 }
 
 //NOTE TTimo: heavily NON PORTABLE, PLZ DON'T USE
