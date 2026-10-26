@@ -1,11 +1,12 @@
 # Build digest
 
-commit: 9e2303b99b2c
+commit: 1cbdbead19b0
 
-- ubuntu-latest-x64-debug: cancelled
+- ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
 - ubuntu-latest-x86-debug: cancelled
-- ubuntu-latest-x86-release: success
+- ubuntu-latest-x86-release: cancelled
+- uncrustify: success
 - windows-latest-x64-debug: success
 - windows-latest-x64-release: success
 - windows-latest-x86-debug: success
@@ -13,7 +14,7 @@ commit: 9e2303b99b2c
 
 ## ubuntu-latest-x64-debug
 
-status: cancelled
+status: success
 
 errors: 0
 warnings: 0 in 0 kinds
@@ -57,6 +58,21 @@ warnings: 0 in 0 kinds
 ### warning kinds
 
 ## ubuntu-latest-x86-release
+
+status: cancelled
+
+errors: 0
+warnings: 0 in 0 kinds
+
+### errors
+
+
+### failure context
+
+
+### warning kinds
+
+## uncrustify
 
 status: success
 

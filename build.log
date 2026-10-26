@@ -1,9 +1,9 @@
-==== ubuntu-latest-x64-debug (cancelled) ====
+==== ubuntu-latest-x86-debug (cancelled) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 74.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 101.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -11,12 +11,12 @@ Successfully installed scons-4.11.1
 [notice] To update, run: pip install --upgrade pip
 
 
-==== ubuntu-latest-x86-debug (cancelled) ====
+==== ubuntu-latest-x86-release (cancelled) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 73.6 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 102.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
