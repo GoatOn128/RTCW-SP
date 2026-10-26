@@ -73,6 +73,13 @@ jobs:
             echo "waiting for sibling runs:${missing}"
             sleep 30
           done
+      # checkout first: actions/checkout@v4 cleans the workspace as
+      # part of fetching, so artifacts downloaded before it would be
+      # deleted before the assemble step can read them
+      - uses: actions/checkout@v4
+        if: steps.runs.outputs.skip != 'true'
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
       - name: download format logs
         if: steps.runs.outputs.skip != 'true'
         uses: actions/download-artifact@v4
@@ -100,10 +107,6 @@ jobs:
           pattern: logs-*
           merge-multiple: true
           path: logs
-      - uses: actions/checkout@v4
-        if: steps.runs.outputs.skip != 'true'
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
       - name: assemble
         if: steps.runs.outputs.skip != 'true'
         env:
@@ -112,8 +115,11 @@ jobs:
           if ls logs/status-* >/dev/null 2>&1; then
             python .github/scripts/assemble.py
           else
+            # every completed build uploads status files: losing them
+            # is a pipeline bug, fail loudly instead of silently
+            # committing nothing
             echo "no build logs to publish"
-            exit 0
+            exit 1
           fi
       - name: commit
         if: steps.runs.outputs.skip != 'true'
