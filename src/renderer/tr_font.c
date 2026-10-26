@@ -28,128 +28,80 @@ If you have questions concerning this license or the applicable additional terms
 
 // tr_font.c
 //
+// The font system renders TrueType fonts for use within the game. The old
+// FreeType 2.x code was replaced with stb_truetype, the pre-rendered font
+// path ( fonts/fontImage_%i.dat ) is unchanged and takes priority when it
+// exists for a point size, so the shipped pre-rendered fonts keep working.
 //
-// The font system uses FreeType 2.x to render TrueType fonts for use within the game.
-// As of this writing ( Nov, 2000 ) Team Arena uses these fonts for all of the ui and
-// about 90% of the cgame presentation. A few areas of the CGAME were left uses the old
-// fonts since the code is shared with standard Q3A.
+// When no data file exists for a point size the renderer now loads the
+// TrueType font file straight out of the pk3, renders each glyph into a
+// 256x256 atlas and hands the glyphs out as regular shaders.
 //
-// If you include this font rendering code in a commercial product you MUST include the
-// following somewhere with your product, see www.freetype.org for specifics or changes.
-// The Freetype code also uses some hinting techniques that MIGHT infringe on patents
-// held by apple so be aware of that also.
-//
-// As of Q3A 1.25+ and Team Arena, we are shipping the game with the font rendering code
-// disabled. This removes any potential patent issues and it keeps us from having to
-// distribute an actual TrueTrype font which is 1. expensive to do and 2. seems to require
-// an act of god to accomplish.
-//
-// What we did was pre-render the fonts using FreeType ( which is why we leave the FreeType
-// credit in the credits ) and then saved off the glyph data and then hand touched up the
-// font bitmaps so they scale a bit better in GL.
-//
-// There are limitations in the way fonts are saved and reloaded in that it is based on
-// point size and not name. So if you pre-render Helvetica in 18 point and Impact in 18 point
-// you will end up with a single 18 point data file and image set. Typically you will want to
-// choose 3 sizes to best approximate the scaling you will be doing in the ui scripting system
-//
-// In the UI Scripting code, a scale of 1.0 is equal to a 48 point font. In Team Arena, we
-// use three or four scales, most of them exactly equaling the specific rendered size. We
-// rendered three sizes in Team Arena, 12, 16, and 20.
-//
-// To generate new font data you need to go through the following steps.
-// 1. delete the fontImage_x_xx.tga files and fontImage_xx.dat files from the fonts path.
-// 2. in a ui script, specificy a font, smallFont, and bigFont keyword with font name and
-//    point size. the original TrueType fonts must exist in fonts at this point.
-// 3. run the game, you should see things normally.
-// 4. Exit the game and there will be three dat files and at least three tga files. The
-//    tga's are in 256x256 pages so if it takes three images to render a 24 point font you
-//    will end up with fontImage_0_24.tga through fontImage_2_24.tga
-// 5. You will need to flip the tga's in Photoshop as the tga output code writes them upside
-//    down.
-// 6. In future runs of the game, the system looks for these images and data files when a s
-//    specific point sized font is rendered and loads them for use.
-// 7. Because of the original beta nature of the FreeType code you will probably want to hand
-//    touch the font bitmaps.
-//
-// Currently a define in the project turns on or off the FreeType code which is currently
-// defined out. To pre-render new fonts you need enable the define ( BUILD_FREETYPE ) and
-// uncheck the exclude from build check box in the FreeType2 area of the Renderer project.
-
+// The same layout rules as the original FreeType code are kept: a point
+// size is a pixel size at 72 dpi, and the glyphScale handed to the game
+// side stays relative to a 48 point font, since the ui scaling is based
+// on a 48 point font.
 
 
 #include "tr_local.h"
 #include "../qcommon/qcommon.h"
-
-//#define BUILD_FREETYPE
-#ifdef BUILD_FREETYPE
-#include "../ft2/fterrors.h"
-#include "../ft2/ftsystem.h"
-#include "../ft2/ftimage.h"
-#include "../ft2/freetype.h"
-#include "../ft2/ftoutln.h"
-
-#define _FLOOR( x )  ( ( x ) & -64 )
-#define _CEIL( x )   ( ( ( x ) + 63 ) & -64 )
-#define _TRUNC( x )  ( ( x ) >> 6 )
-
-FT_Library ftLibrary = NULL;
-#endif
+#include "stb_truetype.h"
 
 #define MAX_FONTS 6
 static int registeredFontCount = 0;
 static fontInfo_t registeredFont[MAX_FONTS];
 
-#ifdef BUILD_FREETYPE
-void R_GetGlyphInfo( FT_GlyphSlot glyph, int *left, int *right, int *width, int *top, int *bottom, int *height, int *pitch ) {
+/*
+=================
+R_RenderGlyph
 
-	*left  = _FLOOR( glyph->metrics.horiBearingX );
-	*right = _CEIL( glyph->metrics.horiBearingX + glyph->metrics.width );
-	*width = _TRUNC( *right - *left );
+Renders the given codepoint into an 8 bit per pixel grayscale bitmap
+with stb_truetype and fills in the matching glyphInfo_t metrics. The
+bitmap is malloc'ed by stb and must be freed with free(), returns NULL
+for empty glyphs ( the space and friends ).
+=================
+*/
+unsigned char *R_RenderGlyph( stbtt_fontinfo *font, float fontSize, const unsigned char c, glyphInfo_t *glyphOut ) {
+	unsigned char *bitmap, *padded;
+	int w, h, xoff, yoff;
+	int advance, lsb;
+	int ix0, iy0, ix1, iy1;
+	int i;
 
-	*top    = _CEIL( glyph->metrics.horiBearingY );
-	*bottom = _FLOOR( glyph->metrics.horiBearingY - glyph->metrics.height );
-	*height = _TRUNC( *top - *bottom );
-	*pitch  = ( qtrue ? ( *width + 3 ) & -4 : ( *width + 7 ) >> 3 );
-}
+	stbtt_GetCodepointBitmapBox( font, c, fontSize, fontSize, &ix0, &iy0, &ix1, &iy1 );
 
+	glyphOut->height  = iy1 - iy0;
+	glyphOut->pitch   = ( ( ix1 - ix0 ) + 3 ) & -4;
+	// match the old FreeType path, one pixel of extra top padding
+	glyphOut->top     = -iy0 + 1;
+	glyphOut->bottom  = glyphOut->top - glyphOut->height;
 
-FT_Bitmap *R_RenderGlyph( FT_GlyphSlot glyph, glyphInfo_t* glyphOut ) {
+	stbtt_GetCodepointHMetrics( font, c, &advance, &lsb );
+	glyphOut->xSkip   = (int)( advance * fontSize ) + 1;
 
-	FT_Bitmap  *bit2;
-	int left, right, width, top, bottom, height, pitch, size;
-
-	R_GetGlyphInfo( glyph, &left, &right, &width, &top, &bottom, &height, &pitch );
-
-	if ( glyph->format == ft_glyph_format_outline ) {
-		size   = pitch * height;
-
-		bit2 = Z_Malloc( sizeof( FT_Bitmap ) );
-
-		bit2->width      = width;
-		bit2->rows       = height;
-		bit2->pitch      = pitch;
-		bit2->pixel_mode = ft_pixel_mode_grays;
-		//bit2->pixel_mode = ft_pixel_mode_mono;
-		bit2->buffer     = Z_Malloc( pitch * height );
-		bit2->num_grays = 256;
-
-		Com_Memset( bit2->buffer, 0, size );
-
-		FT_Outline_Translate( &glyph->outline, -left, -bottom );
-
-		FT_Outline_Get_Bitmap( ftLibrary, &glyph->outline, bit2 );
-
-		glyphOut->height = height;
-		glyphOut->pitch = pitch;
-		glyphOut->top = ( glyph->metrics.horiBearingY >> 6 ) + 1;
-		glyphOut->bottom = bottom;
-
-		return bit2;
-	} else {
-		ri.Printf( PRINT_ALL, "Non-outline fonts are not supported\n" );
+	bitmap = stbtt_GetCodepointBitmap( font, fontSize, fontSize, c, &w, &h, &xoff, &yoff );
+	if ( !bitmap || h != glyphOut->height || w > glyphOut->pitch ) {
+		free( bitmap );
+		return NULL;
 	}
-	return NULL;
+
+	if ( w < glyphOut->pitch ) {
+		// stb packs the rows at w bytes, the atlas copy expects the
+		// 4 byte aligned pitch the glyph metrics advertise, so pad
+		padded = (unsigned char *) malloc( glyphOut->pitch * h );
+		if ( !padded ) {
+			free( bitmap );
+			return NULL;
+		}
+		Com_Memset( padded, 0, glyphOut->pitch * h );
+		for ( i = 0; i < h; i++ ) {
+			memcpy( padded + i * glyphOut->pitch, bitmap + i * w, w );
+		}
+		free( bitmap );
+		return padded;
+	}
+
+	return bitmap;
 }
 
 void WriteTGA( char *filename, byte *data, int width, int height ) {
@@ -177,49 +129,33 @@ void WriteTGA( char *filename, byte *data, int width, int height ) {
 
 	ri.FS_WriteFile( filename, buffer, c );
 
-	//f = fopen (filename, "wb");
-	//fwrite (buffer, 1, c, f);
-	//fclose (f);
-
 	Z_Free( buffer );
 }
 
-static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, int *yOut, int *maxHeight, FT_Face face, const unsigned char c, qboolean calcHeight ) {
+static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, int *yOut, int *maxHeight, stbtt_fontinfo *font, float fontSize, const unsigned char c, qboolean calcHeight ) {
 	int i;
 	static glyphInfo_t glyph;
 	unsigned char *src, *dst;
 	float scaled_width, scaled_height;
-	FT_Bitmap *bitmap = NULL;
+	unsigned char *bitmap = NULL;
 
 	Com_Memset( &glyph, 0, sizeof( glyphInfo_t ) );
 	// make sure everything is here
-	if ( face != NULL ) {
-		FT_Load_Glyph( face, FT_Get_Char_Index( face, c ), FT_LOAD_DEFAULT );
-		bitmap = R_RenderGlyph( face->glyph, &glyph );
-		if ( bitmap ) {
-			glyph.xSkip = ( face->glyph->metrics.horiAdvance >> 6 ) + 1;
-		} else {
-			return &glyph;
-		}
+	if ( font != NULL ) {
+		bitmap = R_RenderGlyph( font, fontSize, c, &glyph );
 
 		if ( glyph.height > *maxHeight ) {
 			*maxHeight = glyph.height;
 		}
 
 		if ( calcHeight ) {
-			Z_Free( bitmap->buffer );
-			Z_Free( bitmap );
+			free( bitmap );
 			return &glyph;
 		}
 
-/*
-	// need to convert to power of 2 sizes so we do not get
-	// any scaling from the gl upload
-	for (scaled_width = 1 ; scaled_width < glyph.pitch ; scaled_width<<=1)
-		;
-	for (scaled_height = 1 ; scaled_height < glyph.height ; scaled_height<<=1)
-		;
-*/
+		if ( !bitmap ) {
+			return &glyph;
+		}
 
 		scaled_width = glyph.pitch;
 		scaled_height = glyph.height;
@@ -229,8 +165,7 @@ static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, i
 			if ( *yOut + *maxHeight + 1 >= 255 ) {
 				*yOut = -1;
 				*xOut = -1;
-				Z_Free( bitmap->buffer );
-				Z_Free( bitmap );
+				free( bitmap );
 				return &glyph;
 			} else {
 				*xOut = 0;
@@ -239,51 +174,21 @@ static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, i
 		} else if ( *yOut + *maxHeight + 1 >= 255 ) {
 			*yOut = -1;
 			*xOut = -1;
-			Z_Free( bitmap->buffer );
-			Z_Free( bitmap );
+			free( bitmap );
 			return &glyph;
 		}
 
-
-		src = bitmap->buffer;
+		src = bitmap;
 		dst = imageOut + ( *yOut * 256 ) + *xOut;
 
-		if ( bitmap->pixel_mode == ft_pixel_mode_mono ) {
-			for ( i = 0; i < glyph.height; i++ ) {
-				int j;
-				unsigned char *_src = src;
-				unsigned char *_dst = dst;
-				unsigned char mask = 0x80;
-				unsigned char val = *_src;
-				for ( j = 0; j < glyph.pitch; j++ ) {
-					if ( mask == 0x80 ) {
-						val = *_src++;
-					}
-					if ( val & mask ) {
-						*_dst = 0xff;
-					}
-					mask >>= 1;
-
-					if ( mask == 0 ) {
-						mask = 0x80;
-					}
-					_dst++;
-				}
-
-				src += glyph.pitch;
-				dst += 256;
-
-			}
-		} else {
-			for ( i = 0; i < glyph.height; i++ ) {
-				memcpy( dst, src, glyph.pitch );
-				src += glyph.pitch;
-				dst += 256;
-			}
+		for ( i = 0; i < glyph.height; i++ ) {
+			memcpy( dst, src, glyph.pitch );
+			src += glyph.pitch;
+			dst += 256;
 		}
 
 		// we now have an 8 bit per pixel grey scale bitmap
-		// that is width wide and pf->ftSize->metrics.y_ppem tall
+		// that is glyph.pitch wide and glyph.height tall
 
 		glyph.imageHeight = scaled_height;
 		glyph.imageWidth = scaled_width;
@@ -295,12 +200,10 @@ static glyphInfo_t *RE_ConstructGlyphInfo( unsigned char *imageOut, int *xOut, i
 		*xOut += scaled_width + 1;
 	}
 
-	Z_Free( bitmap->buffer );
-	Z_Free( bitmap );
+	free( bitmap );
 
 	return &glyph;
 }
-#endif
 
 static int fdOffset;
 static byte *fdFile;
@@ -334,16 +237,14 @@ float readFloat() {
 }
 
 void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
-#ifdef BUILD_FREETYPE
-	FT_Face face;
+	stbtt_fontinfo fontInfo;
 	int j, k, xOut, yOut, lastStart, imageNumber;
 	int scaledSize, newSize, maxHeight, left, satLevels;
 	unsigned char *out, *imageBuff;
 	glyphInfo_t *glyph;
 	image_t *image;
 	qhandle_t h;
-	float max;
-#endif
+	float max, fontSize;
 	void *faceData;
 	int i, len;
 	char name[1024];
@@ -405,33 +306,20 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 		return;
 	}
 
-#ifndef BUILD_FREETYPE
-	ri.Printf( PRINT_ALL, "RE_RegisterFont: FreeType code not available\n" );
-#else
-	if ( ftLibrary == NULL ) {
-		ri.Printf( PRINT_ALL, "RE_RegisterFont: FreeType not initialized.\n" );
-		return;
-	}
-
 	len = ri.FS_ReadFile( fontName, &faceData );
 	if ( len <= 0 ) {
 		ri.Printf( PRINT_ALL, "RE_RegisterFont: Unable to read font file\n" );
 		return;
 	}
 
-	// allocate on the stack first in case we fail
-	if ( FT_New_Memory_Face( ftLibrary, faceData, len, 0, &face ) ) {
-		ri.Printf( PRINT_ALL, "RE_RegisterFont: FreeType2, unable to allocate new face.\n" );
+	if ( !stbtt_InitFont( &fontInfo, (unsigned char *) faceData, stbtt_GetFontOffsetForIndex( faceData, 0 ) ) ) {
+		ri.Printf( PRINT_ALL, "RE_RegisterFont: Unable to parse font file\n" );
+		ri.FS_FreeFile( faceData );
 		return;
 	}
 
-
-	if ( FT_Set_Char_Size( face, pointSize << 6, pointSize << 6, dpi, dpi ) ) {
-		ri.Printf( PRINT_ALL, "RE_RegisterFont: FreeType2, Unable to set face char size.\n" );
-		return;
-	}
-
-	//*font = &registeredFonts[registeredFontCount++];
+	// a point size is a pixel size at 72 dpi, same as the old FreeType setup
+	fontSize = stbtt_ScaleForPixelHeight( &fontInfo, pointSize );
 
 	// make a 256x256 image buffer, once it is full, register it, clean it and keep going
 	// until all glyphs are rendered
@@ -439,6 +327,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 	out = Z_Malloc( 1024 * 1024 );
 	if ( out == NULL ) {
 		ri.Printf( PRINT_ALL, "RE_RegisterFont: Z_Malloc failure during output image creation.\n" );
+		ri.FS_FreeFile( faceData );
 		return;
 	}
 	Com_Memset( out, 0, 1024 * 1024 );
@@ -446,7 +335,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 	maxHeight = 0;
 
 	for ( i = GLYPH_START; i < GLYPH_END; i++ ) {
-		glyph = RE_ConstructGlyphInfo( out, &xOut, &yOut, &maxHeight, face, (unsigned char)i, qtrue );
+		glyph = RE_ConstructGlyphInfo( out, &xOut, &yOut, &maxHeight, &fontInfo, fontSize, (unsigned char)i, qtrue );
 	}
 
 	xOut = 0;
@@ -457,7 +346,7 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 
 	while ( i <= GLYPH_END ) {
 
-		glyph = RE_ConstructGlyphInfo( out, &xOut, &yOut, &maxHeight, face, (unsigned char)i, qfalse );
+		glyph = RE_ConstructGlyphInfo( out, &xOut, &yOut, &maxHeight, &fontInfo, fontSize, (unsigned char)i, qfalse );
 
 		if ( xOut == -1 || yOut == -1 || i == GLYPH_END ) {
 			// ran out of room
@@ -493,7 +382,6 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 				WriteTGA( name, imageBuff, 256, 256 );
 			}
 
-			//Com_sprintf (name, sizeof(name), "fonts/fontImage_%i_%i", imageNumber++, pointSize);
 			image = R_CreateImage( name, imageBuff, 256, 256, qfalse, qfalse, GL_CLAMP );
 			h = RE_RegisterShaderFromImage( name, LIGHTMAP_2D, image, qfalse );
 			for ( j = lastStart; j < i; j++ ) {
@@ -523,27 +411,15 @@ void RE_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font ) {
 	Z_Free( out );
 
 	ri.FS_FreeFile( faceData );
-#endif
 }
 
 
 
 void R_InitFreeType() {
-#ifdef BUILD_FREETYPE
-	if ( FT_Init_FreeType( &ftLibrary ) ) {
-		ri.Printf( PRINT_ALL, "R_InitFreeType: Unable to initialize FreeType.\n" );
-	}
-#endif
 	registeredFontCount = 0;
 }
 
 
 void R_DoneFreeType() {
-#ifdef BUILD_FREETYPE
-	if ( ftLibrary ) {
-		FT_Done_FreeType( ftLibrary );
-		ftLibrary = NULL;
-	}
-#endif
 	registeredFontCount = 0;
 }
