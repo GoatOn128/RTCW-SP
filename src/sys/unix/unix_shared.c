@@ -475,3 +475,10 @@ void Sys_LeaveCriticalSection( void *ptr ) {
 	pthread_mutex_unlock( crit );
 }
 #endif
+
+// number of processors available to the process, the
+// renderer import table exposes it for SMP decisions
+unsigned int Sys_ProcessorCount( void ) {
+	long n = sysconf( _SC_NPROCESSORS_ONLN );
+	return n < 1 ? 1 : ( unsigned int )n;
+}

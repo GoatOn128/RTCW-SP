@@ -3815,3 +3815,8 @@ void QGL_EnableLogging( qboolean enable ) {
 void GLimp_LogNewFrame( void ) {
 	fprintf( glw_state.log_fp, "*** R_BeginFrame ***\n" );
 }
+
+// ATI PN-triangles extension pointers, the Windows
+// definitions live in win_qgl.c
+void ( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param ) = 0;
+void ( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param ) = 0;
