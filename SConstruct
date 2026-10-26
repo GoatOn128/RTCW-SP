@@ -1,11 +1,5 @@
 # RTCW-SP SCons build
 #
-# Full SCons port of the project. Replaces the legacy cons scripts
-# (src/sys/unix/Construct) and the VS2008 solution (src/wolf.sln).
-# The toolchain is LLVM/Clang on every platform:
-#   Windows: clang-cl
-#   Linux:   clang
-#
 # Usage:
 #   scons arch=x86 config=debug -j4
 #   scons arch=x64 config=release -j4
@@ -15,14 +9,6 @@
 #   qagame   - game module   (.dll on Windows, .so on Linux)
 #   cgame    - cgame module
 #   ui       - ui module
-#
-# Sources are compiled where they live in src/. The engine is full of
-# file-relative includes like "../game/q_shared.h" that resolve through
-# the include paths below, so copying sources into a variant tree (the
-# SCons VariantDir approach) breaks the include lookup. Instead each
-# module gets its own object directory and objects are written there
-# with explicit targets, which also keeps per-module objects apart
-# (the same file is compiled with different defines per module).
 
 import os
 import platform as pyplatform
