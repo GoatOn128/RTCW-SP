@@ -194,10 +194,6 @@ jpeg_files = ['src/third-party/jpeg-6/' + f for f in [
     'jidctflt.c', 'jmemmgr.c', 'jmemnobs.c', 'jutils.c',
 ]]
 
-# vm_x86.c (the compiled VM backend) is gone: its MSVC inline assembly
-# cannot be built with clang-cl. Only the interpreter remains.
-vm_files = ['src/qcommon/vm.c', 'src/qcommon/vm_interpreted.c']
-
 unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
     'linux_qgl.c', 'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
@@ -225,7 +221,7 @@ sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 client_sources = (
     renderer_files + client_files + qcommon_files + server_files +
     ['src/qcommon/q_shared.c', 'src/qcommon/q_math.c'] +
-    vm_files + sys_files + splines_files
+    sys_files + splines_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
 
