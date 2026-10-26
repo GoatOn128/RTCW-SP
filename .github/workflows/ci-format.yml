@@ -95,19 +95,28 @@ jobs:
           except Exception:
               diag( 'unix_main-patch', traceback.format_exc() )
 
-          # unix_main.c: it defines a second copy of the renderer export
-          # table that cl_main.c owns; client.h declares the extern, so
-          # the duplicate definition breaks the unix link.
+          # unix_main.c: keep exactly one renderer export table. The
+          # definition moved between cl_main.c and the platform main
+          # files more than once: strip the unix copy only while
+          # cl_main.c still defines its own, otherwise the platform
+          # main file is the owner and its copy stays.
           try:
               p = Path( 'src/sys/unix/unix_main.c' )
               # the file is not valid UTF-8: latin-1 round-trips every byte
               s = p.read_bytes().decode( 'latin-1' )
-              s2, n = re.subn( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;[ \t]*\r?\n', '', s, count = 1 )
-              if n:
-                  print( 'unix_main.c: removed the duplicate re definition' )
-                  p.write_bytes( s2.encode( 'latin-1' ) )
+              if re.search( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;', s ):
+                  cl_main = Path( 'src/client/cl_main.c' ).read_bytes().decode( 'utf-8', errors = 'replace' )
+                  if re.search( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;', cl_main ):
+                      s2, n = re.subn( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;[ \t]*\r?\n', '', s, count = 1 )
+                      if n:
+                          print( 'unix_main.c: removed the duplicate re definition' )
+                          p.write_bytes( s2.encode( 'latin-1' ) )
+                      else:
+                          print( 'unix_main.c: nothing to do' )
+                  else:
+                      print( 'unix_main.c: keeps its re definition, the platform main file owns the table' )
               else:
-                  print( 'unix_main.c: no standalone re definition found' )
+                  print( 'unix_main.c: no re definition' )
           except Exception:
               diag( 'unix_main-re', traceback.format_exc() )
 
