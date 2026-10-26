@@ -591,7 +591,7 @@ int verbose = 0;
 
 #ifdef _WIN32
 
-void main( int argc, char *argv[] ) {
+int main( int argc, char *argv[] ) {
 	WIN32_FIND_DATA filedata;
 	HWND handle;
 	int done; //, i;
@@ -612,6 +612,7 @@ void main( int argc, char *argv[] ) {
 		done = !FindNextFile( handle, &filedata );
 	} //end while
 	DumpReplaceFunctions();
+	return 0;
 } //end of the function main
 
 #else
@@ -648,6 +649,7 @@ int main( int argc, char *argv[] ) {
 		GetFunctionNamesFromFile( argv[i] );
 	}
 	DumpReplaceFunctions();
+	return 0;
 }
 
 #endif

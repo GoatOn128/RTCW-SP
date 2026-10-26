@@ -321,4 +321,24 @@ else:
 renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
 renderer_env.SharedLibrary(renderer_target, renderer_objs)
 
-Default(client_target, game_target, cgame_target, ui_target, renderer_target)
+# ---------------------------------------------------------------- tools
+
+# extractfuncs scans game source files and rewrites the saveable
+# function table used by the savegame code; standalone host tool
+extractfuncs_files = ['src/tools/extractfuncs/' + f for f in [
+    'extractfuncs.c', 'l_log.c', 'l_memory.c', 'l_precomp.c', 'l_script.c',
+]]
+
+extractfuncs_env = env.Clone()
+# l_script.c and l_precomp.c only include their standard headers
+# when SCREWUP is defined; the tool is legacy botlib-era code so
+# its warnings are muted entirely
+extractfuncs_env.Append(CPPDEFINES=['SCREWUP'])
+if IS_WINDOWS:
+    extractfuncs_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    extractfuncs_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+extractfuncs_target = os.path.join(BUILD_DIR, 'extractfuncs' + EXE)
+extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs', extractfuncs_files))
+
+Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target)

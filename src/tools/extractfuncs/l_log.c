@@ -39,9 +39,6 @@ If you have questions concerning this license or the applicable additional terms
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_QPATH 64
-#include "../bspc/qbsp.h"
-
 #define MAX_LOGFILENAMESIZE     1024
 
 typedef struct logfile_s
