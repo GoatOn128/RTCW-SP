@@ -128,6 +128,10 @@ else:
     # The splines code is C++98-era, so build it as gnu++98.
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
+    # same policy as the Windows build: qgl assigns dlsym results to typed
+    # function pointers wholesale; keep that a warning, not an error
+    env.Append(CCFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
+    env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
     env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
     if CONFIG == 'debug':
@@ -244,10 +248,12 @@ client_sources = (
 client_objs = module_objects(client_env, 'client', client_sources)
 
 # jpeg-6 is vendored legacy C kept in its original form, so the
-# Windows build mutes its warnings with /W0 (the last /W flag wins)
+# build mutes its warnings entirely (the last warning flag wins)
 jpeg_env = client_env.Clone()
 if IS_WINDOWS:
     jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    jpeg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 client_objs += module_objects(jpeg_env, 'client', jpeg_files)
 
 # botlib needs its own define but is linked into the client binary
@@ -339,7 +345,10 @@ renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, 
 # jpeg-6 is vendored legacy C kept in its original form, same as the client
 # build; tr_image.c calls it directly
 renderer_jpeg_env = renderer_env.Clone()
-renderer_jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+if IS_WINDOWS:
+    renderer_jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    renderer_jpeg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_objs += module_objects(renderer_jpeg_env, 'renderer', jpeg_files, shared=not IS_WINDOWS)
 renderer_env.SharedLibrary(renderer_target, renderer_objs)
 
