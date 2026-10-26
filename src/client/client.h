@@ -34,8 +34,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "../ui/ui_public.h"
 #include "keys.h"
 #include "snd_public.h"
-#include "../cgame/cg_public.h"
 #include "../game/bg_public.h"
+#include "../cgame/cg_public.h"
 
 #define RETRANSMIT_TIMEOUT  3000    // time between connection packet retransmits
 
@@ -325,7 +325,7 @@ extern clientStatic_t cls;
 
 //=============================================================================
 
-extern vm_t            *cgvm;   // interface to cgame dll or vm
+extern cgameExport_t *cge;      // cgame module export
 extern vm_t            *uivm;   // interface to ui dll or vm
 extern refexport_t re;          // interface to refresh .dll
 

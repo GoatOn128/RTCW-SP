@@ -408,441 +408,296 @@ CL_ShutdonwCGame
 void CL_ShutdownCGame( void ) {
 	cls.keyCatchers &= ~KEYCATCH_CGAME;
 	cls.cgameStarted = qfalse;
-	if ( !cgvm ) {
+	if ( !cge ) {
 		return;
 	}
-	VM_Call( cgvm, CG_SHUTDOWN );
-	VM_Free( cgvm );
-	cgvm = NULL;
+	cge->Shutdown();
+	Sys_UnloadModule( cgame_library );
+	cgame_library = NULL;
+	cge = NULL;
 }
 
-static int  FloatAsInt( float f ) {
-	int temp;
+// native cgame module interface (Doom3 style): the engine loads the
+// module with Sys_LoadModule and exchanges structs of function pointers
 
-	*(float *)&temp = f;
+static cgameImport_t cl_cgameImport;    // engine functions handed to the cgame module
+static void *cgame_library = NULL;      // handle from Sys_LoadModule
 
-	return temp;
+cgameExport_t *cge = NULL;              // cgame module export
+
+typedef cgameExport_t *( *GetCgameAPI_t )( int apiVersion, cgameImport_t *import );
+
+static void CL_CgamePrint( const char *string ) {
+	Com_Printf( "%s", string );
+}
+
+static clipHandle_t CL_CM_TempBoxModel( const vec3_t mins, const vec3_t maxs ) {
+	return CM_TempBoxModel( mins, maxs, qfalse );
+}
+
+static clipHandle_t CL_CM_TempCapsuleModel( const vec3_t mins, const vec3_t maxs ) {
+	return CM_TempBoxModel( mins, maxs, qtrue );
+}
+
+static void CL_CM_BoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
+						  const vec3_t mins, const vec3_t maxs,
+						  clipHandle_t model, int brushmask ) {
+	CM_BoxTrace( results, start, end, mins, maxs, model, brushmask, qfalse );
+}
+
+static void CL_CM_TransformedBoxTrace( trace_t *results, const vec3_t start, const vec3_t end,
+								   const vec3_t mins, const vec3_t maxs,
+								   clipHandle_t model, int brushmask,
+								   const vec3_t origin, const vec3_t angles ) {
+	CM_TransformedBoxTrace( results, start, end, mins, maxs, model, brushmask, origin, angles, qfalse );
+}
+
+static void CL_CM_CapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
+								 const vec3_t mins, const vec3_t maxs,
+								 clipHandle_t model, int brushmask ) {
+	CM_BoxTrace( results, start, end, mins, maxs, model, brushmask, qtrue );
+}
+
+static void CL_CM_TransformedCapsuleTrace( trace_t *results, const vec3_t start, const vec3_t end,
+									  const vec3_t mins, const vec3_t maxs,
+									  clipHandle_t model, int brushmask,
+									  const vec3_t origin, const vec3_t angles ) {
+	CM_TransformedBoxTrace( results, start, end, mins, maxs, model, brushmask, origin, angles, qtrue );
+}
+
+static void CL_S_ClearLoopingSounds( qboolean killall ) {
+	S_ClearLoopingSounds(); // (SA) modified so no_pvs sounds can function
+	// RF, if killall, then stop all sounds
+	if ( killall == 1 ) {
+		S_ClearSounds( qtrue, qfalse );
+	} else if ( killall == 2 ) {
+		S_ClearSounds( qtrue, qtrue );
+	}
+}
+
+static void CL_S_StopLoopingSound( int entityNum ) {
+	// RF, not functional anymore, since we reverted to old looping code
+	( void ) entityNum;
+}
+
+static sfxHandle_t CL_S_RegisterSound( const char *sample ) {
+#ifdef DOOMSOUND    ///// (SA) DOOMSOUND
+	return S_RegisterSound( sample );
+#else
+	return S_RegisterSound( sample, qfalse );
+#endif  ///// (SA) DOOMSOUND
+}
+
+static void *CL_Memset( void *dest, int set, int count ) {
+	return memset( dest, set, count );
+}
+
+static void *CL_Memcpy( void *dest, const void *src, int count ) {
+	return memcpy( dest, src, count );
+}
+
+static char *CL_Strncpy( char *dest, const char *src, int count ) {
+	return strncpy( dest, src, count );
+}
+
+static float CL_Sin( float x ) { return sin( x ); }
+static float CL_Cos( float x ) { return cos( x ); }
+static float CL_Atan2( float y, float x ) { return atan2( y, x ); }
+static float CL_Sqrt( float x ) { return sqrt( x ); }
+static float CL_Floor( float x ) { return floor( x ); }
+static float CL_Ceil( float x ) { return ceil( x ); }
+static float CL_Acos( float x ) { return Q_acos( x ); }
+
+static void CL_TestPrintInt( char *string, int i ) {
+	Com_Printf( "%s%i\n", string, i );
+}
+
+static void CL_TestPrintFloat( char *string, float f ) {
+	Com_Printf( "%s%f\n", string, f );
+}
+
+static void CL_StartCamera( int camNum, int time ) {
+	if ( camNum == 0 ) {  // CAM_PRIMARY
+		cl.cameraMode = qtrue;  //----(SA) added
+	}
+	startCamera( camNum, time );
+}
+
+static void CL_StopCamera( int camNum ) {
+	if ( camNum == 0 ) {  // CAM_PRIMARY
+		cl.cameraMode = qfalse;
+	}
+}
+
+// the ui module stays a VM until it is converted to a native module as well
+static void CL_UI_Popup( const char *name ) {
+	if ( name && !Q_stricmp( name, "briefing" ) ) {  //----(SA) added
+		VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BRIEFING );
+		return;
+	}
+
+	if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
+		// NERVE - SMF
+		if ( name && !Q_stricmp( name, "UIMENU_WM_PICKTEAM" ) ) {
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKTEAM );
+		} else if ( name && !Q_stricmp( name, "UIMENU_WM_PICKPLAYER" ) ) {
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKPLAYER );
+		} else if ( name && !Q_stricmp( name, "UIMENU_WM_QUICKMESSAGE" ) ) {
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_QUICKMESSAGE );
+		} else if ( name && !Q_stricmp( name, "UIMENU_WM_LIMBO" ) ) {
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_LIMBO );
+		}
+		// -NERVE - SMF
+		else if ( name && !Q_stricmp( name, "hbook1" ) ) {   //----(SA)
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK1 );
+		} else if ( name && !Q_stricmp( name, "hbook2" ) ) {    //----(SA)
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK2 );
+		} else if ( name && !Q_stricmp( name, "hbook3" ) ) {    //----(SA)
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK3 );
+		} else if ( name && !Q_stricmp( name, "pregame" ) ) {    //----(SA) added
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_PREGAME );
+		} else {
+			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_CLIPBOARD );
+		}
+	}
+}
+
+static void CL_UI_ClosePopup( const char *name ) {
+	( void ) name;
+	VM_Call( uivm, UI_KEY_EVENT, K_ESCAPE, qtrue );
+}
+
+static void CL_LimboChat( const char *text ) {
+	if ( text ) {
+		CL_AddToLimboChat( text );
+	}
 }
 
 /*
-====================
-CL_CgameSystemCalls
+================
+CL_FillCgameImport
 
-The cgame module is making a system call
-====================
+Fills the struct of engine functions handed to the cgame module
+================
 */
-#define VMA( x ) VM_ArgPtr( args[x] )
-#define VMF( x )  ( (float *)args )[x]
-int CL_CgameSystemCalls( int *args ) {
-	switch ( args[0] ) {
-	case CG_PRINT:
-		Com_Printf( "%s", VMA( 1 ) );
-		return 0;
-	case CG_ERROR:
-		Com_Error( ERR_DROP, "%s", VMA( 1 ) );
-		return 0;
-	case CG_MILLISECONDS:
-		return Sys_Milliseconds();
-	case CG_CVAR_REGISTER:
-		Cvar_Register( VMA( 1 ), VMA( 2 ), VMA( 3 ), args[4] );
-		return 0;
-	case CG_CVAR_UPDATE:
-		Cvar_Update( VMA( 1 ) );
-		return 0;
-	case CG_CVAR_SET:
-		Cvar_Set( VMA( 1 ), VMA( 2 ) );
-		return 0;
-	case CG_CVAR_VARIABLESTRINGBUFFER:
-		Cvar_VariableStringBuffer( VMA( 1 ), VMA( 2 ), args[3] );
-		return 0;
-	case CG_ARGC:
-		return Cmd_Argc();
-	case CG_ARGV:
-		Cmd_ArgvBuffer( args[1], VMA( 2 ), args[3] );
-		return 0;
-	case CG_ARGS:
-		Cmd_ArgsBuffer( VMA( 1 ), args[2] );
-		return 0;
-	case CG_FS_FOPENFILE:
-		return FS_FOpenFileByMode( VMA( 1 ), VMA( 2 ), args[3] );
-	case CG_FS_READ:
-		FS_Read( VMA( 1 ), args[2], args[3] );
-		return 0;
-	case CG_FS_WRITE:
-		return FS_Write( VMA( 1 ), args[2], args[3] );
-	case CG_FS_FCLOSEFILE:
-		FS_FCloseFile( args[1] );
-		return 0;
-	case CG_SENDCONSOLECOMMAND:
-		Cbuf_AddText( VMA( 1 ) );
-		return 0;
-	case CG_ADDCOMMAND:
-		CL_AddCgameCommand( VMA( 1 ) );
-		return 0;
-	case CG_REMOVECOMMAND:
-		Cmd_RemoveCommand( VMA( 1 ) );
-		return 0;
-	case CG_SENDCLIENTCOMMAND:
-		CL_AddReliableCommand( VMA( 1 ) );
-		return 0;
-	case CG_UPDATESCREEN:
-		// this is used during lengthy level loading, so pump message loop
-//		Com_EventLoop();	// FIXME: if a server restarts here, BAD THINGS HAPPEN!
-// We can't call Com_EventLoop here, a restart will crash and this _does_ happen
-// if there is a map change while we are downloading at pk3.
-// ZOID
-		SCR_UpdateScreen();
-		return 0;
-	case CG_CM_LOADMAP:
-		CL_CM_LoadMap( VMA( 1 ) );
-		return 0;
-	case CG_CM_NUMINLINEMODELS:
-		return CM_NumInlineModels();
-	case CG_CM_INLINEMODEL:
-		return CM_InlineModel( args[1] );
-	case CG_CM_TEMPBOXMODEL:
-		return CM_TempBoxModel( VMA( 1 ), VMA( 2 ), qfalse );
-	case CG_CM_TEMPCAPSULEMODEL:
-		return CM_TempBoxModel( VMA( 1 ), VMA( 2 ), qtrue );
-	case CG_CM_POINTCONTENTS:
-		return CM_PointContents( VMA( 1 ), args[2] );
-	case CG_CM_TRANSFORMEDPOINTCONTENTS:
-		return CM_TransformedPointContents( VMA( 1 ), args[2], VMA( 3 ), VMA( 4 ) );
-	case CG_CM_BOXTRACE:
-		CM_BoxTrace( VMA( 1 ), VMA( 2 ), VMA( 3 ), VMA( 4 ), VMA( 5 ), args[6], args[7], /*int capsule*/ qfalse );
-		return 0;
-	case CG_CM_TRANSFORMEDBOXTRACE:
-		CM_TransformedBoxTrace( VMA( 1 ), VMA( 2 ), VMA( 3 ), VMA( 4 ), VMA( 5 ), args[6], args[7], VMA( 8 ), VMA( 9 ), /*int capsule*/ qfalse );
-		return 0;
-	case CG_CM_CAPSULETRACE:
-		CM_BoxTrace( VMA( 1 ), VMA( 2 ), VMA( 3 ), VMA( 4 ), VMA( 5 ), args[6], args[7], /*int capsule*/ qtrue );
-		return 0;
-	case CG_CM_TRANSFORMEDCAPSULETRACE:
-		CM_TransformedBoxTrace( VMA( 1 ), VMA( 2 ), VMA( 3 ), VMA( 4 ), VMA( 5 ), args[6], args[7], VMA( 8 ), VMA( 9 ), /*int capsule*/ qtrue );
-		return 0;
-	case CG_CM_MARKFRAGMENTS:
-		return re.MarkFragments( args[1], VMA( 2 ), VMA( 3 ), args[4], VMA( 5 ), args[6], VMA( 7 ) );
-	case CG_S_STARTSOUND:
-		S_StartSound( VMA( 1 ), args[2], args[3], args[4] );
-		return 0;
-//----(SA)	added
-	case CG_S_STARTSOUNDEX:
-		S_StartSoundEx( VMA( 1 ), args[2], args[3], args[4], args[5] );
-		return 0;
-//----(SA)	end
-	case CG_S_STARTLOCALSOUND:
-		S_StartLocalSound( args[1], args[2] );
-		return 0;
-	case CG_S_CLEARLOOPINGSOUNDS:
-		S_ClearLoopingSounds(); // (SA) modified so no_pvs sounds can function
-		// RF, if killall, then stop all sounds
-		if ( args[1] == 1 ) {
-			S_ClearSounds( qtrue, qfalse );
-		} else if ( args[1] == 2 ) {
-			S_ClearSounds( qtrue, qtrue );
-		}
-		return 0;
-	case CG_S_ADDLOOPINGSOUND:
-		// FIXME MrE: handling of looping sounds changed
-		S_AddLoopingSound( args[1], VMA( 2 ), VMA( 3 ), args[4], args[5], args[6] );
-		return 0;
-// not in use
-//	case CG_S_ADDREALLOOPINGSOUND:
-//		S_AddLoopingSound( args[1], VMA(2), VMA(3), args[4], args[5], args[6] );
-//		//S_AddRealLoopingSound( args[1], VMA(2), VMA(3), args[4], args[5] );
-//		return 0;
-
-//----(SA)	added
-	case CG_S_STOPSTREAMINGSOUND:
-		S_StopEntStreamingSound( args[1] );
-		return 0;
-//----(SA)	end
-
-	case CG_S_STOPLOOPINGSOUND:
-		// RF, not functional anymore, since we reverted to old looping code
-		//S_StopLoopingSound( args[1] );
-		return 0;
-	case CG_S_UPDATEENTITYPOSITION:
-		S_UpdateEntityPosition( args[1], VMA( 2 ) );
-		return 0;
-// Ridah, talking animations
-	case CG_S_GETVOICEAMPLITUDE:
-		return S_GetVoiceAmplitude( args[1] );
-// done.
-	case CG_S_RESPATIALIZE:
-		S_Respatialize( args[1], VMA( 2 ), VMA( 3 ), args[4] );
-		return 0;
-	case CG_S_REGISTERSOUND:
-#ifdef DOOMSOUND    ///// (SA) DOOMSOUND
-		return S_RegisterSound( VMA( 1 ) );
-#else
-		return S_RegisterSound( VMA( 1 ), qfalse );
-#endif  ///// (SA) DOOMSOUND
-	case CG_S_STARTBACKGROUNDTRACK:
-		S_StartBackgroundTrack( VMA( 1 ), VMA( 2 ), args[3] );  //----(SA)	added fadeup time
-		return 0;
-	case CG_S_FADESTREAMINGSOUND:
-		S_FadeStreamingSound( VMF( 1 ), args[2], args[3] ); //----(SA)	added music/all-streaming options
-		return 0;
-	case CG_S_STARTSTREAMINGSOUND:
-		S_StartStreamingSound( VMA( 1 ), VMA( 2 ), args[3], args[4], args[5] );
-		return 0;
-	case CG_S_FADEALLSOUNDS:
-		S_FadeAllSounds( VMF( 1 ), args[2] );   //----(SA)	added
-		return 0;
-	case CG_R_LOADWORLDMAP:
-		re.LoadWorld( VMA( 1 ) );
-		return 0;
-	case CG_R_REGISTERMODEL:
-		return re.RegisterModel( VMA( 1 ) );
-	case CG_R_REGISTERSKIN:
-		return re.RegisterSkin( VMA( 1 ) );
-
-	//----(SA)	added
-	case CG_R_GETSKINMODEL:
-		return re.GetSkinModel( args[1], VMA( 2 ), VMA( 3 ) );
-	case CG_R_GETMODELSHADER:
-		return re.GetShaderFromModel( args[1], args[2], args[3] );
-	//----(SA)	end
-
-	case CG_R_REGISTERSHADER:
-		return re.RegisterShader( VMA( 1 ) );
-	case CG_R_REGISTERFONT:
-		re.RegisterFont( VMA( 1 ), args[2], VMA( 3 ) );
-	case CG_R_REGISTERSHADERNOMIP:
-		return re.RegisterShaderNoMip( VMA( 1 ) );
-	case CG_R_CLEARSCENE:
-		re.ClearScene();
-		return 0;
-	case CG_R_ADDREFENTITYTOSCENE:
-		re.AddRefEntityToScene( VMA( 1 ) );
-		return 0;
-	case CG_R_ADDPOLYTOSCENE:
-		re.AddPolyToScene( args[1], args[2], VMA( 3 ) );
-		return 0;
-	// Ridah
-	case CG_R_ADDPOLYSTOSCENE:
-		re.AddPolysToScene( args[1], args[2], VMA( 3 ), args[4] );
-		return 0;
-	case CG_RB_ZOMBIEFXADDNEWHIT:
-		re.ZombieFXAddNewHit( args[1], VMA( 2 ), VMA( 3 ) );
-		return 0;
-	// done.
-//	case CG_R_LIGHTFORPOINT:
-//		return re.LightForPoint( VMA(1), VMA(2), VMA(3), VMA(4) );
-	case CG_R_ADDLIGHTTOSCENE:
-		re.AddLightToScene( VMA( 1 ), VMF( 2 ), VMF( 3 ), VMF( 4 ), VMF( 5 ), args[6] );
-		return 0;
-//	case CG_R_ADDADDITIVELIGHTTOSCENE:
-//		re.AddAdditiveLightToScene( VMA(1), VMF(2), VMF(3), VMF(4), VMF(5) );
-//		return 0;
-	case CG_R_ADDCORONATOSCENE:
-		re.AddCoronaToScene( VMA( 1 ), VMF( 2 ), VMF( 3 ), VMF( 4 ), VMF( 5 ), args[6], args[7] );
-		return 0;
-	case CG_R_SETFOG:
-		re.SetFog( args[1], args[2], args[3], VMF( 4 ), VMF( 5 ), VMF( 6 ), VMF( 7 ) );
-		return 0;
-	case CG_R_RENDERSCENE:
-		re.RenderScene( VMA( 1 ) );
-		return 0;
-	case CG_R_SETCOLOR:
-		re.SetColor( VMA( 1 ) );
-		return 0;
-	case CG_R_DRAWSTRETCHPIC:
-		re.DrawStretchPic( VMF( 1 ), VMF( 2 ), VMF( 3 ), VMF( 4 ), VMF( 5 ), VMF( 6 ), VMF( 7 ), VMF( 8 ), args[9] );
-		return 0;
-	case CG_R_DRAWSTRETCHPIC_GRADIENT:
-		re.DrawStretchPicGradient( VMF( 1 ), VMF( 2 ), VMF( 3 ), VMF( 4 ), VMF( 5 ), VMF( 6 ), VMF( 7 ), VMF( 8 ), args[9], VMA( 10 ), args[11] );
-		return 0;
-	case CG_R_MODELBOUNDS:
-		re.ModelBounds( args[1], VMA( 2 ), VMA( 3 ) );
-		return 0;
-	case CG_R_LERPTAG:
-		return re.LerpTag( VMA( 1 ), VMA( 2 ), VMA( 3 ), args[4] );
-	case CG_GETGLCONFIG:
-		CL_GetGlconfig( VMA( 1 ) );
-		return 0;
-	case CG_GETGAMESTATE:
-		CL_GetGameState( VMA( 1 ) );
-		return 0;
-	case CG_GETCURRENTSNAPSHOTNUMBER:
-		CL_GetCurrentSnapshotNumber( VMA( 1 ), VMA( 2 ) );
-		return 0;
-	case CG_GETSNAPSHOT:
-		return CL_GetSnapshot( args[1], VMA( 2 ) );
-	case CG_GETSERVERCOMMAND:
-		return CL_GetServerCommand( args[1] );
-	case CG_GETCURRENTCMDNUMBER:
-		return CL_GetCurrentCmdNumber();
-	case CG_GETUSERCMD:
-		return CL_GetUserCmd( args[1], VMA( 2 ) );
-	case CG_SETUSERCMDVALUE:
-		CL_SetUserCmdValue( args[1], args[2], VMF( 3 ), args[4] );    //----(SA)	modified	// NERVE - SMF - added fourth arg [cld]
-		return 0;
-	case CG_MEMORY_REMAINING:
-		return Hunk_MemoryRemaining();
-	case CG_KEY_ISDOWN:
-		return Key_IsDown( args[1] );
-	case CG_KEY_GETCATCHER:
-		return Key_GetCatcher();
-	case CG_KEY_SETCATCHER:
-		Key_SetCatcher( args[1] );
-		return 0;
-	case CG_KEY_GETKEY:
-		return Key_GetKey( VMA( 1 ) );
-
-
-
-	case CG_MEMSET:
-		return (int)memset( VMA( 1 ), args[2], args[3] );
-	case CG_MEMCPY:
-		return (int)memcpy( VMA( 1 ), VMA( 2 ), args[3] );
-	case CG_STRNCPY:
-		return (int)strncpy( VMA( 1 ), VMA( 2 ), args[3] );
-	case CG_SIN:
-		return FloatAsInt( sin( VMF( 1 ) ) );
-	case CG_COS:
-		return FloatAsInt( cos( VMF( 1 ) ) );
-	case CG_ATAN2:
-		return FloatAsInt( atan2( VMF( 1 ), VMF( 2 ) ) );
-	case CG_SQRT:
-		return FloatAsInt( sqrt( VMF( 1 ) ) );
-	case CG_FLOOR:
-		return FloatAsInt( floor( VMF( 1 ) ) );
-	case CG_CEIL:
-		return FloatAsInt( ceil( VMF( 1 ) ) );
-	case CG_ACOS:
-		return FloatAsInt( Q_acos( VMF( 1 ) ) );
-
-	case CG_PC_ADD_GLOBAL_DEFINE:
-		return botlib_export->PC_AddGlobalDefine( VMA( 1 ) );
-	case CG_PC_LOAD_SOURCE:
-		return botlib_export->PC_LoadSourceHandle( VMA( 1 ) );
-	case CG_PC_FREE_SOURCE:
-		return botlib_export->PC_FreeSourceHandle( args[1] );
-	case CG_PC_READ_TOKEN:
-		return botlib_export->PC_ReadTokenHandle( args[1], VMA( 2 ) );
-	case CG_PC_SOURCE_FILE_AND_LINE:
-		return botlib_export->PC_SourceFileAndLine( args[1], VMA( 2 ), VMA( 3 ) );
-
-	case CG_S_STOPBACKGROUNDTRACK:
-		S_StopBackgroundTrack();
-		return 0;
-
-	case CG_REAL_TIME:
-		return Com_RealTime( VMA( 1 ) );
-	case CG_SNAPVECTOR:
-		Sys_SnapVector( VMA( 1 ) );
-		return 0;
-
-	case CG_SENDMOVESPEEDSTOGAME:
-		SV_SendMoveSpeedsToGame( args[1], VMA( 2 ) );
-		return 0;
-
-	case CG_CIN_PLAYCINEMATIC:
-		return CIN_PlayCinematic( VMA( 1 ), args[2], args[3], args[4], args[5], args[6] );
-
-	case CG_CIN_STOPCINEMATIC:
-		return CIN_StopCinematic( args[1] );
-
-	case CG_CIN_RUNCINEMATIC:
-		return CIN_RunCinematic( args[1] );
-
-	case CG_CIN_DRAWCINEMATIC:
-		CIN_DrawCinematic( args[1] );
-		return 0;
-
-	case CG_CIN_SETEXTENTS:
-		CIN_SetExtents( args[1], args[2], args[3], args[4], args[5] );
-		return 0;
-
-	case CG_R_REMAP_SHADER:
-		re.RemapShader( VMA( 1 ), VMA( 2 ), VMA( 3 ) );
-		return 0;
-
-	case CG_TESTPRINTINT:
-		Com_Printf( "%s%i\n", VMA( 1 ), args[2] );
-		return 0;
-	case CG_TESTPRINTFLOAT:
-		Com_Printf( "%s%f\n", VMA( 1 ), VMF( 2 ) );
-		return 0;
-
-	case CG_LOADCAMERA:
-		return loadCamera( args[1], VMA( 2 ) );
-
-	case CG_STARTCAMERA:
-		if ( args[1] == 0 ) {  // CAM_PRIMARY
-			cl.cameraMode = qtrue;  //----(SA)	added
-		}
-		startCamera( args[1], args[2] );
-		return 0;
-
-//----(SA)	added
-	case CG_STOPCAMERA:
-		if ( args[1] == 0 ) {  // CAM_PRIMARY
-			cl.cameraMode = qfalse;
-		}
-//		stopCamera(args[1]);
-		return 0;
-//----(SA)	end
-
-	case CG_GETCAMERAINFO:
-		return getCameraInfo( args[1], args[2], VMA( 3 ), VMA( 4 ), VMA( 5 ) );
-
-	case CG_GET_ENTITY_TOKEN:
-		return re.GetEntityToken( VMA( 1 ), args[2] );
-
-	case CG_INGAME_POPUP:
-		if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "briefing" ) ) {  //----(SA) added
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BRIEFING );
-			return 0;
-		}
-
-		if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-			// NERVE - SMF
-			if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_PICKTEAM" ) ) {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKTEAM );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_PICKPLAYER" ) ) {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKPLAYER );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_QUICKMESSAGE" ) ) {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_QUICKMESSAGE );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_LIMBO" ) ) {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_LIMBO );
-			}
-			// -NERVE - SMF
-			else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook1" ) ) {   //----(SA)
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK1 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook2" ) ) {    //----(SA)
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK2 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook3" ) ) {    //----(SA)
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK3 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "pregame" ) ) {    //----(SA) added
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_PREGAME );
-			} else {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_CLIPBOARD );
-			}
-		}
-		return 0;
-
-	// NERVE - SMF
-	case CG_INGAME_CLOSEPOPUP:
-		VM_Call( uivm, UI_KEY_EVENT, K_ESCAPE, qtrue );
-		return 0;
-
-	case CG_LIMBOCHAT:
-		if ( VMA( 1 ) ) {
-			CL_AddToLimboChat( VMA( 1 ) );
-		}
-		return 0;
-	// - NERVE - SMF
-
-	case CG_GETMODELINFO:
-		return SV_GetModelInfo( args[1], VMA( 2 ), VMA( 3 ) );
-
-	default:
-		Com_Error( ERR_DROP, "Bad cgame system trap: %i", args[0] );
-	}
-	return 0;
+static void CL_FillCgameImport( cgameImport_t *import ) {
+	import->CG_PRINT = CL_CgamePrint;
+	import->CG_ERROR = CL_CgameError;
+	import->CG_MILLISECONDS = Sys_Milliseconds;
+	import->CG_CVAR_REGISTER = Cvar_Register;
+	import->CG_CVAR_UPDATE = Cvar_Update;
+	import->CG_CVAR_SET = Cvar_Set;
+	import->CG_CVAR_VARIABLESTRINGBUFFER = Cvar_VariableStringBuffer;
+	import->CG_ARGC = Cmd_Argc;
+	import->CG_ARGV = Cmd_ArgvBuffer;
+	import->CG_ARGS = Cmd_ArgsBuffer;
+	import->CG_FS_FOPENFILE = FS_FOpenFileByMode;
+	import->CG_FS_READ = FS_Read;
+	import->CG_FS_WRITE = FS_Write;
+	import->CG_FS_FCLOSEFILE = FS_FCloseFile;
+	import->CG_SENDCONSOLECOMMAND = Cbuf_AddText;
+	import->CG_ADDCOMMAND = CL_AddCgameCommand;
+	import->CG_REMOVECOMMAND = Cmd_RemoveCommand;
+	import->CG_SENDCLIENTCOMMAND = CL_AddReliableCommand;
+	import->CG_UPDATESCREEN = SCR_UpdateScreen;
+	import->CG_CM_LOADMAP = CL_CM_LoadMap;
+	import->CG_CM_NUMINLINEMODELS = CM_NumInlineModels;
+	import->CG_CM_INLINEMODEL = CM_InlineModel;
+	import->CG_CM_TEMPBOXMODEL = CL_CM_TempBoxModel;
+	import->CG_CM_TEMPCAPSULEMODEL = CL_CM_TempCapsuleModel;
+	import->CG_CM_POINTCONTENTS = CM_PointContents;
+	import->CG_CM_TRANSFORMEDPOINTCONTENTS = CM_TransformedPointContents;
+	import->CG_CM_BOXTRACE = CL_CM_BoxTrace;
+	import->CG_CM_TRANSFORMEDBOXTRACE = CL_CM_TransformedBoxTrace;
+	import->CG_CM_CAPSULETRACE = CL_CM_CapsuleTrace;
+	import->CG_CM_TRANSFORMEDCAPSULETRACE = CL_CM_TransformedCapsuleTrace;
+	import->CG_CM_MARKFRAGMENTS = re.MarkFragments;
+	import->CG_S_STARTSOUND = S_StartSound;
+	import->CG_S_STARTSOUNDEX = S_StartSoundEx;
+	import->CG_S_STARTLOCALSOUND = S_StartLocalSound;
+	import->CG_S_CLEARLOOPINGSOUNDS = CL_S_ClearLoopingSounds;
+	import->CG_S_ADDLOOPINGSOUND = S_AddLoopingSound;
+	import->CG_S_STOPSTREAMINGSOUND = S_StopEntStreamingSound;
+	import->CG_S_STOPLOOPINGSOUND = CL_S_StopLoopingSound;
+	import->CG_S_UPDATEENTITYPOSITION = S_UpdateEntityPosition;
+	import->CG_S_GETVOICEAMPLITUDE = S_GetVoiceAmplitude;
+	import->CG_S_RESPATIALIZE = S_Respatialize;
+	import->CG_S_REGISTERSOUND = CL_S_RegisterSound;
+	import->CG_S_STARTBACKGROUNDTRACK = S_StartBackgroundTrack;
+	import->CG_S_FADESTREAMINGSOUND = S_FadeStreamingSound;
+	import->CG_S_FADEALLSOUNDS = S_FadeAllSounds;
+	import->CG_S_STARTSTREAMINGSOUND = S_StartStreamingSound;
+	import->CG_S_STOPBACKGROUNDTRACK = S_StopBackgroundTrack;
+	import->CG_R_LOADWORLDMAP = re.LoadWorld;
+	import->CG_R_REGISTERMODEL = re.RegisterModel;
+	import->CG_R_REGISTERSKIN = re.RegisterSkin;
+	import->CG_R_REGISTERSHADER = re.RegisterShader;
+	import->CG_R_REGISTERSHADERNOMIP = re.RegisterShaderNoMip;
+	import->CG_R_GETSKINMODEL = re.GetSkinModel;
+	import->CG_R_GETMODELSHADER = re.GetShaderFromModel;
+	import->CG_R_REGISTERFONT = re.RegisterFont;
+	import->CG_R_CLEARSCENE = re.ClearScene;
+	import->CG_R_ADDREFENTITYTOSCENE = re.AddRefEntityToScene;
+	import->CG_R_ADDPOLYTOSCENE = re.AddPolyToScene;
+	import->CG_R_ADDPOLYSTOSCENE = re.AddPolysToScene;
+	import->CG_RB_ZOMBIEFXADDNEWHIT = re.ZombieFXAddNewHit;
+	import->CG_R_ADDLIGHTTOSCENE = re.AddLightToScene;
+	import->CG_R_ADDCORONATOSCENE = re.AddCoronaToScene;
+	import->CG_R_SETFOG = re.SetFog;
+	import->CG_R_RENDERSCENE = re.RenderScene;
+	import->CG_R_SETCOLOR = re.SetColor;
+	import->CG_R_DRAWSTRETCHPIC = re.DrawStretchPic;
+	import->CG_R_DRAWSTRETCHPIC_GRADIENT = re.DrawStretchPicGradient;
+	import->CG_R_MODELBOUNDS = re.ModelBounds;
+	import->CG_R_LERPTAG = re.LerpTag;
+	import->CG_R_REMAP_SHADER = re.RemapShader;
+	import->CG_GETGLCONFIG = CL_GetGlconfig;
+	import->CG_GETGAMESTATE = CL_GetGameState;
+	import->CG_GETCURRENTSNAPSHOTNUMBER = CL_GetCurrentSnapshotNumber;
+	import->CG_GETSNAPSHOT = CL_GetSnapshot;
+	import->CG_GETSERVERCOMMAND = CL_GetServerCommand;
+	import->CG_GETCURRENTCMDNUMBER = CL_GetCurrentCmdNumber;
+	import->CG_GETUSERCMD = CL_GetUserCmd;
+	import->CG_SETUSERCMDVALUE = CL_SetUserCmdValue;
+	import->CG_MEMORY_REMAINING = Hunk_MemoryRemaining;
+	import->CG_KEY_ISDOWN = Key_IsDown;
+	import->CG_KEY_GETCATCHER = Key_GetCatcher;
+	import->CG_KEY_SETCATCHER = Key_SetCatcher;
+	import->CG_KEY_GETKEY = Key_GetKey;
+	import->CG_MEMSET = CL_Memset;
+	import->CG_MEMCPY = CL_Memcpy;
+	import->CG_STRNCPY = CL_Strncpy;
+	import->CG_SIN = CL_Sin;
+	import->CG_COS = CL_Cos;
+	import->CG_ATAN2 = CL_Atan2;
+	import->CG_SQRT = CL_Sqrt;
+	import->CG_FLOOR = CL_Floor;
+	import->CG_CEIL = CL_Ceil;
+	import->CG_ACOS = CL_Acos;
+	import->CG_PC_ADD_GLOBAL_DEFINE = botlib_export->PC_AddGlobalDefine;
+	import->CG_PC_LOAD_SOURCE = botlib_export->PC_LoadSourceHandle;
+	import->CG_PC_FREE_SOURCE = botlib_export->PC_FreeSourceHandle;
+	import->CG_PC_READ_TOKEN = botlib_export->PC_ReadTokenHandle;
+	import->CG_PC_SOURCE_FILE_AND_LINE = botlib_export->PC_SourceFileAndLine;
+	import->CG_REAL_TIME = Com_RealTime;
+	import->CG_SNAPVECTOR = Sys_SnapVector;
+	import->CG_SENDMOVESPEEDSTOGAME = SV_SendMoveSpeedsToGame;
+	import->CG_CIN_PLAYCINEMATIC = CIN_PlayCinematic;
+	import->CG_CIN_STOPCINEMATIC = CIN_StopCinematic;
+	import->CG_CIN_RUNCINEMATIC = CIN_RunCinematic;
+	import->CG_CIN_DRAWCINEMATIC = CIN_DrawCinematic;
+	import->CG_CIN_SETEXTENTS = CIN_SetExtents;
+	import->CG_TESTPRINTINT = CL_TestPrintInt;
+	import->CG_TESTPRINTFLOAT = CL_TestPrintFloat;
+	import->CG_LOADCAMERA = loadCamera;
+	import->CG_STARTCAMERA = CL_StartCamera;
+	import->CG_STOPCAMERA = CL_StopCamera;
+	import->CG_GETCAMERAINFO = getCameraInfo;
+	import->CG_GET_ENTITY_TOKEN = re.GetEntityToken;
+	import->CG_INGAME_POPUP = CL_UI_Popup;
+	import->CG_INGAME_CLOSEPOPUP = CL_UI_ClosePopup;
+	import->CG_LIMBOCHAT = CL_LimboChat;
+	import->CG_GETMODELINFO = SV_GetModelInfo;
 }
 
 /*
@@ -956,7 +811,7 @@ void CL_InitCGame( void ) {
 	const char          *info;
 	const char          *mapname;
 	int t1, t2;
-	vmInterpret_t interpret;
+	GetCgameAPI_t GetCgameAPI;
 
 	t1 = Sys_Milliseconds();
 
@@ -968,25 +823,35 @@ void CL_InitCGame( void ) {
 	mapname = Info_ValueForKey( info, "mapname" );
 	Com_sprintf( cl.mapname, sizeof( cl.mapname ), "maps/%s.bsp", mapname );
 
-	// load the dll or bytecode
-	if ( cl_connectedToPureServer != 0 ) {
-		// if sv_pure is set we only allow qvms to be loaded
-		interpret = VMI_COMPILED;
-	} else {
-		interpret = Cvar_VariableValue( "vm_cgame" );
+	// exchange function pointer structs with the native cgame module
+	CL_FillCgameImport( &cl_cgameImport );
+
+	cgame_library = Sys_LoadModule( "cgame" );
+	if ( !cgame_library ) {
+		Com_Error( ERR_DROP, "Sys_LoadModule on cgame failed" );
 	}
-	cgvm = VM_Create( "cgame", CL_CgameSystemCalls, interpret );
-//	cgvm = VM_Create( "cgame", CL_CgameSystemCalls, Cvar_VariableValue( "vm_cgame" ) );
-	if ( !cgvm ) {
-		Com_Error( ERR_DROP, "VM_Create on cgame failed" );
+
+	GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
+	if ( !GetCgameAPI ) {
+		Sys_UnloadModule( cgame_library );
+		cgame_library = NULL;
+		Com_Error( ERR_DROP, "GetCgameAPI not found in cgame" );
 	}
+
+	cge = GetCgameAPI( CGAME_IMPORT_API_VERSION, &cl_cgameImport );
+	if ( !cge || cge->apiVersion != CGAME_IMPORT_API_VERSION ) {
+		Sys_UnloadModule( cgame_library );
+		cgame_library = NULL;
+		cge = NULL;
+		Com_Error( ERR_DROP, "GetCgameAPI on cgame failed" );
+	}
+
 	cls.state = CA_LOADING;
 
 	// init for this gamestate
 	// use the lastExecutedServerCommand instead of the serverCommandSequence
 	// otherwise server commands sent just before a gamestate are dropped
-	VM_Call( cgvm, CG_INIT, clc.serverMessageSequence, clc.lastExecutedServerCommand, clc.clientNum );
-//	VM_Call( cgvm, CG_INIT, clc.serverMessageSequence, clc.serverCommandSequence );
+	cge->Init( clc.serverMessageSequence, clc.lastExecutedServerCommand );
 
 	// we will send a usercmd this frame, which
 	// will cause the server to send us the first snapshot
@@ -1021,11 +886,11 @@ See if the current console command is claimed by the cgame
 ====================
 */
 qboolean CL_GameCommand( void ) {
-	if ( !cgvm ) {
+	if ( !cge ) {
 		return qfalse;
 	}
 
-	return VM_Call( cgvm, CG_CONSOLE_COMMAND );
+	return cge->ConsoleCommand();
 }
 
 
@@ -1036,8 +901,7 @@ CL_CGameRendering
 =====================
 */
 void CL_CGameRendering( stereoFrame_t stereo ) {
-	VM_Call( cgvm, CG_DRAW_ACTIVE_FRAME, cl.serverTime, stereo, clc.demoplaying );
-	VM_Debug( 0 );
+	cge->DrawActiveFrame( cl.serverTime, stereo, clc.demoplaying );
 }
 
 
@@ -1281,9 +1145,9 @@ CL_GetTag
 ====================
 */
 qboolean CL_GetTag( int clientNum, char *tagname, orientation_t *or ) {
-	if ( !cgvm ) {
+	if ( !cge ) {
 		return qfalse;
 	}
 
-	return VM_Call( cgvm, CG_GET_TAG, clientNum, tagname, or );
+	return cge->GetTag( clientNum, tagname, or );
 }

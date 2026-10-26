@@ -47,53 +47,42 @@ void CG_Shutdown( void );
 
 /*
 ================
-vmMain
+GetCgameAPI
 
-This is the only way control passes into the module.
-This must be the very first function compiled into the .q3vm file
+Returns a struct of function pointers to the engine and
+receives the engine-provided import functions in exchange.
 ================
 */
-#if defined( __MACOS__ ) // TTimo: guarding
-#pragma export on
-#endif
-int vmMain( int command, int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11  ) {
-#if defined( __MACOS__ )
-#pragma export off
-#endif
-	switch ( command ) {
-	case CG_GET_TAG:
-		return CG_GetTag( arg0, (char *)arg1, (orientation_t *)arg2 );
-	case CG_DRAW_ACTIVE_FRAME:
-		CG_DrawActiveFrame( arg0, arg1, arg2 );
-		return 0;
-	case CG_EVENT_HANDLING:
-		CG_EventHandling( arg0 );
-		return 0;
-	case CG_INIT:
-		CG_Init( arg0, arg1 );
-		return 0;
-	case CG_SHUTDOWN:
-		CG_Shutdown();
-		return 0;
-	case CG_CONSOLE_COMMAND:
-		return CG_ConsoleCommand();
-	case CG_CROSSHAIR_PLAYER:
-		return CG_CrosshairPlayer();
-	case CG_LAST_ATTACKER:
-		return CG_LastAttacker();
-	case CG_KEY_EVENT:
-		CG_KeyEvent( arg0, arg1 );
-		return 0;
-	case CG_MOUSE_EVENT:
-		cgDC.cursorx = cgs.cursorX;
-		cgDC.cursory = cgs.cursorY;
-		CG_MouseEvent( arg0, arg1 );
-		return 0;
-	default:
-		CG_Error( "vmMain: unknown command %i", command );
-		break;
+static void CG_MouseEventExport( int dx, int dy ) {
+	cgDC.cursorx = cgs.cursorX;
+	cgDC.cursory = cgs.cursorY;
+	CG_MouseEvent( dx, dy );
+}
+
+cgameExport_t *GetCgameAPI( int apiVersion, cgameImport_t *import ) {
+	static cgameExport_t cg_export;
+
+	if ( apiVersion != CGAME_IMPORT_API_VERSION ) {
+		return NULL;
 	}
-	return -1;
+
+	cgameImport = import;
+
+	memset( &cg_export, 0, sizeof( cg_export ) );
+
+	cg_export.apiVersion = CGAME_IMPORT_API_VERSION;
+	cg_export.Init = CG_Init;
+	cg_export.Shutdown = CG_Shutdown;
+	cg_export.ConsoleCommand = CG_ConsoleCommand;
+	cg_export.DrawActiveFrame = CG_DrawActiveFrame;
+	cg_export.CrosshairPlayer = CG_CrosshairPlayer;
+	cg_export.LastAttacker = CG_LastAttacker;
+	cg_export.KeyEvent = CG_KeyEvent;
+	cg_export.MouseEvent = CG_MouseEventExport;
+	cg_export.EventHandling = CG_EventHandling;
+	cg_export.GetTag = CG_GetTag;
+
+	return &cg_export;
 }
 
 
