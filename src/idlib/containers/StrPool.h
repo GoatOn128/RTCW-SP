@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,45 +40,45 @@ If you have questions concerning this license or the applicable additional terms
 class idStrPool;
 
 class idPoolStr : public idStr {
-	friend class idStrPool;
+friend class idStrPool;
 
 public:
-						idPoolStr() { numUsers = 0; }
-						~idPoolStr() { assert( numUsers == 0 ); }
+idPoolStr() { numUsers = 0; }
+~idPoolStr() { assert( numUsers == 0 ); }
 
-						// returns total size of allocated memory
-	size_t				Allocated() const { return idStr::Allocated(); }
-						// returns total size of allocated memory including size of string pool type
-	size_t				Size() const { return sizeof( *this ) + Allocated(); }
-						// returns a pointer to the pool this string was allocated from
-	const idStrPool *	GetPool() const { return pool; }
+// returns total size of allocated memory
+size_t              Allocated() const { return idStr::Allocated(); }
+// returns total size of allocated memory including size of string pool type
+size_t              Size() const { return sizeof( *this ) + Allocated(); }
+// returns a pointer to the pool this string was allocated from
+const idStrPool *   GetPool() const { return pool; }
 
 private:
-	idStrPool *			pool;
-	mutable int			numUsers;
+idStrPool *         pool;
+mutable int numUsers;
 };
 
 class idStrPool {
 public:
-						idStrPool() { caseSensitive = true; }
+idStrPool() { caseSensitive = true; }
 
-	void				SetCaseSensitive( bool caseSensitive );
+void                SetCaseSensitive( bool caseSensitive );
 
-	int					Num() const { return pool.Num(); }
-	size_t				Allocated() const;
-	size_t				Size() const;
+int                 Num() const { return pool.Num(); }
+size_t              Allocated() const;
+size_t              Size() const;
 
-	const idPoolStr *	operator[]( int index ) const { return pool[index]; }
+const idPoolStr *   operator[]( int index ) const { return pool[index]; }
 
-	const idPoolStr *	AllocString( const char *string );
-	void				FreeString( const idPoolStr *poolStr );
-	const idPoolStr *	CopyString( const idPoolStr *poolStr );
-	void				Clear();
+const idPoolStr *   AllocString( const char *string );
+void                FreeString( const idPoolStr *poolStr );
+const idPoolStr *   CopyString( const idPoolStr *poolStr );
+void                Clear();
 
 private:
-	bool				caseSensitive;
-	idList<idPoolStr *>	pool;
-	idHashIndex			poolHash;
+bool caseSensitive;
+idList<idPoolStr *> pool;
+idHashIndex poolHash;
 };
 
 /*
@@ -116,8 +116,8 @@ ID_INLINE const idPoolStr *idStrPool::AllocString( const char *string ) {
 		}
 	}
 
-	poolStr = new (TAG_IDLIB_STRING) idPoolStr;
-	*static_cast<idStr *>(poolStr) = string;
+	poolStr = new ( TAG_IDLIB_STRING ) idPoolStr;
+	*static_cast<idStr *>( poolStr ) = string;
 	poolStr->pool = this;
 	poolStr->numUsers = 1;
 	poolHash.Add( hash, pool.Append( poolStr ) );
@@ -138,7 +138,7 @@ ID_INLINE void idStrPool::FreeString( const idPoolStr *poolStr ) {
 	poolStr->numUsers--;
 	if ( poolStr->numUsers <= 0 ) {
 		hash = poolHash.GenerateKey( poolStr->c_str(), caseSensitive );
-		if ( caseSensitive ) { 
+		if ( caseSensitive ) {
 			for ( i = poolHash.First( hash ); i != -1; i = poolHash.Next( i ) ) {
 				if ( pool[i]->Cmp( poolStr->c_str() ) == 0 ) {
 					break;

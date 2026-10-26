@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -134,8 +134,7 @@ void idRotation::Normalize180() {
 	angle -= floor( angle / 360.0f ) * 360.0f;
 	if ( angle > 180.0f ) {
 		angle -= 360.0f;
-	}
-	else if ( angle < -180.0f ) {
+	} else if ( angle < -180.0f )   {
 		angle += 360.0f;
 	}
 }
@@ -149,8 +148,7 @@ void idRotation::Normalize360() {
 	angle -= floor( angle / 360.0f ) * 360.0f;
 	if ( angle > 360.0f ) {
 		angle -= 360.0f;
-	}
-	else if ( angle < 0.0f ) {
+	} else if ( angle < 0.0f )   {
 		angle += 360.0f;
 	}
 }

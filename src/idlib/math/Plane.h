@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -41,96 +41,96 @@ If you have questions concerning this license or the applicable additional terms
 class idVec3;
 class idMat3;
 
-#define	ON_EPSILON					0.1f
-#define DEGENERATE_DIST_EPSILON		1e-4f
+#define ON_EPSILON                  0.1f
+#define DEGENERATE_DIST_EPSILON     1e-4f
 
-#define	SIDE_FRONT					0
-#define	SIDE_BACK					1
-#define	SIDE_ON						2
-#define	SIDE_CROSS					3
+#define SIDE_FRONT                  0
+#define SIDE_BACK                   1
+#define SIDE_ON                     2
+#define SIDE_CROSS                  3
 
 // plane sides
-#define PLANESIDE_FRONT				0
-#define PLANESIDE_BACK				1
-#define PLANESIDE_ON				2
-#define PLANESIDE_CROSS				3
+#define PLANESIDE_FRONT             0
+#define PLANESIDE_BACK              1
+#define PLANESIDE_ON                2
+#define PLANESIDE_CROSS             3
 
 // plane types
-#define PLANETYPE_X					0
-#define PLANETYPE_Y					1
-#define PLANETYPE_Z					2
-#define PLANETYPE_NEGX				3
-#define PLANETYPE_NEGY				4
-#define PLANETYPE_NEGZ				5
-#define PLANETYPE_TRUEAXIAL			6	// all types < 6 are true axial planes
-#define PLANETYPE_ZEROX				6
-#define PLANETYPE_ZEROY				7
-#define PLANETYPE_ZEROZ				8
-#define PLANETYPE_NONAXIAL			9
+#define PLANETYPE_X                 0
+#define PLANETYPE_Y                 1
+#define PLANETYPE_Z                 2
+#define PLANETYPE_NEGX              3
+#define PLANETYPE_NEGY              4
+#define PLANETYPE_NEGZ              5
+#define PLANETYPE_TRUEAXIAL         6   // all types < 6 are true axial planes
+#define PLANETYPE_ZEROX             6
+#define PLANETYPE_ZEROY             7
+#define PLANETYPE_ZEROZ             8
+#define PLANETYPE_NONAXIAL          9
 
 class idPlane {
 public:
-					idPlane();
-					explicit idPlane( float a, float b, float c, float d );
-					explicit idPlane( const idVec3 &normal, const float dist );
-					explicit idPlane( const idVec3 & v0, const idVec3 & v1, const idVec3 & v2, bool fixDegenerate = false );
+idPlane();
+explicit idPlane( float a, float b, float c, float d );
+explicit idPlane( const idVec3 &normal, const float dist );
+explicit idPlane( const idVec3 & v0, const idVec3 & v1, const idVec3 & v2, bool fixDegenerate = false );
 
-	float			operator[]( int index ) const;
-	float &			operator[]( int index );
-	idPlane			operator-() const;						// flips plane
-	idPlane &		operator=( const idVec3 &v );			// sets normal and sets idPlane::d to zero
-	idPlane			operator+( const idPlane &p ) const;	// add plane equations
-	idPlane			operator-( const idPlane &p ) const;	// subtract plane equations
-	idPlane			operator*( const float s ) const;		// scale plane
-	idPlane &		operator*=( const idMat3 &m );			// Normal() *= m
+float operator[]( int index ) const;
+float &         operator[]( int index );
+idPlane operator-() const;                                  // flips plane
+idPlane &       operator=( const idVec3 &v );               // sets normal and sets idPlane::d to zero
+idPlane operator+( const idPlane &p ) const;                // add plane equations
+idPlane operator-( const idPlane &p ) const;                // subtract plane equations
+idPlane operator*( const float s ) const;                   // scale plane
+idPlane &       operator*=( const idMat3 &m );              // Normal() *= m
 
-	bool			Compare( const idPlane &p ) const;						// exact compare, no epsilon
-	bool			Compare( const idPlane &p, const float epsilon ) const;	// compare with epsilon
-	bool			Compare( const idPlane &p, const float normalEps, const float distEps ) const;	// compare with epsilon
-	bool			operator==(	const idPlane &p ) const;					// exact compare, no epsilon
-	bool			operator!=(	const idPlane &p ) const;					// exact compare, no epsilon
+bool            Compare( const idPlane &p ) const;                          // exact compare, no epsilon
+bool            Compare( const idPlane &p, const float epsilon ) const;     // compare with epsilon
+bool            Compare( const idPlane &p, const float normalEps, const float distEps ) const;      // compare with epsilon
+bool operator==( const idPlane &p ) const;                                  // exact compare, no epsilon
+bool operator!=( const idPlane &p ) const;                                  // exact compare, no epsilon
 
-	void			Zero();							// zero plane
-	void			SetNormal( const idVec3 &normal );		// sets the normal
-	const idVec3 &	Normal() const;					// reference to const normal
-	idVec3 &		Normal();							// reference to normal
-	float			Normalize( bool fixDegenerate = true );	// only normalizes the plane normal, does not adjust d
-	bool			FixDegenerateNormal();			// fix degenerate normal
-	bool			FixDegeneracies( float distEpsilon );	// fix degenerate normal and dist
-	float			Dist() const;						// returns: -d
-	void			SetDist( const float dist );			// sets: d = -dist
-	int				Type() const;						// returns plane type
+void            Zero();                             // zero plane
+void            SetNormal( const idVec3 &normal );          // sets the normal
+const idVec3 &  Normal() const;                     // reference to const normal
+idVec3 &        Normal();                               // reference to normal
+float           Normalize( bool fixDegenerate = true );     // only normalizes the plane normal, does not adjust d
+bool            FixDegenerateNormal();              // fix degenerate normal
+bool            FixDegeneracies( float distEpsilon );       // fix degenerate normal and dist
+float           Dist() const;                           // returns: -d
+void            SetDist( const float dist );                // sets: d = -dist
+int             Type() const;                           // returns plane type
 
-	bool			FromPoints( const idVec3 &p1, const idVec3 &p2, const idVec3 &p3, bool fixDegenerate = true );
-	bool			FromVecs( const idVec3 &dir1, const idVec3 &dir2, const idVec3 &p, bool fixDegenerate = true );
-	void			FitThroughPoint( const idVec3 &p );	// assumes normal is valid
-	bool			HeightFit( const idVec3 *points, const int numPoints );
-	idPlane			Translate( const idVec3 &translation ) const;
-	idPlane &		TranslateSelf( const idVec3 &translation );
-	idPlane			Rotate( const idVec3 &origin, const idMat3 &axis ) const;
-	idPlane &		RotateSelf( const idVec3 &origin, const idMat3 &axis );
+bool            FromPoints( const idVec3 &p1, const idVec3 &p2, const idVec3 &p3, bool fixDegenerate = true );
+bool            FromVecs( const idVec3 &dir1, const idVec3 &dir2, const idVec3 &p, bool fixDegenerate = true );
+void            FitThroughPoint( const idVec3 &p );     // assumes normal is valid
+bool            HeightFit( const idVec3 *points, const int numPoints );
+idPlane         Translate( const idVec3 &translation ) const;
+idPlane &       TranslateSelf( const idVec3 &translation );
+idPlane         Rotate( const idVec3 &origin, const idMat3 &axis ) const;
+idPlane &       RotateSelf( const idVec3 &origin, const idMat3 &axis );
 
-	float			Distance( const idVec3 &v ) const;
-	int				Side( const idVec3 &v, const float epsilon = 0.0f ) const;
+float           Distance( const idVec3 &v ) const;
+int             Side( const idVec3 &v, const float epsilon = 0.0f ) const;
 
-	bool			LineIntersection( const idVec3 &start, const idVec3 &end ) const;
-					// intersection point is start + dir * scale
-	bool			RayIntersection( const idVec3 &start, const idVec3 &dir, float &scale ) const;
-	bool			PlaneIntersection( const idPlane &plane, idVec3 &start, idVec3 &dir ) const;
+bool            LineIntersection( const idVec3 &start, const idVec3 &end ) const;
+// intersection point is start + dir * scale
+bool            RayIntersection( const idVec3 &start, const idVec3 &dir, float &scale ) const;
+bool            PlaneIntersection( const idPlane &plane, idVec3 &start, idVec3 &dir ) const;
 
-	int				GetDimension() const;
+int             GetDimension() const;
 
-	const idVec4 &	ToVec4() const;
-	idVec4 &		ToVec4();
-	const float *	ToFloatPtr() const;
-	float *			ToFloatPtr();
-	const char *	ToString( int precision = 2 ) const;
+const idVec4 &  ToVec4() const;
+idVec4 &        ToVec4();
+const float *   ToFloatPtr() const;
+float *         ToFloatPtr();
+const char *    ToString( int precision = 2 ) const;
 
 private:
-	float			a;
-	float			b;
-	float			c;
-	float			d;
+float a;
+float b;
+float c;
+float d;
 };
 
 extern idPlane plane_origin;
@@ -169,7 +169,7 @@ ID_INLINE idPlane idPlane::operator-() const {
 	return idPlane( -a, -b, -c, -d );
 }
 
-ID_INLINE idPlane &idPlane::operator=( const idVec3 &v ) { 
+ID_INLINE idPlane &idPlane::operator=( const idVec3 &v ) {
 	a = v.x;
 	b = v.y;
 	c = v.z;
@@ -202,7 +202,7 @@ ID_INLINE bool idPlane::Compare( const idPlane &p, const float epsilon ) const {
 	if ( idMath::Fabs( a - p.a ) > epsilon ) {
 		return false;
 	}
-			
+
 	if ( idMath::Fabs( b - p.b ) > epsilon ) {
 		return false;
 	}
@@ -247,15 +247,15 @@ ID_INLINE void idPlane::SetNormal( const idVec3 &normal ) {
 }
 
 ID_INLINE const idVec3 &idPlane::Normal() const {
-	return *reinterpret_cast<const idVec3 *>(&a);
+	return *reinterpret_cast<const idVec3 *>( &a );
 }
 
 ID_INLINE idVec3 &idPlane::Normal() {
-	return *reinterpret_cast<idVec3 *>(&a);
+	return *reinterpret_cast<idVec3 *>( &a );
 }
 
 ID_INLINE float idPlane::Normalize( bool fixDegenerate ) {
-	float length = reinterpret_cast<idVec3 *>(&a)->Normalize();
+	float length = reinterpret_cast<idVec3 *>( &a )->Normalize();
 
 	if ( fixDegenerate ) {
 		FixDegenerateNormal();
@@ -287,7 +287,7 @@ ID_INLINE void idPlane::SetDist( const float dist ) {
 }
 
 ID_INLINE bool idPlane::FromPoints( const idVec3 &p1, const idVec3 &p2, const idVec3 &p3, bool fixDegenerate ) {
-	Normal() = (p1 - p2).Cross( p3 - p2 );
+	Normal() = ( p1 - p2 ).Cross( p3 - p2 );
 	if ( Normalize( fixDegenerate ) == 0.0f ) {
 		return false;
 	}
@@ -339,11 +339,9 @@ ID_INLINE int idPlane::Side( const idVec3 &v, const float epsilon ) const {
 	float dist = Distance( v );
 	if ( dist > epsilon ) {
 		return PLANESIDE_FRONT;
-	}
-	else if ( dist < -epsilon ) {
+	} else if ( dist < -epsilon )   {
 		return PLANESIDE_BACK;
-	}
-	else {
+	} else {
 		return PLANESIDE_ON;
 	}
 }
@@ -383,19 +381,19 @@ ID_INLINE int idPlane::GetDimension() const {
 }
 
 ID_INLINE const idVec4 &idPlane::ToVec4() const {
-	return *reinterpret_cast<const idVec4 *>(&a);
+	return *reinterpret_cast<const idVec4 *>( &a );
 }
 
 ID_INLINE idVec4 &idPlane::ToVec4() {
-	return *reinterpret_cast<idVec4 *>(&a);
+	return *reinterpret_cast<idVec4 *>( &a );
 }
 
 ID_INLINE const float *idPlane::ToFloatPtr() const {
-	return reinterpret_cast<const float *>(&a);
+	return reinterpret_cast<const float *>( &a );
 }
 
 ID_INLINE float *idPlane::ToFloatPtr() {
-	return reinterpret_cast<float *>(&a);
+	return reinterpret_cast<float *>( &a );
 }
 
 #endif /* !__MATH_PLANE_H__ */

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,51 +44,51 @@ template<class type,int size>
 class idStaticList {
 public:
 
-						idStaticList();
-						idStaticList( const idStaticList<type,size> &other );
-						~idStaticList<type,size>();
+idStaticList();
+idStaticList( const idStaticList<type,size> &other );
+~idStaticList<type,size>();
 
-	void				Clear();										// marks the list as empty.  does not deallocate or intialize data.
-	int					Num() const;									// returns number of elements in list
-	int					Max() const;									// returns the maximum number of elements in the list
-	void				SetNum( int newnum );								// set number of elements in list
+void                Clear();                                            // marks the list as empty.  does not deallocate or intialize data.
+int                 Num() const;                                        // returns number of elements in list
+int                 Max() const;                                        // returns the maximum number of elements in the list
+void                SetNum( int newnum );                                   // set number of elements in list
 
-	// sets the number of elements in list and initializes any newly allocated elements to the given value
-	void				SetNum( int newNum, const type & initValue );
+// sets the number of elements in list and initializes any newly allocated elements to the given value
+void                SetNum( int newNum, const type & initValue );
 
-	size_t				Allocated() const;							// returns total size of allocated memory
-	size_t				Size() const;									// returns total size of allocated memory including size of list type
-	size_t				MemoryUsed() const;							// returns size of the used elements in the list
+size_t              Allocated() const;                              // returns total size of allocated memory
+size_t              Size() const;                                       // returns total size of allocated memory including size of list type
+size_t              MemoryUsed() const;                             // returns size of the used elements in the list
 
-	const type &		operator[]( int index ) const;
-	type &				operator[]( int index );
+const type &        operator[]( int index ) const;
+type &              operator[]( int index );
 
-	type *				Ptr();										// returns a pointer to the list
-	const type *		Ptr() const;									// returns a pointer to the list
-	type *				Alloc();										// returns reference to a new data element at the end of the list.  returns NULL when full.
-	int					Append( const type & obj );							// append element
-	int					Append( const idStaticList<type,size> &other );		// append list
-	int					AddUnique( const type & obj );						// add unique element
-	int					Insert( const type & obj, int index = 0 );				// insert the element at the given index
-	int					FindIndex( const type & obj ) const;				// find the index for the given element
-	type *				Find( type const & obj ) const;						// find pointer to the given element
-	int					FindNull() const;								// find the index for the first NULL pointer in the list
-	int					IndexOf( const type *obj ) const;					// returns the index for the pointer to an element in the list
-	bool				RemoveIndex( int index );							// remove the element at the given index
-	bool				RemoveIndexFast( int index );							// remove the element at the given index
-	bool				Remove( const type & obj );							// remove the element
-	void				Swap( idStaticList<type,size> &other );				// swap the contents of the lists
-	void				DeleteContents( bool clear );						// delete the contents of the list
+type *              Ptr();                                          // returns a pointer to the list
+const type *        Ptr() const;                                        // returns a pointer to the list
+type *              Alloc();                                            // returns reference to a new data element at the end of the list.  returns NULL when full.
+int                 Append( const type & obj );                             // append element
+int                 Append( const idStaticList<type,size> &other );         // append list
+int                 AddUnique( const type & obj );                          // add unique element
+int                 Insert( const type & obj, int index = 0 );                  // insert the element at the given index
+int                 FindIndex( const type & obj ) const;                    // find the index for the given element
+type *              Find( type const & obj ) const;                         // find pointer to the given element
+int                 FindNull() const;                                   // find the index for the first NULL pointer in the list
+int                 IndexOf( const type *obj ) const;                       // returns the index for the pointer to an element in the list
+bool                RemoveIndex( int index );                               // remove the element at the given index
+bool                RemoveIndexFast( int index );                               // remove the element at the given index
+bool                Remove( const type & obj );                             // remove the element
+void                Swap( idStaticList<type,size> &other );                 // swap the contents of the lists
+void                DeleteContents( bool clear );                           // delete the contents of the list
 
-	void				Sort( const idSort<type> & sort = idSort_QuickDefault<type>() );
-
-private:
-	int					num;
-	type 				list[ size ];
+void                Sort( const idSort<type> & sort = idSort_QuickDefault<type>( ) );
 
 private:
-	// resizes list to the given number of elements
-	void				Resize( int newsize );
+int num;
+type list[ size ];
+
+private:
+// resizes list to the given number of elements
+void                Resize( int newsize );
 };
 
 /*
@@ -129,16 +129,16 @@ Sets the number of elements in the list to 0.  Assumes that type automatically h
 */
 template<class type,int size>
 ID_INLINE void idStaticList<type,size>::Clear() {
-	num	= 0;
+	num = 0;
 }
 
 /*
 ========================
 idList<_type_,_tag_>::Sort
 
-Performs a QuickSort on the list using the supplied sort algorithm.  
+Performs a QuickSort on the list using the supplied sort algorithm.
 
-Note:	The data is merely moved around the list, so any pointers to data within the list may 
+Note:	The data is merely moved around the list, so any pointers to data within the list may
 		no longer be valid.
 ========================
 */
@@ -166,7 +166,7 @@ template<class type,int size>
 ID_INLINE void idStaticList<type,size>::DeleteContents( bool clear ) {
 	int i;
 
-	for( i = 0; i < num; i++ ) {
+	for ( i = 0; i < num; i++ ) {
 		delete list[ i ];
 		list[ i ] = NULL;
 	}
@@ -368,7 +368,7 @@ ID_INLINE int idStaticList<type,size>::Append( type const & obj ) {
 ================
 idStaticList<type,size>::Insert
 
-Increases the size of the list by at leat one element if necessary 
+Increases the size of the list by at leat one element if necessary
 and inserts the supplied data into it.
 
 Returns the index of the new element, or -1 when list is full.
@@ -390,8 +390,8 @@ ID_INLINE int idStaticList<type,size>::Insert( type const & obj, int index ) {
 		index = num;
 	}
 
-	for( i = num; i > index; --i ) {
-		list[i] = list[i-1];
+	for ( i = num; i > index; --i ) {
+		list[i] = list[i - 1];
 	}
 
 	num++;
@@ -416,7 +416,7 @@ ID_INLINE int idStaticList<type,size>::Append( const idStaticList<type,size> &ot
 	if ( num + n > size ) {
 		n = size - num;
 	}
-	for( i = 0; i < n; i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		list[i + num] = other.list[i];
 	}
 	num += n;
@@ -453,7 +453,7 @@ template<class type,int size>
 ID_INLINE int idStaticList<type,size>::FindIndex( type const & obj ) const {
 	int i;
 
-	for( i = 0; i < num; i++ ) {
+	for ( i = 0; i < num; i++ ) {
 		if ( list[ i ] == obj ) {
 			return i;
 		}
@@ -496,7 +496,7 @@ template<class type,int size>
 ID_INLINE int idStaticList<type,size>::FindNull() const {
 	int i;
 
-	for( i = 0; i < num; i++ ) {
+	for ( i = 0; i < num; i++ ) {
 		if ( list[ i ] == NULL ) {
 			return i;
 		}
@@ -511,7 +511,7 @@ ID_INLINE int idStaticList<type,size>::FindNull() const {
 idStaticList<type,size>::IndexOf
 
 Takes a pointer to an element in the list and returns the index of the element.
-This is NOT a guarantee that the object is really in the list. 
+This is NOT a guarantee that the object is really in the list.
 Function will assert in debug builds if pointer is outside the bounds of the list,
 but remains silent in release builds.
 ================
@@ -549,7 +549,7 @@ ID_INLINE bool idStaticList<type,size>::RemoveIndex( int index ) {
 	}
 
 	num--;
-	for( i = index; i < num; i++ ) {
+	for ( i = index; i < num; i++ ) {
 		list[ i ] = list[ i + 1 ];
 	}
 
@@ -560,13 +560,13 @@ ID_INLINE bool idStaticList<type,size>::RemoveIndex( int index ) {
 ========================
 idList<_type_,_tag_>::RemoveIndexFast
 
-Removes the element at the specified index and moves the last element into its spot, rather 
-than moving the whole array down by one. Of course, this doesn't maintain the order of 
-elements! The number of elements in the list is reduced by one.  
+Removes the element at the specified index and moves the last element into its spot, rather
+than moving the whole array down by one. Of course, this doesn't maintain the order of
+elements! The number of elements in the list is reduced by one.
 
-return:	bool	- false if the data is not found in the list.  
+return:	bool	- false if the data is not found in the list.
 
-NOTE:	The element is not destroyed, so any memory used by it may not be freed until the 
+NOTE:	The element is not destroyed, so any memory used by it may not be freed until the
 		destruction of the list.
 ========================
 */
@@ -602,7 +602,7 @@ ID_INLINE bool idStaticList<type,size>::Remove( type const & obj ) {
 	if ( index >= 0 ) {
 		return RemoveIndex( index );
 	}
-	
+
 	return false;
 }
 

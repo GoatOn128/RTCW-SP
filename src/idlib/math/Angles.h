@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,9 +38,9 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 // angle indexes
-#define	PITCH				0		// up / down
-#define	YAW					1		// left / right
-#define	ROLL				2		// fall over
+#define PITCH               0       // up / down
+#define YAW                 1       // left / right
+#define ROLL                2       // fall over
 
 class idVec3;
 class idQuat;
@@ -50,54 +50,54 @@ class idMat4;
 
 class idAngles {
 public:
-	float			pitch;
-	float			yaw;
-	float			roll;
+float pitch;
+float yaw;
+float roll;
 
-					idAngles();
-					idAngles( float pitch, float yaw, float roll );
-					explicit idAngles( const idVec3 &v );
+idAngles();
+idAngles( float pitch, float yaw, float roll );
+explicit idAngles( const idVec3 &v );
 
-	void 			Set( float pitch, float yaw, float roll );
-	idAngles &		Zero();
+void            Set( float pitch, float yaw, float roll );
+idAngles &      Zero();
 
-	float			operator[]( int index ) const;
-	float &			operator[]( int index );
-	idAngles		operator-() const;			// negate angles, in general not the inverse rotation
-	idAngles &		operator=( const idAngles &a );
-	idAngles		operator+( const idAngles &a ) const;
-	idAngles &		operator+=( const idAngles &a );
-	idAngles		operator-( const idAngles &a ) const;
-	idAngles &		operator-=( const idAngles &a );
-	idAngles		operator*( const float a ) const;
-	idAngles &		operator*=( const float a );
-	idAngles		operator/( const float a ) const;
-	idAngles &		operator/=( const float a );
+float operator[]( int index ) const;
+float &         operator[]( int index );
+idAngles operator-() const;                     // negate angles, in general not the inverse rotation
+idAngles &      operator=( const idAngles &a );
+idAngles operator+( const idAngles &a ) const;
+idAngles &      operator+=( const idAngles &a );
+idAngles operator-( const idAngles &a ) const;
+idAngles &      operator-=( const idAngles &a );
+idAngles operator*( const float a ) const;
+idAngles &      operator*=( const float a );
+idAngles operator/( const float a ) const;
+idAngles &      operator/=( const float a );
 
-	friend idAngles	operator*( const float a, const idAngles &b );
+friend idAngles operator*( const float a, const idAngles &b );
 
-	bool			Compare( const idAngles &a ) const;							// exact compare, no epsilon
-	bool			Compare( const idAngles &a, const float epsilon ) const;	// compare with epsilon
-	bool			operator==(	const idAngles &a ) const;						// exact compare, no epsilon
-	bool			operator!=(	const idAngles &a ) const;						// exact compare, no epsilon
+bool            Compare( const idAngles &a ) const;                             // exact compare, no epsilon
+bool            Compare( const idAngles &a, const float epsilon ) const;        // compare with epsilon
+bool operator==( const idAngles &a ) const;                                     // exact compare, no epsilon
+bool operator!=( const idAngles &a ) const;                                     // exact compare, no epsilon
 
-	idAngles &		Normalize360();	// normalizes 'this'
-	idAngles &		Normalize180();	// normalizes 'this'
+idAngles &      Normalize360();     // normalizes 'this'
+idAngles &      Normalize180();     // normalizes 'this'
 
-	void			Clamp( const idAngles &min, const idAngles &max );
+void            Clamp( const idAngles &min, const idAngles &max );
 
-	int				GetDimension() const;
+int             GetDimension() const;
 
-	void			ToVectors( idVec3 *forward, idVec3 *right = NULL, idVec3 *up = NULL ) const;
-	idVec3			ToForward() const;
-	idQuat			ToQuat() const;
-	idRotation		ToRotation() const;
-	idMat3			ToMat3() const;
-	idMat4			ToMat4() const;
-	idVec3			ToAngularVelocity() const;
-	const float *	ToFloatPtr() const;
-	float *			ToFloatPtr();
-	const char *	ToString( int precision = 2 ) const;
+void            ToVectors( idVec3 *forward, idVec3 *right = NULL, idVec3 *up = NULL ) const;
+idVec3          ToForward() const;
+idQuat          ToQuat() const;
+idRotation      ToRotation() const;
+idMat3          ToMat3() const;
+idMat4          ToMat4() const;
+idVec3          ToAngularVelocity() const;
+const float *   ToFloatPtr() const;
+float *         ToFloatPtr();
+const char *    ToString( int precision = 2 ) const;
 };
 
 extern idAngles ang_zero;
@@ -107,20 +107,20 @@ ID_INLINE idAngles::idAngles() {
 
 ID_INLINE idAngles::idAngles( float pitch, float yaw, float roll ) {
 	this->pitch = pitch;
-	this->yaw	= yaw;
-	this->roll	= roll;
+	this->yaw   = yaw;
+	this->roll  = roll;
 }
 
 ID_INLINE idAngles::idAngles( const idVec3 &v ) {
 	this->pitch = v[0];
-	this->yaw	= v[1];
-	this->roll	= v[2];
+	this->yaw   = v[1];
+	this->roll  = v[2];
 }
 
 ID_INLINE void idAngles::Set( float pitch, float yaw, float roll ) {
 	this->pitch = pitch;
-	this->yaw	= yaw;
-	this->roll	= roll;
+	this->yaw   = yaw;
+	this->roll  = roll;
 }
 
 ID_INLINE idAngles &idAngles::Zero() {
@@ -143,9 +143,9 @@ ID_INLINE idAngles idAngles::operator-() const {
 }
 
 ID_INLINE idAngles &idAngles::operator=( const idAngles &a ) {
-	pitch	= a.pitch;
-	yaw		= a.yaw;
-	roll	= a.roll;
+	pitch   = a.pitch;
+	yaw     = a.yaw;
+	roll    = a.roll;
 	return *this;
 }
 
@@ -154,9 +154,9 @@ ID_INLINE idAngles idAngles::operator+( const idAngles &a ) const {
 }
 
 ID_INLINE idAngles& idAngles::operator+=( const idAngles &a ) {
-	pitch	+= a.pitch;
-	yaw		+= a.yaw;
-	roll	+= a.roll;
+	pitch   += a.pitch;
+	yaw     += a.yaw;
+	roll    += a.roll;
 
 	return *this;
 }
@@ -166,9 +166,9 @@ ID_INLINE idAngles idAngles::operator-( const idAngles &a ) const {
 }
 
 ID_INLINE idAngles& idAngles::operator-=( const idAngles &a ) {
-	pitch	-= a.pitch;
-	yaw		-= a.yaw;
-	roll	-= a.roll;
+	pitch   -= a.pitch;
+	yaw     -= a.yaw;
+	roll    -= a.roll;
 
 	return *this;
 }
@@ -178,9 +178,9 @@ ID_INLINE idAngles idAngles::operator*( const float a ) const {
 }
 
 ID_INLINE idAngles& idAngles::operator*=( float a ) {
-	pitch	*= a;
-	yaw		*= a;
-	roll	*= a;
+	pitch   *= a;
+	yaw     *= a;
+	roll    *= a;
 	return *this;
 }
 
@@ -191,9 +191,9 @@ ID_INLINE idAngles idAngles::operator/( const float a ) const {
 
 ID_INLINE idAngles& idAngles::operator/=( float a ) {
 	float inva = 1.0f / a;
-	pitch	*= inva;
-	yaw		*= inva;
-	roll	*= inva;
+	pitch   *= inva;
+	yaw     *= inva;
+	roll    *= inva;
 	return *this;
 }
 
@@ -209,7 +209,7 @@ ID_INLINE bool idAngles::Compare( const idAngles &a, const float epsilon ) const
 	if ( idMath::Fabs( pitch - a.pitch ) > epsilon ) {
 		return false;
 	}
-			
+
 	if ( idMath::Fabs( yaw - a.yaw ) > epsilon ) {
 		return false;
 	}

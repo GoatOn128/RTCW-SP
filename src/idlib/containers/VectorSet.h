@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,27 +42,27 @@ If you have questions concerning this license or the applicable additional terms
 template< class type, int dimension >
 class idVectorSet : public idList<type> {
 public:
-							idVectorSet();
-							idVectorSet( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
+idVectorSet();
+idVectorSet( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
 
-							// returns total size of allocated memory
-	size_t					Allocated() const { return idList<type>::Allocated() + hash.Allocated(); }
-							// returns total size of allocated memory including size of type
-	size_t					Size() const { return sizeof( *this ) + Allocated(); }
+// returns total size of allocated memory
+size_t                  Allocated() const { return idList<type>::Allocated() + hash.Allocated(); }
+// returns total size of allocated memory including size of type
+size_t                  Size() const { return sizeof( *this ) + Allocated(); }
 
-	void					Init( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
-	void					ResizeIndex( const int newSize );
-	void					Clear();
+void                    Init( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
+void                    ResizeIndex( const int newSize );
+void                    Clear();
 
-	int						FindVector( const type &v, const float epsilon );
+int                     FindVector( const type &v, const float epsilon );
 
 private:
-	idHashIndex				hash;
-	type					mins;
-	type					maxs;
-	int						boxHashSize;
-	float					boxInvSize[dimension];
-	float					boxHalfSize[dimension];
+idHashIndex hash;
+type mins;
+type maxs;
+int boxHashSize;
+float boxInvSize[dimension];
+float boxHalfSize[dimension];
 };
 
 template< class type, int dimension >
@@ -129,7 +129,7 @@ ID_INLINE int idVectorSet<type,dimension>::FindVector( const type &v, const floa
 		}
 
 		for ( j = hash.First( hashKey ); j >= 0; j = hash.Next( j ) ) {
-			const type &lv = (*this)[j];
+			const type &lv = ( *this )[j];
 			for ( k = 0; k < dimension; k++ ) {
 				if ( idMath::Fabs( lv[k] - v[k] ) > epsilon ) {
 					break;
@@ -149,7 +149,7 @@ ID_INLINE int idVectorSet<type,dimension>::FindVector( const type &v, const floa
 
 	hash.Add( hashKey, idList<type>::Num() );
 	Append( v );
-	return idList<type>::Num()-1;
+	return idList<type>::Num() - 1;
 }
 
 
@@ -166,27 +166,27 @@ ID_INLINE int idVectorSet<type,dimension>::FindVector( const type &v, const floa
 template< class type, int dimension >
 class idVectorSubset {
 public:
-							idVectorSubset();
-							idVectorSubset( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
+idVectorSubset();
+idVectorSubset( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
 
-							// returns total size of allocated memory
-	size_t					Allocated() const { return idList<type>::Allocated() + hash.Allocated(); }
-							// returns total size of allocated memory including size of type
-	size_t					Size() const { return sizeof( *this ) + Allocated(); }
+// returns total size of allocated memory
+size_t                  Allocated() const { return idList<type>::Allocated() + hash.Allocated(); }
+// returns total size of allocated memory including size of type
+size_t                  Size() const { return sizeof( *this ) + Allocated(); }
 
-	void					Init( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
-	void					Clear();
+void                    Init( const type &mins, const type &maxs, const int boxHashSize, const int initialSize );
+void                    Clear();
 
-							// returns either vectorNum or an index to a previously found vector
-	int						FindVector( const type *vectorList, const int vectorNum, const float epsilon );
+// returns either vectorNum or an index to a previously found vector
+int                     FindVector( const type *vectorList, const int vectorNum, const float epsilon );
 
 private:
-	idHashIndex				hash;
-	type					mins;
-	type					maxs;
-	int						boxHashSize;
-	float					boxInvSize[dimension];
-	float					boxHalfSize[dimension];
+idHashIndex hash;
+type mins;
+type maxs;
+int boxHashSize;
+float boxInvSize[dimension];
+float boxHalfSize[dimension];
 };
 
 template< class type, int dimension >

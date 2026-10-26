@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -79,8 +79,7 @@ Mem_CopyString
 ==================
 */
 char *Mem_CopyString( const char *in ) {
-	char * out = (char *)Mem_Alloc( strlen(in) + 1, TAG_STRING );
+	char * out = (char *)Mem_Alloc( strlen( in ) + 1, TAG_STRING );
 	strcpy( out, in );
 	return out;
 }
-

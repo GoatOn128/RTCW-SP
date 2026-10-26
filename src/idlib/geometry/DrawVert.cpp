@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,15 +36,15 @@ idShadowVert::CreateShadowCache
 */
 int idShadowVert::CreateShadowCache( idShadowVert * vertexCache, const idDrawVert *verts, const int numVerts ) {
 	for ( int i = 0; i < numVerts; i++ ) {
-		vertexCache[i*2+0].xyzw[0] = verts[i].xyz[0];
-		vertexCache[i*2+0].xyzw[1] = verts[i].xyz[1];
-		vertexCache[i*2+0].xyzw[2] = verts[i].xyz[2];
-		vertexCache[i*2+0].xyzw[3] = 1.0f;
+		vertexCache[i * 2 + 0].xyzw[0] = verts[i].xyz[0];
+		vertexCache[i * 2 + 0].xyzw[1] = verts[i].xyz[1];
+		vertexCache[i * 2 + 0].xyzw[2] = verts[i].xyz[2];
+		vertexCache[i * 2 + 0].xyzw[3] = 1.0f;
 
-		vertexCache[i*2+1].xyzw[0] = verts[i].xyz[0];
-		vertexCache[i*2+1].xyzw[1] = verts[i].xyz[1];
-		vertexCache[i*2+1].xyzw[2] = verts[i].xyz[2];
-		vertexCache[i*2+1].xyzw[3] = 0.0f;
+		vertexCache[i * 2 + 1].xyzw[0] = verts[i].xyz[0];
+		vertexCache[i * 2 + 1].xyzw[1] = verts[i].xyz[1];
+		vertexCache[i * 2 + 1].xyzw[2] = verts[i].xyz[2];
+		vertexCache[i * 2 + 1].xyzw[3] = 0.0f;
 	}
 	return numVerts * 2;
 }

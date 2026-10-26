@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,22 +39,22 @@ If you have questions concerning this license or the applicable additional terms
 
 class idJointQuat {
 public:
-	const float *	ToFloatPtr() const { return q.ToFloatPtr(); }
-	float *			ToFloatPtr() { return q.ToFloatPtr(); }
+const float *   ToFloatPtr() const { return q.ToFloatPtr(); }
+float *         ToFloatPtr() { return q.ToFloatPtr(); }
 
-	idQuat			q;
-	idVec3			t;
-	float			w;
+idQuat q;
+idVec3 t;
+float w;
 };
 
 // offsets for SIMD code
-#define JOINTQUAT_SIZE				(8*4)		// sizeof( idJointQuat )
-#define JOINTQUAT_SIZE_SHIFT		5			// log2( sizeof( idJointQuat ) )
-#define JOINTQUAT_Q_OFFSET			(0*4)		// offsetof( idJointQuat, q )
-#define JOINTQUAT_T_OFFSET			(4*4)		// offsetof( idJointQuat, t )
+#define JOINTQUAT_SIZE              ( 8 * 4 )       // sizeof( idJointQuat )
+#define JOINTQUAT_SIZE_SHIFT        5           // log2( sizeof( idJointQuat ) )
+#define JOINTQUAT_Q_OFFSET          ( 0 * 4 )       // offsetof( idJointQuat, q )
+#define JOINTQUAT_T_OFFSET          ( 4 * 4 )       // offsetof( idJointQuat, t )
 
 assert_sizeof( idJointQuat, JOINTQUAT_SIZE );
-assert_sizeof( idJointQuat, (1<<JOINTQUAT_SIZE_SHIFT) );
+assert_sizeof( idJointQuat, ( 1 << JOINTQUAT_SIZE_SHIFT ) );
 assert_offsetof( idJointQuat, q, JOINTQUAT_Q_OFFSET );
 assert_offsetof( idJointQuat, t, JOINTQUAT_T_OFFSET );
 
@@ -82,50 +82,50 @@ idJointMat has the following structure:
 class idJointMat {
 public:
 
-	void			SetRotation( const idMat3 &m );
-	idMat3			GetRotation() const;
-	void			SetTranslation( const idVec3 &t );
-	idVec3			GetTranslation() const;
+void            SetRotation( const idMat3 &m );
+idMat3          GetRotation() const;
+void            SetTranslation( const idVec3 &t );
+idVec3          GetTranslation() const;
 
-	idVec3			operator*( const idVec3 &v ) const;							// only rotate
-	idVec3			operator*( const idVec4 &v ) const;							// rotate and translate
+idVec3 operator*( const idVec3 &v ) const;                                      // only rotate
+idVec3 operator*( const idVec4 &v ) const;                                      // rotate and translate
 
-	idJointMat &	operator*=( const idJointMat &a );							// transform
-	idJointMat &	operator/=( const idJointMat &a );							// untransform
+idJointMat &    operator*=( const idJointMat &a );                              // transform
+idJointMat &    operator/=( const idJointMat &a );                              // untransform
 
-	bool			Compare( const idJointMat &a ) const;						// exact compare, no epsilon
-	bool			Compare( const idJointMat &a, const float epsilon ) const;	// compare with epsilon
-	bool			operator==(	const idJointMat &a ) const;					// exact compare, no epsilon
-	bool			operator!=(	const idJointMat &a ) const;					// exact compare, no epsilon
+bool            Compare( const idJointMat &a ) const;                           // exact compare, no epsilon
+bool            Compare( const idJointMat &a, const float epsilon ) const;      // compare with epsilon
+bool operator==( const idJointMat &a ) const;                                   // exact compare, no epsilon
+bool operator!=( const idJointMat &a ) const;                                   // exact compare, no epsilon
 
-	void			Identity();
-	void			Invert();
+void            Identity();
+void            Invert();
 
-	void			FromMat4( const idMat4 & m );
+void            FromMat4( const idMat4 & m );
 
-	idMat3			ToMat3() const;
-	idMat4			ToMat4() const;
-	idVec3			ToVec3() const;
-	const float *	ToFloatPtr() const { return mat; }
-	float *			ToFloatPtr() { return mat; }
-	idJointQuat		ToJointQuat() const;
+idMat3          ToMat3() const;
+idMat4          ToMat4() const;
+idVec3          ToVec3() const;
+const float *   ToFloatPtr() const { return mat; }
+float *         ToFloatPtr() { return mat; }
+idJointQuat     ToJointQuat() const;
 
-	void			Transform( idVec3 &result, const idVec3 &v ) const;
-	void			Rotate( idVec3 &result, const idVec3 &v ) const;
+void            Transform( idVec3 &result, const idVec3 &v ) const;
+void            Rotate( idVec3 &result, const idVec3 &v ) const;
 
-	static void		Mul( idJointMat &result, const idJointMat &mat, const float s );
-	static void		Mad( idJointMat &result, const idJointMat &mat, const float s );
-	static void		Multiply( idJointMat &result, const idJointMat &m1, const idJointMat &m2 );
-	static void		InverseMultiply( idJointMat &result, const idJointMat &m1, const idJointMat &m2 );
+static void     Mul( idJointMat &result, const idJointMat &mat, const float s );
+static void     Mad( idJointMat &result, const idJointMat &mat, const float s );
+static void     Multiply( idJointMat &result, const idJointMat &m1, const idJointMat &m2 );
+static void     InverseMultiply( idJointMat &result, const idJointMat &m1, const idJointMat &m2 );
 
-	float			mat[3*4];
+float mat[3 * 4];
 };
 
 // offsets for SIMD code
-#define JOINTMAT_SIZE				(4*3*4)		// sizeof( idJointMat )
-assert_sizeof( idJointMat,			JOINTMAT_SIZE );
+#define JOINTMAT_SIZE               ( 4 * 3 * 4 )     // sizeof( idJointMat )
+assert_sizeof( idJointMat,          JOINTMAT_SIZE );
 
-#define JOINTMAT_TYPESIZE			( 4 * 3 )
+#define JOINTMAT_TYPESIZE           ( 4 * 3 )
 /*
 ========================
 idJointMat::SetRotation
@@ -193,13 +193,13 @@ idJointMat::operator*
 ========================
 */
 ID_INLINE idVec3 idJointMat::operator*( const idVec3 &v ) const {
-	return idVec3(	mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2],
+	return idVec3(  mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2],
 					mat[1 * 4 + 0] * v[0] + mat[1 * 4 + 1] * v[1] + mat[1 * 4 + 2] * v[2],
 					mat[2 * 4 + 0] * v[0] + mat[2 * 4 + 1] * v[1] + mat[2 * 4 + 2] * v[2] );
 }
 
 ID_INLINE idVec3 idJointMat::operator*( const idVec4 &v ) const {
-	return idVec3(	mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2] + mat[0 * 4 + 3] * v[3],
+	return idVec3(  mat[0 * 4 + 0] * v[0] + mat[0 * 4 + 1] * v[1] + mat[0 * 4 + 2] * v[2] + mat[0 * 4 + 3] * v[3],
 					mat[1 * 4 + 0] * v[0] + mat[1 * 4 + 1] * v[1] + mat[1 * 4 + 2] * v[2] + mat[1 * 4 + 3] * v[3],
 					mat[2 * 4 + 0] * v[0] + mat[2 * 4 + 1] * v[1] + mat[2 * 4 + 2] * v[2] + mat[2 * 4 + 3] * v[3] );
 }
@@ -385,7 +385,7 @@ idJointMat::ToMat3
 ========================
 */
 ID_INLINE idMat3 idJointMat::ToMat3() const {
-	return idMat3(	mat[0 * 4 + 0], mat[1 * 4 + 0], mat[2 * 4 + 0],
+	return idMat3(  mat[0 * 4 + 0], mat[1 * 4 + 0], mat[2 * 4 + 0],
 					mat[0 * 4 + 1], mat[1 * 4 + 1], mat[2 * 4 + 1],
 					mat[0 * 4 + 2], mat[1 * 4 + 2], mat[2 * 4 + 2] );
 }
@@ -396,12 +396,12 @@ idJointMat::ToMat4
 ========================
 */
 ID_INLINE idMat4 idJointMat::ToMat4() const {
-	return idMat4(	
+	return idMat4(
 		mat[0 * 4 + 0], mat[0 * 4 + 1], mat[0 * 4 + 2], mat[0 * 4 + 3],
 		mat[1 * 4 + 0], mat[1 * 4 + 1], mat[1 * 4 + 2], mat[1 * 4 + 3],
 		mat[2 * 4 + 0], mat[2 * 4 + 1], mat[2 * 4 + 2], mat[2 * 4 + 3],
 		0.0f, 0.0f, 0.0f, 1.0f
-	);
+		);
 }
 
 /*
@@ -410,9 +410,9 @@ idJointMat::FromMat4
 ========================
 */
 ID_INLINE void idJointMat::FromMat4( const idMat4 & m ) {
-	mat[0*4+0] = m[0][0], mat[0*4+1] = m[0][1], mat[0*4+2] = m[0][2], mat[0*4+3] = m[0][3];
-	mat[1*4+0] = m[1][0], mat[1*4+1] = m[1][1], mat[1*4+2] = m[1][2], mat[1*4+3] = m[1][3];
-	mat[2*4+0] = m[2][0], mat[2*4+1] = m[2][1], mat[2*4+2] = m[2][2], mat[2*4+3] = m[2][3];
+	mat[0 * 4 + 0] = m[0][0], mat[0 * 4 + 1] = m[0][1], mat[0 * 4 + 2] = m[0][2], mat[0 * 4 + 3] = m[0][3];
+	mat[1 * 4 + 0] = m[1][0], mat[1 * 4 + 1] = m[1][1], mat[1 * 4 + 2] = m[1][2], mat[1 * 4 + 3] = m[1][3];
+	mat[2 * 4 + 0] = m[2][0], mat[2 * 4 + 1] = m[2][1], mat[2 * 4 + 2] = m[2][2], mat[2 * 4 + 3] = m[2][3];
 	assert( m[3][0] == 0.0f );
 	assert( m[3][1] == 0.0f );
 	assert( m[3][2] == 0.0f );
@@ -532,9 +532,9 @@ ID_INLINE void idJointMat::InverseMultiply( idJointMat &result, const idJointMat
 	result.mat[2 * 4 + 1] = m1.mat[2 * 4 + 0] * m2.mat[1 * 4 + 0] + m1.mat[2 * 4 + 1] * m2.mat[1 * 4 + 1] + m1.mat[2 * 4 + 2] * m2.mat[1 * 4 + 2];
 	result.mat[2 * 4 + 2] = m1.mat[2 * 4 + 0] * m2.mat[2 * 4 + 0] + m1.mat[2 * 4 + 1] * m2.mat[2 * 4 + 1] + m1.mat[2 * 4 + 2] * m2.mat[2 * 4 + 2];
 
-	dst[0] = - ( m2.mat[0 * 4 + 0] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 0] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 0] * m2.mat[2 * 4 + 3] );
-	dst[1] = - ( m2.mat[0 * 4 + 1] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 1] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 1] * m2.mat[2 * 4 + 3] );
-	dst[2] = - ( m2.mat[0 * 4 + 2] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 2] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 2] * m2.mat[2 * 4 + 3] );
+	dst[0] = -( m2.mat[0 * 4 + 0] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 0] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 0] * m2.mat[2 * 4 + 3] );
+	dst[1] = -( m2.mat[0 * 4 + 1] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 1] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 1] * m2.mat[2 * 4 + 3] );
+	dst[2] = -( m2.mat[0 * 4 + 2] * m2.mat[0 * 4 + 3] + m2.mat[1 * 4 + 2] * m2.mat[1 * 4 + 3] + m2.mat[2 * 4 + 2] * m2.mat[2 * 4 + 3] );
 
 	result.mat[0 * 4 + 3] = m1.mat[0 * 4 + 0] * dst[0] + m1.mat[0 * 4 + 1] * dst[1] + m1.mat[0 * 4 + 2] * dst[2] + m1.mat[0 * 4 + 3];
 	result.mat[1 * 4 + 3] = m1.mat[1 * 4 + 0] * dst[0] + m1.mat[1 * 4 + 1] * dst[1] + m1.mat[1 * 4 + 2] * dst[2] + m1.mat[1 * 4 + 3];

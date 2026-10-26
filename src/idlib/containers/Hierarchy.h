@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -41,31 +41,31 @@ template< class type >
 class idHierarchy {
 public:
 
-						idHierarchy();
-						~idHierarchy();
-	
-	void				SetOwner( type *object );
-	type *				Owner() const;
-	void				ParentTo( idHierarchy &node );
-	void				MakeSiblingAfter( idHierarchy &node );
-	bool				ParentedBy( const idHierarchy &node ) const;
-	void				RemoveFromParent();
-	void				RemoveFromHierarchy();
+idHierarchy();
+~idHierarchy();
 
-	type *				GetParent() const;		// parent of this node
-	type *				GetChild() const;			// first child of this node
-	type *				GetSibling() const;		// next node with the same parent
-	type *				GetPriorSibling() const;	// previous node with the same parent
-	type *				GetNext() const;			// goes through all nodes of the hierarchy
-	type *				GetNextLeaf() const;		// goes through all leaf nodes of the hierarchy
+void                SetOwner( type *object );
+type *              Owner() const;
+void                ParentTo( idHierarchy &node );
+void                MakeSiblingAfter( idHierarchy &node );
+bool                ParentedBy( const idHierarchy &node ) const;
+void                RemoveFromParent();
+void                RemoveFromHierarchy();
+
+type *              GetParent() const;          // parent of this node
+type *              GetChild() const;               // first child of this node
+type *              GetSibling() const;         // next node with the same parent
+type *              GetPriorSibling() const;        // previous node with the same parent
+type *              GetNext() const;                // goes through all nodes of the hierarchy
+type *              GetNextLeaf() const;            // goes through all leaf nodes of the hierarchy
 
 private:
-	idHierarchy *		parent;
-	idHierarchy *		sibling;
-	idHierarchy *		child;
-	type *				owner;
+idHierarchy *       parent;
+idHierarchy *       sibling;
+idHierarchy *       child;
+type *              owner;
 
-	idHierarchy<type>	*GetPriorSiblingNode() const;	// previous node with the same parent
+idHierarchy<type>   *GetPriorSiblingNode() const;       // previous node with the same parent
 };
 
 /*
@@ -75,10 +75,10 @@ idHierarchy<type>::idHierarchy
 */
 template< class type >
 idHierarchy<type>::idHierarchy() {
-	owner	= NULL;
-	parent	= NULL;	
-	sibling	= NULL;
-	child	= NULL;
+	owner   = NULL;
+	parent  = NULL;
+	sibling = NULL;
+	child   = NULL;
 }
 
 /*
@@ -141,9 +141,9 @@ template< class type >
 void idHierarchy<type>::ParentTo( idHierarchy &node ) {
 	RemoveFromParent();
 
-	parent		= &node;
-	sibling		= node.child;
-	node.child	= this;
+	parent      = &node;
+	sibling     = node.child;
+	node.child  = this;
 }
 
 /*
@@ -156,7 +156,7 @@ Makes the given node a sibling after the passed in node.
 template< class type >
 void idHierarchy<type>::MakeSiblingAfter( idHierarchy &node ) {
 	RemoveFromParent();
-	parent	= node.parent;
+	parent  = node.parent;
 	sibling = node.sibling;
 	node.sibling = this;
 }
@@ -199,13 +199,13 @@ void idHierarchy<type>::RemoveFromHierarchy() {
 	RemoveFromParent();
 
 	if ( parentNode ) {
-		while( child ) {
+		while ( child ) {
 			node = child;
 			node->RemoveFromParent();
 			node->ParentTo( *parentNode );
 		}
 	} else {
-		while( child ) {
+		while ( child ) {
 			child->RemoveFromParent();
 		}
 	}
@@ -268,7 +268,7 @@ idHierarchy<type> *idHierarchy<type>::GetPriorSiblingNode() const {
 
 	node = parent->child;
 	prev = NULL;
-	while( ( node != this ) && ( node != NULL ) ) {
+	while ( ( node != this ) && ( node != NULL ) ) {
 		prev = node;
 		node = node->sibling;
 	}
@@ -314,7 +314,7 @@ type *idHierarchy<type>::GetNext() const {
 		return child->owner;
 	} else {
 		node = this;
-		while( node && node->sibling == NULL ) {
+		while ( node && node->sibling == NULL ) {
 			node = node->parent;
 		}
 		if ( node ) {
@@ -344,7 +344,7 @@ type *idHierarchy<type>::GetNextLeaf() const {
 		return node->owner;
 	} else {
 		node = this;
-		while( node && node->sibling == NULL ) {
+		while ( node && node->sibling == NULL ) {
 			node = node->parent;
 		}
 		if ( node ) {

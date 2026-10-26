@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,43 +29,43 @@ If you have questions concerning this license or the applicable additional terms
 #pragma hdrstop
 #include "../precompiled.h"
 
-const int SMALLEST_NON_DENORMAL					= 1<<IEEE_FLT_MANTISSA_BITS;
-const int NAN_VALUE								= 0x7f800000;
+const int SMALLEST_NON_DENORMAL                 = 1 << IEEE_FLT_MANTISSA_BITS;
+const int NAN_VALUE                             = 0x7f800000;
 
-const float	idMath::PI				= 3.14159265358979323846f;
-const float	idMath::TWO_PI			= 2.0f * PI;
-const float	idMath::HALF_PI			= 0.5f * PI;
-const float	idMath::ONEFOURTH_PI	= 0.25f * PI;
-const float idMath::ONEOVER_PI		= 1.0f / idMath::PI;
-const float idMath::ONEOVER_TWOPI	= 1.0f / idMath::TWO_PI;
-const float idMath::E				= 2.71828182845904523536f;
-const float idMath::SQRT_TWO		= 1.41421356237309504880f;
-const float idMath::SQRT_THREE		= 1.73205080756887729352f;
-const float	idMath::SQRT_1OVER2		= 0.70710678118654752440f;
-const float	idMath::SQRT_1OVER3		= 0.57735026918962576450f;
-const float	idMath::M_DEG2RAD		= PI / 180.0f;
-const float	idMath::M_RAD2DEG		= 180.0f / PI;
-const float	idMath::M_SEC2MS		= 1000.0f;
-const float	idMath::M_MS2SEC		= 0.001f;
-const float	idMath::INFINITY		= 1e30f;
-const float idMath::FLT_EPSILON		= 1.192092896e-07f;
-const float idMath::FLT_SMALLEST_NON_DENORMAL	= * reinterpret_cast< const float * >( & SMALLEST_NON_DENORMAL );	// 1.1754944e-038f
+const float idMath::PI              = 3.14159265358979323846f;
+const float idMath::TWO_PI          = 2.0f * PI;
+const float idMath::HALF_PI         = 0.5f * PI;
+const float idMath::ONEFOURTH_PI    = 0.25f * PI;
+const float idMath::ONEOVER_PI      = 1.0f / idMath::PI;
+const float idMath::ONEOVER_TWOPI   = 1.0f / idMath::TWO_PI;
+const float idMath::E               = 2.71828182845904523536f;
+const float idMath::SQRT_TWO        = 1.41421356237309504880f;
+const float idMath::SQRT_THREE      = 1.73205080756887729352f;
+const float idMath::SQRT_1OVER2     = 0.70710678118654752440f;
+const float idMath::SQRT_1OVER3     = 0.57735026918962576450f;
+const float idMath::M_DEG2RAD       = PI / 180.0f;
+const float idMath::M_RAD2DEG       = 180.0f / PI;
+const float idMath::M_SEC2MS        = 1000.0f;
+const float idMath::M_MS2SEC        = 0.001f;
+const float idMath::INFINITY        = 1e30f;
+const float idMath::FLT_EPSILON     = 1.192092896e-07f;
+const float idMath::FLT_SMALLEST_NON_DENORMAL   = *reinterpret_cast< const float * >( &SMALLEST_NON_DENORMAL );     // 1.1754944e-038f
 
 #if defined( ID_WIN_X86_SSE_INTRIN )
-const __m128 idMath::SIMD_SP_zero				= { 0.0f, 0.0f, 0.0f, 0.0f };
-const __m128 idMath::SIMD_SP_255				= { 255.0f, 255.0f, 255.0f, 255.0f };
-const __m128 idMath::SIMD_SP_min_char			= { -128.0f, -128.0f, -128.0f, -128.0f };
-const __m128 idMath::SIMD_SP_max_char			= { 127.0f, 127.0f, 127.0f, 127.0f };
-const __m128 idMath::SIMD_SP_min_short			= { -32768.0f, -32768.0f, -32768.0f, -32768.0f };
-const __m128 idMath::SIMD_SP_max_short			= { 32767.0f, 32767.0f, 32767.0f, 32767.0f };
-const __m128 idMath::SIMD_SP_smallestNonDenorm	= { FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL };
-const __m128 idMath::SIMD_SP_tiny				= { 1e-4f, 1e-4f, 1e-4f, 1e-4f };
-const __m128 idMath::SIMD_SP_rsqrt_c0			= { 3.0f, 3.0f, 3.0f, 3.0f };
-const __m128 idMath::SIMD_SP_rsqrt_c1			= { -0.5f, -0.5f, -0.5f, -0.5f };
+const __m128 idMath::SIMD_SP_zero               = { 0.0f, 0.0f, 0.0f, 0.0f };
+const __m128 idMath::SIMD_SP_255                = { 255.0f, 255.0f, 255.0f, 255.0f };
+const __m128 idMath::SIMD_SP_min_char           = { -128.0f, -128.0f, -128.0f, -128.0f };
+const __m128 idMath::SIMD_SP_max_char           = { 127.0f, 127.0f, 127.0f, 127.0f };
+const __m128 idMath::SIMD_SP_min_short          = { -32768.0f, -32768.0f, -32768.0f, -32768.0f };
+const __m128 idMath::SIMD_SP_max_short          = { 32767.0f, 32767.0f, 32767.0f, 32767.0f };
+const __m128 idMath::SIMD_SP_smallestNonDenorm  = { FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL, FLT_SMALLEST_NON_DENORMAL };
+const __m128 idMath::SIMD_SP_tiny               = { 1e-4f, 1e-4f, 1e-4f, 1e-4f };
+const __m128 idMath::SIMD_SP_rsqrt_c0           = { 3.0f, 3.0f, 3.0f, 3.0f };
+const __m128 idMath::SIMD_SP_rsqrt_c1           = { -0.5f, -0.5f, -0.5f, -0.5f };
 #endif
 
-bool		idMath::initialized		= false;
-dword		idMath::iSqrt[SQRT_TABLE_SIZE];		// inverse square root lookup table
+bool idMath::initialized     = false;
+dword idMath::iSqrt[SQRT_TABLE_SIZE];           // inverse square root lookup table
 
 /*
 ===============
@@ -73,15 +73,15 @@ idMath::Init
 ===============
 */
 void idMath::Init() {
-    union _flint fi, fo;
+	union _flint fi, fo;
 
-    for ( int i = 0; i < SQRT_TABLE_SIZE; i++ ) {
-        fi.i	 = ((EXP_BIAS-1) << EXP_POS) | (i << LOOKUP_POS);
-        fo.f	 = (float)( 1.0 / sqrt( fi.f ) );
-        iSqrt[i] = ((dword)(((fo.i + (1<<(SEED_POS-2))) >> SEED_POS) & 0xFF))<<SEED_POS;
-    }
-    
-	iSqrt[SQRT_TABLE_SIZE / 2] = ((dword)(0xFF))<<(SEED_POS); 
+	for ( int i = 0; i < SQRT_TABLE_SIZE; i++ ) {
+		fi.i     = ( ( EXP_BIAS - 1 ) << EXP_POS ) | ( i << LOOKUP_POS );
+		fo.f     = (float)( 1.0 / sqrt( fi.f ) );
+		iSqrt[i] = ( (dword)( ( ( fo.i + ( 1 << ( SEED_POS - 2 ) ) ) >> SEED_POS ) & 0xFF ) ) << SEED_POS;
+	}
+
+	iSqrt[SQRT_TABLE_SIZE / 2] = ( (dword)( 0xFF ) ) << ( SEED_POS );
 
 	initialized = true;
 }
@@ -118,7 +118,7 @@ int idMath::FloatToBits( float f, int exponentBits, int mantissaBits ) {
 	}
 
 	exponentBits--;
-	i = *reinterpret_cast<int *>(&f);
+	i = *reinterpret_cast<int *>( &f );
 	sign = ( i >> IEEE_FLT_SIGN_BIT ) & 1;
 	exponent = ( ( i >> IEEE_FLT_MANTISSA_BITS ) & ( ( 1 << IEEE_FLT_EXPONENT_BITS ) - 1 ) ) - IEEE_FLT_EXPONENT_BIAS;
 	mantissa = i & ( ( 1 << IEEE_FLT_MANTISSA_BITS ) - 1 );
@@ -145,5 +145,5 @@ float idMath::BitsToFloat( int i, int exponentBits, int mantissaBits ) {
 	exponent = ( ( i >> mantissaBits ) & ( ( 1 << exponentBits ) - 1 ) ) * exponentSign[( i >> ( exponentBits + mantissaBits ) ) & 1];
 	mantissa = ( i & ( ( 1 << mantissaBits ) - 1 ) ) << ( IEEE_FLT_MANTISSA_BITS - mantissaBits );
 	value = sign << IEEE_FLT_SIGN_BIT | ( exponent + IEEE_FLT_EXPONENT_BIAS ) << IEEE_FLT_MANTISSA_BITS | mantissa;
-	return *reinterpret_cast<float *>(&value);
+	return *reinterpret_cast<float *>( &value );
 }

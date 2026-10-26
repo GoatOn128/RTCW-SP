@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,87 +37,87 @@ If you have questions concerning this license or the applicable additional terms
 ===============================================================================
 */
 
-#define ASSERT_ENUM_STRING( string, index )		( 1 / (int)!( string - index ) ) ? #string : ""
+#define ASSERT_ENUM_STRING( string, index )     ( 1 / (int)!( string - index ) ) ? #string : ""
 
 enum utf8Encoding_t {
-	UTF8_PURE_ASCII,		// no characters with values > 127
-	UTF8_ENCODED_BOM,		// characters > 128 encoded with UTF8, but no byte-order-marker at the beginning
-	UTF8_ENCODED_NO_BOM,	// characters > 128 encoded with UTF8, with a byte-order-marker at the beginning
-	UTF8_INVALID,			// has values > 127 but isn't valid UTF8 
-	UTF8_INVALID_BOM		// has a byte-order-marker at the beginning, but isn't valuid UTF8 -- it's messed up
+	UTF8_PURE_ASCII,        // no characters with values > 127
+	UTF8_ENCODED_BOM,       // characters > 128 encoded with UTF8, but no byte-order-marker at the beginning
+	UTF8_ENCODED_NO_BOM,    // characters > 128 encoded with UTF8, with a byte-order-marker at the beginning
+	UTF8_INVALID,           // has values > 127 but isn't valid UTF8
+	UTF8_INVALID_BOM        // has a byte-order-marker at the beginning, but isn't valuid UTF8 -- it's messed up
 };
 
 // these library functions should not be used for cross platform compatibility
-#define strcmp			idStr::Cmp		// use_idStr_Cmp
-#define strncmp			use_idStr_Cmpn
+#define strcmp          idStr::Cmp      // use_idStr_Cmp
+#define strncmp         use_idStr_Cmpn
 
 #if defined( StrCmpN )
 #undef StrCmpN
 #endif
-#define StrCmpN			use_idStr_Cmpn
+#define StrCmpN         use_idStr_Cmpn
 
 #if defined( strcmpi )
 #undef strcmpi
 #endif
-#define strcmpi			use_idStr_Icmp
+#define strcmpi         use_idStr_Icmp
 
 #if defined( StrCmpI )
 #undef StrCmpI
 #endif
-#define StrCmpI			use_idStr_Icmp
+#define StrCmpI         use_idStr_Icmp
 
 #if defined( StrCmpNI )
 #undef StrCmpNI
 #endif
-#define StrCmpNI		use_idStr_Icmpn
+#define StrCmpNI        use_idStr_Icmpn
 
-#define stricmp			idStr::Icmp		// use_idStr_Icmp
-#define _stricmp		use_idStr_Icmp
-#define strcasecmp		use_idStr_Icmp
-#define strnicmp		use_idStr_Icmpn
-#define _strnicmp		use_idStr_Icmpn
-#define _memicmp		use_idStr_Icmpn
+#define stricmp         idStr::Icmp     // use_idStr_Icmp
+#define _stricmp        use_idStr_Icmp
+#define strcasecmp      use_idStr_Icmp
+#define strnicmp        use_idStr_Icmpn
+#define _strnicmp       use_idStr_Icmpn
+#define _memicmp        use_idStr_Icmpn
 
-#define snprintf		use_idStr_snPrintf
-#define _snprintf		use_idStr_snPrintf
-#define vsnprintf		use_idStr_vsnPrintf
-#define _vsnprintf		use_idStr_vsnPrintf
+#define snprintf        use_idStr_snPrintf
+#define _snprintf       use_idStr_snPrintf
+#define vsnprintf       use_idStr_vsnPrintf
+#define _vsnprintf      use_idStr_vsnPrintf
 
 class idVec4;
 
 #ifndef FILE_HASH_SIZE
-#define FILE_HASH_SIZE		1024
+#define FILE_HASH_SIZE      1024
 #endif
 
 // color escape character
-const int C_COLOR_ESCAPE			= '^';
-const int C_COLOR_DEFAULT			= '0';
-const int C_COLOR_RED				= '1';
-const int C_COLOR_GREEN				= '2';
-const int C_COLOR_YELLOW			= '3';
-const int C_COLOR_BLUE				= '4';
-const int C_COLOR_CYAN				= '5';
-const int C_COLOR_ORANGE			= '6';
-const int C_COLOR_WHITE				= '7';
-const int C_COLOR_GRAY				= '8';
-const int C_COLOR_BLACK				= '9';
+const int C_COLOR_ESCAPE            = '^';
+const int C_COLOR_DEFAULT           = '0';
+const int C_COLOR_RED               = '1';
+const int C_COLOR_GREEN             = '2';
+const int C_COLOR_YELLOW            = '3';
+const int C_COLOR_BLUE              = '4';
+const int C_COLOR_CYAN              = '5';
+const int C_COLOR_ORANGE            = '6';
+const int C_COLOR_WHITE             = '7';
+const int C_COLOR_GRAY              = '8';
+const int C_COLOR_BLACK             = '9';
 
 // color escape string
-#define S_COLOR_DEFAULT				"^0"
-#define S_COLOR_RED					"^1"
-#define S_COLOR_GREEN				"^2"
-#define S_COLOR_YELLOW				"^3"
-#define S_COLOR_BLUE				"^4"
-#define S_COLOR_CYAN				"^5"
-#define S_COLOR_ORANGE				"^6"
-#define S_COLOR_WHITE				"^7"
-#define S_COLOR_GRAY				"^8"
-#define S_COLOR_BLACK				"^9"
+#define S_COLOR_DEFAULT             "^0"
+#define S_COLOR_RED                 "^1"
+#define S_COLOR_GREEN               "^2"
+#define S_COLOR_YELLOW              "^3"
+#define S_COLOR_BLUE                "^4"
+#define S_COLOR_CYAN                "^5"
+#define S_COLOR_ORANGE              "^6"
+#define S_COLOR_WHITE               "^7"
+#define S_COLOR_GRAY                "^8"
+#define S_COLOR_BLACK               "^9"
 
 // make idStr a multiple of 16 bytes long
 // don't make too large to keep memory requirements to a minimum
-const int STR_ALLOC_BASE			= 20;
-const int STR_ALLOC_GRAN			= 32;
+const int STR_ALLOC_BASE            = 20;
+const int STR_ALLOC_GRAN            = 32;
 
 typedef enum {
 	MEASURE_SIZE = 0,
@@ -127,254 +127,254 @@ typedef enum {
 class idStr {
 
 public:
-						idStr();
-						idStr( const idStr &text );
-						idStr( const idStr &text, int start, int end );
-						idStr( const char *text );
-						idStr( const char *text, int start, int end );
-						explicit idStr( const bool b );
-						explicit idStr( const char c );
-						explicit idStr( const int i );
-						explicit idStr( const unsigned u );
-						explicit idStr( const float f );
-						~idStr();
+idStr();
+idStr( const idStr &text );
+idStr( const idStr &text, int start, int end );
+idStr( const char *text );
+idStr( const char *text, int start, int end );
+explicit idStr( const bool b );
+explicit idStr( const char c );
+explicit idStr( const int i );
+explicit idStr( const unsigned u );
+explicit idStr( const float f );
+~idStr();
 
-	size_t				Size() const;
-	const char *		c_str() const;
-	operator			const char *() const;
-	operator			const char *();
+size_t              Size() const;
+const char *        c_str() const;
+operator            const char *() const;
+operator            const char *();
 
-	char				operator[]( int index ) const;
-	char &				operator[]( int index );
+char operator[]( int index ) const;
+char &              operator[]( int index );
 
-	void				operator=( const idStr &text );
-	void				operator=( const char *text );
+void operator=( const idStr &text );
+void operator=( const char *text );
 
-	friend idStr		operator+( const idStr &a, const idStr &b );
-	friend idStr		operator+( const idStr &a, const char *b );
-	friend idStr		operator+( const char *a, const idStr &b );
+friend idStr operator+( const idStr &a, const idStr &b );
+friend idStr operator+( const idStr &a, const char *b );
+friend idStr operator+( const char *a, const idStr &b );
 
-	friend idStr		operator+( const idStr &a, const float b );
-	friend idStr		operator+( const idStr &a, const int b );
-	friend idStr		operator+( const idStr &a, const unsigned b );
-	friend idStr		operator+( const idStr &a, const bool b );
-	friend idStr		operator+( const idStr &a, const char b );
+friend idStr operator+( const idStr &a, const float b );
+friend idStr operator+( const idStr &a, const int b );
+friend idStr operator+( const idStr &a, const unsigned b );
+friend idStr operator+( const idStr &a, const bool b );
+friend idStr operator+( const idStr &a, const char b );
 
-	idStr &				operator+=( const idStr &a );
-	idStr &				operator+=( const char *a );
-	idStr &				operator+=( const float a );
-	idStr &				operator+=( const char a );
-	idStr &				operator+=( const int a );
-	idStr &				operator+=( const unsigned a );
-	idStr &				operator+=( const bool a );
+idStr &             operator+=( const idStr &a );
+idStr &             operator+=( const char *a );
+idStr &             operator+=( const float a );
+idStr &             operator+=( const char a );
+idStr &             operator+=( const int a );
+idStr &             operator+=( const unsigned a );
+idStr &             operator+=( const bool a );
 
-						// case sensitive compare
-	friend bool			operator==( const idStr &a, const idStr &b );
-	friend bool			operator==( const idStr &a, const char *b );
-	friend bool			operator==( const char *a, const idStr &b );
+// case sensitive compare
+friend bool operator==( const idStr &a, const idStr &b );
+friend bool operator==( const idStr &a, const char *b );
+friend bool operator==( const char *a, const idStr &b );
 
-						// case sensitive compare
-	friend bool			operator!=( const idStr &a, const idStr &b );
-	friend bool			operator!=( const idStr &a, const char *b );
-	friend bool			operator!=( const char *a, const idStr &b );
+// case sensitive compare
+friend bool operator!=( const idStr &a, const idStr &b );
+friend bool operator!=( const idStr &a, const char *b );
+friend bool operator!=( const char *a, const idStr &b );
 
-						// case sensitive compare
-	int					Cmp( const char *text ) const;
-	int					Cmpn( const char *text, int n ) const;
-	int					CmpPrefix( const char *text ) const;
+// case sensitive compare
+int                 Cmp( const char *text ) const;
+int                 Cmpn( const char *text, int n ) const;
+int                 CmpPrefix( const char *text ) const;
 
-						// case insensitive compare
-	int					Icmp( const char *text ) const;
-	int					Icmpn( const char *text, int n ) const;
-	int					IcmpPrefix( const char *text ) const;
+// case insensitive compare
+int                 Icmp( const char *text ) const;
+int                 Icmpn( const char *text, int n ) const;
+int                 IcmpPrefix( const char *text ) const;
 
-						// case insensitive compare ignoring color
-	int					IcmpNoColor( const char *text ) const;
+// case insensitive compare ignoring color
+int                 IcmpNoColor( const char *text ) const;
 
-						// compares paths and makes sure folders come first
-	int					IcmpPath( const char *text ) const;
-	int					IcmpnPath( const char *text, int n ) const;
-	int					IcmpPrefixPath( const char *text ) const;
+// compares paths and makes sure folders come first
+int                 IcmpPath( const char *text ) const;
+int                 IcmpnPath( const char *text, int n ) const;
+int                 IcmpPrefixPath( const char *text ) const;
 
-	int					Length() const;
-	int					Allocated() const;
-	void				Empty();
-	bool				IsEmpty() const;
-	void				Clear();
-	void				Append( const char a );
-	void				Append( const idStr &text );
-	void				Append( const char *text );
-	void				Append( const char *text, int len );
-	void				Insert( const char a, int index );
-	void				Insert( const char *text, int index );
-	void				ToLower();
-	void				ToUpper();
-	bool				IsNumeric() const;
-	bool				IsColor() const;
-	bool				HasLower() const;
-	bool				HasUpper() const;
-	int					LengthWithoutColors() const;
-	idStr &				RemoveColors();
-	void				CapLength( int );
-	void				Fill( const char ch, int newlen );
+int                 Length() const;
+int                 Allocated() const;
+void                Empty();
+bool                IsEmpty() const;
+void                Clear();
+void                Append( const char a );
+void                Append( const idStr &text );
+void                Append( const char *text );
+void                Append( const char *text, int len );
+void                Insert( const char a, int index );
+void                Insert( const char *text, int index );
+void                ToLower();
+void                ToUpper();
+bool                IsNumeric() const;
+bool                IsColor() const;
+bool                HasLower() const;
+bool                HasUpper() const;
+int                 LengthWithoutColors() const;
+idStr &             RemoveColors();
+void                CapLength( int );
+void                Fill( const char ch, int newlen );
 
-	ID_INLINE int			UTF8Length();
-	ID_INLINE uint32		UTF8Char( int & idx );
-	static int				UTF8Length( const byte * s );
-	static ID_INLINE uint32 UTF8Char( const char * s, int & idx );
-	static uint32			UTF8Char( const byte * s, int & idx );
-	void					AppendUTF8Char( uint32 c );
-	ID_INLINE void			ConvertToUTF8();
-	static bool				IsValidUTF8( const uint8 * s, const int maxLen, utf8Encoding_t & encoding );
-	static ID_INLINE bool	IsValidUTF8( const char * s, const int maxLen, utf8Encoding_t & encoding ) { return IsValidUTF8( ( const uint8* )s, maxLen, encoding ); }
-	static ID_INLINE bool	IsValidUTF8( const uint8 * s, const int maxLen );
-	static ID_INLINE bool	IsValidUTF8( const char * s, const int maxLen ) { return IsValidUTF8( ( const uint8* )s, maxLen ); }
+ID_INLINE int           UTF8Length();
+ID_INLINE uint32        UTF8Char( int & idx );
+static int              UTF8Length( const byte * s );
+static ID_INLINE uint32 UTF8Char( const char * s, int & idx );
+static uint32           UTF8Char( const byte * s, int & idx );
+void                    AppendUTF8Char( uint32 c );
+ID_INLINE void          ConvertToUTF8();
+static bool             IsValidUTF8( const uint8 * s, const int maxLen, utf8Encoding_t & encoding );
+static ID_INLINE bool   IsValidUTF8( const char * s, const int maxLen, utf8Encoding_t & encoding ) { return IsValidUTF8( ( const uint8* )s, maxLen, encoding ); }
+static ID_INLINE bool   IsValidUTF8( const uint8 * s, const int maxLen );
+static ID_INLINE bool   IsValidUTF8( const char * s, const int maxLen ) { return IsValidUTF8( ( const uint8* )s, maxLen ); }
 
-	int					Find( const char c, int start = 0, int end = -1 ) const;
-	int					Find( const char *text, bool casesensitive = true, int start = 0, int end = -1 ) const;
-	bool				Filter( const char *filter, bool casesensitive ) const;
-	int					Last( const char c ) const;						// return the index to the last occurance of 'c', returns -1 if not found
-	const char *		Left( int len, idStr &result ) const;			// store the leftmost 'len' characters in the result
-	const char *		Right( int len, idStr &result ) const;			// store the rightmost 'len' characters in the result
-	const char *		Mid( int start, int len, idStr &result ) const;	// store 'len' characters starting at 'start' in result
-	idStr				Left( int len ) const;							// return the leftmost 'len' characters
-	idStr				Right( int len ) const;							// return the rightmost 'len' characters
-	idStr				Mid( int start, int len ) const;				// return 'len' characters starting at 'start'
-	void				Format( VERIFY_FORMAT_STRING const char *fmt, ... );					// perform a threadsafe sprintf to the string
-	static idStr		FormatInt( const int num, bool isCash = false );			// formats an integer as a value with commas
-	static idStr		FormatCash( const int num ) { return FormatInt( num, true ); }
-	void				StripLeading( const char c );					// strip char from front as many times as the char occurs
-	void				StripLeading( const char *string );				// strip string from front as many times as the string occurs
-	bool				StripLeadingOnce( const char *string );			// strip string from front just once if it occurs
-	void				StripTrailing( const char c );					// strip char from end as many times as the char occurs
-	void				StripTrailing( const char *string );			// strip string from end as many times as the string occurs
-	bool				StripTrailingOnce( const char *string );		// strip string from end just once if it occurs
-	void				Strip( const char c );							// strip char from front and end as many times as the char occurs
-	void				Strip( const char *string );					// strip string from front and end as many times as the string occurs
-	void				StripTrailingWhitespace();				// strip trailing white space characters
-	idStr &				StripQuotes();							// strip quotes around string
-	bool				Replace( const char *old, const char *nw );
-	bool				ReplaceChar( const char old, const char nw );
-	ID_INLINE void		CopyRange( const char * text, int start, int end );
+int                 Find( const char c, int start = 0, int end = -1 ) const;
+int                 Find( const char *text, bool casesensitive = true, int start = 0, int end = -1 ) const;
+bool                Filter( const char *filter, bool casesensitive ) const;
+int                 Last( const char c ) const;                         // return the index to the last occurance of 'c', returns -1 if not found
+const char *        Left( int len, idStr &result ) const;               // store the leftmost 'len' characters in the result
+const char *        Right( int len, idStr &result ) const;              // store the rightmost 'len' characters in the result
+const char *        Mid( int start, int len, idStr &result ) const;     // store 'len' characters starting at 'start' in result
+idStr               Left( int len ) const;                              // return the leftmost 'len' characters
+idStr               Right( int len ) const;                             // return the rightmost 'len' characters
+idStr               Mid( int start, int len ) const;                    // return 'len' characters starting at 'start'
+void                Format( VERIFY_FORMAT_STRING const char *fmt, ... );                        // perform a threadsafe sprintf to the string
+static idStr        FormatInt( const int num, bool isCash = false );                // formats an integer as a value with commas
+static idStr        FormatCash( const int num ) { return FormatInt( num, true ); }
+void                StripLeading( const char c );                       // strip char from front as many times as the char occurs
+void                StripLeading( const char *string );                 // strip string from front as many times as the string occurs
+bool                StripLeadingOnce( const char *string );             // strip string from front just once if it occurs
+void                StripTrailing( const char c );                      // strip char from end as many times as the char occurs
+void                StripTrailing( const char *string );                // strip string from end as many times as the string occurs
+bool                StripTrailingOnce( const char *string );            // strip string from end just once if it occurs
+void                Strip( const char c );                              // strip char from front and end as many times as the char occurs
+void                Strip( const char *string );                        // strip string from front and end as many times as the string occurs
+void                StripTrailingWhitespace();                  // strip trailing white space characters
+idStr &             StripQuotes();                              // strip quotes around string
+bool                Replace( const char *old, const char *nw );
+bool                ReplaceChar( const char old, const char nw );
+ID_INLINE void      CopyRange( const char * text, int start, int end );
 
-	// file name methods
-	int					FileNameHash() const;						// hash key for the filename (skips extension)
-	idStr &				BackSlashesToSlashes();					// convert slashes
-	idStr &				SlashesToBackSlashes();					// convert slashes
-	idStr &				SetFileExtension( const char *extension );		// set the given file extension
-	idStr &				StripFileExtension();						// remove any file extension
-	idStr &				StripAbsoluteFileExtension();				// remove any file extension looking from front (useful if there are multiple .'s)
-	idStr &				DefaultFileExtension( const char *extension );	// if there's no file extension use the default
-	idStr &				DefaultPath( const char *basepath );			// if there's no path use the default
-	void				AppendPath( const char *text );					// append a partial path
-	idStr &				StripFilename();							// remove the filename from a path
-	idStr &				StripPath();								// remove the path from the filename
-	void				ExtractFilePath( idStr &dest ) const;			// copy the file path to another string
-	void				ExtractFileName( idStr &dest ) const;			// copy the filename to another string
-	void				ExtractFileBase( idStr &dest ) const;			// copy the filename minus the extension to another string
-	void				ExtractFileExtension( idStr &dest ) const;		// copy the file extension to another string
-	bool				CheckExtension( const char *ext );
+// file name methods
+int                 FileNameHash() const;                           // hash key for the filename (skips extension)
+idStr &             BackSlashesToSlashes();                     // convert slashes
+idStr &             SlashesToBackSlashes();                     // convert slashes
+idStr &             SetFileExtension( const char *extension );          // set the given file extension
+idStr &             StripFileExtension();                           // remove any file extension
+idStr &             StripAbsoluteFileExtension();                   // remove any file extension looking from front (useful if there are multiple .'s)
+idStr &             DefaultFileExtension( const char *extension );      // if there's no file extension use the default
+idStr &             DefaultPath( const char *basepath );                // if there's no path use the default
+void                AppendPath( const char *text );                     // append a partial path
+idStr &             StripFilename();                                // remove the filename from a path
+idStr &             StripPath();                                    // remove the path from the filename
+void                ExtractFilePath( idStr &dest ) const;               // copy the file path to another string
+void                ExtractFileName( idStr &dest ) const;               // copy the filename to another string
+void                ExtractFileBase( idStr &dest ) const;               // copy the filename minus the extension to another string
+void                ExtractFileExtension( idStr &dest ) const;          // copy the file extension to another string
+bool                CheckExtension( const char *ext );
 
-	// char * methods to replace library functions
-	static int			Length( const char *s );
-	static char *		ToLower( char *s );
-	static char *		ToUpper( char *s );
-	static bool			IsNumeric( const char *s );
-	static bool			IsColor( const char *s );
-	static bool			HasLower( const char *s );
-	static bool			HasUpper( const char *s );
-	static int			LengthWithoutColors( const char *s );
-	static char *		RemoveColors( char *s );
-	static int			Cmp( const char *s1, const char *s2 );
-	static int			Cmpn( const char *s1, const char *s2, int n );
-	static int			Icmp( const char *s1, const char *s2 );
-	static int			Icmpn( const char *s1, const char *s2, int n );
-	static int			IcmpNoColor( const char *s1, const char *s2 );
-	static int			IcmpPath( const char *s1, const char *s2 );			// compares paths and makes sure folders come first
-	static int			IcmpnPath( const char *s1, const char *s2, int n );	// compares paths and makes sure folders come first
-	static void			Append( char *dest, int size, const char *src );
-	static void			Copynz( char *dest, const char *src, int destsize );
-	static int			snPrintf( char *dest, int size, VERIFY_FORMAT_STRING const char *fmt, ... );
-	static int			vsnPrintf( char *dest, int size, const char *fmt, va_list argptr );
-	static int			FindChar( const char *str, const char c, int start = 0, int end = -1 );
-	static int			FindText( const char *str, const char *text, bool casesensitive = true, int start = 0, int end = -1 );
-	static bool			Filter( const char *filter, const char *name, bool casesensitive );
-	static void			StripMediaName( const char *name, idStr &mediaName );
-	static bool			CheckExtension( const char *name, const char *ext );
-	static const char *	FloatArrayToString( const float *array, const int length, const int precision );
-	static const char *	CStyleQuote( const char *str );
-	static const char *	CStyleUnQuote( const char *str );
+// char * methods to replace library functions
+static int          Length( const char *s );
+static char *       ToLower( char *s );
+static char *       ToUpper( char *s );
+static bool         IsNumeric( const char *s );
+static bool         IsColor( const char *s );
+static bool         HasLower( const char *s );
+static bool         HasUpper( const char *s );
+static int          LengthWithoutColors( const char *s );
+static char *       RemoveColors( char *s );
+static int          Cmp( const char *s1, const char *s2 );
+static int          Cmpn( const char *s1, const char *s2, int n );
+static int          Icmp( const char *s1, const char *s2 );
+static int          Icmpn( const char *s1, const char *s2, int n );
+static int          IcmpNoColor( const char *s1, const char *s2 );
+static int          IcmpPath( const char *s1, const char *s2 );             // compares paths and makes sure folders come first
+static int          IcmpnPath( const char *s1, const char *s2, int n );     // compares paths and makes sure folders come first
+static void         Append( char *dest, int size, const char *src );
+static void         Copynz( char *dest, const char *src, int destsize );
+static int          snPrintf( char *dest, int size, VERIFY_FORMAT_STRING const char *fmt, ... );
+static int          vsnPrintf( char *dest, int size, const char *fmt, va_list argptr );
+static int          FindChar( const char *str, const char c, int start = 0, int end = -1 );
+static int          FindText( const char *str, const char *text, bool casesensitive = true, int start = 0, int end = -1 );
+static bool         Filter( const char *filter, const char *name, bool casesensitive );
+static void         StripMediaName( const char *name, idStr &mediaName );
+static bool         CheckExtension( const char *name, const char *ext );
+static const char * FloatArrayToString( const float *array, const int length, const int precision );
+static const char * CStyleQuote( const char *str );
+static const char * CStyleUnQuote( const char *str );
 
-	// hash keys
-	static int			Hash( const char *string );
-	static int			Hash( const char *string, int length );
-	static int			IHash( const char *string );					// case insensitive
-	static int			IHash( const char *string, int length );		// case insensitive
+// hash keys
+static int          Hash( const char *string );
+static int          Hash( const char *string, int length );
+static int          IHash( const char *string );                        // case insensitive
+static int          IHash( const char *string, int length );            // case insensitive
 
-	// character methods
-	static char			ToLower( char c );
-	static char			ToUpper( char c );
-	static bool			CharIsPrintable( int c );
-	static bool			CharIsLower( int c );
-	static bool			CharIsUpper( int c );
-	static bool			CharIsAlpha( int c );
-	static bool			CharIsNumeric( int c );
-	static bool			CharIsNewLine( char c );
-	static bool			CharIsTab( char c );
-	static int			ColorIndex( int c );
-	static idVec4 &		ColorForIndex( int i );
+// character methods
+static char         ToLower( char c );
+static char         ToUpper( char c );
+static bool         CharIsPrintable( int c );
+static bool         CharIsLower( int c );
+static bool         CharIsUpper( int c );
+static bool         CharIsAlpha( int c );
+static bool         CharIsNumeric( int c );
+static bool         CharIsNewLine( char c );
+static bool         CharIsTab( char c );
+static int          ColorIndex( int c );
+static idVec4 &     ColorForIndex( int i );
 
-	friend int			sprintf( idStr &dest, const char *fmt, ... );
-	friend int			vsprintf( idStr &dest, const char *fmt, va_list ap );
+friend int          sprintf( idStr &dest, const char *fmt, ... );
+friend int          vsprintf( idStr &dest, const char *fmt, va_list ap );
 
-	void				ReAllocate( int amount, bool keepold );				// reallocate string data buffer
-	void				FreeData();									// free allocated string memory
+void                ReAllocate( int amount, bool keepold );                 // reallocate string data buffer
+void                FreeData();                                     // free allocated string memory
 
-						// format value in the given measurement with the best unit, returns the best unit
-	int					BestUnit( const char *format, float value, Measure_t measure );
-						// format value in the requested unit and measurement
-	void				SetUnit( const char *format, float value, int unit, Measure_t measure );
+// format value in the given measurement with the best unit, returns the best unit
+int                 BestUnit( const char *format, float value, Measure_t measure );
+// format value in the requested unit and measurement
+void                SetUnit( const char *format, float value, int unit, Measure_t measure );
 
-	static void			InitMemory();
-	static void			ShutdownMemory();
-	static void			PurgeMemory();
-	static void			ShowMemoryUsage_f( const idCmdArgs &args );
+static void         InitMemory();
+static void         ShutdownMemory();
+static void         PurgeMemory();
+static void         ShowMemoryUsage_f( const idCmdArgs &args );
 
-	int					DynamicMemoryUsed() const;
-	static idStr		FormatNumber( int number );
+int                 DynamicMemoryUsed() const;
+static idStr        FormatNumber( int number );
 
 protected:
-	int					len;
-	char *				data;
-	int					allocedAndFlag;	// top bit is used to store a flag that indicates if the string data is static or not
-	char				baseBuffer[ STR_ALLOC_BASE ];
+int len;
+char *              data;
+int allocedAndFlag;                     // top bit is used to store a flag that indicates if the string data is static or not
+char baseBuffer[ STR_ALLOC_BASE ];
 
-	void				EnsureAlloced( int amount, bool keepold = true );	// ensure string data buffer is large anough
+void                EnsureAlloced( int amount, bool keepold = true );       // ensure string data buffer is large anough
 
-	// sets the data point to the specified buffer... note that this ignores makes the passed buffer empty and ignores
-	// anything currently in the idStr's dynamic buffer.  This method is intended to be called only from a derived class's constructor.
-	ID_INLINE void		SetStaticBuffer( char * buffer, const int bufferLength );
+// sets the data point to the specified buffer... note that this ignores makes the passed buffer empty and ignores
+// anything currently in the idStr's dynamic buffer.  This method is intended to be called only from a derived class's constructor.
+ID_INLINE void      SetStaticBuffer( char * buffer, const int bufferLength );
 
 private:
-	// initialize string using base buffer... call ONLY FROM CONSTRUCTOR
-	ID_INLINE void		Construct();										
+// initialize string using base buffer... call ONLY FROM CONSTRUCTOR
+ID_INLINE void      Construct();
 
-	static const uint32	STATIC_BIT	= 31;
-	static const uint32	STATIC_MASK	= 1u << STATIC_BIT;
-	static const uint32	ALLOCED_MASK = STATIC_MASK - 1;
+static const uint32 STATIC_BIT  = 31;
+static const uint32 STATIC_MASK = 1u << STATIC_BIT;
+static const uint32 ALLOCED_MASK = STATIC_MASK - 1;
 
 
-	ID_INLINE int		GetAlloced() const { return allocedAndFlag & ALLOCED_MASK; }
-	ID_INLINE void		SetAlloced( const int a ) { allocedAndFlag = ( allocedAndFlag & STATIC_MASK ) | ( a & ALLOCED_MASK); }
+ID_INLINE int       GetAlloced() const { return allocedAndFlag & ALLOCED_MASK; }
+ID_INLINE void      SetAlloced( const int a ) { allocedAndFlag = ( allocedAndFlag & STATIC_MASK ) | ( a & ALLOCED_MASK ); }
 
-	ID_INLINE bool		IsStatic() const { return ( allocedAndFlag & STATIC_MASK ) != 0; }
-	ID_INLINE void		SetStatic( const bool isStatic ) { allocedAndFlag = ( allocedAndFlag & ALLOCED_MASK ) | ( isStatic << STATIC_BIT ); }
+ID_INLINE bool      IsStatic() const { return ( allocedAndFlag & STATIC_MASK ) != 0; }
+ID_INLINE void      SetStatic( const bool isStatic ) { allocedAndFlag = ( allocedAndFlag & ALLOCED_MASK ) | ( isStatic << STATIC_BIT ); }
 
 public:
-	static const int	INVALID_POSITION = -1;
+static const int INVALID_POSITION = -1;
 };
 
-char *					va( VERIFY_FORMAT_STRING const char *fmt, ... );
+char *                  va( VERIFY_FORMAT_STRING const char *fmt, ... );
 
 /*
 ================================================================================================
@@ -386,12 +386,12 @@ char *					va( VERIFY_FORMAT_STRING const char *fmt, ... );
 
 class idSort_Str : public idSort_Quick< idStr, idSort_Str > {
 public:
-	int Compare( const idStr & a, const idStr & b ) const { return a.Icmp( b ); }
+int Compare( const idStr & a, const idStr & b ) const { return a.Icmp( b ); }
 };
 
 class idSort_PathStr : public idSort_Quick< idStr, idSort_PathStr > {
 public:
-	int Compare( const idStr & a, const idStr & b ) const { return a.IcmpPath( b ); }
+int Compare( const idStr & a, const idStr & b ) const { return a.IcmpPath( b ); }
 };
 
 /*
@@ -427,7 +427,7 @@ ID_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
 idStr::SetStaticBuffer
 ========================
 */
-ID_INLINE void idStr::SetStaticBuffer( char * buffer, const int bufferLength ) { 
+ID_INLINE void idStr::SetStaticBuffer( char * buffer, const int bufferLength ) {
 	// this should only be called on a freshly constructed idStr
 	assert( data == baseBuffer );
 	data = buffer;
@@ -564,8 +564,8 @@ ID_INLINE idStr::idStr( const float f ) {
 	int l;
 
 	l = idStr::snPrintf( text, sizeof( text ), "%f", f );
-	while( l > 0 && text[l-1] == '0' ) text[--l] = '\0';
-	while( l > 0 && text[l-1] == '.' ) text[--l] = '\0';
+	while ( l > 0 && text[l - 1] == '0' ) text[--l] = '\0';
+	while ( l > 0 && text[l - 1] == '.' ) text[--l] = '\0';
 	EnsureAlloced( l + 1 );
 	strcpy( data, text );
 	len = l;
@@ -642,8 +642,8 @@ ID_INLINE idStr operator+( const idStr &a, const char b ) {
 }
 
 ID_INLINE idStr operator+( const idStr &a, const float b ) {
-	char	text[ 64 ];
-	idStr	result( a );
+	char text[ 64 ];
+	idStr result( a );
 
 	sprintf( text, "%f", b );
 	result.Append( text );
@@ -652,8 +652,8 @@ ID_INLINE idStr operator+( const idStr &a, const float b ) {
 }
 
 ID_INLINE idStr operator+( const idStr &a, const int b ) {
-	char	text[ 64 ];
-	idStr	result( a );
+	char text[ 64 ];
+	idStr result( a );
 
 	sprintf( text, "%d", b );
 	result.Append( text );
@@ -662,8 +662,8 @@ ID_INLINE idStr operator+( const idStr &a, const int b ) {
 }
 
 ID_INLINE idStr operator+( const idStr &a, const unsigned b ) {
-	char	text[ 64 ];
-	idStr	result( a );
+	char text[ 64 ];
+	idStr result( a );
 
 	sprintf( text, "%u", b );
 	result.Append( text );
@@ -888,7 +888,7 @@ ID_INLINE void idStr::Insert( const char a, int index ) {
 	l = 1;
 	EnsureAlloced( len + l + 1 );
 	for ( i = len; i >= index; i-- ) {
-		data[i+l] = data[i];
+		data[i + l] = data[i];
 	}
 	data[index] = a;
 	len++;
@@ -906,10 +906,10 @@ ID_INLINE void idStr::Insert( const char *text, int index ) {
 	l = strlen( text );
 	EnsureAlloced( len + l + 1 );
 	for ( i = len; i >= index; i-- ) {
-		data[i+l] = data[i];
+		data[i + l] = data[i];
 	}
 	for ( i = 0; i < l; i++ ) {
-		data[index+i] = text[i];
+		data[index + i] = text[i];
 	}
 	len += l;
 }
@@ -997,7 +997,7 @@ idStr::ConvertToUTF8
 ID_INLINE void idStr::ConvertToUTF8() {
 	idStr temp( *this );
 	Clear();
-	for( int index = 0; index < temp.Length(); ++index ) {
+	for ( int index = 0; index < temp.Length(); ++index ) {
 		AppendUTF8Char( temp[index] );
 	}
 }
@@ -1118,7 +1118,7 @@ ID_INLINE int idStr::Hash( const char *string, int length ) {
 
 ID_INLINE int idStr::IHash( const char *string ) {
 	int i, hash = 0;
-	for( i = 0; *string != '\0'; i++ ) {
+	for ( i = 0; *string != '\0'; i++ ) {
 		hash += ToLower( *string++ ) * ( i + 119 );
 	}
 	return hash;

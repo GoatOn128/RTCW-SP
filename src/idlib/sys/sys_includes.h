@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,18 +40,18 @@ If you have questions concerning this license or the applicable additional terms
 
 
 #if defined( _WIN32 )
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// prevent auto literal to string conversion
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS  // prevent auto literal to string conversion
 
 #ifndef _D3SDK
 #ifndef GAME_DLL
 
-#define WINVER				0x501
+#define WINVER              0x501
 
 #include <winsock2.h>
 #include <mmsystem.h>
 #include <mmreg.h>
 
-#define DIRECTINPUT_VERSION  0x0800			// was 0x0700 with the old mssdk
+#define DIRECTINPUT_VERSION  0x0800         // was 0x0700 with the old mssdk
 #define DIRECTSOUND_VERSION  0x0800
 
 #include <dsound.h>
@@ -60,17 +60,17 @@ If you have questions concerning this license or the applicable additional terms
 #endif /* !GAME_DLL */
 #endif /* !_D3SDK */
 
-#include <intrin.h>			// needed for intrinsics like _mm_setzero_si28
+#include <intrin.h>         // needed for intrinsics like _mm_setzero_si28
 
-#pragma warning(disable : 4100)				// unreferenced formal parameter
-#pragma warning(disable : 4127)				// conditional expression is constant
-#pragma warning(disable : 4244)				// conversion to smaller type, possible loss of data
-#pragma warning(disable : 4714)				// function marked as __forceinline not inlined
-#pragma warning(disable : 4996)				// unsafe string operations
+#pragma warning(disable : 4100)             // unreferenced formal parameter
+#pragma warning(disable : 4127)             // conditional expression is constant
+#pragma warning(disable : 4244)             // conversion to smaller type, possible loss of data
+#pragma warning(disable : 4714)             // function marked as __forceinline not inlined
+#pragma warning(disable : 4996)             // unsafe string operations
 
-#include <malloc.h>							// no malloc.h on mac or unix
-#include <windows.h>						// for qgl.h
-#undef FindText								// fix namespace pollution
+#include <malloc.h>                         // no malloc.h on mac or unix
+#include <windows.h>                        // for qgl.h
+#undef FindText                             // fix namespace pollution
 #endif /* _WIN32 */
 
 /*
@@ -82,7 +82,7 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 #if !defined( _DEBUG ) && !defined( NDEBUG )
-	// don't generate asserts
+// don't generate asserts
 	#define NDEBUG
 #endif
 

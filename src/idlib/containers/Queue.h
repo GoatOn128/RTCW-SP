@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,17 +38,17 @@ If you have questions concerning this license or the applicable additional terms
 template< class type, int nextOffset >
 class idQueueTemplate {
 public:
-							idQueueTemplate();
+idQueueTemplate();
 
-	void					Add( type *element );
-	type *					Get();
+void                    Add( type *element );
+type *                  Get();
 
 private:
-	type *					first;
-	type *					last;
+type *                  first;
+type *                  last;
 };
 
-#define QUEUE_NEXT_PTR( element )		(*((type**)(((byte*)element)+nextOffset)))
+#define QUEUE_NEXT_PTR( element )       ( *( (type**)( ( (byte*)element ) + nextOffset ) ) )
 
 template< class type, int nextOffset >
 idQueueTemplate<type,nextOffset>::idQueueTemplate() {
@@ -57,9 +57,9 @@ idQueueTemplate<type,nextOffset>::idQueueTemplate() {
 
 template< class type, int nextOffset >
 void idQueueTemplate<type,nextOffset>::Add( type *element ) {
-	QUEUE_NEXT_PTR(element) = NULL;
+	QUEUE_NEXT_PTR( element ) = NULL;
 	if ( last ) {
-		QUEUE_NEXT_PTR(last) = element;
+		QUEUE_NEXT_PTR( last ) = element;
 	} else {
 		first = element;
 	}
@@ -72,11 +72,11 @@ type *idQueueTemplate<type,nextOffset>::Get() {
 
 	element = first;
 	if ( element ) {
-		first = QUEUE_NEXT_PTR(first);
+		first = QUEUE_NEXT_PTR( first );
 		if ( last == element ) {
 			last = NULL;
 		}
-		QUEUE_NEXT_PTR(element) = NULL;
+		QUEUE_NEXT_PTR( element ) = NULL;
 	}
 	return element;
 }
@@ -89,36 +89,36 @@ A node of a Queue
 template< typename type >
 class idQueueNode {
 public:
-				idQueueNode() { next = NULL; }
+idQueueNode() { next = NULL; }
 
-	type *		GetNext() const { return next; }
-	void		SetNext( type *next ) { this->next = next; }
+type *      GetNext() const { return next; }
+void        SetNext( type *next ) { this->next = next; }
 
 private:
-	type *		next;
+type *      next;
 };
 
 /*
 ================================================
-A Queue, idQueue, is a template Container class implementing the Queue abstract data 
+A Queue, idQueue, is a template Container class implementing the Queue abstract data
 type.
 ================================================
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 class idQueue {
 public:
-				idQueue();
+idQueue();
 
-	void		Add( type *element );
-	type *		RemoveFirst();
-	type *		Peek() const;
-	bool		IsEmpty();
+void        Add( type *element );
+type *      RemoveFirst();
+type *      Peek() const;
+bool        IsEmpty();
 
-	static void	Test();
+static void Test();
 
 private:
-	type *		first;
-	type *		last;
+type *      first;
+type *      last;
 };
 
 /*
@@ -138,9 +138,9 @@ idQueue<type,nodePtr>::Add
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 void idQueue<type,nodePtr>::Add( type *element ) {
-	(element->*nodePtr).SetNext( NULL );
+	( element->*nodePtr ).SetNext( NULL );
 	if ( last ) {
-		(last->*nodePtr).SetNext( element );
+		( last->*nodePtr ).SetNext( element );
 	} else {
 		first = element;
 	}
@@ -158,11 +158,11 @@ type *idQueue<type,nodePtr>::RemoveFirst() {
 
 	element = first;
 	if ( element ) {
-		first = (first->*nodePtr).GetNext();
+		first = ( first->*nodePtr ).GetNext();
 		if ( last == element ) {
 			last = NULL;
 		}
-		(element->*nodePtr).SetNext( NULL );
+		( element->*nodePtr ).SetNext( NULL );
 	}
 	return element;
 }
@@ -196,13 +196,13 @@ template< typename type, idQueueNode<type> type::*nodePtr >
 void idQueue<type,nodePtr>::Test() {
 
 	class idMyType {
-	public:
-		idQueueNode<idMyType> queueNode;
+public:
+	idQueueNode<idMyType> queueNode;
 	};
 
 	idQueue<idMyType,&idMyType::queueNode> myQueue;
 
-	idMyType *element = new (TAG_IDLIB) idMyType;
+	idMyType *element = new ( TAG_IDLIB ) idMyType;
 	myQueue.Add( element );
 	element = myQueue.RemoveFirst();
 	delete element;

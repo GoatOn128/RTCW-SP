@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,80 +39,80 @@ If you have questions concerning this license or the applicable additional terms
 
 class idBox {
 public:
-					idBox();
-					explicit idBox( const idVec3 &center, const idVec3 &extents, const idMat3 &axis );
-					explicit idBox( const idVec3 &point );
-					explicit idBox( const idBounds &bounds );
-					explicit idBox( const idBounds &bounds, const idVec3 &origin, const idMat3 &axis );
+idBox();
+explicit idBox( const idVec3 &center, const idVec3 &extents, const idMat3 &axis );
+explicit idBox( const idVec3 &point );
+explicit idBox( const idBounds &bounds );
+explicit idBox( const idBounds &bounds, const idVec3 &origin, const idMat3 &axis );
 
-	idBox			operator+( const idVec3 &t ) const;				// returns translated box
-	idBox &			operator+=( const idVec3 &t );					// translate the box
-	idBox			operator*( const idMat3 &r ) const;				// returns rotated box
-	idBox &			operator*=( const idMat3 &r );					// rotate the box
-	idBox			operator+( const idBox &a ) const;
-	idBox &			operator+=( const idBox &a );
-	idBox			operator-( const idBox &a ) const;
-	idBox &			operator-=( const idBox &a );
+idBox operator+( const idVec3 &t ) const;                           // returns translated box
+idBox &         operator+=( const idVec3 &t );                      // translate the box
+idBox operator*( const idMat3 &r ) const;                           // returns rotated box
+idBox &         operator*=( const idMat3 &r );                      // rotate the box
+idBox operator+( const idBox &a ) const;
+idBox &         operator+=( const idBox &a );
+idBox operator-( const idBox &a ) const;
+idBox &         operator-=( const idBox &a );
 
-	bool			Compare( const idBox &a ) const;						// exact compare, no epsilon
-	bool			Compare( const idBox &a, const float epsilon ) const;	// compare with epsilon
-	bool			operator==(	const idBox &a ) const;						// exact compare, no epsilon
-	bool			operator!=(	const idBox &a ) const;						// exact compare, no epsilon
+bool            Compare( const idBox &a ) const;                            // exact compare, no epsilon
+bool            Compare( const idBox &a, const float epsilon ) const;       // compare with epsilon
+bool operator==( const idBox &a ) const;                                    // exact compare, no epsilon
+bool operator!=( const idBox &a ) const;                                    // exact compare, no epsilon
 
-	void			Clear();									// inside out box
-	void			Zero();									// single point at origin
+void            Clear();                                        // inside out box
+void            Zero();                                     // single point at origin
 
-	const idVec3 &	GetCenter() const;						// returns center of the box
-	const idVec3 &	GetExtents() const;						// returns extents of the box
-	const idMat3 &	GetAxis() const;							// returns the axis of the box
-	float			GetVolume() const;						// returns the volume of the box
-	bool			IsCleared() const;						// returns true if box are inside out
+const idVec3 &  GetCenter() const;                          // returns center of the box
+const idVec3 &  GetExtents() const;                         // returns extents of the box
+const idMat3 &  GetAxis() const;                                // returns the axis of the box
+float           GetVolume() const;                          // returns the volume of the box
+bool            IsCleared() const;                          // returns true if box are inside out
 
-	bool			AddPoint( const idVec3 &v );					// add the point, returns true if the box expanded
-	bool			AddBox( const idBox &a );						// add the box, returns true if the box expanded
-	idBox			Expand( const float d ) const;					// return box expanded in all directions with the given value
-	idBox &			ExpandSelf( const float d );					// expand box in all directions with the given value
-	idBox			Translate( const idVec3 &translation ) const;	// return translated box
-	idBox &			TranslateSelf( const idVec3 &translation );		// translate this box
-	idBox			Rotate( const idMat3 &rotation ) const;			// return rotated box
-	idBox &			RotateSelf( const idMat3 &rotation );			// rotate this box
+bool            AddPoint( const idVec3 &v );                        // add the point, returns true if the box expanded
+bool            AddBox( const idBox &a );                           // add the box, returns true if the box expanded
+idBox           Expand( const float d ) const;                      // return box expanded in all directions with the given value
+idBox &         ExpandSelf( const float d );                        // expand box in all directions with the given value
+idBox           Translate( const idVec3 &translation ) const;       // return translated box
+idBox &         TranslateSelf( const idVec3 &translation );         // translate this box
+idBox           Rotate( const idMat3 &rotation ) const;             // return rotated box
+idBox &         RotateSelf( const idMat3 &rotation );               // rotate this box
 
-	float			PlaneDistance( const idPlane &plane ) const;
-	int				PlaneSide( const idPlane &plane, const float epsilon = ON_EPSILON ) const;
+float           PlaneDistance( const idPlane &plane ) const;
+int             PlaneSide( const idPlane &plane, const float epsilon = ON_EPSILON ) const;
 
-	bool			ContainsPoint( const idVec3 &p ) const;			// includes touching
-	bool			IntersectsBox( const idBox &a ) const;			// includes touching
-	bool			LineIntersection( const idVec3 &start, const idVec3 &end ) const;
-					// intersection points are (start + dir * scale1) and (start + dir * scale2)
-	bool			RayIntersection( const idVec3 &start, const idVec3 &dir, float &scale1, float &scale2 ) const;
+bool            ContainsPoint( const idVec3 &p ) const;             // includes touching
+bool            IntersectsBox( const idBox &a ) const;              // includes touching
+bool            LineIntersection( const idVec3 &start, const idVec3 &end ) const;
+// intersection points are (start + dir * scale1) and (start + dir * scale2)
+bool            RayIntersection( const idVec3 &start, const idVec3 &dir, float &scale1, float &scale2 ) const;
 
-					// tight box for a collection of points
-	void			FromPoints( const idVec3 *points, const int numPoints );
-					// most tight box for a translation
-	void			FromPointTranslation( const idVec3 &point, const idVec3 &translation );
-	void			FromBoxTranslation( const idBox &box, const idVec3 &translation );
-					// most tight box for a rotation
-	void			FromPointRotation( const idVec3 &point, const idRotation &rotation );
-	void			FromBoxRotation( const idBox &box, const idRotation &rotation );
+// tight box for a collection of points
+void            FromPoints( const idVec3 *points, const int numPoints );
+// most tight box for a translation
+void            FromPointTranslation( const idVec3 &point, const idVec3 &translation );
+void            FromBoxTranslation( const idBox &box, const idVec3 &translation );
+// most tight box for a rotation
+void            FromPointRotation( const idVec3 &point, const idRotation &rotation );
+void            FromBoxRotation( const idBox &box, const idRotation &rotation );
 
-	void			ToPoints( idVec3 points[8] ) const;
-	idSphere		ToSphere() const;
+void            ToPoints( idVec3 points[8] ) const;
+idSphere        ToSphere() const;
 
-					// calculates the projection of this box onto the given axis
-	void			AxisProjection( const idVec3 &dir, float &min, float &max ) const;
-	void			AxisProjection( const idMat3 &ax, idBounds &bounds ) const;
+// calculates the projection of this box onto the given axis
+void            AxisProjection( const idVec3 &dir, float &min, float &max ) const;
+void            AxisProjection( const idMat3 &ax, idBounds &bounds ) const;
 
-					// calculates the silhouette of the box
-	int				GetProjectionSilhouetteVerts( const idVec3 &projectionOrigin, idVec3 silVerts[6] ) const;
-	int				GetParallelProjectionSilhouetteVerts( const idVec3 &projectionDir, idVec3 silVerts[6] ) const;
+// calculates the silhouette of the box
+int             GetProjectionSilhouetteVerts( const idVec3 &projectionOrigin, idVec3 silVerts[6] ) const;
+int             GetParallelProjectionSilhouetteVerts( const idVec3 &projectionDir, idVec3 silVerts[6] ) const;
 
 private:
-	idVec3			center;
-	idVec3			extents;
-	idMat3			axis;
+idVec3 center;
+idVec3 extents;
+idMat3 axis;
 };
 
-extern idBox	box_zero;
+extern idBox box_zero;
 
 ID_INLINE idBox::idBox() {
 }
@@ -263,8 +263,8 @@ ID_INLINE idBox &idBox::RotateSelf( const idMat3 &rotation ) {
 ID_INLINE bool idBox::ContainsPoint( const idVec3 &p ) const {
 	idVec3 lp = p - center;
 	if ( idMath::Fabs( lp * axis[0] ) > extents[0] ||
-			idMath::Fabs( lp * axis[1] ) > extents[1] ||
-				idMath::Fabs( lp * axis[2] ) > extents[2] ) {
+		 idMath::Fabs( lp * axis[1] ) > extents[1] ||
+		 idMath::Fabs( lp * axis[2] ) > extents[2] ) {
 		return false;
 	}
 	return true;
@@ -277,8 +277,8 @@ ID_INLINE idSphere idBox::ToSphere() const {
 ID_INLINE void idBox::AxisProjection( const idVec3 &dir, float &min, float &max ) const {
 	float d1 = dir * center;
 	float d2 = idMath::Fabs( extents[0] * ( dir * axis[0] ) ) +
-				idMath::Fabs( extents[1] * ( dir * axis[1] ) ) +
-				idMath::Fabs( extents[2] * ( dir * axis[2] ) );
+			   idMath::Fabs( extents[1] * ( dir * axis[1] ) ) +
+			   idMath::Fabs( extents[2] * ( dir * axis[2] ) );
 	min = d1 - d2;
 	max = d1 + d2;
 }
@@ -287,8 +287,8 @@ ID_INLINE void idBox::AxisProjection( const idMat3 &ax, idBounds &bounds ) const
 	for ( int i = 0; i < 3; i++ ) {
 		float d1 = ax[i] * center;
 		float d2 = idMath::Fabs( extents[0] * ( ax[i] * axis[0] ) ) +
-					idMath::Fabs( extents[1] * ( ax[i] * axis[1] ) ) +
-					idMath::Fabs( extents[2] * ( ax[i] * axis[2] ) );
+				   idMath::Fabs( extents[1] * ( ax[i] * axis[1] ) ) +
+				   idMath::Fabs( extents[2] * ( ax[i] * axis[2] ) );
 		bounds[0][i] = d1 - d2;
 		bounds[1][i] = d1 + d2;
 	}

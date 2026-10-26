@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,20 +39,20 @@ If you have questions concerning this license or the applicable additional terms
 
 class idRandom {
 public:
-						idRandom( int seed = 0 );
+idRandom( int seed = 0 );
 
-	void				SetSeed( int seed );
-	int					GetSeed() const;
+void                SetSeed( int seed );
+int                 GetSeed() const;
 
-	int					RandomInt();			// random integer in the range [0, MAX_RAND]
-	int					RandomInt( int max );		// random integer in the range [0, max[
-	float				RandomFloat();		// random number in the range [0.0f, 1.0f]
-	float				CRandomFloat();		// random number in the range [-1.0f, 1.0f]
+int                 RandomInt();                // random integer in the range [0, MAX_RAND]
+int                 RandomInt( int max );           // random integer in the range [0, max[
+float               RandomFloat();          // random number in the range [0.0f, 1.0f]
+float               CRandomFloat();         // random number in the range [-1.0f, 1.0f]
 
-	static const int	MAX_RAND = 0x7fff;
+static const int MAX_RAND = 0x7fff;
 
 private:
-	int					seed;
+int seed;
 };
 
 ID_INLINE idRandom::idRandom( int seed ) {
@@ -74,7 +74,7 @@ ID_INLINE int idRandom::RandomInt() {
 
 ID_INLINE int idRandom::RandomInt( int max ) {
 	if ( max == 0 ) {
-		return 0;			// avoid divide by zero error
+		return 0;           // avoid divide by zero error
 	}
 	return RandomInt() % max;
 }
@@ -98,23 +98,23 @@ ID_INLINE float idRandom::CRandomFloat() {
 
 class idRandom2 {
 public:
-							idRandom2( unsigned long seed = 0 );
+idRandom2( unsigned long seed = 0 );
 
-	void					SetSeed( unsigned long seed );
-	unsigned long			GetSeed() const;
+void                    SetSeed( unsigned long seed );
+unsigned long           GetSeed() const;
 
-	int						RandomInt();			// random integer in the range [0, MAX_RAND]
-	int						RandomInt( int max );		// random integer in the range [0, max]
-	float					RandomFloat();		// random number in the range [0.0f, 1.0f]
-	float					CRandomFloat();		// random number in the range [-1.0f, 1.0f]
+int                     RandomInt();                // random integer in the range [0, MAX_RAND]
+int                     RandomInt( int max );           // random integer in the range [0, max]
+float                   RandomFloat();          // random number in the range [0.0f, 1.0f]
+float                   CRandomFloat();         // random number in the range [-1.0f, 1.0f]
 
-	static const int		MAX_RAND = 0x7fff;
+static const int MAX_RAND = 0x7fff;
 
 private:
-	unsigned long			seed;
+unsigned long seed;
 
-	static const unsigned long	IEEE_ONE = 0x3f800000;
-	static const unsigned long	IEEE_MASK = 0x007fffff;
+static const unsigned long IEEE_ONE = 0x3f800000;
+static const unsigned long IEEE_MASK = 0x007fffff;
 };
 
 ID_INLINE idRandom2::idRandom2( unsigned long seed ) {
@@ -136,7 +136,7 @@ ID_INLINE int idRandom2::RandomInt() {
 
 ID_INLINE int idRandom2::RandomInt( int max ) {
 	if ( max == 0 ) {
-		return 0;		// avoid divide by zero error
+		return 0;       // avoid divide by zero error
 	}
 	return ( RandomInt() >> ( 16 - idMath::BitsForInteger( max ) ) ) % max;
 }

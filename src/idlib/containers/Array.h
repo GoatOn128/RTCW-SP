@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -50,31 +50,31 @@ actual raw data, and the size is fixed.
 */
 template<class T_, int numElements > class idArray {
 public:
-	// returns number of elements in list
-	int				Num() const { return numElements; }
+// returns number of elements in list
+int             Num() const { return numElements; }
 
-	// returns the number of bytes the array takes up
-	int				ByteSize() const { return sizeof( ptr ); }
+// returns the number of bytes the array takes up
+int             ByteSize() const { return sizeof( ptr ); }
 
-	// memset the entire array to zero
-	void			Zero() { memset( ptr, 0, sizeof( ptr ) ); }
+// memset the entire array to zero
+void            Zero() { memset( ptr, 0, sizeof( ptr ) ); }
 
-	// memset the entire array to a specific value
-	void			Memset( const char fill ) { memset( ptr, fill, numElements * sizeof( *ptr ) ); }
+// memset the entire array to a specific value
+void            Memset( const char fill ) { memset( ptr, fill, numElements * sizeof( *ptr ) ); }
 
-	// array operators
-	const T_ &		operator[]( int index ) const { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
-	T_ &			operator[]( int index ) { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
+// array operators
+const T_ &      operator[]( int index ) const { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
+T_ &            operator[]( int index ) { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
 
-	// returns a pointer to the list
-	const T_ *		Ptr() const { return ptr; }
-	T_ *			Ptr() { return ptr; }
+// returns a pointer to the list
+const T_ *      Ptr() const { return ptr; }
+T_ *            Ptr() { return ptr; }
 
 private:
-	T_				ptr[numElements];
+T_ ptr[numElements];
 };
 
-#define ARRAY_COUNT( arrayName ) ( sizeof( arrayName )/sizeof( arrayName[0] ) )
+#define ARRAY_COUNT( arrayName ) ( sizeof( arrayName ) / sizeof( arrayName[0] ) )
 #define ARRAY_DEF( arrayName ) arrayName, ARRAY_COUNT( arrayName )
 
 

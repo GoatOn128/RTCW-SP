@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,53 +42,53 @@ If you have questions concerning this license or the applicable additional terms
 template< class objType, class keyType >
 class idBTreeNode {
 public:
-	keyType							key;			// key used for sorting
-	objType *						object;			// if != NULL pointer to object stored in leaf node
-	idBTreeNode *					parent;			// parent node
-	idBTreeNode *					next;			// next sibling
-	idBTreeNode *					prev;			// prev sibling
-	int								numChildren;	// number of children
-	idBTreeNode *					firstChild;		// first child
-	idBTreeNode *					lastChild;		// last child
+keyType key;                                        // key used for sorting
+objType *                       object;             // if != NULL pointer to object stored in leaf node
+idBTreeNode *                   parent;             // parent node
+idBTreeNode *                   next;               // next sibling
+idBTreeNode *                   prev;               // prev sibling
+int numChildren;                                    // number of children
+idBTreeNode *                   firstChild;         // first child
+idBTreeNode *                   lastChild;          // last child
 };
 
 
 template< class objType, class keyType, int maxChildrenPerNode >
 class idBTree {
 public:
-									idBTree();
-									~idBTree();
+idBTree();
+~idBTree();
 
-	void							Init();
-	void							Shutdown();
+void                            Init();
+void                            Shutdown();
 
-	idBTreeNode<objType,keyType> *	Add( objType *object, keyType key );						// add an object to the tree
-	void							Remove( idBTreeNode<objType,keyType> *node );				// remove an object node from the tree
+idBTreeNode<objType,keyType> *  Add( objType *object, keyType key );                            // add an object to the tree
+void                            Remove( idBTreeNode<objType,keyType> *node );                   // remove an object node from the tree
 
-	idBTreeNode<objType,keyType> *	NodeFind( keyType key ) const;								// find an object using the given key
-	idBTreeNode<objType,keyType> *	NodeFindSmallestLargerEqual( keyType key ) const;			// find an object with the smallest key larger equal the given key
-	idBTreeNode<objType,keyType> *	NodeFindLargestSmallerEqual( keyType key ) const;			// find an object with the largest key smaller equal the given key
+idBTreeNode<objType,keyType> *  NodeFind( keyType key ) const;                                  // find an object using the given key
+idBTreeNode<objType,keyType> *  NodeFindSmallestLargerEqual( keyType key ) const;               // find an object with the smallest key larger equal the given key
+idBTreeNode<objType,keyType> *  NodeFindLargestSmallerEqual( keyType key ) const;               // find an object with the largest key smaller equal the given key
 
-	objType *						Find( keyType key ) const;									// find an object using the given key
-	objType *						FindSmallestLargerEqual( keyType key ) const;				// find an object with the smallest key larger equal the given key
-	objType *						FindLargestSmallerEqual( keyType key ) const;				// find an object with the largest key smaller equal the given key
+objType *                       Find( keyType key ) const;                                      // find an object using the given key
+objType *                       FindSmallestLargerEqual( keyType key ) const;                   // find an object with the smallest key larger equal the given key
+objType *                       FindLargestSmallerEqual( keyType key ) const;                   // find an object with the largest key smaller equal the given key
 
-	idBTreeNode<objType,keyType> *	GetRoot() const;											// returns the root node of the tree
-	int								GetNodeCount() const;										// returns the total number of nodes in the tree
-	idBTreeNode<objType,keyType> *	GetNext( idBTreeNode<objType,keyType> *node ) const;		// goes through all nodes of the tree
-	idBTreeNode<objType,keyType> *	GetNextLeaf( idBTreeNode<objType,keyType> *node ) const;	// goes through all leaf nodes of the tree
+idBTreeNode<objType,keyType> *  GetRoot() const;                                                // returns the root node of the tree
+int                             GetNodeCount() const;                                           // returns the total number of nodes in the tree
+idBTreeNode<objType,keyType> *  GetNext( idBTreeNode<objType,keyType> *node ) const;            // goes through all nodes of the tree
+idBTreeNode<objType,keyType> *  GetNextLeaf( idBTreeNode<objType,keyType> *node ) const;        // goes through all leaf nodes of the tree
 
 private:
-	idBTreeNode<objType,keyType> *	root;
-	idBlockAlloc<idBTreeNode<objType,keyType>,128>	nodeAllocator;
+idBTreeNode<objType,keyType> *  root;
+idBlockAlloc<idBTreeNode<objType,keyType>,128>  nodeAllocator;
 
-	idBTreeNode<objType,keyType> *	AllocNode();
-	void							FreeNode( idBTreeNode<objType,keyType> *node );
-	void							SplitNode( idBTreeNode<objType,keyType> *node );
-	idBTreeNode<objType,keyType> *	MergeNodes( idBTreeNode<objType,keyType> *node1, idBTreeNode<objType,keyType> *node2 );
+idBTreeNode<objType,keyType> *  AllocNode();
+void                            FreeNode( idBTreeNode<objType,keyType> *node );
+void                            SplitNode( idBTreeNode<objType,keyType> *node );
+idBTreeNode<objType,keyType> *  MergeNodes( idBTreeNode<objType,keyType> *node1, idBTreeNode<objType,keyType> *node2 );
 
-	void							CheckTree_r( idBTreeNode<objType,keyType> *node, int &numNodes ) const;
-	void							CheckTree() const;
+void                            CheckTree_r( idBTreeNode<objType,keyType> *node, int &numNodes ) const;
+void                            CheckTree() const;
 };
 
 
@@ -144,7 +144,7 @@ ID_INLINE idBTreeNode<objType,keyType> *idBTree<objType,keyType,maxChildrenPerNo
 		}
 
 		// find the first child with a key larger equal to the key of the new node
-		for( child = node->firstChild; child->next; child = child->next ) {
+		for ( child = node->firstChild; child->next; child = child->next ) {
 			if ( key <= child->key ) {
 				break;
 			}
@@ -273,7 +273,7 @@ ID_INLINE idBTreeNode<objType,keyType> * idBTree<objType,keyType,maxChildrenPerN
 	idBTreeNode<objType,keyType> *node;
 
 	for ( node = root->firstChild; node != NULL; node = node->firstChild ) {
-		while( node->next ) {
+		while ( node->next ) {
 			if ( node->key >= key ) {
 				break;
 			}
@@ -299,7 +299,7 @@ ID_INLINE idBTreeNode<objType,keyType> * idBTree<objType,keyType,maxChildrenPerN
 	}
 
 	for ( node = root->firstChild; node != NULL; node = node->firstChild ) {
-		while( node->next ) {
+		while ( node->next ) {
 			if ( node->key >= key ) {
 				break;
 			}
@@ -326,7 +326,7 @@ ID_INLINE idBTreeNode<objType,keyType> * idBTree<objType,keyType,maxChildrenPerN
 
 	idBTreeNode<objType,keyType> * smaller = NULL;
 	for ( node = root->firstChild; node != NULL; node = node->firstChild ) {
-		while( node->next ) {
+		while ( node->next ) {
 			if ( node->key >= key ) {
 				break;
 			}
@@ -394,7 +394,7 @@ ID_INLINE idBTreeNode<objType,keyType> *idBTree<objType,keyType,maxChildrenPerNo
 	if ( node->firstChild ) {
 		return node->firstChild;
 	} else {
-		while( node && node->next == NULL ) {
+		while ( node && node->next == NULL ) {
 			node = node->parent;
 		}
 		return node;
@@ -409,7 +409,7 @@ ID_INLINE idBTreeNode<objType,keyType> *idBTree<objType,keyType,maxChildrenPerNo
 		}
 		return node;
 	} else {
-		while( node && node->next == NULL ) {
+		while ( node && node->next == NULL ) {
 			node = node->parent;
 		}
 		if ( node ) {

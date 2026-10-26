@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,14 +45,14 @@ idAngles& idAngles::Normalize360() {
 	int i;
 
 	for ( i = 0; i < 3; i++ ) {
-		if ( ( (*this)[i] >= 360.0f ) || ( (*this)[i] < 0.0f ) ) {
-			(*this)[i] -= floor( (*this)[i] / 360.0f ) * 360.0f;
+		if ( ( ( *this )[i] >= 360.0f ) || ( ( *this )[i] < 0.0f ) ) {
+			( *this )[i] -= floor( ( *this )[i] / 360.0f ) * 360.0f;
 
-			if ( (*this)[i] >= 360.0f ) {
-				(*this)[i] -= 360.0f;
+			if ( ( *this )[i] >= 360.0f ) {
+				( *this )[i] -= 360.0f;
 			}
-			if ( (*this)[i] < 0.0f ) {
-				(*this)[i] += 360.0f;
+			if ( ( *this )[i] < 0.0f ) {
+				( *this )[i] += 360.0f;
 			}
 		}
 	}
@@ -73,7 +73,7 @@ idAngles& idAngles::Normalize180() {
 	if ( pitch > 180.0f ) {
 		pitch -= 360.0f;
 	}
-	
+
 	if ( yaw > 180.0f ) {
 		yaw -= 360.0f;
 	}
@@ -91,7 +91,7 @@ idAngles::ToVectors
 */
 void idAngles::ToVectors( idVec3 *forward, idVec3 *right, idVec3 *up ) const {
 	float sr, sp, sy, cr, cp, cy;
-	
+
 	idMath::SinCos( DEG2RAD( yaw ), sy, cy );
 	idMath::SinCos( DEG2RAD( pitch ), sp, cp );
 	idMath::SinCos( DEG2RAD( roll ), sr, cr );
@@ -116,7 +116,7 @@ idAngles::ToForward
 */
 idVec3 idAngles::ToForward() const {
 	float sp, sy, cp, cy;
-	
+
 	idMath::SinCos( DEG2RAD( yaw ), sy, cy );
 	idMath::SinCos( DEG2RAD( pitch ), sp, cp );
 
@@ -141,7 +141,7 @@ idQuat idAngles::ToQuat() const {
 	sxsy = sx * sy;
 	cxsy = cx * sy;
 
-	return idQuat( cxsy*sz - sxcy*cz, -cxsy*cz - sxcy*sz, sxsy*cz - cxcy*sz, cxcy*cz + sxsy*sz );
+	return idQuat( cxsy * sz - sxcy * cz, -cxsy * cz - sxcy * sz, sxsy * cz - cxcy * sz, cxcy * cz + sxsy * sz );
 }
 
 /*
@@ -178,7 +178,7 @@ idRotation idAngles::ToRotation() const {
 	vec.x =  cxsy * sz - sxcy * cz;
 	vec.y = -cxsy * cz - sxcy * sz;
 	vec.z =  sxsy * cz - cxcy * sz;
-	w =		 cxcy * cz + sxsy * sz;
+	w =      cxcy * cz + sxsy * sz;
 	angle = idMath::ACos( w );
 	if ( angle == 0.0f ) {
 		vec.Set( 0.0f, 0.0f, 1.0f );

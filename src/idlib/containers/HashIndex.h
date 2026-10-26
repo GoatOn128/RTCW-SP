@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,77 +38,77 @@ If you have questions concerning this license or the applicable additional terms
 ===============================================================================
 */
 
-#define DEFAULT_HASH_SIZE			1024
-#define DEFAULT_HASH_GRANULARITY	1024
+#define DEFAULT_HASH_SIZE           1024
+#define DEFAULT_HASH_GRANULARITY    1024
 
 class idHashIndex {
 public:
-	static const int NULL_INDEX = -1;
-					idHashIndex();
-					idHashIndex( const int initialHashSize, const int initialIndexSize );
-					~idHashIndex();
+static const int NULL_INDEX = -1;
+idHashIndex();
+idHashIndex( const int initialHashSize, const int initialIndexSize );
+~idHashIndex();
 
-					// returns total size of allocated memory
-	size_t			Allocated() const;
-					// returns total size of allocated memory including size of hash index type
-	size_t			Size() const;
+// returns total size of allocated memory
+size_t          Allocated() const;
+// returns total size of allocated memory including size of hash index type
+size_t          Size() const;
 
-	idHashIndex &	operator=( const idHashIndex &other );
-					// add an index to the hash, assumes the index has not yet been added to the hash
-	void			Add( const int key, const int index );
-					// remove an index from the hash
-	void			Remove( const int key, const int index );
-					// get the first index from the hash, returns -1 if empty hash entry
-	int				First( const int key ) const;
-					// get the next index from the hash, returns -1 if at the end of the hash chain
-	int				Next( const int index ) const;
+idHashIndex &   operator=( const idHashIndex &other );
+// add an index to the hash, assumes the index has not yet been added to the hash
+void            Add( const int key, const int index );
+// remove an index from the hash
+void            Remove( const int key, const int index );
+// get the first index from the hash, returns -1 if empty hash entry
+int             First( const int key ) const;
+// get the next index from the hash, returns -1 if at the end of the hash chain
+int             Next( const int index ) const;
 
-	// For porting purposes...
-	int				GetFirst( const int key ) const { return First( key ); }
-	int				GetNext( const int index ) const { return Next( index ); }
+// For porting purposes...
+int             GetFirst( const int key ) const { return First( key ); }
+int             GetNext( const int index ) const { return Next( index ); }
 
-					// insert an entry into the index and add it to the hash, increasing all indexes >= index
-	void			InsertIndex( const int key, const int index );
-					// remove an entry from the index and remove it from the hash, decreasing all indexes >= index
-	void			RemoveIndex( const int key, const int index );
-					// clear the hash
-	void			Clear();
-					// clear and resize
-	void			Clear( const int newHashSize, const int newIndexSize );
-					// free allocated memory
-	void			Free();
-					// get size of hash table
-	int				GetHashSize() const;
-					// get size of the index
-	int				GetIndexSize() const;
-					// set granularity
-	void			SetGranularity( const int newGranularity );
-					// force resizing the index, current hash table stays intact
-	void			ResizeIndex( const int newIndexSize );
-					// returns number in the range [0-100] representing the spread over the hash table
-	int				GetSpread() const;
-					// returns a key for a string
-	int				GenerateKey( const char *string, bool caseSensitive = true ) const;
-					// returns a key for a vector
-	int				GenerateKey( const idVec3 &v ) const;
-					// returns a key for two integers
-	int				GenerateKey( const int n1, const int n2 ) const;
-					// returns a key for a single integer
-	int				GenerateKey( const int n ) const;
+// insert an entry into the index and add it to the hash, increasing all indexes >= index
+void            InsertIndex( const int key, const int index );
+// remove an entry from the index and remove it from the hash, decreasing all indexes >= index
+void            RemoveIndex( const int key, const int index );
+// clear the hash
+void            Clear();
+// clear and resize
+void            Clear( const int newHashSize, const int newIndexSize );
+// free allocated memory
+void            Free();
+// get size of hash table
+int             GetHashSize() const;
+// get size of the index
+int             GetIndexSize() const;
+// set granularity
+void            SetGranularity( const int newGranularity );
+// force resizing the index, current hash table stays intact
+void            ResizeIndex( const int newIndexSize );
+// returns number in the range [0-100] representing the spread over the hash table
+int             GetSpread() const;
+// returns a key for a string
+int             GenerateKey( const char *string, bool caseSensitive = true ) const;
+// returns a key for a vector
+int             GenerateKey( const idVec3 &v ) const;
+// returns a key for two integers
+int             GenerateKey( const int n1, const int n2 ) const;
+// returns a key for a single integer
+int             GenerateKey( const int n ) const;
 
 private:
-	int				hashSize;
-	int *			hash;
-	int				indexSize;
-	int *			indexChain;
-	int				granularity;
-	int				hashMask;
-	int				lookupMask;
+int hashSize;
+int *           hash;
+int indexSize;
+int *           indexChain;
+int granularity;
+int hashMask;
+int lookupMask;
 
-	static int		INVALID_INDEX[1];
+static int INVALID_INDEX[1];
 
-	void			Init( const int initialHashSize, const int initialIndexSize );
-	void			Allocate( const int newHashSize, const int newIndexSize );
+void            Init( const int initialHashSize, const int initialIndexSize );
+void            Allocate( const int newHashSize, const int newIndexSize );
 };
 
 /*
@@ -170,21 +170,20 @@ ID_INLINE idHashIndex &idHashIndex::operator=( const idHashIndex &other ) {
 		hashSize = other.hashSize;
 		indexSize = other.indexSize;
 		Free();
-	}
-	else {
+	} else {
 		if ( other.hashSize != hashSize || hash == INVALID_INDEX ) {
 			if ( hash != INVALID_INDEX ) {
 				delete[] hash;
 			}
 			hashSize = other.hashSize;
-			hash = new (TAG_IDLIB_HASH) int[hashSize];
+			hash = new ( TAG_IDLIB_HASH ) int[hashSize];
 		}
 		if ( other.indexSize != indexSize || indexChain == INVALID_INDEX ) {
 			if ( indexChain != INVALID_INDEX ) {
 				delete[] indexChain;
 			}
 			indexSize = other.indexSize;
-			indexChain = new (TAG_IDLIB_HASH) int[indexSize];
+			indexChain = new ( TAG_IDLIB_HASH ) int[indexSize];
 		}
 		memcpy( hash, other.hash, hashSize * sizeof( hash[0] ) );
 		memcpy( indexChain, other.indexChain, indexSize * sizeof( indexChain[0] ) );
@@ -204,8 +203,7 @@ ID_INLINE void idHashIndex::Add( const int key, const int index ) {
 	assert( index >= 0 );
 	if ( hash == INVALID_INDEX ) {
 		Allocate( hashSize, index >= indexSize ? index + 1 : indexSize );
-	}
-	else if ( index >= indexSize ) {
+	} else if ( index >= indexSize )   {
 		ResizeIndex( index + 1 );
 	}
 	h = key & hashMask;
@@ -226,8 +224,7 @@ ID_INLINE void idHashIndex::Remove( const int key, const int index ) {
 	}
 	if ( hash[k] == index ) {
 		hash[k] = indexChain[index];
-	}
-	else {
+	} else {
 		for ( int i = hash[k]; i != -1; i = indexChain[i] ) {
 			if ( indexChain[i] == index ) {
 				indexChain[i] = indexChain[index];
@@ -287,7 +284,7 @@ ID_INLINE void idHashIndex::InsertIndex( const int key, const int index ) {
 			ResizeIndex( max + 1 );
 		}
 		for ( i = max; i > index; i-- ) {
-			indexChain[i] = indexChain[i-1];
+			indexChain[i] = indexChain[i - 1];
 		}
 		indexChain[index] = -1;
 	}
@@ -322,7 +319,7 @@ ID_INLINE void idHashIndex::RemoveIndex( const int key, const int index ) {
 			}
 		}
 		for ( i = index; i < max; i++ ) {
-			indexChain[i] = indexChain[i+1];
+			indexChain[i] = indexChain[i + 1];
 		}
 		indexChain[max] = -1;
 	}
@@ -398,7 +395,7 @@ idHashIndex::GenerateKey
 ================
 */
 ID_INLINE int idHashIndex::GenerateKey( const idVec3 &v ) const {
-	return ( (((int) v[0]) + ((int) v[1]) + ((int) v[2])) & hashMask );
+	return ( ( ( (int) v[0] ) + ( (int) v[1] ) + ( (int) v[2] ) ) & hashMask );
 }
 
 /*

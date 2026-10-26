@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,11 +25,11 @@ If you have questions concerning this license or the applicable additional terms
 
 ===========================================================================
 */
-MEM_TAG( UNSET )		// This should never be used
-MEM_TAG( STATIC_EXE	)	// The static exe, generally how much memory we are using before our main() function ever runs
-MEM_TAG( DEBUG )		// Crap we don't care about, because it won't be in a retail build
-MEM_TAG( NEW )			// Crap allocated with new which hasn't been given an explicit tag
-MEM_TAG( BLOCKALLOC )	// Crap allocated with idBlockAlloc which hasn't been given an explicit tag
+MEM_TAG( UNSET )        // This should never be used
+MEM_TAG( STATIC_EXE )   // The static exe, generally how much memory we are using before our main() function ever runs
+MEM_TAG( DEBUG )        // Crap we don't care about, because it won't be in a retail build
+MEM_TAG( NEW )          // Crap allocated with new which hasn't been given an explicit tag
+MEM_TAG( BLOCKALLOC )   // Crap allocated with idBlockAlloc which hasn't been given an explicit tag
 MEM_TAG( PHYSICAL )
 MEM_TAG( TRI_VERTS )
 MEM_TAG( TRI_INDEXES )
@@ -41,7 +41,7 @@ MEM_TAG( TRI_DOMINANT_TRIS )
 MEM_TAG( TRI_MIR_VERT )
 MEM_TAG( TRI_DUP_VERT )
 MEM_TAG( SRFTRIS )
-MEM_TAG( TEMP )			// Temp data which should be automatically freed at the end of the function
+MEM_TAG( TEMP )         // Temp data which should be automatically freed at the end of the function
 MEM_TAG( PAGE )
 MEM_TAG( DEFRAG_BLOCK )
 MEM_TAG( MATH )
@@ -91,7 +91,7 @@ MEM_TAG( COLLISION_QUERY )
 MEM_TAG( DECLTEXT )
 MEM_TAG( RSX )
 MEM_TAG( CVAR )
-MEM_TAG( CRAP )				// Crap allocated with new which hasn't been given an explicit tag
+MEM_TAG( CRAP )             // Crap allocated with new which hasn't been given an explicit tag
 MEM_TAG( CINEMATIC )
 MEM_TAG( FONT )
 MEM_TAG( MATERIAL )

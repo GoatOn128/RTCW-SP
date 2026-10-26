@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,28 +40,28 @@ If you have questions concerning this license or the applicable additional terms
 template< class type >
 class idInterpolate {
 public:
-						idInterpolate();
+idInterpolate();
 
-	void				Init( const int startTime, const int duration, const type &startValue, const type &endValue );
-	void				SetStartTime( int time ) { this->startTime = time; }
-	void				SetDuration( int duration ) { this->duration = duration; }
-	void				SetStartValue( const type &startValue ) { this->startValue = startValue; }
-	void				SetEndValue( const type &endValue ) { this->endValue = endValue; }
+void                Init( const int startTime, const int duration, const type &startValue, const type &endValue );
+void                SetStartTime( int time ) { this->startTime = time; }
+void                SetDuration( int duration ) { this->duration = duration; }
+void                SetStartValue( const type &startValue ) { this->startValue = startValue; }
+void                SetEndValue( const type &endValue ) { this->endValue = endValue; }
 
-	type				GetCurrentValue( int time ) const;
-	bool				IsDone( int time ) const { return ( time >= startTime + duration ); }
+type                GetCurrentValue( int time ) const;
+bool                IsDone( int time ) const { return ( time >= startTime + duration ); }
 
-	int					GetStartTime() const { return startTime; }
-	int					GetEndTime() const { return startTime + duration; }
-	int					GetDuration() const { return duration; }
-	const type &		GetStartValue() const { return startValue; }
-	const type &		GetEndValue() const { return endValue; }
+int                 GetStartTime() const { return startTime; }
+int                 GetEndTime() const { return startTime + duration; }
+int                 GetDuration() const { return duration; }
+const type &        GetStartValue() const { return startValue; }
+const type &        GetEndValue() const { return endValue; }
 
 private:
-	int					startTime;
-	int					duration;
-	type				startValue;
-	type				endValue;
+int startTime;
+int duration;
+type startValue;
+type endValue;
 };
 
 /*
@@ -118,38 +118,38 @@ ID_INLINE type idInterpolate<type>::GetCurrentValue( int time ) const {
 */
 
 template< class type >
-class idInterpolateAccelDecelLinear  {
+class idInterpolateAccelDecelLinear {
 public:
-						idInterpolateAccelDecelLinear();
+idInterpolateAccelDecelLinear();
 
-	void				Init( const int startTime, const int accelTime, const int decelTime, const int duration, const type &startValue, const type &endValue );
-	void				SetStartTime( int time ) { startTime = time; Invalidate(); }
-	void				SetStartValue( const type &startValue ) { this->startValue = startValue; Invalidate(); }
-	void				SetEndValue( const type &endValue ) { this->endValue = endValue; Invalidate(); }
+void                Init( const int startTime, const int accelTime, const int decelTime, const int duration, const type &startValue, const type &endValue );
+void                SetStartTime( int time ) { startTime = time; Invalidate(); }
+void                SetStartValue( const type &startValue ) { this->startValue = startValue; Invalidate(); }
+void                SetEndValue( const type &endValue ) { this->endValue = endValue; Invalidate(); }
 
-	type				GetCurrentValue( int time ) const;
-	type				GetCurrentSpeed( int time ) const;
-	bool				IsDone( int time ) const { return ( time >= startTime + accelTime + linearTime + decelTime ); }
+type                GetCurrentValue( int time ) const;
+type                GetCurrentSpeed( int time ) const;
+bool                IsDone( int time ) const { return ( time >= startTime + accelTime + linearTime + decelTime ); }
 
-	int					GetStartTime() const { return startTime; }
-	int					GetEndTime() const { return startTime + accelTime + linearTime + decelTime; }
-	int					GetDuration() const { return accelTime + linearTime + decelTime; }
-	int					GetAcceleration() const { return accelTime; }
-	int					GetDeceleration() const { return decelTime; }
-	const type &		GetStartValue() const { return startValue; }
-	const type &		GetEndValue() const { return endValue; }
+int                 GetStartTime() const { return startTime; }
+int                 GetEndTime() const { return startTime + accelTime + linearTime + decelTime; }
+int                 GetDuration() const { return accelTime + linearTime + decelTime; }
+int                 GetAcceleration() const { return accelTime; }
+int                 GetDeceleration() const { return decelTime; }
+const type &        GetStartValue() const { return startValue; }
+const type &        GetEndValue() const { return endValue; }
 
 private:
-	int					startTime;
-	int					accelTime;
-	int					linearTime;
-	int					decelTime;
-	type				startValue;
-	type				endValue;
-	mutable idExtrapolate<type> extrapolate;
+int startTime;
+int accelTime;
+int linearTime;
+int decelTime;
+type startValue;
+type endValue;
+mutable idExtrapolate<type> extrapolate;
 
-	void				Invalidate();
-	void				SetPhase( int time ) const;
+void                Invalidate();
+void                SetPhase( int time ) const;
 };
 
 /*
@@ -263,38 +263,38 @@ ID_INLINE type idInterpolateAccelDecelLinear<type>::GetCurrentSpeed( int time ) 
 */
 
 template< class type >
-class idInterpolateAccelDecelSine  {
+class idInterpolateAccelDecelSine {
 public:
-						idInterpolateAccelDecelSine();
+idInterpolateAccelDecelSine();
 
-	void				Init( const int startTime, const int accelTime, const int decelTime, const int duration, const type &startValue, const type &endValue );
-	void				SetStartTime( int time ) { startTime = time; Invalidate(); }
-	void				SetStartValue( const type &startValue ) { this->startValue = startValue; Invalidate(); }
-	void				SetEndValue( const type &endValue ) { this->endValue = endValue; Invalidate(); }
+void                Init( const int startTime, const int accelTime, const int decelTime, const int duration, const type &startValue, const type &endValue );
+void                SetStartTime( int time ) { startTime = time; Invalidate(); }
+void                SetStartValue( const type &startValue ) { this->startValue = startValue; Invalidate(); }
+void                SetEndValue( const type &endValue ) { this->endValue = endValue; Invalidate(); }
 
-	type				GetCurrentValue( int time ) const;
-	type				GetCurrentSpeed( int time ) const;
-	bool				IsDone( int time ) const { return ( time >= startTime + accelTime + linearTime + decelTime ); }
+type                GetCurrentValue( int time ) const;
+type                GetCurrentSpeed( int time ) const;
+bool                IsDone( int time ) const { return ( time >= startTime + accelTime + linearTime + decelTime ); }
 
-	int					GetStartTime() const { return startTime; }
-	int					GetEndTime() const { return startTime + accelTime + linearTime + decelTime; }
-	int					GetDuration() const { return accelTime + linearTime + decelTime; }
-	int					GetAcceleration() const { return accelTime; }
-	int					GetDeceleration() const { return decelTime; }
-	const type &		GetStartValue() const { return startValue; }
-	const type &		GetEndValue() const { return endValue; }
+int                 GetStartTime() const { return startTime; }
+int                 GetEndTime() const { return startTime + accelTime + linearTime + decelTime; }
+int                 GetDuration() const { return accelTime + linearTime + decelTime; }
+int                 GetAcceleration() const { return accelTime; }
+int                 GetDeceleration() const { return decelTime; }
+const type &        GetStartValue() const { return startValue; }
+const type &        GetEndValue() const { return endValue; }
 
 private:
-	int					startTime;
-	int					accelTime;
-	int					linearTime;
-	int					decelTime;
-	type				startValue;
-	type				endValue;
-	mutable idExtrapolate<type> extrapolate;
+int startTime;
+int accelTime;
+int linearTime;
+int decelTime;
+type startValue;
+type endValue;
+mutable idExtrapolate<type> extrapolate;
 
-	void				Invalidate();
-	void				SetPhase( int time ) const;
+void                Invalidate();
+void                SetPhase( int time ) const;
 };
 
 /*

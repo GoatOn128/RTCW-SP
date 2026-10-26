@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -58,10 +58,10 @@ void idHashIndex::Allocate( const int newHashSize, const int newIndexSize ) {
 
 	Free();
 	hashSize = newHashSize;
-	hash = new (TAG_IDLIB_HASH) int[hashSize];
+	hash = new ( TAG_IDLIB_HASH ) int[hashSize];
 	memset( hash, 0xff, hashSize * sizeof( hash[0] ) );
 	indexSize = newIndexSize;
-	indexChain = new (TAG_IDLIB_HASH) int[indexSize];
+	indexChain = new ( TAG_IDLIB_HASH ) int[indexSize];
 	memset( indexChain, 0xff, indexSize * sizeof( indexChain[0] ) );
 	hashMask = hashSize - 1;
 	lookupMask = -1;
@@ -109,9 +109,9 @@ void idHashIndex::ResizeIndex( const int newIndexSize ) {
 	}
 
 	oldIndexChain = indexChain;
-	indexChain = new (TAG_IDLIB_HASH) int[newSize];
-	memcpy( indexChain, oldIndexChain, indexSize * sizeof(int) );
-	memset( indexChain + indexSize, 0xff, (newSize - indexSize) * sizeof(int) );
+	indexChain = new ( TAG_IDLIB_HASH ) int[newSize];
+	memcpy( indexChain, oldIndexChain, indexSize * sizeof( int ) );
+	memset( indexChain + indexSize, 0xff, ( newSize - indexSize ) * sizeof( int ) );
 	delete[] oldIndexChain;
 	indexSize = newSize;
 }
@@ -129,7 +129,7 @@ int idHashIndex::GetSpread() const {
 	}
 
 	totalItems = 0;
-	numHashItems = new (TAG_IDLIB_HASH) int[hashSize];
+	numHashItems = new ( TAG_IDLIB_HASH ) int[hashSize];
 	for ( i = 0; i < hashSize; i++ ) {
 		numHashItems[i] = 0;
 		for ( index = hash[i]; index >= 0; index = indexChain[index] ) {
@@ -151,5 +151,5 @@ int idHashIndex::GetSpread() const {
 		}
 	}
 	delete[] numHashItems;
-	return 100 - (error * 100 / totalItems);
+	return 100 - ( error * 100 / totalItems );
 }

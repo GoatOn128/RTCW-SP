@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,36 +42,36 @@ Circular linked list template
 template< class type >
 class idLinkList {
 public:
-						idLinkList();
-						~idLinkList();
+idLinkList();
+~idLinkList();
 
-	bool				IsListEmpty() const;
-	bool				InList() const;
-	int					Num() const;
-	void				Clear();
+bool                IsListEmpty() const;
+bool                InList() const;
+int                 Num() const;
+void                Clear();
 
-	void				InsertBefore( idLinkList &node );
-	void				InsertAfter( idLinkList &node );
-	void				AddToEnd( idLinkList &node );
-	void				AddToFront( idLinkList &node );
+void                InsertBefore( idLinkList &node );
+void                InsertAfter( idLinkList &node );
+void                AddToEnd( idLinkList &node );
+void                AddToFront( idLinkList &node );
 
-	void				Remove();
+void                Remove();
 
-	type *				Next() const;
-	type *				Prev() const;
+type *              Next() const;
+type *              Prev() const;
 
-	type *				Owner() const;
-	void				SetOwner( type *object );
+type *              Owner() const;
+void                SetOwner( type *object );
 
-	idLinkList *		ListHead() const;
-	idLinkList *		NextNode() const;
-	idLinkList *		PrevNode() const;
+idLinkList *        ListHead() const;
+idLinkList *        NextNode() const;
+idLinkList *        PrevNode() const;
 
 private:
-	idLinkList *		head;
-	idLinkList *		next;
-	idLinkList *		prev;
-	type *				owner;
+idLinkList *        head;
+idLinkList *        next;
+idLinkList *        prev;
+type *              owner;
 };
 
 /*
@@ -83,10 +83,10 @@ Node is initialized to be the head of an empty list
 */
 template< class type >
 idLinkList<type>::idLinkList() {
-	owner	= NULL;
-	head	= this;	
-	next	= this;
-	prev	= this;
+	owner   = NULL;
+	head    = this;
+	next    = this;
+	prev    = this;
 }
 
 /*
@@ -135,11 +135,11 @@ Returns the number of nodes in the list.
 */
 template< class type >
 int idLinkList<type>::Num() const {
-	idLinkList<type>	*node;
-	int					num;
+	idLinkList<type>    *node;
+	int num;
 
 	num = 0;
-	for( node = head->next; node != head; node = node->next ) {
+	for ( node = head->next; node != head; node = node->next ) {
 		num++;
 	}
 
@@ -156,7 +156,7 @@ If node is the head of the list, clears the list.  Otherwise it just removes the
 template< class type >
 void idLinkList<type>::Clear() {
 	if ( head == this ) {
-		while( next != this ) {
+		while ( next != this ) {
 			next->Remove();
 		}
 	} else {
@@ -193,11 +193,11 @@ template< class type >
 void idLinkList<type>::InsertBefore( idLinkList &node ) {
 	Remove();
 
-	next		= &node;
-	prev		= node.prev;
-	node.prev	= this;
-	prev->next	= this;
-	head		= node.head;
+	next        = &node;
+	prev        = node.prev;
+	node.prev   = this;
+	prev->next  = this;
+	head        = node.head;
 }
 
 /*
@@ -212,11 +212,11 @@ template< class type >
 void idLinkList<type>::InsertAfter( idLinkList &node ) {
 	Remove();
 
-	prev		= &node;
-	next		= node.next;
-	node.next	= this;
-	next->prev	= this;
-	head		= node.head;
+	prev        = &node;
+	next        = node.next;
+	node.next   = this;
+	next->prev  = this;
+	head        = node.head;
 }
 
 /*
