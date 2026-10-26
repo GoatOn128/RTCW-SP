@@ -100,6 +100,8 @@ jobs:
           sudo dpkg --add-architecture i386 || true
           sudo apt-get update -qq 2>&1 | tee -a build.log
           sudo apt-get install -y -qq gcc-multilib g++-multilib 2>&1 | tee -a build.log
+          # GL headers are arch independent, one install covers both legs
+          sudo apt-get install -y -qq libgl-dev libglx-dev 2>&1 | tee -a build.log
           if [ "${{ matrix.arch }}" = "x86" ]; then
             sudo apt-get install -y -qq libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
           else
@@ -121,7 +123,8 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          scons arch=${{ matrix.arch }} config=${{ matrix.config }} -j4 2>&1 | tee -a build.log
+          # -k keeps going so the digest lists every failing file in one run
+          scons arch=${{ matrix.arch }} config=${{ matrix.config }} -j4 -k 2>&1 | tee -a build.log
       - name: digest
         if: always()
         shell: bash
