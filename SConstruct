@@ -35,6 +35,7 @@ BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 EXE = '.exe' if IS_WINDOWS else ''
 DLL = '.dll' if IS_WINDOWS else '.so'
 OBJ = '.obj' if IS_WINDOWS else '.o'
+LIB = '.lib' if IS_WINDOWS else '.a'
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
@@ -341,4 +342,30 @@ else:
 extractfuncs_target = os.path.join(BUILD_DIR, 'extractfuncs' + EXE)
 extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs_tool', extractfuncs_files))
 
-Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target)
+# ---------------------------------------------------------------- idlib
+
+# the idlib static library holds the Doom 3 BFG idlib code ported for the
+# new renderer; it is a plain static library so later phases can link it
+# into the renderer without pulling in another shared object
+idlib_files = ['src/idlib/' + f for f in [
+    'Heap.cpp', 'Str.cpp', 'Lib.cpp',
+    'sys/sys_assert.cpp',
+    'containers/HashIndex.cpp',
+    'math/Math.cpp', 'math/Vector.cpp', 'math/Matrix.cpp', 'math/Angles.cpp',
+    'math/Quat.cpp', 'math/Plane.cpp', 'math/Rotation.cpp', 'math/VecX.cpp',
+    'math/MatX.cpp',
+    'bv/Bounds.cpp', 'bv/Box.cpp', 'bv/Sphere.cpp',
+    'geometry/DrawVert.cpp', 'geometry/JointTransform.cpp',
+]]
+
+idlib_env = env.Clone()
+# the ported BFG code is kept as close to the original as possible and
+# needs C++14; its warnings are muted like the other vendored code
+if IS_WINDOWS:
+    idlib_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
+else:
+    idlib_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
+idlib_target = os.path.join(BUILD_DIR, 'idlib' + LIB)
+idlib_env.StaticLibrary(idlib_target, module_objects(idlib_env, 'idlib', idlib_files))
+
+Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target)
