@@ -1,6 +1,6 @@
 # Build digest
 
-commit: 37856342b3ca
+commit: 07396f2feca9
 
 - ubuntu-latest-x64-debug: failure
 - ubuntu-latest-x64-release: failure
@@ -16,11 +16,12 @@ commit: 37856342b3ca
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
 
 ### warnings
 
@@ -28,11 +29,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
 
 ### warnings
 
@@ -40,11 +42,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
 
 ### warnings
 
@@ -52,11 +55,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
 
 ### warnings
 
@@ -102,11 +106,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src\games\game\q_math.obj
 
 ### warnings
 
@@ -114,11 +119,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Two environments with different actions were specified for the same target: src\games\game\q_math.obj
 
 ### warnings
 
