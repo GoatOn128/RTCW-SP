@@ -34,7 +34,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "../cgame/tr_types.h"
 #include "keycodes.h"
 
-#include "../../main/ui/menudef.h"
+// menudef.h sits next to this file, no relative path needed
+#include "menudef.h"
 
 #define MAX_MENUNAME 32
 #define MAX_ITEMTEXT 64

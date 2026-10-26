@@ -47,7 +47,7 @@ BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 # adds its own (.exe/.dll), and Default() would then point at a name that
 # no node answers to, so keep everything on the final file names.
 EXE = '.exe' if IS_WINDOWS else ''
-DLL = '.dll' if IS_WINDOWS else ''
+DLL = '.dll' if IS_WINDOWS else '.so'
 OBJ = '.obj' if IS_WINDOWS else '.o'
 
 Help('''
@@ -84,7 +84,11 @@ if IS_WINDOWS:
         TARGET_ARCH=TARGET_ARCH,
         CPPPATH=common_cpppath,
     )
-    env['LINK'] = 'clang-cl'
+    # Link with lld-link instead of clang-cl: the options SCons passes for
+    # shared libraries (/DLL, /IMPLIB:) and programs (/SUBSYSTEM:) are
+    # link.exe syntax, which clang-cl does not accept
+    env['LINK'] = 'lld-link'
+    env['SHLINK'] = 'lld-link'
     env['AR'] = 'llvm-lib'
     env.Append(CPPDEFINES=['WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
@@ -103,14 +107,14 @@ else:
         CXX='clang++',
         CPPPATH=common_cpppath,
     )
-    env['AS'] = 'clang'
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
+    # keep module names plain (qagame.so, not libqagame.so)
+    env['SHLIBPREFIX'] = ''
     # gnu89 keeps the 2001-era C code compiling under modern clang.
     # The splines code is C++98-era, so build it as gnu++98.
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
     env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
-    env.Append(ASFLAGS=['-c', '-x', 'assembler-with-cpp', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['-g', '-O0'], CXXFLAGS=['-g', '-O0'])
@@ -191,8 +195,8 @@ unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
     'linux_qgl.c', 'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
 ]]
-if not IS_WINDOWS and ARCH == 'x86':
-    unix_sys_files += ['src/sys/unix/matha.s', 'src/sys/unix/snd_mixa.s']
+# the unix asm files (matha.s, snd_mixa.s, sys_dosa.s) are not built:
+# q_shared.h forces id386 to 0, so the portable C implementations are used
 
 win_sys_files = ['src/sys/win32/' + f for f in [
     'win_gamma.c', 'win_glimp.c', 'win_input.c', 'win_main.c', 'win_net.c',

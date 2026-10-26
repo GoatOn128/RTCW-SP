@@ -27,6 +27,37 @@ jobs:
           set -o pipefail
           sudo apt-get update -qq 2>&1 | tee -a build.log
           sudo apt-get install -y -qq uncrustify 2>&1 | tee -a build.log
+      - name: apply pending engine patches
+        shell: bash
+        run: |
+          # Idempotent source patches that cannot be applied through the
+          # repository API (the GitHub file reader fails on unix_main.c).
+          # Each block only applies while its old pattern still exists.
+          python3 - <<'EOF'
+          from pathlib import Path
+
+          # unix_main.c: Sys_LoadGameDll appends an architecture suffix
+          # (namei386.so) that no longer exists. Use plain <name>.so so
+          # 64-bit builds can load the modules the SCons build produces.
+          p = Path('src/sys/unix/unix_main.c')
+          s = p.read_text()
+          if '#error Unknown arch' in s:
+              i = s.index('%si386.so')
+              start = s.rindex('#if', 0, i)
+              err = s.index('#error Unknown arch', i)
+              end = s.index('#endif', err) + len('#endif')
+              span = s[start:end]
+              assert '__powerpc__' in span and '__mips__' in span, span[:200]
+              repl = (
+                  '// module names carry no architecture suffix: the SCons build\n'
+                  '\t// produces plain <name>.so files on every architecture\n'
+                  '\tsnprintf( fname, sizeof( fname ), "%s.so", name );'
+              )
+              p.write_text(s[:start] + repl + s[end:])
+              print('unix_main.c: replaced the arch suffix chain')
+          else:
+              print('unix_main.c: nothing to do')
+          EOF
       - name: format
         shell: bash
         run: |

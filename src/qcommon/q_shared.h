@@ -114,7 +114,10 @@ If you have questions concerning this license or the applicable additional terms
 
 
 // this is the define for determining if we have an asm version of a C function
-#if ( defined _M_IX86 || defined __i386__ ) && !defined __sun__  && !defined __LCC__
+#if 0
+// asm paths are disabled on every platform: clang-cl has no MSVC inline asm
+// and the SCons build no longer assembles the unix .s files, so the portable
+// C implementations in the #else branches are always used
 #define id386   1
 #else
 #define id386   0
@@ -135,16 +138,18 @@ If you have questions concerning this license or the applicable additional terms
 
 // buildstring will be incorporated into the version string
 #ifdef NDEBUG
-#ifdef _M_IX86
+// clang-cl does not define _M_IX86, so test the compiler builtins too
+#if defined _M_IX86 || defined __i386__
 #define CPUSTRING   "win-x86"
-#elif defined _M_ALPHA
-#define CPUSTRING   "win-AXP"
+#elif defined __x86_64__
+#define CPUSTRING   "win-x64"
 #endif
 #else
-#ifdef _M_IX86
+// clang-cl does not define _M_IX86, so test the compiler builtins too
+#if defined _M_IX86 || defined __i386__
 #define CPUSTRING   "win-x86-debug"
-#elif defined _M_ALPHA
-#define CPUSTRING   "win-AXP-debug"
+#elif defined __x86_64__
+#define CPUSTRING   "win-x64-debug"
 #endif
 #endif
 
