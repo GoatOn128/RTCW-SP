@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __UI_SHARED_H
-#define __UI_SHARED_H
+#ifndef UI_SHARED_H
+#define UI_SHARED_H
 
 
 #include "../game/q_shared.h"

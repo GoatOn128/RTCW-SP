@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __UI_LOCAL_H__
-#define __UI_LOCAL_H__
+#ifndef UI_LOCAL_H
+#define UI_LOCAL_H
 
 //#include <string.h>
 //#include <ctype.h>

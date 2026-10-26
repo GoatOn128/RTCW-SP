@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __UI_PUBLIC_H__
-#define __UI_PUBLIC_H__
+#ifndef UI_PUBLIC_H
+#define UI_PUBLIC_H
 
 #define UI_API_VERSION  4
 
