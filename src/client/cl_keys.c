@@ -4,7 +4,7 @@
 Return to Castle Wolfenstein single player GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (Â“RTCW SP Source CodeÂ”).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (Ã‚Â“RTCW SP Source CodeÃ‚Â”).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -194,7 +194,7 @@ keyname_t keynames_d[] =    //deutsch
 	{"EINGABETASTE", K_ENTER},
 	{"ESC", K_ESCAPE},
 	{"LEERTASTE", K_SPACE},
-	{"RÜCKTASTE", K_BACKSPACE},
+	{"RÃœCKTASTE", K_BACKSPACE},
 	{"PFEILT.AUF", K_UPARROW},
 	{"PFEILT.UNTEN", K_DOWNARROW},
 	{"PFEILT.LINKS", K_LEFTARROW},
@@ -447,9 +447,9 @@ keyname_t keynames_s[] =  //Spanish - Updated 11/5
 
 	{"ALT", K_ALT},
 	{"CTRL", K_CTRL},
-	{"MAYÚS", K_SHIFT},
+	{"MAYÃšS", K_SHIFT},
 
-	{"BLOQ_MAYÚS", K_CAPSLOCK},
+	{"BLOQ_MAYÃšS", K_CAPSLOCK},
 
 	{"F1", K_F1},
 	{"F2", K_F2},
@@ -466,16 +466,16 @@ keyname_t keynames_s[] =  //Spanish - Updated 11/5
 
 	{"INSERT", K_INS},
 	{"SUPR", K_DEL},
-	{"AV_PÁG", K_PGDN},
-	{"RE_PÁG", K_PGUP},
+	{"AV_PÃG", K_PGDN},
+	{"RE_PÃG", K_PGUP},
 	{"INICIO", K_HOME},
 	{"FIN", K_END},
 
-	{"RATÓN1", K_MOUSE1},
-	{"RATÓN2", K_MOUSE2},
-	{"RATÓN3", K_MOUSE3},
-	{"RATÓN4", K_MOUSE4},
-	{"RATÓN5", K_MOUSE5},
+	{"RATÃ“N1", K_MOUSE1},
+	{"RATÃ“N2", K_MOUSE2},
+	{"RATÃ“N3", K_MOUSE3},
+	{"RATÃ“N4", K_MOUSE4},
+	{"RATÃ“N5", K_MOUSE5},
 
 	{"RUEDA_HACIA_ARRIBA",   K_MWHEELUP },
 	{"RUEDA_HACIA_ABAJO",    K_MWHEELDOWN },
@@ -532,13 +532,13 @@ keyname_t keynames_s[] =  //Spanish - Updated 11/5
 
 	{"INICIO(NUM)",          K_KP_HOME },
 	{"ARRIBA(NUM)",      K_KP_UPARROW },
-	{"RE_PÁG(NUM)",          K_KP_PGUP },
+	{"RE_PÃG(NUM)",          K_KP_PGUP },
 	{"IZQUIERDA(NUM)",   K_KP_LEFTARROW },
 	{"5(NUM)",           K_KP_5 },
 	{"DERECHA(NUM)", K_KP_RIGHTARROW },
 	{"FIN(NUM)",         K_KP_END },
 	{"ABAJO(NUM)",   K_KP_DOWNARROW },
-	{"AV_PÁG(NUM)",          K_KP_PGDN },
+	{"AV_PÃG(NUM)",          K_KP_PGDN },
 	{"INTRO(NUM)",       K_KP_ENTER },
 	{"INS(NUM)",         K_KP_INS },
 	{"SUPR(NUM)",            K_KP_DEL },
@@ -567,7 +567,7 @@ keyname_t keynames_i[] =  //Italian
 	{"SPAZIO", K_SPACE},
 	{"BACKSPACE", K_BACKSPACE},
 	{"FRECCIASU", K_UPARROW},
-	{"FRECCIAGIÙ", K_DOWNARROW},
+	{"FRECCIAGIÃ™", K_DOWNARROW},
 	{"FRECCIASX", K_LEFTARROW},
 	{"FRECCIADX", K_RIGHTARROW},
 
@@ -592,7 +592,7 @@ keyname_t keynames_i[] =  //Italian
 
 	{"INS", K_INS},
 	{"CANC", K_DEL},
-	{"PAGGIÙ", K_PGDN},
+	{"PAGGIÃ™", K_PGDN},
 	{"PAGGSU", K_PGUP},
 	{"HOME", K_HOME},
 	{"FINE", K_END},
@@ -604,7 +604,7 @@ keyname_t keynames_i[] =  //Italian
 	{"MOUSE5", K_MOUSE5},
 
 	{"ROTELLASU",    K_MWHEELUP },
-	{"ROTELLAGIÙ",   K_MWHEELDOWN },
+	{"ROTELLAGIÃ™",   K_MWHEELDOWN },
 
 	{"JOY1", K_JOY1},
 	{"JOY2", K_JOY2},
@@ -663,8 +663,8 @@ keyname_t keynames_i[] =  //Italian
 	{"TN_5",         K_KP_5 },
 	{"TN_FRECCIA_DX",    K_KP_RIGHTARROW },
 	{"TN_FINE",          K_KP_END },
-	{"TN_FRECCIAGIÙ",    K_KP_DOWNARROW },
-	{"TN_PAGGIÙ",            K_KP_PGDN },
+	{"TN_FRECCIAGIÃ™",    K_KP_DOWNARROW },
+	{"TN_PAGGIÃ™",            K_KP_PGDN },
 	{"TN_INVIO",     K_KP_ENTER },
 	{"TN_INS",           K_KP_INS },
 	{"TN_CANC",          K_KP_DEL },
@@ -677,7 +677,7 @@ keyname_t keynames_i[] =  //Italian
 
 	{"PAUSA", K_PAUSE},
 
-	{"ò", ';'},   // because a raw semicolon seperates commands
+	{"Ã²", ';'},   // because a raw semicolon seperates commands
 
 	{"COMMAND", K_COMMAND},  //mac
 
@@ -1728,7 +1728,7 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 
 //----(SA)	get the active menu if in ui mode
 	if ( cls.keyCatchers & KEYCATCH_UI ) {
-		activeMenu = VM_Call( uivm, UI_GET_ACTIVE_MENU );
+		activeMenu = uie->GetActiveMenu();
 	}
 
 
@@ -1743,17 +1743,17 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 		// escape always gets out of CGAME stuff
 		if ( cls.keyCatchers & KEYCATCH_CGAME ) {
 			cls.keyCatchers &= ~KEYCATCH_CGAME;
-			VM_Call( cgvm, CG_EVENT_HANDLING, CGAME_EVENT_NONE );
+			cge->EventHandling( CGAME_EVENT_NONE );
 			return;
 		}
 
 		if ( !( cls.keyCatchers & KEYCATCH_UI ) ) {
 			if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_INGAME );
+				uie->SetActiveMenu( UIMENU_INGAME );
 			} else {
 				CL_Disconnect_f();
 				S_StopAllSounds();
-				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_MAIN );
+				uie->SetActiveMenu( UIMENU_MAIN );
 			}
 			return;
 		}
@@ -1762,7 +1762,7 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 			return;
 		}
 
-		VM_Call( uivm, UI_KEY_EVENT, key, down );
+		uie->KeyEvent( key, down );
 		return;
 	}
 
@@ -1781,10 +1781,10 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 			Cbuf_AddText( cmd );
 		}
 
-		if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-			VM_Call( uivm, UI_KEY_EVENT, key, down );
-		} else if ( cls.keyCatchers & KEYCATCH_CGAME && cgvm ) {
-			VM_Call( cgvm, CG_KEY_EVENT, key, down );
+		if ( cls.keyCatchers & KEYCATCH_UI && uie ) {
+			uie->KeyEvent( key, down );
+		} else if ( cls.keyCatchers & KEYCATCH_CGAME && cge ) {
+			cge->KeyEvent( key, down );
 		}
 
 		return;
@@ -1810,25 +1810,25 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 
 			if ( kb ) {
 				if ( !Q_stricmp( "notebook", kb ) ) {
-					if ( VM_Call( uivm, UI_GET_ACTIVE_MENU ) == UIMENU_NOTEBOOK ) {
+					if ( uie->GetActiveMenu() == UIMENU_NOTEBOOK ) {
 						key = K_ESCAPE;
 					}
 				}
 
 //				if(!Q_stricmp("help", kb)) {
-//					if(VM_Call( uivm, UI_GET_ACTIVE_MENU) == UIMENU_HELP)
+//					if(VM_Call( uie, UI_GET_ACTIVE_MENU) == UIMENU_HELP)
 //						key = K_ESCAPE;
 ///				}
 			}
 		}
 
-		if ( uivm ) {
-			VM_Call( uivm, UI_KEY_EVENT, key, down );
+		if ( uie ) {
+			uie->KeyEvent( key, down );
 		}
 
 	} else if ( cls.keyCatchers & KEYCATCH_CGAME ) {
-		if ( cgvm ) {
-			VM_Call( cgvm, CG_KEY_EVENT, key, down );
+		if ( cge ) {
+			cge->KeyEvent( key, down );
 		}
 	} else if ( cls.keyCatchers & KEYCATCH_MESSAGE ) {
 		Message_Key( key );
@@ -1875,7 +1875,7 @@ void CL_CharEvent( int key ) {
 	if ( cls.keyCatchers & KEYCATCH_CONSOLE ) {
 		Field_CharEvent( &g_consoleField, key );
 	} else if ( cls.keyCatchers & KEYCATCH_UI ) {
-		VM_Call( uivm, UI_KEY_EVENT, key | K_CHAR_FLAG, qtrue );
+		uie->KeyEvent( key | K_CHAR_FLAG, qtrue );
 	} else if ( cls.keyCatchers & KEYCATCH_MESSAGE ) {
 		Field_CharEvent( &chatField, key );
 	} else if ( cls.state == CA_DISCONNECTED ) {
