@@ -166,10 +166,10 @@ void Text_PaintCenter( float x, float y, int font, float scale, vec4_t color, co
 
 /*
 ================
-vmMain
+GetUIAPI
 
-This is the only way control passes into the module.
-This must be the very first function compiled into the .qvm file
+Returns a struct of function pointers to the engine and
+receives the engine-provided import functions in exchange.
 ================
 */
 vmCvar_t ui_new;
@@ -183,59 +183,35 @@ void _UI_KeyEvent( int key, qboolean down );
 void _UI_MouseEvent( int dx, int dy );
 void _UI_Refresh( int realtime );
 qboolean _UI_IsFullscreen( void );
-#if defined( __MACOS__ )
-#pragma export on
-#endif
-int vmMain( int command, int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11  ) {
-#if defined( __MACOS__ )
-#pragma export off
-#endif
-	switch ( command ) {
-	case UI_GETAPIVERSION:
-		return UI_API_VERSION;
+static qboolean UI_HasUniqueCDKey( void ) {
+	return qtrue;
+}
 
-	case UI_INIT:
-		_UI_Init( arg0 );
-		return 0;
+uiExport_t *GetUIAPI( int apiVersion, uiImport_t *import ) {
+	static uiExport_t ui_export;
 
-	case UI_SHUTDOWN:
-		_UI_Shutdown();
-		return 0;
-
-	case UI_KEY_EVENT:
-		_UI_KeyEvent( arg0, arg1 );
-		return 0;
-
-	case UI_MOUSE_EVENT:
-		_UI_MouseEvent( arg0, arg1 );
-		return 0;
-
-	case UI_REFRESH:
-		_UI_Refresh( arg0 );
-		return 0;
-
-	case UI_IS_FULLSCREEN:
-		return _UI_IsFullscreen();
-
-	case UI_SET_ACTIVE_MENU:
-		_UI_SetActiveMenu( arg0 );
-		return 0;
-
-	case UI_GET_ACTIVE_MENU:
-		return _UI_GetActiveMenu();
-
-	case UI_CONSOLE_COMMAND:
-		return UI_ConsoleCommand( arg0 );
-
-	case UI_DRAW_CONNECT_SCREEN:
-		UI_DrawConnectScreen( arg0 );
-		return 0;
-	case UI_HASUNIQUECDKEY:             // mod authors need to observe this
-		return qtrue;
-
+	if ( apiVersion != UI_API_VERSION ) {
+		return NULL;
 	}
 
-	return -1;
+	uiImport = import;
+
+	memset( &ui_export, 0, sizeof( ui_export ) );
+
+	ui_export.apiVersion = UI_API_VERSION;
+	ui_export.Init = _UI_Init;
+	ui_export.Shutdown = _UI_Shutdown;
+	ui_export.KeyEvent = _UI_KeyEvent;
+	ui_export.MouseEvent = _UI_MouseEvent;
+	ui_export.Refresh = _UI_Refresh;
+	ui_export.IsFullscreen = _UI_IsFullscreen;
+	ui_export.SetActiveMenu = _UI_SetActiveMenu;
+	ui_export.GetActiveMenu = _UI_GetActiveMenu;
+	ui_export.ConsoleCommand = UI_ConsoleCommand;
+	ui_export.DrawConnectScreen = UI_DrawConnectScreen;
+	ui_export.HasUniqueCDKey = UI_HasUniqueCDKey;
+
+	return &ui_export;
 }
 
 

@@ -353,7 +353,7 @@ rescan:
 	if ( !strcmp( cmd, "popup" ) ) { // direct server to client popup request, bypassing cgame
 //		trap_UI_Popup(Cmd_Argv(1));
 //		if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-//			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_CLIPBOARD);
+//			uie->SetActiveMenu( UIMENU_CLIPBOARD);
 //			Menus_OpenByName(Cmd_Argv(1));
 //		}
 		return qfalse;
@@ -529,42 +529,49 @@ static void CL_StopCamera( int camNum ) {
 	}
 }
 
-// the ui module stays a VM until it is converted to a native module as well
+// forward menu popups to the ui module
 static void CL_UI_Popup( const char *name ) {
+	if ( !uie ) {
+		return;
+	}
+
 	if ( name && !Q_stricmp( name, "briefing" ) ) {  //----(SA) added
-		VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BRIEFING );
+		uie->SetActiveMenu( UIMENU_BRIEFING );
 		return;
 	}
 
 	if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
 		// NERVE - SMF
 		if ( name && !Q_stricmp( name, "UIMENU_WM_PICKTEAM" ) ) {
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKTEAM );
+			uie->SetActiveMenu( UIMENU_WM_PICKTEAM );
 		} else if ( name && !Q_stricmp( name, "UIMENU_WM_PICKPLAYER" ) ) {
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKPLAYER );
+			uie->SetActiveMenu( UIMENU_WM_PICKPLAYER );
 		} else if ( name && !Q_stricmp( name, "UIMENU_WM_QUICKMESSAGE" ) ) {
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_QUICKMESSAGE );
+			uie->SetActiveMenu( UIMENU_WM_QUICKMESSAGE );
 		} else if ( name && !Q_stricmp( name, "UIMENU_WM_LIMBO" ) ) {
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_LIMBO );
+			uie->SetActiveMenu( UIMENU_WM_LIMBO );
 		}
 		// -NERVE - SMF
 		else if ( name && !Q_stricmp( name, "hbook1" ) ) {   //----(SA)
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK1 );
+			uie->SetActiveMenu( UIMENU_BOOK1 );
 		} else if ( name && !Q_stricmp( name, "hbook2" ) ) {    //----(SA)
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK2 );
+			uie->SetActiveMenu( UIMENU_BOOK2 );
 		} else if ( name && !Q_stricmp( name, "hbook3" ) ) {    //----(SA)
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK3 );
+			uie->SetActiveMenu( UIMENU_BOOK3 );
 		} else if ( name && !Q_stricmp( name, "pregame" ) ) {    //----(SA) added
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_PREGAME );
+			uie->SetActiveMenu( UIMENU_PREGAME );
 		} else {
-			VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_CLIPBOARD );
+			uie->SetActiveMenu( UIMENU_CLIPBOARD );
 		}
 	}
 }
 
 static void CL_UI_ClosePopup( const char *name ) {
 	( void ) name;
-	VM_Call( uivm, UI_KEY_EVENT, K_ESCAPE, qtrue );
+	if ( !uie ) {
+		return;
+	}
+	uie->KeyEvent( K_ESCAPE, qtrue );
 }
 
 static void CL_LimboChat( const char *text ) {
