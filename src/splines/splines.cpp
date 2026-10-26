@@ -705,36 +705,36 @@ void idCameraDef::buildCamera() {
 			break;
 		}
 		case idCameraEvent::EVENT_SPEED: {
-            /*
-            				// take the average delay between up to the next five segments
-            				float adjust = atof(events[i]->getParam());
-            				int index = events[i]->getSegment();
-            				total = 0;
-            				count = 0;
+			/*
+							// take the average delay between up to the next five segments
+							float adjust = atof(events[i]->getParam());
+							int index = events[i]->getSegment();
+							total = 0;
+							count = 0;
 
-            				// get total amount of time over the remainder of the segment
-            				for (j = index; j < cameraSpline.numSegments() - 1; j++) {
-            					total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
-            					count++;
-            				}
+							// get total amount of time over the remainder of the segment
+							for (j = index; j < cameraSpline.numSegments() - 1; j++) {
+								total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
+								count++;
+							}
 
-            				// multiply that by the adjustment
-            				double newTotal = total * adjust;
-            				// what is the difference..
-            				newTotal -= total;
-            				totalTime += newTotal / 1000;
+							// multiply that by the adjustment
+							double newTotal = total * adjust;
+							// what is the difference..
+							newTotal -= total;
+							totalTime += newTotal / 1000;
 
-            				// per segment difference
-            				newTotal /= count;
-            				int additive = newTotal;
+							// per segment difference
+							newTotal /= count;
+							int additive = newTotal;
 
-            				// now propogate that difference out to each segment
-            				for (j = index; j < cameraSpline.numSegments(); j++) {
-            					cameraSpline.addSegmentTime(j, additive);
-            					additive += newTotal;
-            				}
-            				break;
-            */
+							// now propogate that difference out to each segment
+							for (j = index; j < cameraSpline.numSegments(); j++) {
+								cameraSpline.addSegmentTime(j, additive);
+								additive += newTotal;
+							}
+							break;
+			*/
 			default:
 				break;
 		}
