@@ -1,0 +1,19 @@
+# build outputs
+build/
+.scons_cache/
+.sconsign.dblite
+
+# compiler artifacts
+*.o
+*.obj
+*.os
+*.so
+*.dll
+*.exe
+*.lib
+*.a
+*.pdb
+
+# python
+__pycache__/
+*.pyc

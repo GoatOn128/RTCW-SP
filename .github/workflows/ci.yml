@@ -1,0 +1,166 @@
+name: build
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# a new commit cancels the superseded run for the same branch
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: uncrustify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install uncrustify
+        shell: bash
+        run: |
+          rm -f build.log
+          set -o pipefail
+          sudo apt-get update -qq 2>&1 | tee -a build.log
+          sudo apt-get install -y -qq uncrustify 2>&1 | tee -a build.log
+      - name: format
+        shell: bash
+        run: |
+          set -o pipefail
+          find src -regextype posix-extended -path src/third-party -prune -o -type f -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
+          uncrustify -c uncrustify.cfg -F files.txt --replace --no-backup 2>&1 | tee -a build.log || true
+          rm -f files.txt
+      - name: commit formatting
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "uncrustify: format tree [skip ci]"
+            if ! git push; then
+              git pull --rebase origin ${{ github.ref }}
+              git push
+            fi
+          fi
+      - name: digest
+        if: always()
+        shell: bash
+        env:
+          LEG: uncrustify
+          STATUS: ${{ job.status }}
+        run: python .github/scripts/digest.py
+      - name: upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-uncrustify
+          path: |
+            log-uncrustify.log
+            digest-fragment-uncrustify.md
+            status-uncrustify
+          if-no-files-found: ignore
+
+  build:
+    needs: format
+    name: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        arch: [x86, x64]
+        config: [debug, release]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - name: install scons
+        run: pip install scons
+      - name: install linux deps
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          rm -f build.log
+          set -o pipefail
+          sudo dpkg --add-architecture i386 || true
+          sudo apt-get update -qq 2>&1 | tee -a build.log
+          sudo apt-get install -y -qq gcc-multilib g++-multilib 2>&1 | tee -a build.log
+          if [ "${{ matrix.arch }}" = "x86" ]; then
+            sudo apt-get install -y -qq libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
+          else
+            sudo apt-get install -y -qq libx11-dev libxext-dev libxxf86dga-dev libxxf86vm-dev 2>&1 | tee -a build.log
+          fi
+      - name: setup msvc environment
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+      - name: cache scons objects
+        uses: actions/cache@v4
+        with:
+          path: .scons_cache
+          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ hashFiles('SConstruct') }}
+          restore-keys: |
+            scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-
+      - name: build
+        shell: bash
+        run: |
+          set -o pipefail
+          scons arch=${{ matrix.arch }} config=${{ matrix.config }} -j4 2>&1 | tee -a build.log
+      - name: digest
+        if: always()
+        shell: bash
+        env:
+          LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+          STATUS: ${{ job.status }}
+        run: python .github/scripts/digest.py
+      - name: upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+          path: |
+            log-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.log
+            digest-fragment-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.md
+            status-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+          if-no-files-found: ignore
+
+  publish:
+    needs: build
+    if: always() && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: logs-*
+          merge-multiple: true
+          path: logs
+      - name: assemble
+        run: |
+          if ls logs/status-* >/dev/null 2>&1; then
+            python .github/scripts/assemble.py
+          else
+            echo "no build logs to publish"
+            exit 0
+          fi
+      - name: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add build.log build-digest.md
+          git diff --cached --quiet && exit 0
+          git commit -m "CI: publish build log and digest [skip ci]"
+          if ! git push; then
+            git pull --rebase origin ${{ github.ref }}
+            git push
+          fi
