@@ -11,7 +11,7 @@ permissions:
 
 # a new commit cancels the superseded run for the same branch
 concurrency:
-  group: format-\${{ github.ref }}
+  group: format-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -25,8 +25,11 @@ jobs:
         run: |
           rm -f build.log
           set -o pipefail
-          sudo apt-get update -qq 2>&1 | tee -a build.log
-          sudo apt-get install -y -qq uncrustify 2>&1 | tee -a build.log
+          # apt can fail transiently on the hosted runners: it must never
+          # block the engine patches below, the format pass just reports
+          # the missing binary per file
+          sudo apt-get update -qq 2>&1 | tee -a build.log || true
+          sudo apt-get install -y -qq uncrustify 2>&1 | tee -a build.log || true
       - name: apply pending engine patches
         shell: bash
         run: |
@@ -57,7 +60,7 @@ jobs:
                       return raw.decode( enc ), enc
                   except UnicodeDecodeError:
                       pass
-              raise UnicodeDecodeError( 'no usable encoding for ' + str( path ) )
+              raise RuntimeError( 'no usable encoding for ' + str( path ) )
 
           # unix_main.c: Sys_LoadGameDll appends an architecture suffix
           # (namei386.so) that no longer exists. Use plain <name>.so so
@@ -91,6 +94,24 @@ jobs:
                   print( 'unix_main.c: nothing to do' )
           except Exception:
               diag( 'unix_main-patch', traceback.format_exc() )
+
+          # unix_main.c: it defines a second copy of the renderer export
+          # table that cl_main.c already owns; client.h declares the
+          # extern, so the duplicate definition breaks the unix link.
+          try:
+              p = Path( 'src/sys/unix/unix_main.c' )
+              # the file is not valid UTF-8: latin-1 round-trips every byte
+              s = p.read_bytes().decode( 'latin-1' )
+              s2, n = re.subn( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;[ \t]*\r?\n', '', s, count = 1 )
+              if n:
+                  print( 'unix_main.c: removed the duplicate re definition' )
+                  p.write_bytes( s2.encode( 'latin-1' ) )
+              else:
+                  print( 'unix_main.c: no standalone re definition found, dumping refexport lines' )
+                  for m in re.finditer( r'(?m)^.*refexport.*$', s ):
+                      diag( 'unix_main-re', m.group( 0 )[:400] )
+          except Exception:
+              diag( 'unix_main-re', traceback.format_exc() )
 
           # cl_keys.c: stored with mixed Latin-1 bytes, so neither the
           # GitHub file API nor uncrustify can read it. Rewrite the
@@ -191,11 +212,11 @@ jobs:
             # output wins instead of committing conflict markers
             pushed=0
             for attempt in 1 2 3; do
-              if git push origin "HEAD:\${GITHUB_REF_NAME}"; then
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
                 pushed=1
                 break
               fi
-              git fetch origin "\${GITHUB_REF_NAME}" || break
+              git fetch origin "${GITHUB_REF_NAME}" || break
               git rebase -X theirs "FETCH_HEAD" || break
             done
             test "$pushed" = 1
@@ -225,11 +246,11 @@ jobs:
             # output wins instead of committing conflict markers
             pushed=0
             for attempt in 1 2 3; do
-              if git push origin "HEAD:\${GITHUB_REF_NAME}"; then
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
                 pushed=1
                 break
               fi
-              git fetch origin "\${GITHUB_REF_NAME}" || break
+              git fetch origin "${GITHUB_REF_NAME}" || break
               git rebase -X theirs "FETCH_HEAD" || break
             done
             test "$pushed" = 1
@@ -239,7 +260,7 @@ jobs:
         shell: bash
         env:
           LEG: uncrustify
-          STATUS: \${{ job.status }}
+          STATUS: ${{ job.status }}
         run: |
           cp build.log "log-$LEG.log" 2>/dev/null || true
           python .github/scripts/digest.py || true
