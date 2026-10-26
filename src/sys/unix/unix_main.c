@@ -651,17 +651,9 @@ void *Sys_LoadDll( const char *name,
 	// bk001206 - let's have some paranoia
 	assert( name );
 
-#if defined __i386__
-	snprintf( fname, sizeof( fname ), "%si386.so", name );
-#elif defined __powerpc__   //rcg010207 - PPC support.
-	snprintf( fname, sizeof( fname ), "%sppc.so", name );
-#elif defined __axp__
-	snprintf( fname, sizeof( fname ), "%saxp.so", name );
-#elif defined __mips__
-	snprintf( fname, sizeof( fname ), "%smips.so", name );
-#else
-#error Unknown arch
-#endif
+// module names carry no architecture suffix: the SCons build
+	// produces plain <name>.so files on every architecture
+	snprintf( fname, sizeof( fname ), "%s.so", name );
 
 // bk001129 - was RTLD_LAZY
 #define Q_RTLD    RTLD_NOW
