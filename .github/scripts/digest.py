@@ -5,9 +5,12 @@ The status file is written first so the publish job always has data,
 even if log parsing breaks. Any script error is captured into the
 fragment itself so it stays visible in build-digest.md.
 
-Warnings are grouped by kind (clang warning flag or MSVC diagnostic
-code) with a count and a few example lines, so long -k builds stay
-readable.
+Warnings are grouped by kind: the clang warning flag or MSVC
+diagnostic code found anywhere in the line. The flag is searched
+anywhere because the -j4 parallel build interleaves output lines in
+build.log, so a strict "location: message [flag]" pattern misses
+most of them. Kinds are sorted by frequency and each keeps a list
+of distinct example lines.
 """
 
 import os
@@ -24,33 +27,27 @@ ERROR_RE = re.compile(
     "UNCRUSTIFY_FAILED"
 )
 WARNING_RE = re.compile("warning:|warning C[0-9]+")
+FLAG_RE = re.compile(r"\[-W([-\w]+)\]")
+MSVC_CODE_RE = re.compile(r"warning C([0-9]+):")
 
-# clang style: src/file.c:12:34: warning: message [-Wflag]
-CLANG_WARN_RE = re.compile(
-    r"^(?P<loc>[^ ]+): warning: (?P<msg>.*?)\s*(?:\[(?P<flag>[-\w]+)\])?\s*$"
-)
-# clang-cl style: src\file.c(12,34): warning: message
-CLANGCL_WARN_RE = re.compile(
-    r"^(?P<loc>[^(]+)\((?P<line>\d+)(?:,\d+)?\): warning: (?P<msg>.*)$"
-)
-# msvc style: src\file.c(12): warning C4244: 'x': conversion from ...
-MSVC_WARN_RE = re.compile(
-    r"^(?P<loc>.*)\((?P<line>\d+)\): warning C(?P<code>\d+): (?P<msg>.*)$"
-)
+MAX_ERROR_LINES = 300
+MAX_KINDS = 300
+MAX_EXAMPLES = 30
 
 
 def warn_key(line):
-    """Return a stable key describing what kind of warning this is."""
-    m = CLANG_WARN_RE.match(line)
+    """Return a stable kind key: warning flag or MSVC code when
+    present, else a prefix of the message."""
+    m = FLAG_RE.search(line)
     if m:
-        return m.group("flag") or m.group("msg")[:120]
-    m = MSVC_WARN_RE.match(line)
+        return "-" + m.group(1)
+    m = MSVC_CODE_RE.search(line)
     if m:
-        return "C" + m.group("code") + ": " + m.group("msg")[:100]
-    m = CLANGCL_WARN_RE.match(line)
+        return "C" + m.group(1)
+    m = re.search(r"warning: (.{0,100})", line)
     if m:
-        return m.group("msg")[:120]
-    return line.strip()[:120]
+        return m.group(1)
+    return line[:100]
 
 
 def main():
@@ -69,7 +66,8 @@ def main():
             errors = [l for l in lines if ERROR_RE.search(l)]
             warnings = [l for l in lines if WARNING_RE.search(l)]
 
-            # identical error lines repeat across parallel jobs, keep one
+            # identical error lines repeat (headers per job, retries),
+            # keep one of each
             seen_errors = OrderedDict()
             for l in errors:
                 seen_errors.setdefault(l.strip()[:400], None)
@@ -78,18 +76,29 @@ def main():
             for l in warnings:
                 groups.setdefault(warn_key(l.strip()), []).append(l.strip()[:400])
 
+            # most frequent kinds first so the big problems lead
+            ordered = sorted(groups.items(), key=lambda kv: -len(kv[1]))
+
             f.write("errors: " + str(len(seen_errors)) + "\n")
             f.write("warnings: " + str(len(warnings)) + " in " + str(len(groups)) + " kinds\n\n")
 
             f.write("### errors\n\n")
-            for l in list(seen_errors.keys())[:200]:
+            for l in list(seen_errors.keys())[:MAX_ERROR_LINES]:
                 f.write(l + "\n")
 
             f.write("\n### warning kinds\n\n")
-            for key, examples in list(groups.items())[:60]:
+            for key, examples in ordered[:MAX_KINDS]:
                 f.write("- [" + str(len(examples)) + "x] " + key + "\n")
-                for e in examples[:2]:
+                seen = set()
+                shown = 0
+                for e in examples:
+                    if e in seen:
+                        continue
+                    seen.add(e)
                     f.write("  - " + e + "\n")
+                    shown += 1
+                    if shown >= MAX_EXAMPLES:
+                        break
         except Exception:
             f.write("digest script error:\n\n```\n" + traceback.format_exc() + "\n```\n")
 

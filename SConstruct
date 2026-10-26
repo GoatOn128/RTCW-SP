@@ -88,7 +88,9 @@ if IS_WINDOWS:
     env['AR'] = 'llvm-lib'
     env.Append(CPPDEFINES=['WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
-    env.Append(CCFLAGS=['-Wall', arch_flag], CXXFLAGS=['-Wall', arch_flag])
+    # /W4, not -Wall: clang-cl maps -Wall onto every warning it knows
+    # and floods the log with tens of thousands of warnings
+    env.Append(CCFLAGS=['/W4', arch_flag], CXXFLAGS=['/W4', arch_flag])
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['/Z7', '/Od'], CXXFLAGS=['/Z7', '/Od'], LINKFLAGS=['/DEBUG'])
     else:
@@ -212,9 +214,16 @@ sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 client_sources = (
     renderer_files + client_files + qcommon_files + server_files +
     ['src/qcommon/q_shared.c', 'src/qcommon/q_math.c'] +
-    vm_files + sys_files + splines_files + jpeg_files
+    vm_files + sys_files + splines_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
+
+# jpeg-6 is vendored legacy C kept in its original form, so the
+# Windows build mutes its warnings with /W0 (the last /W flag wins)
+jpeg_env = client_env.Clone()
+if IS_WINDOWS:
+    jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+client_objs += module_objects(jpeg_env, 'client', jpeg_files)
 
 # botlib needs its own define but is linked into the client binary
 botlib_env = client_env.Clone()

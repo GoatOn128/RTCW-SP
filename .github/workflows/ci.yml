@@ -89,6 +89,13 @@ jobs:
       - name: clean stale log
         shell: bash
         run: rm -f build.log
+      - name: free disk space
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          # the Windows runners run out of disk during full builds
+          rm -rf /c/Android /c/Miniconda3 /c/vcpkg || true
+          df -h /c 2>&1 | tee -a build.log
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -121,9 +128,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .scons_cache
+          # no restore-keys: falling back to a cache from an older
+          # SConstruct fills the disk with stale objects and slows
+          # the restore down
           key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ hashFiles('SConstruct') }}
-          restore-keys: |
-            scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-
       - name: build
         shell: bash
         run: |
