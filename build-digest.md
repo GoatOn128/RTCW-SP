@@ -1,6 +1,6 @@
 # Build digest
 
-commit: 07396f2feca9
+commit: 6ee8fd27b832
 
 - ubuntu-latest-x64-debug: failure
 - ubuntu-latest-x64-release: failure
@@ -21,7 +21,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
+scons: *** [build/linux-x64-debug/client/src/src/renderer/tr_animation.o] Source `build/linux-x64-debug/client/src/src/renderer/tr_animation.c' not found, needed by target `build/linux-x64-debug/client/src/src/renderer/tr_animation.o'.
 
 ### warnings
 
@@ -34,7 +34,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
+scons: *** [build/linux-x64-release/client/src/src/renderer/tr_animation.o] Source `build/linux-x64-release/client/src/src/renderer/tr_animation.c' not found, needed by target `build/linux-x64-release/client/src/src/renderer/tr_animation.o'.
 
 ### warnings
 
@@ -47,7 +47,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
+scons: *** [build/linux-x86-debug/client/src/src/renderer/tr_animation.o] Source `build/linux-x86-debug/client/src/src/renderer/tr_animation.c' not found, needed by target `build/linux-x86-debug/client/src/src/renderer/tr_animation.o'.
 
 ### warnings
 
@@ -60,7 +60,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src/games/game/bg_animation.os
+scons: *** [build/linux-x86-release/client/src/src/renderer/tr_animation.o] Source `build/linux-x86-release/client/src/src/renderer/tr_animation.c' not found, needed by target `build/linux-x86-release/client/src/src/renderer/tr_animation.o'.
 
 ### warnings
 
@@ -82,11 +82,12 @@ UNCRUSTIFY_FAILED: src/games/game/bg_pmove.c
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Do not know how to make File target `build\windows-x64-debug\WolfSP' (D:\a\RTCW-SP\RTCW-SP\build\windows-x64-debug\WolfSP).  Stop.
 
 ### warnings
 
@@ -94,11 +95,12 @@ warnings: 0
 
 status: failure
 
-errors: 0
+errors: 1
 warnings: 0
 
 ### errors
 
+scons: *** Do not know how to make File target `build\windows-x64-release\WolfSP' (D:\a\RTCW-SP\RTCW-SP\build\windows-x64-release\WolfSP).  Stop.
 
 ### warnings
 
@@ -111,7 +113,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src\games\game\q_math.obj
+scons: *** Do not know how to make File target `build\windows-x86-debug\WolfSP' (D:\a\RTCW-SP\RTCW-SP\build\windows-x86-debug\WolfSP).  Stop.
 
 ### warnings
 
@@ -124,7 +126,7 @@ warnings: 0
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: src\games\game\q_math.obj
+scons: *** Do not know how to make File target `build\windows-x86-release\WolfSP' (D:\a\RTCW-SP\RTCW-SP\build\windows-x86-release\WolfSP).  Stop.
 
 ### warnings
 
