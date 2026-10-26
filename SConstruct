@@ -57,7 +57,7 @@ common_cpppath = [
     'src/games/botlib',
     'src/games/cgame',
     'src/games/ui',
-    'src/third-party/jpeg-6',
+    'src/third-party/stb',
 ]
 
 if IS_WINDOWS:
@@ -190,15 +190,6 @@ botlib_files = ['src/games/botlib/' + f for f in [
     'l_precomp.c', 'l_script.c', 'l_struct.c',
 ]]
 
-jpeg_files = ['src/third-party/jpeg-6/' + f for f in [
-    'jcapimin.c', 'jchuff.c', 'jcinit.c', 'jccoefct.c', 'jccolor.c',
-    'jfdctflt.c', 'jcdctmgr.c', 'jcphuff.c', 'jcmainct.c', 'jcmarker.c',
-    'jcmaster.c', 'jcomapi.c', 'jcparam.c', 'jcprepct.c', 'jcsample.c',
-    'jdapimin.c', 'jdapistd.c', 'jdatasrc.c', 'jdcoefct.c', 'jdcolor.c',
-    'jddctmgr.c', 'jdhuff.c', 'jdinput.c', 'jdmainct.c', 'jdmarker.c',
-    'jdmaster.c', 'jdpostct.c', 'jdsample.c', 'jdtrans.c', 'jerror.c',
-    'jidctflt.c', 'jmemmgr.c', 'jmemnobs.c', 'jutils.c',
-]]
 
 unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
@@ -232,15 +223,6 @@ client_sources = (
     sys_files + splines_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
-
-# jpeg-6 is vendored legacy C kept in its original form, so the
-# build mutes its warnings entirely (the last warning flag wins)
-jpeg_env = client_env.Clone()
-if IS_WINDOWS:
-    jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
-else:
-    jpeg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-client_objs += module_objects(jpeg_env, 'client', jpeg_files)
 
 # botlib needs its own define but is linked into the client binary
 botlib_env = client_env.Clone()
@@ -328,14 +310,15 @@ else:
     renderer_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 renderer_target = os.path.join(BUILD_DIR, 'renderer_gl' + DLL)
 renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=not IS_WINDOWS)
-# jpeg-6 is vendored legacy C kept in its original form, same as the client
-# build; tr_image.c calls it directly
-renderer_jpeg_env = renderer_env.Clone()
+# stb is vendored third party code, so the build mutes its warnings
+# the same way the old jpeg-6 build did; stb_impl.c is the single
+# translation unit that pulls in the implementations
+renderer_stb_env = renderer_env.Clone()
 if IS_WINDOWS:
-    renderer_jpeg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+    renderer_stb_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
 else:
-    renderer_jpeg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-renderer_objs += module_objects(renderer_jpeg_env, 'renderer', jpeg_files, shared=not IS_WINDOWS)
+    renderer_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
 renderer_env.SharedLibrary(renderer_target, renderer_objs)
 
 Default(client_target, game_target, cgame_target, ui_target, renderer_target)
