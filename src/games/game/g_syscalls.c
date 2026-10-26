@@ -734,7 +734,7 @@ void trap_BotResetAvoidReach( int movestate ) {
 }
 
 void trap_BotResetLastAvoidReach( int movestate ) {
-	gameImport->BOTLIB_AI_RESET_LAST_AVOID_REACH(movestate  );
+	gameImport->BOTLIB_AI_RESET_LAST_AVOID_REACH( movestate  );
 }
 
 int trap_BotReachabilityArea( vec3_t origin, int testground ) {
