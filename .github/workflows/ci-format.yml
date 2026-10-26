@@ -95,24 +95,6 @@ jobs:
           except Exception:
               diag( 'unix_main-patch', traceback.format_exc() )
 
-          # unix_main.c: it defines a second copy of the renderer export
-          # table that cl_main.c already owns; client.h declares the
-          # extern, so the duplicate definition breaks the unix link.
-          try:
-              p = Path( 'src/sys/unix/unix_main.c' )
-              # the file is not valid UTF-8: latin-1 round-trips every byte
-              s = p.read_bytes().decode( 'latin-1' )
-              s2, n = re.subn( r'(?m)^[ \t]*refexport_t[ \t]*re[ \t]*;[ \t]*\r?\n', '', s, count = 1 )
-              if n:
-                  print( 'unix_main.c: removed the duplicate re definition' )
-                  p.write_bytes( s2.encode( 'latin-1' ) )
-              else:
-                  print( 'unix_main.c: no standalone re definition found, dumping refexport lines' )
-                  for m in re.finditer( r'(?m)^.*refexport.*$', s ):
-                      diag( 'unix_main-re', m.group( 0 )[:400] )
-          except Exception:
-              diag( 'unix_main-re', traceback.format_exc() )
-
           # cl_keys.c: stored with mixed Latin-1 bytes, so neither the
           # GitHub file API nor uncrustify can read it. Rewrite the
           # VM-era calls and transcode the whole file to UTF-8 in one pass.
@@ -204,8 +186,8 @@ jobs:
           # No [skip ci]: the fixed files must get a full build cycle.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- src/client/cl_keys.c src/client/cl_main.c src/sys/unix/unix_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c; then
-            git add src/client/cl_keys.c src/client/cl_main.c src/sys/unix/unix_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c
+          if ! git diff --quiet -- src/client/cl_keys.c src/client/cl_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c; then
+            git add src/client/cl_keys.c src/client/cl_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c
             git commit -m "Apply the engine patches"
             # the checkout is detached, so the refspec must name the
             # branch explicitly; -X theirs: on a push race the newest
