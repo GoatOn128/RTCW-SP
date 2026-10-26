@@ -84,6 +84,7 @@ enum utf8Encoding_t {
 #define _vsnprintf      use_idStr_vsnPrintf
 
 class idVec4;
+class idCmdArgs;
 
 #ifndef FILE_HASH_SIZE
 #define FILE_HASH_SIZE      1024

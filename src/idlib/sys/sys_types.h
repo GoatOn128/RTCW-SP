@@ -105,7 +105,8 @@ struct idNullPtr {
 
 // C99 Standard
 #ifndef nullptr
-// nullptr is a language keyword in C++ and does not need the idNullPtr fallback#endif
+// nullptr is a language keyword in C++ and does not need the idNullPtr fallback
+#endif
 
 #ifndef BIT
 #define BIT( num )              ( 1ULL << ( num ) )

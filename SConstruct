@@ -35,7 +35,6 @@ BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 EXE = '.exe' if IS_WINDOWS else ''
 DLL = '.dll' if IS_WINDOWS else '.so'
 OBJ = '.obj' if IS_WINDOWS else '.o'
-LIB = '.lib' if IS_WINDOWS else '.a'
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
@@ -365,7 +364,10 @@ if IS_WINDOWS:
     idlib_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
 else:
     idlib_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
-idlib_target = os.path.join(BUILD_DIR, 'idlib' + LIB)
-idlib_env.StaticLibrary(idlib_target, module_objects(idlib_env, 'idlib', idlib_files))
+# let SCons apply the platform library prefix and suffix (libidlib.a on
+# Linux, idlib.lib on Windows) and hand Default() the node the builder
+# returned; naming the file idlib.a left the Default() target without
+# a builder on Linux
+idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), module_objects(idlib_env, 'idlib', idlib_files))
 
-Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target)
+Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0])
