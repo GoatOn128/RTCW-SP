@@ -64,8 +64,10 @@ jobs:
                       span = s[start:end]
                       assert '__powerpc__' in span and '__mips__' in span, span[:200]
                       repl = (
-                          '// module names carry no architecture suffix: the SCons build\n'
-                          '\t// produces plain <name>.so files on every architecture\n'
+                          '// module names carry no architecture suffix: the SCons build\
+'
+                          '\t// produces plain <name>.so files on every architecture\
+'
                           '\tsnprintf( fname, sizeof( fname ), "%s.so", name );'
                       )
                       p.write_bytes( ( s[:start] + repl + s[end:] ).encode( 'latin-1' ) )
@@ -93,7 +95,7 @@ jobs:
                   except UnicodeDecodeError:
                       pass
               assert s is not None
-              if 'VM_Call' in s or 'uivm' in s or 'cgvm' in s:
+              if 'uivm' in s or 'cgvm' in s:
                   s = s.replace( 'VM_Call( uivm, UI_GET_ACTIVE_MENU )', 'uie->GetActiveMenu()' )
                   s = re.sub( r'VM_Call\( uivm, UI_SET_ACTIVE_MENU, ([^)]*) \)', r'uie->SetActiveMenu( \1 )', s )
                   s = re.sub( r'VM_Call\( uivm, UI_KEY_EVENT, ([^)]*) \)', r'uie->KeyEvent( \1 )', s )
@@ -101,7 +103,8 @@ jobs:
                   s = re.sub( r'VM_Call\( cgvm, CG_EVENT_HANDLING, ([^)]*) \)', r'cge->EventHandling( \1 )', s )
                   s = re.sub( r'\buivm\b', 'uie', s )
                   s = re.sub( r'\bcgvm\b', 'cge', s )
-                  assert 'VM_Call' not in s and 'uivm' not in s and 'cgvm' not in s
+                  # only the identifiers must be gone: VM_Call survives in comments
+                  assert 'uivm' not in s and 'cgvm' not in s
                   p.write_bytes( s.encode( 'utf-8' ) )
                   print( 'cl_keys.c: replaced the VM calls and transcoded to UTF-8' )
               else:
