@@ -90,9 +90,6 @@ clientActive_t cl;
 clientConnection_t clc;
 clientStatic_t cls;
 
-// Structure containing functions exported from refresh DLL
-refexport_t re;
-
 // import struct handed to the renderer module, the GL table for it, and
 // the handle of the loaded module
 refimport_t ri;

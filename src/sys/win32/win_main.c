@@ -53,6 +53,9 @@ If you have questions concerning this license or the applicable additional terms
 
 static char sys_cmdline[MAX_STRING_CHARS];
 
+// renderer module export, the client fills it in CL_InitRef
+refexport_t re;
+
 /*
 ==================
 Sys_LowPhysicalMemory()
