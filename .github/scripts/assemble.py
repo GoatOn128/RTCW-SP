@@ -19,8 +19,9 @@ def main():
 
     statuses = {}
     for sf in status_files:
-        leg, status = read(sf).strip().split("|", 1)
-        statuses[leg] = status
+        parts = read(sf).strip().split("|", 1)
+        if len(parts) == 2:
+            statuses[parts[0]] = parts[1]
 
     digest = ["# Build digest\n\n"]
     digest.append("commit: %s\n\n" % os.environ.get("GITHUB_SHA", "unknown")[:12])
@@ -32,7 +33,7 @@ def main():
     with open("build-digest.md", "w") as f:
         f.write("".join(digest))
 
-    parts = []
+    parts_out = []
     for lf in log_files:
         leg = os.path.basename(lf)[len("log-"):-len(".log")]
         if statuses.get(leg) == "success":
@@ -42,11 +43,10 @@ def main():
         if len(text) > MAX_LOG:
             half = MAX_LOG // 2
             text = text[:half] + "\n... [truncated] ...\n" + text[-half:]
-        parts.append("==== %s (%s) ====\n\n" % (leg, statuses.get(leg, "unknown")))
-        parts.append(text + "\n\n")
+        parts_out.append("==== %s (%s) ====\n\n" % (leg, statuses.get(leg, "unknown")))
+        parts_out.append(text + "\n\n")
     with open("build.log", "w") as f:
-        f.write("".join(parts) if parts else "all legs succeeded\n")
+        f.write("".join(parts_out) if parts_out else "all legs succeeded\n")
 
 
-if __name__ == "__main__":
-    main()
+main()

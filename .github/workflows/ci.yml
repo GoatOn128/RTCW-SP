@@ -30,9 +30,11 @@ jobs:
       - name: format
         shell: bash
         run: |
-          set -o pipefail
+          # run per file: a crash on one file must not abort the whole tree
           find src -regextype posix-extended -path src/third-party -prune -o -type f -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
-          uncrustify -c uncrustify.cfg -F files.txt --replace --no-backup 2>&1 | tee -a build.log || true
+          while read -r f; do
+            uncrustify -c uncrustify.cfg --replace --no-backup "$f" >> build.log 2>&1 || echo "UNCRUSTIFY_FAILED: $f" >> build.log
+          done < files.txt
           rm -f files.txt
       - name: commit formatting
         shell: bash
@@ -53,7 +55,9 @@ jobs:
         env:
           LEG: uncrustify
           STATUS: ${{ job.status }}
-        run: python .github/scripts/digest.py
+        run: |
+          cp build.log "log-$LEG.log" 2>/dev/null || true
+          python .github/scripts/digest.py || true
       - name: upload
         if: always()
         uses: actions/upload-artifact@v4
@@ -77,6 +81,9 @@ jobs:
         config: [debug, release]
     steps:
       - uses: actions/checkout@v4
+      - name: clean stale log
+        shell: bash
+        run: rm -f build.log
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -87,7 +94,6 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: |
-          rm -f build.log
           set -o pipefail
           sudo dpkg --add-architecture i386 || true
           sudo apt-get update -qq 2>&1 | tee -a build.log
@@ -120,7 +126,9 @@ jobs:
         env:
           LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
           STATUS: ${{ job.status }}
-        run: python .github/scripts/digest.py
+        run: |
+          cp build.log "log-$LEG.log" 2>/dev/null || true
+          python .github/scripts/digest.py || true
       - name: upload
         if: always()
         uses: actions/upload-artifact@v4
@@ -157,6 +165,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          touch build.log build-digest.md
           git add build.log build-digest.md
           git diff --cached --quiet && exit 0
           git commit -m "CI: publish build log and digest [skip ci]"

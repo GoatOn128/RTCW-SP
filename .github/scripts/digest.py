@@ -1,46 +1,53 @@
 #!/usr/bin/env python3
-"""Extract errors and warnings from build.log into a digest fragment."""
+"""Extract errors and warnings from build.log into a digest fragment.
+
+The status file is written first so the publish job always has data,
+even if log parsing breaks. Any script error is captured into the
+fragment itself so it stays visible in build-digest.md.
+"""
 
 import os
 import re
+import traceback
 
 LEG = os.environ.get("LEG", "unknown")
 STATUS = os.environ.get("STATUS", "unknown")
 
 ERROR_RE = re.compile(
-    r"error:|fatal error:|error Cd{{4}}|Error Cd{{4}}|scons: ***|"
-    r"undefined reference|unresolved external|no such file|cannot open"
+    "error:|fatal error:|error C[0-9]+|Error C[0-9]+|scons: [*][*][*]|"
+    "undefined reference|unresolved external|no such file|cannot open|"
+    "UNCRUSTIFY_FAILED"
 )
-WARNING_RE = re.compile(r"warning:|warning Cd{{4}}")
+WARNING_RE = re.compile("warning:|warning C[0-9]+")
 
 
 def main():
-    lines = []
-    if os.path.exists("build.log"):
-        with open("build.log", errors="replace") as f:
-            lines = f.read().splitlines()
+    with open("status-" + LEG, "w") as f:
+        f.write(LEG + "|" + STATUS + "\n")
 
-    errors = [l for l in lines if ERROR_RE.search(l)]
-    warnings = [l for l in lines if WARNING_RE.search(l)]
+    with open("digest-fragment-" + LEG + ".md", "w") as f:
+        f.write("## " + LEG + "\n\nstatus: " + STATUS + "\n\n")
+        try:
+            lines = []
+            if os.path.exists("build.log"):
+                with open("build.log", errors="replace") as fh:
+                    lines = fh.read().splitlines()
+            errors = [l for l in lines if ERROR_RE.search(l)]
+            warnings = [l for l in lines if WARNING_RE.search(l)]
+            f.write("errors: " + str(len(errors)) + "\n")
+            f.write("warnings: " + str(len(warnings)) + "\n\n")
+            f.write("### errors\n\n")
+            for l in errors[:100]:
+                f.write(l.strip()[:400] + "\n")
+            f.write("\n### warnings\n\n")
+            for l in warnings[:50]:
+                f.write(l.strip()[:400] + "\n")
+        except Exception:
+            f.write("digest script error:\n\n```\n" + traceback.format_exc() + "\n```\n")
 
     if os.path.exists("build.log"):
-        with open("build.log", errors="replace") as src, open("log-%s.log" % LEG, "w") as dst:
+        with open("build.log", errors="replace") as src, open("log-" + LEG + ".log", "w") as dst:
             dst.write(src.read())
 
-    with open("digest-fragment-%s.md" % LEG, "w") as f:
-        f.write("## %s\n\n" % LEG)
-        f.write("status: %s\n\n" % STATUS)
-        f.write("errors: %d\nwarnings: %d\n\n" % (len(errors), len(warnings)))
-        f.write("### errors\n\n")
-        for l in errors[:100]:
-            f.write(l.strip()[:400] + "\n")
-        f.write("\n### warnings\n\n")
-        for l in warnings[:50]:
-            f.write(l.strip()[:400] + "\n")
 
-    with open("status-%s" % LEG, "w") as f:
-        f.write("%s|%s\n" % (LEG, STATUS))
-
-
-if __name__ == "__main__":
-    main()
+main()
