@@ -15,6 +15,14 @@
 #   qagame   - game module   (.dll on Windows, .so on Linux)
 #   cgame    - cgame module
 #   ui       - ui module
+#
+# Sources are compiled where they live in src/. The engine is full of
+# file-relative includes like "../game/q_shared.h" that resolve through
+# the include paths below, so copying sources into a variant tree (the
+# SCons VariantDir approach) breaks the include lookup. Instead each
+# module gets its own object directory and objects are written there
+# with explicit targets, which also keeps per-module objects apart
+# (the same file is compiled with different defines per module).
 
 import os
 import platform as pyplatform
@@ -40,14 +48,15 @@ BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
 # no node answers to, so keep everything on the final file names.
 EXE = '.exe' if IS_WINDOWS else ''
 DLL = '.dll' if IS_WINDOWS else ''
+OBJ = '.obj' if IS_WINDOWS else '.o'
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
 ''')
 
 # Include paths. Most engine includes resolve file-relative, these cover
-# the flat includes and the '../ft2' style relative ones (jpeg-6 and ft2
-# are siblings under src/third-party).
+# the rest, including the legacy "../game/..." style includes: the
+# src/games/game entry makes those resolve to src/games/game/.
 common_cpppath = [
     'src',
     'src/games/game',
@@ -64,27 +73,6 @@ common_cpppath = [
     'src/games/ui',
     'src/third-party/jpeg-6',
 ]
-
-# One variant tree per build target: the same source file is compiled
-# with different defines for each module, so their objects must never
-# land in the same directory.
-def make_variant(module):
-    vdir = os.path.join(BUILD_DIR, module)
-    VariantDir(os.path.join(vdir, 'src'), 'src')
-
-    def vpath(p):
-        # sources are listed as src/... but the variant dir root already
-        # stands for src, so strip that part off before joining
-        if p.startswith('src/'):
-            p = p[len('src/'):]
-        return os.path.join(vdir, 'src', p)
-
-    return vpath
-
-client_v = make_variant('client')
-game_v = make_variant('game')
-cgame_v = make_variant('cgame')
-ui_v = make_variant('ui')
 
 if IS_WINDOWS:
     # SCons names the 64 bit msvc target 'amd64'
@@ -128,6 +116,15 @@ else:
 
 # Shared derived-object cache, big win on CI when restored
 env.CacheDir('.scons_cache')
+
+# Compile one module's sources into its own object directory.
+def module_objects(menv, module, files):
+    objs = []
+    for p in files:
+        rel = p[len('src/'):] if p.startswith('src/') else p
+        target = os.path.join(BUILD_DIR, module, 'obj', rel + OBJ)
+        objs.append(menv.Object(target, p)[0])
+    return objs
 
 renderer_files = ['src/renderer/' + f for f in [
     'tr_animation.c', 'tr_backend.c', 'tr_bsp.c', 'tr_cmds.c', 'tr_cmesh.c',
@@ -215,15 +212,15 @@ client_sources = (
     ['src/games/game/q_shared.c', 'src/games/game/q_math.c'] +
     vm_files + sys_files + splines_files + jpeg_files
 )
-client_sources = [client_v(p) for p in client_sources]
+client_objs = module_objects(client_env, 'client', client_sources)
 
 # botlib needs its own define but is linked into the client binary
 botlib_env = client_env.Clone()
 botlib_env.Append(CPPDEFINES=['BOTLIB'])
-client_sources += botlib_env.Object([client_v(p) for p in botlib_files])
+client_objs += module_objects(botlib_env, 'client', botlib_files)
 
 client_target = os.path.join(BUILD_DIR, 'WolfSP' + EXE)
-client_env.Program(client_target, client_sources)
+client_env.Program(client_target, client_objs)
 
 # ---------------------------------------------------------------- modules
 
@@ -250,7 +247,7 @@ if IS_WINDOWS:
 else:
     game_env.Append(LIBS=['dl', 'm'])
 game_target = os.path.join(BUILD_DIR, 'qagame' + DLL)
-game_env.SharedLibrary(game_target, [game_v(p) for p in game_files])
+game_env.SharedLibrary(game_target, module_objects(game_env, 'game', game_files))
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -271,7 +268,7 @@ if IS_WINDOWS:
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
 cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
-cgame_env.SharedLibrary(cgame_target, [cgame_v(p) for p in cgame_files])
+cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files))
 
 ui_files = ['src/games/game/' + f for f in [
     'bg_misc.c', 'q_math.c', 'q_shared.c',
@@ -286,6 +283,6 @@ if IS_WINDOWS:
 else:
     ui_env.Append(LIBS=['dl', 'm'])
 ui_target = os.path.join(BUILD_DIR, 'ui' + DLL)
-ui_env.SharedLibrary(ui_target, [ui_v(p) for p in ui_files])
+ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files))
 
 Default(client_target, game_target, cgame_target, ui_target)
