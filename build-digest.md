@@ -1,11 +1,11 @@
 # Build digest
 
-commit: d7019959ddb8
+commit: 16dbc8dd250e
 
 - ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
 - ubuntu-latest-x86-debug: success
-- ubuntu-latest-x86-release: success
+- ubuntu-latest-x86-release: cancelled
 - uncrustify: success
 - windows-latest-x64-debug: success
 - windows-latest-x64-release: success
@@ -59,7 +59,7 @@ warnings: 0 in 0 kinds
 
 ## ubuntu-latest-x86-release
 
-status: success
+status: cancelled
 
 errors: 0
 warnings: 0 in 0 kinds
