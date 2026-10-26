@@ -27,8 +27,8 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 // qcommon.h -- definitions common between client and server, but not game.or ref modules
-#ifndef _QCOMMON_H_
-#define _QCOMMON_H_
+#ifndef QCOMMON_H
+#define QCOMMON_H
 
 #include "../qcommon/cm_public.h"
 
@@ -1069,4 +1069,4 @@ extern huffman_t clientHuffTables;
 #define CL_ENCODE_START     12
 #define CL_DECODE_START     4
 
-#endif // _QCOMMON_H_
+#endif // QCOMMON_H
