@@ -1490,7 +1490,7 @@ void UI_FilledBar( float x, float y, float w, float h, float *startColor, float 
 		if ( endColor ) {
 			endColor[3] *= ui_hudAlpha.value;
 		}
-			backgroundcolor[3] *= ui_hudAlpha.value;
+		backgroundcolor[3] *= ui_hudAlpha.value;
 	}
 
 	if ( flags & BAR_LERP_COLOR ) {
