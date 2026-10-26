@@ -11,7 +11,7 @@ permissions:
 
 # a new commit cancels the superseded run for the same branch
 concurrency:
-  group: format-${{ github.ref }}
+  group: format-\${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -47,6 +47,17 @@ jobs:
               # job stays green, so the next build-digest.md shows it
               for line in str( text ).splitlines():
                   print( "error: " + label + ": " + line[:400] )
+
+          # read a source file that may still carry non-UTF-8 bytes and
+          # remember which encoding round-trips it
+          def read_source( path ):
+              raw = path.read_bytes()
+              for enc in ( 'utf-8', 'latin-1' ):
+                  try:
+                      return raw.decode( enc ), enc
+                  except UnicodeDecodeError:
+                      pass
+              raise UnicodeDecodeError( 'no usable encoding for ' + str( path ) )
 
           # unix_main.c: Sys_LoadGameDll appends an architecture suffix
           # (namei386.so) that no longer exists. Use plain <name>.so so
@@ -86,15 +97,7 @@ jobs:
           # VM-era calls and transcode the whole file to UTF-8 in one pass.
           try:
               p = Path( 'src/client/cl_keys.c' )
-              raw = p.read_bytes()
-              s = None
-              for enc in ( 'utf-8', 'latin-1' ):
-                  try:
-                      s = raw.decode( enc )
-                      break
-                  except UnicodeDecodeError:
-                      pass
-              assert s is not None
+              s, enc = read_source( p )
               if 'uivm' in s or 'cgvm' in s:
                   s = s.replace( 'VM_Call( uivm, UI_GET_ACTIVE_MENU )', 'uie->GetActiveMenu()' )
                   s = re.sub( r'VM_Call\( uivm, UI_SET_ACTIVE_MENU, ([^)]*) \)', r'uie->SetActiveMenu( \1 )', s )
@@ -111,30 +114,88 @@ jobs:
                   print( 'cl_keys.c: nothing to do' )
           except Exception:
               diag( 'cl_keys-patch', traceback.format_exc() )
+
+          # cl_main.c: the cgame export pointer is defined and
+          # initialized in cl_cgame.c, the extra definition in
+          # cl_main.c breaks the Windows link with a duplicate symbol.
+          try:
+              p = Path( 'src/client/cl_main.c' )
+              s, enc = read_source( p )
+              # match only the bare definition, never the cge = NULL
+              # initializer that belongs to cl_cgame.c
+              s2, n = re.subn( r'(?m)^[ \t]*cgameExport_t[ \t]*\*[ \t]*cge[ \t]*;[ \t]*\r?\n', '', s, count = 1 )
+              if n:
+                  p.write_bytes( s2.encode( enc ) )
+                  print( 'cl_main.c: removed the duplicate cge definition' )
+              else:
+                  print( 'cl_main.c: nothing to do' )
+          except Exception:
+              diag( 'cl_main-patch', traceback.format_exc() )
+
+          # linux_qgl.c: cl_qgl.c assigns the ATI PN-triangles pointers
+          # into qglImport and win_qgl.c defines them, the unix build
+          # has no definitions and fails to link.
+          try:
+              p = Path( 'src/sys/unix/linux_qgl.c' )
+              s, enc = read_source( p )
+              if 'qglPNTrianglesiATI' not in s:
+                  # appended at file scope, nulled like every other
+                  # extension pointer until QGL_Init fills them
+                  s = s.rstrip() + '\n\n' \
+                      + '// ATI PN-triangles extension pointers, the Windows\n' \
+                      + '// definitions live in win_qgl.c\n' \
+                      + 'void ( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param ) = 0;\n' \
+                      + 'void ( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param ) = 0;\n'
+                  p.write_bytes( s.encode( enc ) )
+                  print( 'linux_qgl.c: added the qglPNTriangles definitions' )
+              else:
+                  print( 'linux_qgl.c: nothing to do' )
+          except Exception:
+              diag( 'linux_qgl-patch', traceback.format_exc() )
+
+          # unix_shared.c: cl_main.c wires Sys_ProcessorCount into the
+          # renderer import table, the unix build never defined it.
+          try:
+              p = Path( 'src/sys/unix/unix_shared.c' )
+              s, enc = read_source( p )
+              if 'Sys_ProcessorCount' not in s:
+                  s = s.rstrip() + '\n\n' \
+                      + '// number of processors available to the process, the\n' \
+                      + '// renderer import table exposes it for SMP decisions\n' \
+                      + 'unsigned int Sys_ProcessorCount( void ) {\n' \
+                      + '\tlong n = sysconf( _SC_NPROCESSORS_ONLN );\n' \
+                      + '\treturn n < 1 ? 1 : ( unsigned int )n;\n' \
+                      + '}\n'
+                  p.write_bytes( s.encode( enc ) )
+                  print( 'unix_shared.c: added Sys_ProcessorCount' )
+              else:
+                  print( 'unix_shared.c: nothing to do' )
+          except Exception:
+              diag( 'unix_shared-patch', traceback.format_exc() )
           EOF
-      - name: land the cl_keys fix
+      - name: land the engine patches
         shell: bash
         run: |
-          # cl_keys.c is not readable through the repository API, so the
-          # patch above is its only writer: commit it on its own before
-          # the formatting pass so a later failure cannot hold the
-          # engine fix hostage. No [skip ci]: the fixed file must get a
-          # full build cycle.
+          # The patched engine files are not readable through the
+          # repository API, so the patch step above is their only
+          # writer: commit them on their own before the formatting
+          # pass so a later failure cannot hold the fixes hostage.
+          # No [skip ci]: the fixed files must get a full build cycle.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- src/client/cl_keys.c; then
-            git add src/client/cl_keys.c
-            git commit -m "Replace the cl_keys.c VM calls and fix its source encoding"
+          if ! git diff --quiet -- src/client/cl_keys.c src/client/cl_main.c src/sys/unix/unix_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c; then
+            git add src/client/cl_keys.c src/client/cl_main.c src/sys/unix/unix_main.c src/sys/unix/linux_qgl.c src/sys/unix/unix_shared.c
+            git commit -m "Apply the engine patches"
             # the checkout is detached, so the refspec must name the
             # branch explicitly; -X theirs: on a push race the newest
             # output wins instead of committing conflict markers
             pushed=0
             for attempt in 1 2 3; do
-              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              if git push origin "HEAD:\${GITHUB_REF_NAME}"; then
                 pushed=1
                 break
               fi
-              git fetch origin "${GITHUB_REF_NAME}" || break
+              git fetch origin "\${GITHUB_REF_NAME}" || break
               git rebase -X theirs "FETCH_HEAD" || break
             done
             test "$pushed" = 1
@@ -164,11 +225,11 @@ jobs:
             # output wins instead of committing conflict markers
             pushed=0
             for attempt in 1 2 3; do
-              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              if git push origin "HEAD:\${GITHUB_REF_NAME}"; then
                 pushed=1
                 break
               fi
-              git fetch origin "${GITHUB_REF_NAME}" || break
+              git fetch origin "\${GITHUB_REF_NAME}" || break
               git rebase -X theirs "FETCH_HEAD" || break
             done
             test "$pushed" = 1
@@ -178,7 +239,7 @@ jobs:
         shell: bash
         env:
           LEG: uncrustify
-          STATUS: ${{ job.status }}
+          STATUS: \${{ job.status }}
         run: |
           cp build.log "log-$LEG.log" 2>/dev/null || true
           python .github/scripts/digest.py || true
