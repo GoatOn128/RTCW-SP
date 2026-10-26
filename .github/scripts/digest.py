@@ -23,8 +23,8 @@ STATUS = os.environ.get("STATUS", "unknown")
 
 ERROR_RE = re.compile(
     "error:|fatal error:|error C[0-9]+|Error C[0-9]+|scons: [*][*][*]|"
-    "undefined reference|unresolved external|no such file|cannot open|"
-    "UNCRUSTIFY_FAILED"
+    "undefined reference|undefined symbol|unresolved external|no such file|"
+    "cannot open|LLVM ERROR|Stack dump:|>>> referenced|UNCRUSTIFY_FAILED"
 )
 WARNING_RE = re.compile("warning:|warning C[0-9]+")
 FLAG_RE = re.compile(r"\[-W([-\w]+)\]")
@@ -85,6 +85,26 @@ def main():
             f.write("### errors\n\n")
             for l in list(seen_errors.keys())[:MAX_ERROR_LINES]:
                 f.write(l + "\n")
+
+            # raw lines around each failing scons target: failures that
+            # print no matching error line (crashes, out of memory)
+            # stay visible in the digest this way
+            f.write("\n### failure context\n\n")
+            scons_fail = re.compile(r"scons: \*\*\* \[(.+?)\]")
+            ctx = OrderedDict()
+            for i, l in enumerate(lines):
+                m = scons_fail.search(l)
+                if m:
+                    target = m.group(1).strip()
+                    if target and target not in ctx:
+                        ctx[target] = lines[max(0, i - 30):i + 1]
+            shown = 0
+            for target, chunk in ctx.items():
+                if shown >= 10:
+                    break
+                f.write("- " + target + "\n\n```\n" +
+                        "\n".join(c[:400] for c in chunk) + "\n```\n\n")
+                shown += 1
 
             f.write("\n### warning kinds\n\n")
             for key, examples in ordered[:MAX_KINDS]:

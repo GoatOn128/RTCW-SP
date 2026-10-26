@@ -502,7 +502,6 @@ vm_t *VM_Create( const char *module, int ( *systemCalls )( int * ),
 		}
 
 		Com_Printf( "Failed to load dll, looking for qvm.\n" );
-		interpret = VMI_INTERPRETED;
 	}
 
 	// load the image

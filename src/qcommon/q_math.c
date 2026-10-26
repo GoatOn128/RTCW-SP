@@ -1382,3 +1382,36 @@ float VectorDistance( vec3_t v1, vec3_t v2 ) {
 	return VectorLength( dir );
 }
 // done.
+
+// Some call sites use these as plain functions instead of the
+// q_shared.h macros. Give them real definitions so every module links.
+#undef DotProduct
+#undef VectorSubtract
+#undef VectorAdd
+#undef VectorCopy
+#undef VectorScale
+#undef VectorMA
+
+vec_t DotProduct( const vec3_t v1, const vec3_t v2 ) {
+	return DotProduct_( v1, v2 );
+}
+
+void VectorSubtract( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+	VectorSubtract_( veca, vecb, out );
+}
+
+void VectorAdd( const vec3_t veca, const vec3_t vecb, vec3_t out ) {
+	VectorAdd_( veca, vecb, out );
+}
+
+void VectorCopy( const vec3_t in, vec3_t out ) {
+	VectorCopy_( in, out );
+}
+
+void VectorScale( const vec3_t in, vec_t scale, vec3_t out ) {
+	VectorScale_( in, scale, out );
+}
+
+void VectorMA( const vec3_t veca, float scale, const vec3_t vecb, vec3_t vecc ) {
+	VectorMA_( veca, scale, vecb, vecc );
+}

@@ -131,12 +131,15 @@ else:
 env.CacheDir('.scons_cache')
 
 # Compile one module's sources into its own object directory.
-def module_objects(menv, module, files):
+def module_objects(menv, module, files, shared=False):
     objs = []
     for p in files:
         rel = p[len('src/'):] if p.startswith('src/') else p
         target = os.path.join(BUILD_DIR, module, 'obj', rel + OBJ)
-        objs.append(menv.Object(target, p)[0])
+        # shared library targets need objects the linker accepts into
+        # a shared library (position independent code on Linux)
+        builder = menv.SharedObject if shared else menv.Object
+        objs.append(builder(target, p)[0])
     return objs
 
 renderer_files = ['src/renderer/' + f for f in [
@@ -265,8 +268,9 @@ if IS_WINDOWS:
     game_env.Append(LINKFLAGS=['/DEF:src/games/game/game.def'])
 else:
     game_env.Append(LIBS=['dl', 'm'])
+    game_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 game_target = os.path.join(BUILD_DIR, 'qagame' + DLL)
-game_env.SharedLibrary(game_target, module_objects(game_env, 'game', game_files))
+game_env.SharedLibrary(game_target, module_objects(game_env, 'game', game_files, shared=not IS_WINDOWS))
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -285,8 +289,9 @@ if IS_WINDOWS:
     cgame_env.Append(LINKFLAGS=['/DEF:src/games/cgame/cgame.def'])
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
+    cgame_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
-cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files))
+cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files, shared=not IS_WINDOWS))
 
 ui_files = ['src/games/game/' + f for f in [
     'bg_misc.c',
@@ -300,7 +305,8 @@ if IS_WINDOWS:
     ui_env.Append(LINKFLAGS=['/DEF:src/games/ui/ui.def'])
 else:
     ui_env.Append(LIBS=['dl', 'm'])
+    ui_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 ui_target = os.path.join(BUILD_DIR, 'ui' + DLL)
-ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files))
+ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files, shared=not IS_WINDOWS))
 
 Default(client_target, game_target, cgame_target, ui_target)
