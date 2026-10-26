@@ -463,7 +463,7 @@ NET_IPSocket
 int NET_IPSocket( char *net_interface, int port ) {
 	SOCKET newsocket;
 	struct sockaddr_in address;
-	qboolean _true = qtrue;
+	u_long _true = 1;
 	int i = 1;
 	int err;
 
@@ -777,7 +777,7 @@ NET_IPXSocket
 int NET_IPXSocket( int port ) {
 	SOCKET newsocket;
 	struct sockaddr_ipx address;
-	int _true = 1;
+	u_long _true = 1;
 	int err;
 
 	if ( ( newsocket = socket( AF_IPX, SOCK_DGRAM, NSPROTO_IPX ) ) == INVALID_SOCKET ) {
