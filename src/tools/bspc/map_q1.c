@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -297,14 +297,14 @@ int Q1_SolidTree_r( int nodenum ) {
 #ifdef HLCONTENTS
 		case Q1_CONTENTS_TRANSLUCENT:
 #endif HLCONTENTS
-			{
-				return true;
-			} //end case
+		{
+			return true;
+		}     //end case
 		case Q1_CONTENTS_WATER:
 		case Q1_CONTENTS_SLIME:
 		case Q1_CONTENTS_LAVA:
 #ifdef HLCONTENTS
-			//these contents should not be found in the BSP
+		//these contents should not be found in the BSP
 		case Q1_CONTENTS_ORIGIN:
 		case Q1_CONTENTS_CURRENT_0:
 		case Q1_CONTENTS_CURRENT_90:
@@ -362,10 +362,10 @@ bspbrush_t *Q1_CreateBrushes_r( bspbrush_t *brush, int nodenum ) {
 #ifdef HLCONTENTS
 		case Q1_CONTENTS_TRANSLUCENT:
 #endif HLCONTENTS
-			{
-				brush->side = CONTENTS_SOLID;
-				return brush;
-			} //end case
+		{
+			brush->side = CONTENTS_SOLID;
+			return brush;
+		}     //end case
 		case Q1_CONTENTS_WATER:
 		{
 			brush->side = CONTENTS_WATER;
@@ -382,7 +382,7 @@ bspbrush_t *Q1_CreateBrushes_r( bspbrush_t *brush, int nodenum ) {
 			return brush;
 		}     //end case
 #ifdef HLCONTENTS
-			//these contents should not be found in the BSP
+		//these contents should not be found in the BSP
 		case Q1_CONTENTS_ORIGIN:
 		case Q1_CONTENTS_CURRENT_0:
 		case Q1_CONTENTS_CURRENT_90:
@@ -406,8 +406,8 @@ bspbrush_t *Q1_CreateBrushes_r( bspbrush_t *brush, int nodenum ) {
 	  //if the rest of the tree is solid
 	  /*if (Q1_SolidTree_r(nodenum))
 	  {
-		  brush->side = CONTENTS_SOLID;
-		  return brush;
+	      brush->side = CONTENTS_SOLID;
+	      return brush;
 	  } //end if*/
 	  //
 	planenum = q1_dnodes[nodenum].planenum;
@@ -481,13 +481,13 @@ bspbrush_t *Q1_CreateBrushesFromBSP( int modelnum ) {
 	qprintf( "creating Quake brushes\n" );
 	qprintf( "%5d brushes", q1_numbrushes = 0 );
 #endif //Q1_PRINT
-	   //create the brushes
+	//create the brushes
 	brushlist = Q1_CreateBrushes_r( brush, q1_dmodels[modelnum].headnode[0] );
 	//
 #ifdef Q1_PRINT
 	qprintf( "\n" );
 #endif //Q1_PRINT
-	   //now we've got a list with brushes!
+	//now we've got a list with brushes!
 	return brushlist;
 } //end of the function Q1_CreateBrushesFromBSP
 //===========================================================================
@@ -1007,15 +1007,15 @@ void Q1_FixContentsTextures( bspbrush_t *brushlist ) {
 	  /*
 	  for (brush = brushlist; brush; brush = brush->next)
 	  {
-		  //give all the brush sides this contents texture
-		  for (i = 0; i < brush->numsides; i++)
-		  {
-			  if (Q1_TextureContents(map_texinfo[texinfonum].texture) != brush->side)
-			  {
-				  Error("brush contents %d with wrong contents textures %s\n", brush->side,
-							  Q1_TextureContents(map_texinfo[texinfonum].texture));
-			  } //end if
-		  } //end for
+	      //give all the brush sides this contents texture
+	      for (i = 0; i < brush->numsides; i++)
+	      {
+	    	  if (Q1_TextureContents(map_texinfo[texinfonum].texture) != brush->side)
+	    	  {
+	    		  Error("brush contents %d with wrong contents textures %s\n", brush->side,
+	    					  Q1_TextureContents(map_texinfo[texinfonum].texture));
+	    	  } //end if
+	      } //end for
 	  } //end for*/
 } //end of the function Q1_FixContentsTextures
 //===========================================================================

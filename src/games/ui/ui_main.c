@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2720,11 +2720,11 @@ static void UI_OwnerDraw( float x, float y, float w, float h, float text_x, floa
 	case UI_KEYBINDSTATUS:
 		UI_DrawKeyBindStatus( &rect, font, scale, color, textStyle );
 		break;
-		// NERVE - SMF
+	// NERVE - SMF
 	case UI_LIMBOCHAT:
 		UI_DrawLimboChat( &rect, font, scale, color, textStyle );
 		break;
-		// -NERVE - SMF
+	// -NERVE - SMF
 
 	default:
 		break;
@@ -4194,7 +4194,7 @@ void WM_PickItem( int selectionType, int itemIndex ) {
 			trap_Cvar_Set( "mp_team", "2" );
 			break;
 		}
-	} else if ( selectionType == WM_SELECT_CLASS )   {
+	} else if ( selectionType == WM_SELECT_CLASS ) {
 		switch ( itemIndex ) {
 		case WM_START_SELECT:
 			break;
@@ -4215,12 +4215,12 @@ void WM_PickItem( int selectionType, int itemIndex ) {
 			trap_Cvar_Set( "mp_weapon", "0" );
 			break;
 		}
-	} else if ( selectionType == WM_SELECT_WEAPON )   {
+	} else if ( selectionType == WM_SELECT_WEAPON ) {
 		if ( itemIndex == WM_START_SELECT ) {
 		} else {
 			trap_Cvar_Set( weaponTypes[itemIndex].cvar, va( "%i", weaponTypes[itemIndex].value ) );
 		}
-	} else if ( selectionType == WM_SELECT_PISTOL )   {
+	} else if ( selectionType == WM_SELECT_PISTOL ) {
 		if ( itemIndex == WM_START_SELECT ) {
 			// hide all other menus first
 			WM_HideItems();
@@ -4240,7 +4240,7 @@ void WM_PickItem( int selectionType, int itemIndex ) {
 			Menu_ShowItemByName( menu, "window_weap", qfalse );
 			Menu_ShowItemByName( menu, "pistol_*", qfalse );
 		}
-	} else if ( selectionType == WM_SELECT_GRENADE )   {
+	} else if ( selectionType == WM_SELECT_GRENADE ) {
 		if ( itemIndex == WM_START_SELECT ) {
 			// hide all other menus first
 			WM_HideItems();
@@ -4818,7 +4818,7 @@ static void UI_RunMenuScript( char **args ) {
 					if ( res == 0 ) {
 						// server already in the list
 						Com_Printf( "Favorite already in list\n" );
-					} else if ( res == -1 )     {
+					} else if ( res == -1 ) {
 						// list full
 						Com_Printf( "Favorite list full\n" );
 					} else {
@@ -4851,7 +4851,7 @@ static void UI_RunMenuScript( char **args ) {
 					if ( res == 0 ) {
 						// server already in the list
 						Com_Printf( "Favorite already in list\n" );
-					} else if ( res == -1 )     {
+					} else if ( res == -1 ) {
 						// list full
 						Com_Printf( "Favorite list full\n" );
 					} else {
@@ -6914,7 +6914,7 @@ void _UI_SetActiveMenu( uiMenuCommand_t menu ) {
 			Menus_ActivateByName( "briefing" );
 			return;
 
-			// NERVE - SMF
+		// NERVE - SMF
 		case UIMENU_WM_PICKTEAM:
 			trap_Cvar_Set( "cl_paused", "1" );
 			trap_Key_SetCatcher( KEYCATCH_UI );
@@ -6944,7 +6944,7 @@ void _UI_SetActiveMenu( uiMenuCommand_t menu ) {
 			Menus_OpenByName( "wm_limboOptions" );
 			Menus_OpenByName( "wm_limboButtonBar" );
 			return;
-			// -NERVE - SMF
+		// -NERVE - SMF
 		default:
 			break;
 		}

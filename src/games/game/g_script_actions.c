@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -128,11 +128,11 @@ qboolean G_ScriptAction_GotoMarker( gentity_t *ent, char *params ) {
 			if ( token[0] ) {
 				if ( !Q_stricmp( token, "accel" ) ) {
 					trType = TR_ACCELERATE;
-				} else if ( !Q_stricmp( token, "deccel" ) )      {
+				} else if ( !Q_stricmp( token, "deccel" ) ) {
 					trType = TR_DECCELERATE;
-				} else if ( !Q_stricmp( token, "wait" ) )      {
+				} else if ( !Q_stricmp( token, "wait" ) ) {
 					wait = qtrue;
-				} else if ( !Q_stricmp( token, "turntotarget" ) )      {
+				} else if ( !Q_stricmp( token, "turntotarget" ) ) {
 					turntotarget = qtrue;
 				}
 			}
@@ -295,7 +295,7 @@ qboolean G_ScriptAction_Trigger( gentity_t *ent, char *params ) {
 
 	trent = AICast_FindEntityForName( name );
 	if ( trent ) { // we are triggering an AI
-				  //oldId = trent->scriptStatus.scriptId;
+		           //oldId = trent->scriptStatus.scriptId;
 		AICast_ScriptEvent( AICast_GetCastState( trent->s.number ), "trigger", trigger );
 		return qtrue;
 	}

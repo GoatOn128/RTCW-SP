@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -354,7 +354,7 @@ void G_CheckMinimumPlayers( void ) {
 		} else if ( humanplayers + botplayers > minplayers && botplayers ) {
 			G_RemoveRandomBot( TEAM_BLUE );
 		}
-	} else if ( g_gametype.integer == GT_TOURNAMENT )     {
+	} else if ( g_gametype.integer == GT_TOURNAMENT ) {
 		if ( minplayers >= g_maxclients.integer ) {
 			minplayers = g_maxclients.integer - 1;
 		}
@@ -370,7 +370,7 @@ void G_CheckMinimumPlayers( void ) {
 				G_RemoveRandomBot( -1 );
 			}
 		}
-	} else if ( g_gametype.integer == GT_FFA )     {
+	} else if ( g_gametype.integer == GT_FFA ) {
 		if ( minplayers >= g_maxclients.integer ) {
 			minplayers = g_maxclients.integer - 1;
 		}
@@ -512,9 +512,9 @@ static void G_AddBot( const char *name, int skill, const char *team, int delay )
 
 	if ( skill == 1 ) {
 		Info_SetValueForKey( userinfo, "handicap", "50" );
-	} else if ( skill == 2 )   {
+	} else if ( skill == 2 ) {
 		Info_SetValueForKey( userinfo, "handicap", "70" );
-	} else if ( skill == 3 )   {
+	} else if ( skill == 3 ) {
 		Info_SetValueForKey( userinfo, "handicap", "90" );
 	}
 

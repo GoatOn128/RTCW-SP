@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ static char *rd_buffer;
 static int rd_buffersize;
 static void ( *rd_flush )( char *buffer );
 
-void Com_BeginRedirect( char *buffer, int buffersize, void ( *flush )( char *) ) {
+void Com_BeginRedirect( char *buffer, int buffersize, void ( *flush )( char * ) ) {
 	if ( !buffer || !buffersize || !flush ) {
 		return;
 	}
@@ -591,12 +591,12 @@ int Com_Filter( char *filter, char *name, int casesensitive ) {
 				}
 				name = ptr + strlen( buf );
 			}
-		} else if ( *filter == '?' )      {
+		} else if ( *filter == '?' ) {
 			filter++;
 			name++;
-		} else if ( *filter == '[' && *( filter + 1 ) == '[' )           {
+		} else if ( *filter == '[' && *( filter + 1 ) == '[' ) {
 			filter++;
-		} else if ( *filter == '[' )      {
+		} else if ( *filter == '[' ) {
 			filter++;
 			found = qfalse;
 			while ( *filter && !found ) {
@@ -2478,47 +2478,47 @@ void _copyDWord( unsigned int* dest, const unsigned int constant, const unsigned
 		mov edx,dest
 		mov eax,constant
 		mov ecx,count
-		and     ecx,~7
+		and ecx,~7
 		jz padding
 		sub ecx,8
 		jmp loopu
-		align   16
+			align   16
 loopu:
-		test    [edx + ecx * 4 + 28],ebx        // fetch next block destination to L1 cache
-		mov     [edx + ecx * 4 + 0],eax
-		mov     [edx + ecx * 4 + 4],eax
-		mov     [edx + ecx * 4 + 8],eax
-		mov     [edx + ecx * 4 + 12],eax
-		mov     [edx + ecx * 4 + 16],eax
-		mov     [edx + ecx * 4 + 20],eax
-		mov     [edx + ecx * 4 + 24],eax
-		mov     [edx + ecx * 4 + 28],eax
+		test[edx + ecx * 4 + 28],ebx            // fetch next block destination to L1 cache
+			mov[edx + ecx * 4 + 0],eax
+			mov[edx + ecx * 4 + 4],eax
+			mov[edx + ecx * 4 + 8],eax
+			mov[edx + ecx * 4 + 12],eax
+			mov[edx + ecx * 4 + 16],eax
+			mov[edx + ecx * 4 + 20],eax
+			mov[edx + ecx * 4 + 24],eax
+			mov[edx + ecx * 4 + 28],eax
 		sub ecx,8
 		jge loopu
 padding:    mov ecx,count
 		mov ebx,ecx
-		and     ecx,7
+		and ecx,7
 		jz outta
-		and     ebx,~7
+		and ebx,~7
 		lea edx,[edx + ebx * 4]                 // advance dest pointer
 		test    [edx + 0],eax                   // fetch destination to L1 cache
 		cmp ecx,4
 		jl skip4
-		mov     [edx + 0],eax
-		mov     [edx + 4],eax
-		mov     [edx + 8],eax
-		mov     [edx + 12],eax
+			mov[edx + 0],eax
+			mov[edx + 4],eax
+			mov[edx + 8],eax
+			mov[edx + 12],eax
 		add edx,16
 		sub ecx,4
-skip4:      cmp ecx,2
+skip4:  cmp ecx,2
 		jl skip2
-		mov     [edx + 0],eax
-		mov     [edx + 4],eax
+			mov[edx + 0],eax
+			mov[edx + 4],eax
 		add edx,8
 		sub ecx,2
-skip2:      cmp ecx,1
+skip2:  cmp ecx,1
 		jl outta
-		mov     [edx + 0],eax
+			mov[edx + 0],eax
 outta:
 	}
 }
@@ -2540,7 +2540,7 @@ void Com_Memcpy( void* dest, const void* src, const size_t count ) {
 		jl padding
 
 		mov edi,ecx
-		and     edi,~31                 // edi = count&~31
+		and edi,~31                     // edi = count&~31
 		sub edi,32
 
 		align 16
@@ -2548,39 +2548,39 @@ loopMisAligned:
 		mov eax,[ebx + edi + 0 + 0 * 8]
 		mov esi,[ebx + edi + 4 + 0 * 8]
 		mov     [edx + edi + 0 + 0 * 8],eax
-		mov     [edx + edi + 4 + 0 * 8],esi
+			mov[edx + edi + 4 + 0 * 8],esi
 		mov eax,[ebx + edi + 0 + 1 * 8]
 		mov esi,[ebx + edi + 4 + 1 * 8]
 		mov     [edx + edi + 0 + 1 * 8],eax
-		mov     [edx + edi + 4 + 1 * 8],esi
+			mov[edx + edi + 4 + 1 * 8],esi
 		mov eax,[ebx + edi + 0 + 2 * 8]
 		mov esi,[ebx + edi + 4 + 2 * 8]
 		mov     [edx + edi + 0 + 2 * 8],eax
-		mov     [edx + edi + 4 + 2 * 8],esi
+			mov[edx + edi + 4 + 2 * 8],esi
 		mov eax,[ebx + edi + 0 + 3 * 8]
 		mov esi,[ebx + edi + 4 + 3 * 8]
 		mov     [edx + edi + 0 + 3 * 8],eax
-		mov     [edx + edi + 4 + 3 * 8],esi
+			mov[edx + edi + 4 + 3 * 8],esi
 		sub edi,32
 		jge loopMisAligned
 
 		mov edi,ecx
-		and     edi,~31
+		and edi,~31
 		add ebx,edi                     // increase src pointer
 		add edx,edi                     // increase dst pointer
-		and     ecx,31                  // new count
+		and ecx,31                      // new count
 		jz outta                        // if count = 0, get outta here
 
 padding:
 		cmp ecx,16
 		jl skip16
-		mov eax,dword ptr [ebx]
+		mov eax,dword ptr[ebx]
 		mov dword ptr [edx],eax
-		mov eax,dword ptr [ebx + 4]
+		mov eax,dword ptr[ebx + 4]
 		mov dword ptr [edx + 4],eax
-		mov eax,dword ptr [ebx + 8]
+		mov eax,dword ptr[ebx + 8]
 		mov dword ptr [edx + 8],eax
-		mov eax,dword ptr [ebx + 12]
+		mov eax,dword ptr[ebx + 12]
 		mov dword ptr [edx + 12],eax
 		sub ecx,16
 		add ebx,16
@@ -2588,35 +2588,35 @@ padding:
 skip16:
 		cmp ecx,8
 		jl skip8
-		mov eax,dword ptr [ebx]
+		mov eax,dword ptr[ebx]
 		mov dword ptr [edx],eax
-		mov eax,dword ptr [ebx + 4]
+		mov eax,dword ptr[ebx + 4]
 		sub ecx,8
-		mov dword ptr [edx + 4],eax
+		mov dword ptr[edx + 4],eax
 		add ebx,8
 		add edx,8
 skip8:
 		cmp ecx,4
 		jl skip4
-		mov eax,dword ptr [ebx]     // here 4-7 bytes
+		mov eax,dword ptr[ebx]      // here 4-7 bytes
 		add ebx,4
 		sub ecx,4
-		mov dword ptr [edx],eax
+		mov dword ptr[edx],eax
 		add edx,4
-skip4:                          // 0-3 remaining bytes
+skip4:  // 0-3 remaining bytes
 		cmp ecx,2
 		jl skip2
-		mov ax,word ptr [ebx]       // two bytes
+		mov ax,word ptr[ebx]        // two bytes
 		cmp ecx,3                   // less than 3?
-		mov word ptr [edx],ax
+		mov word ptr[edx],ax
 		jl outta
-		mov al,byte ptr [ebx + 2]   // last byte
+		mov al,byte ptr[ebx + 2]    // last byte
 		mov byte ptr [edx + 2],al
 		jmp outta
 skip2:
 		cmp ecx,1
 		jl outta
-		mov al,byte ptr [ebx]
+		mov al,byte ptr[ebx]
 		mov byte ptr [edx],al
 outta:
 		pop esi
@@ -2634,23 +2634,23 @@ void Com_Memset( void* dest, const int val, const size_t count ) {
 			mov eax, val
 			mov ah,al
 			mov ebx,eax
-			and     ebx, 0xffff
+			and ebx, 0xffff
 			shl eax,16
 			add eax,ebx                 // eax now contains pattern
 			mov ecx,count
 			cmp ecx,4
 			jl skip4
-			mov     [edx],eax           // copy first dword
+				mov[edx],eax            // copy first dword
 			add edx,4
 			sub ecx,4
-skip4:  cmp ecx,2
+skip4:      cmp ecx,2
 			jl skip2
-			mov word ptr [edx],ax       // copy 2 bytes
+			mov word ptr[edx],ax        // copy 2 bytes
 			add edx,2
 			sub ecx,2
-skip2:  cmp ecx,0
+skip2:      cmp ecx,0
 			je skip1
-			mov byte ptr [edx],al       // copy single byte
+			mov byte ptr[edx],al        // copy single byte
 skip1:
 		}
 		return;
@@ -2667,23 +2667,23 @@ skip1:
 	{
 		mov ecx,count
 		mov eax,ecx
-		and     ecx,3
+		and ecx,3
 		jz skipA
-		and     eax,~3
+		and eax,~3
 		mov ebx,dest
 		add ebx,eax
 		mov eax,fillval
 		cmp ecx,2
 		jl skipB
-		mov word ptr [ebx],ax
+		mov word ptr[ebx],ax
 		cmp ecx,2
 		je skipA
-		mov byte ptr [ebx + 2],al
+		mov byte ptr[ebx + 2],al
 		jmp skipA
 skipB:
 		cmp ecx,0
 		je skipA
-		mov byte ptr [ebx],al
+		mov byte ptr[ebx],al
 skipA:
 	}
 }
@@ -2742,8 +2742,8 @@ skipClamp:
 			jz skip
 			jmp loopie
 
-			align 16
-loopie: test byte ptr [ebx],al
+				align 16
+loopie:     test byte ptr[ebx],al
 			add ebx,32
 			dec ecx
 			jnz loopie
@@ -2940,4 +2940,3 @@ void Field_CompleteCommand( field_t *field ) {
 	Cmd_CommandCompletion( PrintMatches );
 	Cvar_CommandCompletion( PrintMatches );
 }
-

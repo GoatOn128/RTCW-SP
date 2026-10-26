@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,12 +33,12 @@ If you have questions concerning this license or the applicable additional terms
 // this file is only included when building a dll
 // g_syscalls.asm is included instead when building a qvm
 
-static int ( QDECL * syscall )( int arg, ... ) = ( int ( QDECL * )( int, ... ) ) - 1;
+static int( QDECL * syscall )( int arg, ... ) = ( int( QDECL * )( int, ... ) ) - 1;
 
 #if defined( __MACOS__ )
 #pragma export on
 #endif
-void dllEntry( int ( QDECL *syscallptr )( int arg,... ) ) {
+void dllEntry( int( QDECL *syscallptr )( int arg,... ) ) {
 #if defined( __MACOS__ )
 #pragma export off
 #endif

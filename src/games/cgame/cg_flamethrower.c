@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1071,7 +1071,7 @@ void CG_AddFlameSpriteToScene( flameChunk_t *f, float lifeFrac, float alpha ) {
 	frameNum = (int)floor( lifeFrac * NUM_FLAME_SPRITES );
 	if ( frameNum < 0 ) {
 		frameNum = 0;
-	} else if ( frameNum > NUM_FLAME_SPRITES - 1 )  {
+	} else if ( frameNum > NUM_FLAME_SPRITES - 1 ) {
 		frameNum = NUM_FLAME_SPRITES - 1;
 	}
 
@@ -1329,7 +1329,7 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 #define FLAME_SPRITE_START_BLUE_SCALE   0.2
 
 		if ( !f->ignitionOnly &&
-			 //!(cg_entities[f->ownerCent].currentState.aiChar == AICHAR_ZOMBIE) &&
+		     //!(cg_entities[f->ownerCent].currentState.aiChar == AICHAR_ZOMBIE) &&
 			 ( (float)( FLAME_SPRITE_START_BLUE_SCALE * f->blueLife ) < (float)lived ) ) {
 
 			float alpha, lifeFrac;

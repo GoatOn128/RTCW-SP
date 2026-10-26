@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ void ThreadWorkerFunction( int threadnum ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOnIndividual( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOnIndividual( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	if ( numthreads == -1 ) {
 		ThreadSetDefault();
 	}
@@ -263,7 +263,7 @@ void ThreadSemaphoreIncrease( int count ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	int threadid[MAX_THREADS];
 	HANDLE threadhandle[MAX_THREADS];
 	int i;
@@ -326,7 +326,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void AddThread( void ( *func )(int) ) {
+void AddThread( void ( *func )( int ) ) {
 	thread_t *thread;
 
 	if ( numthreads == 1 ) {
@@ -370,7 +370,7 @@ void AddThread( void ( *func )(int) ) {
 #ifdef THREAD_DEBUG
 		qprintf( "added thread with id %d\n", thread->threadid );
 #endif //THREAD_DEBUG
-	   //
+		//
 		currentnumthreads++;
 		currentthreadid++;
 		//
@@ -583,7 +583,7 @@ void ThreadShutdownLock( void ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	int i;
 	pthread_t work_threads[MAX_THREADS];
 	pthread_addr_t status;
@@ -656,7 +656,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void AddThread( void ( *func )(int) ) {
+void AddThread( void ( *func )( int ) ) {
 	thread_t *thread;
 
 	if ( numthreads == 1 ) {
@@ -696,7 +696,7 @@ void AddThread( void ( *func )(int) ) {
 #ifdef THREAD_DEBUG
 		qprintf( "added thread with id %d\n", thread->threadid );
 #endif //THREAD_DEBUG
-	   //
+		//
 		currentnumthreads++;
 		currentthreadid++;
 		//
@@ -930,7 +930,7 @@ void ThreadSemaphoreIncrease( int count ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	int i;
 	pthread_t work_threads[MAX_THREADS];
 	void *pthread_return;
@@ -982,7 +982,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void AddThread( void ( *func )(int) ) {
+void AddThread( void ( *func )( int ) ) {
 	thread_t *thread;
 
 	if ( numthreads == 1 ) {
@@ -1022,7 +1022,7 @@ void AddThread( void ( *func )(int) ) {
 #ifdef THREAD_DEBUG
 		qprintf( "added thread with id %d\n", thread->threadid );
 #endif //THREAD_DEBUG
-	   //
+		//
 		currentnumthreads++;
 		currentthreadid++;
 		//
@@ -1201,7 +1201,7 @@ void ThreadShutdownLock( void ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	int i;
 	int pid[MAX_THREADS];
 	int start, end;
@@ -1225,7 +1225,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 
 	for ( i = 0 ; i < numthreads - 1 ; i++ )
 	{
-		pid[i] = sprocsp( ( void( * ) ( void *, size_t ) )func, PR_SALL, (void *)i
+		pid[i] = sprocsp( ( void ( * ) ( void *, size_t ) ) func, PR_SALL, (void *)i
 						  , NULL, 0x100000 );
 //		pid[i] = sprocsp ( (void (*)(void *, size_t))func, PR_SALL, (void *)i
 //			, NULL, 0x80000);
@@ -1253,7 +1253,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void AddThread( void ( *func )(int) ) {
+void AddThread( void ( *func )( int ) ) {
 	thread_t *thread;
 
 	if ( numthreads == 1 ) {
@@ -1279,7 +1279,7 @@ void AddThread( void ( *func )(int) ) {
 		//
 		thread->threadid = currentthreadid;
 
-		thread->id = sprocsp( ( void( * ) ( void *, size_t ) )func, PR_SALL, (void *)thread->threadid, NULL, 0x100000 );
+		thread->id = sprocsp( ( void ( * ) ( void *, size_t ) ) func, PR_SALL, (void *)thread->threadid, NULL, 0x100000 );
 		if ( thread->id == -1 ) {
 			perror( "sproc" );
 			Error( "sproc failed" );
@@ -1295,7 +1295,7 @@ void AddThread( void ( *func )(int) ) {
 #ifdef THREAD_DEBUG
 		qprintf( "added thread with id %d\n", thread->threadid );
 #endif //THREAD_DEBUG
-	   //
+		//
 		currentnumthreads++;
 		currentthreadid++;
 		//
@@ -1464,7 +1464,7 @@ void ThreadSemaphoreIncrease( int count ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
+void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )( int ) ) {
 	int start, end;
 
 	Log_Print( "no multi-threading\n" );
@@ -1491,7 +1491,7 @@ void RunThreadsOn( int workcnt, qboolean showpacifier, void ( *func )(int) ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void AddThread( void ( *func )(int) ) {
+void AddThread( void ( *func )( int ) ) {
 	if ( currentnumthreads >= numthreads ) {
 		return;
 	}

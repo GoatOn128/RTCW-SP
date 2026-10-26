@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@ void AICast_InputToUserCommand( cast_state_t *cs, bot_input_t *bi, usercmd_t *uc
 		if ( ( cs->triggerReleaseTime < level.time ) &&
 			 (   ( cs->lockViewAnglesTime >= level.time ) ||
 				 ( fabs( AngleDifference( cs->ideal_viewangles[YAW], cs->viewangles[YAW] ) ) < 20 ) ) &&
-			 // check for radid luger firing by skilled users (release fire between shots)
+		     // check for radid luger firing by skilled users (release fire between shots)
 			 ( ( ( level.time + cs->entityNum * 500 ) / 2000 ) % 2 || !( rand() % ( 1 + g_gameskill.integer ) ) || ( cs->attributes[ATTACK_SKILL] < 0.5 ) || ( cs->weaponNum != WP_LUGER ) || ( cs->bs->cur_ps.weaponTime == 0 ) || ( cs->bs->cur_ps.releasedFire ) ) ) {
 			ucmd->buttons |= BUTTON_ATTACK;
 			// do some swaying around for some weapons
@@ -706,7 +706,7 @@ void AICast_Think( int client, float thinktime ) {
 	}
 	// crouching?
 	if (    ( cs->attackcrouch_time >= level.time ) /*&&
-			((cs->lastAttackCrouch > level.time - 500) || (cs->thinkFuncChangeTime < level.time - 1000))*/) {
+	        ((cs->lastAttackCrouch > level.time - 500) || (cs->thinkFuncChangeTime < level.time - 1000))*/) {
 		// if we are not moving, and we are firing, always stand, unless we are allowed to crouch + fire
 		if ( ( cs->lastucmd.forwardmove || cs->lastucmd.rightmove ) || ( cs->lastWeaponFired < level.time - 2000 ) || ( cs->aiFlags & AIFL_ATTACK_CROUCH ) ) {
 			cs->lastAttackCrouch = level.time;
@@ -732,7 +732,7 @@ void AICast_Think( int client, float thinktime ) {
 	// in query mode, we do special handling (pause scripting, check for transition to alert/combat, etc)
 	if ( cs->aiState == AISTATE_QUERY ) {
 		AICast_QueryThink( cs );
-	} else if ( cs->pauseTime < level.time )     {
+	} else if ( cs->pauseTime < level.time ) {
 		// do the thinking
 		AICast_ProcessAIFunctions( cs, thinktime );
 		//
@@ -903,8 +903,8 @@ void AICast_StartFrame( int time ) {
 									 ( cs->vislist[0].visible_timestamp && cs->vislist[0].visible_timestamp > level.time - 4000 ) ||
 									 ( ent->client->buttons ) ||
 									 ( elapsed >= aicast_thinktime ) ) /*&&
-								(count <= aicast_maxthink)*/) ||
-							( elapsed >= aicast_thinktime * 2 ) ) ) ) {
+				                (count <= aicast_maxthink)*/) ||
+							 ( elapsed >= aicast_thinktime * 2 ) ) ) ) {
 					// make it think now
 					AICast_Think( i, (float)elapsed / 1000 );
 					// did they drop?
@@ -1052,7 +1052,7 @@ void AICast_StartServerFrame( int time ) {
 							||  ( highPriority && ( pcs->vislist[cs->entityNum].visible_timestamp == pcs->vislist[cs->entityNum].lastcheck_timestamp ) )
 							||  ( VectorLength( ent->client->ps.velocity ) > 0 )
 							||  ( highPriority && ( cs->lastucmd.forwardmove || cs->lastucmd.rightmove || cs->lastucmd.upmove > 0 || cs->lastucmd.buttons || cs->lastucmd.wbuttons ) )
-							// !!NOTE: always allow thinking if in PVS, otherwise bosses won't gib, and dead guys might not push away from clipped walls
+					        // !!NOTE: always allow thinking if in PVS, otherwise bosses won't gib, and dead guys might not push away from clipped walls
 							||  ( trap_InPVS( cs->bs->origin, g_entities[0].s.pos.trBase ) ) ) { // do pvs check last, since it's the most expensive to call
 						oldLegsTimer = ent->client->ps.legsTimer;
 						//
@@ -1309,7 +1309,7 @@ qboolean AICast_GetAvoid( cast_state_t *cs, bot_goal_t *goal, vec3_t outpos, qbo
 		simTime = 0.5;
 	}
 	//
-	for ( yaw = -angleDiff * invert; yaw*invert <= maxYaw; yaw += inc * invert ) {
+	for ( yaw = -angleDiff * invert; yaw * invert <= maxYaw; yaw += inc * invert ) {
 		if ( !averting && !yaw ) {
 			continue;
 		}
@@ -1329,7 +1329,7 @@ qboolean AICast_GetAvoid( cast_state_t *cs, bot_goal_t *goal, vec3_t outpos, qbo
 			distmoved = Distance( castmove.endpos, cs->bs->cur_ps.origin );
 		}
 		if (    ( distmoved > bestmoved )
-				//&&	((cs->bs->origin[2] - castmove.endpos[2]) < 64)	// allow up, but not down (falling)
+		        //&&	((cs->bs->origin[2] - castmove.endpos[2]) < 64)	// allow up, but not down (falling)
 				&&  ( castmove.groundEntityNum != ENTITYNUM_NONE ) ) {
 			// they all passed, check any other stuff
 			if ( !enemyVisible || AICast_CheckAttackAtPos( cs->entityNum, cs->enemyNum, castmove.endpos, qfalse, qfalse ) ) {

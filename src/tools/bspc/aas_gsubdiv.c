@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ void AAS_SplitFace( tmp_face_t *face, vec3_t normal, float dist,
 		} //end if
 	} //end if
 #endif //DEBUG
-	   //if the winding was split
+	//if the winding was split
 	if ( frontw ) {
 		//check bounds
 		( *frontface ) = AAS_AllocTmpFace();
@@ -685,4 +685,3 @@ void AAS_LadderSubdivision( void ) {
 	qprintf( "\n" );
 	Log_Write( "%6i ladder subdivisions\r\n", numladdersubdivisions );
 } //end of the function AAS_LadderSubdivision
-

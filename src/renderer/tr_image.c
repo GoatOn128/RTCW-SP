@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -757,23 +757,23 @@ static void Upload32(   unsigned *data,
 			if ( !noCompress && glConfig.textureCompression == TC_EXT_COMP_S3TC ) {
 				// TODO: which format is best for which textures?
 				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-			} else if ( !noCompress && glConfig.textureCompression == TC_S3TC )   {
+			} else if ( !noCompress && glConfig.textureCompression == TC_S3TC ) {
 				internalFormat = GL_RGB4_S3TC;
-			} else if ( r_texturebits->integer == 16 )   {
+			} else if ( r_texturebits->integer == 16 ) {
 				internalFormat = GL_RGB5;
-			} else if ( r_texturebits->integer == 32 )   {
+			} else if ( r_texturebits->integer == 32 ) {
 				internalFormat = GL_RGB8;
 			} else
 			{
 				internalFormat = 3;
 			}
-		} else if ( samples == 4 )   {
+		} else if ( samples == 4 ) {
 			if ( !noCompress && glConfig.textureCompression == TC_EXT_COMP_S3TC ) {
 				// TODO: which format is best for which textures?
 				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-			} else if ( r_texturebits->integer == 16 )   {
+			} else if ( r_texturebits->integer == 16 ) {
 				internalFormat = GL_RGBA4;
-			} else if ( r_texturebits->integer == 32 )   {
+			} else if ( r_texturebits->integer == 32 ) {
 				internalFormat = GL_RGBA8;
 			} else
 			{
@@ -897,7 +897,7 @@ image_t *R_CreateImageExt( const char *name, const byte *pic, int width, int hei
 	// RF, if the shader hasn't specifically asked for it, don't allow compression
 	if ( r_ext_compressed_textures->integer == 2 && ( tr.allowCompress != qtrue ) ) {
 		noCompress = qtrue;
-	} else if ( r_ext_compressed_textures->integer == 1 && ( tr.allowCompress < 0 ) )     {
+	} else if ( r_ext_compressed_textures->integer == 1 && ( tr.allowCompress < 0 ) ) {
 		noCompress = qtrue;
 	}
 
@@ -1419,7 +1419,7 @@ void LoadTGA( const char *name, byte **pic, int *width, int *height ) {
 				}
 			}
 		}
-	} else if ( targa_header.image_type == 10 )       { // Runlength encoded RGB images
+	} else if ( targa_header.image_type == 10 ) {       // Runlength encoded RGB images
 		unsigned char red,green,blue,alphabyte,packetHeader,packetSize,j;
 
 		red = 0;
@@ -1506,7 +1506,7 @@ void LoadTGA( const char *name, byte **pic, int *width, int *height ) {
 					}
 				}
 			}
-breakOut:;
+breakOut:   ;
 		}
 	}
 
@@ -1841,8 +1841,8 @@ void jpegDest( j_compress_ptr cinfo, byte* outfile, int size ) {
 	 */
 	if ( cinfo->dest == NULL ) { /* first time for this JPEG object? */
 		cinfo->dest = (struct jpeg_destination_mgr *)
-				  ( *cinfo->mem->alloc_small ) ( (j_common_ptr) cinfo, JPOOL_PERMANENT,
-												 sizeof( my_destination_mgr ) );
+					  ( *cinfo->mem->alloc_small ) ( (j_common_ptr) cinfo, JPOOL_PERMANENT,
+													 sizeof( my_destination_mgr ) );
 	}
 
 	dest = (my_dest_ptr) cinfo->dest;

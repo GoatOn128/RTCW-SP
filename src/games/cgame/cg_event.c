@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -237,7 +237,7 @@ static void CG_Obituary( entityState_t *ent ) {
 	if ( attacker != ENTITYNUM_WORLD ) {
 		switch ( mod ) {
 
-			// TODO: put real text here.  these are just placeholders
+		// TODO: put real text here.  these are just placeholders
 
 		case MOD_KNIFE_STEALTH:
 		case MOD_KNIFE:
@@ -833,9 +833,9 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 					scale = 0.5f;
 				} else if ( i == 1 ) {
 					scale = 0.6f;
-				} else if ( i == 2 )                           {
+				} else if ( i == 2 ) {
 					scale = 0.7f;
-				} else if ( i == 3 )                                                               {
+				} else if ( i == 3 ) {
 					scale = 0.5f;
 				}
 				//					else
@@ -853,9 +853,9 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 					hmodel = cgs.media.shardGlass1;
 				} else if ( i == 4 ) {
 					hmodel = cgs.media.shardGlass2;
-				} else if ( i == 2 )                                             {
+				} else if ( i == 2 ) {
 					hmodel = cgs.media.shardGlass2;
-				} else if ( i == 1 )                                                                                                   {
+				} else if ( i == 1 ) {
 					hmodel = cgs.media.shardGlass2;
 					scale = 0.5f;
 				} else {goto pass;}
@@ -867,9 +867,9 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 					hmodel = cgs.media.shardMetal1;
 				} else if ( i == 4 ) {
 					hmodel = cgs.media.shardMetal2;
-				} else if ( i == 2 )                                             {
+				} else if ( i == 2 ) {
 					hmodel = cgs.media.shardMetal2;
-				} else if ( i == 1 )                                                                                                   {
+				} else if ( i == 1 ) {
 					hmodel = cgs.media.shardMetal2;
 					scale = 0.5f;
 				} else {goto pass;}
@@ -881,7 +881,7 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 					hmodel = cgs.media.gibIntestine;
 				} else if ( i == 4 ) {
 					hmodel = cgs.media.gibLeg;
-				} else if ( i == 2 )                                        {
+				} else if ( i == 2 ) {
 					hmodel = cgs.media.gibChest;
 				} else { goto pass;}
 				break;
@@ -895,13 +895,13 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 				snd = LEBS_ROCK;
 				if ( i == 5 ) {
 					hmodel = cgs.media.debRock[2];                  // temporarily use the next smallest rock piece
-				} else if ( i == 4 )                                                              {
+				} else if ( i == 4 ) {
 					hmodel = cgs.media.debRock[2];
-				} else if ( i == 3 )                                                                                                                   {
+				} else if ( i == 3 ) {
 					hmodel = cgs.media.debRock[1];
-				} else if ( i == 2 )                                                                                                                                                                        {
+				} else if ( i == 2 ) {
 					hmodel = cgs.media.debRock[0];
-				} else if ( i == 1 )                                                                                                                                                                                                                             {
+				} else if ( i == 1 ) {
 					hmodel = cgs.media.debBlock[1];                 // temporarily use the small block pieces
 				} else { hmodel = cgs.media.debBlock[0];            // temporarily use the small block pieces
 				}
@@ -915,9 +915,9 @@ void CG_Explodef( vec3_t origin, vec3_t dir, int mass, int type, qhandle_t sound
 					hmodel = cgs.media.debFabric[0];
 				} else if ( i == 4 ) {
 					hmodel = cgs.media.debFabric[1];
-				} else if ( i == 2 )                                              {
+				} else if ( i == 2 ) {
 					hmodel = cgs.media.debFabric[2];
-				} else if ( i == 1 )                                                                                                     {
+				} else if ( i == 1 ) {
 					hmodel = cgs.media.debFabric[2];
 					scale = 0.5;
 				} else {goto pass;  // (only do 5, 4, 2 and 1)
@@ -1215,7 +1215,7 @@ void CG_Effect( centity_t *cent, vec3_t origin, vec3_t dir ) {
 		CG_AddDebris( origin, dir,
 					  280,      // speed
 					  1400,     // duration
-					  // 15 + rand()%5 );	// count
+		              // 15 + rand()%5 );	// count
 					  7 + rand() % 2 ); // count
 	}
 }
@@ -1290,25 +1290,25 @@ void CG_Shard( centity_t *cent, vec3_t origin, vec3_t dir ) {
 			} else {
 				re->hModel = cgs.media.shardGlass2;
 			}
-		} else if ( type == 1 )     { // wood
+		} else if ( type == 1 ) {     // wood
 			if ( rval ) {
 				re->hModel = cgs.media.shardWood1;
 			} else {
 				re->hModel = cgs.media.shardWood2;
 			}
-		} else if ( type == 2 )     { // metal
+		} else if ( type == 2 ) {     // metal
 			if ( rval ) {
 				re->hModel = cgs.media.shardMetal1;
 			} else {
 				re->hModel = cgs.media.shardMetal2;
 			}
-		} else if ( type == 3 )     { // ceramic
+		} else if ( type == 3 ) {     // ceramic
 			if ( rval ) {
 				re->hModel = cgs.media.shardCeramic1;
 			} else {
 				re->hModel = cgs.media.shardCeramic2;
 			}
-		} else if ( type == 4 )     { // rubble
+		} else if ( type == 4 ) {     // rubble
 			rval = rand() % 3;
 
 			if ( rval == 1 ) {
@@ -1508,11 +1508,11 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	}
 
 	switch ( event ) {
-		//
-		// movement generated events
-		//
+	//
+	// movement generated events
+	//
 
-		// TODO: change all this to sound scripts
+	// TODO: change all this to sound scripts
 
 	case EV_FOOTSTEP:
 		DEBUGNAME( "EV_FOOTSTEP" );
@@ -1900,9 +1900,9 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		}
 		break;
 
-		//
-		// weapon events
-		//
+	//
+	// weapon events
+	//
 	case EV_VENOM:
 		DEBUGNAME( "EV_VENOM" );
 		CG_VenomFire( es, qfalse );
@@ -2113,11 +2113,11 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_UseItem( cent );
 		break;
 
-		//=================================================================
+	//=================================================================
 
-		//
-		// other events
-		//
+	//
+	// other events
+	//
 	case EV_PLAYER_TELEPORT_IN:
 		DEBUGNAME( "EV_PLAYER_TELEPORT_IN" );
 		trap_S_StartSound( NULL, es->number, CHAN_AUTO, cgs.media.teleInSound );
@@ -2189,9 +2189,9 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		// ev_railtrail is now sent standalone rather than by a player entity
 		CG_RailTrail( &cgs.clientinfo[ es->otherEntityNum2 ], es->origin2, es->pos.trBase, es->dmgFlags );   //----(SA)	added 'type' field
 		break;
-		//
-		// missile impacts
-		//
+	//
+	// missile impacts
+	//
 	case EV_MISSILE_HIT:
 		DEBUGNAME( "EV_MISSILE_HIT" );
 		ByteToDir( es->eventParm, dir );
@@ -2397,9 +2397,9 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_Obituary( es );
 		break;
 
-		//
-		// powerup events
-		//
+	//
+	// powerup events
+	//
 	case EV_POWERUP_QUAD:
 		DEBUGNAME( "EV_POWERUP_QUAD" );
 		if ( es->number == cg.snap->ps.clientNum ) {
@@ -2478,7 +2478,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_Beam( cent );
 		break;
 
-		// Rafael particles
+	// Rafael particles
 	case EV_SMOKE:
 		DEBUGNAME( "EV_SMOKE" );
 		if ( cent->currentState.density == 3 ) {          // cannon
@@ -2492,7 +2492,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 			CG_ParticleSmoke( cgs.media.smokePuffShader, cent );
 		}
 		break;
-		// done.
+	// done.
 
 	case EV_FLAMETHROWER_EFFECT:
 	{
@@ -2634,7 +2634,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	}
 	break;
 
-		// Rafael bats
+	// Rafael bats
 	case EV_BATS:
 	{
 		int i;
@@ -2651,7 +2651,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_BatDeath( cent );
 		break;
 
-		// Rafael snow pvs check
+	// Rafael snow pvs check
 	case EV_SNOW_ON:
 		CG_SnowLink( cent, qtrue );
 		break;
@@ -2665,23 +2665,23 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_ParticleSnowFlurry( cgs.media.snowShader, cent );
 		break;
 
-		//----(SA)
+	//----(SA)
 
-		// for func_exploding
+	// for func_exploding
 	case EV_EXPLODE:
 		DEBUGNAME( "EV_EXPLODE" );
 		ByteToDir( es->eventParm, dir );
 		CG_Explode( cent, position, dir, 0 );
 		break;
 
-		// for target_effect
+	// for target_effect
 	case EV_EFFECT:
 		DEBUGNAME( "EV_EFFECT" );
 //		ByteToDir( es->eventParm, dir );
 		CG_Effect( cent, position, dir );
 		break;
 
-		//----(SA) done
+	//----(SA) done
 
 	case EV_MORTAREFX:  // mortar firing
 		DEBUGNAME( "EV_MORTAREFX" );

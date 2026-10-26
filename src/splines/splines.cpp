@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -705,38 +705,38 @@ void idCameraDef::buildCamera() {
 			break;
 		}
 		case idCameraEvent::EVENT_SPEED: {
-/*
-				// take the average delay between up to the next five segments
-				float adjust = atof(events[i]->getParam());
-				int index = events[i]->getSegment();
-				total = 0;
-				count = 0;
+            /*
+            				// take the average delay between up to the next five segments
+            				float adjust = atof(events[i]->getParam());
+            				int index = events[i]->getSegment();
+            				total = 0;
+            				count = 0;
 
-				// get total amount of time over the remainder of the segment
-				for (j = index; j < cameraSpline.numSegments() - 1; j++) {
-					total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
-					count++;
-				}
+            				// get total amount of time over the remainder of the segment
+            				for (j = index; j < cameraSpline.numSegments() - 1; j++) {
+            					total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
+            					count++;
+            				}
 
-				// multiply that by the adjustment
-				double newTotal = total * adjust;
-				// what is the difference..
-				newTotal -= total;
-				totalTime += newTotal / 1000;
+            				// multiply that by the adjustment
+            				double newTotal = total * adjust;
+            				// what is the difference..
+            				newTotal -= total;
+            				totalTime += newTotal / 1000;
 
-				// per segment difference
-				newTotal /= count;
-				int additive = newTotal;
+            				// per segment difference
+            				newTotal /= count;
+            				int additive = newTotal;
 
-				// now propogate that difference out to each segment
-				for (j = index; j < cameraSpline.numSegments(); j++) {
-					cameraSpline.addSegmentTime(j, additive);
-					additive += newTotal;
-				}
+            				// now propogate that difference out to each segment
+            				for (j = index; j < cameraSpline.numSegments(); j++) {
+            					cameraSpline.addSegmentTime(j, additive);
+            					additive += newTotal;
+            				}
+            				break;
+            */
+			default:
 				break;
-*/
-		default:
-			break;
 		}
 		}
 	}
@@ -794,30 +794,30 @@ void idCameraDef::parse( const char *( *text )  ) {
 
 		if ( Q_stricmp( token, "time" ) == 0 ) {
 			baseTime = Com_ParseFloat( text );
-		} else if ( Q_stricmp( token, "camera_fixed" ) == 0 )        {
+		} else if ( Q_stricmp( token, "camera_fixed" ) == 0 ) {
 			cameraPosition = new idFixedPosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "camera_interpolated" ) == 0 )        {
+		} else if ( Q_stricmp( token, "camera_interpolated" ) == 0 ) {
 			cameraPosition = new idInterpolatedPosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "camera_spline" ) == 0 )        {
+		} else if ( Q_stricmp( token, "camera_spline" ) == 0 ) {
 			cameraPosition = new idSplinePosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "target_fixed" ) == 0 )        {
+		} else if ( Q_stricmp( token, "target_fixed" ) == 0 ) {
 			idFixedPosition *pos = new idFixedPosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "target_interpolated" ) == 0 )        {
+		} else if ( Q_stricmp( token, "target_interpolated" ) == 0 ) {
 			idInterpolatedPosition *pos = new idInterpolatedPosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "target_spline" ) == 0 )        {
+		} else if ( Q_stricmp( token, "target_spline" ) == 0 ) {
 			idSplinePosition *pos = new idSplinePosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "fov" ) == 0 )        {
+		} else if ( Q_stricmp( token, "fov" ) == 0 ) {
 			fov.parse( text );
-		} else if ( Q_stricmp( token, "event" ) == 0 )        {
+		} else if ( Q_stricmp( token, "event" ) == 0 ) {
 			idCameraEvent *event = new idCameraEvent();
 			event->parse( text );
 			addEvent( event );
@@ -1413,6 +1413,3 @@ const idVec3 *idSplinePosition::getPosition( long t ) {
 	return &interpolatedPos;
 
 }
-
-
-

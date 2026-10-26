@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1179,7 +1179,7 @@ void AAS_InitRouting( void ) {
 	numareacacheupdates = 0;
 	numportalcacheupdates = 0;
 #endif //ROUTING_DEBUG
-	   //
+	//
 	routingcachesize = 0;
 	max_routingcachesize = 1024 * (int) LibVarValue( "max_routingcache", "4096" );
 	//
@@ -1273,7 +1273,7 @@ int AAS_AreaContentsTravelFlag( int areanum ) {
 		return tfl |= TFL_WATER;
 	} else if ( contents & AREACONTENTS_SLIME ) {
 		return tfl |= TFL_SLIME;
-	} else if ( contents & AREACONTENTS_LAVA )                                                                      {
+	} else if ( contents & AREACONTENTS_LAVA ) {
 		return tfl |= TFL_LAVA;
 	} else { tfl |= TFL_AIR;}
 	if ( contents & AREACONTENTS_DONOTENTER_LARGE ) {
@@ -1303,7 +1303,7 @@ void AAS_UpdateAreaRoutingCache( aas_routingcache_t *areacache ) {
 #ifdef ROUTING_DEBUG
 	numareacacheupdates++;
 #endif //ROUTING_DEBUG
-	   //number of reachability areas within this cluster
+	//number of reachability areas within this cluster
 	numreachabilityareas = ( *aasworld ).clusters[areacache->cluster].numreachabilityareas;
 	//
 	//clear the routing update fields
@@ -1376,7 +1376,7 @@ void AAS_UpdateAreaRoutingCache( aas_routingcache_t *areacache ) {
 			//time already travelled plus the traveltime through
 			//the current area plus the travel time from the reachability
 			t = curupdate->tmptraveltime +
-				//AAS_AreaTravelTime(curupdate->areanum, curupdate->start, reach->end) +
+			    //AAS_AreaTravelTime(curupdate->areanum, curupdate->start, reach->end) +
 				curupdate->areatraveltimes[i] +
 				reach->traveltime;
 			//
@@ -1469,7 +1469,7 @@ void AAS_UpdatePortalRoutingCache( aas_routingcache_t *portalcache ) {
 #ifdef ROUTING_DEBUG
 	numportalcacheupdates++;
 #endif //ROUTING_DEBUG
-	   //clear the routing update fields
+	//clear the routing update fields
 //	memset((*aasworld).portalupdate, 0, ((*aasworld).numportals+1) * sizeof(aas_routingupdate_t));
 	//
 	curupdate = &( *aasworld ).portalupdate[( *aasworld ).numportals];
@@ -1644,10 +1644,10 @@ int AAS_AreaRouteToGoalArea( int areanum, vec3_t origin, int goalareanum, int tr
 	  /*
 	  if ((*aasworld).frameroutingupdates > MAX_FRAMEROUTINGUPDATES)
 	  {
-  #ifdef DEBUG
-		  //Log_Write("WARNING: AAS_AreaTravelTimeToGoalArea: frame routing updates overflowed");
-  #endif
-		  return 0;
+	#ifdef DEBUG
+	      //Log_Write("WARNING: AAS_AreaTravelTimeToGoalArea: frame routing updates overflowed");
+	#endif
+	      return 0;
 	  } //end if
 	  */
 	  //
@@ -1900,7 +1900,7 @@ int AAS_NextModelReachability( int num, int modelnum ) {
 
 	if ( num <= 0 ) {
 		num = 1;
-	} else if ( num >= ( *aasworld ).reachabilitysize )  {
+	} else if ( num >= ( *aasworld ).reachabilitysize ) {
 		return 0;
 	} else { num++;}
 	//

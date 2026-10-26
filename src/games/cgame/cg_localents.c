@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 // Ridah, increased this
 //#define	MAX_LOCAL_ENTITIES	512
 #define MAX_LOCAL_ENTITIES  768     // renderer can only handle 1024 entities max, so we should avoid
-									// overwriting game entities
+                                    // overwriting game entities
 // done.
 
 localEntity_t cg_localEntities[MAX_LOCAL_ENTITIES];
@@ -933,9 +933,9 @@ void CG_AddSpiritViewflash( localEntity_t *le ) {
 
 	if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN ) {
 		alpha = (float)( cg.time - le->startTime ) / (float)SPIRIT_FLASH_FADEIN;
-	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION )     {
+	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION ) {
 		alpha = 1.0;
-	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION + SPIRIT_FLASH_FADEOUT )     {
+	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION + SPIRIT_FLASH_FADEOUT ) {
 		alpha = 1.0 - (float)( cg.time - ( le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION ) ) / (float)SPIRIT_FLASH_FADEOUT;
 	} else {
 		return;
@@ -1709,7 +1709,7 @@ void CG_AddLocalEntities( void ) {
 			CG_Error( "Bad leType: %i", le->leType );
 			break;
 
-			// Ridah
+		// Ridah
 		case LE_MOVING_TRACER:
 			CG_AddMovingTracer( le );
 			break;
@@ -1732,7 +1732,7 @@ void CG_AddLocalEntities( void ) {
 			break;
 		case LE_SPIRIT_VIEWFLASH:
 			CG_AddSpiritViewflash( le );
-			// done.
+		// done.
 
 		case LE_MARK:
 			break;
@@ -1772,4 +1772,3 @@ void CG_AddLocalEntities( void ) {
 		}
 	}
 }
-

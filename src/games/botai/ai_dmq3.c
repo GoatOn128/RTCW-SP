@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -202,7 +202,7 @@ void BotCTFSeekGoals( bot_state_t *bs ) {
 		bs->ltgtype = LTG_GETFLAG;
 		//set the time the bot will stop getting the flag
 		bs->teamgoal_time = trap_AAS_Time() + CTF_GETFLAG_TIME;
-	} else if ( rnd < 0.66 && ctf_redflag.areanum && ctf_blueflag.areanum )     {
+	} else if ( rnd < 0.66 && ctf_redflag.areanum && ctf_blueflag.areanum ) {
 		//FIXME: do not always use the base flag
 		if ( BotCTFTeam( bs ) == CTF_TEAM_RED ) {
 			memcpy( &bs->teamgoal, &ctf_redflag, sizeof( bot_goal_t ) );
@@ -378,7 +378,7 @@ char *EasyClientName( int client, char *buf, int size ) {
 		if ( ( c >= 'a' && c <= 'z' ) ||
 			 ( c >= '0' && c <= '9' ) || c == '_' ) {
 			ptr++;
-		} else if ( c >= 'A' && c <= 'Z' )       {
+		} else if ( c >= 'A' && c <= 'Z' ) {
 			*ptr += 'a' - 'A';
 			ptr++;
 		} else {
@@ -1383,12 +1383,12 @@ float BotEntityVisible( int viewer, vec3_t eye, vec3_t viewangles, float fov, in
 			if ( infog && otherinfog ) {
 				VectorSubtract( trace.endpos, eye, dir );
 				fogdist = VectorLength( dir );
-			} else if ( infog )     {
+			} else if ( infog ) {
 				VectorCopy( trace.endpos, start );
 				BotAI_Trace( &trace, start, NULL, NULL, eye, viewer, CONTENTS_FOG );
 				VectorSubtract( eye, trace.endpos, dir );
 				fogdist = VectorLength( dir );
-			} else if ( otherinfog )     {
+			} else if ( otherinfog ) {
 				VectorCopy( trace.endpos, end );
 				BotAI_Trace( &trace, eye, NULL, NULL, end, viewer, CONTENTS_FOG );
 				VectorSubtract( end, trace.endpos, dir );
@@ -1659,7 +1659,7 @@ void BotAimAtEnemy( bot_state_t *bs ) {
 			if ( !( dist > 100 && VectorLength( dir ) < 32 ) ) {
 				//if skilled anough do exact prediction
 				if ( aim_skill > 0.8 &&
-					 //if the weapon is ready to fire
+				     //if the weapon is ready to fire
 					 bs->cur_ps.weaponstate == WEAPON_READY ) {
 					aas_clientmove_t move;
 					vec3_t origin;
@@ -2161,7 +2161,7 @@ int BotEntityToActivate( int entitynum ) {
 		if ( !strcmp( classname, "func_button" ) ) {
 			//BSP button model
 			return ent;
-		} else if ( !strcmp( classname, "trigger_multiple" ) )        {
+		} else if ( !strcmp( classname, "trigger_multiple" ) ) {
 			//invisible trigger multiple box
 			return ent;
 		} else {
@@ -2185,7 +2185,7 @@ vec3_t MOVEDIR_DOWN = {0,  0, -1};
 void BotSetMovedir( vec3_t angles, vec3_t movedir ) {
 	if ( VectorCompare( angles, VEC_UP ) ) {
 		VectorCopy( MOVEDIR_UP, movedir );
-	} else if ( VectorCompare( angles, VEC_DOWN ) )       {
+	} else if ( VectorCompare( angles, VEC_DOWN ) ) {
 		VectorCopy( MOVEDIR_DOWN, movedir );
 	} else {
 		AngleVectors( angles, movedir, NULL, NULL );
@@ -2243,7 +2243,7 @@ void BotAIBlocked( bot_state_t *bs, bot_moveresult_t *moveresult, int activate )
 	ClientName( bs->client, netname, sizeof( netname ) );
 	BotAI_Print( PRT_MESSAGE, "%s: I'm blocked by model %d\n", netname, entinfo.modelindex );
 #endif //OBSTACLEDEBUG
-	   //if blocked by a bsp model and the bot wants to activate it if possible
+	//if blocked by a bsp model and the bot wants to activate it if possible
 	if ( entinfo.modelindex > 0 && entinfo.modelindex <= max_bspmodelindex && activate ) {
 		//find the bsp entity which should be activated in order to remove
 		//the blocking entity
@@ -2264,37 +2264,37 @@ void BotAIBlocked( bot_state_t *bs, bot_moveresult_t *moveresult, int activate )
 //		ClientName(bs->client, netname, sizeof(netname));
 //		BotAI_Print(PRT_MESSAGE, "%s: I've got no brain cells for activating entities\n", netname);
 #endif //OBSTACLEDEBUG
-	   /*
-	   //the bot should now activate one of the following entities
-	   //"func_button", "trigger_multiple", "func_door"
-	   //all these activators use BSP models, so it should be a matter of
-	   //finding where this model is located using AAS and then activating
-	   //by walking against the model it or shooting at it
-	   //
-	   //if it is a door we should shoot at
-	   if (!strcmp(classname, "func_door"))
-	   {
-		   //get the door model
-		   model = AAS_ValueForBSPEpairKey(ent, "model");
-		   modelindex = AAS_IndexFromModel(model);
-		   //if the model is not loaded
-		   if (!modelindex) return;
-		   VectorClear(angles);
-		   AAS_BSPModelMinsMaxsOrigin(modelindex - 1, angles, mins, maxs, NULL);
-		   //get a goal to shoot at
-		   VectorAdd(maxs, mins, goalorigin);
-		   VectorScale(goalorigin, 0.5, goalorigin);
-		   VectorSubtract(goalorigin, bs->origin, movedir);
-		   //
-		   vectoangles(movedir, moveresult->ideal_viewangles);
-		   moveresult->flags |= MOVERESULT_MOVEMENTVIEW;
-		   //select the blaster
-		   EA_UseItem(bs->client, "Blaster");
-		   //shoot
-		   EA_Attack(bs->client);
-		   //
-		   return;
-	   } //end if*/
+		/*
+		//the bot should now activate one of the following entities
+		//"func_button", "trigger_multiple", "func_door"
+		//all these activators use BSP models, so it should be a matter of
+		//finding where this model is located using AAS and then activating
+		//by walking against the model it or shooting at it
+		//
+		//if it is a door we should shoot at
+		if (!strcmp(classname, "func_door"))
+		{
+		    //get the door model
+		    model = AAS_ValueForBSPEpairKey(ent, "model");
+		    modelindex = AAS_IndexFromModel(model);
+		    //if the model is not loaded
+		    if (!modelindex) return;
+		    VectorClear(angles);
+		    AAS_BSPModelMinsMaxsOrigin(modelindex - 1, angles, mins, maxs, NULL);
+		    //get a goal to shoot at
+		    VectorAdd(maxs, mins, goalorigin);
+		    VectorScale(goalorigin, 0.5, goalorigin);
+		    VectorSubtract(goalorigin, bs->origin, movedir);
+		    //
+		    vectoangles(movedir, moveresult->ideal_viewangles);
+		    moveresult->flags |= MOVERESULT_MOVEMENTVIEW;
+		    //select the blaster
+		    EA_UseItem(bs->client, "Blaster");
+		    //shoot
+		    EA_Attack(bs->client);
+		    //
+		    return;
+		} //end if*/
 		if ( !strcmp( classname, "func_button" ) ) {
 			//create a bot goal towards the button
 			trap_AAS_ValueForBSPEpairKey( ent, "model", model, sizeof( model ) );
@@ -2408,54 +2408,54 @@ void BotAIBlocked( bot_state_t *bs, bot_moveresult_t *moveresult, int activate )
 		  /*
 		  if (!strcmp(classname, "trigger_multiple"))
 		  {
-			  //create a bot goal towards the trigger
-			  model = AAS_ValueForBSPEpairKey(ent, "model");
-			  modelindex = AAS_IndexFromModel(model);
-			  //if the model is not precached (bad thing but happens) assume model is "*X"
-			  if (!modelindex) modelindex = atoi(model+1);
-			  VectorClear(angles);
-			  AAS_BSPModelMinsMaxsOrigin(modelindex - 1, angles, mins, maxs, NULL);
-			  VectorAdd(mins, maxs, mid);
-			  VectorScale(mid, 0.5, mid);
-			  VectorCopy(mid, start);
-			  start[2] = maxs[2] + 24;
-			  VectorSet(end, start[0], start[1], start[2] - 100);
-			  trace = AAS_TraceClientBBox(start, end, PRESENCE_CROUCH, -1);
-			  if (trace.startsolid) return;
-			  //trace.endpos is now the goal origin
-			  VectorCopy(trace.endpos, goalorigin);
-			  //
-  #ifdef OBSTACLEDEBUG
-			  if (bs->activatemessage_time < AAS_Time())
-			  {
-				  Com_sprintf(buf, sizeof(buf), "I have to activate a trigger at %1.1f %1.1f %1.1f in area %d\n",
-								  goalorigin[0], goalorigin[1], goalorigin[2], AAS_PointAreaNum(goalorigin));
-				  EA_Say(bs->client, buf);
-				  bs->activatemessage_time = AAS_Time() + 5;
-			  } //end if* /
-  #endif //OBSTACLEDEBUG
-			  //
-			  VectorCopy(mid, bs->activategoal.origin);
-			  bs->activategoal.areanum = AAS_PointAreaNum(goalorigin);
-			  VectorSubtract(mins, mid, bs->activategoal.mins);
-			  VectorSubtract(maxs, mid, bs->activategoal.maxs);
-			  bs->activategoal.entitynum = entinfo.number;
-			  bs->activategoal.number = 0;
-			  bs->activategoal.flags = 0;
-			  bs->activate_time = AAS_Time() + 10;
-			  if (!AAS_AreaReachability(bs->activategoal.areanum))
-			  {
-  #ifdef OBSTACLEDEBUG
-				  botimport.Print(PRT_MESSAGE, "trigger area has no reachabilities\n");
-  #endif //OBSTACLEDEBUG
-				  if (bs->ainode == AINode_Seek_NBG) bs->nbg_time = 0;
-				  else if (bs->ainode == AINode_Seek_LTG) bs->ltg_time = 0;
-			  } //end if
-			  else
-			  {
-				  AIEnter_Seek_ActivateEntity(bs);
-			  } //end else
-			  return;
+		      //create a bot goal towards the trigger
+		      model = AAS_ValueForBSPEpairKey(ent, "model");
+		      modelindex = AAS_IndexFromModel(model);
+		      //if the model is not precached (bad thing but happens) assume model is "*X"
+		      if (!modelindex) modelindex = atoi(model+1);
+		      VectorClear(angles);
+		      AAS_BSPModelMinsMaxsOrigin(modelindex - 1, angles, mins, maxs, NULL);
+		      VectorAdd(mins, maxs, mid);
+		      VectorScale(mid, 0.5, mid);
+		      VectorCopy(mid, start);
+		      start[2] = maxs[2] + 24;
+		      VectorSet(end, start[0], start[1], start[2] - 100);
+		      trace = AAS_TraceClientBBox(start, end, PRESENCE_CROUCH, -1);
+		      if (trace.startsolid) return;
+		      //trace.endpos is now the goal origin
+		      VectorCopy(trace.endpos, goalorigin);
+		      //
+		#ifdef OBSTACLEDEBUG
+		      if (bs->activatemessage_time < AAS_Time())
+		      {
+		    	  Com_sprintf(buf, sizeof(buf), "I have to activate a trigger at %1.1f %1.1f %1.1f in area %d\n",
+		    					  goalorigin[0], goalorigin[1], goalorigin[2], AAS_PointAreaNum(goalorigin));
+		    	  EA_Say(bs->client, buf);
+		    	  bs->activatemessage_time = AAS_Time() + 5;
+		      } //end if* /
+		#endif //OBSTACLEDEBUG
+		      //
+		      VectorCopy(mid, bs->activategoal.origin);
+		      bs->activategoal.areanum = AAS_PointAreaNum(goalorigin);
+		      VectorSubtract(mins, mid, bs->activategoal.mins);
+		      VectorSubtract(maxs, mid, bs->activategoal.maxs);
+		      bs->activategoal.entitynum = entinfo.number;
+		      bs->activategoal.number = 0;
+		      bs->activategoal.flags = 0;
+		      bs->activate_time = AAS_Time() + 10;
+		      if (!AAS_AreaReachability(bs->activategoal.areanum))
+		      {
+		#ifdef OBSTACLEDEBUG
+		    	  botimport.Print(PRT_MESSAGE, "trigger area has no reachabilities\n");
+		#endif //OBSTACLEDEBUG
+		    	  if (bs->ainode == AINode_Seek_NBG) bs->nbg_time = 0;
+		    	  else if (bs->ainode == AINode_Seek_LTG) bs->ltg_time = 0;
+		      } //end if
+		      else
+		      {
+		    	  AIEnter_Seek_ActivateEntity(bs);
+		      } //end else
+		      return;
 		  } //end if*/
 	}
 	//just some basic dynamic obstacle avoidance code
@@ -2628,7 +2628,7 @@ void BotCheckEvents( bot_state_t *bs, entityState_t *state ) {
 	}
 	//
 	switch ( event ) {
-		//client obituary event
+	//client obituary event
 	case EV_OBITUARY:
 	{
 		int target, attacker, mod;
@@ -2654,7 +2654,7 @@ void BotCheckEvents( bot_state_t *bs, entityState_t *state ) {
 			bs->killedenemy_time = trap_AAS_Time();
 			//
 			bs->num_kills++;
-		} else if ( attacker == bs->enemy && target == attacker )     {
+		} else if ( attacker == bs->enemy && target == attacker ) {
 			bs->enemysuicide = qtrue;
 		}
 		break;
@@ -2670,11 +2670,11 @@ void BotCheckEvents( bot_state_t *bs, entityState_t *state ) {
 			//red flag is returned
 			bs->redflagstatus = 0;
 			bs->flagstatuschanged = qtrue;
-		} else if ( !strcmp( buf, "sound/teamplay/flagret_blu.wav" ) )        {
+		} else if ( !strcmp( buf, "sound/teamplay/flagret_blu.wav" ) ) {
 			//blue flag is returned
 			bs->blueflagstatus = 0;
 			bs->flagstatuschanged = qtrue;
-		} else if ( !strcmp( buf, "sound/items/poweruprespawn.wav" ) )        {
+		} else if ( !strcmp( buf, "sound/items/poweruprespawn.wav" ) ) {
 			//powerup respawned... go get it
 			BotGoForPowerups( bs );
 		}

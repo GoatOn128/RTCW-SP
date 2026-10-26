@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -191,11 +191,11 @@ void R_BoxSurfaces_r( mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **l
 			s = BoxOnPlaneSide( mins, maxs, &( ( srfSurfaceFace_t * ) surf->data )->plane );
 			if ( s == 1 || s == 2 ) {
 				surf->viewCount = tr.viewCount;
-			} else if ( DotProduct( ( ( srfSurfaceFace_t * ) surf->data )->plane.normal, dir ) < -0.5 )         {
+			} else if ( DotProduct( ( ( srfSurfaceFace_t * ) surf->data )->plane.normal, dir ) < -0.5 ) {
 				// don't add faces that make sharp angles with the projection direction
 				surf->viewCount = tr.viewCount;
 			}
-		} else if ( *( surfaceType_t * )( surf->data ) != SF_GRID )        {
+		} else if ( *( surfaceType_t * )( surf->data ) != SF_GRID ) {
 			surf->viewCount = tr.viewCount;
 		}
 		// check the viewCount because the surface may have
@@ -425,7 +425,7 @@ int R_OldMarkFragments( int numPoints, const vec3_t *points, const vec3_t projec
 					}
 				}
 			}
-		} else if ( *surfaces[i] == SF_FACE )     {
+		} else if ( *surfaces[i] == SF_FACE ) {
 
 			surf = ( srfSurfaceFace_t * ) surfaces[i];
 			// check the normal of this face
@@ -675,7 +675,7 @@ Com_Printf("bestnormal: %1.1f %1.1f %1.1f \n", bestnormal[0], bestnormal[1], bes
 					}
 				}
 			}
-		} else if ( *surfaces[i] == SF_FACE )     {
+		} else if ( *surfaces[i] == SF_FACE ) {
 			extern float VectorDistance( vec3_t v1, vec3_t v2 );
 			vec3_t axis[3];
 			float texCoordScale, dot;
@@ -819,4 +819,3 @@ Com_Printf("bestnormal: %1.1f %1.1f %1.1f \n", bestnormal[0], bestnormal[1], bes
 	}
 	return returnedFragments;
 }
-

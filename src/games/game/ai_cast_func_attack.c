@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -463,7 +463,7 @@ char *AIFunc_LoperAttack1Start( cast_state_t *cs ) {
 // update for a version of the loper new today (6/26)
 //#define	LOPER_LEAP_FRAME_COUNT		4
 #define LOPER_LEAP_FRAME_COUNT      10
-#define LOPER_LEAP_DURATION         ( LOPER_LEAP_FRAME_COUNT*( 1000 / LOPER_LEAP_FPS ) )
+#define LOPER_LEAP_DURATION         ( LOPER_LEAP_FRAME_COUNT * ( 1000 / LOPER_LEAP_FPS ) )
 
 
 #define LOPER_LAND_ANIM             LEGS_EXTRA4
@@ -472,7 +472,7 @@ char *AIFunc_LoperAttack1Start( cast_state_t *cs ) {
 // update for a version of the loper new today (6/26)
 //#define	LOPER_LAND_FRAME_COUNT		17
 #define LOPER_LAND_FRAME_COUNT      21
-#define LOPER_LAND_DURATION         ( LOPER_LAND_FRAME_COUNT*( 1000 / LOPER_LAND_FPS ) )
+#define LOPER_LAND_DURATION         ( LOPER_LAND_FRAME_COUNT * ( 1000 / LOPER_LAND_FPS ) )
 
 
 #define LOPER_LEAP_DAMAGE           10
@@ -609,7 +609,7 @@ char *AIFunc_LoperAttack2Start( cast_state_t *cs ) {
 #define LOPER_GROUND_FPS                10
 
 #define LOPER_GROUND_FRAME_COUNT        8
-#define LOPER_GROUND_DURATION           ( LOPER_GROUND_FRAME_COUNT*( 1000 / LOPER_GROUND_FPS ) )
+#define LOPER_GROUND_DURATION           ( LOPER_GROUND_FRAME_COUNT * ( 1000 / LOPER_GROUND_FPS ) )
 
 #define LOPER_GROUND_DAMAGE             20
 
@@ -687,7 +687,7 @@ char *AIFunc_LoperAttack3Start( cast_state_t *cs ) {
 #define STIMSOLDIER_FLYJUMP_ANIM            LEGS_EXTRA1
 #define STIMSOLDIER_FLYJUMP_FPS             15
 #define STIMSOLDIER_FLYJUMP_FRAME_COUNT     28
-#define STIMSOLDIER_FLYJUMP_DURATION        ( STIMSOLDIER_FLYJUMP_FRAME_COUNT*( 1000 / STIMSOLDIER_FLYJUMP_FPS ) )
+#define STIMSOLDIER_FLYJUMP_DURATION        ( STIMSOLDIER_FLYJUMP_FRAME_COUNT * ( 1000 / STIMSOLDIER_FLYJUMP_FPS ) )
 #define STIMSOLDIER_FLYJUMP_DELAY           ( STIMSOLDIER_FLYJUMP_DURATION + 3000 )
 
 // hover plays continuously
@@ -697,9 +697,9 @@ char *AIFunc_LoperAttack3Start( cast_state_t *cs ) {
 #define STIMSOLDIER_FLYLAND_ANIM            LEGS_LAND
 #define STIMSOLDIER_FLYLAND_FPS             15
 #define STIMSOLDIER_FLYLAND_FRAME_COUNT     14
-#define STIMSOLDIER_FLYLAND_DURATION        ( STIMSOLDIER_FLYLAND_FRAME_COUNT*( 1000 / STIMSOLDIER_FLYLAND_FPS ) )
+#define STIMSOLDIER_FLYLAND_DURATION        ( STIMSOLDIER_FLYLAND_FRAME_COUNT * ( 1000 / STIMSOLDIER_FLYLAND_FPS ) )
 
-#define STIMSOLDIER_STARTJUMP_DELAY         ( STIMSOLDIER_FLYJUMP_DURATION*0.5 )
+#define STIMSOLDIER_STARTJUMP_DELAY         ( STIMSOLDIER_FLYJUMP_DURATION * 0.5 )
 
 char *AIFunc_StimSoldierAttack1( cast_state_t *cs ) {
 	gentity_t   *ent;

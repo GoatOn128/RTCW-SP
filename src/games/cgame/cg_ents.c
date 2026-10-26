@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -222,7 +222,7 @@ void CG_LoseArmor( centity_t *cent, int index ) {
 		if ( !models[index + ( 2 * totalparts )] ) {
 			return;
 		}
-	} else if ( !models[index + totalparts] )        {
+	} else if ( !models[index + totalparts] ) {
 		return;
 	}
 
@@ -496,7 +496,7 @@ static void CG_EntityEffects( centity_t *cent ) {
 			} else {
 				trap_S_AddLoopingSound( cent->currentState.number, cent->lerpOrigin, vec3_origin, cgs.gameSounds[ cent->currentState.loopSound ], 255 );
 			}
-		} else if ( cent->currentState.solid == SOLID_BMODEL )   {
+		} else if ( cent->currentState.solid == SOLID_BMODEL ) {
 			vec3_t origin;
 			float   *v;
 
@@ -514,12 +514,12 @@ static void CG_EntityEffects( centity_t *cent ) {
 			trap_S_AddLoopingSound( cent->currentState.number, cent->lerpOrigin, vec3_origin, cgs.gameSounds[ cent->currentState.loopSound ], 255 );
 		}
 	} /*else {
-		// stop NO_PVS speakers if they've been turned off
-		if(cent->currentState.eType == ET_SPEAKER) {
-			if(cent->currentState.density == 1) {
-				trap_S_StopLoopingSound(cent->currentState.number);
-			}
-		}
+	    // stop NO_PVS speakers if they've been turned off
+	    if(cent->currentState.eType == ET_SPEAKER) {
+	    	if(cent->currentState.density == 1) {
+	    		trap_S_StopLoopingSound(cent->currentState.number);
+	    	}
+	    }
 	}*/
 
 
@@ -1079,7 +1079,7 @@ static void CG_Item( centity_t *cent ) {
 
 
 	if ( es->modelindex2 ) {   // modelindex2 was specified for the ent, meaning it probably has an alternate model (as opposed to the one in the itemlist)
-							   // try to load it first, and if it fails, default to the itemlist model
+		                       // try to load it first, and if it fails, default to the itemlist model
 		ent.hModel = cgs.gameModels[ es->modelindex2 ];
 	} else {
 		if ( item->giType == IT_WEAPON && cg_items[es->modelindex].models[2] ) {   // check if there's a specific model for weapon pickup placement
@@ -1244,7 +1244,7 @@ static void CG_Missile( centity_t *cent ) {
 
 	if ( cent->currentState.eType == ET_FP_PARTS ) {
 		ent.hModel = cgs.gameModels[cent->currentState.modelindex];
-	} else if ( cent->currentState.eType == ET_EXPLO_PART )     {
+	} else if ( cent->currentState.eType == ET_EXPLO_PART ) {
 		ent.hModel = cgs.gameModels[cent->currentState.modelindex];
 	} else if ( cent->currentState.eType == ET_FLAMEBARREL ) {
 		ent.hModel = cgs.media.flamebarrel;
@@ -1715,7 +1715,7 @@ static void CG_Efx( centity_t *cent ) {
 				trap_R_AddLightToScene( cent->currentState.origin, cent->currentState.time, (float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, 0 );
 			}
 		}
-	} else if ( cent->currentState.eType == ET_SPOTLIGHT_EF )     {
+	} else if ( cent->currentState.eType == ET_SPOTLIGHT_EF ) {
 
 		vec3_t targetpos, normalized_direction, direction;
 		float dist, fov = 90;
@@ -2153,7 +2153,7 @@ static void CG_Prop( centity_t *cent ) {
 			ent.renderfx = RF_DEPTHHACK | RF_FIRST_PERSON;
 
 			//CG_Printf ("frame %d oldframe %d\n", ent.frame, ent.oldframe);
-		} else if ( ent.frame )     {
+		} else if ( ent.frame ) {
 			ent.oldframe -= 1;
 			ent.backlerp = 1 - cg.frameInterpolation;
 		} else
@@ -2610,7 +2610,7 @@ void CG_AddPacketEntities( void ) {
 		}
 	} else {
 		cg.frameInterpolation = 0;  // actually, it should never be used, because
-									// no entities should be marked as interpolating
+		                            // no entities should be marked as interpolating
 	}
 
 	cg.rumbleScale = 0.0;   // RF, default to 0 each frame

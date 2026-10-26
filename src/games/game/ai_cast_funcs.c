@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -239,7 +239,7 @@ bot_moveresult_t *AICast_MoveToPos( cast_state_t *cs, vec3_t pos, int entnum ) {
 				VectorCopy( lmoveresult.ideal_viewangles, cs->ideal_viewangles );
 				VectorCopy( cs->ideal_viewangles, cs->viewlock_viewangles );
 				cs->aiFlags |= AIFL_VIEWLOCKED;
-			} else if ( !( cs->bFlags & BFL_ATTACKED ) )       { // if we are attacking, don't change angles
+			} else if ( !( cs->bFlags & BFL_ATTACKED ) ) {       // if we are attacking, don't change angles
 				bot_input_t bi;
 
 				trap_EA_GetInput( bs->client, 0.1, &bi );
@@ -371,7 +371,7 @@ void AICast_SpecialFunc( cast_state_t *cs ) {
 				&&  ( Distance( cs->bs->origin, enemy->s.pos.trBase ) > 200 )
 				&&  ( Distance( cs->bs->origin, enemy->s.pos.trBase ) < 600 )
 				&&  ( cs->bs->cur_ps.groundEntityNum != ENTITYNUM_NONE )
-				//&&	(infront( ent, enemy ))
+		        //&&	(infront( ent, enemy ))
 				&&  ( infront( enemy, ent ) ) ) {
 			// crouch
 			trap_EA_Crouch( cs->entityNum );
@@ -492,21 +492,21 @@ char *AIFunc_Idle( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) {     // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 			return retval;
 		}
-	} else if ( numEnemies == -3 )     { // bullet impact
+	} else if ( numEnemies == -3 ) {     // bullet impact
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectBulletImpactStart( cs );
 		}
-	} else if ( numEnemies == -4 )     { // audible event
+	} else if ( numEnemies == -4 ) {     // audible event
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 		}
-	} else if ( numEnemies > 0 )     {
+	} else if ( numEnemies > 0 ) {
 		int i;
 
 		cs->enemyNum = -1;
@@ -580,7 +580,7 @@ char *AIFunc_Idle( cast_state_t *cs ) {
 				vectoangles( dir, cs->ideal_viewangles );
 				cs->ideal_viewangles[PITCH] = AngleNormalize180( cs->ideal_viewangles[PITCH] ) * 0.5;
 			}
-		} else if ( cs->attributes[TACTICAL] && cs->nextIdleAngleChange < level.time )     {
+		} else if ( cs->attributes[TACTICAL] && cs->nextIdleAngleChange < level.time ) {
 			// wait a second before changing again
 			if ( ( cs->nextIdleAngleChange + 3000 ) < level.time ) {
 
@@ -606,7 +606,7 @@ char *AIFunc_Idle( cast_state_t *cs ) {
 
 				cs->ideal_viewangles[PITCH] = 0;
 			}
-		} else if ( cs->idleYawChange )     {
+		} else if ( cs->idleYawChange ) {
 			cs->idleYawChange = AngleDelta( cs->idleYaw, cs->ideal_viewangles[YAW] );
 			cs->ideal_viewangles[YAW] = AngleMod( cs->ideal_viewangles[YAW] + ( cs->idleYawChange * cs->bs->thinktime ) );
 		}
@@ -845,7 +845,7 @@ char *AIFunc_InspectFriendly( cast_state_t *cs ) {
 		numEnemies = AICast_ScanForEnemies( cs, enemies );
 		if ( numEnemies == -1 ) { // query mode
 			return NULL;
-		} else if ( numEnemies == -2 )     { // inspection
+		} else if ( numEnemies == -2 ) {     // inspection
 			// only override current objective if we are inspecting a dead guy, and the new inspect target is fighting someone
 			if ( ( g_entities[cs->inspectNum].health <= 0 ) && ( g_entities[enemies[0]].health > 0 ) ) {
 				return AIFunc_InspectFriendlyStart( cs, enemies[0] );
@@ -902,7 +902,7 @@ char *AIFunc_InspectFriendly( cast_state_t *cs ) {
 
 			cs->ideal_viewangles[PITCH] = 0;
 		}
-	} else if ( cs->idleYawChange )     {
+	} else if ( cs->idleYawChange ) {
 		cs->idleYawChange = AngleDelta( cs->idleYaw, cs->ideal_viewangles[YAW] );
 		cs->ideal_viewangles[YAW] = AngleMod( cs->ideal_viewangles[YAW] + ( cs->idleYawChange * cs->bs->thinktime ) );
 	}
@@ -1075,7 +1075,7 @@ char *AIFunc_InspectBulletImpact( cast_state_t *cs ) {
 
 				return AIFunc_InspectFriendlyStart( cs, enemies[0] );
 			}
-		} else if ( numEnemies > 0 )     {
+		} else if ( numEnemies > 0 ) {
 			int i;
 
 			cs->enemyNum = enemies[0];  // just attack the first one
@@ -1328,16 +1328,16 @@ char *AIFunc_InspectAudibleEvent( cast_state_t *cs ) {
 		numEnemies = AICast_ScanForEnemies( cs, enemies );
 		if ( numEnemies == -1 ) { // query mode
 			return NULL;
-		} else if ( numEnemies == -2 )     { // inspection
+		} else if ( numEnemies == -2 ) {     // inspection
 			// only override current objective if we are inspecting a dead guy, and the new inspect target is fighting someone
 			if ( ( g_entities[cs->inspectNum].health <= 0 ) && ( g_entities[enemies[0]].health > 0 ) ) {
 				return AIFunc_InspectFriendlyStart( cs, enemies[0] );
 			}
-		} else if ( numEnemies == -4 )     { // NEW audible event
+		} else if ( numEnemies == -4 ) {     // NEW audible event
 			//if (cs->aiState < AISTATE_COMBAT) {
 			return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 			//}
-		} else if ( numEnemies > 0 )     {
+		} else if ( numEnemies > 0 ) {
 			int i;
 
 			cs->enemyNum = enemies[0];  // just attack the first one
@@ -1501,7 +1501,7 @@ char *AIFunc_ChaseGoalIdle( cast_state_t *cs ) {
 		}
 		// reload?
 		AICast_IdleReload( cs );
-	} else if ( followent->client )     {
+	} else if ( followent->client ) {
 		// face them
 		VectorSubtract( followent->r.currentOrigin, cs->bs->origin, dir );
 		dir[2] += followent->client->ps.viewheight - g_entities[cs->bs->entitynum].client->ps.viewheight;
@@ -1513,21 +1513,21 @@ char *AIFunc_ChaseGoalIdle( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) { // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 			return retval;
 		}
-	} else if ( numEnemies == -3 )     { // bullet impact
+	} else if ( numEnemies == -3 ) {     // bullet impact
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectBulletImpactStart( cs );
 		}
-	} else if ( numEnemies == -4 )     { // audible event
+	} else if ( numEnemies == -4 ) {     // audible event
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 		}
-	} else if ( numEnemies > 0 )     {
+	} else if ( numEnemies > 0 ) {
 		cs->enemyNum = enemies[0];  // just attack the first one
 	}
 
@@ -1764,21 +1764,21 @@ char *AIFunc_ChaseGoal( cast_state_t *cs ) {
 		numEnemies = AICast_ScanForEnemies( cs, enemies );
 		if ( numEnemies == -1 ) { // query mode
 			return NULL;
-		} else if ( numEnemies == -2 )     { // inspection may be required
+		} else if ( numEnemies == -2 ) {     // inspection may be required
 			char *retval;
 			// TTimo: gcc: suggest () around assignment used as truth value
 			if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 				return retval;
 			}
-		} else if ( numEnemies == -3 )     { // bullet impact
+		} else if ( numEnemies == -3 ) {     // bullet impact
 			if ( cs->aiState < AISTATE_COMBAT ) {
 				return AIFunc_InspectBulletImpactStart( cs );
 			}
-		} else if ( numEnemies == -4 )     { // audible event
+		} else if ( numEnemies == -4 ) {     // audible event
 			if ( cs->aiState < AISTATE_COMBAT ) {
 				return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 			}
-		} else if ( numEnemies > 0 )     {
+		} else if ( numEnemies > 0 ) {
 			int i;
 
 			cs->enemyNum = enemies[0];  // just attack the first one
@@ -2185,7 +2185,7 @@ char *AIFunc_BattleHunt( cast_state_t *cs ) {
 		numEnemies = AICast_ScanForEnemies( cs, enemies );
 		if ( numEnemies == -1 ) { // query mode
 			return NULL;
-		} else if ( numEnemies == -2 )     { // inspection may be required
+		} else if ( numEnemies == -2 ) {     // inspection may be required
 			char *retval;
 			if ( cs->aiState < AISTATE_COMBAT ) {
 				// TTimo: gcc: suggest () around assignment used as truth value
@@ -2193,15 +2193,15 @@ char *AIFunc_BattleHunt( cast_state_t *cs ) {
 					return retval;
 				}
 			}
-		} else if ( numEnemies == -3 )     { // bullet impact
+		} else if ( numEnemies == -3 ) {     // bullet impact
 			if ( cs->aiState < AISTATE_COMBAT ) {
 				return AIFunc_InspectBulletImpactStart( cs );
 			}
-		} else if ( numEnemies == -4 )     { // audible event
+		} else if ( numEnemies == -4 ) {     // audible event
 			if ( cs->aiState < AISTATE_COMBAT ) {
 				return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 			}
-		} else if ( AICast_GotEnoughAmmoForWeapon( cs, cs->bs->cur_ps.weapon ) )     {
+		} else if ( AICast_GotEnoughAmmoForWeapon( cs, cs->bs->cur_ps.weapon ) ) {
 			if ( numEnemies > 0 ) {
 				// default to the first known enemy, overwrite if we find a clearer shot
 				cs->enemyNum = enemies[0];
@@ -2382,14 +2382,14 @@ char *AIFunc_BattleAmbush( cast_state_t *cs ) {
 	// we shouldnt be interrupted from BattleAmbush mode, so try to handle these without interference
 	if ( numEnemies == -1 ) { // query mode
 		// ...
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		cs->vislist[enemies[0]].flags |= AIVIS_INSPECTED;   // they have been notified
 		cs->vislist[enemies[0]].flags &= ~AIVIS_INSPECT;    // they have been notified
-	} else if ( numEnemies == -3 )     { // bullet impact
+	} else if ( numEnemies == -3 ) {     // bullet impact
 		// ...
-	} else if ( numEnemies == -4 )     { // audible event
+	} else if ( numEnemies == -4 ) {     // audible event
 		// ...
-	} else if ( numEnemies > 0 )     {
+	} else if ( numEnemies > 0 ) {
 
 		if ( AICast_GotEnoughAmmoForWeapon( cs, cs->weaponNum ) ) {
 			// default to the first known enemy, overwrite if we find a clearer shot
@@ -2472,7 +2472,7 @@ char *AIFunc_BattleAmbush( cast_state_t *cs ) {
 		moveDist = VectorNormalize( vec );
 		//
 		if (    ( move.numtouch && move.touchents[0] < aicast_maxclients )    // hit something
-				// or moved closer to the enemy
+		        // or moved closer to the enemy
 				||  (   ( enemyDist < 128 )
 						&&  ( ( enemyDist - 1 ) > ( Distance( move.endpos, g_entities[cs->enemyNum].s.pos.trBase ) ) ) ) ) {
 			// abort the manouver
@@ -2569,7 +2569,7 @@ char *AIFunc_BattleAmbush( cast_state_t *cs ) {
 
 					cs->ideal_viewangles[PITCH] = 0;
 				}
-			} else if ( cs->idleYawChange )     {
+			} else if ( cs->idleYawChange ) {
 				cs->idleYawChange = AngleDelta( cs->idleYaw, cs->ideal_viewangles[YAW] );
 				cs->ideal_viewangles[YAW] = AngleMod( cs->ideal_viewangles[YAW] + ( cs->idleYawChange * cs->bs->thinktime ) );
 			}
@@ -2761,7 +2761,7 @@ char *AIFunc_BattleChase( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) { // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
@@ -3371,21 +3371,21 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) { // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 			return retval;
 		}
-	} else if ( numEnemies == -3 )     { // bullet impact
+	} else if ( numEnemies == -3 ) {     // bullet impact
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectBulletImpactStart( cs );
 		}
-	} else if ( numEnemies == -4 )     { // audible event
+	} else if ( numEnemies == -4 ) {     // audible event
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 		}
-	} else if ( numEnemies > 0 )     {
+	} else if ( numEnemies > 0 ) {
 
 		if ( AICast_GotEnoughAmmoForWeapon( cs, cs->weaponNum ) ) {
 			// default to the first known enemy, overwrite if we find a clearer shot
@@ -3438,7 +3438,7 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 				vec[2] *= 0.2;
 				dist = VectorLength( vec );
 			}
-		} else if ( dist < 8 )     {
+		} else if ( dist < 8 ) {
 			// if they can see us, find a better spot
 			if ( AICast_EntityVisible( AICast_GetCastState( cs->enemyNum ), cs->entityNum, qtrue ) || AICast_CheckAttack( AICast_GetCastState( cs->enemyNum ), cs->entityNum, qfalse ) ) {
 				if ( !AICast_GetTakeCoverPos( cs, cs->enemyNum, cs->vislist[cs->enemyNum].visible_pos, cs->takeCoverPos ) ) {
@@ -3497,7 +3497,7 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 		moveDist = VectorNormalize( vec );
 		//
 		if (    ( move.numtouch && move.touchents[0] < aicast_maxclients )    // hit something
-				// or moved closer to the enemy
+		        // or moved closer to the enemy
 				||  (   ( enemyDist < 128 )
 						&&  ( ( enemyDist - 1 ) > ( Distance( move.endpos, g_entities[cs->enemyNum].s.pos.trBase ) ) ) ) ) {
 			// abort the manouver
@@ -3628,7 +3628,7 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 		// if we've recently been in a fight, look towards the enemy
 		if ( cs->enemyNum >= 0 ) {
 			AICast_AimAtEnemy( cs );
-		} else if ( cs->lastEnemy >= 0 )     {
+		} else if ( cs->lastEnemy >= 0 ) {
 			// if we are not moving, face them
 			if ( VectorLength( cs->bs->cur_ps.velocity ) < 50 ) {
 				vec3_t dir;
@@ -3637,7 +3637,7 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 				VectorNormalize( dir );
 				vectoangles( dir, cs->ideal_viewangles );
 			}
-		} else if ( !cs->crouchHideFlag )     { // no enemy, and no need to crouch, so stop crouching
+		} else if ( !cs->crouchHideFlag ) {     // no enemy, and no need to crouch, so stop crouching
 			//if (cs->attackcrouch_time > level.time + 1000) {
 			//	cs->attackcrouch_time = level.time + 1000;
 			//}
@@ -3814,7 +3814,7 @@ char *AIFunc_GrenadeFlush( cast_state_t *cs ) {
 	// if we can see them, go back to an attack state after some time
 	if (    AICast_CheckAttack( cs, cs->enemyNum, qfalse )
 			&&  cs->obstructingTime < level.time ) { // give us some time to throw the grenade, otherwise go back to attack state
-												   //if ((cs->grenadeFlushEndTime > 0 && cs->grenadeFlushEndTime < level.time)) {
+		                                             //if ((cs->grenadeFlushEndTime > 0 && cs->grenadeFlushEndTime < level.time)) {
 		//G_Printf("aborting, enemy is attackable\n");
 		return AIFunc_BattleStart( cs );
 		//} else if (cs->grenadeFlushEndTime < 0) {
@@ -3841,13 +3841,13 @@ char *AIFunc_GrenadeFlush( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) { // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 			return retval;
 		}
-	} else if ( !( cs->bFlags & BFL_ATTACKED ) && numEnemies > 0 )       {
+	} else if ( !( cs->bFlags & BFL_ATTACKED ) && numEnemies > 0 ) {
 		int i;
 		for ( i = 0; i < numEnemies; i++ ) {
 			if ( enemies[i] != cs->enemyNum && AICast_CheckAttack( cs, enemies[i], qfalse ) ) {
@@ -4231,21 +4231,21 @@ char *AIFunc_InspectBody( cast_state_t *cs ) {
 	numEnemies = AICast_ScanForEnemies( cs, enemies );
 	if ( numEnemies == -1 ) { // query mode
 		return NULL;
-	} else if ( numEnemies == -2 )     { // inspection may be required
+	} else if ( numEnemies == -2 ) {     // inspection may be required
 		char *retval;
 		// TTimo: gcc: suggest () around assignment used as truth value
 		if ( ( retval = AIFunc_InspectFriendlyStart( cs, enemies[0] ) ) ) {
 			return retval;
 		}
-	} else if ( numEnemies == -3 )     { // bullet impact
+	} else if ( numEnemies == -3 ) {     // bullet impact
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectBulletImpactStart( cs );
 		}
-	} else if ( numEnemies == -4 )     { // audible event
+	} else if ( numEnemies == -4 ) {     // audible event
 		if ( cs->aiState < AISTATE_COMBAT ) {
 			return AIFunc_InspectAudibleEventStart( cs, cs->audibleEventEnt );
 		}
-	} else if ( numEnemies > 0 )     {
+	} else if ( numEnemies > 0 ) {
 		cs->enemyNum = enemies[0];  // just attack the first one
 		return AIFunc_BattleStart( cs );
 	}
@@ -4595,7 +4595,7 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 	//
 	// are we close enough to the goal?
 	if ( dist > 12 ) { // not close enough
-					  //
+		               //
 		moveresult = AICast_MoveToPos( cs, destorg, -1 );
 		if ( moveresult ) {
 			//if the movement failed
@@ -4814,8 +4814,8 @@ char *AIFunc_Battle( cast_state_t *cs ) {
 					 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_LAUNCHER ) ) &&
 					 ( cs->weaponFireTimes[WP_GRENADE_LAUNCHER] < level.time - (int)( aicast_skillscale * 3000 ) ) ) ||
 				 (   ( COM_BitCheck( cs->bs->cur_ps.weapons, WP_GRENADE_PINEAPPLE ) ) &&
-					( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_PINEAPPLE ) ) &&
-					( cs->weaponFireTimes[WP_GRENADE_PINEAPPLE] < level.time - (int)( aicast_skillscale * 3000 ) ) ) ) &&
+					 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_PINEAPPLE ) ) &&
+					 ( cs->weaponFireTimes[WP_GRENADE_PINEAPPLE] < level.time - (int)( aicast_skillscale * 3000 ) ) ) ) &&
 			 !( cs->weaponNum && ( cs->castScriptStatus.scriptFlags & SFL_NOCHANGEWEAPON ) ) &&
 			 ( Distance( cs->bs->origin, cs->vislist[cs->enemyNum].real_visible_pos ) > 100 ) &&
 			 ( Distance( cs->bs->origin, cs->vislist[cs->enemyNum].real_visible_pos ) < 1200 ) &&

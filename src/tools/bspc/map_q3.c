@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -124,8 +124,8 @@ int Q3_BrushContents( mapbrush_t *b ) {
 	  /*
 	  if (contents & CONTENTS_AREAPORTAL)
 	  {
-		  static int num;
-		  Log_Write("Entity %i, Brush %i: area portal %d\r\n", b->entitynum, b->brushnum, num++);
+	      static int num;
+	      Log_Write("Entity %i, Brush %i: area portal %d\r\n", b->entitynum, b->brushnum, num++);
 	  } //end if*/
 	if ( contents == ( contents & CONTENTS_STRUCTURAL ) ) {
 		//Log_Print("brush %i is only structural\n", b->brushnum);
@@ -219,13 +219,13 @@ void Q3_BSPBrushToMapBrush( q3_dbrush_t *bspbrush, entity_t *mapent ) {
 
 		if ( !( strstr( q3_dshaders[bspbrushside->shaderNum].shader, "common/slip" ) ) ) {
 			side->flags |= SFL_VISIBLE;
-		} else if ( side->surf & SURF_NODRAW )     {
+		} else if ( side->surf & SURF_NODRAW ) {
 			side->flags |= SFL_TEXTURED | SFL_VISIBLE;
 		} //end if
 		  /*
 		  if (side->contents & (CONTENTS_TRANSLUCENT|CONTENTS_STRUCTURAL))
 		  {
-			  side->flags |= SFL_TEXTURED|SFL_VISIBLE;
+		      side->flags |= SFL_TEXTURED|SFL_VISIBLE;
 		  } //end if*/
 
 		// hints and skips are never detail, and have no content
@@ -687,14 +687,14 @@ void Q3_LoadMapFromBSP( struct quakefile_s *qf ) {
 		AddPointToBounds( mapbrushes[i].mins, map_mins, map_maxs );
 		AddPointToBounds( mapbrushes[i].maxs, map_mins, map_maxs );
 	} //end for
-	  /*/
+	/*/
 	  for (i = 0; i < nummapbrushes; i++)
 	  {
 		  //if (!mapbrushes[i].original_sides) continue;
 		  //AddBrushBevels(&mapbrushes[i]);
 		  //AAS_ExpandMapBrush(&mapbrushes[i], mins, maxs);
 	  } //end for*/
-	  /*
+	/*
 	  for (i = 0; i < nummapbrushsides; i++)
 	  {
 		  Log_Write("side %d flags = %d", i, brushsides[i].flags);
@@ -726,4 +726,3 @@ void Q3_ResetMapLoading( void ) {
 	nodestacksize = 0;
 	memset( brushmodelnumbers, 0, MAX_MAPFILE_BRUSHES * sizeof( int ) );
 } //end of the function Q3_ResetMapLoading
-

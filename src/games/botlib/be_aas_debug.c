@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -318,7 +318,7 @@ void AAS_ShowFace( int facenum ) {
 			color = LINECOLOR_GREEN;
 		} else if ( color == LINECOLOR_GREEN ) {
 			color = LINECOLOR_BLUE;
-		} else if ( color == LINECOLOR_BLUE )                                                            {
+		} else if ( color == LINECOLOR_BLUE ) {
 			color = LINECOLOR_YELLOW;
 		} else { color = LINECOLOR_RED;}
 		AAS_DebugLine( ( *aasworld ).vertexes[edge->v[0]],
@@ -457,7 +457,7 @@ void AAS_ShowArea( int areanum, int groundfacesonly ) {
 			color = LINECOLOR_BLUE;
 		} else if ( color == LINECOLOR_BLUE ) {
 			color = LINECOLOR_GREEN;
-		} else if ( color == LINECOLOR_GREEN )                                                            {
+		} else if ( color == LINECOLOR_GREEN ) {
 			color = LINECOLOR_YELLOW;
 		} else { color = LINECOLOR_RED;}
 		botimport.DebugLineShow( debuglines[line],

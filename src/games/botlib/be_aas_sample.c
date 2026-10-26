@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -490,7 +490,7 @@ aas_trace_t AAS_TraceClientBBox( vec3_t start, vec3_t end, int presencetype,
 			return trace;
 		} //end if
 #endif //AAS_SAMPLE_DEBUG
-	   //the node to test against
+		//the node to test against
 		aasnode = &( *aasworld ).nodes[nodenum];
 		//start point of current line to test against node
 		VectorCopy( tstack_p->start, cur_start );
@@ -564,7 +564,7 @@ aas_trace_t AAS_TraceClientBBox( vec3_t start, vec3_t end, int presencetype,
 			//
 			if ( frac < 0 ) {
 				frac = 0.001; //0
-			} else if ( frac > 1 )                         {
+			} else if ( frac > 1 ) {
 				frac = 0.999; //1
 			}
 			//frac = front / (front-back);
@@ -675,7 +675,7 @@ int AAS_TraceAreas( vec3_t start, vec3_t end, int *areas, vec3_t *points, int ma
 			return numareas;
 		} //end if
 #endif //AAS_SAMPLE_DEBUG
-	   //the node to test against
+		//the node to test against
 		aasnode = &( *aasworld ).nodes[nodenum];
 		//start point of current line to test against node
 		VectorCopy( tstack_p->start, cur_start );
@@ -796,9 +796,9 @@ int AAS_TraceAreas( vec3_t start, vec3_t end, int *areas, vec3_t *points, int ma
 //===========================================================================
 // void AAS_OrthogonalToVectors(vec3_t v1, vec3_t v2, vec3_t res)
 #define AAS_OrthogonalToVectors( v1, v2, res ) \
-	( res )[0] = ( ( v1 )[1] * ( v2 )[2] ) - ( ( v1 )[2] * ( v2 )[1] );	\
-	( res )[1] = ( ( v1 )[2] * ( v2 )[0] ) - ( ( v1 )[0] * ( v2 )[2] );	\
-	( res )[2] = ( ( v1 )[0] * ( v2 )[1] ) - ( ( v1 )[1] * ( v2 )[0] );
+		( res )[0] = ( ( v1 )[1] * ( v2 )[2] ) - ( ( v1 )[2] * ( v2 )[1] ); \
+		( res )[1] = ( ( v1 )[2] * ( v2 )[0] ) - ( ( v1 )[0] * ( v2 )[2] ); \
+		( res )[2] = ( ( v1 )[0] * ( v2 )[1] ) - ( ( v1 )[1] * ( v2 )[0] );
 //===========================================================================
 // tests if the given point is within the face boundaries
 //
@@ -837,7 +837,7 @@ qboolean AAS_InsideFace( aas_face_t *face, vec3_t pnormal, vec3_t point, float e
 		} //end if
 		lastvertex = edge->v[!firstvertex];
 #endif //AAS_SAMPLE_DEBUG
-	   //vector from first edge point to point possible in face
+		//vector from first edge point to point possible in face
 		VectorSubtract( point, v0, pointvec );
 		//get a vector pointing inside the face orthogonal to both the
 		//edge vector and the normal vector of the plane the face is in
@@ -1056,30 +1056,30 @@ int AAS_BoxOnPlaneSide2( vec3_t absmins, vec3_t absmaxs, aas_plane_t *p ) {
 // Changes Globals:		-
 //===========================================================================
 //int AAS_BoxOnPlaneSide(vec3_t absmins, vec3_t absmaxs, aas_plane_t *p)
-#define AAS_BoxOnPlaneSide( absmins, absmaxs, p ) (	\
-		( ( p )->type < 3 ) ? \
-		( \
-			( ( p )->dist <= ( absmins )[( p )->type] ) ? \
+#define AAS_BoxOnPlaneSide( absmins, absmaxs, p ) ( \
+			( ( p )->type < 3 ) ? \
 			( \
-				1 \
-			) \
+				( ( p )->dist <= ( absmins )[( p )->type] ) ? \
+				( \
+					1 \
+				) \
 			: \
-			( \
-				( ( p )->dist >= ( absmaxs )[( p )->type] ) ? \
 				( \
-					2 \
-				) \
+					( ( p )->dist >= ( absmaxs )[( p )->type] ) ? \
+					( \
+						2 \
+					) \
 				: \
-				( \
-					3 \
+					( \
+						3 \
+					) \
 				) \
 			) \
-		) \
 		: \
-		( \
-			AAS_BoxOnPlaneSide2( ( absmins ), ( absmaxs ), ( p ) ) \
-		) \
-		) //end of the function AAS_BoxOnPlaneSide
+			( \
+				AAS_BoxOnPlaneSide2( ( absmins ), ( absmaxs ), ( p ) ) \
+			) \
+			) //end of the function AAS_BoxOnPlaneSide
 //===========================================================================
 // remove the links to this entity from all areas
 //

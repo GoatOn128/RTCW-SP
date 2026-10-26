@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -195,7 +195,7 @@ void Q2_AllocMaxBSP( void ) {
 	texinfo = (texinfo_t *) GetClearedMemory(MAX_MAP_TEXINFO * sizeof(texinfo_t));
 	allocatedbspmem += MAX_MAP_TEXINFO * sizeof(texinfo_t);
 	//
-  */
+	*/
 	//faces
 	numfaces = 0;
 	dfaces = (dface_t *) GetClearedMemory( MAX_MAP_FACES * sizeof( dface_t ) );
@@ -278,7 +278,7 @@ void Q2_FreeMaxBSP( void ) {
 	FreeMemory(texinfo);
 	texinfo = NULL;
 	//
-  */
+	*/
 	//faces
 	numfaces = 0;
 	FreeMemory( dfaces );
@@ -1136,4 +1136,3 @@ void Q2_UnparseEntities( void ) {
 	}
 	entdatasize = end - buf + 1;
 } //end of the function Q2_UnparseEntities
-

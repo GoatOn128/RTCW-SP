@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -572,9 +572,9 @@ void CG_LoseHat( centity_t *cent, vec3_t dir ) {
 		le->angles.trDelta[1]   = ( 100 + ( rand() & 500 ) ) - 300;
 //		le->angles.trDelta[2]	= 0;
 		le->angles.trDelta[2]   = 400;  // (SA) this is set with a very particular value to try to get it
-										// to flip exactly once before landing (based on player alive
-										// (standing) and on level ground) and will be unnecessary when
-										// I have things landing properly on their own
+		                                // to flip exactly once before landing (based on player alive
+		                                // (standing) and on level ground) and will be unnecessary when
+		                                // I have things landing properly on their own
 
 		le->angles.trTime       = cg.time;
 
@@ -1703,6 +1703,3 @@ void CG_RumbleEfx( float pitch, float yaw ) {
 	// set the recoil
 	cg.recoilPitch -= pitchRecoilAdd;
 }
-
-
-

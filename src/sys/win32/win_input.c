@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -205,8 +205,8 @@ DIRECT INPUT MOUSE CONTROL
 #undef DEFINE_GUID
 
 #define DEFINE_GUID( name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8 ) \
-	EXTERN_C const GUID name \
-	= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
+		EXTERN_C const GUID name \
+			= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
 
 DEFINE_GUID( GUID_SysMouse,   0x6F1D2B60,0xD5A0,0x11CF,0xBF,0xC7,0x44,0x45,0x53,0x54,0x00,0x00 );
 DEFINE_GUID( GUID_XAxis,   0xA36D02E0,0xC9F3,0x11CF,0xBF,0xC7,0x44,0x45,0x53,0x54,0x00,0x00 );
@@ -217,8 +217,8 @@ DEFINE_GUID( GUID_ZAxis,   0xA36D02E2,0xC9F3,0x11CF,0xBF,0xC7,0x44,0x45,0x53,0x5
 #define DINPUT_BUFFERSIZE           16
 #define iDirectInputCreate( a,b,c,d ) pDirectInputCreate( a,b,c,d )
 
-HRESULT ( WINAPI * pDirectInputCreate )( HINSTANCE hinst, DWORD dwVersion,
-										 LPDIRECTINPUT * lplpDirectInput, LPUNKNOWN punkOuter );
+HRESULT( WINAPI * pDirectInputCreate )( HINSTANCE hinst, DWORD dwVersion,
+										LPDIRECTINPUT * lplpDirectInput, LPUNKNOWN punkOuter );
 
 #endif ///// (SA) DOOMSOUND
 
@@ -792,7 +792,7 @@ static void CALLBACK MidiInProc( HMIDIIN hMidiIn, UINT uMsg, DWORD dwInstance,
 			if ( ( ( message & 0x0f ) + 1 ) == in_midichannel->integer ) {
 				MIDI_NoteOn( ( dwParam1 & 0xff00 ) >> 8, ( dwParam1 & 0xff0000 ) >> 16 );
 			}
-		} else if ( ( message & 0xf0 ) == 0x80 )   {
+		} else if ( ( message & 0xf0 ) == 0x80 ) {
 			if ( ( ( message & 0x0f ) + 1 ) == in_midichannel->integer ) {
 				MIDI_NoteOff( ( dwParam1 & 0xff00 ) >> 8 );
 			}

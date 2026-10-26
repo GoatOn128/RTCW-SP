@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -275,7 +275,7 @@ static int GLW_ChoosePFD( HDC hDC, PIXELFORMATDESCRIPTOR *pPFD ) {
 		{
 			ri.Printf( PRINT_ALL, "...using software emulation\n" );
 		}
-	} else if ( pfds[bestMatch].dwFlags & PFD_GENERIC_ACCELERATED )   {
+	} else if ( pfds[bestMatch].dwFlags & PFD_GENERIC_ACCELERATED ) {
 		ri.Printf( PRINT_ALL, "...MCD acceleration found\n" );
 	} else
 	{
@@ -945,7 +945,7 @@ static void GLW_InitExtensions( void ) {
 	}
 
 	// WGL_EXT_swap_control
-	qwglSwapIntervalEXT = ( BOOL ( WINAPI * )(int) )qwglGetProcAddress( "wglSwapIntervalEXT" );
+	qwglSwapIntervalEXT = ( BOOL( WINAPI * )( int ) )qwglGetProcAddress( "wglSwapIntervalEXT" );
 	if ( qwglSwapIntervalEXT ) {
 		ri.Printf( PRINT_ALL, "...using WGL_EXT_swap_control\n" );
 		r_swapInterval->modified = qtrue;   // force a set next frame
@@ -987,8 +987,8 @@ static void GLW_InitExtensions( void ) {
 	if ( strstr( glConfig.extensions_string, "GL_EXT_compiled_vertex_array" ) && ( glConfig.hardwareType != GLHW_RIVA128 ) ) {
 		if ( r_ext_compiled_vertex_array->integer ) {
 			ri.Printf( PRINT_ALL, "...using GL_EXT_compiled_vertex_array\n" );
-			qglLockArraysEXT = ( void ( APIENTRY * )( int, int ) )qwglGetProcAddress( "glLockArraysEXT" );
-			qglUnlockArraysEXT = ( void ( APIENTRY * )( void ) )qwglGetProcAddress( "glUnlockArraysEXT" );
+			qglLockArraysEXT = ( void( APIENTRY * )( int, int ) )qwglGetProcAddress( "glLockArraysEXT" );
+			qglUnlockArraysEXT = ( void( APIENTRY * )( void ) )qwglGetProcAddress( "glUnlockArraysEXT" );
 			if ( !qglLockArraysEXT || !qglUnlockArraysEXT ) {
 				ri.Error( ERR_FATAL, "bad getprocaddress" );
 			}
@@ -1005,8 +1005,8 @@ static void GLW_InitExtensions( void ) {
 
 	if ( strstr( glConfig.extensions_string, "WGL_3DFX_gamma_control" ) ) {
 		if ( !r_ignorehwgamma->integer && r_ext_gamma_control->integer ) {
-			qwglGetDeviceGammaRamp3DFX = ( BOOL ( WINAPI * )( HDC, LPVOID ) )qwglGetProcAddress( "wglGetDeviceGammaRamp3DFX" );
-			qwglSetDeviceGammaRamp3DFX = ( BOOL ( WINAPI * )( HDC, LPVOID ) )qwglGetProcAddress( "wglSetDeviceGammaRamp3DFX" );
+			qwglGetDeviceGammaRamp3DFX = ( BOOL( WINAPI * )( HDC, LPVOID ) )qwglGetProcAddress( "wglGetDeviceGammaRamp3DFX" );
+			qwglSetDeviceGammaRamp3DFX = ( BOOL( WINAPI * )( HDC, LPVOID ) )qwglGetProcAddress( "wglSetDeviceGammaRamp3DFX" );
 
 			if ( qwglGetDeviceGammaRamp3DFX && qwglSetDeviceGammaRamp3DFX ) {
 				ri.Printf( PRINT_ALL, "...using WGL_3DFX_gamma_control\n" );
@@ -1111,10 +1111,10 @@ static qboolean GLW_CheckOSVersion( void ) {
 	if ( GetVersionEx( &vinfo ) ) {
 		if ( vinfo.dwMajorVersion > 4 ) {
 			glw_state.allowdisplaydepthchange = qtrue;
-		} else if ( vinfo.dwMajorVersion == 4 )   {
+		} else if ( vinfo.dwMajorVersion == 4 ) {
 			if ( vinfo.dwPlatformId == VER_PLATFORM_WIN32_NT ) {
 				glw_state.allowdisplaydepthchange = qtrue;
-			} else if ( vinfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS )   {
+			} else if ( vinfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS ) {
 				if ( LOWORD( vinfo.dwBuildNumber ) >= OSR2_BUILD_NUMBER ) {
 					glw_state.allowdisplaydepthchange = qtrue;
 				}
@@ -1273,7 +1273,7 @@ static void GLW_StartOpenGL( void ) {
 	if ( !GLW_LoadOpenGL( r_glDriver->string ) ) {
 		if ( !Q_stricmp( r_glDriver->string, OPENGL_DRIVER_NAME ) ) {
 			attemptedOpenGL32 = qtrue;
-		} else if ( !Q_stricmp( r_glDriver->string, _3DFX_DRIVER_NAME ) )   {
+		} else if ( !Q_stricmp( r_glDriver->string, _3DFX_DRIVER_NAME ) ) {
 			attempted3Dfx = qtrue;
 		}
 
@@ -1295,7 +1295,7 @@ static void GLW_StartOpenGL( void ) {
 					ri.Error( ERR_FATAL, "GLW_StartOpenGL() - could not load OpenGL subsystem\n" );
 				}
 			}
-		} else if ( !attemptedOpenGL32 )   {
+		} else if ( !attemptedOpenGL32 ) {
 			attemptedOpenGL32 = qtrue;
 			if ( GLW_LoadOpenGL( OPENGL_DRIVER_NAME ) ) {
 				ri.Cvar_Set( "r_glDriver", OPENGL_DRIVER_NAME );
@@ -1393,15 +1393,15 @@ void GLimp_Init( void ) {
 	}
 	// VOODOO GRAPHICS w/ 2MB
 	else if ( strstr( buf, "voodoo graphics/1 tmu/2 mb" ) ) {
-	} else if ( strstr( buf, "glzicd" ) )    {
-	} else if ( strstr( buf, "rage pro" ) || strstr( buf, "Rage Pro" ) || strstr( buf, "ragepro" ) )       {
+	} else if ( strstr( buf, "glzicd" ) ) {
+	} else if ( strstr( buf, "rage pro" ) || strstr( buf, "Rage Pro" ) || strstr( buf, "ragepro" ) ) {
 		glConfig.hardwareType = GLHW_RAGEPRO;
-	} else if ( strstr( buf, "rage 128" ) )    {
-	} else if ( strstr( buf, "permedia2" ) )    {
+	} else if ( strstr( buf, "rage 128" ) ) {
+	} else if ( strstr( buf, "permedia2" ) ) {
 		glConfig.hardwareType = GLHW_PERMEDIA2;
-	} else if ( strstr( buf, "riva 128" ) )    {
+	} else if ( strstr( buf, "riva 128" ) ) {
 		glConfig.hardwareType = GLHW_RIVA128;
-	} else if ( strstr( buf, "riva tnt " ) )    {
+	} else if ( strstr( buf, "riva tnt " ) ) {
 	}
 
 	if ( strstr( buf, "geforce" ) || strstr( buf, "ge-force" ) || strstr( buf, "radeon" ) || strstr( buf, "nv20" ) || strstr( buf, "nv30" )
@@ -1604,4 +1604,3 @@ void GLimp_WakeRenderer( void *data ) {
 
 	WaitForSingleObject( renderActiveEvent, INFINITE );
 }
-

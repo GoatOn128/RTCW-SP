@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -238,7 +238,7 @@ int AAS_BestReachableArea( vec3_t origin, vec3_t mins, vec3_t maxs, vec3_t goalo
 				AAS_DrawPermanentCross(start, 4, LINECOLOR_RED);
 			} //end if
 			botimport.Print(PRT_MESSAGE, "AAS_BestReachableArea: start solid\n");
-	  */
+			*/
 			VectorCopy( start, goalorigin );
 			return areanum;
 		} //end else
@@ -935,7 +935,7 @@ int AAS_Reachability_EqualFloorHeight( int area1num, int area2num ) {
 		  //NOTE: if there's nearby solid or a gap area after this area
 		  if (!AAS_NearbySolidOrGap(lreach->start, lreach->end))
 		  {
-			  lreach->traveltime += 100;
+		      lreach->traveltime += 100;
 		  } //end if
 		  */
 		  //avoid rather small areas
@@ -1195,8 +1195,8 @@ int AAS_Reachability_Step_Barrier_WaterJump_WalkOffLedge( int area1num, int area
 					if ( groundface1->faceflags & FACE_GROUND ) {
 						//if the vertical distance is smaller
 						if ( dist < ground_bestdist ||
-							 //or the vertical distance is pretty much the same
-							 //but the overlapping part of the edges is longer
+						     //or the vertical distance is pretty much the same
+						     //but the overlapping part of the edges is longer
 							 ( dist < ground_bestdist + 1 && length > ground_bestlength ) ) {
 							ground_bestdist = dist;
 							ground_bestlength = length;
@@ -1215,8 +1215,8 @@ int AAS_Reachability_Step_Barrier_WaterJump_WalkOffLedge( int area1num, int area
 					{
 						//if the vertical distance is smaller
 						if ( dist < water_bestdist ||
-							 //or the vertical distance is pretty much the same
-							 //but the overlapping part of the edges is longer
+						     //or the vertical distance is pretty much the same
+						     //but the overlapping part of the edges is longer
 							 ( dist < water_bestdist + 1 && length > water_bestlength ) ) {
 							water_bestdist = dist;
 							water_bestlength = length;
@@ -2200,7 +2200,7 @@ int AAS_Reachability_Jump( int area1num, int area2num ) {
 		//create the reachability
 		Log_Write( "jump reachability between %d and %d\r\n", area1num, area2num );
 #endif //REACHDEBUG
-	   //create a new reachability link
+		//create a new reachability link
 		lreach = AAS_AllocReachability();
 		if ( !lreach ) {
 			return qfalse;
@@ -2359,9 +2359,9 @@ int AAS_Reachability_Ladder( int area1num, int area2num ) {
 		}
 		//if both vertical ladder faces
 		if ( ladderface1vertical && ladderface2vertical
-			 //and the ladder faces do not make a sharp corner
+		     //and the ladder faces do not make a sharp corner
 			 && DotProduct( plane1->normal, plane2->normal ) > 0.7
-			 //and the shared edge is not too vertical
+		     //and the shared edge is not too vertical
 			 && abs( DotProduct( sharededgevec, up ) ) < 0.7 ) {
 			//create a new reachability link
 			lreach = AAS_AllocReachability();
@@ -2496,7 +2496,7 @@ int AAS_Reachability_Ladder( int area1num, int area2num ) {
 			} //end for
 			  //if from another area without vertical ladder faces
 			if ( i >= area2->numfaces && area2num != area1num &&
-				 //the reachabilities shouldn't exist already
+			     //the reachabilities shouldn't exist already
 				 !AAS_ReachabilityExists( area1num, area2num ) &&
 				 !AAS_ReachabilityExists( area2num, area1num ) ) {
 				//if the height is jumpable
@@ -2546,7 +2546,7 @@ int AAS_Reachability_Ladder( int area1num, int area2num ) {
 				else {Log_Write( "jump too high between area %d and %d\r\n", area2num, area1num );}
 #endif //REACHDEBUG
 			} //end if
-			  /*//if slime or lava below the ladder
+			/*//if slime or lava below the ladder
 			  //try jump reachability from far towards the ladder
 			  if ((*aasworld).areasettings[area2num].contents & (AREACONTENTS_SLIME
 													  | AREACONTENTS_LAVA))

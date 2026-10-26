@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -626,89 +626,89 @@ int main( int argc, char **argv ) {
 		  /*
 		  else if (!stricmp(argv[i],"-glview"))
 		  {
-			  glview = true;
+		      glview = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-draw"))
 		  {
-			  Log_Print("drawflag = true\n");
-			  drawflag = true;
+		      Log_Print("drawflag = true\n");
+		      drawflag = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-noweld"))
 		  {
-			  Log_Print("noweld = true\n");
-			  noweld = true;
+		      Log_Print("noweld = true\n");
+		      noweld = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-noshare"))
 		  {
-			  Log_Print("noshare = true\n");
-			  noshare = true;
+		      Log_Print("noshare = true\n");
+		      noshare = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-notjunc"))
 		  {
-			  Log_Print("notjunc = true\n");
-			  notjunc = true;
+		      Log_Print("notjunc = true\n");
+		      notjunc = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-nowater"))
 		  {
-			  Log_Print("nowater = true\n");
-			  nowater = true;
+		      Log_Print("nowater = true\n");
+		      nowater = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-noprune"))
 		  {
-			  Log_Print("noprune = true\n");
-			  noprune = true;
+		      Log_Print("noprune = true\n");
+		      noprune = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-nomerge"))
 		  {
-			  Log_Print("nomerge = true\n");
-			  nomerge = true;
+		      Log_Print("nomerge = true\n");
+		      nomerge = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-nosubdiv"))
 		  {
-			  Log_Print("nosubdiv = true\n");
-			  nosubdiv = true;
+		      Log_Print("nosubdiv = true\n");
+		      nosubdiv = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-nodetail"))
 		  {
-			  Log_Print("nodetail = true\n");
-			  nodetail = true;
+		      Log_Print("nodetail = true\n");
+		      nodetail = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-fulldetail"))
 		  {
-			  Log_Print("fulldetail = true\n");
-			  fulldetail = true;
+		      Log_Print("fulldetail = true\n");
+		      fulldetail = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-onlyents"))
 		  {
-			  Log_Print("onlyents = true\n");
-			  onlyents = true;
+		      Log_Print("onlyents = true\n");
+		      onlyents = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-micro"))
 		  {
-			  if (i + 1 >= argc) {i = 0; break;}
-			  microvolume = atof(argv[++i]);
-			  Log_Print("microvolume = %f\n", microvolume);
+		      if (i + 1 >= argc) {i = 0; break;}
+		      microvolume = atof(argv[++i]);
+		      Log_Print("microvolume = %f\n", microvolume);
 		  } //end else if
 		  else if (!stricmp(argv[i], "-leaktest"))
 		  {
-			  Log_Print("leaktest = true\n");
-			  leaktest = true;
+		      Log_Print("leaktest = true\n");
+		      leaktest = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-verboseentities"))
 		  {
-			  Log_Print("verboseentities = true\n");
-			  verboseentities = true;
+		      Log_Print("verboseentities = true\n");
+		      verboseentities = true;
 		  } //end else if
 		  else if (!stricmp(argv[i], "-chop"))
 		  {
-			  if (i + 1 >= argc) {i = 0; break;}
-			  subdivide_size = atof(argv[++i]);
-			  Log_Print("subdivide_size = %f\n", subdivide_size);
+		      if (i + 1 >= argc) {i = 0; break;}
+		      subdivide_size = atof(argv[++i]);
+		      Log_Print("subdivide_size = %f\n", subdivide_size);
 		  } //end else if
 		  else if (!stricmp (argv[i], "-tmpout"))
 		  {
-			  strcpy (outbase, "/tmp");
-			  Log_Print("temp output\n");
+		      strcpy (outbase, "/tmp");
+		      Log_Print("temp output\n");
 		  } //end else if
 		  */
 #ifdef ME
@@ -892,7 +892,7 @@ int main( int argc, char **argv ) {
 				if ( !AAS_WriteAASFile( filename ) ) {
 					Error( "error writing %s\n", filename );
 				}     //end if
-					  //deallocate memory
+				      //deallocate memory
 				AAS_FreeMaxAAS();
 			}     //end for
 			break;
@@ -915,7 +915,7 @@ int main( int argc, char **argv ) {
 					if ( !AAS_LoadAASFile( filename, 0, 0 ) ) {
 						Error( "error loading aas file %s\n", filename );
 					}     //end if
-						  //assume it's a Quake3 BSP file
+					      //assume it's a Quake3 BSP file
 					loadedmaptype = MAPTYPE_QUAKE3;
 				}     //end if
 				else
@@ -928,11 +928,11 @@ int main( int argc, char **argv ) {
 					//create the AAS file
 					AAS_Create( filename );
 				}     //end else
-					  //if it's a Quake3 map calculate the reachabilities and clusters
+				      //if it's a Quake3 map calculate the reachabilities and clusters
 				if ( loadedmaptype == MAPTYPE_QUAKE3 ) {
 					AAS_CalcReachAndClusters( qf );
 				}     //end if
-					  //
+				      //
 				if ( optimize ) {
 					AAS_Optimize();
 				}
@@ -940,7 +940,7 @@ int main( int argc, char **argv ) {
 				if ( !AAS_WriteAASFile( filename ) ) {
 					Error( "error writing %s\n", filename );
 				}     //end if
-					  //deallocate memory
+				      //deallocate memory
 				AAS_FreeMaxAAS();
 			}     //end for
 			break;
@@ -963,7 +963,7 @@ int main( int argc, char **argv ) {
 					if ( !AAS_LoadAASFile( filename, 0, 0 ) ) {
 						Error( "error loading aas file %s\n", filename );
 					}     //end if
-						  //assume it's a Quake3 BSP file
+					      //assume it's a Quake3 BSP file
 					loadedmaptype = MAPTYPE_QUAKE3;
 					//if it's a Quake3 map calculate the clusters
 					if ( loadedmaptype == MAPTYPE_QUAKE3 ) {
@@ -986,7 +986,7 @@ int main( int argc, char **argv ) {
 						AAS_CalcReachAndClusters( qf );
 					}
 				}     //end else
-					  //
+				      //
 				if ( optimize ) {
 					AAS_Optimize();
 				}
@@ -994,7 +994,7 @@ int main( int argc, char **argv ) {
 				if ( !AAS_WriteAASFile( filename ) ) {
 					Error( "error writing %s\n", filename );
 				}     //end if
-					  //deallocate memory
+				      //deallocate memory
 				AAS_FreeMaxAAS();
 			}     //end for
 			break;
@@ -1023,7 +1023,7 @@ int main( int argc, char **argv ) {
 				if ( !AAS_WriteAASFile( filename ) ) {
 					Error( "error writing %s\n", filename );
 				}     //end if
-					  //deallocate memory
+				      //deallocate memory
 				AAS_FreeMaxAAS();
 			}     //end for
 			break;
@@ -1080,13 +1080,13 @@ int main( int argc, char **argv ) {
 #endif
 				   "\n"
 				   "Switches:\n"
-				   //"   bsp2map  <[pakfilter/]filter.bsp>    = convert BSP to MAP\n"
+		           //"   bsp2map  <[pakfilter/]filter.bsp>    = convert BSP to MAP\n"
 				   "   bsp2aas  <[pakfilter/]filter.bsp>    = convert BSP to AAS\n"
-				   //"   aasall   <quake3folder>              = create AAS files for all BSPs\n"
+		           //"   aasall   <quake3folder>              = create AAS files for all BSPs\n"
 				   "   reach    <filter.bsp>                = compute reachability & clusters\n"
 				   "   cluster  <filter.aas>                = compute clusters\n"
 				   "   aasopt   <filter.aas>                = optimize aas file\n"
-				   //"   tetra    <filter.aas>                = tetrahedral decomposition\n"
+		           //"   tetra    <filter.aas>                = tetrahedral decomposition\n"
 				   "   output   <output path>               = set output path\n"
 				   "   threads  <X>                         = set number of threads to X\n"
 				   "   cfg      <filename>                  = use this cfg file\n"
@@ -1125,5 +1125,3 @@ int main( int argc, char **argv ) {
 	Log_Close();                        //close the log file
 	return 0;
 } //end of the function main
-
-

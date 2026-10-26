@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../client/snd_local.h"
 #include "win_local.h"
 
-HRESULT ( WINAPI * pDirectSoundCreate )( GUID FAR *lpGUID, LPDIRECTSOUND FAR *lplpDS, IUnknown FAR *pUnkOuter );
+HRESULT( WINAPI * pDirectSoundCreate )( GUID FAR *lpGUID, LPDIRECTSOUND FAR *lplpDS, IUnknown FAR *pUnkOuter );
 #define iDirectSoundCreate( a,b,c )   pDirectSoundCreate( a,b,c )
 
 #define SECONDARY_BUFFER_SIZE   0x10000
@@ -387,7 +387,7 @@ int SNDDMA_InitDS() {
 		}
 
 		Com_DPrintf( "ok\n" );
-		pDirectSoundCreate = ( long ( __stdcall * )( struct _GUID *,struct IDirectSound **,struct IUnknown * ) )
+		pDirectSoundCreate = ( long( __stdcall * )( struct _GUID *,struct IDirectSound **,struct IUnknown * ) )
 							 GetProcAddress( hInstDS,"DirectSoundCreate" );
 
 		if ( !pDirectSoundCreate ) {
@@ -677,5 +677,3 @@ void SNDDMA_Activate( void ) {
 		SNDDMA_Shutdown();
 	}
 }
-
-

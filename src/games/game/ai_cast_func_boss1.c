@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -434,7 +434,7 @@ char *AIFunc_Heinrich_SwordLunge( cast_state_t *cs ) {
 			cs->castScriptStatus.scriptNoMoveTime = 0;
 			trap_EA_MoveForward( cs->entityNum );
 		}
-*/                                                                                                                                                                                                           // ready for damage?
+*/      // ready for damage?
 		if ( cs->thinkFuncChangeTime < level.time - HEINRICH_LUNGE_DELAY ) {
 			cs->aiFlags |= AIFL_MISCFLAG1;
 			// do melee damage
@@ -531,7 +531,7 @@ char *AIFunc_Heinrich_SwordKnockback( cast_state_t *cs ) {
 			cs->castScriptStatus.scriptNoMoveTime = 0;
 			trap_EA_MoveForward( cs->entityNum );
 		}
-*/                                                                                                                                                                                                           // ready for damage?
+*/      // ready for damage?
 		if ( cs->thinkFuncChangeTime < level.time - HEINRICH_KNOCKBACK_DELAY ) {
 			cs->aiFlags |= AIFL_MISCFLAG1;
 			// do melee damage

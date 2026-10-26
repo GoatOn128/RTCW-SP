@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1066,7 +1066,7 @@ bot_randomlist_t *BotLoadRandomStrings( char *filename ) {
 	botimport.Print( PRT_MESSAGE, "random strings %d msec\n", Sys_MilliSeconds() - starttime );
 	//BotDumpRandomStringList(randomlist);
 #endif //DEBUG
-	   //
+	//
 	return randomlist;
 } //end of the function BotLoadRandomStrings
 //===========================================================================
@@ -1670,11 +1670,11 @@ void BotDumpReplyChat( bot_replychat_t *replychat ) {
 				fprintf( fp, "name" );
 			} else if ( key->flags & RCKFL_GENDERFEMALE ) {
 				fprintf( fp, "female" );
-			} else if ( key->flags & RCKFL_GENDERMALE )                                                                {
+			} else if ( key->flags & RCKFL_GENDERMALE ) {
 				fprintf( fp, "male" );
-			} else if ( key->flags & RCKFL_GENDERLESS )                                                                                                                                    {
+			} else if ( key->flags & RCKFL_GENDERLESS ) {
 				fprintf( fp, "it" );
-			} else if ( key->flags & RCKFL_VARIABLES )                                                                                                                                                                                                      {
+			} else if ( key->flags & RCKFL_VARIABLES ) {
 				fprintf( fp, "(" );
 				for ( mp = key->match; mp; mp = mp->next )
 				{
@@ -1792,11 +1792,11 @@ bot_replychat_t *BotLoadReplyChat( char *filename ) {
 				key->flags |= RCKFL_NAME;
 			} else if ( PC_CheckTokenString( source, "female" ) ) {
 				key->flags |= RCKFL_GENDERFEMALE;
-			} else if ( PC_CheckTokenString( source, "male" ) )                                                                                    {
+			} else if ( PC_CheckTokenString( source, "male" ) ) {
 				key->flags |= RCKFL_GENDERMALE;
-			} else if ( PC_CheckTokenString( source, "it" ) )                                                                                                                                                                         {
+			} else if ( PC_CheckTokenString( source, "it" ) ) {
 				key->flags |= RCKFL_GENDERLESS;
-			} else if ( PC_CheckTokenString( source, "(" ) )                                                                                                                                                                                                                                                            { //match key
+			} else if ( PC_CheckTokenString( source, "(" ) ) {                                                                                                                                                                                                                                                            //match key
 				key->flags |= RCKFL_VARIABLES;
 				key->match = BotLoadMatchPieces( source, ")" );
 				if ( !key->match ) {
@@ -1934,7 +1934,7 @@ bot_chat_t *BotLoadInitialChat( char *chatfile, char *chatname ) {
 
 	starttime = Sys_MilliSeconds();
 #endif //DEBUG
-	   //
+	//
 	size = 0;
 	foundchat = qfalse;
 	//a bot chat is parsed in two phases
@@ -2073,7 +2073,7 @@ bot_chat_t *BotLoadInitialChat( char *chatfile, char *chatname ) {
 #ifdef DEBUG
 	botimport.Print( PRT_MESSAGE, "initial chats loaded in %d msec\n", Sys_MilliSeconds() - starttime );
 #endif //DEBUG
-	   //character was read succesfully
+	//character was read succesfully
 	return chat;
 } //end of the function BotLoadInitialChat
 //===========================================================================
@@ -2181,7 +2181,7 @@ int BotExpandChatMessage( char *outmessage, char *message, unsigned long mcontex
 				{
 					num = num * 10 + ( *msgptr++ ) - '0';
 				}     //end while
-					  //step over the trailing escape char
+				      //step over the trailing escape char
 				if ( *msgptr ) {
 					msgptr++;
 				}
@@ -2206,7 +2206,7 @@ int BotExpandChatMessage( char *outmessage, char *message, unsigned long mcontex
 						//replace synonyms in the variable context
 						BotReplaceSynonyms( temp, vcontext );
 					}     //end else
-						  //
+					      //
 					if ( len + strlen( temp ) >= MAX_MESSAGE_SIZE ) {
 						botimport.Print( PRT_ERROR, "BotConstructChat: message %s too long\n", message );
 						return qfalse;
@@ -2464,11 +2464,11 @@ void BotPrintReplyChatKeys( bot_replychat_t *replychat ) {
 			botimport.Print( PRT_MESSAGE, "name" );
 		} else if ( key->flags & RCKFL_GENDERFEMALE ) {
 			botimport.Print( PRT_MESSAGE, "female" );
-		} else if ( key->flags & RCKFL_GENDERMALE )                                                                                     {
+		} else if ( key->flags & RCKFL_GENDERMALE ) {
 			botimport.Print( PRT_MESSAGE, "male" );
-		} else if ( key->flags & RCKFL_GENDERLESS )                                                                                                                                                                          {
+		} else if ( key->flags & RCKFL_GENDERLESS ) {
 			botimport.Print( PRT_MESSAGE, "it" );
-		} else if ( key->flags & RCKFL_VARIABLES )                                                                                                                                                                                                                                                             {
+		} else if ( key->flags & RCKFL_VARIABLES ) {
 			botimport.Print( PRT_MESSAGE, "(" );
 			for ( mp = key->match; mp; mp = mp->next )
 			{
@@ -2525,15 +2525,15 @@ int BotReplyChat( int chatstate, char *message, int mcontext, int vcontext, char
 				res = ( StringContains( message, cs->name, qfalse ) != -1 );
 			} else if ( key->flags & RCKFL_BOTNAMES ) {
 				res = ( StringContains( key->string, cs->name, qfalse ) != -1 );
-			} else if ( key->flags & RCKFL_GENDERFEMALE )                                                                                                    {
+			} else if ( key->flags & RCKFL_GENDERFEMALE ) {
 				res = ( cs->gender == CHAT_GENDERFEMALE );
-			} else if ( key->flags & RCKFL_GENDERMALE )                                                                                                                                                                                              {
+			} else if ( key->flags & RCKFL_GENDERMALE ) {
 				res = ( cs->gender == CHAT_GENDERMALE );
-			} else if ( key->flags & RCKFL_GENDERLESS )                                                                                                                                                                                                                                                                                    {
+			} else if ( key->flags & RCKFL_GENDERLESS ) {
 				res = ( cs->gender == CHAT_GENDERLESS );
-			} else if ( key->flags & RCKFL_VARIABLES )                                                                                                                                                                                                                                                                                                                                                                          {
+			} else if ( key->flags & RCKFL_VARIABLES ) {
 				res = StringsMatch( key->match, &match );
-			} else if ( key->flags & RCKFL_STRING )                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
+			} else if ( key->flags & RCKFL_STRING ) {
 				res = ( StringContainsWord( message, key->string, qfalse ) != NULL );
 			}
 			//if the key must be present

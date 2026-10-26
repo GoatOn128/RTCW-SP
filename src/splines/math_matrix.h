@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -118,57 +118,57 @@ ID_INLINE idVec3& mat3_t::operator[]( int index ) {
 
 ID_INLINE idVec3 mat3_t::operator*( const idVec3 &vec ) const {
 	return idVec3(
-			   mat[ 0 ].x * vec.x + mat[ 1 ].x * vec.y + mat[ 2 ].x * vec.z,
-			   mat[ 0 ].y * vec.x + mat[ 1 ].y * vec.y + mat[ 2 ].y * vec.z,
-			   mat[ 0 ].z * vec.x + mat[ 1 ].z * vec.y + mat[ 2 ].z * vec.z );
+		mat[ 0 ].x * vec.x + mat[ 1 ].x * vec.y + mat[ 2 ].x * vec.z,
+		mat[ 0 ].y * vec.x + mat[ 1 ].y * vec.y + mat[ 2 ].y * vec.z,
+		mat[ 0 ].z * vec.x + mat[ 1 ].z * vec.y + mat[ 2 ].z * vec.z );
 }
 
 ID_INLINE mat3_t mat3_t::operator*( const mat3_t &a ) const {
 	return mat3_t(
-			   mat[0].x * a[0].x + mat[0].y * a[1].x + mat[0].z * a[2].x,
-			   mat[0].x * a[0].y + mat[0].y * a[1].y + mat[0].z * a[2].y,
-			   mat[0].x * a[0].z + mat[0].y * a[1].z + mat[0].z * a[2].z,
-			   mat[1].x * a[0].x + mat[1].y * a[1].x + mat[1].z * a[2].x,
-			   mat[1].x * a[0].y + mat[1].y * a[1].y + mat[1].z * a[2].y,
-			   mat[1].x * a[0].z + mat[1].y * a[1].z + mat[1].z * a[2].z,
-			   mat[2].x * a[0].x + mat[2].y * a[1].x + mat[2].z * a[2].x,
-			   mat[2].x * a[0].y + mat[2].y * a[1].y + mat[2].z * a[2].y,
-			   mat[2].x * a[0].z + mat[2].y * a[1].z + mat[2].z * a[2].z );
+		mat[0].x * a[0].x + mat[0].y * a[1].x + mat[0].z * a[2].x,
+		mat[0].x * a[0].y + mat[0].y * a[1].y + mat[0].z * a[2].y,
+		mat[0].x * a[0].z + mat[0].y * a[1].z + mat[0].z * a[2].z,
+		mat[1].x * a[0].x + mat[1].y * a[1].x + mat[1].z * a[2].x,
+		mat[1].x * a[0].y + mat[1].y * a[1].y + mat[1].z * a[2].y,
+		mat[1].x * a[0].z + mat[1].y * a[1].z + mat[1].z * a[2].z,
+		mat[2].x * a[0].x + mat[2].y * a[1].x + mat[2].z * a[2].x,
+		mat[2].x * a[0].y + mat[2].y * a[1].y + mat[2].z * a[2].y,
+		mat[2].x * a[0].z + mat[2].y * a[1].z + mat[2].z * a[2].z );
 }
 
 ID_INLINE mat3_t mat3_t::operator*( float a ) const {
 	return mat3_t(
-			   mat[0].x * a, mat[0].y * a, mat[0].z * a,
-			   mat[1].x * a, mat[1].y * a, mat[1].z * a,
-			   mat[2].x * a, mat[2].y * a, mat[2].z * a );
+		mat[0].x * a, mat[0].y * a, mat[0].z * a,
+		mat[1].x * a, mat[1].y * a, mat[1].z * a,
+		mat[2].x * a, mat[2].y * a, mat[2].z * a );
 }
 
 ID_INLINE mat3_t mat3_t::operator+( mat3_t const &a ) const {
 	return mat3_t(
-			   mat[0].x + a[0].x, mat[0].y + a[0].y, mat[0].z + a[0].z,
-			   mat[1].x + a[1].x, mat[1].y + a[1].y, mat[1].z + a[1].z,
-			   mat[2].x + a[2].x, mat[2].y + a[2].y, mat[2].z + a[2].z );
+		mat[0].x + a[0].x, mat[0].y + a[0].y, mat[0].z + a[0].z,
+		mat[1].x + a[1].x, mat[1].y + a[1].y, mat[1].z + a[1].z,
+		mat[2].x + a[2].x, mat[2].y + a[2].y, mat[2].z + a[2].z );
 }
 
 ID_INLINE mat3_t mat3_t::operator-( mat3_t const &a ) const {
 	return mat3_t(
-			   mat[0].x - a[0].x, mat[0].y - a[0].y, mat[0].z - a[0].z,
-			   mat[1].x - a[1].x, mat[1].y - a[1].y, mat[1].z - a[1].z,
-			   mat[2].x - a[2].x, mat[2].y - a[2].y, mat[2].z - a[2].z );
+		mat[0].x - a[0].x, mat[0].y - a[0].y, mat[0].z - a[0].z,
+		mat[1].x - a[1].x, mat[1].y - a[1].y, mat[1].z - a[1].z,
+		mat[2].x - a[2].x, mat[2].y - a[2].y, mat[2].z - a[2].z );
 }
 
 ID_INLINE idVec3 operator*( const idVec3 &vec, const mat3_t &mat ) {
 	return idVec3(
-			   mat[ 0 ].x * vec.x + mat[ 1 ].x * vec.y + mat[ 2 ].x * vec.z,
-			   mat[ 0 ].y * vec.x + mat[ 1 ].y * vec.y + mat[ 2 ].y * vec.z,
-			   mat[ 0 ].z * vec.x + mat[ 1 ].z * vec.y + mat[ 2 ].z * vec.z );
+		mat[ 0 ].x * vec.x + mat[ 1 ].x * vec.y + mat[ 2 ].x * vec.z,
+		mat[ 0 ].y * vec.x + mat[ 1 ].y * vec.y + mat[ 2 ].y * vec.z,
+		mat[ 0 ].z * vec.x + mat[ 1 ].z * vec.y + mat[ 2 ].z * vec.z );
 }
 
 ID_INLINE mat3_t operator*( float a, mat3_t const &b ) {
 	return mat3_t(
-			   b[0].x * a, b[0].y * a, b[0].z * a,
-			   b[1].x * a, b[1].y * a, b[1].z * a,
-			   b[2].x * a, b[2].y * a, b[2].z * a );
+		b[0].x * a, b[0].y * a, b[0].z * a,
+		b[1].x * a, b[1].y * a, b[1].z * a,
+		b[2].x * a, b[2].y * a, b[2].z * a );
 }
 
 ID_INLINE mat3_t &mat3_t::operator*=( float a ) {

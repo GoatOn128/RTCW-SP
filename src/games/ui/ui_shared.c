@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2472,12 +2472,12 @@ static void Scroll_ListBox_ThumbFunc( void *p ) {
 		pos = ( DC->cursorx - r.x - SCROLLBAR_SIZE / 2 ) * max / ( r.w - SCROLLBAR_SIZE );
 		if ( pos < 0 ) {
 			pos = 0;
-		} else if ( pos > max )     {
+		} else if ( pos > max ) {
 			pos = max;
 		}
 		listPtr->startPos = pos;
 		si->xStart = DC->cursorx;
-	} else if ( DC->cursory != si->yStart )     {
+	} else if ( DC->cursory != si->yStart ) {
 
 		r.x = si->item->window.rect.x + si->item->window.rect.w - SCROLLBAR_SIZE - 1;
 		r.y = si->item->window.rect.y + SCROLLBAR_SIZE + 1;
@@ -2488,7 +2488,7 @@ static void Scroll_ListBox_ThumbFunc( void *p ) {
 		pos = ( DC->cursory - r.y - SCROLLBAR_SIZE / 2 ) * max / ( r.h - SCROLLBAR_SIZE );
 		if ( pos < 0 ) {
 			pos = 0;
-		} else if ( pos > max )     {
+		} else if ( pos > max ) {
 			pos = max;
 		}
 		listPtr->startPos = pos;
@@ -2687,9 +2687,9 @@ qboolean Item_HandleKey( itemDef_t *item, int key, qboolean down ) {
 	case ITEM_TYPE_SLIDER:
 		return Item_Slider_HandleKey( item, key, down );
 		break;
-		//case ITEM_TYPE_IMAGE:
-		//  Item_Image_Paint(item);
-		//  break;
+	//case ITEM_TYPE_IMAGE:
+	//  Item_Image_Paint(item);
+	//  break;
 	default:
 		return qfalse;
 		break;
@@ -3810,12 +3810,12 @@ qboolean Item_Bind_HandleKey( itemDef_t *item, int key, qboolean down ) {
 			id = BindingIDFromName( item->cvar );
 			if ( id != -1 ) {
 				key = -1;       // null out the key, but let it pass down so it can get 'unbound'
-								// if it just returns here, the old bindings don't get cleared out.
-								// so if user has both 'r' and 'g' bound to '+attack' and they only want the 'r',
-								// they click to bind the key, <backsp> to kill the bindings (which appears to the user to work)
-								// then they click to bind and hit 'r'.  now the menu looks right to them, but if you drop the menu
-								// and come back, the 'g' is magically re-bound since it didn't get bound to "" on the <backsp>.  <phew>
-								// does this seem reasonable to anybody reading this? (SA)
+				                // if it just returns here, the old bindings don't get cleared out.
+				                // so if user has both 'r' and 'g' bound to '+attack' and they only want the 'r',
+				                // they click to bind the key, <backsp> to kill the bindings (which appears to the user to work)
+				                // then they click to bind and hit 'r'.  now the menu looks right to them, but if you drop the menu
+				                // and come back, the 'g' is magically re-bound since it didn't get bound to "" on the <backsp>.  <phew>
+				                // does this seem reasonable to anybody reading this? (SA)
 //					g_bindings[id].bind1 = -1;
 //					g_bindings[id].bind2 = -1;
 			}
@@ -3859,9 +3859,9 @@ qboolean Item_Bind_HandleKey( itemDef_t *item, int key, qboolean down ) {
 				DC->setBinding( g_bindings[id].bind2, "" );
 				g_bindings[id].bind2 = -1;
 			}
-		} else if ( g_bindings[id].bind1 == -1 )     {
+		} else if ( g_bindings[id].bind1 == -1 ) {
 			g_bindings[id].bind1 = key;
-		} else if ( g_bindings[id].bind1 != key && g_bindings[id].bind2 == -1 )     {
+		} else if ( g_bindings[id].bind1 != key && g_bindings[id].bind2 == -1 ) {
 			g_bindings[id].bind2 = key;
 		} else {
 			DC->setBinding( g_bindings[id].bind1, "" );
@@ -6326,4 +6326,3 @@ static qboolean Menu_OverActiveItem( menuDef_t *menu, float x, float y ) {
 	}
 	return qfalse;
 }
-

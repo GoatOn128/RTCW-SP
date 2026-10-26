@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -293,7 +293,7 @@ typedef int clipHandle_t;
 // paramters for command buffer stuffing
 typedef enum {
 	EXEC_NOW,           // don't return until completed, a VM should NEVER use this,
-						// because some commands might cause the VM to be unloaded...
+	                    // because some commands might cause the VM to be unloaded...
 	EXEC_INSERT,        // insert at current position, but don't run yet
 	EXEC_APPEND         // add to end of the command buffer (normal case)
 } cbufExec_t;
@@ -477,7 +477,7 @@ extern vec3_t vec3_origin;
 extern vec3_t axisDefault[3];
 
 #define nanmask ( 255 << 23 )
-#define IS_NAN( x ) ( ( ( *(int *)&x ) & nanmask ) == nanmask )
+#define IS_NAN( x ) ( ( ( *(int *)&x )&nanmask ) == nanmask )
 
 // TTimo
 // handy stuff when tracking isnan problems
@@ -529,7 +529,7 @@ void ByteToDir( int b, vec3_t dir );
 typedef struct {
 	float v[3];
 } vec3struct_t;
-#define VectorCopy( a,b ) * (vec3struct_t *)b = *(vec3struct_t *)a;
+#define VectorCopy( a,b ) *(vec3struct_t *)b = *(vec3struct_t *)a;
 #endif
 #endif
 
@@ -830,18 +830,18 @@ default values.
 */
 
 #define CVAR_ARCHIVE        1   // set to cause it to be saved to vars.rc
-								// used for system variables, not for player
-								// specific configurations
+                                // used for system variables, not for player
+                                // specific configurations
 #define CVAR_USERINFO       2   // sent to server on connect or change
 #define CVAR_SERVERINFO     4   // sent in response to front end requests
 #define CVAR_SYSTEMINFO     8   // these cvars will be duplicated on all clients
 #define CVAR_INIT           16  // don't allow change from console at all,
-								// but can be set from the command line
+                                // but can be set from the command line
 #define CVAR_LATCH          32  // will only change when C code next does
-								// a Cvar_Get(), so it can't be changed
-								// without proper initialization.  modified
-								// will be set, even though the value hasn't
-								// changed yet
+                                // a Cvar_Get(), so it can't be changed
+                                // without proper initialization.  modified
+                                // will be set, even though the value hasn't
+                                // changed yet
 #define CVAR_ROM            64  // display only, cannot be set by user at all
 #define CVAR_USER_CREATED   128 // created by a set command
 #define CVAR_TEMP           256 // can be set even when cheats are disabled, but is not archived
@@ -1111,9 +1111,9 @@ typedef struct playerState_s {
 	int weaponTime;
 	int weaponDelay;            // for weapons that don't fire immediately when 'fire' is hit (grenades, venom, ...)
 	int grenadeTimeLeft;            // for delayed grenade throwing.  this is set to a #define for grenade
-									// lifetime when the attack button goes down, then when attack is released
-									// this is the amount of time left before the grenade goes off (or if it
-									// gets to 0 while in players hand, it explodes)
+	                                // lifetime when the attack button goes down, then when attack is released
+	                                // this is the amount of time left before the grenade goes off (or if it
+	                                // gets to 0 while in players hand, it explodes)
 
 
 	int gravity;
@@ -1121,7 +1121,7 @@ typedef struct playerState_s {
 
 	int speed;
 	int delta_angles[3];            // add to command angles to get view direction
-									// changed by spawns, rotating objects, and teleporters
+	                                // changed by spawns, rotating objects, and teleporters
 
 	int groundEntityNum;        // ENTITYNUM_NONE = in air
 
@@ -1132,9 +1132,9 @@ typedef struct playerState_s {
 	int torsoAnim;              // mask off ANIM_TOGGLEBIT
 
 	int movementDir;            // a number 0 to 7 that represents the reletive angle
-								// of movement to the view angle (axial and diagonals)
-								// when at rest, the value will remain unchanged
-								// used to twist the legs during strafing
+	                            // of movement to the view angle (axial and diagonals)
+	                            // when at rest, the value will remain unchanged
+	                            // used to twist the legs during strafing
 
 
 
@@ -1235,7 +1235,7 @@ typedef struct playerState_s {
 	qboolean releasedFire;
 
 	float aimSpreadScaleFloat;          // (SA) the server-side aimspreadscale that lets it track finer changes but still only
-										// transmit the 8bit int to the client
+	                                    // transmit the 8bit int to the client
 	int aimSpreadScale;         // 0 - 255 increases with angular movement
 	int lastFireTime;           // used by server to hold last firing frame briefly when randomly releasing trigger (AI)
 
@@ -1272,10 +1272,10 @@ typedef struct playerState_s {
 #define BUTTON_USE_HOLDABLE 4
 #define BUTTON_GESTURE      8
 #define BUTTON_WALKING      16          // walking can't just be infered from MOVE_RUN
-										// because a key pressed late in the frame will
-										// only generate a small move value for that frame
-										// walking will use different animations and
-										// won't generate footsteps
+                                        // because a key pressed late in the frame will
+                                        // only generate a small move value for that frame
+                                        // walking will use different animations and
+                                        // won't generate footsteps
 //----(SA)	added
 #define BUTTON_SPRINT       32
 #define BUTTON_ACTIVATE     64
@@ -1300,7 +1300,7 @@ typedef struct playerState_s {
 //----(SA) end
 
 #define MOVE_RUN            120         // if forwardmove or rightmove are >= MOVE_RUN,
-										// then BUTTON_WALKING should be set
+                                        // then BUTTON_WALKING should be set
 
 
 // usercmd_t is sent to the server each client frame
@@ -1466,7 +1466,7 @@ typedef struct {
 } glyphInfo_t;
 
 typedef struct {
-	glyphInfo_t glyphs [GLYPHS_PER_FONT];
+	glyphInfo_t glyphs[GLYPHS_PER_FONT];
 	float glyphScale;
 	char name[MAX_QPATH];
 } fontInfo_t;

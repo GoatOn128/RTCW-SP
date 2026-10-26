@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -271,9 +271,9 @@ void G_UseTargets( gentity_t *ent, gentity_t *activator ) {
 				//G_Printf ("ent->classname %s ent->targetname %s t->targetname %s t->s.number %d\n", ent->classname, ent->targetname, t->targetname, t->s.number);
 
 				t->flags |= ( ent->flags & FL_KICKACTIVATE ); // (SA) If 'ent' was kicked to activate, pass this along to it's targets.
-															  //		It may become handy to put a "KICKABLE" flag in ents so that it knows whether to pass this along or not
-															  //		Right now, the only situation where it would be weird would be an invisible_user that is a 'button' near
-															  //		a rotating door that it triggers.  Kick the switch and the door next to it flies open.
+				                                              //		It may become handy to put a "KICKABLE" flag in ents so that it knows whether to pass this along or not
+				                                              //		Right now, the only situation where it would be weird would be an invisible_user that is a 'button' near
+				                                              //		a rotating door that it triggers.  Kick the switch and the door next to it flies open.
 
 				t->flags |= ( ent->flags & FL_SOFTACTIVATE ); // (SA) likewise for soft activation
 

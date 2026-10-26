@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -94,13 +94,13 @@ void LAN_SaveServersToCache() {
 	/*
 	  int size;
 	  fileHandle_t fileOut;
-  #ifdef __MACOS__	//DAJ MacOS file typing
+	#ifdef __MACOS__	//DAJ MacOS file typing
 	  {
 		  extern _MSL_IMP_EXP_C long _fcreator, _ftype;
 		  _ftype = 'WlfB';
 		  _fcreator = 'WlfS';
 	  }
-  #endif
+	#endif
 	  fileOut = FS_SV_FOpenFileWrite("servercache.dat");
 	  FS_Write(&cls.numglobalservers, sizeof(int), fileOut);
 	  FS_Write(&cls.nummplayerservers, sizeof(int), fileOut);
@@ -449,7 +449,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_CLIENTS:
 		if ( server1->clients < server2->clients ) {
 			res = -1;
-		} else if ( server1->clients > server2->clients )     {
+		} else if ( server1->clients > server2->clients ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -458,7 +458,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_GAME:
 		if ( server1->gameType < server2->gameType ) {
 			res = -1;
-		} else if ( server1->gameType > server2->gameType )     {
+		} else if ( server1->gameType > server2->gameType ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -467,7 +467,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_PING:
 		if ( server1->ping < server2->ping ) {
 			res = -1;
-		} else if ( server1->ping > server2->ping )     {
+		} else if ( server1->ping > server2->ping ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -897,11 +897,11 @@ int CL_UISystemCalls( int *args ) {
 		re.AddPolyToScene( args[1], args[2], VMA( 3 ) );
 		return 0;
 
-		// Ridah
+	// Ridah
 	case UI_R_ADDPOLYSTOSCENE:
 		re.AddPolysToScene( args[1], args[2], VMA( 3 ), args[4] );
 		return 0;
-		// done.
+	// done.
 
 	case UI_R_ADDLIGHTTOSCENE:
 		re.AddLightToScene( VMA( 1 ), VMF( 2 ), VMF( 3 ), VMF( 4 ), VMF( 5 ), args[6] );
@@ -1155,10 +1155,10 @@ int CL_UISystemCalls( int *args ) {
 	case UI_VERIFY_CDKEY:
 		return CL_CDKeyValidate( VMA( 1 ), VMA( 2 ) );
 
-		// NERVE - SMF
+	// NERVE - SMF
 	case UI_CL_GETLIMBOSTRING:
 		return CL_GetLimboString( args[1], VMA( 2 ) );
-		// -NERVE - SMF
+	// -NERVE - SMF
 
 	default:
 		Com_Error( ERR_DROP, "Bad UI system trap: %i", args[0] );

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@ NET
 #define DO_NET_ENCODE 0
 
 #define PACKET_BACKUP   32  // number of old messages that must be kept on client and
-							// server for delta comrpession and ping estimation
+                            // server for delta comrpession and ping estimation
 #define PACKET_MASK     ( PACKET_BACKUP - 1 )
 
 #define MAX_PACKET_USERCMDS     32      // max number of usercmd_t in a packet
@@ -258,8 +258,8 @@ PROTOCOL
 #define PORT_AUTHORIZE      27952
 #define PORT_SERVER         27960
 #define NUM_SERVER_PORTS    4       // broadcast scan this many ports after
-									// PORT_SERVER so a single machine can
-									// run multiple servers
+                                    // PORT_SERVER so a single machine can
+                                    // run multiple servers
 
 
 // the svc_strings[] array in cl_parse.c should mirror this
@@ -938,7 +938,7 @@ void Sys_LeaveCriticalSection( void *ptr );
 
 // general development dll loading for virtual machine testing
 void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-							 int ( QDECL * systemcalls )( int, ... ) );
+							 int( QDECL * systemcalls )( int, ... ) );
 void    Sys_UnloadDll( void *dllHandle );
 
 void    Sys_UnloadGame( void );

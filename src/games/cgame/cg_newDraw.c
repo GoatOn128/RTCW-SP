@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -237,11 +237,11 @@ weapIconDrawSize
 static int weapIconDrawSize( int weap ) {
 	switch ( weap ) {
 
-		// weapons to not draw
+	// weapons to not draw
 	case WP_KNIFE:
 		return 0;
 
-		// weapons with 'wide' icons
+	// weapons with 'wide' icons
 	case WP_THOMPSON:
 	case WP_MP40:
 	case WP_STEN:
@@ -2595,4 +2595,3 @@ void CG_GetTeamColor( vec4_t *color ) {
 		( *color )[3] = .25f;
 	}
 }
-

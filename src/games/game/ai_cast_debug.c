@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -131,7 +131,7 @@ void AICast_DBG_RouteTable_f( vec3_t org, char *param ) {
 	if ( Q_stricmp( param, "src" ) == 0 ) { // set the src
 		srcarea = 1 + trap_AAS_PointAreaNum( org );
 		return;
-	} else if ( Q_stricmp( param, "dest" ) == 0 )        {
+	} else if ( Q_stricmp( param, "dest" ) == 0 ) {
 		dstarea = 1 + trap_AAS_PointAreaNum( org );
 	}
 

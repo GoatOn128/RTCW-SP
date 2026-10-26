@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -467,7 +467,7 @@ int SV_GameSystemCalls( int *args ) {
 	case G_GETTAG:
 		return SV_GetTag( args[1], VMA( 2 ), VMA( 3 ) );
 
-		//====================================
+	//====================================
 
 	case BOTLIB_SETUP:
 		return SV_BotLibSetup();
@@ -518,11 +518,11 @@ int SV_GameSystemCalls( int *args ) {
 	case BOTLIB_AAS_TIME:
 		return FloatAsInt( botlib_export->aas.AAS_Time() );
 
-		// Ridah
+	// Ridah
 	case BOTLIB_AAS_SETCURRENTWORLD:
 		botlib_export->aas.AAS_SetCurrentWorld( args[1] );
 		return 0;
-		// done.
+	// done.
 
 	case BOTLIB_AAS_POINT_AREA_NUM:
 		return botlib_export->aas.AAS_PointAreaNum( VMA( 1 ) );
@@ -554,7 +554,7 @@ int SV_GameSystemCalls( int *args ) {
 		return botlib_export->aas.AAS_PredictClientMovement( VMA( 1 ), args[2], VMA( 3 ), args[4], args[5],
 															 VMA( 6 ), VMA( 7 ), args[8], args[9], VMF( 10 ), args[11], args[12], args[13] );
 
-		// Ridah, route-tables
+	// Ridah, route-tables
 	case BOTLIB_AAS_RT_SHOWROUTE:
 		botlib_export->aas.AAS_RT_ShowRoute( VMA( 1 ), args[2], args[3] );
 		return 0;
@@ -571,7 +571,7 @@ int SV_GameSystemCalls( int *args ) {
 	case BOTLIB_AAS_SETAASBLOCKINGENTITY:
 		botlib_export->aas.AAS_SetAASBlockingEntity( VMA( 1 ), VMA( 2 ), args[3] );
 		return 0;
-		// done.
+	// done.
 
 	case BOTLIB_EA_SAY:
 		botlib_export->ea.EA_Say( args[1], VMA( 2 ) );
@@ -830,11 +830,11 @@ int SV_GameSystemCalls( int *args ) {
 	case BOTLIB_AI_INIT_MOVE_STATE:
 		botlib_export->ai.BotInitMoveState( args[1], VMA( 2 ) );
 		return 0;
-		// Ridah
+	// Ridah
 	case BOTLIB_AI_INIT_AVOID_REACH:
 		botlib_export->ai.BotInitAvoidReach( args[1] );
 		return 0;
-		// done.
+	// done.
 
 	case BOTLIB_AI_CHOOSE_BEST_FIGHT_WEAPON:
 		return botlib_export->ai.BotChooseBestFightWeapon( args[1], VMA( 2 ) );

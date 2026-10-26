@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -158,11 +158,11 @@ int TexinfoForBrushTexture( plane_t *plane, brush_texture_t *bt, vec3_t origin )
 // rotate axis
 	if ( bt->rotate == 0 ) {
 		sinv = 0 ; cosv = 1;
-	} else if ( bt->rotate == 90 )                                                 {
+	} else if ( bt->rotate == 90 ) {
 		sinv = 1 ; cosv = 0;
-	} else if ( bt->rotate == 180 )                                                                                                       {
+	} else if ( bt->rotate == 180 ) {
 		sinv = 0 ; cosv = -1;
-	} else if ( bt->rotate == 270 )                                                                                                                                                               {
+	} else if ( bt->rotate == 270 ) {
 		sinv = -1 ; cosv = 0;
 	} else
 	{
@@ -229,7 +229,7 @@ int TexinfoForBrushTexture( plane_t *plane, brush_texture_t *bt, vec3_t origin )
 			}
 		}
 		return i;
-skip:;
+skip:   ;
 	}
 	*tc = tx;
 	numtexinfo++;

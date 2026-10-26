@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -598,12 +598,12 @@ int CL_CgameSystemCalls( int *args ) {
 	case CG_R_REGISTERSKIN:
 		return re.RegisterSkin( VMA( 1 ) );
 
-		//----(SA)	added
+	//----(SA)	added
 	case CG_R_GETSKINMODEL:
 		return re.GetSkinModel( args[1], VMA( 2 ), VMA( 3 ) );
 	case CG_R_GETMODELSHADER:
 		return re.GetShaderFromModel( args[1], args[2], args[3] );
-		//----(SA)	end
+	//----(SA)	end
 
 	case CG_R_REGISTERSHADER:
 		return re.RegisterShader( VMA( 1 ) );
@@ -620,14 +620,14 @@ int CL_CgameSystemCalls( int *args ) {
 	case CG_R_ADDPOLYTOSCENE:
 		re.AddPolyToScene( args[1], args[2], VMA( 3 ) );
 		return 0;
-		// Ridah
+	// Ridah
 	case CG_R_ADDPOLYSTOSCENE:
 		re.AddPolysToScene( args[1], args[2], VMA( 3 ), args[4] );
 		return 0;
 	case CG_RB_ZOMBIEFXADDNEWHIT:
 		re.ZombieFXAddNewHit( args[1], VMA( 2 ), VMA( 3 ) );
 		return 0;
-		// done.
+	// done.
 //	case CG_R_LIGHTFORPOINT:
 //		return re.LightForPoint( VMA(1), VMA(2), VMA(3), VMA(4) );
 	case CG_R_ADDLIGHTTOSCENE:
@@ -802,21 +802,21 @@ int CL_CgameSystemCalls( int *args ) {
 			// NERVE - SMF
 			if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_PICKTEAM" ) ) {
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKTEAM );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_PICKPLAYER" ) )    {
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_PICKPLAYER" ) ) {
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_PICKPLAYER );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_QUICKMESSAGE" ) )    {
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_QUICKMESSAGE" ) ) {
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_QUICKMESSAGE );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_LIMBO" ) )    {
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "UIMENU_WM_LIMBO" ) ) {
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_WM_LIMBO );
 			}
 			// -NERVE - SMF
 			else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook1" ) ) {   //----(SA)
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK1 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook2" ) )    { //----(SA)
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook2" ) ) {    //----(SA)
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK2 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook3" ) )    { //----(SA)
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "hbook3" ) ) {    //----(SA)
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_BOOK3 );
-			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "pregame" ) )    { //----(SA) added
+			} else if ( VMA( 1 ) && !Q_stricmp( VMA( 1 ), "pregame" ) ) {    //----(SA) added
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_PREGAME );
 			} else {
 				VM_Call( uivm, UI_SET_ACTIVE_MENU, UIMENU_CLIPBOARD );
@@ -824,7 +824,7 @@ int CL_CgameSystemCalls( int *args ) {
 		}
 		return 0;
 
-		// NERVE - SMF
+	// NERVE - SMF
 	case CG_INGAME_CLOSEPOPUP:
 		VM_Call( uivm, UI_KEY_EVENT, K_ESCAPE, qtrue );
 		return 0;
@@ -834,7 +834,7 @@ int CL_CgameSystemCalls( int *args ) {
 			CL_AddToLimboChat( VMA( 1 ) );
 		}
 		return 0;
-		// - NERVE - SMF
+	// - NERVE - SMF
 
 	case CG_GETMODELINFO:
 		return SV_GetModelInfo( args[1], VMA( 2 ), VMA( 3 ) );

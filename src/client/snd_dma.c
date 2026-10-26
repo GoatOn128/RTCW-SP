@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1197,7 +1197,7 @@ void S_RawSamples( int samples, int rate, int width, int s_channels, const byte 
 				s_rawsamples[streamingIndex][dst].right = ( (short *)data )[src * 2 + 1] * intVolumeR;
 			}
 		}
-	} else if ( s_channels == 1 && width == 2 )     {
+	} else if ( s_channels == 1 && width == 2 ) {
 		for ( i = 0; ; i++ )
 		{
 			src = i * scale;
@@ -1209,7 +1209,7 @@ void S_RawSamples( int samples, int rate, int width, int s_channels, const byte 
 			s_rawsamples[streamingIndex][dst].left = ( (short *)data )[src] * intVolumeL;
 			s_rawsamples[streamingIndex][dst].right = ( (short *)data )[src] * intVolumeR;
 		}
-	} else if ( s_channels == 2 && width == 1 )     {
+	} else if ( s_channels == 2 && width == 1 ) {
 		intVolumeL *= 256;
 		intVolumeR *= 256;
 
@@ -1224,7 +1224,7 @@ void S_RawSamples( int samples, int rate, int width, int s_channels, const byte 
 			s_rawsamples[streamingIndex][dst].left = ( (char *)data )[src * 2] * intVolumeL;
 			s_rawsamples[streamingIndex][dst].right = ( (char *)data )[src * 2 + 1] * intVolumeR;
 		}
-	} else if ( s_channels == 1 && width == 1 )     {
+	} else if ( s_channels == 1 && width == 1 ) {
 		intVolumeL *= 256;
 		intVolumeR *= 256;
 
@@ -2571,4 +2571,3 @@ void S_FreeOldestSound( void ) {
 	sfx->inMemory = qfalse;
 	sfx->soundData = NULL;
 }
-

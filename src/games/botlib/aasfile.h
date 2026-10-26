@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -231,7 +231,7 @@ typedef struct aas_node_s
 {
 	int planenum;
 	int children[2];                    //child nodes of this node, or convex areas as leaves when negative
-										//when a child is zero it's a solid leaf
+	                                    //when a child is zero it's a solid leaf
 } aas_node_t;
 
 //=========== aas file ===============

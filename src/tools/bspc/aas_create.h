@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -78,8 +78,8 @@ typedef struct tmp_area_s
 	int invalid;                        //true if the area is invalid
 	tmp_areasettings_t *settings;       //area settings
 	struct tmp_area_s *mergedarea;      //points to the new area after merging
-										//when mergedarea != 0 the area has only the
-										//seperating face of the merged areas
+	                                    //when mergedarea != 0 the area has only the
+	                                    //seperating face of the merged areas
 	int aasareanum;                     //number of the aas area created for this tmp area
 	//links in the list with areas
 	struct tmp_area_s *l_prev, *l_next;

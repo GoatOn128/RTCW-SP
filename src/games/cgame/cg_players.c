@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -709,16 +709,16 @@ static qboolean CG_RegisterClientModelname( clientInfo_t *ci, const char *modelN
 			cgs.media.spiritSkullModel = trap_R_RegisterModel( "models/mapobjects/skull/skul2t.md3" );
 
 			CG_RegisterWeapon( WP_GAUNTLET );
-		} else if ( !Q_strcasecmp( (char *)modelName, "beast" ) )      {
+		} else if ( !Q_strcasecmp( (char *)modelName, "beast" ) ) {
 			cgs.media.helgaSpiritSkullShader = trap_R_RegisterShader( "helgaSpiritGhost" );
 			cgs.media.helgaSpiritTrailShader = trap_R_RegisterShader( "helgaSpiritTrail" );
 			cgs.media.helgaGhostModel = trap_R_RegisterModel( "models/players/beast/ghost.md3" );
 			cgs.media.helgaSpiritLoopSound = trap_S_RegisterSound( "sound/beast/tortured_souls_loop.wav" );
 			cgs.media.helgaSpiritSound = CG_SoundScriptPrecache( "helgaSpiritStartSound" );
 			cgs.media.helgaGaspSound = CG_SoundScriptPrecache( "helgaSpiritGasp" );
-		} else if ( !Q_strcasecmp( (char *)modelName, "loper" ) )      {
+		} else if ( !Q_strcasecmp( (char *)modelName, "loper" ) ) {
 			//cgs.media.loperGroundChargeShader = trap_R_RegisterShader( "loperGroundCharge" );
-		} else if ( !Q_strcasecmp( (char *)modelName, "protosoldier" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "protosoldier" ) ) {
 			cgs.media.protoArmorBreak = CG_SoundScriptPrecache( "Protosoldier_loseArmor" );
 
 			cgs.media.protoArmor[0]     = trap_R_RegisterModel( "models/players/protosoldier/armor/nodam_chest.md3" );
@@ -750,7 +750,7 @@ static qboolean CG_RegisterClientModelname( clientInfo_t *ci, const char *modelN
 			cgs.media.protoArmor[24]    = trap_R_RegisterModel( "models/players/protosoldier/armor/dam_rtforarm2.md3" );
 			cgs.media.protoArmor[25]    = trap_R_RegisterModel( "models/players/protosoldier/armor/dam_rtshoulder2.md3" );
 			cgs.media.protoArmor[26]    = trap_R_RegisterModel( "models/players/protosoldier/armor/dam_rtthigh2.md3" );
-		} else if ( !Q_strcasecmp( (char *)modelName, "supersoldier" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "supersoldier" ) ) {
 
 			cgs.media.superArmorBreak = CG_SoundScriptPrecache( "Supersoldier_loseArmor" );
 
@@ -841,7 +841,7 @@ nodam_lftknee          attached to tag_calfleft
 
 nodam_rtknee          attached to tag_calfright
 */
-		} else if ( !Q_strcasecmp( (char *)modelName, "dark" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "dark" ) ) {
 
 			cgs.media.superArmorBreak = CG_SoundScriptPrecache( "Supersoldier_loseArmor" );
 
@@ -1048,7 +1048,7 @@ nodam_rtshin            attached to tag_calfright
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/eliteguard/gravel%i.wav", i + 1 );
 				cgs.media.footsteps[FOOTSTEP_ELITE_GRAVEL][i] = trap_S_RegisterSound( name );
 			}
-		} else if (   !Q_strcasecmp( (char *)modelName, "protosoldier" ) )     {
+		} else if (   !Q_strcasecmp( (char *)modelName, "protosoldier" ) ) {
 			// ProtoSoldier
 			for ( i = 0; i < 4; i++ ) {
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/protosoldier/step%i.wav", i + 1 );
@@ -1066,7 +1066,7 @@ nodam_rtshin            attached to tag_calfright
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/protosoldier/wood%i.wav", i + 1 );
 				cgs.media.footsteps[FOOTSTEP_PROTOSOLDIER_WOOD][i] = trap_S_RegisterSound( name );
 			}
-		} else if ( !Q_strcasecmp( (char *)modelName, "supersoldier" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "supersoldier" ) ) {
 			// SuperSoldier/HEINRICH
 			for ( i = 0; i < 4; i++ ) {
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/supersoldier/step%i.wav", i + 1 );
@@ -1092,7 +1092,7 @@ nodam_rtshin            attached to tag_calfright
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/heinrich/step%i.wav", i + 1 );
 				cgs.media.footsteps[FOOTSTEP_HEINRICH][i] = trap_S_RegisterSound( name );
 			}
-		} else if ( !Q_strcasecmp( (char *)modelName, "loper" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "loper" ) ) {
 			// Loper
 			for ( i = 0; i < 4; i++ ) {
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/loper/clank%i.wav", i + 1 );
@@ -1104,7 +1104,7 @@ nodam_rtshin            attached to tag_calfright
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/loper/wood%i.wav", i + 1 );
 				cgs.media.footsteps[FOOTSTEP_LOPER_WOOD][i] = trap_S_RegisterSound( name );
 			}
-		} else if ( !Q_strcasecmp( (char *)modelName, "zombie" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "zombie" ) ) {
 			// Zombie
 			for ( i = 0; i < 4; i++ ) {
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/zombie/gravel%i.wav", i + 1 );
@@ -1116,7 +1116,7 @@ nodam_rtshin            attached to tag_calfright
 				Com_sprintf( name, sizeof( name ), "sound/player/footsteps/zombie/wood%i.wav", i + 1 );
 				cgs.media.footsteps[FOOTSTEP_ZOMBIE_WOOD][i] = trap_S_RegisterSound( name );
 			}
-		} else if ( !Q_strcasecmp( (char *)modelName, "beast" ) )        {
+		} else if ( !Q_strcasecmp( (char *)modelName, "beast" ) ) {
 			// Helga Boss
 			cgs.media.footsteps[FOOTSTEP_BEAST][0] = CG_SoundScriptPrecache( "beastStep" );   // just precache the sound script
 		}
@@ -1125,7 +1125,7 @@ nodam_rtshin            attached to tag_calfright
 	// whoops!  this stuff would never get set if it found one existing already!!
 	if ( !Q_strcasecmp( (char *)modelName, "loper" ) ) {
 		ci->partModels[8] = trap_R_RegisterModel( va( "models/players/%s/spinner.md3", modelName ) );
-	} else if ( !Q_strcasecmp( (char *)modelName, "sealoper" ) )      {
+	} else if ( !Q_strcasecmp( (char *)modelName, "sealoper" ) ) {
 		ci->partModels[8] = trap_R_RegisterModel( va( "models/players/%s/spinner.md3", modelName ) );
 	}
 
@@ -2460,8 +2460,8 @@ static void CG_PlayerAngles( centity_t *cent, vec3_t legs[3], vec3_t torso[3], v
 	// --------- yaw -------------
 
 	// allow yaw to drift a bit, unless these conditions don't allow them
-	if (    !( BG_GetConditionValue( cent->currentState.number, ANIM_COND_MOVETYPE, qfalse ) & ( ( 1 << ANIM_MT_IDLE ) | ( 1 << ANIM_MT_IDLECR ) ) )/*
-		||	 (BG_GetConditionValue( cent->currentState.number, ANIM_COND_MOVETYPE, qfalse ) & ((1<<ANIM_MT_STRAFELEFT) | (1<<ANIM_MT_STRAFERIGHT)) )*/) {
+	if (    !( BG_GetConditionValue( cent->currentState.number, ANIM_COND_MOVETYPE, qfalse ) & ( ( 1 << ANIM_MT_IDLE ) | ( 1 << ANIM_MT_IDLECR ) ) ) /*
+	    ||	 (BG_GetConditionValue( cent->currentState.number, ANIM_COND_MOVETYPE, qfalse ) & ((1<<ANIM_MT_STRAFELEFT) | (1<<ANIM_MT_STRAFERIGHT)) )*/) {
 
 		// always point all in the same direction
 		cent->pe.torso.yawing = qtrue;  // always center
@@ -4121,7 +4121,7 @@ void CG_AddHelgaSpiritEffect( centity_t *cent ) {
 			VectorNormalize( refent.axis[t] );
 			VectorScale( refent.axis[t], 0.35, refent.axis[t] );
 						}
-*/                                                                                                                                                                                                                           //
+*/      //
 		// add the sound
 		trap_S_AddLoopingSound( -1, cent->lerpOrigin, vec3_origin, cgs.media.helgaSpiritLoopSound, fadeRatio );
 		//
@@ -4232,7 +4232,7 @@ void CG_AddRefEntityWithPowerups( refEntity_t *ent, int powerups, int team, enti
 		if ( ent->hModel == cent->pe.torsoRefEnt.hModel ) {
 			//ent->reFlags = REFLAG_ZOMBIEFX;
 			ent->shaderTime = 0;
-		} else if ( ent->hModel == cent->pe.legsRefEnt.hModel )     {
+		} else if ( ent->hModel == cent->pe.legsRefEnt.hModel ) {
 			//ent->reFlags = REFLAG_ZOMBIEFX2;	// ref needs to know this is the legs
 			ent->shaderTime = 0;
 		}
@@ -5213,7 +5213,7 @@ void CG_Player( centity_t *cent ) {
 
 // TTimo: unused
 		/*
-int parts[] = { 34,
+		int parts[] = { 34,
 				38,
 				0,
 				19,
@@ -5230,7 +5230,7 @@ int parts[] = { 34,
 				0,
 				45
 				};
-	*/
+		*/
 
 //		char *parts[] = {		"dam_lftforarm2",//	34
 //								"dam_rtforarm2",//38
@@ -5334,8 +5334,8 @@ int parts[] = { 34,
 			CG_PositionEntityOnTag( &acc,   &head,  "tag_mouth", 0, NULL );
 			break;
 
-			// weapon and weapon2
-			// these are used by characters who have permanent weapons attached to their character in the skin
+		// weapon and weapon2
+		// these are used by characters who have permanent weapons attached to their character in the skin
 		case ACC_WEAPON:        // weap
 			CG_PositionEntityOnTag( &acc,   &torso, "tag_weapon", 0, NULL );
 			break;

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -552,15 +552,15 @@ int BotAI( int client, float thinktime ) {
 
 		//botai_import.Print(PRT_MESSAGE, "ConsoleMessage: \"%s\"\n", buf);
 		if ( !Q_stricmp( buf, "cp " ) ) { /*CenterPrintf*/
-		} else if ( !Q_stricmp( buf, "cs" ) )                                                      { /*ConfigStringModified*/
-		} else if ( !Q_stricmp( buf, "print" ) )                                                                                                                       {
+		} else if ( !Q_stricmp( buf, "cs" ) ) {                                                      /*ConfigStringModified*/
+		} else if ( !Q_stricmp( buf, "print" ) ) {
 			trap_BotQueueConsoleMessage( bs->cs, CMS_NORMAL, args );
 		} else if ( !Q_stricmp( buf, "chat" ) ) {
 			trap_BotQueueConsoleMessage( bs->cs, CMS_CHAT, args );
 		} else if ( !Q_stricmp( buf, "tchat" ) ) {
 			trap_BotQueueConsoleMessage( bs->cs, CMS_CHAT, args );
 		} else if ( !Q_stricmp( buf, "scores" ) ) { /*FIXME: parse scores?*/
-		} else if ( !Q_stricmp( buf, "clientLevelShot" ) )                                                                    { /*ignore*/
+		} else if ( !Q_stricmp( buf, "clientLevelShot" ) ) {                                                                    /*ignore*/
 		}
 	}
 	//add the delta angles to the bot's current view angles
@@ -679,7 +679,7 @@ int BotAISetupClient( int client, struct bot_settings_s *settings ) {
 	//set the chat gender
 	if ( *gender == 'f' || *gender == 'F' ) {
 		trap_BotSetChatGender( bs->cs, CHAT_GENDERFEMALE );
-	} else if ( *gender == 'm' || *gender == 'M' )  {
+	} else if ( *gender == 'm' || *gender == 'M' ) {
 		trap_BotSetChatGender( bs->cs, CHAT_GENDERMALE );
 	} else { trap_BotSetChatGender( bs->cs, CHAT_GENDERLESS );}
 
@@ -1205,4 +1205,3 @@ int BotAIShutdown( int restart ) {
 	}
 	return qtrue;
 }
-

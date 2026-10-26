@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -588,7 +588,7 @@ void G_MoverTeam( gentity_t *ent ) {
 
 		if ( part->s.eType == ET_BAT && part->model && !G_MoverPush( part, move, amove, &obstacle ) ) {
 			break;
-		} else if ( !G_MoverPush( part, move, amove, &obstacle ) )    {
+		} else if ( !G_MoverPush( part, move, amove, &obstacle ) ) {
 			break;  // move was blocked
 		}
 	}
@@ -708,7 +708,7 @@ void SetMoverState( gentity_t *ent, moverState_t moverState, int time ) {
 		ent->s.pos.trType = TR_STATIONARY;
 		break;
 
-		// JOSEPH 1-26-00
+	// JOSEPH 1-26-00
 	case MOVER_POS3:
 		VectorCopy( ent->pos3, ent->s.pos.trBase );
 		ent->s.pos.trType = TR_STATIONARY;
@@ -728,7 +728,7 @@ void SetMoverState( gentity_t *ent, moverState_t moverState, int time ) {
 		VectorScale( delta, f, ent->s.pos.trDelta );
 		ent->s.pos.trType = TR_LINEAR_STOP;
 		break;
-		// END JOSEPH
+	// END JOSEPH
 
 	case MOVER_1TO2:        // opening
 		VectorCopy( ent->pos1, ent->s.pos.trBase );
@@ -1008,7 +1008,7 @@ void Reached_BinaryMover( gentity_t *ent ) {
 		if ( ent->teammaster == ent || !ent->teammaster ) {
 			trap_AdjustAreaPortalState( ent, qfalse );
 		}
-	} else if ( ent->moverState == MOVER_1TO2ROTATE )   {
+	} else if ( ent->moverState == MOVER_1TO2ROTATE ) {
 		// reached pos2
 		SetMoverState( ent, MOVER_POS2ROTATE, level.time );
 
@@ -1040,7 +1040,7 @@ void Reached_BinaryMover( gentity_t *ent ) {
 			ent->nextthink = level.time + ent->wait;
 		}
 
-	} else if ( ent->moverState == MOVER_2TO1ROTATE )   {
+	} else if ( ent->moverState == MOVER_2TO1ROTATE ) {
 		// reached pos1
 		SetMoverState( ent, MOVER_POS1ROTATE, level.time );
 
@@ -1104,7 +1104,7 @@ qboolean IsBinaryMoverBlocked( gentity_t *ent, gentity_t *other, gentity_t *acti
 		if ( !activator ) {
 			if ( Q_stricmp( other->classname, "target_relay" ) == 0 ) {
 				is_relay = qtrue;
-			} else if ( !activator->client )      {
+			} else if ( !activator->client ) {
 				return qfalse;
 			}
 		}
@@ -1180,7 +1180,7 @@ void Reached_TrinaryMover( gentity_t *ent ) {
 		if ( ent->teammaster == ent || !ent->teammaster ) {
 			trap_AdjustAreaPortalState( ent, qfalse );
 		}
-	} else if ( ent->moverState == MOVER_2TO3 )   {
+	} else if ( ent->moverState == MOVER_2TO3 ) {
 		// reached pos3
 		SetMoverState( ent, MOVER_POS3, level.time );
 
@@ -1198,7 +1198,7 @@ void Reached_TrinaryMover( gentity_t *ent ) {
 			ent->activator = ent;
 		}
 		G_UseTargets( ent, ent->activator );
-	} else if ( ent->moverState == MOVER_3TO2 )   {
+	} else if ( ent->moverState == MOVER_3TO2 ) {
 		// reached pos2
 		SetMoverState( ent, MOVER_POS2, level.time );
 
@@ -1637,7 +1637,7 @@ void InitMover( gentity_t *ent ) {
 	if ( !Q_stricmp( ent->classname,"func_secret" ) ) {
 		ent->use = Use_TrinaryMover;
 		ent->reached = Reached_TrinaryMover;
-	} else if ( !Q_stricmp( ent->classname, "func_rotating" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "func_rotating" ) ) {
 		ent->use = Use_Func_Rotate;
 		ent->reached = NULL; // rotating can never reach
 	} else
@@ -1929,7 +1929,7 @@ void Touch_DoorTrigger( gentity_t *ent, gentity_t *other, trace_t *trace ) {
 			 ent->parent->moverState != MOVER_POS2 ) {
 			Touch_DoorTriggerSpectator( ent, other, trace );
 		}
-	} else if ( ent->parent->moverState != MOVER_1TO2 )   {
+	} else if ( ent->parent->moverState != MOVER_1TO2 ) {
 		Use_BinaryMover( ent->parent, ent, other );
 	}
 }
@@ -2898,22 +2898,22 @@ void Think_SetupTrainTargets( gentity_t *ent ) {
 		VectorCopy( ent->nextTrain->s.origin, ent->s.pos.trBase );
 		VectorCopy( ent->nextTrain->s.origin, ent->r.currentOrigin );
 		trap_LinkEntity( ent );
-	} else if ( !Q_stricmp( ent->classname, "func_train_particles" ) && ent->spawnflags & 2 )       { // TOGGLE
+	} else if ( !Q_stricmp( ent->classname, "func_train_particles" ) && ent->spawnflags & 2 ) {       // TOGGLE
 		VectorCopy( ent->nextTrain->s.origin, ent->s.pos.trBase );
 		VectorCopy( ent->nextTrain->s.origin, ent->r.currentOrigin );
 		trap_LinkEntity( ent );
-	} else if ( !Q_stricmp( ent->classname, "func_tramcar" ) && ent->spawnflags & 2 )       { // TOGGLE
+	} else if ( !Q_stricmp( ent->classname, "func_tramcar" ) && ent->spawnflags & 2 ) {       // TOGGLE
 		VectorCopy( ent->nextTrain->s.origin, ent->s.pos.trBase );
 		VectorCopy( ent->nextTrain->s.origin, ent->r.currentOrigin );
 		trap_LinkEntity( ent );
-	} else if ( !Q_stricmp( ent->classname, "func_bat" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "func_bat" ) ) {
 		//VectorCopy (ent->nextTrain->s.origin, ent->s.pos.trBase);
 		//VectorCopy (ent->nextTrain->s.origin, ent->r.currentOrigin);
 		//trap_LinkEntity (ent);
 		if ( ent->spawnflags & 1 ) {  // start on
 			ent->use( ent, ent, ent );
 		}
-	} else if ( !Q_stricmp( ent->classname, "truck_cam" ) && ent->spawnflags & 2 )     { // TOGGLE
+	} else if ( !Q_stricmp( ent->classname, "truck_cam" ) && ent->spawnflags & 2 ) {     // TOGGLE
 		VectorCopy( ent->nextTrain->s.origin, ent->s.pos.trBase );
 		VectorCopy( ent->nextTrain->s.origin, ent->r.currentOrigin );
 		trap_LinkEntity( ent );
@@ -3775,7 +3775,7 @@ The center of that brush will be the point around which it is rotated. It will r
 void Use_Func_Rotate( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 	if ( ent->spawnflags & 4 ) {
 		ent->s.apos.trDelta[2] = ent->speed;
-	} else if ( ent->spawnflags & 8 )   {
+	} else if ( ent->spawnflags & 8 ) {
 		ent->s.apos.trDelta[0] = ent->speed;
 	} else {
 		ent->s.apos.trDelta[1] = ent->speed;
@@ -4133,15 +4133,15 @@ void SP_target_effect( gentity_t *ent ) {
 			ent->key = 0;
 		} else if ( !Q_stricmp( type,"glass" ) ) {
 			ent->key = 1;
-		} else if ( !Q_stricmp( type,"metal" ) )                                                       {
+		} else if ( !Q_stricmp( type,"metal" ) ) {
 			ent->key = 2;
-		} else if ( !Q_stricmp( type,"gibs" ) )                                                                                                               {
+		} else if ( !Q_stricmp( type,"gibs" ) ) {
 			ent->key = 3;
-		} else if ( !Q_stricmp( type,"brick" ) )                                                                                                                                                                      {
+		} else if ( !Q_stricmp( type,"brick" ) ) {
 			ent->key = 4;
-		} else if ( !Q_stricmp( type,"rock" ) )                                                                                                                                                                                                                              {
+		} else if ( !Q_stricmp( type,"rock" ) ) {
 			ent->key = 5;
-		} else if ( !Q_stricmp( type,"fabric" ) )                                                                                                                                                                                                                                                                                     {
+		} else if ( !Q_stricmp( type,"fabric" ) ) {
 			ent->key = 6;
 		}
 	} else {
@@ -4438,7 +4438,7 @@ void SP_func_explosive( gentity_t *ent ) {
 	if ( ent->spawnflags & 1 ) {  // start invis
 		ent->use = func_explosive_spawn;
 		trap_UnlinkEntity( ent );
-	} else if ( ent->targetname )     {
+	} else if ( ent->targetname ) {
 		ent->use = func_explosive_use;
 		ent->AIScript_AlertEntity = func_explosive_alert;
 	}
@@ -4479,15 +4479,15 @@ void SP_func_explosive( gentity_t *ent ) {
 			ent->key = 0;
 		} else if ( !Q_stricmp( type,"glass" ) ) {
 			ent->key = 1;
-		} else if ( !Q_stricmp( type,"metal" ) )                                                       {
+		} else if ( !Q_stricmp( type,"metal" ) ) {
 			ent->key = 2;
-		} else if ( !Q_stricmp( type,"gibs" ) )                                                                                                               {
+		} else if ( !Q_stricmp( type,"gibs" ) ) {
 			ent->key = 3;
-		} else if ( !Q_stricmp( type,"brick" ) )                                                                                                                                                                      {
+		} else if ( !Q_stricmp( type,"brick" ) ) {
 			ent->key = 4;
-		} else if ( !Q_stricmp( type,"rock" ) )                                                                                                                                                                                                                              {
+		} else if ( !Q_stricmp( type,"rock" ) ) {
 			ent->key = 5;
-		} else if ( !Q_stricmp( type,"fabric" ) )                                                                                                                                                                                                                                                                                     {
+		} else if ( !Q_stricmp( type,"fabric" ) ) {
 			ent->key = 6;
 		}
 	} else {
@@ -4648,7 +4648,7 @@ void use_invisible_user( gentity_t *ent, gentity_t *other, gentity_t *activator 
 	}
 
 	G_UseTargets( ent, other ); //----(SA)	how about this so the triggered targets have an 'activator' as well as an 'other'?
-								//----(SA)	Please let me know if you forsee any problems with this.
+	                            //----(SA)	Please let me know if you forsee any problems with this.
 }
 
 
