@@ -560,21 +560,20 @@ vm_t *VM_Create( const char *module, int ( *systemCalls )( int * ),
 	// replaced with the Doom 3 style game dll loading
 	vm->compiled = qfalse;
 	VM_PrepareInterpreter( vm, header );
-}
 
-// free the original file
-FS_FreeFile( header );
+	// free the original file
+	FS_FreeFile( header );
 
-// load the map file
-VM_LoadSymbols( vm );
+	// load the map file
+	VM_LoadSymbols( vm );
 
-// the stack is implicitly at the end of the image
-vm->programStack = vm->dataMask + 1;
-vm->stackBottom = vm->programStack - STACK_SIZE;
+	// the stack is implicitly at the end of the image
+	vm->programStack = vm->dataMask + 1;
+	vm->stackBottom = vm->programStack - STACK_SIZE;
 
-Com_Printf( "%s loaded in %d bytes on the hunk\n", module, remaining - Hunk_MemoryRemaining() );
+	Com_Printf( "%s loaded in %d bytes on the hunk\n", module, remaining - Hunk_MemoryRemaining() );
 
-return vm;
+	return vm;
 }
 
 
