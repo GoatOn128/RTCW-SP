@@ -43,6 +43,29 @@ Run ./cons -h to review build options. Use ./cons -- release to compile in relea
 
 If problems occur, consult the internet.
 
+Compiling with SCons (modern build, all platforms):
+---------------------------------------------------
+
+The restructured source tree builds with SCons from the repository root.
+Use this instead of the old cons build.
+
+Requirements:
+- Python 3 and SCons (pip install scons)
+- Windows: the Microsoft Visual Studio C++ toolchain (the x86 target
+  also needs the 32-bit build tools installed)
+- Linux: gcc and g++ with multilib support for the x86 target, plus
+  the X11 development headers
+
+Build from the repository root:
+
+  scons arch=x64 config=release
+
+Options:
+- arch: x86 or x64
+- config: debug or release
+- -j N: build with N parallel jobs
+- -k: keep going after errors to see every failing file
+
 Other platforms, updated source code, security issues:
 ------------------------------------------------------
 
