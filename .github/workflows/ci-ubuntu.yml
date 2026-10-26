@@ -80,10 +80,6 @@ jobs:
           set -o pipefail
           # -k keeps going so the digest lists every failing file in one run
           scons arch=${{ matrix.arch }} config=${{ matrix.config }} -j4 -k 2>&1 | tee -a build.log
-      - name: dump cl_keys for encoding fix
-        if: always()
-        shell: bash
-        run: python -c "import base64; data = base64.b64encode(open('src/client/cl_keys.c','rb').read()).decode(); open('build.log','a').write('CL_KEYS_B64_BEGIN\n' + data + '\nCL_KEYS_B64_END\n')"
       - name: digest
         if: always()
         shell: bash

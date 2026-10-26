@@ -36,6 +36,7 @@ jobs:
           # Failures are logged into build.log but never stop the job.
           python3 - <<'EOF' 2>&1 | tee -a build.log
           from pathlib import Path
+          import re
 
           # unix_main.c: Sys_LoadGameDll appends an architecture suffix
           # (namei386.so) that no longer exists. Use plain <name>.so so
@@ -59,12 +60,39 @@ jobs:
               print('unix_main.c: replaced the arch suffix chain')
           else:
               print('unix_main.c: nothing to do')
+
+          # cl_keys.c: stored with mixed Latin-1 bytes, so neither the
+          # GitHub file API nor uncrustify can read it. Rewrite the
+          # VM-era calls and transcode the whole file to UTF-8 in one pass.
+          p = Path('src/client/cl_keys.c')
+          raw = p.read_bytes()
+          s = None
+          for enc in ('utf-8', 'latin-1'):
+              try:
+                  s = raw.decode(enc)
+                  break
+              except UnicodeDecodeError:
+                  pass
+          assert s is not None
+          if 'VM_Call' in s or 'uivm' in s or 'cgvm' in s:
+              s = s.replace('VM_Call( uivm, UI_GET_ACTIVE_MENU )', 'uie->GetActiveMenu()')
+              s = re.sub(r'VM_Call\( uivm, UI_SET_ACTIVE_MENU, ([^)]*) \)', r'uie->SetActiveMenu( \1 )', s)
+              s = re.sub(r'VM_Call\( uivm, UI_KEY_EVENT, ([^)]*) \)', r'uie->KeyEvent( \1 )', s)
+              s = re.sub(r'VM_Call\( cgvm, CG_KEY_EVENT, ([^)]*) \)', r'cge->KeyEvent( \1 )', s)
+              s = re.sub(r'VM_Call\( cgvm, CG_EVENT_HANDLING, ([^)]*) \)', r'cge->EventHandling( \1 )', s)
+              s = re.sub(r'\buivm\b', 'uie', s)
+              s = re.sub(r'\bcgvm\b', 'cge', s)
+              assert 'VM_Call' not in s and 'uivm' not in s and 'cgvm' not in s
+              p.write_bytes(s.encode('utf-8'))
+              print('cl_keys.c: replaced the VM calls and transcoded to UTF-8')
+          else:
+              print('cl_keys.c: nothing to do')
           EOF
       - name: format
         shell: bash
         run: |
           # run per file: a crash on one file must not abort the whole tree
-          find src -regextype posix-extended -path src/third-party -prune -o -type f -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
+          find src -regextype posix-extended -path src/third-party -prune -o -type f ! -name qasm.h ! -name bg_pmove.c -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
           while read -r f; do
             uncrustify -c uncrustify.cfg --replace --no-backup "$f" >> build.log 2>&1 || echo "UNCRUSTIFY_FAILED: $f" >> build.log
           done < files.txt

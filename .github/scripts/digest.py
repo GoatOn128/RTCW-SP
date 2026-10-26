@@ -32,7 +32,7 @@ MSVC_CODE_RE = re.compile(r"warning C([0-9]+):")
 
 MAX_ERROR_LINES = 300
 MAX_KINDS = 300
-MAX_EXAMPLES = 30
+MAX_EXAMPLES = 400
 
 
 def warn_key(line):
