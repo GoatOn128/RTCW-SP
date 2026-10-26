@@ -41,11 +41,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet; then
-            git add -A
+          if ! git diff --quiet -- src; then
+            # only formatted sources belong in the tree, never the local
+            # build.log or stray uncrustify scratch files
+            find src -name '*.uncrustify' -delete
+            git add src
             git commit -m "uncrustify: format tree [skip ci]"
             if ! git push; then
-              git pull --rebase origin ${{ github.ref }}
+              # -X theirs: on a push race the newest output wins instead of
+            # committing conflict markers
+            git pull --rebase -X theirs origin ${{ github.ref }}
               git push
             fi
           fi
@@ -147,7 +152,10 @@ jobs:
 
   publish:
     needs: build
-    if: always() && github.event_name == 'push'
+    # a cancelled run (superseded by a newer push) must not publish its
+    # partial logs: they race with the live run and corrupt the committed
+    # build.log and build-digest.md
+    if: always() && github.event_name == 'push' && !cancelled()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -175,6 +183,8 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m "CI: publish build log and digest [skip ci]"
           if ! git push; then
-            git pull --rebase origin ${{ github.ref }}
+            # -X theirs: on a push race the newest output wins instead of
+            # committing conflict markers
+            git pull --rebase -X theirs origin ${{ github.ref }}
             git push
           fi
