@@ -54,8 +54,7 @@ Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
 ''')
 
-# Include paths. Most engine includes resolve file-relat
-ive, these cover
+# Include paths. Most engine includes resolve file-relative, these cover
 # the rest, including the legacy "../game/..." style includes: the
 # src/games/game entry makes those resolve to src/games/game/.
 common_cpppath = [
@@ -103,8 +102,7 @@ if IS_WINDOWS:
     env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
     # legacy warning classes that carry no signal for this 2001-era tree
     env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
-    '-Wno-unused-value', '-Wno-unu
-sed-variable', '-Wno-unused-const-variable',
+    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
     '-Wno-pointer-sign', '-Wno-deprecated-declarations'])
     env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
     '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
@@ -140,8 +138,7 @@ else:
         env.Append(CCFLAGS=['-g', '-O0'], CXXFLAGS=['-g', '-O0'])
     else:
         env.Append(CPPDEFINES=['NDEBUG'])
-        env.Append(CCFLAGS=['-O2', '-fno-strict-alia
-sing'], CXXFLAGS=['-O2', '-fno-strict-aliasing'])
+        env.Append(CCFLAGS=['-O2', '-fno-strict-aliasing'], CXXFLAGS=['-O2', '-fno-strict-aliasing'])
     # legacy warning classes that carry no signal for this 2001-era tree
     env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
     '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
@@ -179,8 +176,7 @@ client_files = ['src/client/' + f for f in [
     'snd_adpcm.c', 'snd_dma.c', 'snd_mem.c', 'snd_mix.c', 'snd_wavelet.c',
 ]]
 
-qcommon_files = ['src/qcommon/' + f for 
-f in [
+qcommon_files = ['src/qcommon/' + f for f in [
     'cm_load.c', 'cm_patch.c', 'cm_polylib.c', 'cm_test.c', 'cm_trace.c',
     'cmd.c', 'common.c', 'cvar.c', 'files.c', 'huffman.c', 'md4.c', 'msg.c',
     'net_chan.c', 'unzip.c',
@@ -223,8 +219,7 @@ unix_sys_files = ['src/sys/unix/' + f for f in [
     'linux_qgl.c', 'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
 ]]
 # the unix asm files (matha.s, snd_mixa.s, sys_dosa.s) are not built:
-# q_shared.h forces id386 to 0, so the portab
-le C implementations are used
+# q_shared.h forces id386 to 0, so the portable C implementations are used
 
 win_sys_files = ['src/sys/win32/' + f for f in [
     'win_gamma.c', 'win_glimp.c', 'win_input.c', 'win_main.c', 'win_net.c',
@@ -274,8 +269,7 @@ client_env.Program(client_target, client_objs)
 game_files = ['src/games/game/' + f for f in [
     'ai_cast.c', 'ai_cast_characters.c', 'ai_cast_debug.c',
     'ai_cast_events.c', 'ai_cast_fight.c', 'ai_cast_func_attack.c',
-    'ai_cast_func_boss1.c', 'ai_cast_funcs.c', '
-ai_cast_script.c',
+    'ai_cast_func_boss1.c', 'ai_cast_funcs.c', 'ai_cast_script.c',
     'ai_cast_script_actions.c', 'ai_cast_script_ents.c', 'ai_cast_sight.c',
     'ai_cast_think.c', 'bg_animation.c', 'bg_misc.c', 'bg_pmove.c',
     'bg_slidemove.c', 'g_active.c', 'g_alarm.c', 'g_bot.c', 'g_client.c',
@@ -315,8 +309,7 @@ if IS_WINDOWS:
     cgame_env.Append(LINKFLAGS=['/DEF:src/games/cgame/cgame.def'])
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
-    cg
-ame_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
+    cgame_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
 cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files, shared=not IS_WINDOWS))
 

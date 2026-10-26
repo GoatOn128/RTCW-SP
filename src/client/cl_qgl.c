@@ -40,8 +40,7 @@ cvar_t  *r_mode;
 cvar_t  *r_fullscreen;
 cvar_t  *r_glDriver;
 cvar_t  *r_glIgnoreWicked3D;
-cvar_t  *r_allow
-Extensions;
+cvar_t  *r_allowExtensions;
 cvar_t  *r_ext_compressed_textures;
 cvar_t  *r_ext_gamma_control;
 cvar_t  *r_ext_multitexture;
@@ -82,8 +81,7 @@ void CL_RegisterVideoCvars( void ) {
 #endif
 	r_colorbits = Cvar_Get( "r_colorbits", "0", CVAR_ARCHIVE | CVAR_LATCH );
 	r_stereo = Cvar_Get( "r_stereo", "0", CVAR_ARCHIVE | CVAR_LATCH );
-	r_stencilbits = Cvar_Get( "r_stencilbits", "0", CVAR_ARCHIVE | CVAR_
-LATCH );
+	r_stencilbits = Cvar_Get( "r_stencilbits", "0", CVAR_ARCHIVE | CVAR_LATCH );
 	r_depthbits = Cvar_Get( "r_depthbits", "0", CVAR_ARCHIVE | CVAR_LATCH );
 	r_ignorehwgamma = Cvar_Get( "r_ignorehwgamma", "1", CVAR_ARCHIVE | CVAR_LATCH );
 	r_mode = Cvar_Get( "r_mode", "3", CVAR_ARCHIVE | CVAR_LATCH );
@@ -140,8 +138,7 @@ qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
 		return qtrue;
 	}
 
-	vm = 
-&r_vidModes[mode];
+	vm = &r_vidModes[mode];
 
 	*width  = vm->width;
 	*height = vm->height;
@@ -204,8 +201,7 @@ void QGL_FillImportTable( void ) {
 	qglImport.qglColor3ubv = qglColor3ubv;
 	qglImport.qglColor3ui = qglColor3ui;
 	qglImport.qglColor3uiv = qglColor3uiv;
-	qglImport
-.qglColor3us = qglColor3us;
+	qglImport.qglColor3us = qglColor3us;
 	qglImport.qglColor3usv = qglColor3usv;
 	qglImport.qglColor4b = qglColor4b;
 	qglImport.qglColor4bv = qglColor4bv;
@@ -253,8 +249,7 @@ void QGL_FillImportTable( void ) {
 	qglImport.qglEvalCoord1d = qglEvalCoord1d;
 	qglImport.qglEvalCoord1dv = qglEvalCoord1dv;
 	qglImport.qglEvalCoord1f = qglEvalCoord1f;
-	q
-glImport.qglEvalCoord1fv = qglEvalCoord1fv;
+	qglImport.qglEvalCoord1fv = qglEvalCoord1fv;
 	qglImport.qglEvalCoord2d = qglEvalCoord2d;
 	qglImport.qglEvalCoord2dv = qglEvalCoord2dv;
 	qglImport.qglEvalCoord2f = qglEvalCoord2f;
@@ -300,8 +295,7 @@ glImport.qglEvalCoord1fv = qglEvalCoord1fv;
 	qglImport.qglGetTexGeniv = qglGetTexGeniv;
 	qglImport.qglGetTexImage = qglGetTexImage;
 	qglImport.qglGetTexLevelParameterfv = qglGetTexLevelParameterfv;
-	qglImport.qglGetTexLevelParameteriv = qglGetTex
-LevelParameteriv;
+	qglImport.qglGetTexLevelParameteriv = qglGetTexLevelParameteriv;
 	qglImport.qglGetTexParameterfv = qglGetTexParameterfv;
 	qglImport.qglGetTexParameteriv = qglGetTexParameteriv;
 	qglImport.qglHint = qglHint;
@@ -352,8 +346,7 @@ LevelParameteriv;
 	qglImport.qglMaterialiv = qglMaterialiv;
 	qglImport.qglMatrixMode = qglMatrixMode;
 	qglImport.qglMultMatrixd = qglMultMatrixd;
-	q
-glImport.qglMultMatrixf = qglMultMatrixf;
+	qglImport.qglMultMatrixf = qglMultMatrixf;
 	qglImport.qglNewList = qglNewList;
 	qglImport.qglNormal3b = qglNormal3b;
 	qglImport.qglNormal3bv = qglNormal3bv;
@@ -399,8 +392,7 @@ glImport.qglMultMatrixf = qglMultMatrixf;
 	qglImport.qglRasterPos2sv = qglRasterPos2sv;
 	qglImport.qglRasterPos3d = qglRasterPos3d;
 	qglImport.qglRasterPos3dv = qglRasterPos3dv;
-	qglImport.qglRa
-sterPos3f = qglRasterPos3f;
+	qglImport.qglRasterPos3f = qglRasterPos3f;
 	qglImport.qglRasterPos3fv = qglRasterPos3fv;
 	qglImport.qglRasterPos3i = qglRasterPos3i;
 	qglImport.qglRasterPos3iv = qglRasterPos3iv;
@@ -449,8 +441,7 @@ sterPos3f = qglRasterPos3f;
 	qglImport.qglTexCoord2fv = qglTexCoord2fv;
 	qglImport.qglTexCoord2i = qglTexCoord2i;
 	qglImport.qglTexCoord2iv = qglTexCoord2iv;
-	q
-glImport.qglTexCoord2s = qglTexCoord2s;
+	qglImport.qglTexCoord2s = qglTexCoord2s;
 	qglImport.qglTexCoord2sv = qglTexCoord2sv;
 	qglImport.qglTexCoord3d = qglTexCoord3d;
 	qglImport.qglTexCoord3dv = qglTexCoord3dv;
@@ -497,8 +488,7 @@ glImport.qglTexCoord2s = qglTexCoord2s;
 	qglImport.qglVertex2iv = qglVertex2iv;
 	qglImport.qglVertex2s = qglVertex2s;
 	qglImport.qglVertex2sv = qglVertex2sv;
-	qglImport.qglVertex3d = qglVertex
-3d;
+	qglImport.qglVertex3d = qglVertex3d;
 	qglImport.qglVertex3dv = qglVertex3dv;
 	qglImport.qglVertex3f = qglVertex3f;
 	qglImport.qglVertex3fv = qglVertex3fv;
@@ -540,8 +530,7 @@ glImport.qglTexCoord2s = qglTexCoord2s;
 	qglImport.qwglGetLayerPaletteEntries = qwglGetLayerPaletteEntries;
 	qglImport.qwglRealizeLayerPalette = qwglRealizeLayerPalette;
 	qglImport.qwglSwapLayerBuffers = qwglSwapLayerBuffers;
-	qglImport.qwglSwapInt
-ervalEXT = qwglSwapIntervalEXT;
+	qglImport.qwglSwapIntervalEXT = qwglSwapIntervalEXT;
 #endif  // _WIN32
 #if ( ( defined __linux__ )  || ( defined __FreeBSD__ ) ) // rb010123
 #if defined ( __FX__ )
