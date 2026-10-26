@@ -1512,11 +1512,13 @@ HANDLE renderActiveEvent;
 
 void ( *glimpRenderThread )( void );
 
-void GLimp_RenderThreadWrapper( void ) {
+static DWORD WINAPI GLimp_RenderThreadWrapper( LPVOID parm ) {
 	glimpRenderThread();
 
 	// unbind the context before we die
 	qwglMakeCurrent( glw_state.hDC, NULL );
+
+	return 0;
 }
 
 /*
@@ -1537,7 +1539,7 @@ qboolean GLimp_SpawnRenderThread( void ( *function )( void ) ) {
 	renderThreadHandle = CreateThread(
 		NULL,   // LPSECURITY_ATTRIBUTES lpsa,
 		0,      // DWORD cbStack,
-		(LPTHREAD_START_ROUTINE)GLimp_RenderThreadWrapper,  // LPTHREAD_START_ROUTINE lpStartAddr,
+		GLimp_RenderThreadWrapper,  // LPTHREAD_START_ROUTINE lpStartAddr,
 		0,          // LPVOID lpvThreadParm,
 		0,          //   DWORD fdwCreate,
 		&renderThreadId );

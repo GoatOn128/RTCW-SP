@@ -139,7 +139,7 @@ qboolean SNDDMA_Init( void ) {
 #undef DEFINE_GUID
 
 #define DEFINE_GUID( name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8 ) \
-		EXTERN_C const GUID name \
+		const GUID name \
 			= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
 
 // DirectSound Component GUID {47D4D946-62E8-11CF-93BC-444553540000}
