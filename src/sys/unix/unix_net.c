@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ void NetadrToSockadr( netadr_t *a, struct sockaddr_in *s ) {
 
 		s->sin_port = a->port;
 		*(int *)&s->sin_addr = -1;
-	} else if ( a->type == NA_IP )     {
+	} else if ( a->type == NA_IP ) {
 		s->sin_family = AF_INET;
 
 		*(int *)&s->sin_addr = *(int *)&a->ip;
@@ -214,11 +214,11 @@ void    Sys_SendPacket( int length, const void *data, netadr_t to ) {
 
 	if ( to.type == NA_BROADCAST ) {
 		net_socket = ip_socket;
-	} else if ( to.type == NA_IP )     {
+	} else if ( to.type == NA_IP ) {
 		net_socket = ip_socket;
-	} else if ( to.type == NA_IPX )     {
+	} else if ( to.type == NA_IPX ) {
 		net_socket = ipx_socket;
-	} else if ( to.type == NA_BROADCAST_IPX )     {
+	} else if ( to.type == NA_BROADCAST_IPX ) {
 		net_socket = ipx_socket;
 	} else {
 		Com_Error( ERR_FATAL, "NET_SendPacket: bad address type" );
@@ -326,9 +326,9 @@ NET_GetLocalAddress
 // Don't do a forward mapping from the hostname of the machine to the IP.  The reason is that we might have obtained an IP address from DHCP and there might not be any name registered for the machine.  On Mac OS X, the machine name defaults to 'localhost' and NetInfo has 127.0.0.1 listed for this name.  Instead, we want to get a list of all the IP network interfaces on the machine.
 // This code adapted from OmniNetworking.
 
-#define IFR_NEXT( ifr )	  \
-	( (struct ifreq *) ( (char *) ( ifr ) + sizeof( *( ifr ) ) + \
-						 MAX( 0, (int) ( ifr )->ifr_addr.sa_len - (int) sizeof( ( ifr )->ifr_addr ) ) ) )
+#define IFR_NEXT( ifr )   \
+		( (struct ifreq *) ( (char *) ( ifr ) + sizeof( *( ifr ) ) + \
+							 MAX( 0, (int) ( ifr )->ifr_addr.sa_len - (int) sizeof( ( ifr )->ifr_addr ) ) ) )
 
 void NET_GetLocalAddress( void ) {
 	struct ifreq requestBuffer[MAX_IPS], *linkInterface, *inetInterface;
@@ -598,4 +598,3 @@ void NET_Sleep( int msec ) {
 	timeout.tv_usec = ( msec % 1000 ) * 1000;
 	select( ip_socket + 1, &fdset, NULL, NULL, &timeout );
 }
-

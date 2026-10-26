@@ -1,0 +1,51 @@
+Selecting previously unselected package uncrustify.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 211065 files and directories currently installed.)
+Preparing to unpack .../uncrustify_0.78.1+dfsg1-1build1_amd64v3.deb ...
+Unpacking uncrustify (0.78.1+dfsg1-1build1) ...
+Setting up uncrustify (0.78.1+dfsg1-1build1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
+Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
+Option<NUM>: at uncrustify.cfg:127: Expected number , for 'indent_bool_paren'; got 'false'
+uncrustify.cfg:380: unknown option 'align_number_left'
+Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_cont'; got 'false'
+uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
+You can also use 'nl_var_def_blk_end' for additional functionality
+uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
+do_source_file: Parsing: src/sys/macosx/macosx_display.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/CGPrivateAPI.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/macosx_qgl.h as language C-Header
+parse_cleanup(469): pc orig line is 5446, orig col is 1, Text() is '}', type is BRACE_CLOSE
+do_source_file: Parsing: src/sys/macosx/macosx_timers.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/macosx_glimp.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/Q3Controller.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/macosx_local.h as language C-Header
+do_source_file: Parsing: src/sys/macosx/CGMouseDeltaFix.h as language C-Header
+do_source_file: Parsing: src/sys/unix/unix_main.c as language C
+do_source_file: Parsing: src/sys/unix/unix_shared.c as language C
+do_source_file: Parsing: src/sys/unix/vm_x86.c as language C
+do_source_file: Parsing: src/sys/unix/linux_snd.c as language C
+do_source_file: Parsing: src/sys/unix/unix_glw.h as language C-Header
+do_source_file: Parsing: src/sys/unix/linux_qgl.c as language C
+do_source_file: Parsing: src/sys/unix/linux_joystick.c as language C
+do_source_file: Parsing: src/sys/unix/linux_glimp.c as language C
+do_source_file: Parsing: src/sys/unix/linux_common.c as language C
+do_source_file: Parsing: src/sys/unix/linux_local.h as language C-Header
+do_source_file: Parsing: src/sys/unix/unix_net.c as language C
+do_source_file: Parsing: src/sys/unix/qasm.h as language C-Header
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check: __n (which is 18446744073709551615) >= this->size() (which is 1)
