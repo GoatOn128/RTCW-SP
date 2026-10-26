@@ -35,6 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <sys/mman.h>
 #include <sys/time.h>
 #include <pwd.h>
+#include <dlfcn.h>
 
 #include "../game/q_shared.h"
 #include "../qcommon/qcommon.h"
@@ -394,6 +395,59 @@ void Sys_EnterCriticalSection( void *ptr ) {
 }
 
 void Sys_LeaveCriticalSection( void *ptr ) {
+}
+
+
+/*
+=================
+Sys_LoadModule
+
+Loads a native module by name ("qagame", "cgame", "ui") and returns
+an opaque handle. The platform specific file extension is appended.
+=================
+*/
+void *Sys_LoadModule( const char *name ) {
+	void *libHandle;
+	char filename[MAX_QPATH];
+	char *fn;
+	char *basepath, *cdpath, *gamedir;
+
+	Com_sprintf( filename, sizeof( filename ), "%s.so", name );
+
+	libHandle = dlopen( filename, RTLD_NOW );
+	if ( libHandle ) {
+		return libHandle;
+	}
+
+	basepath = Cvar_VariableString( "fs_basepath" );
+	cdpath = Cvar_VariableString( "fs_cdpath" );
+	gamedir = Cvar_VariableString( "fs_game" );
+	if ( !gamedir[0] ) {
+		gamedir = "base";
+	}
+
+	fn = FS_BuildOSPath( basepath, gamedir, filename );
+	libHandle = dlopen( fn, RTLD_NOW );
+	if ( libHandle ) {
+		return libHandle;
+	}
+
+	if ( cdpath[0] ) {
+		fn = FS_BuildOSPath( cdpath, gamedir, filename );
+		libHandle = dlopen( fn, RTLD_NOW );
+	}
+
+	return libHandle;
+}
+
+void *Sys_ModuleAddress( void *module, const char *procName ) {
+	return dlsym( module, procName );
+}
+
+void Sys_UnloadModule( void *module ) {
+	if ( module ) {
+		dlclose( module );
+	}
 }
 
 #if 0

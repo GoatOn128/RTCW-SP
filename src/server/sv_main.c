@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 serverStatic_t svs;                 // persistant server info
 server_t sv;                        // local server
-vm_t            *gvm = NULL;                // game virtual machine // bk001212 init
+gameExport_t    *ge = NULL;                // game module export
 
 cvar_t  *sv_fps;                // time rate for running non-clients
 cvar_t  *sv_timeout;            // seconds without any message
@@ -842,7 +842,7 @@ void SV_Frame( int msec ) {
 		svs.time += frameMsec;
 
 		// let everything in the world think and move
-		VM_Call( gvm, GAME_RUN_FRAME, svs.time );
+		ge->RunFrame( svs.time );
 	}
 
 	if ( com_speeds->integer ) {

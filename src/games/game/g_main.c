@@ -269,65 +269,41 @@ void G_RetrieveMoveSpeedsFromClient( int entnum, char *text );
 
 /*
 ================
-vmMain
+GetGameAPI
 
-This is the only way control passes into the module.
-This must be the very first function compiled into the .q3vm file
+Returns a struct of function pointers to the engine and
+receives the engine-provided import functions in exchange.
 ================
 */
-#if defined( __MACOS__ )
-#pragma export on
-#endif
-int vmMain( int command, int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6 ) {
-#if defined( __MACOS__ )
-#pragma export off
-#endif
-	switch ( command ) {
-	case GAME_INIT:
-		G_InitGame( arg0, arg1, arg2 );
-		return 0;
-	case GAME_SHUTDOWN:
-		G_ShutdownGame( arg0 );
-		return 0;
-	case GAME_CLIENT_CONNECT:
-		return (int)ClientConnect( arg0, arg1, arg2 );
-	case GAME_CLIENT_THINK:
-		ClientThink( arg0 );
-		return 0;
-	case GAME_CLIENT_USERINFO_CHANGED:
-		ClientUserinfoChanged( arg0 );
-		return 0;
-	case GAME_CLIENT_DISCONNECT:
-		ClientDisconnect( arg0 );
-		return 0;
-	case GAME_CLIENT_BEGIN:
-		ClientBegin( arg0 );
-		return 0;
-	case GAME_CLIENT_COMMAND:
-		ClientCommand( arg0 );
-		return 0;
-	case GAME_RUN_FRAME:
-		G_RunFrame( arg0 );
-		return 0;
-	case GAME_CONSOLE_COMMAND:
-		return ConsoleCommand();
-	case BOTAI_START_FRAME:
-		return BotAIStartFrame( arg0 );
-	// Ridah, Cast AI
-	case AICAST_VISIBLEFROMPOS:
-		return AICast_VisibleFromPos( (float *)(size_t)arg0, arg1, (float *)(size_t)arg2, arg3, arg4 );
-	case AICAST_CHECKATTACKATPOS:
-		return AICast_CheckAttackAtPos( arg0, arg1, (float *)(size_t)arg2, arg3, arg4 );
-	// done.
+gameExport_t *GetGameAPI( int apiVersion, gameImport_t *import ) {
+	static gameExport_t exportTable;
 
-	case GAME_RETRIEVE_MOVESPEEDS_FROM_CLIENT:
-		G_RetrieveMoveSpeedsFromClient( arg0, (char *)arg1 );
-		return 0;
-	case GAME_GETMODELINFO:
-		return G_GetModelInfo( arg0, (char *)arg1, (animModelInfo_t **)arg2 );
+	memset( &exportTable, 0, sizeof( exportTable ) );
+
+	if ( apiVersion != GAME_API_VERSION ) {
+		return NULL;
 	}
 
-	return -1;
+	gameImport = import;
+
+	exportTable.apiVersion = GAME_API_VERSION;
+	exportTable.Init = G_InitGame;
+	exportTable.Shutdown = G_ShutdownGame;
+	exportTable.ClientConnect = ClientConnect;
+	exportTable.ClientBegin = ClientBegin;
+	exportTable.ClientUserinfoChanged = ClientUserinfoChanged;
+	exportTable.ClientDisconnect = ClientDisconnect;
+	exportTable.ClientCommand = ClientCommand;
+	exportTable.ClientThink = ClientThink;
+	exportTable.RunFrame = G_RunFrame;
+	exportTable.ConsoleCommand = ConsoleCommand;
+	exportTable.BotAIStartFrame = BotAIStartFrame;
+	exportTable.AicastVisibleFromPos = AICast_VisibleFromPos;
+	exportTable.AicastCheckAttackAtPos = AICast_CheckAttackAtPos;
+	exportTable.RetrieveMoveSpeedsFromClient = G_RetrieveMoveSpeedsFromClient;
+	exportTable.GetModelInfo = G_GetModelInfo;
+
+	return &exportTable;
 }
 
 

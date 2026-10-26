@@ -678,6 +678,63 @@ found_dll:
 }
 
 
+
+/*
+=================
+Sys_LoadModule
+
+Loads a native module by name ("qagame", "cgame", "ui") and returns
+an opaque handle. The platform specific file extension is appended.
+=================
+*/
+void *Sys_LoadModule( const char *name ) {
+	HINSTANCE libHandle;
+	char filename[MAX_QPATH];
+	char *fn;
+	char *basepath, *cdpath, *gamedir;
+
+	Com_sprintf( filename, sizeof( filename ), "%s.dll", name );
+
+	// check the current working directory first
+	libHandle = LoadLibrary( filename );
+	if ( libHandle ) {
+		return libHandle;
+	}
+
+	basepath = Cvar_VariableString( "fs_basepath" );
+	cdpath = Cvar_VariableString( "fs_cdpath" );
+	gamedir = Cvar_VariableString( "fs_game" );
+	if ( !gamedir[0] ) {
+		gamedir = "base";
+	}
+
+	fn = FS_BuildOSPath( basepath, gamedir, filename );
+	libHandle = LoadLibrary( fn );
+	if ( libHandle ) {
+		return libHandle;
+	}
+
+	if ( cdpath[0] ) {
+		fn = FS_BuildOSPath( cdpath, gamedir, filename );
+		libHandle = LoadLibrary( fn );
+	}
+
+	return libHandle;
+}
+
+void *Sys_ModuleAddress( void *module, const char *procName ) {
+	return ( void * ) GetProcAddress( ( HINSTANCE ) module, procName );
+}
+
+void Sys_UnloadModule( void *module ) {
+	if ( !module ) {
+		return;
+	}
+	if ( !FreeLibrary( ( HINSTANCE ) module ) ) {
+		Com_Error( ERR_FATAL, "Sys_UnloadModule: FreeLibrary failed" );
+	}
+}
+
 /*
 ========================================================================
 

@@ -767,7 +767,7 @@ void SV_SpawnServer( char *server, qboolean killBots ) {
 
 	// run a few frames to allow everything to settle
 	for ( i = 0 ; i < 3 ; i++ ) {
-		VM_Call( gvm, GAME_RUN_FRAME, svs.time );
+		ge->RunFrame( svs.time );
 		SV_BotFrame( svs.time );
 		svs.time += 100;
 	}
@@ -791,7 +791,7 @@ void SV_SpawnServer( char *server, qboolean killBots ) {
 			}
 
 			// connect the client again
-			denied = VM_ExplicitArgPtr( gvm, VM_Call( gvm, GAME_CLIENT_CONNECT, i, qfalse, isBot ) );   // firstTime = qfalse
+			denied = ge->ClientConnect( i, qfalse, isBot );   // firstTime = qfalse
 			if ( denied ) {
 				// this generally shouldn't happen, because the client
 				// was connected before the level change
@@ -814,14 +814,14 @@ void SV_SpawnServer( char *server, qboolean killBots ) {
 					client->deltaMessage = -1;
 					client->nextSnapshotTime = svs.time;    // generate a snapshot immediately
 
-					VM_Call( gvm, GAME_CLIENT_BEGIN, i );
+					ge->ClientBegin( i );
 				}
 			}
 		}
 	}
 
 	// run another frame to allow things to look at all the players
-	VM_Call( gvm, GAME_RUN_FRAME, svs.time );
+	ge->RunFrame( svs.time );
 	SV_BotFrame( svs.time );
 	svs.time += 100;
 

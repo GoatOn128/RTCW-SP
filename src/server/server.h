@@ -30,8 +30,8 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../game/q_shared.h"
 #include "../qcommon/qcommon.h"
-#include "../game/g_public.h"
 #include "../game/bg_public.h"
+#include "../game/g_public.h"
 
 //=============================================================================
 
@@ -219,7 +219,7 @@ typedef struct {
 
 extern serverStatic_t svs;                  // persistant server info across maps
 extern server_t sv;                         // cleared each map
-extern vm_t            *gvm;                // game virtual machine
+extern gameExport_t *ge;                // game virtual machine
 
 #define MAX_MASTER_SERVERS  5
 

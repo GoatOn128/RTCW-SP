@@ -474,10 +474,10 @@ void SV_BotFrame( int time ) {
 		return;
 	}
 	//NOTE: maybe the game is already shutdown
-	if ( !gvm ) {
+	if ( !ge ) {
 		return;
 	}
-	VM_Call( gvm, BOTAI_START_FRAME, time );
+	ge->BotAIStartFrame( time );
 }
 
 /*
@@ -546,7 +546,7 @@ BotImport_AICast_VisibleFromPos
 */
 qboolean BotImport_AICast_VisibleFromPos(   vec3_t srcpos, int srcnum,
 											vec3_t destpos, int destnum, qboolean updateVisPos ) {
-	return VM_Call( gvm, AICAST_VISIBLEFROMPOS, (int)srcpos, srcnum, (int)destpos, destnum, updateVisPos );
+	return ge->AicastVisibleFromPos( srcpos, srcnum, destpos, destnum, updateVisPos );
 }
 
 /*
@@ -555,7 +555,7 @@ BotImport_AICast_CheckAttackAtPos
 ===============
 */
 qboolean BotImport_AICast_CheckAttackAtPos( int entnum, int enemy, vec3_t pos, qboolean ducking, qboolean allowHitWorld ) {
-	return VM_Call( gvm, AICAST_CHECKATTACKATPOS, entnum, enemy, (int)pos, ducking, allowHitWorld );
+	return ge->AicastCheckAttackAtPos( entnum, enemy, pos, ducking, allowHitWorld );
 }
 // done.
 
