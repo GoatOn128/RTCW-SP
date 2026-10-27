@@ -9,7 +9,7 @@ material and is never modified.
 
 ## Phases
 
-🚧 Phase 1 - idlib subset
+✅ Phase 1 - idlib subset
    Port the idlib foundation the BFG renderer is written against: the
    system headers, Heap, Str, containers, math, bounding volumes and the
    geometry types. Builds as a static library on every CI config.
