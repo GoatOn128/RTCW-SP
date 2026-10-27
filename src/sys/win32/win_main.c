@@ -695,12 +695,23 @@ found_dll:
 
 
 
+// arch suffix appended to the module file names (qagame_x86.dll);
+// the SCons build passes it as a plain token (x86/x64) on the command
+// line, STRINGIFY turns it into the string literal the file name needs;
+// the fallback keeps plain compiler builds working
+#ifndef ARCH_STRING
+#define ARCH_STRING x86
+#endif
+#define ARCH_STRING_( x ) #x
+#define ARCH_STRING_STR( x ) ARCH_STRING_( x )
+
 /*
 =================
 Sys_LoadModule
 
 Loads a native module by name ("qagame", "cgame", "ui") and returns
-an opaque handle. The platform specific file extension is appended.
+an opaque handle. The arch suffix and the platform specific file
+extension are appended.
 =================
 */
 void *Sys_LoadModule( const char *name ) {
@@ -709,7 +720,7 @@ void *Sys_LoadModule( const char *name ) {
 	char *fn;
 	char *basepath, *cdpath, *gamedir;
 
-	Com_sprintf( filename, sizeof( filename ), "%s.dll", name );
+	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING_STR( ARCH_STRING ) ".dll", name );
 
 	// check the current working directory first
 	libHandle = LoadLibrary( filename );
