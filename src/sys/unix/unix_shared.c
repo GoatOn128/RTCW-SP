@@ -402,14 +402,7 @@ void Sys_LeaveCriticalSection( void *ptr ) {
 
 
 // arch suffix appended to the module file names (qagame_x86.so);
-// the SCons build passes it as a plain token (x86/x64) on the command
-// line, STRINGIFY turns it into the string literal the file name needs;
-// the fallback keeps plain compiler builds working
-#ifndef ARCH_STRING
-#define ARCH_STRING x86
-#endif
-#define ARCH_STRING_( x ) #x
-#define ARCH_STRING_STR( x ) ARCH_STRING_( x )
+// q_buildconfig.h defines ARCH_STRING as a quoted string ("x86"/"x64")
 
 /*
 =================
@@ -426,7 +419,7 @@ void *Sys_LoadModule( const char *name ) {
 	char *fn;
 	char *basepath, *cdpath, *gamedir;
 
-	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING_STR( ARCH_STRING ) ".so", name );
+	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING ".so", name );
 
 	libHandle = dlopen( filename, RTLD_NOW );
 	if ( libHandle ) {
