@@ -2092,9 +2092,9 @@ typedef enum {
 	CACHE_NUMGROUPS
 } cacheGroup_t;
 static cacheItem_t cacheGroups[CACHE_NUMGROUPS] = {
-	{{'s','o','u','n','d',0}, CACHE_SOUNDS},
-	{{'m','o','d','e','l',0}, CACHE_MODELS},
-	{{'i','m','a','g','e',0}, CACHE_IMAGES},
+	{{'s','o','u','n','d',0}, CACHE_SOUNDS, 0},
+	{{'m','o','d','e','l',0}, CACHE_MODELS, 0},
+	{{'i','m','a','g','e',0}, CACHE_IMAGES, 0},
 };
 #define MAX_CACHE_ITEMS     4096
 #define CACHE_HIT_RATIO     0.75        // if hit on this percentage of maps, it'll get cached
