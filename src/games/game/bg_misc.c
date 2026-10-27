@@ -3455,7 +3455,7 @@ model="models/powerups/keys/key.md3"
 
 
 	// end of list marker
-	{NULL}
+	{NULL, NULL, {NULL, NULL, NULL, NULL, NULL}, NULL, NULL, NULL, 0, IT_BAD, 0, 0, 0, NULL, NULL, {0, 0, 0, 0}}
 };
 // END JOSEPH
 
