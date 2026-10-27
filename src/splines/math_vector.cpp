@@ -26,7 +26,7 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-//#include "../game/q_shared.h"
+//#include "../qcommon/q_shared.h"
 #include "math_vector.h"
 #include <assert.h>
 #include <math.h>
@@ -48,7 +48,8 @@ Bounds boundsZero;
 float idVec3::toYaw( void ) {
 	float yaw;
 
-	if ( ( y == 0 ) && ( x == 0 ) ) {
+	if ( ( y == 0
+ ) && ( x == 0 ) ) {
 		yaw = 0;
 	} else {
 		yaw = atan2( y, x ) * 180 / M_PI;
