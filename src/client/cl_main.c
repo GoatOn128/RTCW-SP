@@ -195,9 +195,9 @@ CL_ChangeReliableCommand
 ======================
 */
 void CL_ChangeReliableCommand( void ) {
-	int r, index, l;
+	int index, l;
 
-	r = clc.reliableSequence - ( random() * 5 );
+	random();
 	index = clc.reliableSequence & ( MAX_RELIABLE_COMMANDS - 1 );
 	l = strlen( clc.reliableCommands[ index ] );
 	if ( l >= MAX_STRING_CHARS - 1 ) {
@@ -2634,3 +2634,4 @@ void CL_Init( void ) {
 	Cmd_AddCommand( "configstrings", CL_Configstrings_f );
 	Cmd_AddCommand( "clientinfo", CL_Clientinfo_f );
 	Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+	Cmd_AddCommand( "vid_restart", CL_Vid_Restart_f );

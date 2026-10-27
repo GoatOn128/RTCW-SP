@@ -170,7 +170,6 @@ void CG_LoseArmor( centity_t *cent, int index ) {
 							"tag_calfleft",
 							"tag_calfright"};
 
-	clientInfo_t *ci;
 	// TTimo: bunch of inits
 	int totalparts = 0, dynamicparts = 0, protoParts = 9, superParts = 16, heinrichParts = 22;
 	char        **tags = NULL;
@@ -178,7 +177,6 @@ void CG_LoseArmor( centity_t *cent, int index ) {
 	qhandle_t sound = 0;    //----(SA)	added
 	int dmgbits = 16;         // 32/2;
 	int clientNum;
-	int tagIndex;
 	vec3_t origin, velocity, dir;
 
 
@@ -215,7 +213,6 @@ void CG_LoseArmor( centity_t *cent, int index ) {
 	if ( clientNum < 0 || clientNum >= MAX_CLIENTS ) {
 		CG_Error( "Bad clientNum on player entity" );
 	}
-	ci = &cgs.clientinfo[ clientNum ];
 
 	// check if the model for the damaged part to fling is there
 	if ( cent->currentState.dmgFlags & ( 1 << ( index + dynamicparts ) ) ) {
@@ -226,7 +223,7 @@ void CG_LoseArmor( centity_t *cent, int index ) {
 		return;
 	}
 
-	tagIndex = CG_GetOriginForTag( cent, &cent->pe.torsoRefEnt, tags[index], 0, origin, NULL );
+CG_GetOriginForTag( cent, &cent->pe.torsoRefEnt, tags[index], 0, origin, NULL );
 
 	// calculate direction vector based on player center->tag position
 	VectorSubtract( origin, cent->currentState.origin, dir );
@@ -404,7 +401,6 @@ void CG_AddLightstyle( centity_t *cent ) {
 	int r, g, b;
 	int stringlength;
 	float offset;
-	int offsetwhole;
 	int otime;
 	int lastch, nextch;
 
@@ -425,7 +421,6 @@ void CG_AddLightstyle( centity_t *cent ) {
 	cent->dl_time = cg.time;
 
 	offset = ( (float)otime ) / LS_FRAMETIME;
-	offsetwhole = (int)offset;
 
 	cent->dl_backlerp += offset;
 
@@ -957,7 +952,6 @@ static void CG_Item( centity_t *cent ) {
 	refEntity_t ent;
 	entityState_t       *es;
 	gitem_t             *item;
-	float scale;
 	qboolean hasStand, highlight;
 	float highlightFadeScale = 1.0f;
 
@@ -993,7 +987,6 @@ static void CG_Item( centity_t *cent ) {
 		return;
 	}
 
-	scale = 0.005 + cent->currentState.number * 0.00001;
 
 	memset( &ent, 0, sizeof( ent ) );
 
@@ -1811,7 +1804,6 @@ CG_Explosive
 ===============
 */
 static void CG_Explosive( centity_t *cent ) {
-	lerpFrame_t         *traplf;
 	refEntity_t ent;
 	entityState_t       *s1;
 
@@ -1821,7 +1813,6 @@ static void CG_Explosive( centity_t *cent ) {
 	// create the render entity
 	memset( &ent, 0, sizeof( ent ) );
 
-	traplf = &cent->lerpFrame;
 
 //----(SA)	added animation stuff
 	if ( cent->currentState.modelindex2 ) {    // there's a 'model2'
@@ -2254,3 +2245,16 @@ Also called by client movement prediction code
 void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
 	centity_t   *cent;
 	vec3_t oldOrigin, origin, deltaOrigin;
+	vec3_t oldAngles, angles, deltaAngles;
+
+	if ( outDeltaAngles ) {
+		VectorClear( outDeltaAngles );
+	}
+
+	if ( moverNum <= 0 || moverNum >= ENTITYNUM_MAX_NORMAL ) {
+		VectorCopy( in, out );
+		return;
+	}
+
+	cent = &cg_entities[ moverNum ];
+

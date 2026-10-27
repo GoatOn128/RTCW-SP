@@ -186,7 +186,7 @@ void CG_CalcMoveSpeeds( clientInfo_t *ci ) {
 	int i, j, k;
 	float totalSpeed;
 	int numSpeed;
-	int lastLow, low, numSteps, lastFirst, thisFirst;
+	int low, numSteps, lastFirst, thisFirst;
 	qboolean isStrafe;
 	orientation_t o[2];
 
@@ -199,7 +199,6 @@ void CG_CalcMoveSpeeds( clientInfo_t *ci ) {
 		}
 
 		totalSpeed = 0;
-		lastLow = -1;
 		numSpeed = 0;
 		numSteps = 0;
 		isStrafe = qfalse;
@@ -289,7 +288,6 @@ void CG_CalcMoveSpeeds( clientInfo_t *ci ) {
 			for ( k = 0; k < 2; k++ ) {
 				VectorCopy( o[k].origin, oldPos[k] );
 			}
-			lastLow = low;
 		}
 
 		// record the speed

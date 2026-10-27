@@ -238,9 +238,7 @@ void BotInterbreedGoalFuzzyLogic( int parent1, int parent2, int child ) {
 // Changes Globals:		-
 //===========================================================================
 void BotSaveGoalFuzzyLogic( int goalstate, char *filename ) {
-	bot_goalstate_t *gs;
-
-	gs = BotGoalStateFromHandle( goalstate );
+	BotGoalStateFromHandle( goalstate );
 
 	//WriteWeightConfig(filename, gs->itemweightconfig);
 } //end of the function BotSaveGoalFuzzyLogic
@@ -1628,3 +1626,4 @@ void BotShutdownGoalAI( void ) {
 		} //end if
 	} //end for
 } //end of the function BotShutdownGoalAI
+

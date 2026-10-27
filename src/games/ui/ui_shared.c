@@ -1286,7 +1286,6 @@ void Script_NotebookShowpage( itemDef_t *item, char **args ) {
 		}
 
 		if ( inc ) {
-			int dec = 0;
 
 			if ( inc > 0 ) {
 				for ( i = 1; i < NOTEBOOK_MAX_PAGES; i++ ) {
@@ -1300,7 +1299,6 @@ void Script_NotebookShowpage( itemDef_t *item, char **args ) {
 					}
 
 					if ( pages & ( 1 << ( newpage - 1 ) ) ) {
-						dec++;
 //						if(dec == inc)
 //							break;
 						break;
@@ -1787,12 +1785,8 @@ int Item_Slider_OverSlider( itemDef_t *item, float x, float y ) {
 
 int Item_ListBox_OverLB( itemDef_t *item, float x, float y ) {
 	rectDef_t r;
-	listBoxDef_t *listPtr;
 	int thumbstart;
-	int count;
 
-	count = DC->feederCount( item->special );
-	listPtr = (listBoxDef_t*)item->typeData;
 	if ( item->window.flags & WINDOW_HORIZONTAL ) {
 		// check if on left arrow
 		r.x = item->window.rect.x;
@@ -2466,3 +2460,6 @@ static void Scroll_ListBox_ThumbFunc( void *p ) {
 		r.x = si->item->window.rect.x + SCROLLBAR_SIZE + 1;
 		r.y = si->item->window.rect.y + si->item->window.rect.h - SCROLLBAR_SIZE - 1;
 		r.h = SCROLLBAR_SIZE;
+		r.w = si->item->window.rect.w - ( SCROLLBAR_SIZE * 2 ) - 2;
+		max = Item_ListBox_MaxScroll( si->item );
+		//

@@ -381,7 +381,7 @@ int PS_ReadWhiteSpace( script_t *script ) {
 // Changes Globals:		-
 //============================================================================
 int PS_ReadEscapeCharacter( script_t *script, char *ch ) {
-	int c, val, i;
+	int c, val;
 
 	//step over the leading '\\'
 	script->script_p++;
@@ -402,7 +402,7 @@ int PS_ReadEscapeCharacter( script_t *script, char *ch ) {
 	case 'x':
 	{
 		script->script_p++;
-		for ( i = 0, val = 0; ; i++, script->script_p++ )
+		for ( val = 0; ; script->script_p++ )
 		{
 			c = *script->script_p;
 			if ( c >= '0' && c <= '9' ) {
@@ -427,7 +427,7 @@ int PS_ReadEscapeCharacter( script_t *script, char *ch ) {
 		if ( *script->script_p < '0' || *script->script_p > '9' ) {
 			ScriptError( script, "unknown escape char" );
 		}
-		for ( i = 0, val = 0; ; i++, script->script_p++ )
+		for ( val = 0; ; script->script_p++ )
 		{
 			c = *script->script_p;
 			if ( c >= '0' && c <= '9' ) {
@@ -1450,3 +1450,4 @@ void PS_SetBaseFolder( char *path ) {
 	Com_sprintf( basefolder, sizeof( basefolder ), path );
 #endif
 } //end of the function PS_SetBaseFolder
+

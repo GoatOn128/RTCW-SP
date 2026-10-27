@@ -207,7 +207,6 @@ void CG_DrawStats( char *stats ) {
 	#define MAX_STATS_VARS  64
 	int vars[MAX_STATS_VARS];
 	char *str, *token;
-	char *formatStr;
 	int varIndex;
 	char string[MAX_QPATH];
 
@@ -244,16 +243,16 @@ void CG_DrawStats( char *stats ) {
 			// build the formatStr
 			switch ( statsItems[i].numVars ) {
 			case 1:
-				formatStr = va( statsItems[i].format, vars[varIndex] );
+				va( statsItems[i].format, vars[varIndex] );
 				break;
 			case 2:
-				formatStr = va( statsItems[i].format, vars[varIndex], vars[varIndex + 1] );
+				va( statsItems[i].format, vars[varIndex], vars[varIndex + 1] );
 				break;
 			case 3:
-				formatStr = va( statsItems[i].format, vars[varIndex], vars[varIndex + 1], vars[varIndex + 2] );
+				va( statsItems[i].format, vars[varIndex], vars[varIndex + 1], vars[varIndex + 2] );
 				break;
 			case 4:
-				formatStr = va( statsItems[i].format, vars[varIndex], vars[varIndex + 1], vars[varIndex + 2], vars[varIndex + 3] );
+				va( statsItems[i].format, vars[varIndex], vars[varIndex + 1], vars[varIndex + 2], vars[varIndex + 3] );
 				break;
 			}
 
@@ -665,3 +664,4 @@ void CG_DrawInformation( void ) {
 
 	callCount--;
 }
+
