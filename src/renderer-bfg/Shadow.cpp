@@ -28,6 +28,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "precompiled.h"
 #include "Shadow.h"
+#include "Tess.h"
 #include "CVarSystem.h"
 #include "ImageManager.h"
 
@@ -50,11 +51,12 @@ If you have questions concerning this license or the applicable additional terms
   shadowed, so the shadows of different body parts do not double
   darken.
 
-  Nothing calls this yet: the module has no live GL context until the
-  backend draw phase, which wires the pass into RB_EndSurface for the
-  shadow shader, into the view draw loop, into the
-  DEFORM_PROJECTION_SHADOW stage of a material and into the stencil
-  clear bit of the frame buffer clear.
+  Nothing draws yet: the module has no live GL context and no draw
+  loop until the backend draw phase, which wires RB_ShadowTessEnd
+  into RB_EndSurface for the shadow shader and RB_ShadowFinish into
+  the view draw loop; the projection deform is already wired into the
+  DEFORM_PROJECTION_SHADOW stage of the tesselator deform and the
+  stencil clear bit lands with the frame clear.
 
 */
 
@@ -62,30 +64,7 @@ If you have questions concerning this license or the applicable additional terms
 // 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection
 static idCVar r_shadows( "cg_shadows", "1", CVAR_RENDERER, "shadow mode: 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection" );
 
-// the vector math of the engine's q_shared.h as inline functions;
-// VectorMA is not redefined here because idlib's math/Vector.h
-// already carries the same macro, with the same math
-static ID_INLINE float DotProduct( const vec3_t x, const vec3_t y ) {
-	return x[0] * y[0] + x[1] * y[1] + x[2] * y[2];
-}
-
-static ID_INLINE void VectorSubtract( const vec3_t a, const vec3_t b, vec3_t c ) {
-	c[0] = a[0] - b[0];
-	c[1] = a[1] - b[1];
-	c[2] = a[2] - b[2];
-}
-
-static ID_INLINE void VectorCopy( const vec3_t a, vec3_t b ) {
-	b[0] = a[0];
-	b[1] = a[1];
-	b[2] = a[2];
-}
-
-static ID_INLINE void CrossProduct( const vec3_t v1, const vec3_t v2, vec3_t cross ) {
-	cross[0] = v1[1] * v2[2] - v1[2] * v2[1];
-	cross[1] = v1[2] * v2[0] - v1[0] * v2[2];
-	cross[2] = v1[0] * v2[1] - v1[1] * v2[0];
-}
+// the vector math helpers live in Tess.h, shared with the tesselator
 
 /*
 =================
@@ -99,8 +78,7 @@ typedef struct {
 
 #define MAX_EDGE_DEFS   32
 
-// edges per vertex: this module has no full tesselator yet, the shadow
-// pass works on the tesselator slice of Backend.h
+// edges per vertex: the shadow pass works on the tesselator of Tess.h
 static edgeDef_t edgeDefs[SHADER_MAX_VERTEXES][MAX_EDGE_DEFS];
 static int numEdgeDefs[SHADER_MAX_VERTEXES];
 static int facing[SHADER_MAX_INDEXES / 3];

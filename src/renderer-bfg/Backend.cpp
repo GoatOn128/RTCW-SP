@@ -58,10 +58,12 @@ static idCVar r_nobind( "r_nobind", "0", CVAR_RENDERER | CVAR_CHEAT, "performanc
 // math/Math.h already carries the DEG2RAD macro, so it is used here
 
 // the dormant backend globals
-shadowTess_t tess;
 backEndState_t backEnd;
 glstate_t glState;
 glconfig_t glConfig;
+
+// the engine's tr.worldEntity until the front end global lands
+trRefEntity_t worldEntity;
 
 // the wave form tables of the engine's trGlobals_t
 float sinTable[FUNCTABLE_SIZE];

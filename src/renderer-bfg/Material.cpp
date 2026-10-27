@@ -30,6 +30,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "Material.h"
 #include "ImageManager.h"
 #include "CVarSystem.h"
+#include "Tess.h"
 
 /*
 
@@ -86,6 +87,7 @@ void idMaterial::Reset() {
 	noFog = false;
 	clampTime = 0;
 	multitextureEnv = 0;
+	optimalStageIteratorFunc = NULL;
 
 	numDeforms = 0;
 	for ( int i = 0; i < MAX_SHADER_DEFORMS; i++ ) {
@@ -214,9 +216,8 @@ idMaterial::Finish
 
 The stage defaulting, the sort order and the stage collapses of
 FinishShader in src/renderer/tr_shader.c, plus the coverage of the
-drawn stages. The stage iterator function of the engine is not
-ported: the backend picks its draw path from the stages when it
-lands.
+drawn stages and the pick of the fastest stage iterator of
+R_ComputeStageIteratorFunc in src/renderer/tr_shade.c.
 =================
 */
 void idMaterial::Finish() {
@@ -374,6 +375,9 @@ void idMaterial::Finish() {
 		// the box textures
 		coverage = MC_TRANSLUCENT;
 	}
+
+	// pick the fastest stage iterator for the backend
+	R_ComputeStageIteratorFunc( this );
 }
 
 // the multitexture collapse table of the engine: the blend state of

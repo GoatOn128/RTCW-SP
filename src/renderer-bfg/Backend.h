@@ -304,22 +304,16 @@ typedef struct {
 	trRefEntity_t entity2D;         // currentEntity will point at this when doing 2D rendering
 } backEndState_t;
 
-// slice of the engine's shaderCommands_t (tess) of src/renderer/tr_local.h
-// until the tesselator phase lands: the shadow pass projects the
-// tesselated geometry away from the light
-typedef struct {
-	glIndex_t indexes[SHADER_MAX_INDEXES];
-	vec4_t xyz[SHADER_MAX_VERTEXES];
-	int numIndexes;
-	int numVertexes;
-} shadowTess_t;
-
 // the dormant backend globals; glConfig is the glconfig_t of
 // RenderSystem.h, its stencilBits gate the shadow pass
-extern shadowTess_t tess;
 extern backEndState_t backEnd;
 extern glstate_t glState;
 extern glconfig_t glConfig;
+
+// the world entity of the engine's trGlobals_t (tr.worldEntity):
+// world surfaces draw with no entity transform and no entity
+// lighting; the tr global itself lands with the scene phase
+extern trRefEntity_t worldEntity;
 
 // the wave form tables of the engine's trGlobals_t; the front end
 // global tr lands with the scene phase, until then they live here

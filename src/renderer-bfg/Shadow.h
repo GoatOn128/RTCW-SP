@@ -51,7 +51,7 @@ If you have questions concerning this license or the applicable additional terms
   bit into the frame buffer clear.
 
   The backend state and the GL helpers it reads live in Backend.h; the
-  tesselator slice the pass projects lands with the tesselator phase.
+  tesselator it projects lives in Tess.h.
 
 ===============================================================================
 */

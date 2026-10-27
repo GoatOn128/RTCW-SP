@@ -486,6 +486,11 @@ deformStage_t deforms[MAX_SHADER_DEFORMS];
 
 int numStages;
 int multitextureEnv;                 // GL_MODULATE or GL_ADD when Finish merged two stages into one multitexture pass, 0 otherwise
+
+// engine tr_local.h: the fastest stage iterator of the shader, picked
+// once by R_ComputeStageIteratorFunc when the material is finished
+void ( *optimalStageIteratorFunc )( void );
+
 shaderStage_t stages[MAX_SHADER_STAGES];
 
 int lightmapIndex;
