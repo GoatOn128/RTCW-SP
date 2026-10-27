@@ -30,12 +30,17 @@ jobs:
         # string) or the include entries below would merge into the
         # existing legs instead of adding new ones
         hardlink: ['']
+        # cache key variant of hardlink: GitHub cache keys cannot
+        # contain commas, so hardlink=game,renderer keys the cache
+        # as game-renderer
+        cachekey: ['']
         include:
           # hard-link coverage: the game+renderer pair in one image
           - os: ubuntu-latest
             arch: x64
             config: release
             hardlink: 'game,renderer'
+            cachekey: 'game-renderer'
     steps:
       - uses: actions/checkout@v4
       - name: clean stale log
@@ -83,7 +88,7 @@ jobs:
           # no restore-keys: falling back to a cache from an older
           # SConstruct fills the disk with stale objects and slows
           # the restore down
-          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}-${{ hashFiles('SConstruct') }}
+          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.cachekey }}-${{ hashFiles('SConstruct') }}
       - name: build
         shell: bash
         run: |

@@ -5,17 +5,9 @@
 #   scons arch=x64 config=release -j4
 #   scons arch=x64 config=release hardlink=game,renderer -j4
 #
-# Outputs:
-#   bin/WolfSP_x86(.exe)          - client binary
-#   bin/renderer_gl_x86(.dll/.so) - legacy renderer module
-#   bin/renderer_bfg_x86(.dll/.so) - new BFG renderer module
-#   bin/main/qagame_x86, ...      - game modules (.dll on Windows,
-#                                    .so on Linux), laid out like a
-#                                    game install (Main/ beside the exe)
-# Every output carries an x86/x64 suffix so both architectures can
-# share the tree; the engine loads modules as <name>_<arch>.
-# Objects, the idlib library and the host tools stay under
-# build/<platform>-<arch>-<config>/.
+# Outputs go to bin/ (engine and renderers) and bin/main/ (game modules).
+# Every output name ends with its arch, so x86 and x64 builds share the
+# same tree. Objects and tools go to build/<platform>-<arch>-<config>/.
 
 import os
 import platform as pyplatform
@@ -34,18 +26,16 @@ if CONFIG not in ('debug', 'release'):
     print('config must be debug or release')
     Exit(1)
 
-# Modules linked straight into the executable instead of built as
-# loadable libraries, e.g. hardlink=renderer or hardlink=game,renderer
+# hardlink=... links these modules into the executable instead of
+# building them as separate libraries
 HARDLINK = [m.strip() for m in ARGUMENTS.get('hardlink', '').split(',') if m.strip()]
 HARDLINK_MODULES = ('game', 'cgame', 'ui', 'renderer')
 for m in HARDLINK:
     if m not in HARDLINK_MODULES:
         print('hardlink: unknown module %r (expected one of %s)' % (m, ', '.join(HARDLINK_MODULES)))
         Exit(1)
-# g_syscalls.c, cg_syscalls.c and ui_syscalls.c all define the same
-# trap_* names, so at most one of game, cgame, ui can live in the
-# executable image; the remaining modules stay loadable libraries.
-# The renderer is independent and hard-links freely.
+# game, cgame and ui all define the same trap_* names, so only one of
+# them can be linked into the executable. The renderer is independent.
 linked_vm = [m for m in ('game', 'cgame', 'ui') if m in HARDLINK]
 if len(linked_vm) > 1:
     print('hardlink: only one of game, cgame, ui can be hard-linked, got %s' % ', '.join(linked_vm))
@@ -54,38 +44,27 @@ if len(linked_vm) > 1:
 IS_WINDOWS = pyplatform.system() == 'Windows'
 PLATFORM_NAME = 'windows' if IS_WINDOWS else pyplatform.system().lower()
 BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
-# final binaries: bin/ holds the engine and renderer binaries like a
-# game install, the loadable game modules go into bin/main/
 BIN_DIR = 'bin'
 MODULES_DIR = os.path.join('bin', 'main')
 GAME_SOURCE_DIR = os.path.abspath('src/games/game')
 
-# Spell out the platform suffixes. When a target name has no suffix SCons
-# adds its own (.exe/.dll), and Default() would then point at a name that
-# no node answers to, so keep everything on the final file names.
+# Suffixes are spelled out on every target name: when a target has no
+# suffix SCons adds its own, which breaks Default().
 EXE = '.exe' if IS_WINDOWS else ''
 DLL = '.dll' if IS_WINDOWS else '.so'
 OBJ = '.obj' if IS_WINDOWS else '.o'
-# arch suffix on every output name: x86 and x64 builds share the bin/
-# tree without clobbering each other
 ARCH_SUFFIX = '_' + ARCH
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ hardlink=game,cgame,ui,renderer ] [ funcs=1 ] [ -j N ]
-Outputs go to bin/ (engine and renderer binaries) and bin/main/ (game
-modules), each name suffixed with the arch (WolfSP_x64.exe, qagame_x86.dll);
-objects stay under build/<platform>-<arch>-<config>/.
-hardlink takes a comma-separated module list; game, cgame and ui clash
-on their trap_* exports so at most one of them can be linked into the
-executable, the renderer can be combined with any of them.
-funcs=1 regenerates the savegame function table headers with the
-extractfuncs tool; the default build compiles against the checked in
-headers because the tool crashes under modern 64 bit compilers.
+Outputs go to bin/ (engine and renderers) and bin/main/ (game modules),
+each name suffixed with the arch. Objects stay under build/<platform>-<arch>-<config>/.
+hardlink links the listed modules into the executable; only one of
+game, cgame, ui can be linked at a time because they share trap_* names.
+funcs=1 regenerates the savegame function table headers with extractfuncs.
 ''')
 
-# Include paths. Most engine includes resolve file-relative, these cover
-# the rest, including the legacy "../game/..." style includes: the
-# src/games/game entry makes those resolve to src/games/game/.
+# include paths
 common_cpppath = [
     'src',
     'src/games/game',
@@ -104,13 +83,10 @@ common_cpppath = [
 ]
 
 if IS_WINDOWS:
-    # SCons names the 64 bit msvc target 'amd64'
+    # SCons names the 64 bit MSVC target 'amd64'
     TARGET_ARCH = 'x86' if ARCH == 'x86' else 'amd64'
-    # the resource compiler: rc.exe from the MSVC environment when
-    # available, llvm-rc for a plain LLVM install
+    # rc.exe from the MSVC environment, llvm-rc for a plain LLVM install
     RC_BIN = shutil.which('rc') or shutil.which('llvm-rc') or 'rc'
-    # SCons has no standalone 'rc' tool module; the resource file below
-    # compiles through a plain Command instead
     env = Environment(
         tools=['default'],
         CC='clang-cl',
@@ -118,30 +94,17 @@ if IS_WINDOWS:
         TARGET_ARCH=TARGET_ARCH,
         CPPPATH=common_cpppath,
     )
-    # Link with lld-link instead of clang-cl: the options SCons passes for
-    # shared libraries (/DLL, /IMPLIB:) and programs (/SUBSYSTEM:) are
-    # link.exe syntax, which clang-cl does not accept
+    # lld-link understands the link.exe flags SCons passes for
+    # shared libraries and programs; clang-cl does not
     env['LINK'] = 'lld-link'
     env['SHLINK'] = 'lld-link'
     env['AR'] = 'llvm-lib'
     env.Append(CPPDEFINES=['WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
-    # /W4, not -Wall: clang-cl maps -Wall onto every warning it knows
-    # and floods the log with tens of thousands of warnings
+    # /W4 instead of -Wall: clang-cl maps -Wall onto every warning it
+    # knows and floods the log
     env.Append(CCFLAGS=['/W4', arch_flag], CXXFLAGS=['/W4', arch_flag])
-    # win_qgl.c assigns GetProcAddress results (FARPROC) to the qgl
-    # function pointers wholesale; MSVC allowed it, clang-cl does not.
-    # Keep it building until the qgl layer is replaced with glad.
-    env.Append(CCFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
-    env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
-    # legacy warning classes that carry no signal for this 2001-era tree
-    env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
-    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign', '-Wno-deprecated-declarations'])
-    env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
-    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign', '-Wno-deprecated-declarations', '-Wno-writable-strings', '-Wno-deprecated-copy', '-Wno-deprecated-copy-with-user-provided-copy'])
-    # ASLR: let the loader relocate every image at launch
+    # ASLR
     env.Append(LINKFLAGS=['/DYNAMICBASE'] + (['/HIGHENTROPYVA'] if ARCH == 'x64' else []))
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['/Z7', '/Od'], CXXFLAGS=['/Z7', '/Od'], LINKFLAGS=['/DEBUG'])
@@ -156,16 +119,11 @@ else:
         CPPPATH=common_cpppath,
     )
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
-    # keep module names plain (qagame.so, not libqagame.so)
+    # no lib prefix on module names
     env['SHLIBPREFIX'] = ''
-    # gnu89 keeps the 2001-era C code compiling under modern clang.
-    # The splines code is C++98-era, so build it as gnu++98.
+    # the C code is 2001 era, the splines code is C++98 era
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
-    # same policy as the Windows build: qgl assigns dlsym results to typed
-    # function pointers wholesale; keep that a warning, not an error
-    env.Append(CCFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
-    env.Append(CXXFLAGS=['-Wno-error=incompatible-function-pointer-types', '-Wno-error=incompatible-pointer-types'])
     env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
     if CONFIG == 'debug':
@@ -173,21 +131,11 @@ else:
     else:
         env.Append(CPPDEFINES=['NDEBUG'])
         env.Append(CCFLAGS=['-O2', '-fno-strict-aliasing'], CXXFLAGS=['-O2', '-fno-strict-aliasing'])
-    # legacy warning classes that carry no signal for this 2001-era tree
-    env.Append(CCFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
-    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign'])
-    env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
-    '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
-    '-Wno-pointer-sign', '-Wno-writable-strings', '-Wno-deprecated-copy', '-Wno-deprecated-copy-with-user-provided-copy'])
 
-# q_shared.h needs CPUSTRING and PATH_SEP everywhere. Quoted string and
-# character values cannot go through CPPDEFINES (the quotes never
-# survive SCons' define handling), so SCons writes a per-build header
-# with those values and force-includes it in every translation unit:
-# /FI with clang-cl, -include with clang. The values must match what
-# Sys_LoadModule expects: ARCH_STRING suffixes the module file names
-# (qagame_x86.dll) so x86 and x64 builds can share one output tree.
+# q_shared.h needs CPUSTRING and PATH_SEP everywhere. Their quoted values
+# cannot go through command line defines, so SCons writes them into a per
+# build header and force includes it in every file: /FI on clang-cl,
+# -include on clang.
 os.makedirs(BUILD_DIR, exist_ok=True)
 q_buildconfig = os.path.join(BUILD_DIR, 'q_buildconfig.h')
 cpustring = ('win' if IS_WINDOWS else 'linux') + '-' + ARCH + ('-debug' if CONFIG == 'debug' else '')
@@ -204,7 +152,7 @@ env.Append(CPPDEFINES=[
     ('ARCH_STRING', ARCH),
 ])
 
-# Shared derived-object cache, big win on CI when restored
+# shared object cache, big win on CI
 env.CacheDir('.scons_cache')
 
 # Compile one module's sources into its own object directory.
@@ -213,16 +161,14 @@ def module_objects(menv, module, files, shared=False):
     for p in files:
         rel = p[len('src/'):] if p.startswith('src/') else p
         target = os.path.join(BUILD_DIR, module, 'obj', rel + OBJ)
-        # shared library targets need objects the linker accepts into
-        # a shared library (position independent code on Linux)
+        # shared libraries need position independent objects on Linux
         builder = menv.SharedObject if shared else menv.Object
         objs.append(builder(target, p)[0])
     return objs
 
-# Sources a hard-linked module must not recompile: the executable
-# already carries q_math.c and q_shared.c. The renderer also drops
-# tr_module.c, whose Com_Printf/Com_Error/Com_Memset/Com_Memcpy
-# wrappers would collide with the engine's common.c definitions.
+# A hard-linked module must not recompile what the executable already
+# carries. The renderer also drops tr_module.c: its Com_* wrappers clash
+# with the engine's common.c.
 def module_link_files(module, files):
     if module not in HARDLINK:
         return files
@@ -278,8 +224,8 @@ unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
     'linux_qgl.c', 'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
 ]]
-# the unix asm files (matha.s, snd_mixa.s, sys_dosa.s) are not built:
-# q_shared.h forces id386 to 0, so the portable C implementations are used
+# the unix asm files are not built: q_shared.h forces id386 to 0, so the
+# portable C implementations are used
 
 win_sys_files = ['src/sys/win32/' + f for f in [
     'win_gamma.c', 'win_glimp.c', 'win_input.c', 'win_main.c', 'win_net.c',
@@ -290,16 +236,15 @@ win_sys_files = ['src/sys/win32/' + f for f in [
 # ---------------------------------------------------------------- client
 
 client_env = env.Clone()
-# botlib is always linked into the executable, so its hard-link define
-# is always set; every hard-linked module adds its own define so the
-# engine calls its API entry point directly instead of loading it
+# botlib is always linked into the executable; each hard-linked module
+# adds its define so the engine calls it directly instead of loading it
 client_env.Append(CPPDEFINES=['BOTLIB_HARD_LINKED'] + [m.upper() + '_HARD_LINKED' for m in HARDLINK])
 if IS_WINDOWS:
     client_env.Append(LINKFLAGS=['/SUBSYSTEM:WINDOWS'])
     client_env.Append(LIBS=['user32', 'gdi32', 'winmm', 'wsock32', 'advapi32', 'ole32', 'opengl32', 'shell32'])
 else:
     client_env.Append(LIBS=['dl', 'm', 'X11', 'Xext', 'Xxf86dga', 'Xxf86vm'])
-    # ASLR: position independent executable, randomized at load time
+    # ASLR
     client_env.Append(CCFLAGS=['-fPIE'], CXXFLAGS=['-fPIE'], LINKFLAGS=['-pie'])
 
 sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
@@ -311,7 +256,6 @@ client_sources = (
 )
 client_objs = module_objects(client_env, 'client', client_sources)
 
-# botlib needs its own define but is linked into the client binary
 botlib_env = client_env.Clone()
 botlib_env.Append(CPPDEFINES=['BOTLIB'])
 client_objs += module_objects(botlib_env, 'client', botlib_files)
@@ -319,32 +263,27 @@ client_objs += module_objects(botlib_env, 'client', botlib_files)
 client_target = os.path.join(BIN_DIR, 'WolfSP' + ARCH_SUFFIX + EXE)
 client_res = []
 if IS_WINDOWS:
-    # winquake.rc embeds the application icon, the console background
-    # bitmaps and the caption string; the .res file links straight
-    # into the executable. SCons has no rc tool, so this is a plain
-    # command against rc.exe from the MSVC environment or llvm-rc from
-    # a plain LLVM install.
+    # winquake.rc embeds the icon and console bitmaps; SCons has no rc
+    # tool, so it compiles with a plain command
     client_res = client_env.Command(
         os.path.join(BUILD_DIR, 'client', 'winquake.res'),
         'src/sys/win32/winquake.rc',
         '"%s" /nologo /fo $TARGET $SOURCE' % RC_BIN)
-# the executable is linked after the module sections below: each
-# hard-linked module contributes its objects to the engine image
+# the executable links after the module sections below: each hard-linked
+# module contributes its objects to the engine image
 
 # ---------------------------------------------------------------- tools
 
-# extractfuncs scans game source files and rewrites the saveable
-# function table used by the savegame code; standalone host tool.
-# It is defined before the game module because with funcs=1 the
-# module build runs it to regenerate its headers.
+# extractfuncs scans the game sources and rewrites the savegame function
+# table; host tool. With funcs=1 the game module build runs it to
+# regenerate its headers.
 extractfuncs_files = ['src/tools/extractfuncs/' + f for f in [
     'extractfuncs.c', 'l_log.c', 'l_memory.c', 'l_precomp.c', 'l_script.c',
 ]]
 
 extractfuncs_env = env.Clone()
-# l_script.c and l_precomp.c only include their standard headers
-# when SCREWUP is defined; the tool is legacy botlib-era code so
-# its warnings are muted entirely
+# SCREWUP makes l_script.c and l_precomp.c include their standard
+# headers; the tool is 1997 era botlib code, so its warnings stay muted
 extractfuncs_env.Append(CPPDEFINES=['SCREWUP'])
 if IS_WINDOWS:
     extractfuncs_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
@@ -371,28 +310,20 @@ game_files = ['src/games/game/' + f for f in [
     'ai_chat.c', 'ai_cmd.c', 'ai_dmnet.c', 'ai_dmq3.c', 'ai_main.c', 'ai_team.c',
 ]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
-# extractfuncs regenerates the savegame function table headers the
-# game module compiles against (g_save.c includes both generated
-# headers). The generated headers are checked in and current, but the
-# scanner crashes under the modern 64 bit toolchains on every platform
-# (heap corruption on Windows, SIGSEGV on Linux; the legacy botlib
-# lexer it is built from does not survive them), so the regeneration
-# run is opt-in with funcs=1 and the default build compiles against
-# the checked in headers. The tool itself still builds on every run
-# so compile regressions surface early.
+# The savegame function table headers are checked in. The extractfuncs
+# scanner crashes under the modern 64 bit toolchains (heap corruption on
+# Windows, SIGSEGV on Linux), so the regeneration run is opt-in with
+# funcs=1; the tool itself still builds on every run.
 extractfuncs_headers = ['src/games/game/g_funcs.h', 'src/games/game/g_func_decs.h']
 game_scan_files = [f for f in game_files if f.startswith('src/games/game/')]
 REGEN_FUNCS = ARGUMENTS.get('funcs') == '1'
 
 def run_extractfuncs(target, source, env):
-    # mirrors the original extractfuncs.bat: run from src/games/game so
-    # the regenerated headers land next to the game sources. The
-    # Windows main() takes a FindFirstFile filter, the Linux main()
-    # takes the file names; sorted names keep the Linux discovery order
-    # identical to the alphabetical FindFirstFile order on Windows so
-    # both platforms regenerate the same table. The scan files must
-    # not be Command sources: SCons scans .c sources for includes,
-    # which made the generated headers depend on themselves.
+    # Run from src/games/game so the headers land next to the sources.
+    # Windows main() takes a file filter, Linux main() takes file names;
+    # sorted names keep both platforms producing the same table. The
+    # scan files must not be Command sources: SCons scans .c sources for
+    # includes, which made the headers depend on themselves.
     args = [source[0].abspath]
     if IS_WINDOWS:
         args.append('*.c')
@@ -402,19 +333,21 @@ def run_extractfuncs(target, source, env):
 
 if REGEN_FUNCS:
     env.Command(extractfuncs_headers, [extractfuncs_target], run_extractfuncs)
-    # a changed game source still has to trigger a header regeneration
     env.Depends(extractfuncs_headers, game_scan_files)
 
 game_env = env.Clone()
 game_env.Append(CPPDEFINES=['GAMEDLL'])
+if 'game' in HARDLINK:
+    # the module sources check this to skip their engine-side names
+    game_env.Append(CPPDEFINES=['GAME_HARD_LINKED'])
 if IS_WINDOWS:
     game_env.Append(LINKFLAGS=['/DEF:src/games/game/game.def'])
 else:
     game_env.Append(LIBS=['dl', 'm'])
     game_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 game_objs = module_objects(game_env, 'game', module_link_files('game', game_files), shared=(not IS_WINDOWS) and 'game' not in HARDLINK)
-# the whole module waits for the generated headers so a changed
-# function table never ends up half-compiled into qagame
+# qagame waits for the generated headers so the function table never
+# ends up half-compiled
 env.Depends(game_objs, extractfuncs_headers)
 game_target = os.path.join(MODULES_DIR, 'qagame' + ARCH_SUFFIX + DLL)
 if 'game' not in HARDLINK:
@@ -433,6 +366,10 @@ cgame_files = ['src/games/game/' + f for f in [
 
 cgame_env = env.Clone()
 cgame_env.Append(CPPDEFINES=['CGAMEDLL'])
+if 'cgame' in HARDLINK:
+    # skips the module's Com_Error/Com_Printf wrappers, which clash with
+    # the engine's common.c when both live in one image
+    cgame_env.Append(CPPDEFINES=['CGAME_HARD_LINKED'])
 if IS_WINDOWS:
     cgame_env.Append(LINKFLAGS=['/DEF:src/games/cgame/cgame.def'])
 else:
@@ -451,6 +388,9 @@ ui_files = ['src/games/game/' + f for f in [
 ]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
 ui_env = env.Clone()
+if 'ui' in HARDLINK:
+    # same as cgame: skips the ui Com_* wrappers in a hard-linked image
+    ui_env.Append(CPPDEFINES=['UI_HARD_LINKED'])
 if IS_WINDOWS:
     ui_env.Append(LINKFLAGS=['/DEF:src/games/ui/ui.def'])
 else:
@@ -475,9 +415,8 @@ else:
 renderer_target = os.path.join(BIN_DIR, 'renderer_gl' + ARCH_SUFFIX + DLL)
 renderer_shared = (not IS_WINDOWS) and 'renderer' not in HARDLINK
 renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=renderer_shared)
-# stb is vendored third party code, so the build mutes its warnings
-# the same way the old jpeg-6 build did; stb_impl.c is the single
-# translation unit that pulls in the implementations
+# stb is vendored third party code, its warnings stay muted; stb_impl.c
+# is the single unit that pulls in the implementations
 renderer_stb_env = renderer_env.Clone()
 if IS_WINDOWS:
     renderer_stb_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
@@ -489,9 +428,8 @@ if 'renderer' not in HARDLINK:
 
 # ---------------------------------------------------------------- idlib
 
-# the idlib static library holds the Doom 3 BFG idlib code ported for the
-# new renderer; it is a plain static library so later phases can link it
-# into the renderer without pulling in another shared object
+# the Doom 3 BFG idlib port behind the new renderer; kept close to the
+# original, so it needs C++14 and its warnings stay muted
 idlib_files = ['src/idlib/' + f for f in [
     'Heap.cpp', 'Str.cpp', 'Lib.cpp',
     'Token.cpp', 'Lexer.cpp', 'Parser.cpp',
@@ -506,27 +444,21 @@ idlib_files = ['src/idlib/' + f for f in [
 ]]
 
 idlib_env = env.Clone()
-# the ported BFG code is kept as close to the original as possible and
-# needs C++14; its warnings are muted like the other vendored code
 if IS_WINDOWS:
     idlib_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
 else:
     idlib_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
-# let SCons apply the platform library prefix and suffix (libidlib.a on
-# Linux, idlib.lib on Windows) and hand Default() the node the builder
-# returned; naming the file idlib.a left the Default() target without
-# a builder on Linux
-# the objects are built position independent on Linux: the library is
-# linked into the renderer_bfg shared library, which only accepts PIC
-# objects there
+# let SCons name the library (libidlib.a / idlib.lib); naming the file
+# idlib.a left the Default() target without a builder on Linux.
+# The objects are position independent on Linux: they link into a
+# shared library.
 idlib_objs = module_objects(idlib_env, 'idlib', idlib_files, shared=not IS_WINDOWS)
 idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), idlib_objs)
 
 # ------------------------------------------------------- renderer-bfg
 
-# the renderer-bfg module is the new Doom 3 BFG based renderer; this
-# phase holds the world structures, the render system interface and
-# the glad context, the later phases add the frontend and the backend
+# the new Doom 3 BFG based renderer; vendored port, so its warnings
+# stay muted like the rest of the third party code
 renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'RenderWorld.cpp', 'RenderEntity.cpp', 'ScreenRect.cpp',
     'RenderSystem.cpp', 'GLContext.cpp',
@@ -547,27 +479,22 @@ if IS_WINDOWS:
 else:
     renderer_bfg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
 renderer_bfg_objs = module_objects(renderer_bfg_env, 'renderer-bfg', renderer_bfg_files, shared=not IS_WINDOWS)
-# glad is vendored third party code so its warnings are muted entirely
+# glad is vendored third party code
 renderer_bfg_glad_env = renderer_bfg_env.Clone()
 if IS_WINDOWS:
     renderer_bfg_glad_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
 else:
     renderer_bfg_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src/third-party/glad/src/gl.c'], shared=not IS_WINDOWS)
-# stb is vendored third party code as well, this module already mutes
-# all warnings; stb_impl.c is the single translation unit that pulls in
-# the implementations, the JPEG loader of the image phase uses it
 renderer_bfg_objs += module_objects(renderer_bfg_env, 'renderer-bfg', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
 renderer_bfg_target = os.path.join(BIN_DIR, 'renderer_bfg' + ARCH_SUFFIX + DLL)
-# the idlib objects are linked straight into the shared library: SCons
-# rejects a static library node as a shared library source on Linux
+# the idlib objects link straight into the shared library: SCons rejects
+# a static library node as a shared library source on Linux
 renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_objs)
 
 # ------------------------------------------------------- client link
 
-# the executable links after the module sections: a hard-linked module
-# is compiled without its shared-library copies of the engine sources
-# and its objects go straight into the engine image
+# each hard-linked module contributes its objects to the engine image
 client_link_objs = list(client_objs)
 if 'game' in HARDLINK:
     client_link_objs += game_objs
@@ -586,4 +513,3 @@ for target, module in ((game_target, 'game'), (cgame_target, 'cgame'), (ui_targe
     if module not in HARDLINK:
         defaults.append(target)
 Default(*defaults)
-
