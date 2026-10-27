@@ -355,6 +355,7 @@ idlib_files = ['src/idlib/' + f for f in [
     'math/MatX.cpp',
     'bv/Bounds.cpp', 'bv/Box.cpp', 'bv/Sphere.cpp',
     'geometry/DrawVert.cpp', 'geometry/JointTransform.cpp',
+    'geometry/RenderMatrix.cpp',
 ]]
 
 idlib_env = env.Clone()
