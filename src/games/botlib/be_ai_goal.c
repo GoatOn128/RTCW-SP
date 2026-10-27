@@ -194,10 +194,6 @@ campspot_t *campspots = NULL;
 //the game type
 static int g_gametype;
 
-// Rafael gameskill
-static int g_gameskill;
-// done
-
 //========================================================================
 //
 // Parameter:				-
