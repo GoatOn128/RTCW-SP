@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -72,54 +72,54 @@ enum renderLogIndentLabel_t {
 
 /*
 ================================================
-idRenderLog contains block-based performance-tuning information. It combines 
+idRenderLog contains block-based performance-tuning information. It combines
 logfile, and msec accumulation code.
 ================================================
 */
 class idRenderLog {
 public:
-				idRenderLog();
+idRenderLog();
 
-	void		StartFrame();
-	void		EndFrame();
-	void		Close();
-	int			Active() { return activeLevel; }	// returns greater than 1 for more detailed logging
+void        StartFrame();
+void        EndFrame();
+void        Close();
+int         Active() { return activeLevel; }        // returns greater than 1 for more detailed logging
 
-	// The label must be a constant string literal and may not point to a temporary.
-	void		OpenMainBlock( renderLogMainBlock_t block );
-	void		CloseMainBlock();
+// The label must be a constant string literal and may not point to a temporary.
+void        OpenMainBlock( renderLogMainBlock_t block );
+void        CloseMainBlock();
 
-	void		OpenBlock( const char * label );
-	void		CloseBlock();
+void        OpenBlock( const char * label );
+void        CloseBlock();
 
-	void		Indent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT );
-	void		Outdent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT );
+void        Indent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT );
+void        Outdent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT );
 
-	void		Printf( VERIFY_FORMAT_STRING const char *fmt, ... );
+void        Printf( VERIFY_FORMAT_STRING const char *fmt, ... );
 
-	static const int		MAX_LOG_LEVELS = 20;
+static const int MAX_LOG_LEVELS = 20;
 
-	int						activeLevel;
-	renderLogIndentLabel_t	indentLabel[MAX_LOG_LEVELS];
-	char					indentString[MAX_LOG_LEVELS * 4];
-	int						indentLevel;
-	const char *			lastLabel;
-	renderLogMainBlock_t	lastMainBlock;
-	idFile*					logFile;
+int activeLevel;
+renderLogIndentLabel_t indentLabel[MAX_LOG_LEVELS];
+char indentString[MAX_LOG_LEVELS * 4];
+int indentLevel;
+const char *            lastLabel;
+renderLogMainBlock_t lastMainBlock;
+idFile*                 logFile;
 
-	struct logStats_t {
-		uint64	startTiming;
-		int		startDraws;
-		int		startIndexes;
-	};
+struct logStats_t {
+	uint64 startTiming;
+	int startDraws;
+	int startIndexes;
+};
 
-	uint64					frameStartTime;
-	uint64					closeBlockTime;
-	logStats_t				logStats[MAX_LOG_LEVELS];
-	int						logLevel;
+uint64 frameStartTime;
+uint64 closeBlockTime;
+logStats_t logStats[MAX_LOG_LEVELS];
+int logLevel;
 
-	void					LogOpenBlock( renderLogIndentLabel_t label, const char * fmt, va_list args );
-	void					LogCloseBlock( renderLogIndentLabel_t label );
+void                    LogOpenBlock( renderLogIndentLabel_t label, const char * fmt, va_list args );
+void                    LogCloseBlock( renderLogIndentLabel_t label );
 };
 
 /*
@@ -146,12 +146,12 @@ idRenderLog::Outdent
 ID_INLINE void idRenderLog::Outdent( renderLogIndentLabel_t label ) {
 	if ( logFile != NULL && indentLevel > 0 ) {
 		indentLevel--;
-		assert( indentLabel[indentLevel] == label );	// indent and outdent out of sync ?
+		assert( indentLabel[indentLevel] == label );    // indent and outdent out of sync ?
 		indentString[indentLevel * 4] = '\0';
 	}
 }
 
-#else	// !STUB_RENDER_LOG
+#else   // !STUB_RENDER_LOG
 
 /*
 ================================================
@@ -161,26 +161,26 @@ performance rendering in retail builds.
 */
 class idRenderLog {
 public:
-				idRenderLog() : activeLevel( 0 ) {}
+idRenderLog() : activeLevel( 0 ) {}
 
-	void		StartFrame() {}
-	void		EndFrame() {}
-	void		Close() {}
-	int			Active() { return 0; }
+void        StartFrame() {}
+void        EndFrame() {}
+void        Close() {}
+int         Active() { return 0; }
 
-	void		OpenBlock( const char * label );
-	void		CloseBlock();
-	void		OpenMainBlock( renderLogMainBlock_t block ){}
-	void		CloseMainBlock(){}
-	void		Indent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT ) {}
-	void		Outdent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT ) {}
+void        OpenBlock( const char * label );
+void        CloseBlock();
+void        OpenMainBlock( renderLogMainBlock_t block ) {}
+void        CloseMainBlock() {}
+void        Indent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT ) {}
+void        Outdent( renderLogIndentLabel_t label = RENDER_LOG_INDENT_DEFAULT ) {}
 
-	void		Printf( VERIFY_FORMAT_STRING const char *fmt, ... ) {}
+void        Printf( VERIFY_FORMAT_STRING const char *fmt, ... ) {}
 
-	int			activeLevel;
+int activeLevel;
 };
 
-#endif	// !STUB_RENDER_LOG
+#endif  // !STUB_RENDER_LOG
 
 extern idRenderLog renderLog;
 
