@@ -2417,8 +2417,6 @@ void Com_Frame( void ) {
 		c_pointcontents = 0;
 	}
 
-	// old net chan encryption key
-	key = lastTime * 0x87243987;
 
 	com_frameNumber++;
 }
