@@ -2780,7 +2780,6 @@ int BotAllocChatState( void ) {
 //========================================================================
 void BotFreeChatState( int handle ) {
 	bot_consolemessage_t m;
-	bot_consolemessage_t m;
 	int h;
 
 	if ( handle <= 0 || handle > MAX_CLIENTS ) {
