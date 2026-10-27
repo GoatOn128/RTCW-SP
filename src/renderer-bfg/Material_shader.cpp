@@ -1568,7 +1568,7 @@ static bool ParseShader( idLexer *src, idMaterial *shader ) {
 			const int fogFar = ( fogDensity >= 1 ) ? ( int )fogDensity : 5;
 
 			parserManager->mapFogString.Format( "0 %d %f %f %f %f 0", fogFar,
-												 fogDensity, fogColor[0], fogColor[1], fogColor[2] );
+												fogDensity, fogColor[0], fogColor[1], fogColor[2] );
 			continue;
 		}
 		// done.
