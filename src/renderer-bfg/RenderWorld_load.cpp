@@ -33,6 +33,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "Q3Bsp.h"
 #include "Q3Patch.h"
 #include "MaterialManager.h"
+#include "ImageManager.h"
+#include "CVarSystem.h"
 
 // Trimmed and reworked from the BFG RenderWorld_load.cpp: instead of the
 // .proc format the loader reads the Q3/RTCW .bsp files of this engine. The
@@ -413,7 +415,7 @@ static void LoadQ3BspVis( const byte *buffer, const q3BspHeader_t *header, q3Bsp
 LoadQ3BspLightmaps
 
 The lightmap lighting stays: the raw 128x128 RGB blocks are kept on the
-world and uploaded by the image phase, which owns the texture objects
+world and turned into the lightmap images below
 ===================
 */
 static void LoadQ3BspLightmaps( const byte *buffer, const q3BspHeader_t *header, q3BspWorld_t *world ) {
@@ -425,6 +427,64 @@ static void LoadQ3BspLightmaps( const byte *buffer, const q3BspHeader_t *header,
 	world->numLightmaps = lump.filelen / Q3_LIGHTMAP_BYTES;
 	world->lightmaps = (byte *) malloc( world->numLightmaps * Q3_LIGHTMAP_BYTES );
 	memcpy( world->lightmaps, buffer + lump.fileofs, world->numLightmaps * Q3_LIGHTMAP_BYTES );
+}
+
+/*
+===================
+CreateBspLightmapImages
+
+The lightmap upload of R_LoadLightmaps in src/renderer/tr_bsp.c of
+this code base: the raw 128x128 RGB blocks become the *lightmap
+images, color shifted for the overbright range. The engine uploads
+the lightmaps as real textures right here; this renderer prepares the
+pixels and binds the image at draw time, so the GL upload waits for
+the backend.
+===================
+*/
+static void CreateBspLightmapImages( idRenderWorldLocal *renderWorld, const q3BspWorld_t *bsp ) {
+	if ( bsp->lightmaps == NULL ) {
+		return;
+	}
+
+	// maps with a single lightmap turn up fullbright, the engine works
+	// around it by reading a second block past the lightmap lump (a
+	// known hack); this port fills the second block with white instead
+	// of reading past the lump
+	int numLightmaps = bsp->numLightmaps;
+	const bool singleLightmapHack = ( numLightmaps == 1 );
+	if ( singleLightmapHack ) {
+		numLightmaps++;
+	}
+
+	// if we are in r_vertexLight mode, we don't need the lightmaps at all
+	if ( r_vertexLight.GetBool() ) {
+		return;
+	}
+
+	// the color shift of the overbright range: the map overbright bits
+	// reduced by the renderer overbright bits
+	const int shift = r_mapOverBrightBits.GetInteger() - imageManager->OverbrightBits();
+
+	byte image[Q3_LIGHTMAP_SIZE * Q3_LIGHTMAP_SIZE * 4];
+	for ( int i = 0; i < numLightmaps; i++ ) {
+		const byte *buf_p = bsp->lightmaps + i * Q3_LIGHTMAP_BYTES;
+
+		if ( singleLightmapHack && i == 1 ) {
+			memset( image, 255, sizeof( image ) );
+		} else {
+			// expand the 24 bit on-disk to 32 bit
+			for ( int j = 0; j < Q3_LIGHTMAP_SIZE * Q3_LIGHTMAP_SIZE; j++ ) {
+				R_ColorShiftLightingBytes( shift, &buf_p[j * 3], &image[j * 4] );
+				image[j * 4 + 3] = 255;
+			}
+		}
+
+		idStr name;
+		name.Format( "*lightmap%d", i );
+		idImage *lightmap = imageManager->CreateImage( name.c_str(), image,
+													   Q3_LIGHTMAP_SIZE, Q3_LIGHTMAP_SIZE, false, false, false, GL_CLAMP );
+		renderWorld->lightmaps.Append( lightmap );
+	}
 }
 
 /*
@@ -712,6 +772,10 @@ bool idRenderWorldLocal::LoadQ3BspWorld( const char *name ) {
 
 	// convert the BSP models into local render models
 	BuildBspLocalModels( this, world );
+
+	// the surfaces reference the lightmaps by their number, the images
+	// need to exist before the first frame binds them
+	CreateBspLightmapImages( this, world );
 
 	free( buffer );
 	bspWorld = world;

@@ -102,6 +102,10 @@ void idRenderWorldLocal::FreeWorld() {
 	}
 	localModels.Clear();
 
+	// the lightmap images stay owned by the image manager, the world
+	// only drops its references
+	lightmaps.Clear();
+
 	// free the Q3 BSP data behind the world
 	delete bspWorld;
 	bspWorld = NULL;

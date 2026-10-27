@@ -31,6 +31,8 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../idlib/Str.h"
 
+class idImage;
+
 /*
 ===============================================================================
 
@@ -48,9 +50,12 @@ If you have questions concerning this license or the applicable additional terms
 	with the Q3 lightmap pipeline, so the Q3 rgbGen, alphaGen, tcGen and
 	tcMod semantics are kept instead.
 
-	The texture stages store image names; the images themselves are
-	created by the image phase. The names "_white" and "_dlight" are
-	internal image markers the image phase resolves.
+	The texture stages hold idImage pointers; the image manager creates
+	them from the shader image names when the definition parses, the
+	same point the engine loads its stage images. The videoMap stages
+	keep the video file name instead, the cinematic playback is
+	deferred to the client integration. The names "_white" and
+	"_dlight" are the internal image markers for $whiteimage and $dlight.
 
 ===============================================================================
 */
@@ -336,8 +341,8 @@ typedef struct {
 
 typedef struct {
 	float cloudHeight;
-	idStr outerbox;              // base name, the image phase appends _rt.._dn
-	idStr innerbox;              // base name, the image phase appends _rt.._dn
+	idImage *outerbox[6];       // the six sides of the outer box, the parser appends _rt.._dn
+	idImage *innerbox[6];       // the six sides of the inner box, the parser appends _rt.._dn
 } skyParms_t;
 
 typedef struct {
@@ -346,11 +351,16 @@ typedef struct {
 } fogParms_t;
 
 typedef struct {
-	// the image phase resolves the names; "_white" and "_dlight" are the
-	// internal image markers for $whiteimage and $dlight
-	idStr images[MAX_IMAGE_ANIMATIONS];
+	// the stage images, created by the image manager at parse time like
+	// the engine loads them in ParseStage; a lightmap bundle carries no
+	// image, the surface lightmap binds at draw time
+	idImage *images[MAX_IMAGE_ANIMATIONS];
 	int numImages;
 	float imageAnimationSpeed;
+
+	// the videoMap file name; the cinematic playback is deferred to
+	// the client integration
+	idStr videoMapName;
 
 	texCoordGen_t tcGen;
 	float tcGenVectors[2][3];

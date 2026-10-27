@@ -26,16 +26,19 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "../idlib/precompiled.h"
+#include "precompiled.h"
 #include "Material.h"
+#include "ImageManager.h"
 
 /*
 
   The default and the texture-only material construction follow
   R_FindShader in src/renderer/tr_shader.c of this code base: a name
   without an explicit shader definition gets one of the fallback stage
-  setups. The images are not loaded here, the stages keep the names and
-  the image phase resolves them.
+  setups. The stage images load through the image manager, the engine
+  loads the same image through R_FindImageFile; a texture that does
+  not load defaults the material like the engine falls back to the
+  default shader.
 
   The default material is not drawn, like the engine's default shader,
   so missing shader definitions stay visible as missing surfaces
@@ -69,8 +72,8 @@ void idMaterial::Reset() {
 	entityMergable = false;
 	isSky = false;
 	sky.cloudHeight = 0.0f;
-	sky.outerbox.Clear();
-	sky.innerbox.Clear();
+	memset( sky.outerbox, 0, sizeof( sky.outerbox ) );
+	memset( sky.innerbox, 0, sizeof( sky.innerbox ) );
 	memset( &fogParms, 0, sizeof( fogParms ) );
 	portalRange = 0.0f;
 
@@ -125,18 +128,36 @@ void idMaterial::InitTextureOnly( const char *textureName, int lmIndex ) {
 	lightmapIndex = lmIndex;
 
 	// the lightmap bundles reference the lightmap of the surface, they
-	// have no name of their own
+	// have no image of their own
+
+	// the engine loads the raw image with a default .tga extension,
+	// mipmapped everywhere but the 2D GUI flavor
+	const bool mipRawImage = ( lightmapIndex != LIGHTMAP_2D );
+	idStr fileName = textureName;
+	fileName.DefaultFileExtension( ".tga" );
+	idImage *texture = imageManager->ImageFromFile( fileName, mipRawImage, mipRawImage, false,
+													mipRawImage ? GL_REPEAT : GL_CLAMP );
+
+	// a texture that does not load defaults the material; the engine
+	// hands back its default shader instead, this renderer keeps the
+	// material cached under its name so the file is not reloaded
+	if ( texture == NULL ) {
+		idLib::Warning( "Material '%s' could not load its texture", textureName );
+		defaulted = true;
+		Finish();
+		return;
+	}
 
 	if ( lightmapIndex == LIGHTMAP_NONE ) {
 		// dynamic colors at vertexes
-		stages[0].bundle[0].images[0] = textureName;
+		stages[0].bundle[0].images[0] = texture;
 		stages[0].bundle[0].numImages = 1;
 		stages[0].active = true;
 		stages[0].rgbGen = CGEN_LIGHTING_DIFFUSE;
 		stages[0].stateBits = GLS_DEFAULT;
 	} else if ( lightmapIndex == LIGHTMAP_BY_VERTEX ) {
 		// explicit colors at vertexes
-		stages[0].bundle[0].images[0] = textureName;
+		stages[0].bundle[0].images[0] = texture;
 		stages[0].bundle[0].numImages = 1;
 		stages[0].active = true;
 		stages[0].rgbGen = CGEN_EXACT_VERTEX;
@@ -144,7 +165,7 @@ void idMaterial::InitTextureOnly( const char *textureName, int lmIndex ) {
 		stages[0].stateBits = GLS_DEFAULT;
 	} else if ( lightmapIndex == LIGHTMAP_2D ) {
 		// GUI elements
-		stages[0].bundle[0].images[0] = textureName;
+		stages[0].bundle[0].images[0] = texture;
 		stages[0].bundle[0].numImages = 1;
 		stages[0].active = true;
 		stages[0].rgbGen = CGEN_VERTEX;
@@ -154,13 +175,13 @@ void idMaterial::InitTextureOnly( const char *textureName, int lmIndex ) {
 							  GLS_DSTBLEND_ONE_MINUS_SRC_ALPHA;
 	} else if ( lightmapIndex == LIGHTMAP_WHITEIMAGE ) {
 		// fullbright level
-		stages[0].bundle[0].images[0] = "_white";
+		stages[0].bundle[0].images[0] = imageManager->WhiteImage();
 		stages[0].bundle[0].numImages = 1;
 		stages[0].active = true;
 		stages[0].rgbGen = CGEN_IDENTITY_LIGHTING;
 		stages[0].stateBits = GLS_DEFAULT;
 
-		stages[1].bundle[0].images[0] = textureName;
+		stages[1].bundle[0].images[0] = texture;
 		stages[1].bundle[0].numImages = 1;
 		stages[1].active = true;
 		stages[1].rgbGen = CGEN_IDENTITY;
@@ -174,7 +195,7 @@ void idMaterial::InitTextureOnly( const char *textureName, int lmIndex ) {
 		// for identitylight
 		stages[0].stateBits = GLS_DEFAULT;
 
-		stages[1].bundle[0].images[0] = textureName;
+		stages[1].bundle[0].images[0] = texture;
 		stages[1].bundle[0].numImages = 1;
 		stages[1].active = true;
 		stages[1].rgbGen = CGEN_IDENTITY;
@@ -216,8 +237,10 @@ void idMaterial::Finish() {
 			break;
 		}
 
-		// check for a missing texture
-		if ( !pStage->bundle[0].isLightmap && pStage->bundle[0].images[0].Length() == 0 ) {
+		// check for a missing texture; the lightmap bundles bind the
+		// surface lightmap at draw time and the videoMap stages keep
+		// the video file name until the cinematic playback lands
+		if ( !pStage->bundle[0].isLightmap && !pStage->bundle[0].isVideoMap && pStage->bundle[0].images[0] == NULL ) {
 			idLib::Warning( "Material %s has a stage with no image", name.c_str() );
 			pStage->active = false;
 			continue;

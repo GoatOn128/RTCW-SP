@@ -318,4 +318,9 @@ ID_INLINE void idCVar::RegisterStaticVars() {
 	}
 }
 
+// the renderer cvars shared across the module files, declared in
+// CVarSystem.cpp; the cvars of a single file stay local to it
+extern idCVar r_vertexLight;
+extern idCVar r_mapOverBrightBits;
+
 #endif /* !__CVARSYSTEM_H__ */

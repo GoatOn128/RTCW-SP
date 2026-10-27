@@ -390,6 +390,7 @@ renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'Material.cpp',
     'MaterialManager.cpp',
     'Material_shader.cpp',
+    'ImageManager.cpp', 'Image_files.cpp', 'Image_intrinsic.cpp', 'Image_process.cpp',
 ]]
 
 renderer_bfg_env = env.Clone()
@@ -406,6 +407,10 @@ if IS_WINDOWS:
 else:
     renderer_bfg_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src/third-party/glad/src/gl.c'], shared=not IS_WINDOWS)
+# stb is vendored third party code as well, this module already mutes
+# all warnings; stb_impl.c is the single translation unit that pulls in
+# the implementations, the JPEG loader of the image phase uses it
+renderer_bfg_objs += module_objects(renderer_bfg_env, 'renderer-bfg', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
 renderer_bfg_target = os.path.join(BUILD_DIR, 'renderer_bfg' + DLL)
 # the idlib objects are linked straight into the shared library: SCons
 # rejects a static library node as a shared library source on Linux

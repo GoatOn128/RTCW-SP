@@ -31,6 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "RenderWorld.h"
 #include "ScreenRect.h"
+#include "Image.h"
 
 /*
 ===============================================================================
@@ -352,6 +353,10 @@ doublePortal_t *        doublePortals;
 int numInterAreaPortals;
 
 idList<idRenderModel *, TAG_MODEL>          localModels;
+
+// the lightmap images of the map, created by the BSP loader from the
+// lightmap lump; the surfaces index them with their lightmap number
+idList<idImage *, TAG_IDLIB_LIST_IMAGE> lightmaps;
 
 idList<idRenderEntityLocal*, TAG_ENTITY>    entityDefs;
 idList<idRenderLightLocal*, TAG_LIGHT>      lightDefs;

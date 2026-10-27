@@ -35,3 +35,8 @@ idCVarSystem * cvarSystem = NULL;
 
 // statically declared cvars of this module, see the note in CVarSystem.h
 idCVar * idCVar::staticVars = NULL;
+
+// the renderer cvars shared across the files of this module, with
+// externs in CVarSystem.h; the cvars of a single file stay local to it
+idCVar r_vertexLight( "r_vertexLight", "0", CVAR_RENDERER | CVAR_ARCHIVE, "vertex lighting" );
+idCVar r_mapOverBrightBits( "r_mapOverBrightBits", "2", CVAR_RENDERER | CVAR_ARCHIVE, "map overbright bits" );

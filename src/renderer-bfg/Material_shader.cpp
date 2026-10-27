@@ -26,8 +26,9 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "../idlib/precompiled.h"
+#include "precompiled.h"
 #include "Material_local.h"
+#include "ImageManager.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -54,13 +55,14 @@ If you have questions concerning this license or the applicable additional terms
   into its own token, so negative numbers are reassembled in the float
   helper.
 
-  Deferred with the fog, sun, lightgrid and image phases: the sky fog,
-  water fog and map fog variables (skyfogvars, waterfogvars, fogvars),
-  the sun parameters (q3map_sun, sunshader), the lightgrid multipliers,
-  the state shader time clamping (clampTime), texture compression
-  (allowcompress, nocompress and the mapcomp keyword set) and videoMap
-  playback (the name is kept, the cinematic plays back with the image
-  phase).
+  Deferred with the fog, sun and lightgrid phases: the sky fog, water
+  fog and map fog variables (skyfogvars, waterfogvars, fogvars), the
+  sun parameters (q3map_sun, sunshader), the lightgrid multipliers,
+  the state shader time clamping (clampTime) and the mapcomp keyword
+  set. The stage images load through the image manager like the
+  engine loads them in ParseStage; the videoMap playback needs the
+  client cinematic system (the BFG renderer plays Bink instead), so
+  the stage keeps the video file name and no image.
 
 */
 
@@ -551,13 +553,13 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 			//----(SA) fixes startup error and allows polygon shadows to work again
 			if ( !mapName.Icmp( "$whiteimage" ) || !mapName.Icmp( "*white" ) ) {
 				//----(SA) end
-				stage->bundle[0].images[0] = "_white";
+				stage->bundle[0].images[0] = imageManager->WhiteImage();
 				stage->bundle[0].numImages = 1;
 				continue;
 			}
 			//----(SA) added
 			else if ( !mapName.Icmp( "$dlight" ) ) {
-				stage->bundle[0].images[0] = "_dlight";
+				stage->bundle[0].images[0] = imageManager->DlightImage();
 				stage->bundle[0].numImages = 1;
 				continue;
 			}
@@ -569,15 +571,21 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 				continue;
 			} else
 			{
-				stage->bundle[0].images[0] = mapName;
+				idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
+															 !shader->noPicMip, shader->characterMip, GL_REPEAT );
+				if ( image == NULL ) {
+					idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
+					return false;
+				}
+				stage->bundle[0].images[0] = image;
 				stage->bundle[0].numImages = 1;
 			}
 		}
 		//
 		// clampmap <name>
 		//
-		// the image phase decides the clamp mode: the engine loads a
-		// clampmap with GL_CLAMP, which the name does not carry here
+		// the image loads with GL_CLAMP, the engine loads a clampmap
+		// through the same path as a map with the clamp wrap mode
 		else if ( !token.Icmp( "clampmap" ) ) {
 			idStr mapName;
 
@@ -586,7 +594,13 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 				return false;
 			}
 
-			stage->bundle[0].images[0] = mapName;
+			idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
+														 !shader->noPicMip, shader->characterMip, GL_CLAMP );
+			if ( image == NULL ) {
+				idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
+				return false;
+			}
+			stage->bundle[0].images[0] = image;
 			stage->bundle[0].numImages = 1;
 		}
 		//
@@ -609,22 +623,28 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 				}
 				int num = stage->bundle[0].numImages;
 				if ( num < MAX_IMAGE_ANIMATIONS ) {
-					stage->bundle[0].images[num] = mapName;
+					idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
+																 !shader->noPicMip, shader->characterMip, GL_REPEAT );
+					if ( image == NULL ) {
+						idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
+						return false;
+					}
+					stage->bundle[0].images[num] = image;
 					stage->bundle[0].numImages++;
 				}
 			}
 		} else if ( !token.Icmp( "videoMap" ) ) {
 			idStr videoName;
 
-			// the cinematic playback is deferred with the image phase;
-			// the stage keeps the name of the video file
+			// the cinematic playback needs the client cinematic system
+			// (the BFG renderer plays Bink instead), so the stage keeps
+			// the video file name and no image until it lands
 			if ( !ParseStringParm( src, videoName ) ) {
 				idLib::Warning( "WARNING: missing parameter for 'videoMmap' keyword in shader '%s'\n", shader->GetName() );
 				return false;
 			}
 			stage->bundle[0].isVideoMap = true;
-			stage->bundle[0].images[0] = videoName;
-			stage->bundle[0].numImages = 1;
+			stage->bundle[0].videoMapName = videoName;
 		}
 		//
 		// alphafunc <func>
@@ -1061,12 +1081,14 @@ ParseSkyParms
 
 skyParms <outerbox> <cloudheight> <innerbox>
 
-The engine loads the six box images right here; the image phase
-resolves them from the stored base names.
+The engine loads the six box images right here with the _rt, _bk, _lf,
+_ft, _up and _dn suffixes; a box side that does not load falls back to
+the default image.
 ===============
 */
 static void ParseSkyParms( idLexer *src, idMaterial *shader ) {
 	idStr token;
+	static const char *suf[6] = { "rt", "bk", "lf", "ft", "up", "dn" };
 
 	// outerbox
 	if ( !ParseStringParm( src, token ) ) {
@@ -1074,8 +1096,17 @@ static void ParseSkyParms( idLexer *src, idMaterial *shader ) {
 		return;
 	}
 	if ( token != "-" ) {
-		// the image phase appends the _rt, _bk, _lf, _ft, _up and _dn suffixes
-		shader->sky.outerbox = token;
+		for ( int i = 0; i < 6; i++ ) {
+			idStr pathname = token;
+			pathname += "_";
+			pathname += suf[i];
+			pathname += ".tga";
+			idImage *image = imageManager->ImageFromFile( pathname.c_str(), true, true, false, GL_CLAMP );
+			if ( image == NULL ) {
+				image = imageManager->DefaultImage();
+			}
+			shader->sky.outerbox[i] = image;
+		}
 	}
 
 	// cloudheight
@@ -1096,7 +1127,17 @@ static void ParseSkyParms( idLexer *src, idMaterial *shader ) {
 		return;
 	}
 	if ( token != "-" ) {
-		shader->sky.innerbox = token;
+		for ( int i = 0; i < 6; i++ ) {
+			idStr pathname = token;
+			pathname += "_";
+			pathname += suf[i];
+			pathname += ".tga";
+			idImage *image = imageManager->ImageFromFile( pathname.c_str(), true, true, false, GL_CLAMP );
+			if ( image == NULL ) {
+				image = imageManager->DefaultImage();
+			}
+			shader->sky.innerbox[i] = image;
+		}
 	}
 
 	shader->isSky = true;
