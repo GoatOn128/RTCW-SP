@@ -1406,12 +1406,12 @@ static void CG_Crowbar( centity_t *cent ) {
 
 //----(SA)	animation_t struct changed, so changes are to keep this working
 static animation_t grabberAnims[] = {
-	{"", 0,  6,  6,  1000 / 5,     1000 / 5, 0, 0, 0, 0, 0, 0, 0 },   // (main idle)
-	{"", 5,  21, 21, 1000 / 7,     1000 / 7, 0, 0, 0, 0, 0, 0, 0 },   // (random idle)
-	{"", 25, 11, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (attack big swipe)
-	{"", 35, 16, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (attack small swipe)
-	{"", 50, 16, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (attack grab)
-	{"", 66, 1,  0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (starting position)
+	{"", 0,  6,  6,  1000 / 5,     1000 / 5, 0, 0, 0, 0, 0, 0, 0, 0 },   // (main idle)
+	{"", 5,  21, 21, 1000 / 7,     1000 / 7, 0, 0, 0, 0, 0, 0, 0, 0 },   // (random idle)
+	{"", 25, 11, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (attack big swipe)
+	{"", 35, 16, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (attack small swipe)
+	{"", 50, 16, 0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (attack grab)
+	{"", 66, 1,  0,  1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (starting position)
 };
 
 //----(SA)	added
@@ -1428,13 +1428,13 @@ static animation_t footlockerAnims[] = {
 // DHM - Nerve :: capture and hold flag
 
 static animation_t multi_flagpoleAnims[] = {
-	{"", 0,      1,      0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (no flags, idle)
-	{"", 0,      15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (nazi flag rising)
-	{"", 490,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (american flag rising)
-	{"", 20,     211,    211,    1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (nazi flag raised)
-	{"", 255,    211,    211,    1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (american flag raised)
-	{"", 235,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (nazi switching to american)
-	{"", 470,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0 },  // (american switching to nazi)
+	{"", 0,      1,      0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (no flags, idle)
+	{"", 0,      15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (nazi flag rising)
+	{"", 490,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (american flag rising)
+	{"", 20,     211,    211,    1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (nazi flag raised)
+	{"", 255,    211,    211,    1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (american flag raised)
+	{"", 235,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (nazi switching to american)
+	{"", 470,    15,     0,      1000 / 15,    1000 / 15, 0, 0, 0, 0, 0, 0, 0, 0 },  // (american switching to nazi)
 };
 
 // dhm - end

@@ -2909,7 +2909,7 @@ static qboolean CG_PlayerShadow( centity_t *cent, float *shadowPlane ) {
 		{"tag_footleft", 10, 4,  0.5, 0},
 		{"tag_footright",    10, 4,  0.5, 0},
 		{"tag_torso",        18, 96, 0.4, 0},
-		{NULL, 0}
+		{NULL, 0, 0, 0, 0}
 	};
 
 	shadowParts[0].shader = cgs.media.shadowFootShader;     //DAJ pulled out of initliization
