@@ -4333,14 +4333,11 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 	vec3_t end;
 	trace_t tr;
 	vec3_t dir;
-	int weapon;
 
 	// !!! NOTE: the only way control should pass out of here, is by calling AIFunc_DefaultStart()
 
 	ent = &g_entities[cs->entityNum];
 	danger = &g_entities[cs->dangerEntity];
-
-	weapon = cs->grenadeKickWeapon;
 
 	// just to be sure, give us the grenade launcher
 	//ent->client->ps.weapons |= (1 << weapon);
@@ -4683,7 +4680,6 @@ AIFunc_Battle()
 */
 char *AIFunc_Battle( cast_state_t *cs ) {
 	bot_moveresult_t moveresult;
-	int tfl;
 	bot_state_t *bs;
 	gentity_t *ent, *enemy;
 
@@ -4835,16 +4831,7 @@ char *AIFunc_Battle( cast_state_t *cs ) {
 	}
 	//
 	// setup for the fight
-	//
-	tfl = cs->travelflags;
-	//if in lava or slime the bot should be able to get out
-	if ( BotInLava( bs ) ) {
-		tfl |= TFL_LAVA;
-	}
-	if ( BotInSlime( bs ) ) {
-		tfl |= TFL_SLIME;
-	}
-	//
+	//	//
 	/*
 	moveresult = AICast_CombatMove(cs, tfl);
 	//if the movement failed

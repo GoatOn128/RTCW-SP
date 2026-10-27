@@ -493,7 +493,6 @@ char *AIFunc_Heinrich_SwordKnockback( cast_state_t *cs ) {
 //	float	enemyDist;
 //	aicast_predictmove_t move;
 //	vec3_t	vec;
-	cast_state_t *ecs;
 
 	cs->aiFlags |= AIFL_SPECIAL_FUNC;
 
@@ -504,7 +503,6 @@ char *AIFunc_Heinrich_SwordKnockback( cast_state_t *cs ) {
 		return AIFunc_DefaultStart( cs );
 	}
 
-	ecs = AICast_GetCastState( cs->enemyNum );
 
 	if ( ent->client->ps.torsoTimer < 500 ) {
 		if ( !ent->client->ps.legsTimer ) {
