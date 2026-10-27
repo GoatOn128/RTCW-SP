@@ -977,7 +977,7 @@ GLuint idRenderProgManager::LoadGLSLShader( GLenum target, const char * name, id
 				}
 			}
 			if ( index == -1 ) {
-				idLib::Error( "couldn't find uniform %s for %s", token.c_str(), outFileGLSL.c_str() );
+				idLib::Error( "couldn't find uniform %s for %s", token.c_str(), inFile.c_str() );
 			}
 			uniforms.Append( index );
 		}
