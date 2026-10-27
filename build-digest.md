@@ -1,6 +1,6 @@
 # Build digest
 
-commit: 094dbeef2028
+commit: f73f7ed99d85
 
 - ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
