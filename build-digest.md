@@ -1,6 +1,6 @@
 # Build digest
 
-commit: c1173d2adca2
+commit: 018e62b1d5e0
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
@@ -9,7 +9,7 @@ commit: c1173d2adca2
 - ubuntu-latest-x86-release-: failure
 - uncrustify: success
 - windows-latest-x64-debug-: failure
-- windows-latest-x64-release-: cancelled
+- windows-latest-x64-release-: failure
 - windows-latest-x64-release-cgame: failure
 - windows-latest-x64-release-game,renderer: failure
 - windows-latest-x64-release-ui: failure
@@ -2373,7 +2373,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2408,7 +2408,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2443,7 +2443,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2478,7 +2478,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2513,7 +2513,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2548,7 +2548,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2583,7 +2583,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2618,7 +2618,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2653,7 +2653,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2688,7 +2688,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1155]
+ runner @ user manager: (sd-pam)[1182]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2752,12 +2752,12 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.c.o] Source `src/c
   - src/splines/splines.cpp:1126:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/splines/splines.cpp:1171:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/splines/splines.cpp:1220:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
-- [6x] -logical-op-parentheses
-  - src/splines/math_quaternion.h:167:62: warning: '&&' within '||' [-Wlogical-op-parentheses]
 - [6x] -sizeof-array-argument
   - src/splines/math_matrix.h:94:26: warning: sizeof on array function parameter will return size of 'float (*)[3]' instead of 'float[3][3]' [-Wsizeof-array-argument]
 - [6x] -sizeof-pointer-memaccess
   - src/splines/math_matrix.h:94:28: warning: 'memcpy' call operates on objects of type 'float[3]' while the size is based on a different type 'float (*)[3]' [-Wsizeof-pointer-memaccess]
+- [6x] -logical-op-parentheses
+  - src/splines/math_quaternion.h:167:62: warning: '&&' within '||' [-Wlogical-op-parentheses]
 - [5x] -macro-redefined
   - src/splines/q_splineshared.h:204:9: warning: 'CPUSTRING' macro redefined [-Wmacro-redefined]
 - [1x] -unused-value
@@ -3053,11 +3053,11 @@ scons: *** [build\windows-x64-debug\renderer\obj\third-party\glad\src\gl.c.obj] 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3070,11 +3070,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3088,11 +3088,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3107,11 +3107,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_console.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3127,11 +3127,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_input.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3148,11 +3148,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3170,11 +3170,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_main.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3193,11 +3193,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.c.obj] Source 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3217,11 +3217,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3242,11 +3242,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_qgl.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 35.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3302,7 +3302,7 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_scrn.c.obj] Source `src
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [7x] -unused-but-set-variable
@@ -3324,7 +3324,7 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_scrn.c.obj] Source `src
 
 ## windows-latest-x64-release-
 
-status: cancelled
+status: failure
 
 errors: 258
 warnings: 83 in 8 kinds
@@ -3600,7 +3600,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3617,7 +3617,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3635,7 +3635,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3654,7 +3654,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3674,7 +3674,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3695,7 +3695,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3717,7 +3717,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3740,7 +3740,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3764,7 +3764,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3789,7 +3789,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 30.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 16.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3845,7 +3845,7 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
@@ -4140,11 +4140,11 @@ scons: *** [build\windows-x64-release\renderer\obj\third-party\glad\src\gl.c.obj
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4157,11 +4157,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4175,11 +4175,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4194,11 +4194,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4214,11 +4214,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4235,11 +4235,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4257,11 +4257,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4280,11 +4280,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4304,11 +4304,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4329,11 +4329,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 26.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 80.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4390,7 +4390,7 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -4685,7 +4685,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4702,7 +4702,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4720,7 +4720,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4739,7 +4739,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4759,7 +4759,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4780,7 +4780,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4802,7 +4802,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4825,7 +4825,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4849,7 +4849,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4874,7 +4874,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 42.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4930,8 +4930,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -5225,11 +5225,11 @@ scons: *** [build\windows-x64-release\renderer\obj\third-party\glad\src\gl.c.obj
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5242,11 +5242,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5260,11 +5260,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5279,11 +5279,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5299,11 +5299,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5320,11 +5320,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5342,11 +5342,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5365,11 +5365,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5389,11 +5389,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5414,11 +5414,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   31G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 6.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5474,8 +5474,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -5771,11 +5771,11 @@ scons: *** [build\windows-x86-debug\renderer\obj\third-party\glad\src\gl.c.obj] 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5788,11 +5788,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5806,11 +5806,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5825,11 +5825,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_console.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5845,11 +5845,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_input.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5866,11 +5866,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_keys.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5888,11 +5888,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5911,11 +5911,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_net_chan.c.obj] Source 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5935,11 +5935,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_parse.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5960,11 +5960,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_qgl.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 21.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6020,7 +6020,7 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.c.obj] Source `src
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [7x] -unused-but-set-variable
@@ -6318,7 +6318,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6335,7 +6335,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6353,7 +6353,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6372,7 +6372,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6392,7 +6392,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6413,7 +6413,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6435,7 +6435,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6458,7 +6458,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6482,7 +6482,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6507,7 +6507,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 56.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 57.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6563,8 +6563,8 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-  - src\splines\math_vector.h(160,19): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
