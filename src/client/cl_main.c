@@ -2802,7 +2802,6 @@ CL_ServerInfoPacket
 void CL_ServerInfoPacket( netadr_t from, msg_t *msg ) {
 	int i, type;
 	char info[MAX_INFO_STRING];
-	char*   str;
 	char    *infoString;
 	int prot;
 
@@ -2832,18 +2831,15 @@ void CL_ServerInfoPacket( netadr_t from, msg_t *msg ) {
 			{
 			case NA_BROADCAST:
 			case NA_IP:
-				str = "udp";
 				type = 1;
 				break;
 
 			case NA_IPX:
 			case NA_BROADCAST_IPX:
-				str = "ipx";
 				type = 2;
 				break;
 
 			default:
-				str = "???";
 				type = 0;
 				break;
 			}
@@ -2906,10 +2902,8 @@ CL_GetServerStatus
 ===================
 */
 serverStatus_t *CL_GetServerStatus( netadr_t from ) {
-	serverStatus_t *serverStatus;
 	int i, oldest, oldestTime;
 
-	serverStatus = NULL;
 	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
 		if ( NET_CompareAdr( from, cl_serverStatusList[i].address ) ) {
 			return &cl_serverStatusList[i];
@@ -3605,12 +3599,9 @@ CL_AddToLimboChat
 */
 void CL_AddToLimboChat( const char *str ) {
 	int len;
-	char *p, *ls;
-	int lastcolor;
-	int chatHeight;
+	char *p;
 	int i;
 
-	chatHeight = LIMBOCHAT_HEIGHT;
 	cl.limboChatPos = LIMBOCHAT_HEIGHT - 1;
 	len = 0;
 
@@ -3623,9 +3614,6 @@ void CL_AddToLimboChat( const char *str ) {
 	p = cl.limboChatMsgs[0];
 	*p = 0;
 
-	lastcolor = '7';
-
-	ls = NULL;
 	while ( *str ) {
 		if ( len > LIMBOCHAT_WIDTH - 1 ) {
 #if 0
@@ -3651,12 +3639,8 @@ void CL_AddToLimboChat( const char *str ) {
 
 		if ( Q_IsColorString( str ) ) {
 			*p++ = *str++;
-			lastcolor = *str;
 			*p++ = *str++;
 			continue;
-		}
-		if ( *str == ' ' ) {
-			ls = p;
 		}
 		*p++ = *str++;
 		len++;
