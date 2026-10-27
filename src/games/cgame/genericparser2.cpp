@@ -1,43 +1,37 @@
 #include "FxWolf.h"
-#define MAX_TOKEN_SIZE	1024
-static char	token[MAX_TOKEN_SIZE];
+#define MAX_TOKEN_SIZE  1024
+static char token[MAX_TOKEN_SIZE];
 
-static char *GetToken(char **text, bool allowLineBreaks, bool readUntilEOL = false)
-{
-	char	*pointer = *text;
-	int		length = 0;
-	int		c = 0;
-	bool	foundLineBreak;
+static char *GetToken( char **text, bool allowLineBreaks, bool readUntilEOL = false ) {
+	char    *pointer = *text;
+	int length = 0;
+	int c = 0;
+	bool foundLineBreak;
 
 	token[0] = 0;
-	if (!pointer)
-	{
+	if ( !pointer ) {
 		return token;
 	}
 
-	while(1)
+	while ( 1 )
 	{
 		foundLineBreak = false;
-		while(1)
+		while ( 1 )
 		{
 			c = *pointer;
-			if (c > ' ')
-			{
+			if ( c > ' ' ) {
 				break;
 			}
-			if (!c)
-			{
+			if ( !c ) {
 				*text = 0;
 				return token;
 			}
-			if (c == '\n')
-			{
+			if ( c == '\n' ) {
 				foundLineBreak = true;
 			}
 			pointer++;
 		}
-		if (foundLineBreak && !allowLineBreaks)
-		{
+		if ( foundLineBreak && !allowLineBreaks ) {
 			*text = pointer;
 			return token;
 		}
@@ -45,84 +39,68 @@ static char *GetToken(char **text, bool allowLineBreaks, bool readUntilEOL = fal
 		c = *pointer;
 
 		// skip single line comment
-		if (c == '/' && pointer[1] == '/')
-		{
+		if ( c == '/' && pointer[1] == '/' ) {
 			pointer += 2;
-			while (*pointer && *pointer != '\n') 
+			while ( *pointer && *pointer != '\n' )
 			{
 				pointer++;
 			}
 		}
 		// skip multi line comments
-		else if (c == '/' && pointer[1] == '*') 
-		{
+		else if ( c == '/' && pointer[1] == '*' ) {
 			pointer += 2;
-			while (*pointer && (*pointer != '*' || pointer[1] != '/')) 
+			while ( *pointer && ( *pointer != '*' || pointer[1] != '/' ) )
 			{
 				pointer++;
 			}
-			if (*pointer) 
-			{
+			if ( *pointer ) {
 				pointer += 2;
 			}
-		}
-		else
-		{	// found the start of a token
+		}else
+		{   // found the start of a token
 			break;
 		}
 	}
 
-	if (c == '\"')
-	{	// handle a string
+	if ( c == '\"' ) { // handle a string
 		pointer++;
-		while (1)
+		while ( 1 )
 		{
 			c = *pointer++;
-			if (c == '\"')
-			{
+			if ( c == '\"' ) {
 //				token[length++] = c;
 				break;
-			}
-			else if (!c)
-			{
+			}else if ( !c )    {
 				pointer--;
 				break;
-			}
-			else if (length < MAX_TOKEN_SIZE - 1)
-			{
+			}else if ( length < MAX_TOKEN_SIZE - 1 )    {
 				token[length++] = c;
 			}
 		}
-	}
-	else if (readUntilEOL)
-	{
+	}else if ( readUntilEOL )    {
 		// absorb all characters until EOL
-		while(c && c != '\n' && c != '\r')
+		while ( c && c != '\n' && c != '\r' )
 		{
-			if (c == '/' && ((*(pointer+1)) == '/' || (*(pointer+1)) == '*'))
-			{
+			if ( c == '/' && ( ( *( pointer + 1 ) ) == '/' || ( *( pointer + 1 ) ) == '*' ) ) {
 				break;
 			}
 
-			if (length < MAX_TOKEN_SIZE - 1)
-			{
+			if ( length < MAX_TOKEN_SIZE - 1 ) {
 				token[length++] = c;
 			}
 			pointer++;
 			c = *pointer;
 		}
 		// remove trailing white space
-		while(length && token[length-1] < ' ')
+		while ( length && token[length - 1] < ' ' )
 		{
 			length--;
 		}
-	}
-	else
+	}else
 	{
-		while(c > ' ')
+		while ( c > ' ' )
 		{
-			if (length < MAX_TOKEN_SIZE - 1)
-			{
+			if ( length < MAX_TOKEN_SIZE - 1 ) {
 				token[length++] = c;
 			}
 			pointer++;
@@ -130,19 +108,16 @@ static char *GetToken(char **text, bool allowLineBreaks, bool readUntilEOL = fal
 		}
 	}
 
-	if (token[0] == '\"')
-	{	// remove start quote
+	if ( token[0] == '\"' ) { // remove start quote
 		length--;
-		memmove(token, token+1, length);
+		memmove( token, token + 1, length );
 
-		if (length && token[length-1] == '\"')
-		{	// remove end quote
+		if ( length && token[length - 1] == '\"' ) { // remove end quote
 			length--;
 		}
 	}
 
-	if (length >= MAX_TOKEN_SIZE)
-	{
+	if ( length >= MAX_TOKEN_SIZE ) {
 		length = 0;
 	}
 	token[length] = 0;
@@ -154,57 +129,51 @@ static char *GetToken(char **text, bool allowLineBreaks, bool readUntilEOL = fal
 
 
 
-CTextPool::CTextPool(int initSize) :
-	mNext(0),
-	mSize(initSize),
-	mUsed(0)
-{
+CTextPool::CTextPool( int initSize ) :
+	mNext( 0 ),
+	mSize( initSize ),
+	mUsed( 0 ) {
 #ifdef _EXE
 //	mPool = (char *)Z_Malloc(mSize, TAG_GP2);
-	mPool = (char *)Z_Malloc(mSize, TAG_TEXTPOOL, qtrue);
+	mPool = (char *)Z_Malloc( mSize, TAG_TEXTPOOL, qtrue );
 #else
-	mPool = (char *)trap_Z_Malloc(mSize, TAG_GP2);
+	mPool = (char *)trap_Z_Malloc( mSize, TAG_GP2 );
 #endif
 }
 
-CTextPool::~CTextPool(void)
-{
+CTextPool::~CTextPool( void ) {
 #ifdef _EXE
-	Z_Free(mPool);
+	Z_Free( mPool );
 #else
-	trap_Z_Free(mPool);
+	trap_Z_Free( mPool );
 #endif
 }
 
-char *CTextPool::AllocText(char *text, bool addNULL, CTextPool **poolPtr)
-{
-	int	length = strlen(text) + (addNULL ? 1 : 0);
+char *CTextPool::AllocText( char *text, bool addNULL, CTextPool **poolPtr ) {
+	int length = strlen( text ) + ( addNULL ? 1 : 0 );
 
-	if (mUsed + length + 1> mSize)
-	{	// extra 1 to put a null on the end
-		if (poolPtr)
-		{
-			(*poolPtr)->SetNext(new CTextPool(mSize));
-			*poolPtr = (*poolPtr)->GetNext();
+	if ( mUsed + length + 1 > mSize ) { // extra 1 to put a null on the end
+		if ( poolPtr ) {
+			( *poolPtr )->SetNext( new CTextPool( mSize ) );
+			*poolPtr = ( *poolPtr )->GetNext();
 
-			return (*poolPtr)->AllocText(text, addNULL);
+			return ( *poolPtr )->AllocText( text, addNULL );
 		}
 
 		return 0;
 	}
 
-	strcpy(mPool + mUsed, text);
+	strcpy( mPool + mUsed, text );
 	mUsed += length;
 	mPool[mUsed] = 0;
 
 	return mPool + mUsed - length;
 }
 
-void CleanTextPool(CTextPool *pool)
-{
+void CleanTextPool( CTextPool *pool ) {
 	CTextPool *next;
 
-	while(pool)
+	while ( pool )
 	{
 		next = pool->GetNext();
 		delete pool;
@@ -218,58 +187,51 @@ void CleanTextPool(CTextPool *pool)
 
 
 
-CGPObject::CGPObject(const char *initName) :
-	mName(initName),
-	mNext(0),
-	mInOrderNext(0),
-	mInOrderPrevious(0)
-{
+CGPObject::CGPObject( const char *initName ) :
+	mName( initName ),
+	mNext( 0 ),
+	mInOrderNext( 0 ),
+	mInOrderPrevious( 0 ) {
 }
 
-bool CGPObject::WriteText(CTextPool **textPool, const char *text)
-{
-   if (strchr(text, ' ') || !text[0])
-   {
-	   (*textPool)->AllocText("\"", false, textPool);
-	   (*textPool)->AllocText((char *)text, false, textPool);
-	   (*textPool)->AllocText("\"", false, textPool);
-   }
-   else
-   {
-	   (*textPool)->AllocText((char *)text, false, textPool);
-   }
-
-   return true;
-}
-
-
-	
-	
-	
-
-
-
-
-
-
-	
-	
-
-CGPValue::CGPValue(const char *initName, const char *initValue) :
-	CGPObject(initName),
-	mList(0)
-{
-	if (initValue)
+bool CGPObject::WriteText( CTextPool **textPool, const char *text ) {
+	if ( strchr( text, ' ' ) || !text[0] ) {
+		( *textPool )->AllocText( "\"", false, textPool );
+		( *textPool )->AllocText( (char *)text, false, textPool );
+		( *textPool )->AllocText( "\"", false, textPool );
+	}else
 	{
-		AddValue(initValue);
+		( *textPool )->AllocText( (char *)text, false, textPool );
+	}
+
+	return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CGPValue::CGPValue( const char *initName, const char *initValue ) :
+	CGPObject( initName ),
+	mList( 0 ) {
+	if ( initValue ) {
+		AddValue( initValue );
 	}
 }
 
-CGPValue::~CGPValue(void)
-{
-	CGPObject	*next;
+CGPValue::~CGPValue( void ) {
+	CGPObject   *next;
 
-	while(mList)
+	while ( mList )
 	{
 		next = mList->GetNext();
 		delete mList;
@@ -277,155 +239,134 @@ CGPValue::~CGPValue(void)
 	}
 }
 
-CGPValue *CGPValue::Duplicate(CTextPool **textPool)
-{
-	CGPValue	*newValue;
-	CGPObject	*iterator;
-	char		*name;
+CGPValue *CGPValue::Duplicate( CTextPool **textPool ) {
+	CGPValue    *newValue;
+	CGPObject   *iterator;
+	char        *name;
 
-	if (textPool)
-	{
-		name = (*textPool)->AllocText((char *)mName, true, textPool);
-	}
-	else
+	if ( textPool ) {
+		name = ( *textPool )->AllocText( (char *)mName, true, textPool );
+	}else
 	{
 		name = (char *)mName;
 	}
 
-	newValue = new CGPValue(name);
+	newValue = new CGPValue( name );
 	iterator = mList;
-	while(iterator)
+	while ( iterator )
 	{
-		if (textPool)
-		{
-			name = (*textPool)->AllocText((char *)iterator->GetName(), true, textPool);
-		}
-		else
+		if ( textPool ) {
+			name = ( *textPool )->AllocText( (char *)iterator->GetName(), true, textPool );
+		}else
 		{
 			name = (char *)iterator->GetName();
 		}
-		newValue->AddValue(name);
+		newValue->AddValue( name );
 		iterator = iterator->GetNext();
 	}
 
 	return newValue;
 }
 
-bool CGPValue::IsList(void)
-{
-	if (!mList || !mList->GetNext())
-	{
+bool CGPValue::IsList( void ) {
+	if ( !mList || !mList->GetNext() ) {
 		return false;
 	}
 
 	return true;
 }
 
-const char *CGPValue::GetTopValue(void) 
-{ 
-	if (mList)
-	{
+const char *CGPValue::GetTopValue( void ) {
+	if ( mList ) {
 		return mList->GetName();
 	}
 
 	return 0;
 }
 
-void CGPValue::AddValue(const char *newValue, CTextPool **textPool)
-{
-	if (textPool)
-	{
-		newValue = (*textPool)->AllocText((char *)newValue, true, textPool);
+void CGPValue::AddValue( const char *newValue, CTextPool **textPool ) {
+	if ( textPool ) {
+		newValue = ( *textPool )->AllocText( (char *)newValue, true, textPool );
 	}
 
-	if (mList == 0)
+	if ( mList == 0 ) {
+		mList = new CGPObject( newValue );
+		mList->SetInOrderNext( mList );
+	}else
 	{
-		mList = new CGPObject(newValue);
-		mList->SetInOrderNext(mList);
-	}
-	else
-	{
-		mList->GetInOrderNext()->SetNext(new CGPObject(newValue));
-		mList->SetInOrderNext(mList->GetInOrderNext()->GetNext());
+		mList->GetInOrderNext()->SetNext( new CGPObject( newValue ) );
+		mList->SetInOrderNext( mList->GetInOrderNext()->GetNext() );
 	}
 }
 
-bool CGPValue::Parse(char **dataPtr, CTextPool **textPool)
-{
-	char		*token;
-	char		*value;
+bool CGPValue::Parse( char **dataPtr, CTextPool **textPool ) {
+	char        *token;
+	char        *value;
 
-	while(1)
+	while ( 1 )
 	{
-		token = GetToken(dataPtr, true, true);
+		token = GetToken( dataPtr, true, true );
 
-		if (!token[0])
-		{	// end of data - error!
+		if ( !token[0] ) { // end of data - error!
 			return false;
-		}
-		else if (strcmpi(token, "]") == 0)
-		{	// ending brace for this list
+		}else if ( strcmpi( token, "]" ) == 0 )      { // ending brace for this list
 			break;
 		}
 
-		value = (*textPool)->AllocText(token, true, textPool);
-		AddValue(value);
+		value = ( *textPool )->AllocText( token, true, textPool );
+		AddValue( value );
 	}
 
 	return true;
 }
 
-bool CGPValue::Write(CTextPool **textPool, int depth)
-{
-	int				i;
-	CGPObject	*next;
+bool CGPValue::Write( CTextPool **textPool, int depth ) {
+	int i;
+	CGPObject   *next;
 
-	if (!mList)
-	{
+	if ( !mList ) {
 		return true;
 	}
 
-	for(i=0;i<depth;i++)
+	for (i = 0; i < depth; i++)
 	{
-		(*textPool)->AllocText("\t", false, textPool);
+		( *textPool )->AllocText( "\t", false, textPool );
 	}
 
-	WriteText(textPool, mName);
+	WriteText( textPool, mName );
 
-	if (!mList->GetNext())
+	if ( !mList->GetNext() ) {
+		( *textPool )->AllocText( "\t\t", false, textPool );
+		mList->WriteText( textPool, mList->GetName() );
+		( *textPool )->AllocText( "\r\n", false, textPool );
+	}else
 	{
-		(*textPool)->AllocText("\t\t", false, textPool);
-		mList->WriteText(textPool, mList->GetName());
-		(*textPool)->AllocText("\r\n", false, textPool);
-	}
-	else
-	{
-		(*textPool)->AllocText("\r\n", false, textPool);
+		( *textPool )->AllocText( "\r\n", false, textPool );
 
-		for(i=0;i<depth;i++)
+		for (i = 0; i < depth; i++)
 		{
-			(*textPool)->AllocText("\t", false, textPool);
+			( *textPool )->AllocText( "\t", false, textPool );
 		}
-		(*textPool)->AllocText("[\r\n", false, textPool);
+		( *textPool )->AllocText( "[\r\n", false, textPool );
 
 		next = mList;
-		while(next)
+		while ( next )
 		{
-			for(i=0;i<depth+1;i++)
+			for (i = 0; i < depth + 1; i++)
 			{
-				(*textPool)->AllocText("\t", false, textPool);
+				( *textPool )->AllocText( "\t", false, textPool );
 			}
-			mList->WriteText(textPool, next->GetName());
-			(*textPool)->AllocText("\r\n", false, textPool);
+			mList->WriteText( textPool, next->GetName() );
+			( *textPool )->AllocText( "\r\n", false, textPool );
 
 			next = next->GetNext();
 		}
 
-		for(i=0;i<depth;i++)
+		for (i = 0; i < depth; i++)
 		{
-			(*textPool)->AllocText("\t", false, textPool);
+			( *textPool )->AllocText( "\t", false, textPool );
 		}
-		(*textPool)->AllocText("]\r\n", false, textPool);
+		( *textPool )->AllocText( "]\r\n", false, textPool );
 	}
 
 	return true;
@@ -446,28 +387,25 @@ bool CGPValue::Write(CTextPool **textPool, int depth)
 
 
 
-CGPGroup::CGPGroup(const char *initName, CGPGroup *initParent) :
-	CGPObject(initName),
-	mPairs(0),
-	mInOrderPairs(0),
-	mCurrentPair(0),
-	mSubGroups(0),
-	mInOrderSubGroups(0),
-	mCurrentSubGroup(0),
-	mParent(initParent),
-	mWriteable(false)
-{
+CGPGroup::CGPGroup( const char *initName, CGPGroup *initParent ) :
+	CGPObject( initName ),
+	mPairs( 0 ),
+	mInOrderPairs( 0 ),
+	mCurrentPair( 0 ),
+	mSubGroups( 0 ),
+	mInOrderSubGroups( 0 ),
+	mCurrentSubGroup( 0 ),
+	mParent( initParent ),
+	mWriteable( false ) {
 }
 
-CGPGroup::~CGPGroup(void)
-{
+CGPGroup::~CGPGroup( void ) {
 	Clean();
 }
 
-int CGPGroup::GetNumSubGroups(void)
-{
-	int			count;
-	CGPGroup	*group;
+int CGPGroup::GetNumSubGroups( void ) {
+	int count;
+	CGPGroup    *group;
 
 	count = 0;
 	group = mSubGroups;
@@ -476,15 +414,14 @@ int CGPGroup::GetNumSubGroups(void)
 		count++;
 		group = (CGPGroup *)group->GetNext();
 	}
-	while(group);
+	while ( group );
 
-	return(count);
+	return( count );
 }
 
-int CGPGroup::GetNumPairs(void)
-{
-	int			count;
-	CGPValue	*pair;
+int CGPGroup::GetNumPairs( void ) {
+	int count;
+	CGPValue    *pair;
 
 	count = 0;
 	pair = mPairs;
@@ -493,21 +430,20 @@ int CGPGroup::GetNumPairs(void)
 		count++;
 		pair = (CGPValue *)pair->GetNext();
 	}
-	while(pair);
+	while ( pair );
 
-	return(count);
+	return( count );
 }
 
-void CGPGroup::Clean(void)
-{
-	while(mPairs)
+void CGPGroup::Clean( void ) {
+	while ( mPairs )
 	{
 		mCurrentPair = (CGPValue *)mPairs->GetNext();
 		delete mPairs;
 		mPairs = mCurrentPair;
 	}
 
-	while(mSubGroups)
+	while ( mSubGroups )
 	{
 		mCurrentSubGroup = (CGPGroup *)mSubGroups->GetNext();
 		delete mSubGroups;
@@ -520,37 +456,34 @@ void CGPGroup::Clean(void)
 	mWriteable = false;
 }
 
-CGPGroup *CGPGroup::Duplicate(CTextPool **textPool, CGPGroup *initParent)
-{
-	CGPGroup	*newGroup, *subSub, *newSub;
-	CGPValue	*newPair, *subPair;
-	char		*name;
+CGPGroup *CGPGroup::Duplicate( CTextPool **textPool, CGPGroup *initParent ) {
+	CGPGroup    *newGroup, *subSub, *newSub;
+	CGPValue    *newPair, *subPair;
+	char        *name;
 
-	if (textPool)
-	{
-		name = (*textPool)->AllocText((char *)mName, true, textPool);
-	}
-	else
+	if ( textPool ) {
+		name = ( *textPool )->AllocText( (char *)mName, true, textPool );
+	}else
 	{
 		name = (char *)mName;
 	}
 
-	newGroup = new CGPGroup(name);
+	newGroup = new CGPGroup( name );
 
 	subSub = mSubGroups;
-	while(subSub)
+	while ( subSub )
 	{
-		newSub = subSub->Duplicate(textPool, newGroup);
-		newGroup->AddGroup(newSub);
+		newSub = subSub->Duplicate( textPool, newGroup );
+		newGroup->AddGroup( newSub );
 
 		subSub = (CGPGroup *)subSub->GetNext();
 	}
 
 	subPair = mPairs;
-	while(subPair)
+	while ( subPair )
 	{
-		newPair = subPair->Duplicate(textPool);
-		newGroup->AddPair(newPair);
+		newPair = subPair->Duplicate( textPool );
+		newGroup->AddPair( newPair );
 
 		subPair = (CGPValue *)subPair->GetNext();
 	}
@@ -558,25 +491,21 @@ CGPGroup *CGPGroup::Duplicate(CTextPool **textPool, CGPGroup *initParent)
 	return newGroup;
 }
 
-void CGPGroup::SortObject(CGPObject *object, CGPObject **unsortedList, CGPObject **sortedList,
-							 CGPObject **lastObject)
-{
-	CGPObject	*test, *last;
+void CGPGroup::SortObject( CGPObject *object, CGPObject **unsortedList, CGPObject **sortedList,
+						   CGPObject **lastObject ) {
+	CGPObject   *test, *last;
 
-	if (!*unsortedList)
-	{
+	if ( !*unsortedList ) {
 		*unsortedList = *sortedList = object;
-	}
-	else
+	}else
 	{
-		(*lastObject)->SetNext(object);
+		( *lastObject )->SetNext( object );
 
 		test = *sortedList;
 		last = 0;
-		while(test)
+		while ( test )
 		{
-			if (strcmpi(object->GetName(), test->GetName()) < 0)
-			{
+			if ( strcmpi( object->GetName(), test->GetName() ) < 0 ) {
 				break;
 			}
 
@@ -584,17 +513,14 @@ void CGPGroup::SortObject(CGPObject *object, CGPObject **unsortedList, CGPObject
 			test = test->GetInOrderNext();
 		}
 
-		if (test)
-		{
-			test->SetInOrderPrevious(object);
-			object->SetInOrderNext(test);
+		if ( test ) {
+			test->SetInOrderPrevious( object );
+			object->SetInOrderNext( test );
 		}
-		if (last)
-		{
-			last->SetInOrderNext(object);
-			object->SetInOrderPrevious(last);
-		}
-		else
+		if ( last ) {
+			last->SetInOrderNext( object );
+			object->SetInOrderPrevious( last );
+		}else
 		{
 			*sortedList = object;
 		}
@@ -603,196 +529,168 @@ void CGPGroup::SortObject(CGPObject *object, CGPObject **unsortedList, CGPObject
 	*lastObject = object;
 }
 
-CGPValue *CGPGroup::AddPair(const char *name, const char *value, CTextPool **textPool)
-{
-	CGPValue	*newPair;
+CGPValue *CGPGroup::AddPair( const char *name, const char *value, CTextPool **textPool ) {
+	CGPValue    *newPair;
 
-	if (textPool)
-	{
-		name = (*textPool)->AllocText((char *)name, true, textPool);
-		if (value)
-		{
-			value = (*textPool)->AllocText((char *)value, true, textPool);
+	if ( textPool ) {
+		name = ( *textPool )->AllocText( (char *)name, true, textPool );
+		if ( value ) {
+			value = ( *textPool )->AllocText( (char *)value, true, textPool );
 		}
 	}
 
-	newPair = new CGPValue(name, value);
+	newPair = new CGPValue( name, value );
 
-	AddPair(newPair);
+	AddPair( newPair );
 
 	return newPair;
 }
 
-void CGPGroup::AddPair(CGPValue *NewPair)
-{
-	SortObject(NewPair, (CGPObject **)&mPairs, (CGPObject **)&mInOrderPairs, 
-		(CGPObject **)&mCurrentPair);
+void CGPGroup::AddPair( CGPValue *NewPair ) {
+	SortObject( NewPair, (CGPObject **)&mPairs, (CGPObject **)&mInOrderPairs,
+				(CGPObject **)&mCurrentPair );
 }
 
-CGPGroup *CGPGroup::AddGroup(const char *name, CTextPool **textPool)
-{
-	CGPGroup	*newGroup;
+CGPGroup *CGPGroup::AddGroup( const char *name, CTextPool **textPool ) {
+	CGPGroup    *newGroup;
 
-	if (textPool)
-	{
-		name = (*textPool)->AllocText((char *)name, true, textPool);
+	if ( textPool ) {
+		name = ( *textPool )->AllocText( (char *)name, true, textPool );
 	}
 
-	newGroup = new CGPGroup(name);
+	newGroup = new CGPGroup( name );
 
-	AddGroup(newGroup);
+	AddGroup( newGroup );
 
 	return newGroup;
 }
-	
-void CGPGroup::AddGroup(CGPGroup *NewGroup)
-{
-	SortObject(NewGroup, (CGPObject **)&mSubGroups, (CGPObject **)&mInOrderSubGroups, 
-		(CGPObject **)&mCurrentSubGroup);
+
+void CGPGroup::AddGroup( CGPGroup *NewGroup ) {
+	SortObject( NewGroup, (CGPObject **)&mSubGroups, (CGPObject **)&mInOrderSubGroups,
+				(CGPObject **)&mCurrentSubGroup );
 }
-	
-CGPGroup *CGPGroup::FindSubGroup(const char *name)
-{
-	CGPGroup	*group;
+
+CGPGroup *CGPGroup::FindSubGroup( const char *name ) {
+	CGPGroup    *group;
 
 	group = mSubGroups;
-	while(group)
+	while ( group )
 	{
-		if(!stricmp(name, group->GetName()))
-		{
-			return(group);
+		if ( !stricmp( name, group->GetName() ) ) {
+			return( group );
 		}
 		group = (CGPGroup *)group->GetNext();
 	}
-	return(NULL);
+	return( NULL );
 }
 
-bool CGPGroup::Parse(char **dataPtr, CTextPool **textPool)
-{
-	char		*token;
-	char		lastToken[MAX_TOKEN_SIZE];
-	CGPGroup	*newSubGroup;
-	CGPValue	*newPair;
+bool CGPGroup::Parse( char **dataPtr, CTextPool **textPool ) {
+	char        *token;
+	char lastToken[MAX_TOKEN_SIZE];
+	CGPGroup    *newSubGroup;
+	CGPValue    *newPair;
 
-	while(1)
+	while ( 1 )
 	{
-		token = GetToken(dataPtr, true);
+		token = GetToken( dataPtr, true );
 
-		if (!token[0])
-		{	// end of data - error!
-			if (mParent)
-			{
+		if ( !token[0] ) { // end of data - error!
+			if ( mParent ) {
 				return false;
-			}
-			else
+			}else
 			{
 				break;
 			}
-		}
-		else if (strcmpi(token, "}") == 0)
-		{	// ending brace for this group
+		}else if ( strcmpi( token, "}" ) == 0 )      { // ending brace for this group
 			break;
 		}
 
-		strcpy(lastToken, token);
+		strcpy( lastToken, token );
 
 		// read ahead to see what we are doing
-		token = GetToken(dataPtr, true, true);
-		if (strcmpi(token, "{") == 0)
-		{	// new sub group
-			newSubGroup = AddGroup(lastToken, textPool);
-			newSubGroup->SetWriteable(mWriteable);
-			if (!newSubGroup->Parse(dataPtr, textPool))
-			{
+		token = GetToken( dataPtr, true, true );
+		if ( strcmpi( token, "{" ) == 0 ) { // new sub group
+			newSubGroup = AddGroup( lastToken, textPool );
+			newSubGroup->SetWriteable( mWriteable );
+			if ( !newSubGroup->Parse( dataPtr, textPool ) ) {
 				return false;
 			}
-		}
-		else if (strcmpi(token, "[") == 0)
-		{	// new pair list
-			newPair = AddPair(lastToken, 0, textPool);
-			if (!newPair->Parse(dataPtr, textPool))
-			{
+		}else if ( strcmpi( token, "[" ) == 0 )      { // new pair list
+			newPair = AddPair( lastToken, 0, textPool );
+			if ( !newPair->Parse( dataPtr, textPool ) ) {
 				return false;
 			}
-		}
-		else
-		{	// new pair
-			AddPair(lastToken, token, textPool);
+		}else
+		{   // new pair
+			AddPair( lastToken, token, textPool );
 		}
 	}
 
 	return true;
 }
 
-bool CGPGroup::Write(CTextPool **textPool, int depth)
-{
-	int				i;
-	CGPValue		*mPair = mPairs;
-	CGPGroup		*mSubGroup = mSubGroups;
+bool CGPGroup::Write( CTextPool **textPool, int depth ) {
+	int i;
+	CGPValue        *mPair = mPairs;
+	CGPGroup        *mSubGroup = mSubGroups;
 
-	if (depth >= 0)
-	{
-		for(i=0;i<depth;i++)
+	if ( depth >= 0 ) {
+		for (i = 0; i < depth; i++)
 		{
-			(*textPool)->AllocText("\t", false, textPool);
+			( *textPool )->AllocText( "\t", false, textPool );
 		}
-		WriteText(textPool, mName);
-		(*textPool)->AllocText("\r\n", false, textPool);
-		
-		for(i=0;i<depth;i++)
+		WriteText( textPool, mName );
+		( *textPool )->AllocText( "\r\n", false, textPool );
+
+		for (i = 0; i < depth; i++)
 		{
-			(*textPool)->AllocText("\t", false, textPool);
+			( *textPool )->AllocText( "\t", false, textPool );
 		}
-		(*textPool)->AllocText("{\r\n", false, textPool);
+		( *textPool )->AllocText( "{\r\n", false, textPool );
 	}
 
-	while(mPair)
+	while ( mPair )
 	{
-		mPair->Write(textPool, depth+1);
+		mPair->Write( textPool, depth + 1 );
 		mPair = (CGPValue *)mPair->GetNext();
 	}
 
-	while(mSubGroup)
+	while ( mSubGroup )
 	{
-		mSubGroup->Write(textPool, depth+1);
+		mSubGroup->Write( textPool, depth + 1 );
 		mSubGroup = (CGPGroup *)mSubGroup->GetNext();
 	}
 
-	if (depth >= 0)
-	{
-		for(i=0;i<depth;i++)
+	if ( depth >= 0 ) {
+		for (i = 0; i < depth; i++)
 		{
-			(*textPool)->AllocText("\t", false, textPool);
+			( *textPool )->AllocText( "\t", false, textPool );
 		}
-		(*textPool)->AllocText("}\r\n", false, textPool);
+		( *textPool )->AllocText( "}\r\n", false, textPool );
 	}
 
 	return true;
 }
 
-CGPValue *CGPGroup::FindPair(const char *key)
-{
-	CGPValue		*pair = mPairs;
+CGPValue *CGPGroup::FindPair( const char *key ) {
+	CGPValue        *pair = mPairs;
 
-	while(pair)
+	while ( pair )
 	{
-		if (strcmpi(pair->GetName(), key) == 0)
-		{
+		if ( strcmpi( pair->GetName(), key ) == 0 ) {
 			return pair;
 		}
 
 		pair = pair->GetNext();
 	}
 
-	return 0;	
+	return 0;
 }
 
-const char *CGPGroup::FindPairValue(const char *key, const char *defaultVal)
-{
-	CGPValue		*pair = FindPair(key);
+const char *CGPGroup::FindPairValue( const char *key, const char *defaultVal ) {
+	CGPValue        *pair = FindPair( key );
 
-	if (pair)
-	{
+	if ( pair ) {
 		return pair->GetTopValue();
 	}
 
@@ -813,48 +711,41 @@ const char *CGPGroup::FindPairValue(const char *key, const char *defaultVal)
 
 
 
-CGenericParser2::CGenericParser2(void) :
-	mTextPool(0),
-	mWriteable(false)
-{
+CGenericParser2::CGenericParser2( void ) :
+	mTextPool( 0 ),
+	mWriteable( false ) {
 }
 
-CGenericParser2::~CGenericParser2(void)
-{
+CGenericParser2::~CGenericParser2( void ) {
 	Clean();
 }
 
-bool CGenericParser2::Parse(char **dataPtr, bool cleanFirst, bool writeable)
-{
-	CTextPool	*topPool;
+bool CGenericParser2::Parse( char **dataPtr, bool cleanFirst, bool writeable ) {
+	CTextPool   *topPool;
 
-	if (cleanFirst)
-	{
+	if ( cleanFirst ) {
 		Clean();
 	}
 
-	if (!mTextPool)
-	{
+	if ( !mTextPool ) {
 		mTextPool = new CTextPool;
 	}
 
-	SetWriteable(writeable);
-	mTopLevel.SetWriteable(writeable);
+	SetWriteable( writeable );
+	mTopLevel.SetWriteable( writeable );
 	topPool = mTextPool;
-	return mTopLevel.Parse(dataPtr, &topPool);
+	return mTopLevel.Parse( dataPtr, &topPool );
 }
 
-void CGenericParser2::Clean(void)
-{
+void CGenericParser2::Clean( void ) {
 	mTopLevel.Clean();
 
-	CleanTextPool(mTextPool);
+	CleanTextPool( mTextPool );
 	mTextPool = 0;
 }
 
-bool CGenericParser2::Write(CTextPool *textPool)
-{
-	return mTopLevel.Write(&textPool, -1);
+bool CGenericParser2::Write( CTextPool *textPool ) {
+	return mTopLevel.Write( &textPool, -1 );
 }
 
 
@@ -869,13 +760,11 @@ bool CGenericParser2::Write(CTextPool *textPool)
 // C++ users should just use the objects as normally and not call these routines below
 //
 // CGenericParser2 (void *) routines
-TGenericParser2 GP_Parse(char **dataPtr, bool cleanFirst, bool writeable)
-{
-	CGenericParser2		*parse;
+TGenericParser2 GP_Parse( char **dataPtr, bool cleanFirst, bool writeable ) {
+	CGenericParser2     *parse;
 
 	parse = new CGenericParser2;
-	if (parse->Parse(dataPtr, cleanFirst, writeable))
-	{
+	if ( parse->Parse( dataPtr, cleanFirst, writeable ) ) {
 		return parse;
 	}
 
@@ -883,226 +772,183 @@ TGenericParser2 GP_Parse(char **dataPtr, bool cleanFirst, bool writeable)
 	return 0;
 }
 
-void GP_Clean(TGenericParser2 GP2)
-{
-	if (!GP2)
-	{
+void GP_Clean( TGenericParser2 GP2 ) {
+	if ( !GP2 ) {
 		return;
 	}
 
-	((CGenericParser2 *)GP2)->Clean();
+	( (CGenericParser2 *)GP2 )->Clean();
 }
 
-void GP_Delete(TGenericParser2 *GP2)
-{
-	if (!GP2 || !(*GP2))
-	{
+void GP_Delete( TGenericParser2 *GP2 ) {
+	if ( !GP2 || !( *GP2 ) ) {
 		return;
 	}
 
-	delete ((CGenericParser2 *)(*GP2));
-	(*GP2) = 0;
+	delete ( (CGenericParser2 *)( *GP2 ) );
+	( *GP2 ) = 0;
 }
 
-TGPGroup GP_GetBaseParseGroup(TGenericParser2 GP2)
-{
-	if (!GP2)
-	{
+TGPGroup GP_GetBaseParseGroup( TGenericParser2 GP2 ) {
+	if ( !GP2 ) {
 		return 0;
 	}
-	
-	return ((CGenericParser2 *)GP2)->GetBaseParseGroup();
+
+	return ( (CGenericParser2 *)GP2 )->GetBaseParseGroup();
 }
 
 
 
 
 // CGPGroup (void *) routines
-const char	*GPG_GetName(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+const char  *GPG_GetName( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return "";
 	}
 
-	return ((CGPGroup *)GPG)->GetName();
+	return ( (CGPGroup *)GPG )->GetName();
 }
 
-TGPGroup GPG_GetNext(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetNext( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetNext();
+	return ( (CGPGroup *)GPG )->GetNext();
 }
 
-TGPGroup GPG_GetInOrderNext(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetInOrderNext( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetInOrderNext();
+	return ( (CGPGroup *)GPG )->GetInOrderNext();
 }
 
-TGPGroup GPG_GetInOrderPrevious(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetInOrderPrevious( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetInOrderPrevious();
+	return ( (CGPGroup *)GPG )->GetInOrderPrevious();
 }
 
-TGPGroup GPG_GetPairs(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetPairs( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetPairs();
+	return ( (CGPGroup *)GPG )->GetPairs();
 }
 
-TGPGroup GPG_GetInOrderPairs(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetInOrderPairs( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetInOrderPairs();
+	return ( (CGPGroup *)GPG )->GetInOrderPairs();
 }
 
-TGPGroup GPG_GetSubGroups(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetSubGroups( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetSubGroups();
+	return ( (CGPGroup *)GPG )->GetSubGroups();
 }
 
-TGPGroup GPG_GetInOrderSubGroups(TGPGroup GPG)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_GetInOrderSubGroups( TGPGroup GPG ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->GetInOrderSubGroups();
+	return ( (CGPGroup *)GPG )->GetInOrderSubGroups();
 }
 
-TGPGroup GPG_FindSubGroup(TGPGroup GPG, const char *name)
-{
-	if (!GPG)
-	{
+TGPGroup GPG_FindSubGroup( TGPGroup GPG, const char *name ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->FindSubGroup(name);
+	return ( (CGPGroup *)GPG )->FindSubGroup( name );
 }
 
-TGPValue GPG_FindPair(TGPGroup GPG, const char *key)
-{
-	if (!GPG)
-	{
+TGPValue GPG_FindPair( TGPGroup GPG, const char *key ) {
+	if ( !GPG ) {
 		return 0;
 	}
 
-	return ((CGPGroup *)GPG)->FindPair(key);
+	return ( (CGPGroup *)GPG )->FindPair( key );
 }
 
-const char *GPG_FindPairValue(TGPGroup GPG, const char *key, const char *defaultVal)
-{
-	if (!GPG)
-	{
+const char *GPG_FindPairValue( TGPGroup GPG, const char *key, const char *defaultVal ) {
+	if ( !GPG ) {
 		return defaultVal;
 	}
 
-	return ((CGPGroup *)GPG)->FindPairValue(key, defaultVal);
+	return ( (CGPGroup *)GPG )->FindPairValue( key, defaultVal );
 }
 
 
 
 
 // CGPValue (void *) routines
-const char	*GPV_GetName(TGPValue GPV)
-{
-	if (!GPV)
-	{
+const char  *GPV_GetName( TGPValue GPV ) {
+	if ( !GPV ) {
 		return "";
 	}
 
-	return ((CGPValue *)GPV)->GetName();
+	return ( (CGPValue *)GPV )->GetName();
 }
 
-TGPValue GPV_GetNext(TGPValue GPV)
-{
-	if (!GPV)
-	{
+TGPValue GPV_GetNext( TGPValue GPV ) {
+	if ( !GPV ) {
 		return 0;
 	}
 
-	return ((CGPValue *)GPV)->GetNext();
+	return ( (CGPValue *)GPV )->GetNext();
 }
 
-TGPValue GPV_GetInOrderNext(TGPValue GPV)
-{
-	if (!GPV)
-	{
+TGPValue GPV_GetInOrderNext( TGPValue GPV ) {
+	if ( !GPV ) {
 		return 0;
 	}
 
-	return ((CGPValue *)GPV)->GetInOrderNext();
+	return ( (CGPValue *)GPV )->GetInOrderNext();
 }
 
-TGPValue GPV_GetInOrderPrevious(TGPValue GPV)
-{
-	if (!GPV)
-	{
+TGPValue GPV_GetInOrderPrevious( TGPValue GPV ) {
+	if ( !GPV ) {
 		return 0;
 	}
 
-	return ((CGPValue *)GPV)->GetInOrderPrevious();
+	return ( (CGPValue *)GPV )->GetInOrderPrevious();
 }
 
-bool GPV_IsList(TGPValue GPV)
-{
-	if (!GPV)
-	{
+bool GPV_IsList( TGPValue GPV ) {
+	if ( !GPV ) {
 		return 0;
 	}
 
-	return ((CGPValue *)GPV)->IsList();
+	return ( (CGPValue *)GPV )->IsList();
 }
 
-const char *GPV_GetTopValue(TGPValue GPV)
-{
-	if (!GPV)
-	{
+const char *GPV_GetTopValue( TGPValue GPV ) {
+	if ( !GPV ) {
 		return "";
 	}
 
-	return ((CGPValue *)GPV)->GetTopValue();
+	return ( (CGPValue *)GPV )->GetTopValue();
 }
 
-TGPValue GPV_GetList(TGPValue GPV)
-{
-	if (!GPV)
-	{
+TGPValue GPV_GetList( TGPValue GPV ) {
+	if ( !GPV ) {
 		return 0;
 	}
 
-	return ((CGPValue *)GPV)->GetList();
+	return ( (CGPValue *)GPV )->GetList();
 }
 
 
 
 //////////////////// eof /////////////////////
-

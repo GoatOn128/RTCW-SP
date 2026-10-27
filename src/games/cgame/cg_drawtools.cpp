@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1075,7 +1075,7 @@ static void UI_DrawBannerString2( int x, int y, const char* str, vec4_t color ) 
 		ch = *s & 127;
 		if ( ch == ' ' ) {
 			ax += ( (float)PROPB_SPACE_WIDTH + (float)PROPB_GAP_WIDTH ) * cgs.screenXScale;
-		} else if ( Q_isupper( ch ) )     {
+		} else if ( Q_isupper( ch ) ) {
 			ch -= 'A';
 			fcol = (float)propMapB[ch][0] / 256.0f;
 			frow = (float)propMapB[ch][1] / 256.0f;
@@ -1105,7 +1105,7 @@ void UI_DrawBannerString( int x, int y, const char* str, int style, vec4_t color
 		ch = *s;
 		if ( ch == ' ' ) {
 			width += PROPB_SPACE_WIDTH;
-		} else if ( ch >= 'A' && ch <= 'Z' )     {
+		} else if ( ch >= 'A' && ch <= 'Z' ) {
 			width += propMapB[ch - 'A'][2] + PROPB_GAP_WIDTH;
 		}
 		s++;
@@ -1280,17 +1280,3 @@ void UI_DrawProportionalString( int x, int y, const char* str, int style, vec4_t
 
 	UI_DrawProportionalString2( x, y, str, color, sizeScale, cgs.media.charsetProp );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

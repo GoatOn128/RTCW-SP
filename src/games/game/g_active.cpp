@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -853,7 +853,7 @@ void ClientThink_real( gentity_t *ent ) {
 
 	if ( pmove_msec.integer < 8 ) {
 		trap_Cvar_Set( "pmove_msec", "8" );
-	} else if ( pmove_msec.integer > 33 )     {
+	} else if ( pmove_msec.integer > 33 ) {
 		trap_Cvar_Set( "pmove_msec", "33" );
 	}
 
@@ -909,9 +909,9 @@ void ClientThink_real( gentity_t *ent ) {
 */
 
 			// NOTE: ----------------- SP uses this method
-			muzzlebounce[PITCH] -= 0.25*client->sniperRifleMuzzlePitch*cos( 2.5*( level.time - client->sniperRifleFiredTime ) / RIFLE_SHAKE_TIME );
-			muzzlebounce[YAW] += 0.2*client->sniperRifleMuzzleYaw*cos( 1.0 - ( level.time - client->sniperRifleFiredTime )*3 / RIFLE_SHAKE_TIME );
-			muzzlebounce[PITCH] -= 0.25*client->sniperRifleMuzzlePitch*random() * ( 1.0f - ( level.time - client->sniperRifleFiredTime ) / RIFLE_SHAKE_TIME );
+			muzzlebounce[PITCH] -= 0.25 * client->sniperRifleMuzzlePitch * cos( 2.5 * ( level.time - client->sniperRifleFiredTime ) / RIFLE_SHAKE_TIME );
+			muzzlebounce[YAW] += 0.2 * client->sniperRifleMuzzleYaw * cos( 1.0 - ( level.time - client->sniperRifleFiredTime ) * 3 / RIFLE_SHAKE_TIME );
+			muzzlebounce[PITCH] -= 0.25 * client->sniperRifleMuzzlePitch * random() * ( 1.0f - ( level.time - client->sniperRifleFiredTime ) / RIFLE_SHAKE_TIME );
 			muzzlebounce[YAW] += 0.2 * crandom() * ( 1.0f - ( level.time - client->sniperRifleFiredTime ) / RIFLE_SHAKE_TIME );
 			SetClientViewAngle( ent,muzzlebounce );
 		}
@@ -1188,9 +1188,9 @@ void ClientThink_real( gentity_t *ent ) {
 						// stop obeying monsterslick pushes
 						ent->flags |= FL_NO_MONSTERSLICK;
 					} // else {
-					 // disable headcheck, otherwise we risk a constant jitter
-					//	ent->flags |= FL_NO_HEADCHECK;
-					//}
+					  // disable headcheck, otherwise we risk a constant jitter
+					  //	ent->flags |= FL_NO_HEADCHECK;
+					  //}
 				}
 			}
 		}
@@ -1253,7 +1253,7 @@ void ClientThink_real( gentity_t *ent ) {
 				ent->client->ps.persistant[PERS_WOLFKICK] = 0;
 			}
 		}
-	} else if ( ent->melee )     {
+	} else if ( ent->melee ) {
 		if ( wolfkicktimer > level.time ) {
 			ent->client->ps.persistant[PERS_WOLFKICK] = 0;
 			if ( ent->health <= 0 ) {
@@ -1277,7 +1277,7 @@ void ClientThink_real( gentity_t *ent ) {
 	// Ridah, allow AI Cast's to evaluate results of their pmove's
 	// DHM - Nerve :: Don't do this in multiplayer
 	if ( g_gametype.integer == GT_SINGLE_PLAYER ) {
-		extern void AICast_EvaluatePmove( int clientnum, pmove_t *pm );
+		extern void AICast_EvaluatePmove( int clientnum, pmove_t * pm );
 		AICast_EvaluatePmove( ent->s.number, &pm );
 	}
 	// done.
@@ -1471,7 +1471,7 @@ void SpectatorClientEndFrame( gentity_t *ent ) {
 				do_respawn = 1;
 			}
 			lastRedReinforceTime = testtime;
-		} else if ( ent->client->sess.sessionTeam == TEAM_BLUE )     {
+		} else if ( ent->client->sess.sessionTeam == TEAM_BLUE ) {
 			testtime = level.time % g_bluelimbotime.integer;
 			if ( testtime < lastBlueReinforceTime ) {
 				do_respawn = 1;

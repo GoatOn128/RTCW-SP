@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -813,11 +813,11 @@ void Use_Shooter( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 		fire_zombiespit( ent, ent->s.origin, dir );
 		break;
 
-		// Rafael sniper
+	// Rafael sniper
 	case WP_SNIPER:
 		fire_lead( ent, ent->s.origin, dir, ent->damage );
 		break;
-		// done
+	// done
 
 	case WP_MORTAR:
 		AimAtTarget( ent );   // store in ent->s.origin2 the direction/force needed to pass through the target
@@ -1103,7 +1103,7 @@ void brush_activate_sniper( gentity_t *ent, gentity_t *other, trace_t *trace ) {
 					sniper->wait = level.time + sniper->delay;
 					// record enemypos pos
 					VectorCopy( ent->enemy->r.currentOrigin, ent->pos1 );
-				} else if ( sniper->count == 1 )     {
+				} else if ( sniper->count == 1 ) {
 					VectorSubtract( ent->enemy->r.currentOrigin, ent->pos1, vec );
 					dist = VectorLength( vec );
 					if ( dist < sniper->radius ) {
@@ -1355,7 +1355,7 @@ void SP_dlight( gentity_t *ent ) {
 	}
 
 	if ( ent->dl_stylestring && strlen( ent->dl_stylestring ) ) {    // if they're specified in a string, use em
-	} else if ( style )       {
+	} else if ( style ) {
 		style = max( 1, style );                                  // clamp to predefined range
 		style = min( 19, style );
 		ent->dl_stylestring = predef_lightstyles[style - 1];    // these are input as 1-20
@@ -1497,19 +1497,19 @@ void snow_think( gentity_t *ent ) {
 
 	if ( !Q_stricmp( ent->classname, "misc_snow256" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_SNOW256, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_snow128" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_snow128" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_SNOW128, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_snow64" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_snow64" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_SNOW64, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_snow32" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_snow32" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_SNOW32, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_bubbles8" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_bubbles8" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_BUBBLE8, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_bubbles16" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_bubbles16" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_BUBBLE16, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_bubbles32" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_bubbles32" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_BUBBLE32, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
-	} else if ( !Q_stricmp( ent->classname, "misc_bubbles64" ) )       {
+	} else if ( !Q_stricmp( ent->classname, "misc_bubbles64" ) ) {
 		G_FindConfigstringIndex( va( "%i %.2f %.2f %.2f %.2f %.2f %.2f %i %i %i", PARTICLE_BUBBLE64, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], tr.endpos[0], tr.endpos[1], tr.endpos[2], ent->health, turb, ent->s.number ), CS_PARTICLES, MAX_PARTICLES_AREAS, qtrue );
 	}
 
@@ -1768,7 +1768,7 @@ void clamp_hweapontofirearc( gentity_t *self, gentity_t *other, vec3_t dang ) {
 				clamped = qtrue;
 				dang[0] = 20.0;
 			}
-		} else if ( dang[0] > 0 && dang[0] > 10.0 )     {
+		} else if ( dang[0] > 0 && dang[0] > 10.0 ) {
 			clamped = qtrue;
 			dang[0] = 10.0;
 		}
@@ -1779,7 +1779,7 @@ void clamp_hweapontofirearc( gentity_t *self, gentity_t *other, vec3_t dang ) {
 				clamped = qtrue;
 				dang[0] = self->varc / 2;
 			}
-		} else if ( dang[0] > 0 && dang[0] > ( self->varc / 2 ) )    {
+		} else if ( dang[0] > 0 && dang[0] > ( self->varc / 2 ) ) {
 			clamped = qtrue;
 			dang[0] = self->varc / 2;
 		}
@@ -1961,7 +1961,7 @@ void mg42_track( gentity_t *self, gentity_t *other ) {
 					VectorMA( muzzle, 16, forward, muzzle );
 					VectorMA( muzzle, 16, up, muzzle );
 					validshot = qtrue;
-				} else if ( !Q_stricmp( self->classname, "misc_flak" ) )       {
+				} else if ( !Q_stricmp( self->classname, "misc_flak" ) ) {
 					if ( self->delay < level.time ) {
 						self->delay = level.time + 250;
 
@@ -1976,15 +1976,15 @@ void mg42_track( gentity_t *self, gentity_t *other ) {
 							VectorMA( muzzle, 72, forward, muzzle );
 							VectorMA( muzzle, 31, up, muzzle );
 							VectorMA( muzzle, 22, right, muzzle );
-						} else if ( self->count == 1 )     {
+						} else if ( self->count == 1 ) {
 							VectorMA( muzzle, 72, forward, muzzle );
 							VectorMA( muzzle, 31, up, muzzle );
 							VectorMA( muzzle, -22, right, muzzle );
-						} else if ( self->count == 3 )     {
+						} else if ( self->count == 3 ) {
 							VectorMA( muzzle, 72, forward, muzzle );
 							VectorMA( muzzle, 10, up, muzzle );
 							VectorMA( muzzle, 22, right, muzzle );
-						} else if ( self->count == 4 )     {
+						} else if ( self->count == 4 ) {
 							VectorMA( muzzle, 72, forward, muzzle );
 							VectorMA( muzzle, 10, up, muzzle );
 							VectorMA( muzzle, -22, right, muzzle );
@@ -2063,19 +2063,19 @@ void Flak_Animate( gentity_t *ent ) {
 		} else if ( ent->s.frame > GUN1_IDLE ) {
 			ent->s.frame++;
 		}
-	} else if ( ent->count == 2 )     {
+	} else if ( ent->count == 2 ) {
 		if ( ent->s.frame == GUN2_LASTFIRE ) {
 			ent->s.frame = GUN3_IDLE;
 		} else if ( ent->s.frame > GUN2_IDLE ) {
 			ent->s.frame++;
 		}
-	} else if ( ent->count == 3 )     {
+	} else if ( ent->count == 3 ) {
 		if ( ent->s.frame == GUN3_LASTFIRE ) {
 			ent->s.frame = GUN4_IDLE;
 		} else if ( ent->s.frame > GUN3_IDLE ) {
 			ent->s.frame++;
 		}
-	} else if ( ent->count == 4 )     {
+	} else if ( ent->count == 4 ) {
 		if ( ent->s.frame == GUN4_LASTFIRE ) {
 			ent->s.frame = GUN1_IDLE;
 		} else if ( ent->s.frame > GUN4_IDLE ) {

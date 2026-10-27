@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -333,7 +333,7 @@ void Huff_Decompress( msg_t *mbuf, int offset ) {
 
 	offset += mbuf->readcount;
 	size = mbuf->cursize - offset;
-	buffer = mbuf->data + + offset;
+	buffer = mbuf->data + +offset;
 
 	if ( size <= 0 ) {
 		return;
@@ -377,7 +377,7 @@ void Huff_Compress( msg_t *mbuf, int offset ) {
 	huff_t huff;
 
 	size = mbuf->cursize - offset;
-	buffer = mbuf->data + + offset;
+	buffer = mbuf->data + +offset;
 
 	if ( size <= 0 ) {
 		return;
@@ -429,4 +429,3 @@ void Huff_Init( huffman_t *huff ) {
 	huff->compressor.tree->parent = huff->compressor.tree->left = huff->compressor.tree->right = NULL;
 	huff->compressor.loc[NYT] = huff->compressor.tree;
 }
-

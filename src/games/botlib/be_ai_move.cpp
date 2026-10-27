@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -678,7 +678,7 @@ int BotGetReachabilityToGoal( vec3_t origin, int areanum, int entnum,
 			continue;
 		} //end if
 #endif //AVOIDREACH
-	   //get the reachability from the number
+		//get the reachability from the number
 		AAS_ReachabilityFromNum( reachnum, &reach );
 		//NOTE: do not go back to the previous area if the goal didn't change
 		//NOTE: is this actually avoidance of local routing minima between two areas???
@@ -1345,9 +1345,9 @@ bot_moveresult_t BotFinishTravel_Walk( bot_movestate_t *ms, aas_reachability_t *
 	ms->areanum = BotFuzzyPointReachabilityArea(ms->origin);
 	if (ms->areanum == reach->areanum)
 	{
-#ifdef DEBUG
+	#ifdef DEBUG
 		botimport.Print(PRT_MESSAGE, "BotFinishTravel_Walk: already in reach area\n");
-#endif //DEBUG
+	#endif //DEBUG
 		return result;
 	} //end if*/
 	//go straight to the reachability end
@@ -1617,11 +1617,11 @@ bot_moveresult_t BotTravel_WalkOffLedge( bot_movestate_t *ms, aas_reachability_t
 		hordir[2] = 0;
 #else
 	if ( ( dist < 72 ) && ( DotProduct( dir, hordir ) < 0 ) ) { // walk in the direction of start -> end
-															   //hordir[0] = reach->end[0] - ms->origin[0];
-															   //hordir[1] = reach->end[1] - ms->origin[1];
-															   //VectorNormalize( dir );
-															   //VectorMA( hordir, 48, dir, hordir );
-															   //hordir[2] = 0;
+		                                                        //hordir[0] = reach->end[0] - ms->origin[0];
+		                                                        //hordir[1] = reach->end[1] - ms->origin[1];
+		                                                        //VectorNormalize( dir );
+		                                                        //VectorMA( hordir, 48, dir, hordir );
+		                                                        //hordir[2] = 0;
 
 		VectorCopy( dir, hordir );
 #endif
@@ -1996,7 +1996,7 @@ bot_moveresult_t BotTravel_Ladder( bot_movestate_t *ms, aas_reachability_t *reac
 	BotClearMoveResult( &result );
 	//
 	if ( ( ms->moveflags & MFL_AGAINSTLADDER )
-		 //NOTE: not a good idea for ladders starting in water
+	     //NOTE: not a good idea for ladders starting in water
 		 || !( ms->moveflags & MFL_ONGROUND ) ) {
 		//botimport.Print(PRT_MESSAGE, "against ladder or not on ground\n");
 		// RF, wolf has different ladder movement
@@ -2150,7 +2150,7 @@ bot_moveresult_t BotTravel_Elevator( bot_movestate_t *ms, aas_reachability_t *re
 #ifdef DEBUG_ELEVATOR
 		botimport.Print( PRT_MESSAGE, "bot on elevator\n" );
 #endif //DEBUG_ELEVATOR
-	   //if vertically not too far from the end point
+		//if vertically not too far from the end point
 		if ( fabs( ms->origin[2] - reach->end[2] ) < sv_maxbarrier ) {
 #ifdef DEBUG_ELEVATOR
 			botimport.Print( PRT_MESSAGE, "bot moving to end\n" );
@@ -2192,7 +2192,7 @@ bot_moveresult_t BotTravel_Elevator( bot_movestate_t *ms, aas_reachability_t *re
 #ifdef DEBUG_ELEVATOR
 		botimport.Print( PRT_MESSAGE, "bot not on elevator\n" );
 #endif //DEBUG_ELEVATOR
-	   //if very near the reachability end
+		//if very near the reachability end
 		VectorSubtract( reach->end, ms->origin, dir );
 		dist = VectorLength( dir );
 		if ( dist < 64 ) {
@@ -2754,7 +2754,7 @@ bot_moveresult_t BotTravel_Grapple( bot_movestate_t *ms, aas_reachability_t *rea
 #ifdef DEBUG_GRAPPLE
 		botimport.Print( PRT_MESSAGE, "BotTravel_Grapple: active grapple\n" );
 #endif //DEBUG_GRAPPLE
-	   //
+		//
 		state = GrappleState( ms, reach );
 		//
 		VectorSubtract( reach->end, ms->origin, dir );
@@ -2801,7 +2801,7 @@ bot_moveresult_t BotTravel_Grapple( bot_movestate_t *ms, aas_reachability_t *rea
 #ifdef DEBUG_GRAPPLE
 		botimport.Print( PRT_MESSAGE, "BotTravel_Grapple: inactive grapple\n" );
 #endif //DEBUG_GRAPPLE
-	   //
+		//
 		ms->grapplevisible_time = AAS_Time();
 		//
 		VectorSubtract( reach->start, ms->origin, dir );
@@ -3077,7 +3077,7 @@ int BotReachabilityTime( aas_reachability_t *reach ) {
 	case TRAVEL_ELEVATOR: return 10;
 	case TRAVEL_GRAPPLEHOOK: return 8;
 	case TRAVEL_ROCKETJUMP: return 6;
-		//case TRAVEL_BFGJUMP: return 6;
+	//case TRAVEL_BFGJUMP: return 6;
 	case TRAVEL_JUMPPAD: return 10;
 	case TRAVEL_FUNCBOB: return 10;
 	default:
@@ -3203,7 +3203,7 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 					AAS_ReachabilityFromNum( ms->lastreachnum, &reach );
 					//if the bot is Not using the elevator
 					if ( reach.traveltype != TRAVEL_ELEVATOR ||
-						 //NOTE: the face number is the plat model number
+					     //NOTE: the face number is the plat model number
 						 ( reach.facenum & 0x0000FFFF ) != modelnum ) {
 						reachnum = AAS_NextModelReachability( 0, modelnum );
 						if ( reachnum ) {
@@ -3229,7 +3229,7 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 					AAS_ReachabilityFromNum( ms->lastreachnum, &reach );
 					//if the bot is Not using the func bobbing
 					if ( reach.traveltype != TRAVEL_FUNCBOB ||
-						 //NOTE: the face number is the func_bobbing model number
+					     //NOTE: the face number is the func_bobbing model number
 						 ( reach.facenum & 0x0000FFFF ) != modelnum ) {
 						reachnum = AAS_NextModelReachability( 0, modelnum );
 						if ( reachnum ) {
@@ -3254,10 +3254,10 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 				  /* Ridah, disabled this, or standing on little fragments causes problems
 				  else
 				  {
-					  result->blocked = qtrue;
-					  result->blockentity = ent;
-					  result->flags |= MOVERESULT_ONTOPOFOBSTACLE;
-					  return;
+				      result->blocked = qtrue;
+				      result->blockentity = ent;
+				      result->flags |= MOVERESULT_ONTOPOFOBSTACLE;
+				      return;
 				  } //end else
 				  */
 			} //end if
@@ -3328,7 +3328,7 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 					  /*
 					  if (ms->lastareanum != ms->areanum)
 					  {
-						  botimport.Print(PRT_MESSAGE, "changed from area %d to %d\n", ms->lastareanum, ms->areanum);
+					      botimport.Print(PRT_MESSAGE, "changed from area %d to %d\n", ms->lastareanum, ms->areanum);
 					  } //end if*/
 				} //end if
 #endif //DEBUG
@@ -3425,7 +3425,7 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 			case TRAVEL_ELEVATOR: *result = BotTravel_Elevator( ms, &reach ); break;
 			case TRAVEL_GRAPPLEHOOK: *result = BotTravel_Grapple( ms, &reach ); break;
 			case TRAVEL_ROCKETJUMP: *result = BotTravel_RocketJump( ms, &reach ); break;
-				//case TRAVEL_BFGJUMP:
+			//case TRAVEL_BFGJUMP:
 			case TRAVEL_JUMPPAD: *result = BotTravel_JumpPad( ms, &reach ); break;
 			case TRAVEL_FUNCBOB: *result = BotTravel_FuncBobbing( ms, &reach ); break;
 			default:
@@ -3525,7 +3525,7 @@ void BotMoveToGoal( bot_moveresult_t *result, int movestate, bot_goal_t *goal, i
 			case TRAVEL_ELEVATOR: *result = BotFinishTravel_Elevator( ms, &reach ); break;
 			case TRAVEL_GRAPPLEHOOK: *result = BotTravel_Grapple( ms, &reach ); break;
 			case TRAVEL_ROCKETJUMP: *result = BotFinishTravel_WeaponJump( ms, &reach ); break;
-				//case TRAVEL_BFGJUMP:
+			//case TRAVEL_BFGJUMP:
 			case TRAVEL_JUMPPAD: *result = BotFinishTravel_JumpPad( ms, &reach ); break;
 			case TRAVEL_FUNCBOB: *result = BotFinishTravel_FuncBobbing( ms, &reach ); break;
 			default:

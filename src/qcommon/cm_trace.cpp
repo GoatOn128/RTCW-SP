@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -804,7 +804,7 @@ void CM_TraceThroughSphere( traceWork_t *tw, vec3_t origin, float radius, vec3_t
 			tw->trace.plane.dist = DotProduct( tw->trace.plane.normal, intersection );
 			tw->trace.contents = CONTENTS_BODY;
 		}
-	} else if ( d == 0 )     {
+	} else if ( d == 0 ) {
 		//t1 = (- b ) / 2;
 		// slide along the sphere
 	}
@@ -906,7 +906,7 @@ void CM_TraceThroughVerticalCylinder( traceWork_t *tw, vec3_t origin, float radi
 				tw->trace.contents = CONTENTS_BODY;
 			}
 		}
-	} else if ( d == 0 )     {
+	} else if ( d == 0 ) {
 		//t[0] = (- b ) / 2 * a;
 		// slide along the cylinder
 	}

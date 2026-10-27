@@ -76,7 +76,7 @@ char *AIFunc_AvoidDanger( cast_state_t *cs ) {
 					VectorCopy( tr.endpos, cs->combat.takeCoverPos );
 					if ( !tr.startsolid && ( tr.fraction < 1.0 ) &&
 						 VectorDistance( cs->clientState->origin, cs->combat.takeCoverPos ) <
-							 cs->attributes[RUNNING_SPEED] * 0.0004 * ( danger->nextthink - level.time - 2000 ) ) {
+						 cs->attributes[RUNNING_SPEED] * 0.0004 * ( danger->nextthink - level.time - 2000 ) ) {
 
 						// check for a clear path to the grenade
 						trap_Trace( &tr, cs->clientState->origin, ent->r.mins, ent->r.maxs, cs->combat.takeCoverPos,
@@ -156,51 +156,51 @@ char *AIFunc_AvoidDanger( cast_state_t *cs ) {
 		 Distance( cs->dangerEntityPos, cs->clientState->origin ) > cs->dangerDist * 1.5 ) {
 		// don't move, wait for danger to pass
 	} else
-		// are we close enough to the goal?
-		if ( dist > 8 ) {
-			moveresult = AICast_MoveToPos( cs, destorg, -1 );
-			if ( moveresult ) {
-				//if the movement failed
-				if ( moveresult->failure || moveresult->blocked ) {
-					//reset the avoid reach, otherwise bot is stuck in current area
-					trap_BotResetAvoidReach( bs->ms );
-					if ( g_entities[cs->dangerEntity].inuse ) {
-						// find a better spot?
-						AICast_GetTakeCoverPos( cs, cs->dangerEntity, cs->dangerEntityPos, cs->combat.takeCoverPos );
-					} else {
-						VectorCopy( cs->clientState->origin, cs->combat.takeCoverPos );
-					}
+	// are we close enough to the goal?
+	if ( dist > 8 ) {
+		moveresult = AICast_MoveToPos( cs, destorg, -1 );
+		if ( moveresult ) {
+			//if the movement failed
+			if ( moveresult->failure || moveresult->blocked ) {
+				//reset the avoid reach, otherwise bot is stuck in current area
+				trap_BotResetAvoidReach( bs->ms );
+				if ( g_entities[cs->dangerEntity].inuse ) {
+					// find a better spot?
+					AICast_GetTakeCoverPos( cs, cs->dangerEntity, cs->dangerEntityPos, cs->combat.takeCoverPos );
+				} else {
+					VectorCopy( cs->clientState->origin, cs->combat.takeCoverPos );
 				}
 			}
-			if ( ent->s.onFireEnd < level.time ) {
-				// slow down real close to the goal, so we don't go passed it
-				cs->speedScale = AICast_SpeedScaleForDistance( cs, dist, 0 );
-			}
-			//
-			// pretend we can still see them while we run to our hide pos, this way they are less likely
-			// to forget about their enemy once they get there
-			if ( ent->s.onFireEnd < level.time && cs->enemyNum >= 0 &&
-				 cs->perception.vislist[cs->enemyNum].real_visible_timestamp &&
-				 ( cs->perception.vislist[cs->enemyNum].real_visible_timestamp > level.time - 10000 ) ) {
-				AICast_UpdateVisibility( &g_entities[cs->entityNum], &g_entities[cs->enemyNum], qfalse,
-										 cs->perception.vislist[cs->enemyNum].real_visible_timestamp ==
-											 cs->perception.vislist[cs->enemyNum].lastcheck_timestamp );
-			}
-
-		} else {
-			// set our origin as the hidepos, that way if we are still in danger, we should find a better spot
-			VectorCopy( cs->clientState->origin, cs->combat.takeCoverPos );
-			// check for a movement we should be making
-			if ( cs->navigation.obstructingTime > level.time ) {
-				AICast_MoveToPos( cs, cs->navigation.obstructingPos, -1 );
-			}
-
-			// if we are on fire, never stop
-			if ( ent->s.onFireEnd > level.time ) {
-				VectorCopy( cs->clientState->origin, cs->dangerEntityPos );
-				cs->dangerEntityValidTime = level.time + 10000;
-			}
 		}
+		if ( ent->s.onFireEnd < level.time ) {
+			// slow down real close to the goal, so we don't go passed it
+			cs->speedScale = AICast_SpeedScaleForDistance( cs, dist, 0 );
+		}
+		//
+		// pretend we can still see them while we run to our hide pos, this way they are less likely
+		// to forget about their enemy once they get there
+		if ( ent->s.onFireEnd < level.time && cs->enemyNum >= 0 &&
+			 cs->perception.vislist[cs->enemyNum].real_visible_timestamp &&
+			 ( cs->perception.vislist[cs->enemyNum].real_visible_timestamp > level.time - 10000 ) ) {
+			AICast_UpdateVisibility( &g_entities[cs->entityNum], &g_entities[cs->enemyNum], qfalse,
+									 cs->perception.vislist[cs->enemyNum].real_visible_timestamp ==
+									 cs->perception.vislist[cs->enemyNum].lastcheck_timestamp );
+		}
+
+	} else {
+		// set our origin as the hidepos, that way if we are still in danger, we should find a better spot
+		VectorCopy( cs->clientState->origin, cs->combat.takeCoverPos );
+		// check for a movement we should be making
+		if ( cs->navigation.obstructingTime > level.time ) {
+			AICast_MoveToPos( cs, cs->navigation.obstructingPos, -1 );
+		}
+
+		// if we are on fire, never stop
+		if ( ent->s.onFireEnd > level.time ) {
+			VectorCopy( cs->clientState->origin, cs->dangerEntityPos );
+			cs->dangerEntityValidTime = level.time + 10000;
+		}
+	}
 	//
 	// if we should be attacking something on our way
 	if ( shouldAttack ) {
@@ -382,7 +382,7 @@ char *AIFunc_GrenadeFlush( cast_state_t *cs ) {
 	// if we can see them, go back to an attack state after some time
 	if ( AICast_CheckAttack( cs, cs->enemyNum, qfalse ) &&
 		 cs->navigation.obstructingTime <
-			 level.time ) { // give us some time to throw the grenade, otherwise go back to attack state
+		 level.time ) {     // give us some time to throw the grenade, otherwise go back to attack state
 		//if ((cs->grenade.grenadeFlushEndTime > 0 && cs->grenade.grenadeFlushEndTime < level.time)) {
 		//G_Printf("aborting, enemy is attackable\n");
 		return AIFunc_BattleStart( cs );
@@ -439,7 +439,7 @@ char *AIFunc_GrenadeFlush( cast_state_t *cs ) {
 	dist = VectorDistance( destorg, cs->clientState->origin );
 	//
 	if ( cs->perception.vislist[cs->enemyNum].lastcheck_timestamp >
-			 cs->perception.vislist[cs->enemyNum].real_visible_timestamp ||
+		 cs->perception.vislist[cs->enemyNum].real_visible_timestamp ||
 		 dist > 128 ) {
 		//
 		// go to them
@@ -679,7 +679,7 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 		//
 		return NULL;
 	}
-*/
+	*/
 	//
 	// is it about to explode in our face?
 	if ( level.time >
@@ -707,9 +707,9 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 	//
 	// are we close enough to pick it up?
 	if ( /*cs->grenade.grenadeGrabFlag <= 0 || */
-		 ( danger->s.pos.trDelta[2] < 20 && VectorDistance( danger->r.currentOrigin, cs->clientState->origin ) < 48 &&
-		   ( danger->r.currentOrigin[2] < cs->clientState->origin[2] ) &&
-		   VectorLength( danger->s.pos.trDelta ) < 50 ) ) {
+		( danger->s.pos.trDelta[2] < 20 && VectorDistance( danger->r.currentOrigin, cs->clientState->origin ) < 48 &&
+		  ( danger->r.currentOrigin[2] < cs->clientState->origin[2] ) &&
+		  VectorLength( danger->s.pos.trDelta ) < 50 ) ) {
 		//
 		// we have a choice here, either pick up and return, or just kick it
 		//		if ((cs->grenade.grenadeGrabFlag == -1) || (cs->grenade.grenadeGrabFlag == qtrue && level.time > danger->nextthink - 2000)) {	// kick
@@ -779,7 +779,7 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 				trap_UnlinkEntity( danger );
 			}
 		}
-*/
+		*/
 		//
 		return NULL;
 	}
@@ -877,7 +877,7 @@ char *AIFunc_GrenadeKick( cast_state_t *cs ) {
 		cs->weaponNum = weapon;	// select grenade launcher
 		shouldAttack = qfalse;	// don't attack until we've caught it
 	}
-*/
+	*/
 	// if we should be attacking something on our way
 	if ( shouldAttack ) {
 		vec3_t vec, dir;

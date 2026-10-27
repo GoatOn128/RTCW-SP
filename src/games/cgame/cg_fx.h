@@ -18,8 +18,8 @@ struct FxParameters {
 	vec3_t spreadAxes = { 0, 0, 0 };
 	qhandle_t shader;
 	int group;
-	FxParameters() : life(-1), size(-1), sizeEnd(-1), alpha(-1), scale(1),
-		fadeTime(-1), speed(0), acceleration(0), heightMin(0), heightMax(0), spread(0), shader(0), group(-1) {
+	FxParameters() : life( -1 ), size( -1 ), sizeEnd( -1 ), alpha( -1 ), scale( 1 ),
+		fadeTime( -1 ), speed( 0 ), acceleration( 0 ), heightMin( 0 ), heightMax( 0 ), spread( 0 ), shader( 0 ), group( -1 ) {
 		VectorClear( velocity );
 	}
 };
@@ -45,8 +45,8 @@ struct FxTrailInputs {
 	FxTrailInputs &Shader( int value ) { shader = value; return *this; }
 	FxTrailInputs &Flags( int value ) { flags = value; return *this; }
 	FxTrailInputs &Mapping( int value ) { mapping = value; return *this; }
-	FxTrailInputs &Color( const vec3_t value ) { VectorCopy(value, color); return *this; }
-	FxTrailInputs &ColorEnd( const vec3_t value ) { VectorCopy(value, colorEnd); return *this; }
+	FxTrailInputs &Color( const vec3_t value ) { VectorCopy( value, color ); return *this; }
+	FxTrailInputs &ColorEnd( const vec3_t value ) { VectorCopy( value, colorEnd ); return *this; }
 };
 int CG_FxTrail( const char *name, int head, const vec3_t position, const FxTrailInputs &inputs = FxTrailInputs() );
 

@@ -377,7 +377,7 @@ static qboolean AI_LoperAbilityAvailable( cast_state_t *cs, int weaponNum ) {
 	case WP_MONSTER_ATTACK2: {
 		// loper leap attack
 		if ( cs->clientState->areanum && VectorLength( cs->clientState->velocity ) >
-											 1 ) { // if we are in a valid area, and are persuing, then leave a delay
+			 1 ) {                                 // if we are in a valid area, and are persuing, then leave a delay
 			// if there isn't a direct trace to our enemy, then fail
 			if ( cs->enemyNum >= 0 ) {
 				trace_t trace;

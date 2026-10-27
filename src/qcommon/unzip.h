@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -151,12 +151,12 @@ typedef struct
 
 	unsigned long size_central_dir;     /* size of the central directory  */
 	unsigned long offset_central_dir;   /* offset of start of central directory with
-								   respect to the starting disk number */
+	                               respect to the starting disk number */
 
 	unz_file_info cur_file_info; /* public info about the current file in zip*/
 	unz_file_info_internal cur_file_info_internal; /* private info about it*/
 	file_in_zip_read_info_s* pfile_in_zip_read; /* structure about the current
-										file if we are decompressing it */
+	                                    file if we are decompressing it */
 } unz_s;
 
 #define UNZ_OK                                  ( 0 )

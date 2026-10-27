@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -581,41 +581,41 @@ static void ROQ_GenYUVTables( void ) {
 	}
 }
 
-#define VQ2TO4( a,b,c,d ) {	\
-		*c++ = a[0];	\
-		*d++ = a[0];	\
-		*d++ = a[0];	\
-		*c++ = a[1];	\
-		*d++ = a[1];	\
-		*d++ = a[1];	\
-		*c++ = b[0];	\
-		*d++ = b[0];	\
-		*d++ = b[0];	\
-		*c++ = b[1];	\
-		*d++ = b[1];	\
-		*d++ = b[1];	\
-		*d++ = a[0];	\
-		*d++ = a[0];	\
-		*d++ = a[1];	\
-		*d++ = a[1];	\
-		*d++ = b[0];	\
-		*d++ = b[0];	\
-		*d++ = b[1];	\
-		*d++ = b[1];	\
-		a += 2; b += 2; }
+#define VQ2TO4( a,b,c,d ) { \
+			*c++ = a[0];    \
+			*d++ = a[0];    \
+			*d++ = a[0];    \
+			*c++ = a[1];    \
+			*d++ = a[1];    \
+			*d++ = a[1];    \
+			*c++ = b[0];    \
+			*d++ = b[0];    \
+			*d++ = b[0];    \
+			*c++ = b[1];    \
+			*d++ = b[1];    \
+			*d++ = b[1];    \
+			*d++ = a[0];    \
+			*d++ = a[0];    \
+			*d++ = a[1];    \
+			*d++ = a[1];    \
+			*d++ = b[0];    \
+			*d++ = b[0];    \
+			*d++ = b[1];    \
+			*d++ = b[1];    \
+			a += 2; b += 2; }
 
-#define VQ2TO2( a,b,c,d ) {	\
-		*c++ = *a;	\
-		*d++ = *a;	\
-		*d++ = *a;	\
-		*c++ = *b;	\
-		*d++ = *b;	\
-		*d++ = *b;	\
-		*d++ = *a;	\
-		*d++ = *a;	\
-		*d++ = *b;	\
-		*d++ = *b;	\
-		a++; b++; }
+#define VQ2TO2( a,b,c,d ) { \
+			*c++ = *a;  \
+			*d++ = *a;  \
+			*d++ = *a;  \
+			*c++ = *b;  \
+			*d++ = *b;  \
+			*d++ = *b;  \
+			*d++ = *a;  \
+			*d++ = *a;  \
+			*d++ = *b;  \
+			*d++ = *b;  \
+			a++; b++; }
 
 /******************************************************************************
 *
@@ -1164,8 +1164,8 @@ static void initRoQ() {
 		return;
 	}
 
-	cinTable[currentHandle].VQNormal = ( void( * ) ( byte *, void * ) )blitVQQuad32fs;
-	cinTable[currentHandle].VQBuffer = ( void( * ) ( byte *, void * ) )blitVQQuad32fs;
+	cinTable[currentHandle].VQNormal = ( void ( * ) ( byte *, void * ) ) blitVQQuad32fs;
+	cinTable[currentHandle].VQBuffer = ( void ( * ) ( byte *, void * ) ) blitVQQuad32fs;
 	cinTable[currentHandle].samplesPerPixel = 4;
 	ROQ_GenYUVTables();
 	RllSetupTable();
@@ -1631,7 +1631,7 @@ int CIN_PlayCinematic( const char *arg, int x, int y, int w, int h, int systemBi
 	if ( cinTable[currentHandle].alterGameState ) {
 		// close the menu
 		if ( uivm ) {
-			uivm->UI_SET_ACTIVE_MENU(UIMENU_NONE );
+			uivm->UI_SET_ACTIVE_MENU( UIMENU_NONE );
 		}
 	} else {
 		cinTable[currentHandle].playonwalls = cl_inGameVideo->integer;
@@ -1875,4 +1875,3 @@ void CIN_UploadCinematic( int handle ) {
 		}
 	}
 }
-

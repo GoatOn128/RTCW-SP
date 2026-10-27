@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -262,8 +262,8 @@ static char *XLateKey( XKeyEvent *ev, int *key ) {
 
 	case XK_F12:    *key = K_F12;      break;
 
-		// bk001206 - from Ryan's Fakk2
-		//case XK_BackSpace: *key = 8; break; // ctrl-h
+	// bk001206 - from Ryan's Fakk2
+	//case XK_BackSpace: *key = 8; break; // ctrl-h
 	case XK_BackSpace: *key = K_BACKSPACE; break; // ctrl-h
 
 	case XK_KP_Delete:
@@ -295,7 +295,7 @@ static char *XLateKey( XKeyEvent *ev, int *key ) {
 	case XK_KP_Subtract: *key = K_KP_MINUS; break;
 	case XK_KP_Divide: *key = K_KP_SLASH; break;
 
-		// bk001130 - from cvs1.17 (mkv)
+	// bk001130 - from cvs1.17 (mkv)
 	case XK_exclam: *key = '1'; break;
 	case XK_at: *key = '2'; break;
 	case XK_numbersign: *key = '3'; break;
@@ -307,10 +307,10 @@ static char *XLateKey( XKeyEvent *ev, int *key ) {
 	case XK_parenleft: *key = '9'; break;
 	case XK_parenright: *key = '0'; break;
 
-		// weird french keyboards ..
-		// NOTE: console toggle is hardcoded in cl_keys.c, can't be unbound
-		//   cleaner would be .. using hardware key codes instead of the key syms
-		//   could also add a new K_KP_CONSOLE
+	// weird french keyboards ..
+	// NOTE: console toggle is hardcoded in cl_keys.c, can't be unbound
+	//   cleaner would be .. using hardware key codes instead of the key syms
+	//   could also add a new K_KP_CONSOLE
 	case XK_twosuperior: *key = '~'; break;
 
 	default:
@@ -1205,8 +1205,8 @@ static void GLW_InitExtensions( void ) {
 	if ( Q_stristr( glConfig.extensions_string, "GL_EXT_compiled_vertex_array" ) ) {
 		if ( r_ext_compiled_vertex_array->value ) {
 			ri.Printf( PRINT_ALL, "...using GL_EXT_compiled_vertex_array\n" );
-			qglLockArraysEXT = ( void ( APIENTRY * )( int, int ) )dlsym( glw_state.OpenGLLib, "glLockArraysEXT" );
-			qglUnlockArraysEXT = ( void ( APIENTRY * )( void ) )dlsym( glw_state.OpenGLLib, "glUnlockArraysEXT" );
+			qglLockArraysEXT = ( void( APIENTRY * )( int, int ) )dlsym( glw_state.OpenGLLib, "glLockArraysEXT" );
+			qglUnlockArraysEXT = ( void( APIENTRY * )( void ) )dlsym( glw_state.OpenGLLib, "glUnlockArraysEXT" );
 			if ( !qglLockArraysEXT || !qglUnlockArraysEXT ) {
 				ri.Error( ERR_FATAL, "bad getprocaddress" );
 			}

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ typedef struct
 #define CLIP_EPSILON    0.1f
 
 //#define MAX_MAP_BOUNDS			65535
-#define MAX_MAP_BOUNDS      ( 128*1024 )    // (SA) (9/19/01) new map dimensions (from Q3TA)
+#define MAX_MAP_BOUNDS      ( 128 * 1024 )    // (SA) (9/19/01) new map dimensions (from Q3TA)
 
 // you can define on_epsilon in the makefile as tighter
 #ifndef ON_EPSILON

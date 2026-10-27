@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,24 +35,26 @@ static bool CG_FxUpdateEntity( fxEntity_t *entity );
 
 class CWolfEntityEffect : public CEffect, public fxEntity_t {
 public:
-    CWolfEntityEffect() { memset( static_cast<fxEntity_t *>( this ), 0, sizeof( fxEntity_t ) ); }
-    bool Update() override {
-        return CG_FxUpdateEntity( this );
-    }
+CWolfEntityEffect() { memset( static_cast<fxEntity_t *>( this ), 0, sizeof( fxEntity_t ) ); }
+bool Update() override {
+	return CG_FxUpdateEntity( this );
+}
 };
 
 fxEntity_t *CG_FxSpawnModel( const char *name ) {
 	const CPrimitiveTemplate *definition = theFxScheduler.Definition( name );
-	if ( !definition || definition->mType != Controller ) { CG_Error( "FX: missing model controller %s", name ); }
-    CWolfEntityEffect *effect = new CWolfEntityEffect;
-    CEffect *primitive = effect;
-    FX_AddPrimitive( &primitive, 24 * 60 * 60 * 1000 );
-    return effect;
+	if ( !definition || definition->mType != Controller ) {
+		CG_Error( "FX: missing model controller %s", name );
+	}
+	CWolfEntityEffect *effect = new CWolfEntityEffect;
+	CEffect *primitive = effect;
+	FX_AddPrimitive( &primitive, 24 * 60 * 60 * 1000 );
+	return effect;
 }
 
 void CG_FxFreeEntity( fxEntity_t *entity ) {
-    // Destruction is deferred until Update returns, so impact callbacks remain valid.
-    entity->endTime = 0;
+	// Destruction is deferred until Update returns, so impact callbacks remain valid.
+	entity->endTime = 0;
 }
 
 void CG_BloodTrail( fxEntity_t *le ) {
@@ -100,7 +102,7 @@ void CG_BloodTrail( fxEntity_t *le ) {
 		} else {
 			// Ridah, blood trail using trail code (should be faster since we don't have to spawn as many)
 			le->headJuncIndex = CG_FxTrail( "wolf/trail_gib_blood", le->headJuncIndex, newOrigin,
-			FxTrailInputs().Time( t ) );
+											FxTrailInputs().Time( t ) );
 		}
 #endif
 
@@ -681,7 +683,7 @@ void CG_AddSparkElements( fxEntity_t *le ) {
 
 		// add a trail
 		le->headJuncIndex = CG_FxTrail( "wolf/trail_impact_spark", le->headJuncIndex, le->refEntity.origin,
-			FxTrailInputs().Alpha( 1.0 - lifeFrac ).Width( lifeFrac * 2.0 * ( ( ( le->endTime - le->startTime ) > CG_FxInt( "wolf/controller_addsparkelements", "tuning" ) ) + 1 ) * 1.5 ).WidthEnd( lifeFrac * 2.0 * ( ( ( le->endTime - le->startTime ) > CG_FxInt( "wolf/controller_addsparkelements", "tuning_2" ) ) + 1 ) * 1.5 ).Shader( le->refEntity.customShader ) );
+										FxTrailInputs().Alpha( 1.0 - lifeFrac ).Width( lifeFrac * 2.0 * ( ( ( le->endTime - le->startTime ) > CG_FxInt( "wolf/controller_addsparkelements", "tuning" ) ) + 1 ) * 1.5 ).WidthEnd( lifeFrac * 2.0 * ( ( ( le->endTime - le->startTime ) > CG_FxInt( "wolf/controller_addsparkelements", "tuning_2" ) ) + 1 ) * 1.5 ).Shader( le->refEntity.customShader ) );
 
 		// if it is in a nodrop zone, remove it
 		// this keeps gibs from waiting at the bottom of pits of death
@@ -735,9 +737,9 @@ void CG_AddSpiritViewflash( fxEntity_t *le ) {
 
 	if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN ) {
 		alpha = (float)( cg.time - le->startTime ) / (float)SPIRIT_FLASH_FADEIN;
-	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION )     {
+	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION ) {
 		alpha = CG_FxValue( "wolf/controller_addspiritviewflash", "alpha" );
-	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION + SPIRIT_FLASH_FADEOUT )     {
+	} else if ( cg.time < le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION + SPIRIT_FLASH_FADEOUT ) {
 		alpha = CG_FxValue( "wolf/controller_addspiritviewflash", "alpha_2" ) - (float)( cg.time - ( le->startTime + SPIRIT_FLASH_FADEIN + SPIRIT_FLASH_DURATION ) ) / (float)SPIRIT_FLASH_FADEOUT;
 	} else {
 		return;
@@ -838,12 +840,12 @@ void CG_AddClientCritter( fxEntity_t *le ) {
 
 		if ( le->leType == LE_ZOMBIE_SPIRIT ) {
 			le->headJuncIndex = CG_FxTrail( "wolf/trail_zombie_spirit", le->headJuncIndex, le->refEntity.origin,
-			FxTrailInputs().Time( time ).Life( (int)le->effectWidth ).Alpha( 0.3 * alpha ).Width( le->radius ) );
+											FxTrailInputs().Time( time ).Life( (int)le->effectWidth ).Alpha( 0.3 * alpha ).Width( le->radius ) );
 		}
 
 		if ( le->leType == LE_HELGA_SPIRIT && le->refEntity.hModel != CG_FxModel( "wolf/controller_addclientcritter", "ssSpiritSkullModel" ) ) {
 			le->headJuncIndex = CG_FxTrail( "wolf/trail_helga_spirit", le->headJuncIndex, le->refEntity.origin,
-			FxTrailInputs().Time( time ).Life( (int)le->effectWidth ).Alpha( 0.3 * alpha ).Width( le->radius ) );
+											FxTrailInputs().Time( time ).Life( (int)le->effectWidth ).Alpha( 0.3 * alpha ).Width( le->radius ) );
 		}
 
 		// tracking factor
@@ -1074,7 +1076,7 @@ void CG_AddDebrisElements( fxEntity_t *le ) {
 		// smoke
 		if ( le->effectFlags & 1 ) {
 			le->headJuncIndex2 = CG_FxTrail( "wolf/trail_debris_smoke", le->headJuncIndex2, le->refEntity.origin,
-			FxTrailInputs().Life( (int)( CG_FxValue( "wolf/controller_adddebriselements", "tuning" ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ) ).Alpha( 1.0 * ( trace.fraction == 1.0 ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ).WidthEnd( (int)( CG_FxValue( "wolf/controller_adddebriselements", "tuning_2" ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ) ) ); // end width
+											 FxTrailInputs().Life( (int)( CG_FxValue( "wolf/controller_adddebriselements", "tuning" ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ) ).Alpha( 1.0 * ( trace.fraction == 1.0 ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ).WidthEnd( (int)( CG_FxValue( "wolf/controller_adddebriselements", "tuning_2" ) * ( 0.5 + 0.5 * ( 1.0 - lifeFrac ) ) ) ) ); // end width
 		}
 
 		// if it is in a nodrop zone, remove it
@@ -1312,57 +1314,59 @@ static void CG_AddSpriteExplosion( fxEntity_t *le ) {
 //==============================================================================
 
 static bool CG_FxUpdateEntity( fxEntity_t *le ) {
-    if ( cg.time >= le->endTime ) { return false; }
-		switch ( le->leType ) {
-		default:
-			CG_Error( "Bad leType: %i", le->leType );
-			break;
+	if ( cg.time >= le->endTime ) {
+		return false;
+	}
+	switch ( le->leType ) {
+	default:
+		CG_Error( "Bad leType: %i", le->leType );
+		break;
 
-			// Ridah
-		case LE_MOVING_TRACER:
-			CG_AddMovingTracer( le );
-			break;
-		case LE_SPARK:
-			CG_AddSparkElements( le );
-			break;
-		case LE_DEBRIS:
-			CG_AddDebrisElements( le );
-			break;
-		case LE_HELGA_SPIRIT:
-		case LE_ZOMBIE_SPIRIT:
-		case LE_ZOMBIE_BAT:
-			CG_AddClientCritter( le );
-			break;
-		case LE_SPIRIT_VIEWFLASH:
-			CG_AddSpiritViewflash( le );
-			// done.
+	// Ridah
+	case LE_MOVING_TRACER:
+		CG_AddMovingTracer( le );
+		break;
+	case LE_SPARK:
+		CG_AddSparkElements( le );
+		break;
+	case LE_DEBRIS:
+		CG_AddDebrisElements( le );
+		break;
+	case LE_HELGA_SPIRIT:
+	case LE_ZOMBIE_SPIRIT:
+	case LE_ZOMBIE_BAT:
+		CG_AddClientCritter( le );
+		break;
+	case LE_SPIRIT_VIEWFLASH:
+		CG_AddSpiritViewflash( le );
+	// done.
 
-		case LE_MARK:
-			break;
+	case LE_MARK:
+		break;
 
-		case LE_SPRITE_EXPLOSION:
-			CG_AddSpriteExplosion( le );
-			break;
+	case LE_SPRITE_EXPLOSION:
+		CG_AddSpriteExplosion( le );
+		break;
 
-		case LE_EXPLOSION:
-			CG_AddExplosion( le );
-			break;
+	case LE_EXPLOSION:
+		CG_AddExplosion( le );
+		break;
 
-		case LE_FRAGMENT:           // gibs and brass
-			CG_AddFragment( le );
-			break;
-
-
-		case LE_FADE_RGB:               // teleporters, railtrails
-			CG_AddFadeRGB( le );
-			break;
+	case LE_FRAGMENT:               // gibs and brass
+		CG_AddFragment( le );
+		break;
 
 
+	case LE_FADE_RGB:                   // teleporters, railtrails
+		CG_AddFadeRGB( le );
+		break;
 
-		case LE_EMITTER:
-			CG_AddEmitter( le );
-			break;
 
-		}
-    return le->endTime > cg.time;
+
+	case LE_EMITTER:
+		CG_AddEmitter( le );
+		break;
+
+	}
+	return le->endTime > cg.time;
 }

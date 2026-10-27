@@ -143,8 +143,8 @@ void AICast_StartFrame( int time ) {
 									 ( cs->perception.vislist[0].visible_timestamp && cs->perception.vislist[0].visible_timestamp > level.time - 4000 ) ||
 									 ( ent->client->buttons ) ||
 									 ( elapsed >= aicast_thinktime ) ) /*&&
-								(count <= aicast_maxthink)*/) ||
-							( elapsed >= aicast_thinktime * 2 ) ) ) ) {
+				                (count <= aicast_maxthink)*/) ||
+							 ( elapsed >= aicast_thinktime * 2 ) ) ) ) {
 					// make it think now
 					AICast_Think( i, (float)elapsed / 1000 );
 					// did they drop?

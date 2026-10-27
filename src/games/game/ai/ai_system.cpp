@@ -467,7 +467,7 @@ void AICast_Init( void ) {
 	while (!trap_AAS_Initialized() && (i++ < 10)) {
 		trap_BotLibStartFrame((float) level.time / 1000);
 	}
-*/
+	*/
 }
 
 /*

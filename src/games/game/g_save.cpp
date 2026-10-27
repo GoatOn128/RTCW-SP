@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -363,9 +363,9 @@ void WriteField1( saveField_t *field, byte *base ) {
 		*(int *)p = index;
 		break;
 
-		//	match this with a function address in the function list, which is built using the
-		//	"extractfuncs.bat" in the utils folder. We then save the string equivalent
-		//	of the function. This effectively gives us cross-version save games.
+	//	match this with a function address in the function list, which is built using the
+	//	"extractfuncs.bat" in the utils folder. We then save the string equivalent
+	//	of the function. This effectively gives us cross-version save games.
 	case F_FUNCTION:
 		if ( *(byte **)p == NULL ) {
 			len = 0;
@@ -468,7 +468,7 @@ void ReadField( fileHandle_t f, saveField_t *field, byte *base ) {
 		}
 		break;
 
-		//relative to code segment
+	//relative to code segment
 	case F_FUNCTION:
 		len = *(int *)p;
 		if ( !len ) {

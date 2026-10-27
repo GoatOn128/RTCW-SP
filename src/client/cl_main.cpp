@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -740,7 +740,7 @@ void CL_Disconnect( qboolean showMainMenu ) {
 	}
 
 	if ( uivm && showMainMenu ) {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_NONE );
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_NONE );
 	}
 
 	SCR_StopCinematic();
@@ -1987,18 +1987,18 @@ void CL_Frame( int msec ) {
 		// bring up the cd error dialog if needed
 		cls.cddialog = qfalse;
 #ifdef __MACOS__    //DAJ hide the cursor for intro movie
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_BRIEFING );
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_BRIEFING );
 #else
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_NEED_CD );
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_NEED_CD );
 #endif
 	} else if ( cls.endgamemenu ) {
 		cls.endgamemenu = qfalse;
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_ENDGAME );
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_ENDGAME );
 	} else if ( cls.state == CA_DISCONNECTED && !( cls.keyCatchers & KEYCATCH_UI )
 				&& !com_sv_running->integer ) {
 		// if disconnected, bring up the menu
 		S_StopAllSounds();
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_MAIN );
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_MAIN );
 	}
 
 	// if recording an avi, lock to a fixed fps
@@ -3262,7 +3262,7 @@ ping_t* CL_GetFreePing( void ) {
 					// still waiting for response
 					continue;
 				}
-			} else if ( pingptr->time < 500 )     {
+			} else if ( pingptr->time < 500 ) {
 				// results have not been queried
 				continue;
 			}

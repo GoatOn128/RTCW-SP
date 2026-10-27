@@ -182,7 +182,7 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 			// while waiting for rebirth, we only "die" if we drop below gib health
 			return;
 		}
-*/
+		*/
 		// always gib
 		self->health = -999;
 		damage = 999;
@@ -214,7 +214,7 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 					self->s.effect2Time = level.time+200;
 					self->health = -1;
 				}
-*/
+				*/
 				self->takedamage = qfalse;
 				self->r.contents = 0;
 				cs->secondDeadTime = 2;

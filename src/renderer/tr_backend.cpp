@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ void GL_SelectTexture( int unit ) {
 		GLimp_LogComment( "glActiveTextureARB( GL_TEXTURE0_ARB )\n" );
 		qglClientActiveTextureARB( GL_TEXTURE0_ARB );
 		GLimp_LogComment( "glClientActiveTextureARB( GL_TEXTURE0_ARB )\n" );
-	} else if ( unit == 1 )   {
+	} else if ( unit == 1 ) {
 		qglActiveTextureARB( GL_TEXTURE1_ARB );
 		GLimp_LogComment( "glActiveTextureARB( GL_TEXTURE1_ARB )\n" );
 		qglClientActiveTextureARB( GL_TEXTURE1_ARB );
@@ -457,7 +457,7 @@ void RB_BeginDrawingView( void ) {
 				clearBits |= GL_COLOR_BUFFER_BIT;
 				if ( glfogsettings[FOG_PORTALVIEW].registered ) {
 					qglClearColor( glfogsettings[FOG_PORTALVIEW].color[0], glfogsettings[FOG_PORTALVIEW].color[1], glfogsettings[FOG_PORTALVIEW].color[2], glfogsettings[FOG_PORTALVIEW].color[3] );
-				} else if ( glfogNum > FOG_NONE && glfogsettings[FOG_CURRENT].registered )      {
+				} else if ( glfogNum > FOG_NONE && glfogsettings[FOG_CURRENT].registered ) {
 					qglClearColor( glfogsettings[FOG_CURRENT].color[0], glfogsettings[FOG_CURRENT].color[1], glfogsettings[FOG_CURRENT].color[2], glfogsettings[FOG_CURRENT].color[3] );
 				} else {
 //					qglClearColor ( 1.0, 0.0, 0.0, 1.0 );	// red clear for testing portal sky clear
@@ -946,17 +946,17 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 // GR - also extract tesselation flag
 		R_DecomposeSort( drawSurf->sort, &entityNum, &shader, &fogNum, &dlighted, &atiTess );
 
-        // Capture opaque depth and composite decals before translucent surfaces.
-        if ( !screenDepthReady && shader->sort > SS_SEE_THROUGH ) {
-            if ( oldShader ) {
-                tess.ATI_tess = ( oldAtiTess == ATI_TESS_TRUFORM );
-                RB_EndSurface();
-                oldShader = NULL;
-            }
-            RB_CaptureScreenDepth();
-            RB_DrawScreenDecals();
-            screenDepthReady = qtrue;
-        }
+		// Capture opaque depth and composite decals before translucent surfaces.
+		if ( !screenDepthReady && shader->sort > SS_SEE_THROUGH ) {
+			if ( oldShader ) {
+				tess.ATI_tess = ( oldAtiTess == ATI_TESS_TRUFORM );
+				RB_EndSurface();
+				oldShader = NULL;
+			}
+			RB_CaptureScreenDepth();
+			RB_DrawScreenDecals();
+			screenDepthReady = qtrue;
+		}
 
 		//
 		// change the tess parameters if needed
@@ -1056,7 +1056,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		// RF, convert the newly created vertexes into dust particles, and overwrite
 		if ( backEnd.currentEntity->e.reFlags & REFLAG_ZOMBIEFX ) {
 			RB_ZombieFX( 0, drawSurf, oldNumVerts, oldNumIndex );
-		} else if ( backEnd.currentEntity->e.reFlags & REFLAG_ZOMBIEFX2 )     {
+		} else if ( backEnd.currentEntity->e.reFlags & REFLAG_ZOMBIEFX2 ) {
 			RB_ZombieFX( 1, drawSurf, oldNumVerts, oldNumIndex );
 		}
 	}
@@ -1659,4 +1659,3 @@ void RB_RenderThread( void ) {
 		renderThreadActive = qfalse;
 	}
 }
-

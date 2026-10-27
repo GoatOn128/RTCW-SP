@@ -1,7 +1,7 @@
 // this include must remain at the top of every FXxxxx.CPP file
 #include "FxWolf.h"
 
-#if !defined(FX_SCHEDULER_H_INC)
+#if !defined( FX_SCHEDULER_H_INC )
 	#include "FxScheduler.h"
 #endif
 
@@ -10,53 +10,49 @@ vmCvar_t fx_freeze;
 
 extern void CG_StartShakeCamera( float intensity, int time, vec3_t origin, float radius );
 
-static void FX_RenderPrimitive(FxRefEntity *ent);
+static void FX_RenderPrimitive( FxRefEntity *ent );
 
 // Stuff for the FxHelper
 //------------------------------------------------------
-void SFxHelper::Init()
-{
+void SFxHelper::Init() {
 	mTime = 0;
 	mOldTime = 0;
 	mTimeFrozen = false;
 	mFrameTime = 0;
 	mFloatFrameTime = 0;
-	trap_Cvar_Register(&fx_debug, "fx_debug", "0", 0);
-	trap_Cvar_Register(&fx_freeze, "fx_freeze", "0", CVAR_CHEAT);
+	trap_Cvar_Register( &fx_debug, "fx_debug", "0", 0 );
+	trap_Cvar_Register( &fx_freeze, "fx_freeze", "0", CVAR_CHEAT );
 }
 
 //------------------------------------------------------
-void SFxHelper::Print( const char *msg, ... )
-{
+void SFxHelper::Print( const char *msg, ... ) {
 #ifndef FINAL_BUILD
 
-	va_list		argptr;
-	char		text[1024];
+	va_list argptr;
+	char text[1024];
 
 	va_start( argptr, msg );
-	vsnprintf( text, sizeof(text), msg, argptr );
+	vsnprintf( text, sizeof( text ), msg, argptr );
 	va_end( argptr );
- 
+
 	CG_Printf( "%s", text );
 
 #endif
 }
 
 //------------------------------------------------------
-void SFxHelper::AdjustTime( int frameTime )
-{
-    trap_Cvar_Update(&fx_debug);
-    trap_Cvar_Update(&fx_freeze);
-    mOldTime = mTime;
-    mTimeFrozen = fx_freeze.integer || cg_paused.integer;
-    mFrameTime = mTimeFrozen ? 0 : (frameTime > 0 ? frameTime : 0);
-    mFloatFrameTime = mFrameTime * 0.001f;
-    mTime += mFrameTime;
+void SFxHelper::AdjustTime( int frameTime ) {
+	trap_Cvar_Update( &fx_debug );
+	trap_Cvar_Update( &fx_freeze );
+	mOldTime = mTime;
+	mTimeFrozen = fx_freeze.integer || cg_paused.integer;
+	mFrameTime = mTimeFrozen ? 0 : ( frameTime > 0 ? frameTime : 0 );
+	mFloatFrameTime = mFrameTime * 0.001f;
+	mTime += mFrameTime;
 }
 
 //------------------------------------------------------
-int SFxHelper::OpenFile( const char *file, fileHandle_t *fh, int mode )
-{
+int SFxHelper::OpenFile( const char *file, fileHandle_t *fh, int mode ) {
 //	char path[256];
 
 //	sprintf( path, "%s/%s", FX_FILE_PATH, file );
@@ -64,70 +60,59 @@ int SFxHelper::OpenFile( const char *file, fileHandle_t *fh, int mode )
 }
 
 //------------------------------------------------------
-int SFxHelper::ReadFile( void *data, int len, fileHandle_t fh )
-{
+int SFxHelper::ReadFile( void *data, int len, fileHandle_t fh ) {
 	trap_FS_Read( data, len, fh );
 	return len;
 }
 
 //------------------------------------------------------
-void SFxHelper::CloseFile( fileHandle_t fh )
-{
+void SFxHelper::CloseFile( fileHandle_t fh ) {
 	trap_FS_FCloseFile( fh );
 }
 
 //------------------------------------------------------
-void SFxHelper::PlaySound( vec3_t org, int entityNum, int entchannel, int sfxHandle )
-{
+void SFxHelper::PlaySound( vec3_t org, int entityNum, int entchannel, int sfxHandle ) {
 	trap_S_StartSound( org, entityNum, entchannel, sfxHandle );
 }
 
 //------------------------------------------------------
-void SFxHelper::Trace( trace_t *tr, vec3_t start, vec3_t min, vec3_t max, 
-						vec3_t end, int skipEntNum, int flags )
-{
+void SFxHelper::Trace( trace_t *tr, vec3_t start, vec3_t min, vec3_t max,
+					   vec3_t end, int skipEntNum, int flags ) {
 	CG_Trace( tr, start, min, max, end, skipEntNum, flags );
 }
 
 //------------------------------------------------------
-void SFxHelper::AddFxToScene( FxRefEntity *ent )
-{
+void SFxHelper::AddFxToScene( FxRefEntity *ent ) {
 	FX_RenderPrimitive( ent );
 }
 
 //------------------------------------------------------
-int SFxHelper::RegisterShader( const char *shader )
-{
+int SFxHelper::RegisterShader( const char *shader ) {
 	return trap_R_RegisterShader( shader );
 }
 
 //------------------------------------------------------
-int SFxHelper::RegisterSound( const char *sound )
-{
+int SFxHelper::RegisterSound( const char *sound ) {
 	return trap_S_RegisterSound( sound );
 }
 
 //------------------------------------------------------
-int SFxHelper::RegisterModel( const char *model )
-{
+int SFxHelper::RegisterModel( const char *model ) {
 	return trap_R_RegisterModel( model );
 }
 
 //------------------------------------------------------
-void SFxHelper::AddLightToScene( vec3_t org, float radius, float red, float green, float blue )
-{
+void SFxHelper::AddLightToScene( vec3_t org, float radius, float red, float green, float blue ) {
 	trap_R_AddLightToScene( org, radius, red, green, blue, 0 );
 }
 
 //------------------------------------------------------
-void SFxHelper::AddPolyToScene( int shader, int count, polyVert_t *verts )
-{
+void SFxHelper::AddPolyToScene( int shader, int count, polyVert_t *verts ) {
 	trap_R_AddPolyToScene( shader, count, verts );
 }
 
 //------------------------------------------------------
-void SFxHelper::CameraShake( vec3_t origin, float intensity, int radius, int time )
-{
+void SFxHelper::CameraShake( vec3_t origin, float intensity, int radius, int time ) {
 	CG_StartShakeCamera( intensity, time, origin, radius );
 }
 
@@ -235,17 +220,17 @@ static void FX_RenderPrimitive( FxRefEntity *ent ) {
 			FX_Quad( ent, a, b, c, d );
 		}
 	} else if ( ent->reType == RT_SPRITE && ent->aspectRatio > 0 && ent->aspectRatio != 1 ) {
-        vec3_t right, up, a, b, c, d;
-        RotatePointAroundVector( right, cg.refdef.viewaxis[0], cg.refdef.viewaxis[1], ent->rotation );
-        CrossProduct( cg.refdef.viewaxis[0], right, up );
-        float height = ent->radius * ent->aspectRatio;
-        VectorMA( ent->origin, ent->radius, right, a ); VectorMA( a, height, up, a );
-        VectorMA( ent->origin, -ent->radius, right, b ); VectorMA( b, height, up, b );
-        VectorMA( ent->origin, -ent->radius, right, c ); VectorMA( c, -height, up, c );
-        VectorMA( ent->origin, ent->radius, right, d ); VectorMA( d, -height, up, d );
-        FX_Quad( ent, a, b, c, d );
-    } else {
-        refEntity_t renderEntity = *ent;
+		vec3_t right, up, a, b, c, d;
+		RotatePointAroundVector( right, cg.refdef.viewaxis[0], cg.refdef.viewaxis[1], ent->rotation );
+		CrossProduct( cg.refdef.viewaxis[0], right, up );
+		float height = ent->radius * ent->aspectRatio;
+		VectorMA( ent->origin, ent->radius, right, a ); VectorMA( a, height, up, a );
+		VectorMA( ent->origin, -ent->radius, right, b ); VectorMA( b, height, up, b );
+		VectorMA( ent->origin, -ent->radius, right, c ); VectorMA( c, -height, up, c );
+		VectorMA( ent->origin, ent->radius, right, d ); VectorMA( d, -height, up, d );
+		FX_Quad( ent, a, b, c, d );
+	} else {
+		refEntity_t renderEntity = *ent;
 		renderEntity.renderfx &= ~( RF_FORKED | RF_TAPERED | RF_GROW );
 		trap_R_AddRefEntityToScene( &renderEntity );
 	}

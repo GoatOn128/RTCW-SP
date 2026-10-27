@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1214,9 +1214,9 @@ typedef enum {
 	IT_ARMOR,               // EFX: rotate + minlight
 	IT_HEALTH,              // EFX: static external sphere + rotating internal
 	IT_POWERUP,             // instant on, timer based
-							// EFX: rotate + external ring that rotates
+	                        // EFX: rotate + external ring that rotates
 	IT_HOLDABLE,            // single use, holdable item
-							// EFX: rotate + bob
+	                        // EFX: rotate + bob
 	IT_KEY,
 	IT_TREASURE,            // gold bars, etc.  things that can be picked up and counted for a tally at end-level
 	IT_CLIPBOARD,           // 'clipboard' used as a general term for 'popup' items where you pick up the item and it pauses and opens a menu
@@ -1353,8 +1353,8 @@ typedef enum {
 	ET_FLAMETHROWER_PROP,
 
 	ET_EVENTS               // any of the EV_* events can be added freestanding
-							// by setting eType to ET_EVENTS + eventNum
-							// this avoids having to set eFlags and eventNum
+	                        // by setting eType to ET_EVENTS + eventNum
+	                        // this avoids having to set eFlags and eventNum
 } entityType_t;
 
 

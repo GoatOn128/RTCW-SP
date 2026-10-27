@@ -5,20 +5,22 @@
 static int fxLastFrameTime = -1;
 
 void CG_FxInit( void ) {
-    FX_Init();
-    fileHandle_t file = 0;
-    int length = theFxHelper.OpenFile( "effects/wolf/manifest.txt", &file, FS_READ );
-    if ( length > 0 && length < 16384 ) {
-        std::vector<char> buffer( length + 1, 0 );
-        theFxHelper.ReadFile( buffer.data(), length, file );
-        char *cursor = buffer.data();
-        for ( char *name = COM_Parse( &cursor ); name[0]; name = COM_Parse( &cursor ) ) {
-            theFxScheduler.RegisterEffect( name );
-        }
-    } else {
-        CG_Printf( "FX: missing or invalid effects/wolf/manifest.txt\n" );
-    }
-    if ( file ) { theFxHelper.CloseFile( file ); }
+	FX_Init();
+	fileHandle_t file = 0;
+	int length = theFxHelper.OpenFile( "effects/wolf/manifest.txt", &file, FS_READ );
+	if ( length > 0 && length < 16384 ) {
+		std::vector<char> buffer( length + 1, 0 );
+		theFxHelper.ReadFile( buffer.data(), length, file );
+		char *cursor = buffer.data();
+		for ( char *name = COM_Parse( &cursor ); name[0]; name = COM_Parse( &cursor ) ) {
+			theFxScheduler.RegisterEffect( name );
+		}
+	} else {
+		CG_Printf( "FX: missing or invalid effects/wolf/manifest.txt\n" );
+	}
+	if ( file ) {
+		theFxHelper.CloseFile( file );
+	}
 	fxLastFrameTime = -1;
 }
 
@@ -103,21 +105,31 @@ static void FX_ScaleRange( CFxRange &range, float scale ) {
 }
 
 void CG_FxPlayParameters( const char *name, const vec3_t origin, const vec3_t direction, const FxParameters &p ) {
-	if ( theFxHelper.mTimeFrozen ) { return; }
+	if ( theFxHelper.mTimeFrozen ) {
+		return;
+	}
 	int registered = theFxScheduler.RegisterEffect( name );
-	if ( !registered ) { return; }
+	if ( !registered ) {
+		return;
+	}
 	int handle = 0;
 	SEffectTemplate *effect = theFxScheduler.GetEffectCopy( registered, &handle );
-	if ( !effect || !handle ) { return; }
+	if ( !effect || !handle ) {
+		return;
+	}
 	for ( int i = 0; i < effect->mPrimitiveCount; i++ ) {
 		CPrimitiveTemplate &primitive = *effect->mPrimitives[i];
 		const std::string &bindings = primitive.mBindings;
-		if ( FX_Binds( bindings, "life" ) && p.life > 0 ) { primitive.mLife.SetRange( p.life, p.life ); }
+		if ( FX_Binds( bindings, "life" ) && p.life > 0 ) {
+			primitive.mLife.SetRange( p.life, p.life );
+		}
 		if ( FX_Binds( bindings, "size" ) && p.size >= 0 ) {
 			FX_ScaleRange( primitive.mSizeStart, p.size );
 			FX_ScaleRange( primitive.mSizeEnd, p.size );
 		}
-		if ( FX_Binds( bindings, "sizeEnd" ) && p.sizeEnd >= 0 ) { primitive.mSizeEnd.SetRange( p.sizeEnd, p.sizeEnd ); }
+		if ( FX_Binds( bindings, "sizeEnd" ) && p.sizeEnd >= 0 ) {
+			primitive.mSizeEnd.SetRange( p.sizeEnd, p.sizeEnd );
+		}
 		if ( FX_Binds( bindings, "scale" ) ) {
 			FX_ScaleRange( primitive.mSizeStart, p.scale );
 			FX_ScaleRange( primitive.mSizeEnd, p.scale );
@@ -126,8 +138,12 @@ void CG_FxPlayParameters( const char *name, const vec3_t origin, const vec3_t di
 			FX_ScaleRange( primitive.mAlphaStart, p.alpha );
 			FX_ScaleRange( primitive.mAlphaEnd, p.alpha );
 		}
-		if ( FX_Binds( bindings, "shader" ) && p.shader ) { primitive.mMediaHandles.SetHandle( p.shader ); }
-		if ( FX_Binds( bindings, "aspect" ) && p.aspect > 0 ) { primitive.mAspect = p.aspect; }
+		if ( FX_Binds( bindings, "shader" ) && p.shader ) {
+			primitive.mMediaHandles.SetHandle( p.shader );
+		}
+		if ( FX_Binds( bindings, "aspect" ) && p.aspect > 0 ) {
+			primitive.mAspect = p.aspect;
+		}
 		if ( FX_Binds( bindings, "pathLength" ) && primitive.mCountSpacing > 0 ) {
 			float count = ceilf( p.pathLength / primitive.mCountSpacing );
 			count = count < 1 ? 1 : ( count > MAX_EFFECTS ? MAX_EFFECTS : count );
@@ -138,20 +154,28 @@ void CG_FxPlayParameters( const char *name, const vec3_t origin, const vec3_t di
 			primitive.mOrigin1Y.SetRange( -p.spreadAxes[1], p.spreadAxes[1] );
 			primitive.mOrigin1Z.SetRange( -p.spreadAxes[2], p.spreadAxes[2] );
 		}
-		if ( FX_Binds( bindings, "speedScale" ) ) { FX_ScaleRange( primitive.mVelZ, p.speed ); }
+		if ( FX_Binds( bindings, "speedScale" ) ) {
+			FX_ScaleRange( primitive.mVelZ, p.speed );
+		}
 		if ( p.size >= 0 ) {
-			FX_ScaleRange( primitive.mVelX, 1 + primitive.mSizeVelocity[0] * (p.size - 1) );
-			FX_ScaleRange( primitive.mVelY, 1 + primitive.mSizeVelocity[1] * (p.size - 1) );
-			FX_ScaleRange( primitive.mVelZ, 1 + primitive.mSizeVelocity[2] * (p.size - 1) );
+			FX_ScaleRange( primitive.mVelX, 1 + primitive.mSizeVelocity[0] * ( p.size - 1 ) );
+			FX_ScaleRange( primitive.mVelY, 1 + primitive.mSizeVelocity[1] * ( p.size - 1 ) );
+			FX_ScaleRange( primitive.mVelZ, 1 + primitive.mSizeVelocity[2] * ( p.size - 1 ) );
 		}
 		if ( FX_Binds( bindings, "velocity" ) ) {
 			FX_OffsetRange( primitive.mVelX, p.velocity[0] * primitive.mVelocityScale[0] );
 			FX_OffsetRange( primitive.mVelY, p.velocity[1] * primitive.mVelocityScale[1] );
 			FX_OffsetRange( primitive.mVelZ, p.velocity[2] * primitive.mVelocityScale[2] );
 		}
-		if ( FX_Binds( bindings, "verticalSpeed" ) ) { FX_OffsetRange( primitive.mVelZ, p.speed ); }
-		if ( FX_Binds( bindings, "speed" ) ) { FX_OffsetRange( primitive.mVelX, p.speed ); }
-		if ( FX_Binds( bindings, "acceleration" ) ) { FX_OffsetRange( primitive.mAccelX, p.acceleration ); }
+		if ( FX_Binds( bindings, "verticalSpeed" ) ) {
+			FX_OffsetRange( primitive.mVelZ, p.speed );
+		}
+		if ( FX_Binds( bindings, "speed" ) ) {
+			FX_OffsetRange( primitive.mVelX, p.speed );
+		}
+		if ( FX_Binds( bindings, "acceleration" ) ) {
+			FX_OffsetRange( primitive.mAccelX, p.acceleration );
+		}
 		if ( FX_Binds( bindings, "fadeTime" ) && p.fadeTime >= 0 && primitive.mLife.GetMin() > 0 ) {
 			float percent = 100 * p.fadeTime / primitive.mLife.GetMin();
 			primitive.mAlphaParm.SetRange( percent, percent );
@@ -163,13 +187,17 @@ void CG_FxPlayParameters( const char *name, const vec3_t origin, const vec3_t di
 			primitive.mOrigin1Y.SetRange( -p.spread, p.spread );
 			primitive.mOrigin1Z.SetRange( p.heightMin - origin[2], p.heightMax - origin[2] );
 		}
-		if ( FX_Binds( bindings, "verticalSign" ) ) { FX_ScaleRange( primitive.mVelZ, p.verticalSign ); }
+		if ( FX_Binds( bindings, "verticalSign" ) ) {
+			FX_ScaleRange( primitive.mVelZ, p.verticalSign );
+		}
 		primitive.mGroup = p.group;
 	}
 	vec3_t position, forward;
 	VectorCopy( origin, position );
 	VectorCopy( direction, forward );
-	if ( VectorNormalize( forward ) == 0 ) { VectorSet( forward, 0, 0, 1 ); }
+	if ( VectorNormalize( forward ) == 0 ) {
+		VectorSet( forward, 0, 0, 1 );
+	}
 	theFxScheduler.PlayEffect( handle, position, forward );
 }
 
@@ -177,7 +205,9 @@ static const FxControllerProperty &CG_FxProperty( const char *effect, const char
 	const CPrimitiveTemplate *definition = theFxScheduler.Definition( effect );
 	if ( definition ) {
 		auto found = definition->mProperties.find( property );
-		if ( found != definition->mProperties.end() ) { return found->second; }
+		if ( found != definition->mProperties.end() ) {
+			return found->second;
+		}
 	}
 	CG_Error( "FX: missing required property %s in %s", property, effect );
 	static FxControllerProperty empty;
@@ -185,22 +215,28 @@ static const FxControllerProperty &CG_FxProperty( const char *effect, const char
 }
 
 float CG_FxValue( const char *effect, const char *property ) {
-	const FxControllerProperty &value = CG_FxProperty(effect, property);
-	if ( !value.numeric ) { CG_Error( "FX: invalid numeric property %s in %s", property, effect ); }
+	const FxControllerProperty &value = CG_FxProperty( effect, property );
+	if ( !value.numeric ) {
+		CG_Error( "FX: invalid numeric property %s in %s", property, effect );
+	}
 	return value.range.GetVal();
 }
 
 qhandle_t CG_FxMaterial( const char *effect, const char *property ) {
-	const FxControllerProperty &value = CG_FxProperty(effect, property);
-	if ( !value.shader ) { value.shader = trap_R_RegisterShader(value.text.c_str()); }
+	const FxControllerProperty &value = CG_FxProperty( effect, property );
+	if ( !value.shader ) {
+		value.shader = trap_R_RegisterShader( value.text.c_str() );
+	}
 	return value.shader;
 }
 
 int CG_FxInt( const char *effect, const char *property ) {
-	return static_cast<int>(CG_FxValue(effect, property));
+	return static_cast<int>( CG_FxValue( effect, property ) );
 }
 qhandle_t CG_FxModel( const char *effect, const char *property ) {
-	const FxControllerProperty &value = CG_FxProperty(effect, property);
-	if ( !value.model ) { value.model = trap_R_RegisterModel(value.text.c_str()); }
+	const FxControllerProperty &value = CG_FxProperty( effect, property );
+	if ( !value.model ) {
+		value.model = trap_R_RegisterModel( value.text.c_str() );
+	}
 	return value.model;
 }

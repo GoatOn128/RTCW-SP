@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ static char *rd_buffer;
 static int rd_buffersize;
 static void ( *rd_flush )( char *buffer );
 
-void Com_BeginRedirect( char *buffer, int buffersize, void ( *flush )( char *) ) {
+void Com_BeginRedirect( char *buffer, int buffersize, void ( *flush )( char * ) ) {
 	if ( !buffer || !buffersize || !flush ) {
 		return;
 	}
@@ -591,12 +591,12 @@ int Com_Filter( char *filter, char *name, int casesensitive ) {
 				}
 				name = ptr + strlen( buf );
 			}
-		} else if ( *filter == '?' )      {
+		} else if ( *filter == '?' ) {
 			filter++;
 			name++;
-		} else if ( *filter == '[' && *( filter + 1 ) == '[' )           {
+		} else if ( *filter == '[' && *( filter + 1 ) == '[' ) {
 			filter++;
-		} else if ( *filter == '[' )      {
+		} else if ( *filter == '[' ) {
 			filter++;
 			found = qfalse;
 			while ( *filter && !found ) {
@@ -2508,13 +2508,13 @@ padding:    mov ecx,count
 		mov     [edx + 12],eax
 		add edx,16
 		sub ecx,4
-skip4:      cmp ecx,2
+skip4:  cmp ecx,2
 		jl skip2
 		mov     [edx + 0],eax
 		mov     [edx + 4],eax
 		add edx,8
 		sub ecx,2
-skip2:      cmp ecx,1
+skip2:  cmp ecx,1
 		jl outta
 		mov     [edx + 0],eax
 outta:
@@ -2601,7 +2601,7 @@ skip8:
 		sub ecx,4
 		mov dword ptr [edx],eax
 		add edx,4
-skip4:                          // 0-3 remaining bytes
+skip4:  // 0-3 remaining bytes
 		cmp ecx,2
 		jl skip2
 		mov ax,word ptr [ebx]       // two bytes
@@ -2641,12 +2641,12 @@ void Com_Memset( void* dest, const int val, const size_t count ) {
 			mov     [edx],eax           // copy first dword
 			add edx,4
 			sub ecx,4
-skip4:  cmp ecx,2
+skip4:      cmp ecx,2
 			jl skip2
 			mov word ptr [edx],ax       // copy 2 bytes
 			add edx,2
 			sub ecx,2
-skip2:  cmp ecx,0
+skip2:      cmp ecx,0
 			je skip1
 			mov byte ptr [edx],al       // copy single byte
 skip1:
@@ -2741,7 +2741,7 @@ skipClamp:
 			jmp loopie
 
 			align 16
-loopie: test byte ptr [ebx],al
+loopie:     test byte ptr [ebx],al
 			add ebx,32
 			dec ecx
 			jnz loopie
@@ -2938,4 +2938,3 @@ void Field_CompleteCommand( field_t *field ) {
 	Cmd_CommandCompletion( PrintMatches );
 	Cvar_CommandCompletion( PrintMatches );
 }
-

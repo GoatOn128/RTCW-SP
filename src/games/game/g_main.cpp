@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -280,7 +280,7 @@ Returns the native game function table to the engine.
 */
 void G_SetImports( const gameImport_t *imports );
 
-extern "C" const gameExport_t *QDECL GetGameAPI( const gameImport_t *imports ) {
+extern "C" const gameExport_t * QDECL GetGameAPI( const gameImport_t *imports ) {
 	static const gameExport_t exports = {
 		GAME_API_VERSION,
 		G_InitGame,
@@ -615,7 +615,7 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 						}
 					}
 				}
-			} else if ( checkEnt->s.eType == ET_MG42 )      {
+			} else if ( checkEnt->s.eType == ET_MG42 ) {
 				// DHM - Nerve :: Engineers can repair turrets
 				if ( g_gametype.integer == GT_WOLF ) {
 					hintDist = CH_ACTIVATE_DIST;
@@ -642,18 +642,18 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 						}
 					}
 				}
-			} else if ( checkEnt->s.eType == ET_EXPLOSIVE )      {
+			} else if ( checkEnt->s.eType == ET_EXPLOSIVE ) {
 				if ( checkEnt->takedamage && checkEnt->health > 0 ) {              // 0 health explosives are not breakable
 					hintDist    = CH_BREAKABLE_DIST;
 					hintType    = HINT_BREAKABLE;
 					hintVal     = checkEnt->health;     // also send health to client for visualization
 				}
-			} else if ( checkEnt->s.eType == ET_ALARMBOX )      {
+			} else if ( checkEnt->s.eType == ET_ALARMBOX ) {
 				if ( checkEnt->health > 0 ) {
 //					hintDist	= CH_BREAKABLE_DIST;
 					hintType    = HINT_ACTIVATE;
 				}
-			} else if ( checkEnt->s.eType == ET_ITEM )      {
+			} else if ( checkEnt->s.eType == ET_ITEM ) {
 				gitem_t *it;
 				it = &bg_itemlist[checkEnt->item - bg_itemlist];
 
@@ -696,7 +696,7 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 				default:
 					break;
 				}
-			} else if ( checkEnt->s.eType == ET_MOVER )     {
+			} else if ( checkEnt->s.eType == ET_MOVER ) {
 				if ( !Q_stricmp( checkEnt->classname, "func_door_rotating" ) ) {
 					if ( checkEnt->moverState == MOVER_POS1ROTATE    ||      // stationary/closed
 						 ( checkEnt->moverState == MOVER_POS2ROTATE && checkEnt->flags & FL_TOGGLE ) ) { // toggle door that's open
@@ -708,7 +708,7 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 							//						hintType = HINT_DOOR_ROTATING_LOCKED;
 						}
 					}
-				} else if ( !Q_stricmp( checkEnt->classname, "func_door" ) )         {
+				} else if ( !Q_stricmp( checkEnt->classname, "func_door" ) ) {
 					if ( checkEnt->moverState == MOVER_POS1   || // stationary/closed
 						 ( checkEnt->moverState == MOVER_POS2 && checkEnt->flags & FL_TOGGLE ) ) { // toggle door that's open
 
@@ -719,16 +719,16 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 							//						hintType = HINT_DOOR_LOCKED;
 						}
 					}
-				} else if ( !Q_stricmp( checkEnt->classname, "func_button" ) )         {
+				} else if ( !Q_stricmp( checkEnt->classname, "func_button" ) ) {
 					hintDist = CH_ACTIVATE_DIST;
 					hintType = HINT_BUTTON;
-				} else if ( !Q_stricmp( checkEnt->classname, "props_flamebarrel" ) )         {
+				} else if ( !Q_stricmp( checkEnt->classname, "props_flamebarrel" ) ) {
 					hintDist = CH_BREAKABLE_DIST;
 					hintType = HINT_BREAKABLE;
-				} else if ( !Q_stricmp( checkEnt->classname, "props_statue" ) )         {
+				} else if ( !Q_stricmp( checkEnt->classname, "props_statue" ) ) {
 					hintDist = CH_BREAKABLE_DIST;
 					hintType = HINT_BREAKABLE;
-				} else if ( strstr( checkEnt->classname, "chair" ) )         {
+				} else if ( strstr( checkEnt->classname, "chair" ) ) {
 					hintDist = CH_ACTIVATE_DIST;
 					hintType = HINT_CHAIR;
 				}
@@ -794,7 +794,7 @@ void G_CheckForCursorHints( gentity_t *ent ) {
 		// zooming can eat a lot of potential hints
 		switch ( hintType ) {
 
-			// allow while zooming
+		// allow while zooming
 		case HINT_MG42:
 		case HINT_PLAYER:
 		case HINT_TREASURE:
@@ -1610,7 +1610,7 @@ void CalculateRanks( void ) {
 	// set the rank value for all clients that are connected and not spectators
 	if ( g_gametype.integer >= GT_TEAM ) {
 		// in team games, rank is just the order of the teams, 0=red, 1=blue, 2=tied
-		for ( i = 0;  i < level.numConnectedClients; i++ ) {
+		for ( i = 0; i < level.numConnectedClients; i++ ) {
 			cl = &level.clients[ level.sortedClients[i] ];
 			if ( level.teamScores[TEAM_RED] == level.teamScores[TEAM_BLUE] ) {
 				cl->ps.persistant[PERS_RANK] = 2;
@@ -1623,7 +1623,7 @@ void CalculateRanks( void ) {
 	} else {
 		rank = -1;
 		score = 0;
-		for ( i = 0;  i < level.numPlayingClients; i++ ) {
+		for ( i = 0; i < level.numPlayingClients; i++ ) {
 			cl = &level.clients[ level.sortedClients[i] ];
 			newScore = cl->ps.persistant[PERS_SCORE];
 			if ( i == 0 || newScore != score ) {

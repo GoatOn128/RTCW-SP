@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -559,15 +559,21 @@ static cgameImport_t CL_CreateCGameImports() {
 		S_ClearLoopingSounds(); // (SA) modified so no_pvs sounds can function
 		// RF, if killall, then stop all sounds
 		if ( killall == 1 ) {
-		S_ClearSounds( qtrue, qfalse );
+			S_ClearSounds( qtrue, qfalse );
 		} else if ( killall == 2 ) {
-		S_ClearSounds( qtrue, qtrue );
+			S_ClearSounds( qtrue, qtrue );
 		}
 		return;
 	};
-	imports.S_AddLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int volume ) -> void { S_AddLoopingSound( entityNum, origin, velocity, 0, sfx, volume ); };
-	imports.S_AddRangedLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int range ) -> void { S_AddLoopingSound( entityNum, origin, velocity, range, sfx, 255 ); };
-	imports.S_AddRealLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx ) -> void { S_AddLoopingSound( entityNum, origin, velocity, 0, sfx, 255 ); };
+	imports.S_AddLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int volume ) -> void {
+		S_AddLoopingSound( entityNum, origin, velocity, 0, sfx, volume );
+	};
+	imports.S_AddRangedLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx, int range ) -> void {
+		S_AddLoopingSound( entityNum, origin, velocity, range, sfx, 255 );
+	};
+	imports.S_AddRealLoopingSound = []( int entityNum, const vec3_t origin, const vec3_t velocity, sfxHandle_t sfx ) -> void {
+		S_AddLoopingSound( entityNum, origin, velocity, 0, sfx, 255 );
+	};
 	imports.S_StopLoopingSound = []( int entityNum ) -> void {
 		// RF, not functional anymore, since we reverted to old looping code
 		//S_StopLoopingSound( entityNum );
@@ -659,7 +665,9 @@ static cgameImport_t CL_CreateCGameImports() {
 		re.AddPolysToScene( hShader, numVerts, verts, numPolys );
 		return;
 	};
-	imports.RE_ZombieFXAddNewHit = []( int entityNum, const vec3_t hitPos, const vec3_t hitDir ) -> void { re.ZombieFXAddNewHit( entityNum, hitPos, hitDir ); };
+	imports.RE_ZombieFXAddNewHit = []( int entityNum, const vec3_t hitPos, const vec3_t hitDir ) -> void {
+		re.ZombieFXAddNewHit( entityNum, hitPos, hitDir );
+	};
 	imports.RE_AddLightToScene = []( const vec3_t org, float intensity, float r, float g, float b, int overdraw ) -> void {
 		re.AddLightToScene( org, intensity, r, g, b, overdraw );
 		return;
@@ -738,7 +746,7 @@ static cgameImport_t CL_CreateCGameImports() {
 	};
 	imports.startCamera = []( int camNum, int time ) -> void {
 		if ( camNum == 0 ) {  // CAM_PRIMARY
-		cl.cameraMode = qtrue;  //----(SA)	added
+			cl.cameraMode = qtrue; //----(SA)	added
 		}
 		startCamera( camNum, time );
 		return;
@@ -746,7 +754,7 @@ static cgameImport_t CL_CreateCGameImports() {
 	};
 	imports.CL_StopCamera = []( int camNum ) -> void {
 		if ( camNum == 0 ) {  // CAM_PRIMARY
-		cl.cameraMode = qfalse;
+			cl.cameraMode = qfalse;
 		}
 		//		stopCamera(camNum);
 		return;
@@ -828,46 +836,46 @@ static cgameImport_t CL_CreateCGameImports() {
 	};
 	imports.CL_InGamePopup = []( const char *arg0 ) -> void {
 		if ( arg0 && !Q_stricmp( arg0, "briefing" ) ) {  //----(SA) added
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_BRIEFING );
-		return;
+			uivm->UI_SET_ACTIVE_MENU( UIMENU_BRIEFING );
+			return;
 		}
 
 		if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-		// NERVE - SMF
-		if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_PICKTEAM" ) ) {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_WM_PICKTEAM );
-		} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_PICKPLAYER" ) )    {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_WM_PICKPLAYER );
-		} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_QUICKMESSAGE" ) )    {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_WM_QUICKMESSAGE );
-		} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_LIMBO" ) )    {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_WM_LIMBO );
-		}
-		// -NERVE - SMF
-		else if ( arg0 && !Q_stricmp( arg0, "hbook1" ) ) {   //----(SA)
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_BOOK1 );
-		} else if ( arg0 && !Q_stricmp( arg0, "hbook2" ) )    { //----(SA)
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_BOOK2 );
-		} else if ( arg0 && !Q_stricmp( arg0, "hbook3" ) )    { //----(SA)
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_BOOK3 );
-		} else if ( arg0 && !Q_stricmp( arg0, "pregame" ) )    { //----(SA) added
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_PREGAME );
-		} else {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_CLIPBOARD );
-		}
+			// NERVE - SMF
+			if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_PICKTEAM" ) ) {
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_WM_PICKTEAM );
+			} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_PICKPLAYER" ) ) {
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_WM_PICKPLAYER );
+			} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_QUICKMESSAGE" ) ) {
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_WM_QUICKMESSAGE );
+			} else if ( arg0 && !Q_stricmp( arg0, "UIMENU_WM_LIMBO" ) ) {
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_WM_LIMBO );
+			}
+			// -NERVE - SMF
+			else if ( arg0 && !Q_stricmp( arg0, "hbook1" ) ) { //----(SA)
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_BOOK1 );
+			} else if ( arg0 && !Q_stricmp( arg0, "hbook2" ) ) { //----(SA)
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_BOOK2 );
+			} else if ( arg0 && !Q_stricmp( arg0, "hbook3" ) ) { //----(SA)
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_BOOK3 );
+			} else if ( arg0 && !Q_stricmp( arg0, "pregame" ) ) { //----(SA) added
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_PREGAME );
+			} else {
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_CLIPBOARD );
+			}
 		}
 		return;
 		// NERVE - SMF
 	};
 	imports.CL_AddToLimboChat = []( const char *arg0 ) -> void {
 		if ( arg0 ) {
-		CL_AddToLimboChat( arg0 );
+			CL_AddToLimboChat( arg0 );
 		}
 		return;
 		// - NERVE - SMF
 	};
 	imports.CL_ClosePopup = []( const char *arg0 ) -> void {
-		uivm->UI_KEY_EVENT(K_ESCAPE, qtrue );
+		uivm->UI_KEY_EVENT( K_ESCAPE, qtrue );
 		return;
 	};
 	imports.SV_GetModelInfo = []( int clientNum, char *modelName, void **modelInfo ) -> qboolean {
@@ -1068,7 +1076,7 @@ CL_CGameRendering
 =====================
 */
 void CL_CGameRendering( stereoFrame_t stereo ) {
-	cgvm->CG_DRAW_ACTIVE_FRAME(cl.serverTime, stereo, clc.demoplaying );
+	cgvm->CG_DRAW_ACTIVE_FRAME( cl.serverTime, stereo, clc.demoplaying );
 }
 
 
@@ -1316,5 +1324,5 @@ qboolean CL_GetTag( int clientNum, char *tagname, orientation_t *or ) {
 		return qfalse;
 	}
 
-	return cgvm->CG_GET_TAG(clientNum, tagname, or );
+	return cgvm->CG_GET_TAG( clientNum, tagname, or );
 }

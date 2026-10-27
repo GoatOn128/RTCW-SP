@@ -50,7 +50,7 @@ typedef enum {
 } heinrichSounds_t;
 
 char *heinrichSounds[MAX_HEINRICH_SOUNDS] = {
-	"heinrichSwordImpact",			"heinrichSwordLungeStart",	   "heinrichSwordKnockbackStart",
+	"heinrichSwordImpact",          "heinrichSwordLungeStart",     "heinrichSwordKnockbackStart",
 	"heinrichSwordKnockbackWeapon", "heinrichSwordSideSlashStart", "heinrichSwordSideSlashWeapon",
 	"heinrichSwordEarthquakeStart", "heinrichRaiseWarriorStart",   "heinrichTauntGoodHealth",
 	"heinrichTauntLowHealth",
@@ -129,7 +129,7 @@ char *AIFunc_Heinrich_SwordLunge( cast_state_t *cs ) {
 			cs->script.castScriptStatus.scriptNoMoveTime = 0;
 			trap_EA_MoveForward( cs->entityNum );
 		}
-*/                                                                                                                                                                                                           // ready for damage?
+		*/// ready for damage?
 		if ( cs->thinkFuncChangeTime < level.time - HEINRICH_LUNGE_DELAY ) {
 			cs->aiFlags |= AIFL_MISCFLAG1;
 			// do melee damage
@@ -227,7 +227,7 @@ char *AIFunc_Heinrich_SwordKnockback( cast_state_t *cs ) {
 			cs->script.castScriptStatus.scriptNoMoveTime = 0;
 			trap_EA_MoveForward( cs->entityNum );
 		}
-*/                                                                                                                                                                                                           // ready for damage?
+		*/// ready for damage?
 		if ( cs->thinkFuncChangeTime < level.time - HEINRICH_KNOCKBACK_DELAY ) {
 			cs->aiFlags |= AIFL_MISCFLAG1;
 			// do melee damage
@@ -271,7 +271,7 @@ char *AIFunc_Heinrich_SwordKnockback( cast_state_t *cs ) {
 			trap_EA_MoveForward(cs->entityNum);
 		}
 	}
-*/
+	*/
 	return NULL;
 }
 
@@ -493,7 +493,7 @@ char *AIFunc_Heinrich_Earthquake( cast_state_t *cs ) {
 			VectorSubtract( ent->s.pos.trBase, enemy->s.pos.trBase, enemyVec );
 			VectorScale( enemyVec,
 						 2.0 * ( 0.6 + 0.5 * random() ) * scale *
-							 ( 0.6 + 0.6 * ( 1.0 - ( enemyDist / HEINRICH_STOMP_RANGE ) ) ),
+						 ( 0.6 + 0.6 * ( 1.0 - ( enemyDist / HEINRICH_STOMP_RANGE ) ) ),
 						 enemyVec );
 			enemyVec[2] = scale * HEINRICH_STOMP_VELOCITY_Z * ( 1.0 - 0.5 * ( enemyDist / HEINRICH_STOMP_RANGE ) );
 			// bounce the player using this velocity

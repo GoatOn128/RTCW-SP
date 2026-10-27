@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -383,7 +383,7 @@ void vectoangles( const vec3_t value1, vec3_t angles ) {
 	} else {
 		if ( value1[0] ) {
 			yaw = ( atan2( value1[1], value1[0] ) * 180 / M_PI );
-		} else if ( value1[1] > 0 )   {
+		} else if ( value1[1] > 0 ) {
 			yaw = 90;
 		} else {
 			yaw = 270;
@@ -774,199 +774,199 @@ initialized:
 		fld dword ptr[0 + edx]
 		fld st( 0 )
 		jmp dword ptr[Ljmptab + eax * 4]
-		Lcase0 :
-			fmul dword ptr[ebx]
-			fld dword ptr[0 + 4 + edx]
-			fxch st( 2 )
-			fmul dword ptr[ecx]
-			fxch st( 2 )
-			fld st( 0 )
-			fmul dword ptr[4 + ebx]
-			fld dword ptr[0 + 8 + edx]
-			fxch st( 2 )
-			fmul dword ptr[4 + ecx]
-			fxch st( 2 )
-			fld st( 0 )
-			fmul dword ptr[8 + ebx]
-			fxch st( 5 )
-			faddp st( 3 ),st( 0 )
-			fmul dword ptr[8 + ecx]
-			fxch st( 1 )
-			faddp st( 3 ),st( 0 )
-			fxch st( 3 )
-			faddp st( 2 ),st( 0 )
-			jmp LSetSides
-			Lcase1 :
-				fmul dword ptr[ecx]
-				fld dword ptr[0 + 4 + edx]
-				fxch st( 2 )
-				fmul dword ptr[ebx]
-				fxch st( 2 )
-				fld st( 0 )
-				fmul dword ptr[4 + ebx]
-				fld dword ptr[0 + 8 + edx]
-				fxch st( 2 )
-				fmul dword ptr[4 + ecx]
-				fxch st( 2 )
-				fld st( 0 )
-				fmul dword ptr[8 + ebx]
-				fxch st( 5 )
-				faddp st( 3 ),st( 0 )
-				fmul dword ptr[8 + ecx]
-				fxch st( 1 )
-				faddp st( 3 ),st( 0 )
-				fxch st( 3 )
-				faddp st( 2 ),st( 0 )
-				jmp LSetSides
-				Lcase2 :
-					fmul dword ptr[ebx]
-					fld dword ptr[0 + 4 + edx]
-					fxch st( 2 )
-					fmul dword ptr[ecx]
-					fxch st( 2 )
-					fld st( 0 )
-					fmul dword ptr[4 + ecx]
-					fld dword ptr[0 + 8 + edx]
-					fxch st( 2 )
-					fmul dword ptr[4 + ebx]
-					fxch st( 2 )
-					fld st( 0 )
-					fmul dword ptr[8 + ebx]
-					fxch st( 5 )
-					faddp st( 3 ),st( 0 )
-					fmul dword ptr[8 + ecx]
-					fxch st( 1 )
-					faddp st( 3 ),st( 0 )
-					fxch st( 3 )
-					faddp st( 2 ),st( 0 )
-					jmp LSetSides
-					Lcase3 :
-						fmul dword ptr[ecx]
-						fld dword ptr[0 + 4 + edx]
-						fxch st( 2 )
-						fmul dword ptr[ebx]
-						fxch st( 2 )
-						fld st( 0 )
-						fmul dword ptr[4 + ecx]
-						fld dword ptr[0 + 8 + edx]
-						fxch st( 2 )
-						fmul dword ptr[4 + ebx]
-						fxch st( 2 )
-						fld st( 0 )
-						fmul dword ptr[8 + ebx]
-						fxch st( 5 )
-						faddp st( 3 ),st( 0 )
-						fmul dword ptr[8 + ecx]
-						fxch st( 1 )
-						faddp st( 3 ),st( 0 )
-						fxch st( 3 )
-						faddp st( 2 ),st( 0 )
-						jmp LSetSides
-						Lcase4 :
-							fmul dword ptr[ebx]
-							fld dword ptr[0 + 4 + edx]
-							fxch st( 2 )
-							fmul dword ptr[ecx]
-							fxch st( 2 )
-							fld st( 0 )
-							fmul dword ptr[4 + ebx]
-							fld dword ptr[0 + 8 + edx]
-							fxch st( 2 )
-							fmul dword ptr[4 + ecx]
-							fxch st( 2 )
-							fld st( 0 )
-							fmul dword ptr[8 + ecx]
-							fxch st( 5 )
-							faddp st( 3 ),st( 0 )
-							fmul dword ptr[8 + ebx]
-							fxch st( 1 )
-							faddp st( 3 ),st( 0 )
-							fxch st( 3 )
-							faddp st( 2 ),st( 0 )
-							jmp LSetSides
-							Lcase5 :
-								fmul dword ptr[ecx]
-								fld dword ptr[0 + 4 + edx]
-								fxch st( 2 )
-								fmul dword ptr[ebx]
-								fxch st( 2 )
-								fld st( 0 )
-								fmul dword ptr[4 + ebx]
-								fld dword ptr[0 + 8 + edx]
-								fxch st( 2 )
-								fmul dword ptr[4 + ecx]
-								fxch st( 2 )
-								fld st( 0 )
-								fmul dword ptr[8 + ecx]
-								fxch st( 5 )
-								faddp st( 3 ),st( 0 )
-								fmul dword ptr[8 + ebx]
-								fxch st( 1 )
-								faddp st( 3 ),st( 0 )
-								fxch st( 3 )
-								faddp st( 2 ),st( 0 )
-								jmp LSetSides
-								Lcase6 :
-									fmul dword ptr[ebx]
-									fld dword ptr[0 + 4 + edx]
-									fxch st( 2 )
-									fmul dword ptr[ecx]
-									fxch st( 2 )
-									fld st( 0 )
-									fmul dword ptr[4 + ecx]
-									fld dword ptr[0 + 8 + edx]
-									fxch st( 2 )
-									fmul dword ptr[4 + ebx]
-									fxch st( 2 )
-									fld st( 0 )
-									fmul dword ptr[8 + ecx]
-									fxch st( 5 )
-									faddp st( 3 ),st( 0 )
-									fmul dword ptr[8 + ebx]
-									fxch st( 1 )
-									faddp st( 3 ),st( 0 )
-									fxch st( 3 )
-									faddp st( 2 ),st( 0 )
-									jmp LSetSides
-									Lcase7 :
-										fmul dword ptr[ecx]
-										fld dword ptr[0 + 4 + edx]
-										fxch st( 2 )
-										fmul dword ptr[ebx]
-										fxch st( 2 )
-										fld st( 0 )
-										fmul dword ptr[4 + ecx]
-										fld dword ptr[0 + 8 + edx]
-										fxch st( 2 )
-										fmul dword ptr[4 + ebx]
-										fxch st( 2 )
-										fld st( 0 )
-										fmul dword ptr[8 + ecx]
-										fxch st( 5 )
-										faddp st( 3 ),st( 0 )
-										fmul dword ptr[8 + ebx]
-										fxch st( 1 )
-										faddp st( 3 ),st( 0 )
-										fxch st( 3 )
-										faddp st( 2 ),st( 0 )
-										LSetSides :
-											faddp st( 2 ),st( 0 )
-											fcomp dword ptr[12 + edx]
-											xor ecx,ecx
-											fnstsw ax
-											fcomp dword ptr[12 + edx]
-											and ah,1
-											xor ah,1
-											add cl,ah
-											fnstsw ax
-											and ah,1
-											add ah,ah
-											add cl,ah
-											pop ebx
-											mov eax,ecx
-											ret
-											Lerror :
-												int 3
+Lcase0:
+		fmul dword ptr[ebx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ebx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase1:
+		fmul dword ptr[ecx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ebx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase2:
+		fmul dword ptr[ebx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ecx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase3:
+		fmul dword ptr[ecx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ecx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase4:
+		fmul dword ptr[ebx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ebx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase5:
+		fmul dword ptr[ecx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ebx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase6:
+		fmul dword ptr[ebx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ecx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ecx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		jmp LSetSides
+Lcase7:
+		fmul dword ptr[ecx]
+		fld dword ptr[0 + 4 + edx]
+		fxch st( 2 )
+		fmul dword ptr[ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[4 + ecx]
+		fld dword ptr[0 + 8 + edx]
+		fxch st( 2 )
+		fmul dword ptr[4 + ebx]
+		fxch st( 2 )
+		fld st( 0 )
+		fmul dword ptr[8 + ecx]
+		fxch st( 5 )
+		faddp st( 3 ),st( 0 )
+		fmul dword ptr[8 + ebx]
+		fxch st( 1 )
+		faddp st( 3 ),st( 0 )
+		fxch st( 3 )
+		faddp st( 2 ),st( 0 )
+		LSetSides :
+		faddp st( 2 ),st( 0 )
+		fcomp dword ptr[12 + edx]
+		xor ecx,ecx
+		fnstsw ax
+		fcomp dword ptr[12 + edx]
+		and ah,1
+		xor ah,1
+		add cl,ah
+		fnstsw ax
+		and ah,1
+		add ah,ah
+		add cl,ah
+		pop ebx
+		mov eax,ecx
+		ret
+Lerror:
+		int 3
 	}
 }
 #pragma warning( default: 4035 )
@@ -1238,13 +1238,13 @@ void AngleVectors( const vec3_t angles, vec3_t forward, vec3_t right, vec3_t up 
 		forward[2] = -sp;
 	}
 	if ( right ) {
-		right[0] = ( -1 * sr * sp * cy + - 1 * cr * -sy );
-		right[1] = ( -1 * sr * sp * sy + - 1 * cr * cy );
+		right[0] = ( -1 * sr * sp * cy + -1 * cr * -sy );
+		right[1] = ( -1 * sr * sp * sy + -1 * cr * cy );
 		right[2] = -1 * sr * cp;
 	}
 	if ( up ) {
-		up[0] = ( cr * sp * cy + - sr * -sy );
-		up[1] = ( cr * sp * sy + - sr * cy );
+		up[0] = ( cr * sp * cy + -sr * -sy );
+		up[1] = ( cr * sp * sy + -sr * cy );
 		up[2] = cr * cp;
 	}
 }

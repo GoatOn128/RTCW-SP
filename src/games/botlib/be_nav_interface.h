@@ -91,8 +91,8 @@ int AAS_AgainstLadder( vec3_t origin, int ms_areanum );
 int AAS_HorizontalVelocityForJump( float zvel, vec3_t start, vec3_t end, float *velocity );
 int AAS_DropToFloor( vec3_t origin, vec3_t mins, vec3_t maxs );
 int AAS_PredictClientMovement( aas_clientmove_t *move, int entnum, vec3_t origin, int presencetype, int onground,
-	vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float frametime,
-	int stopevent, int stopareanum, int visualize );
+							   vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float frametime,
+							   int stopevent, int stopareanum, int visualize );
 aas_trace_t AAS_TraceClientBBox( vec3_t start, vec3_t end, int presencetype, int passent );
 
 void AAS_SetAASBlockingEntity( vec3_t absmin, vec3_t absmax, qboolean blocking );

@@ -113,7 +113,7 @@ void AICast_InputToUserCommand( cast_state_t *cs, bot_input_t *bi, usercmd_t *uc
 	ucmd->serverTime = serverTime;
 	//crouch/movedown
 	if ( aiDefaults[cs->aiCharacter]
-			 .attributes[ATTACK_CROUCH] ) { // only crouch if this character is physically able to
+		 .attributes[ATTACK_CROUCH] ) {     // only crouch if this character is physically able to
 		if ( cs->clientState->cur_ps.groundEntityNum != ENTITYNUM_NONE && bi->actionflags & ACTION_CROUCH ) {
 			ucmd->upmove -= 127;
 		}
@@ -132,7 +132,7 @@ void AICast_InputToUserCommand( cast_state_t *cs, bot_input_t *bi, usercmd_t *uc
 		if ( ( cs->combat.triggerReleaseTime < level.time ) &&
 			 ( ( cs->lockViewAnglesTime >= level.time ) ||
 			   ( fabs( AI_AngleDifference( cs->ideal_viewangles[YAW], cs->viewangles[YAW] ) ) < 20 ) ) &&
-			 // check for radid luger firing by skilled users (release fire between shots)
+		     // check for radid luger firing by skilled users (release fire between shots)
 			 ( ( ( level.time + cs->entityNum * 500 ) / 2000 ) % 2 || !( rand() % ( 1 + g_gameskill.integer ) ) ||
 			   ( cs->attributes[ATTACK_SKILL] < 0.5 ) || ( cs->weaponNum != WP_LUGER ) ||
 			   ( cs->clientState->cur_ps.weaponTime == 0 ) || ( cs->clientState->cur_ps.releasedFire ) ) ) {
@@ -201,7 +201,7 @@ void AICast_InputToUserCommand( cast_state_t *cs, bot_input_t *bi, usercmd_t *uc
 	if ( bi->speed ) {
 		if ( ( !( cs->aiFlags & AIFL_WALKFORWARD ) && cs->enemyNum >= 0 ) ||
 			 ( ( ucmd->forwardmove >= 0 ) && fabs( AngleNormalize180( AI_AngleDifference(
-												 cs->ideal_viewangles[YAW], cs->viewangles[YAW] ) ) ) < 60 ) ) {
+																		  cs->ideal_viewangles[YAW], cs->viewangles[YAW] ) ) ) < 60 ) ) {
 			//NOTE: movement is relative to the REAL view angles
 			//get the horizontal forward and right vector
 			//get the pitch in the range [-180, 180]
@@ -240,7 +240,7 @@ void AICast_InputToUserCommand( cast_state_t *cs, bot_input_t *bi, usercmd_t *uc
 	if ( !( cs->aiFlags & AIFL_WALKFORWARD ) ||
 		 ( !cs->clientState->cur_ps.groundEntityNum ||
 		   cs->clientState->cur_ps.groundEntityNum ==
-			   ENTITYNUM_NONE ) ) { // only do other movements if we are allowed to
+		   ENTITYNUM_NONE ) ) {     // only do other movements if we are allowed to
 		if ( bi->actionflags & ACTION_MOVEBACK ) {
 			ucmd->forwardmove = -movechar;
 		}
@@ -488,9 +488,9 @@ void AICast_StartServerFrame( int time ) {
 											cs->lastucmd.upmove > 0 || cs->lastucmd.buttons || cs->lastucmd.wbuttons ) )
 						// !!NOTE: always allow thinking if in PVS, otherwise bosses won't gib, and dead guys might not push away from clipped walls
 						|| ( trap_InPVS(
-							   cs->clientState->origin,
-							   g_entities[0]
-								   .s.pos.trBase ) ) ) { // do pvs check last, since it's the most expensive to call
+								 cs->clientState->origin,
+								 g_entities[0]
+								 .s.pos.trBase ) ) ) {   // do pvs check last, since it's the most expensive to call
 						oldLegsTimer = ent->client->ps.legsTimer;
 						//
 						// send it's movement commands

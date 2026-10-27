@@ -205,7 +205,7 @@ void AICast_ProcessBullet( gentity_t *attacker, vec3_t start, vec3_t end ) {
 		if ( Distance( vProj, tent->client->ps.origin ) > 0.5 * cs->attributes[INNER_DETECTION_RADIUS] ) {
 			continue;
 		}
-	heard:
+heard:
 		// call the script event
 		AICast_ScriptEvent( cs, "bulletimpact", "" );
 		if ( cs->aiFlags & AIFL_DENYACTION ) {
@@ -876,7 +876,7 @@ void AICast_SightUpdate( int numchecks ) {
 		trap_AAS_SetCurrentWorld( cs->aasWorldIndex );
 
 		for ( destcount = 0, dest = 0, destent = g_entities;
-			  //dest < aicast_maxclients && destcount < level.numPlayingClients;
+		      //dest < aicast_maxclients && destcount < level.numPlayingClients;
 			  destent == g_entities; // only check the player
 			  dest++, destent++ ) {
 			if ( !destent->inuse ) {

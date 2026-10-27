@@ -306,7 +306,7 @@ void AICast_Think( int client, float thinktime ) {
 	}
 	// crouching?
 	if (    ( cs->attackcrouch_time >= level.time ) /*&&
-			((cs->lastAttackCrouch > level.time - 500) || (cs->thinkFuncChangeTime < level.time - 1000))*/) {
+	        ((cs->lastAttackCrouch > level.time - 500) || (cs->thinkFuncChangeTime < level.time - 1000))*/) {
 		// if we are not moving, and we are firing, always stand, unless we are allowed to crouch + fire
 		if ( ( cs->lastucmd.forwardmove || cs->lastucmd.rightmove ) ||
 			 ( cs->combat.lastWeaponFired < level.time - 2000 ) || ( cs->aiFlags & AIFL_ATTACK_CROUCH ) ) {

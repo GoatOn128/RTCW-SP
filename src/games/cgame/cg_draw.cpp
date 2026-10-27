@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -2229,7 +2229,7 @@ static void CG_DrawCrosshair( void ) {
 
 	switch ( weapnum ) {
 
-		// weapons that get no reticle
+	// weapons that get no reticle
 	case WP_NONE:       // no weapon, no crosshair
 	case WP_GARAND:
 		if ( cg.zoomedBinoc ) {
@@ -2238,7 +2238,7 @@ static void CG_DrawCrosshair( void ) {
 		return;
 		break;
 
-		// special reticle for weapon
+	// special reticle for weapon
 	case WP_KNIFE:
 		if ( cg.zoomedBinoc ) {
 			CG_DrawBinocReticle();
@@ -3614,4 +3614,3 @@ void CG_DrawActive( stereoFrame_t stereoView ) {
 	// draw status bar and other floating elements
 	CG_Draw2D();
 }
-

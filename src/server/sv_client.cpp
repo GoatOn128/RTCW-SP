@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -332,7 +332,7 @@ void SV_DirectConnect( netadr_t from ) {
 			newcl = cl;
 			// disconnect the client from the game first so any flags the
 			// player might have are dropped
-			gvm->GAME_CLIENT_DISCONNECT(newcl - svs.clients );
+			gvm->GAME_CLIENT_DISCONNECT( newcl - svs.clients );
 			//
 			goto gotnewcl;
 		}
@@ -493,7 +493,7 @@ void SV_DropClient( client_t *drop, const char *reason ) {
 
 	// call the prog function for removing a client
 	// this will remove the body, among other things
-	gvm->GAME_CLIENT_DISCONNECT(drop - svs.clients );
+	gvm->GAME_CLIENT_DISCONNECT( drop - svs.clients );
 
 	// Ridah, no need to tell the player if an AI drops
 	if ( !( drop->gentity && drop->gentity->r.svFlags & SVF_CASTAI ) ) {
@@ -624,7 +624,7 @@ void SV_ClientEnterWorld( client_t *client, usercmd_t *cmd ) {
 	client->lastUsercmd = *cmd;
 
 	// call the game begin function
-	gvm->GAME_CLIENT_BEGIN(client - svs.clients );
+	gvm->GAME_CLIENT_BEGIN( client - svs.clients );
 }
 
 /*
@@ -1152,7 +1152,7 @@ static void SV_UpdateUserinfo_f( client_t *cl ) {
 
 	SV_UserinfoChanged( cl );
 	// call prog code to allow overrides
-	gvm->GAME_CLIENT_USERINFO_CHANGED(cl - svs.clients );
+	gvm->GAME_CLIENT_USERINFO_CHANGED( cl - svs.clients );
 }
 
 
@@ -1197,7 +1197,7 @@ void SV_ExecuteClientCommand( client_t *cl, const char *s, qboolean clientOK ) {
 	if ( clientOK ) {
 		// pass unknown strings to the game
 		if ( !u->name && sv.state == SS_GAME ) {
-			gvm->GAME_CLIENT_COMMAND(cl - svs.clients );
+			gvm->GAME_CLIENT_COMMAND( cl - svs.clients );
 		}
 	}
 }
@@ -1276,7 +1276,7 @@ void SV_ClientThink( client_t *cl, usercmd_t *cmd ) {
 		return;     // may have been kicked during the last usercmd
 	}
 
-	gvm->GAME_CLIENT_THINK(cl - svs.clients );
+	gvm->GAME_CLIENT_THINK( cl - svs.clients );
 }
 
 /*
@@ -1475,4 +1475,3 @@ void SV_ExecuteClientMessage( client_t *cl, msg_t *msg ) {
 //		Com_Printf( "WARNING: Junk at end of packet for client %i\n", cl - svs.clients );
 //	}
 }
-

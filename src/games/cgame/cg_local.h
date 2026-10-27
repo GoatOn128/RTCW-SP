@@ -3,9 +3,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -509,7 +509,7 @@ typedef enum {
 	ACC_MOUTH3,     //
 	//
 	ACC_MAX     // this is bound by network limits, must change network stream to increase this
-				// (SA) No, really?  that's not true is it?  isn't this client-side only?
+	            // (SA) No, really?  that's not true is it?  isn't this client-side only?
 } accType_t;
 
 #define ACC_NUM_MOUTH 3 // matches the above count (hat/mouth2/mouth3)
@@ -737,7 +737,7 @@ typedef struct {
 	int frametime;              // cg.time - cg.oldTime
 
 	int time;                   // this is the time value that the client
-								// is rendering at.
+	                            // is rendering at.
 	int oldTime;                // time at last frame, used for missile trails and prediction checking
 
 	int physicsTime;            // either cg.snap->time or cg.nextSnap->time
@@ -956,12 +956,12 @@ typedef struct {
 
 	// RF, new kick angles
 	vec3_t kickAVel;            // for damage feedback, weapon recoil, etc
-								// This is the angular velocity, to give a smooth
-								// rotational feedback, rather than sudden jerks
+	                            // This is the angular velocity, to give a smooth
+	                            // rotational feedback, rather than sudden jerks
 	vec3_t kickAngles;          // for damage feedback, weapon recoil, etc
-								// NOTE: this is not transmitted through MSG.C stream
-								// since weapon kicks are client-side, and damage feedback
-								// is rare enough that we can transmit that as an event
+	                            // NOTE: this is not transmitted through MSG.C stream
+	                            // since weapon kicks are client-side, and damage feedback
+	                            // is rare enough that we can transmit that as an event
 	float recoilPitch, recoilPitchAngle;
 
 	// Duffy
@@ -2114,8 +2114,8 @@ void CG_GibHead( vec3_t headOrigin );
 void CG_Bleed( vec3_t origin, int entityNum );
 
 fxEntity_t *CG_MakeExplosion( vec3_t origin, vec3_t dir,
-								 qhandle_t hModel, qhandle_t shader, int msec,
-								 qboolean isSprite );
+							  qhandle_t hModel, qhandle_t shader, int msec,
+							  qboolean isSprite );
 // Ridah
 void CG_DynamicLightningBolt( qhandle_t shader, vec3_t start, vec3_t pend, int numBolts, float maxWidth, qboolean fade, float startAlpha, int recursion, int randseed );
 void CG_ClearFlameChunks( void );

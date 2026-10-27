@@ -8,8 +8,8 @@
 namespace {
 void Usage() {
 	std::cout << "RTCW BSP navmesh compiler\n"
-		<< "usage: bspc -bsp2nav <map.bsp> -cfg <aascfg.c> [-ext suffix] [-output directory]\n"
-		<< "       -bsp2aas is accepted as a compatibility alias for -bsp2nav\n";
+			  << "usage: bspc -bsp2nav <map.bsp> -cfg <aascfg.c> [-ext suffix] [-output directory]\n"
+			  << "       -bsp2aas is accepted as a compatibility alias for -bsp2nav\n";
 }
 }
 

@@ -71,7 +71,7 @@ char *AIFunc_ZombieFlameAttack( cast_state_t *cs ) {
 		ent->client->ps.legsTimer = 0;
 		return AIFunc_DefaultStart( cs );
 	}
-*/
+	*/
 	// if outside range, move closer
 	if ( VectorDistance( cs->clientState->origin, cs->perception.vislist[cs->enemyNum].visible_pos ) >
 		 ZOMBIE_FLAME_RADIUS ) {

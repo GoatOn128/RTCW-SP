@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -456,10 +456,10 @@ void G_ExplodeMissile( gentity_t *ent ) {
 	else if ( !Q_stricmp( ent->classname, "props_explosion_large" ) ) {
 		G_AddEvent( ent, EV_MISSILE_MISS_LARGE, DirToByte( dir ) );
 		small = qfalse;
-	} else if ( !Q_stricmp( ent->classname, "zombiespit" ) )      {
+	} else if ( !Q_stricmp( ent->classname, "zombiespit" ) ) {
 		G_AddEvent( ent, EV_SPIT_MISS, DirToByte( dir ) );
 		zombiespit = qtrue;
-	} else if ( !Q_stricmp( ent->classname, "flamebarrel" ) )      {
+	} else if ( !Q_stricmp( ent->classname, "flamebarrel" ) ) {
 		ent->freeAfterEvent = qtrue;
 		trap_LinkEntity( ent );
 		return;
@@ -1469,5 +1469,3 @@ gentity_t *fire_mortar( gentity_t *self, vec3_t start, vec3_t dir ) {
 
 	return bolt;
 }
-
-

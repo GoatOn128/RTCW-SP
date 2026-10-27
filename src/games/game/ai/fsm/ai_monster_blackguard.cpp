@@ -124,4 +124,4 @@ static const ai_ability_definition_t blackguardDefinitions[] = {
 };
 
 const ai_ability_set_t ai_BlackGuardAbilities = { blackguardDefinitions, sizeof( blackguardDefinitions ) /
-																			 sizeof( blackguardDefinitions[0] ) };
+												  sizeof( blackguardDefinitions[0] ) };

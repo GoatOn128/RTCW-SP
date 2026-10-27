@@ -103,70 +103,70 @@ char *AIFunc_Battle( cast_state_t *cs ) {
 				return NULL;
 			}
 		} else
-			// if we are heading for a combatGoal, give us some time to get there
-			if ( cs->navigation.combatGoalTime > level.time ) {
-				if ( cs->navigation.combatGoalTime > level.time + 3000 ) {
-					cs->navigation.combatGoalTime = level.time + 2000 + rand() % 1000;
-					cs->combat.combatSpotDelayTime = level.time + 4000 + rand() % 3000;
-				}
-			} else if ( cs->leaderNum >= 0 ) {
-				// chase them, nothing else to do
-				return AIFunc_BattleChaseStart( cs );
-			} else
-				// if we weren't moving, it is likely they have dodged back behind something, ready to duck out and take another
-				// shot. so, we could fool them by hiding from the position we last saw them from, in the hope that when they
-				// return to fire at us, we won't be in their sight.
-				if ( cs->attributes[TACTICAL] > 0.3 && cs->attributes[AGGRESSION] < 1.0 &&
-					 cs->attributes[AGGRESSION] < ( random() + 0.5 * cs->attributes[TACTICAL] ) &&
-					 ( cs->combat.takeCoverTime < level.time ) &&
-					 AICast_GetTakeCoverPos( cs, cs->enemyNum, cs->perception.vislist[cs->enemyNum].real_visible_pos,
-											 cs->combat.takeCoverPos ) ) {
-					// start taking cover
-					cs->combat.takeCoverTime = level.time + 2000 + rand() % 4000; // only move a little bit
-					//cs->attackcrouch_time = 0;		// get out of here real quick
-					return AIFunc_BattleTakeCoverStart( cs );
-				} else
-					// if we haven't thrown a grenade in a bit, go into "grenade flush mode"
-					if ( ( ai_encounter.lastGrenadeFlushTime > level.time ||
-						   ai_encounter.lastGrenadeFlushTime < level.time - 7000 ) &&
-						 ( cs->aiState >= AISTATE_COMBAT ) &&
-						 ( cs->script.castScriptStatus.castScriptEventIndex < 0 ) &&
-						 ( ( ( COM_BitCheck( cs->clientState->cur_ps.weapons, WP_GRENADE_LAUNCHER ) ) &&
-							 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_LAUNCHER ) ) &&
-							 ( cs->combat.weaponFireTimes[WP_GRENADE_LAUNCHER] <
-							   level.time - (int)( aicast_skillscale * 3000 ) ) ) ||
-						   ( ( COM_BitCheck( cs->clientState->cur_ps.weapons, WP_GRENADE_PINEAPPLE ) ) &&
-							 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_PINEAPPLE ) ) &&
-							 ( cs->combat.weaponFireTimes[WP_GRENADE_PINEAPPLE] <
-							   level.time - (int)( aicast_skillscale * 3000 ) ) ) ) &&
-						 !( cs->weaponNum && ( cs->script.castScriptStatus.scriptFlags & SFL_NOCHANGEWEAPON ) ) &&
-						 ( Distance( cs->clientState->origin, cs->perception.vislist[cs->enemyNum].real_visible_pos ) >
-						   100 ) &&
-						 ( Distance( cs->clientState->origin, cs->perception.vislist[cs->enemyNum].real_visible_pos ) <
-						   1200 ) &&
-						 ( AICast_WantsToChase( cs ) ) ) {
-						// try and flush them out with a grenade
-						//G_Printf("get outta there..\n");
-						return AIFunc_GrenadeFlushStart( cs );
-					} else
-						// not visible, should we chase them?
-						if ( AICast_WantsToChase( cs ) ) {
-							// chase them
-							return AIFunc_BattleChaseStart( cs );
-						} else
-							// Take Cover?
-							if ( AICast_WantsToTakeCover( cs, qfalse ) && ( cs->combat.takeCoverTime < level.time ) &&
-								 AICast_GetTakeCoverPos( cs, cs->enemyNum,
-														 cs->perception.vislist[cs->enemyNum].real_visible_pos,
-														 cs->combat.takeCoverPos ) ) {
-								// go to a position that cannot be seen from the last place we saw the enemy, and wait there for some time
-								cs->combat.takeCoverTime = level.time + 4000 + rand() % 2000;
-								//cs->attackcrouch_time = 0;
-								return AIFunc_BattleTakeCoverStart( cs );
-							} else {
-								// chase them, nothing else to do
-								return AIFunc_BattleChaseStart( cs );
-							}
+		// if we are heading for a combatGoal, give us some time to get there
+		if ( cs->navigation.combatGoalTime > level.time ) {
+			if ( cs->navigation.combatGoalTime > level.time + 3000 ) {
+				cs->navigation.combatGoalTime = level.time + 2000 + rand() % 1000;
+				cs->combat.combatSpotDelayTime = level.time + 4000 + rand() % 3000;
+			}
+		} else if ( cs->leaderNum >= 0 ) {
+			// chase them, nothing else to do
+			return AIFunc_BattleChaseStart( cs );
+		} else
+		// if we weren't moving, it is likely they have dodged back behind something, ready to duck out and take another
+		// shot. so, we could fool them by hiding from the position we last saw them from, in the hope that when they
+		// return to fire at us, we won't be in their sight.
+		if ( cs->attributes[TACTICAL] > 0.3 && cs->attributes[AGGRESSION] < 1.0 &&
+			 cs->attributes[AGGRESSION] < ( random() + 0.5 * cs->attributes[TACTICAL] ) &&
+			 ( cs->combat.takeCoverTime < level.time ) &&
+			 AICast_GetTakeCoverPos( cs, cs->enemyNum, cs->perception.vislist[cs->enemyNum].real_visible_pos,
+									 cs->combat.takeCoverPos ) ) {
+			// start taking cover
+			cs->combat.takeCoverTime = level.time + 2000 + rand() % 4000;         // only move a little bit
+			//cs->attackcrouch_time = 0;		// get out of here real quick
+			return AIFunc_BattleTakeCoverStart( cs );
+		} else
+		// if we haven't thrown a grenade in a bit, go into "grenade flush mode"
+		if ( ( ai_encounter.lastGrenadeFlushTime > level.time ||
+			   ai_encounter.lastGrenadeFlushTime < level.time - 7000 ) &&
+			 ( cs->aiState >= AISTATE_COMBAT ) &&
+			 ( cs->script.castScriptStatus.castScriptEventIndex < 0 ) &&
+			 ( ( ( COM_BitCheck( cs->clientState->cur_ps.weapons, WP_GRENADE_LAUNCHER ) ) &&
+				 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_LAUNCHER ) ) &&
+				 ( cs->combat.weaponFireTimes[WP_GRENADE_LAUNCHER] <
+				   level.time - (int)( aicast_skillscale * 3000 ) ) ) ||
+			   ( ( COM_BitCheck( cs->clientState->cur_ps.weapons, WP_GRENADE_PINEAPPLE ) ) &&
+				 ( AICast_GotEnoughAmmoForWeapon( cs, WP_GRENADE_PINEAPPLE ) ) &&
+				 ( cs->combat.weaponFireTimes[WP_GRENADE_PINEAPPLE] <
+				   level.time - (int)( aicast_skillscale * 3000 ) ) ) ) &&
+			 !( cs->weaponNum && ( cs->script.castScriptStatus.scriptFlags & SFL_NOCHANGEWEAPON ) ) &&
+			 ( Distance( cs->clientState->origin, cs->perception.vislist[cs->enemyNum].real_visible_pos ) >
+			   100 ) &&
+			 ( Distance( cs->clientState->origin, cs->perception.vislist[cs->enemyNum].real_visible_pos ) <
+			   1200 ) &&
+			 ( AICast_WantsToChase( cs ) ) ) {
+			// try and flush them out with a grenade
+			//G_Printf("get outta there..\n");
+			return AIFunc_GrenadeFlushStart( cs );
+		} else
+		// not visible, should we chase them?
+		if ( AICast_WantsToChase( cs ) ) {
+			// chase them
+			return AIFunc_BattleChaseStart( cs );
+		} else
+		// Take Cover?
+		if ( AICast_WantsToTakeCover( cs, qfalse ) && ( cs->combat.takeCoverTime < level.time ) &&
+			 AICast_GetTakeCoverPos( cs, cs->enemyNum,
+									 cs->perception.vislist[cs->enemyNum].real_visible_pos,
+									 cs->combat.takeCoverPos ) ) {
+			// go to a position that cannot be seen from the last place we saw the enemy, and wait there for some time
+			cs->combat.takeCoverTime = level.time + 4000 + rand() % 2000;
+			//cs->attackcrouch_time = 0;
+			return AIFunc_BattleTakeCoverStart( cs );
+		} else {
+			// chase them, nothing else to do
+			return AIFunc_BattleChaseStart( cs );
+		}
 	}
 	// if we are obstructing someone else, move out the way
 	if ( cs->navigation.obstructingTime > level.time ) {
@@ -300,7 +300,7 @@ char *AIFunc_Battle( cast_state_t *cs ) {
 			trap_EA_ResetInput( cs->entityNum, &bi_back );
 
 			if ( move.groundEntityNum == ENTITYNUM_WORLD && VectorDistance( move.endpos, cs->clientState->origin ) >
-																simTime * cs->attributes[RUNNING_SPEED] * 0.8 ) {
+				 simTime * cs->attributes[RUNNING_SPEED] * 0.8 ) {
 				// good enough
 				if ( AICast_CheckAttackAtPos(
 						 cs->entityNum, cs->enemyNum, move.endpos,

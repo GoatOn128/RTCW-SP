@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ static int R_CullModel( skelHeader_t *header, trRefEntity_t *ent ) {
 				if ( sphereCull == CULL_OUT ) {
 					tr.pc.c_sphere_cull_md3_out++;
 					return CULL_OUT;
-				} else if ( sphereCull == CULL_IN )   {
+				} else if ( sphereCull == CULL_IN ) {
 					tr.pc.c_sphere_cull_md3_in++;
 					return CULL_IN;
 				} else
@@ -216,11 +216,15 @@ void R_AddAnimSurfaces( trRefEntity_t *ent ) {
 	personalModel = ( ent->e.renderfx & RF_THIRD_PERSON ) && !tr.viewParms.isPortal;
 
 	header = tr.currentModel->md5;
-    int *frames[] = {&ent->e.frame, &ent->e.oldframe, &ent->e.torsoFrame, &ent->e.oldTorsoFrame};
-    for(int i=0;i<4;++i) {
-        if(ent->e.renderfx & RF_WRAP_FRAMES) *frames[i] %= header->numFrames;
-        if(*frames[i]<0 || *frames[i]>=header->numFrames) *frames[i]=0;
-    }
+	int *frames[] = {&ent->e.frame, &ent->e.oldframe, &ent->e.torsoFrame, &ent->e.oldTorsoFrame};
+	for (int i = 0; i < 4; ++i) {
+		if ( ent->e.renderfx & RF_WRAP_FRAMES ) {
+			*frames[i] %= header->numFrames;
+		}
+		if ( *frames[i] < 0 || *frames[i] >= header->numFrames ) {
+			*frames[i] = 0;
+		}
+	}
 
 
 	//
@@ -280,7 +284,7 @@ void R_AddAnimSurfaces( trRefEntity_t *ent ) {
 
 			if ( shader == tr.defaultShader ) {
 				ri.Printf( PRINT_DEVELOPER, "WARNING: no shader for surface %s in skin %s\n", surface->name, skin->name );
-			} else if ( shader->defaultShader )     {
+			} else if ( shader->defaultShader ) {
 				ri.Printf( PRINT_DEVELOPER, "WARNING: shader %s in skin %s not found\n", shader->name, skin->name );
 			}
 		} else {
@@ -563,72 +567,78 @@ __inline void Matrix3Transpose( const vec3_t matrix[3], vec3_t transpose[3] ) {
 R_CalcBone
 ==============
 */
-static skelFrame_t *MD5Frame(skelHeader_t *header, int index) {
-    if (index < 0 || index >= header->numFrames) index = 0;
-    int stride = sizeof(skelFrame_t) + (header->numBones-1)*sizeof(skelPose_t);
-    return (skelFrame_t *)((byte *)header + header->ofsFrames + index*stride);
+static skelFrame_t *MD5Frame( skelHeader_t *header, int index ) {
+	if ( index < 0 || index >= header->numFrames ) {
+		index = 0;
+	}
+	int stride = sizeof( skelFrame_t ) + ( header->numBones - 1 ) * sizeof( skelPose_t );
+	return (skelFrame_t *)( (byte *)header + header->ofsFrames + index * stride );
 }
 
 // Blend displacement directions separately from lengths, keeping limbs from
 // shrinking during frame interpolation or independent torso animation.
-static void BlendOffset(const vec3_t a, const vec3_t b, float fraction, vec3_t out) {
-    vec3_t na, nb;
-    VectorCopy(a, na); VectorCopy(b, nb);
-    float la=VectorNormalize(na), lb=VectorNormalize(nb);
-    for(int k=0;k<3;++k) out[k]=(1-fraction)*na[k]+fraction*nb[k];
-    float length=VectorNormalize(out);
-    if(length>0) VectorScale(out, (1-fraction)*la+fraction*lb, out);
+static void BlendOffset( const vec3_t a, const vec3_t b, float fraction, vec3_t out ) {
+	vec3_t na, nb;
+	VectorCopy( a, na ); VectorCopy( b, nb );
+	float la = VectorNormalize( na ), lb = VectorNormalize( nb );
+	for (int k = 0; k < 3; ++k) out[k] = ( 1 - fraction ) * na[k] + fraction * nb[k];
+	float length = VectorNormalize( out );
+	if ( length > 0 ) {
+		VectorScale( out, ( 1 - fraction ) * la + fraction * lb, out );
+	}
 }
 
-void R_CalcBones(skelHeader_t *header, const refEntity_t *refent, int *boneList, int numBones) {
-    static const skelHeader_t *cachedHeader = NULL;
-    static refEntity_t cachedEntity;
-    static int cachedRenderFrame = -1;
-    int i;
-    float torsoWeight;
-    frame=MD5Frame(header,refent->frame);
-    oldFrame=MD5Frame(header,refent->oldframe);
-    torsoFrame=MD5Frame(header,refent->torsoFrame);
-    oldTorsoFrame=MD5Frame(header,refent->oldTorsoFrame);
-    // Foot-tag sampling uses identical frames to measure animation movement.
-    // As in the original skeletal renderer, ignore interpolation in that case.
-    const float backlerp = frame == oldFrame ? 0.0f : refent->backlerp;
-    const float torsoBacklerp = torsoFrame == oldTorsoFrame ? 0.0f : refent->torsoBacklerp;
-    if(cachedHeader==header && cachedRenderFrame==tr.frameCount &&
-       !memcmp(&cachedEntity,refent,sizeof(*refent))) return;
-    boneInfo=(skelBoneInfo_t *)((byte *)header+header->ofsBones);
-    Matrix3Transpose(refent->torsoAxis,torsoAxis);
-    // Calculate every joint in hierarchy order. Attachment queries and surfaces
-    // share exactly the same pose, independent of the order they are submitted.
-    for(i=0;i<header->numBones;++i) {
-        vec4_t legs, torso, rotation;
-        R_MD5BlendQuat(frame->bones[i].rotation,oldFrame->bones[i].rotation,backlerp,legs);
-        R_MD5BlendQuat(torsoFrame->bones[i].rotation,oldTorsoFrame->bones[i].rotation,torsoBacklerp,torso);
-        float weight=boneInfo[i].torsoWeight;
-        R_MD5BlendQuat(legs,torso,weight,rotation);
-        R_MD5QuatMatrix(rotation,bones[i].matrix);
-        int parent=boneInfo[i].parent;
-        if(parent<0) {
-            for(int k=0;k<3;++k)
-                bones[i].translation[k]=(1-backlerp)*frame->bones[i].translation[k]+backlerp*oldFrame->bones[i].translation[k];
-        } else {
-            vec3_t a,b,c,d,legOffset,torsoOffset,offset;
-            VectorSubtract(frame->bones[i].translation,frame->bones[parent].translation,a);
-            VectorSubtract(oldFrame->bones[i].translation,oldFrame->bones[parent].translation,b);
-            VectorSubtract(torsoFrame->bones[i].translation,torsoFrame->bones[parent].translation,c);
-            VectorSubtract(oldTorsoFrame->bones[i].translation,oldTorsoFrame->bones[parent].translation,d);
-            BlendOffset(a,b,backlerp,legOffset);
-            BlendOffset(c,d,torsoBacklerp,torsoOffset);
-            BlendOffset(legOffset,torsoOffset,weight,offset);
-            VectorAdd(bones[parent].translation,offset,bones[i].translation);
-        }
-        validBones[i]=newBones[i]=1;
-    }
-    VectorCopy(bones[header->torsoParent].translation,torsoParentOffset);
-    int allBones[SKEL_MAX_BONES];
-    for(i=0;i<header->numBones;++i) allBones[i]=i;
-    boneList=allBones;
-    numBones=header->numBones;
+void R_CalcBones( skelHeader_t *header, const refEntity_t *refent, int *boneList, int numBones ) {
+	static const skelHeader_t *cachedHeader = NULL;
+	static refEntity_t cachedEntity;
+	static int cachedRenderFrame = -1;
+	int i;
+	float torsoWeight;
+	frame = MD5Frame( header,refent->frame );
+	oldFrame = MD5Frame( header,refent->oldframe );
+	torsoFrame = MD5Frame( header,refent->torsoFrame );
+	oldTorsoFrame = MD5Frame( header,refent->oldTorsoFrame );
+	// Foot-tag sampling uses identical frames to measure animation movement.
+	// As in the original skeletal renderer, ignore interpolation in that case.
+	const float backlerp = frame == oldFrame ? 0.0f : refent->backlerp;
+	const float torsoBacklerp = torsoFrame == oldTorsoFrame ? 0.0f : refent->torsoBacklerp;
+	if ( cachedHeader == header && cachedRenderFrame == tr.frameCount &&
+		 !memcmp( &cachedEntity,refent,sizeof( *refent ) ) ) {
+		return;
+	}
+	boneInfo = (skelBoneInfo_t *)( (byte *)header + header->ofsBones );
+	Matrix3Transpose( refent->torsoAxis,torsoAxis );
+	// Calculate every joint in hierarchy order. Attachment queries and surfaces
+	// share exactly the same pose, independent of the order they are submitted.
+	for (i = 0; i < header->numBones; ++i) {
+		vec4_t legs, torso, rotation;
+		R_MD5BlendQuat( frame->bones[i].rotation,oldFrame->bones[i].rotation,backlerp,legs );
+		R_MD5BlendQuat( torsoFrame->bones[i].rotation,oldTorsoFrame->bones[i].rotation,torsoBacklerp,torso );
+		float weight = boneInfo[i].torsoWeight;
+		R_MD5BlendQuat( legs,torso,weight,rotation );
+		R_MD5QuatMatrix( rotation,bones[i].matrix );
+		int parent = boneInfo[i].parent;
+		if ( parent < 0 ) {
+			for (int k = 0; k < 3; ++k)
+				bones[i].translation[k] = ( 1 - backlerp ) * frame->bones[i].translation[k] + backlerp * oldFrame->bones[i].translation[k];
+		} else {
+			vec3_t a,b,c,d,legOffset,torsoOffset,offset;
+			VectorSubtract( frame->bones[i].translation,frame->bones[parent].translation,a );
+			VectorSubtract( oldFrame->bones[i].translation,oldFrame->bones[parent].translation,b );
+			VectorSubtract( torsoFrame->bones[i].translation,torsoFrame->bones[parent].translation,c );
+			VectorSubtract( oldTorsoFrame->bones[i].translation,oldTorsoFrame->bones[parent].translation,d );
+			BlendOffset( a,b,backlerp,legOffset );
+			BlendOffset( c,d,torsoBacklerp,torsoOffset );
+			BlendOffset( legOffset,torsoOffset,weight,offset );
+			VectorAdd( bones[parent].translation,offset,bones[i].translation );
+		}
+		validBones[i] = newBones[i] = 1;
+	}
+	VectorCopy( bones[header->torsoParent].translation,torsoParentOffset );
+	int allBones[SKEL_MAX_BONES];
+	for (i = 0; i < header->numBones; ++i) allBones[i] = i;
+	boneList = allBones;
+	numBones = header->numBones;
 
 	// adjust for torso rotations
 	torsoWeight = 0;
@@ -681,9 +691,9 @@ void R_CalcBones(skelHeader_t *header, const refEntity_t *refent, int *boneList,
 
 	// backup the final bones
 	memcpy( oldBones, bones, sizeof( bones[0] ) * header->numBones );
-    cachedHeader=header;
-    cachedEntity=*refent;
-    cachedRenderFrame=tr.frameCount;
+	cachedHeader = header;
+	cachedEntity = *refent;
+	cachedRenderFrame = tr.frameCount;
 }
 
 #ifdef DBG_PROFILE_BONES
@@ -718,18 +728,18 @@ void RB_SurfaceAnim( skelSurface_t *surface ) {
 
 	DBG_SHOWTIME
 
-    // Standard MD5 meshes render at full detail, including corpses.
-    render_count = surface->numVerts;
-    RB_CheckOverflow( render_count, surface->numTriangles * 3 );
-    triangles = (int *)((byte *)surface + surface->ofsTriangles);
-    indexes = surface->numTriangles * 3;
-    baseIndex = tess.numIndexes;
-    baseVertex = tess.numVertexes;
-    oldIndexes = baseIndex;
-    tess.numVertexes += render_count;
-    for ( int index = 0; index < indexes; ++index ) {
-        tess.indexes[tess.numIndexes++] = baseVertex + triangles[index];
-    }
+	// Standard MD5 meshes render at full detail, including corpses.
+		render_count = surface->numVerts;
+	RB_CheckOverflow( render_count, surface->numTriangles * 3 );
+	triangles = (int *)( (byte *)surface + surface->ofsTriangles );
+	indexes = surface->numTriangles * 3;
+	baseIndex = tess.numIndexes;
+	baseVertex = tess.numVertexes;
+	oldIndexes = baseIndex;
+	tess.numVertexes += render_count;
+	for ( int index = 0; index < indexes; ++index ) {
+		tess.indexes[tess.numIndexes++] = baseVertex + triangles[index];
+	}
 
 	//
 	// deform the vertexes by the lerped bones

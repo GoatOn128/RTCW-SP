@@ -84,7 +84,7 @@ char *AIFunc_BattleAmbush( cast_state_t *cs ) {
 	// update the chase marker
 	if ( cs->perception.vislist[cs->enemyNum].chase_marker_count > 0 ) {
 		VectorCopy( cs->perception.vislist[cs->enemyNum]
-						.chase_marker[cs->perception.vislist[cs->enemyNum].chase_marker_count - 1],
+					.chase_marker[cs->perception.vislist[cs->enemyNum].chase_marker_count - 1],
 					cs->navigation.combatGoalOrigin );
 	}
 	//
@@ -193,7 +193,7 @@ char *AIFunc_BattleAmbush( cast_state_t *cs ) {
 		moveDist = VectorNormalize( vec );
 		//
 		if ( ( move.numtouch && move.touchents[0] < aicast_maxclients ) // hit something
-			 // or moved closer to the enemy
+		     // or moved closer to the enemy
 			 || ( ( enemyDist < 128 ) &&
 				  ( ( enemyDist - 1 ) > ( Distance( move.endpos, g_entities[cs->enemyNum].s.pos.trBase ) ) ) ) ) {
 			// abort the manouver
@@ -532,7 +532,7 @@ char *AIFunc_BattleTakeCover( cast_state_t *cs ) {
 		moveDist = VectorNormalize( vec );
 		//
 		if ( ( move.numtouch && move.touchents[0] < aicast_maxclients ) // hit something
-			 // or moved closer to the enemy
+		     // or moved closer to the enemy
 			 || ( ( enemyDist < 128 ) &&
 				  ( ( enemyDist - 1 ) > ( Distance( move.endpos, g_entities[cs->enemyNum].s.pos.trBase ) ) ) ) ) {
 			// abort the manouver

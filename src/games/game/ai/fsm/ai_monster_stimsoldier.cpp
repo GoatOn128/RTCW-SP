@@ -220,7 +220,7 @@ static const ai_ability_definition_t stimrocketDefinitions[] = {
 };
 
 const ai_ability_set_t ai_StimRocketAbilities = { stimrocketDefinitions, sizeof( stimrocketDefinitions ) /
-																			 sizeof( stimrocketDefinitions[0] ) };
+												  sizeof( stimrocketDefinitions[0] ) };
 
 // Ability selection and tuning belong to this creature.
 static float AI_StimTeslaAbilityRange( cast_state_t *cs, int weaponnum ) {

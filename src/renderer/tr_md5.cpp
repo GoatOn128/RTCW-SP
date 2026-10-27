@@ -462,8 +462,9 @@ qboolean R_LoadMD5( model_t *mod, const char *name ) {
 			try {
 				auto joint = [&]( const std::string &name ) {
 					for ( int i = 0; i < nb; ++i ) {
-						if ( name == bones[i].name )
+						if ( name == bones[i].name ) {
 							return i;
+						}
 					}
 					throw std::runtime_error( "metadata references unknown joint: " + name );
 				};
@@ -487,8 +488,9 @@ qboolean R_LoadMD5( model_t *mod, const char *name ) {
 									int ancestor = i;
 									while ( ancestor > root )
 										ancestor = bones[ancestor].parent;
-									if ( ancestor == root )
+									if ( ancestor == root ) {
 										bones[i].torsoWeight = weight;
+									}
 								}
 							} else {
 								throw std::runtime_error( "unknown torso setting: " + field );
@@ -532,8 +534,9 @@ qboolean R_LoadMD5( model_t *mod, const char *name ) {
 			} catch ( const std::exception &error ) {
 				int line = 1;
 				for ( size_t i = 0; i < meta.at && i < meta.data.size(); ++i ) {
-					if ( meta.data[i] == '\n' )
+					if ( meta.data[i] == '\n' ) {
 						++line;
+					}
 				}
 				throw std::runtime_error( base + ".md5meta:" + std::to_string( line ) + ": " + error.what() );
 			}

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -600,31 +600,31 @@ int verbose = 0;
 #ifdef _WIN32
 
 int main( int argc, char *argv[] ) {
-    if ( argc < 2 ) {
-        Error( "USAGE: extractfuncs <file filter> [<file filter> ...]\n" );
-    }
+	if ( argc < 2 ) {
+		Error( "USAGE: extractfuncs <file filter> [<file filter> ...]\n" );
+	}
 
-    for ( int argument = 1; argument < argc; argument++ ) {
-        const std::string filter = argv[argument];
-        const size_t separator = filter.find_last_of( "/\\" );
-        const std::string directory = separator == std::string::npos ? "" : filter.substr( 0, separator + 1 );
-        WIN32_FIND_DATA filedata;
-        HANDLE handle = FindFirstFile( filter.c_str(), &filedata );
-        if ( handle == INVALID_HANDLE_VALUE ) {
-            Error( "No source files match %s\n", argv[argument] );
-        }
-        do {
-            if ( ( filedata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) ||
-                 strcmp( filedata.cFileName, "bg_lib.cpp" ) == 0 ) {
-                continue;
-            }
-            const std::string sourcePath = directory + filedata.cFileName;
-            GetFunctionNamesFromFile( const_cast<char *>( sourcePath.c_str() ) );
-        } while ( FindNextFile( handle, &filedata ) );
-        FindClose( handle );
-    }
-    DumpReplaceFunctions();
-    return 0;
+	for ( int argument = 1; argument < argc; argument++ ) {
+		const std::string filter = argv[argument];
+		const size_t separator = filter.find_last_of( "/\\" );
+		const std::string directory = separator == std::string::npos ? "" : filter.substr( 0, separator + 1 );
+		WIN32_FIND_DATA filedata;
+		HANDLE handle = FindFirstFile( filter.c_str(), &filedata );
+		if ( handle == INVALID_HANDLE_VALUE ) {
+			Error( "No source files match %s\n", argv[argument] );
+		}
+		do {
+			if ( ( filedata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) ||
+				 strcmp( filedata.cFileName, "bg_lib.cpp" ) == 0 ) {
+				continue;
+			}
+			const std::string sourcePath = directory + filedata.cFileName;
+			GetFunctionNamesFromFile( const_cast<char *>( sourcePath.c_str() ) );
+		} while ( FindNextFile( handle, &filedata ) );
+		FindClose( handle );
+	}
+	DumpReplaceFunctions();
+	return 0;
 }
 
 #else

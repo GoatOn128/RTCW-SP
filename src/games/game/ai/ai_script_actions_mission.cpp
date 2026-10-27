@@ -258,14 +258,14 @@ qboolean AICast_ScriptAction_Wait( cast_state_t *cs, char *params ) {
 					cs->script.castScriptStatus.scriptWaitMovetime = level.time + 600;
 				}
 			} else
-				// if we are reloading, look for somewhere to hide
-				if ( cs->script.castScriptStatus.scriptWaitHideTime > level.time ||
-					 cs->clientState->cur_ps.weaponTime > 500 ) {
-					if ( cs->script.castScriptStatus.scriptWaitHideTime < level.time ) {
-						// look for a hide pos within the wait range
-					}
-					cs->script.castScriptStatus.scriptWaitHideTime = level.time + 500;
+			// if we are reloading, look for somewhere to hide
+			if ( cs->script.castScriptStatus.scriptWaitHideTime > level.time ||
+				 cs->clientState->cur_ps.weaponTime > 500 ) {
+				if ( cs->script.castScriptStatus.scriptWaitHideTime < level.time ) {
+					// look for a hide pos within the wait range
 				}
+				cs->script.castScriptStatus.scriptWaitHideTime = level.time + 500;
+			}
 		}
 	} else {
 		cs->script.castScriptStatus.scriptNoMoveTime = cs->script.castScriptStatus.castScriptStackChangeTime + duration;
@@ -602,7 +602,7 @@ qboolean AICast_ScriptAction_SpawnCast( cast_state_t *cs, char *params ) {
 	}
 
 	return qtrue;
-*/
+	*/
 }
 
 /*

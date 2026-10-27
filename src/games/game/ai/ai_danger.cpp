@@ -76,7 +76,7 @@ int AICast_SafeMissileFire( gentity_t *ent, int duration, int enemyNum, vec3_t e
 	}
 	// if it overshot the mark
 	if ( !rval && Distance( g_entities[ent->r.ownerNum].r.currentOrigin, org ) >
-					  Distance( g_entities[ent->r.ownerNum].r.currentOrigin, enemyPos ) ) {
+		 Distance( g_entities[ent->r.ownerNum].r.currentOrigin, enemyPos ) ) {
 		return -2; // so the AI can try aiming down a bit next time
 	}
 	//

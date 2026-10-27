@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@ void CG_DamageFeedback( int yawByte, int pitchByte, int damage ) {
 		if ( front <= 0.1 ) {
 			front = 0.1;
 		}
-		vd->damageX = crandom() * 0.3 + - left / front;
+		vd->damageX = crandom() * 0.3 + -left / front;
 		vd->damageY = crandom() * 0.3 + up / dist;
 	}
 
@@ -324,8 +324,8 @@ void CG_CheckPlayerstateEvents( playerState_t *ps, playerState_t *ops ) {
 	for ( i = ps->eventSequence - MAX_EVENTS ; i < ps->eventSequence ; i++ ) {
 		// if we have a new predictable event
 		if ( i >= ops->eventSequence
-			 // or the server told us to play another event instead of a predicted event we already issued
-			 // or something the server told us changed our prediction causing a different event
+		     // or the server told us to play another event instead of a predicted event we already issued
+		     // or something the server told us changed our prediction causing a different event
 			 || ( i > ops->eventSequence - MAX_EVENTS && ps->events[i & ( MAX_EVENTS - 1 )] != ops->events[i & ( MAX_EVENTS - 1 )] ) ) {
 
 			event = ps->events[ i & ( MAX_EVENTS - 1 ) ];
@@ -552,4 +552,3 @@ void CG_TransitionPlayerState( playerState_t *ps, playerState_t *ops ) {
 		cg.duckTime = cg.time;
 	}
 }
-

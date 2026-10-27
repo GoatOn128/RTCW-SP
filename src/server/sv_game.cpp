@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -464,15 +464,15 @@ static gameImport_t SV_CreateGameImports() {
 	};
 	imports.SV_GetEntityToken = []( char *buffer, int bufferSize ) -> qboolean {
 		{
-		const char  *s;
+			const char  *s;
 
-		s = COM_Parse( &sv.entityParsePoint );
-		Q_strncpyz( buffer, s, bufferSize );
-		if ( !sv.entityParsePoint && !s[0] ) {
-		return qfalse;
-		} else {
-		return qtrue;
-		}
+			s = COM_Parse( &sv.entityParsePoint );
+			Q_strncpyz( buffer, s, bufferSize );
+			if ( !sv.entityParsePoint && !s[0] ) {
+				return qfalse;
+			} else {
+				return qtrue;
+			}
 		}
 	};
 	imports.BotImport_DebugPolygonCreate = []( int color, int numPoints, vec3_t *points ) -> int {
@@ -543,7 +543,7 @@ static gameImport_t SV_CreateGameImports() {
 		return;
 	};
 	imports.AAS_Time = []( void ) -> float {
-		return  botlib_export->aas.AAS_Time() ;
+		return botlib_export->aas.AAS_Time() ;
 
 		// Ridah
 	};
@@ -587,7 +587,7 @@ static gameImport_t SV_CreateGameImports() {
 	};
 	imports.AAS_PredictClientMovement = []( struct aas_clientmove_s *move, int entnum, vec3_t origin, int presencetype, int onground, vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float frametime, int stopevent, int stopareanum, int visualize ) -> int {
 		return botlib_export->aas.AAS_PredictClientMovement( (struct aas_clientmove_s *)move, entnum, origin, presencetype, onground,
-		 velocity, cmdmove, cmdframes, maxframes, frametime, stopevent, stopareanum, visualize );
+															 velocity, cmdmove, cmdframes, maxframes, frametime, stopevent, stopareanum, visualize );
 
 		// Ridah, route-tables
 	};
@@ -729,10 +729,10 @@ static gameImport_t SV_CreateGameImports() {
 		return;
 	};
 	imports.Characteristic_Float = []( int character, int index ) -> float {
-		return  botlib_export->ai.Characteristic_Float( character, index ) ;
+		return botlib_export->ai.Characteristic_Float( character, index ) ;
 	};
 	imports.Characteristic_BFloat = []( int character, int index, float min, float max ) -> float {
-		return  botlib_export->ai.Characteristic_BFloat( character, index, min, max ) ;
+		return botlib_export->ai.Characteristic_BFloat( character, index, min, max ) ;
 	};
 	imports.Characteristic_Integer = []( int character, int index ) -> int {
 		return botlib_export->ai.Characteristic_Integer( character, index );
@@ -879,7 +879,7 @@ static gameImport_t SV_CreateGameImports() {
 		return botlib_export->ai.BotGetMapLocationGoal( name, (struct bot_goal_s *)goal );
 	};
 	imports.BotAvoidGoalTime = []( int goalstate, int number ) -> float {
-		return  botlib_export->ai.BotAvoidGoalTime( goalstate, number ) ;
+		return botlib_export->ai.BotAvoidGoalTime( goalstate, number ) ;
 	};
 	imports.BotInitLevelItems = []( void ) -> void {
 		botlib_export->ai.BotInitLevelItems();
@@ -1000,7 +1000,7 @@ void SV_ShutdownGameProgs( void ) {
 	if ( !gvm ) {
 		return;
 	}
-	gvm->GAME_SHUTDOWN(qfalse );
+	gvm->GAME_SHUTDOWN( qfalse );
 	gvm = NULL;
 	Sys_UnloadDll( gvmHandle );
 	gvmHandle = NULL;
@@ -1021,7 +1021,7 @@ static void SV_InitGameVM( qboolean restart ) {
 
 	// use the current msec count for a random seed
 	// init for this gamestate
-	gvm->GAME_INIT(svs.time, Com_Milliseconds(), restart );
+	gvm->GAME_INIT( svs.time, Com_Milliseconds(), restart );
 
 	// clear all gentity pointers that might still be set from
 	// a previous level
@@ -1043,7 +1043,7 @@ void SV_RestartGameProgs( void ) {
 	if ( !gvm ) {
 		return;
 	}
-	gvm->GAME_SHUTDOWN(qtrue );
+	gvm->GAME_SHUTDOWN( qtrue );
 
 	Sys_UnloadDll( gvmHandle );
 	gvm = NULL;
@@ -1125,7 +1125,7 @@ void SV_SendMoveSpeedsToGame( int entnum, char *text ) {
 	if ( !gvm ) {
 		return;
 	}
-	gvm->GAME_RETRIEVE_MOVESPEEDS_FROM_CLIENT(entnum, text );
+	gvm->GAME_RETRIEVE_MOVESPEEDS_FROM_CLIENT( entnum, text );
 }
 
 /*

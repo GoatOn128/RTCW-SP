@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -655,7 +655,7 @@ qboolean IsHeadShotWeapon( int mod, gentity_t *targ, gentity_t *attacker ) {
 	}
 
 	switch ( targ->aiCharacter ) {
-		// get out quick for ai's that don't take headshots
+	// get out quick for ai's that don't take headshots
 	case AICHAR_ZOMBIE:
 	case AICHAR_WARZOMBIE:
 	case AICHAR_HELGA:      // boss1 (beast)
@@ -667,7 +667,7 @@ qboolean IsHeadShotWeapon( int mod, gentity_t *targ, gentity_t *attacker ) {
 	}
 
 	switch ( mod ) {
-		// players are allowed headshots from these weapons
+	// players are allowed headshots from these weapons
 	case MOD_LUGER:
 	case MOD_COLT:
 	case MOD_AKIMBO:
@@ -978,7 +978,7 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
 		default:
 			return; // no damage from other weapons
 		}
-	} else if ( targ->s.eType == ET_EXPLOSIVE )   {
+	} else if ( targ->s.eType == ET_EXPLOSIVE ) {
 		// 32 Explosive
 		// 64 Dynamite only
 		if ( ( targ->spawnflags & 32 ) || ( targ->spawnflags & 64 ) ) {

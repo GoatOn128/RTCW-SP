@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -940,7 +940,7 @@ void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ) 
 		}
 		color = COLOR_MAGENTA;
 		break;
-		// NERVE - SMF
+	// NERVE - SMF
 	case SAY_LIMBO:
 		G_LogPrintf( "sayteam: %s: %s\n", ent->client->pers.netname, chatText );
 		if ( Team_GetLocationMsg( ent, location, sizeof( location ) ) ) {
@@ -1418,16 +1418,16 @@ void Cmd_Activate_f( gentity_t *ent ) {
 			G_TryDoor( traceEnt, ent, ent );      // (door,other,activator)
 //			Use_BinaryMover (traceEnt, ent, ent);
 //			traceEnt->active = qtrue;
-		} else if ( !Q_stricmp( traceEnt->classname, "func_invisible_user" ) )     {
+		} else if ( !Q_stricmp( traceEnt->classname, "func_invisible_user" ) ) {
 			if ( walking ) {
 				traceEnt->flags |= FL_SOFTACTIVATE;     // no noise
 			}
 			traceEnt->use( traceEnt, ent, ent );
-		} else if ( !Q_stricmp( traceEnt->classname, "props_footlocker" ) )     {
+		} else if ( !Q_stricmp( traceEnt->classname, "props_footlocker" ) ) {
 			traceEnt->use( traceEnt, ent, ent );
-		} else if ( !Q_stricmp( traceEnt->classname, "script_mover" ) )     {
+		} else if ( !Q_stricmp( traceEnt->classname, "script_mover" ) ) {
 			G_Script_ScriptEvent( traceEnt, "activate", ent->aiName );
-		} else if ( traceEnt->s.eType == ET_ALARMBOX )     {
+		} else if ( traceEnt->s.eType == ET_ALARMBOX ) {
 			trace_t trace;
 
 			if ( ent->client->sess.sessionTeam == TEAM_SPECTATOR ) {
@@ -1439,7 +1439,7 @@ void Cmd_Activate_f( gentity_t *ent ) {
 			if ( traceEnt->use ) {
 				traceEnt->use( traceEnt, ent, 0 );
 			}
-		} else if ( traceEnt->s.eType == ET_ITEM )     {
+		} else if ( traceEnt->s.eType == ET_ITEM ) {
 			trace_t trace;
 
 			if ( ent->client->sess.sessionTeam == TEAM_SPECTATOR ) {
@@ -1456,7 +1456,7 @@ void Cmd_Activate_f( gentity_t *ent ) {
 				traceEnt->touch( traceEnt, ent, &trace );
 			}
 
-		} else if ( ( Q_stricmp( traceEnt->classname, "misc_mg42" ) == 0 ) /*&& activatetime > oldactivatetime + 1000*/ && traceEnt->active == qfalse )         {
+		} else if ( ( Q_stricmp( traceEnt->classname, "misc_mg42" ) == 0 ) /*&& activatetime > oldactivatetime + 1000*/ && traceEnt->active == qfalse ) {
 			if ( !ent->active && traceEnt->takedamage ) {  // not a dead gun
 				// RF, dont allow activating MG42 if crouching
 				if ( !( ent->client->ps.pm_flags & PMF_DUCKED ) && !infront( traceEnt, ent ) ) {
@@ -1495,7 +1495,7 @@ void Cmd_Activate_f( gentity_t *ent ) {
 					}
 				}
 			}
-		} else if ( ( Q_stricmp( traceEnt->classname, "misc_flak" ) == 0 ) /*&& activatetime > oldactivatetime + 1000*/ && traceEnt->active == qfalse )         {
+		} else if ( ( Q_stricmp( traceEnt->classname, "misc_flak" ) == 0 ) /*&& activatetime > oldactivatetime + 1000*/ && traceEnt->active == qfalse ) {
 			if ( !infront( traceEnt, ent ) ) {     // make sure the client isn't holding a hot potato
 				gclient_t   *cl;
 				cl = &level.clients[ ent->s.clientNum ];
@@ -1615,7 +1615,7 @@ int Cmd_WolfKick_f( gentity_t *ent ) {
 
 				//----(SA)	play kick "hit" sound
 				tent = G_TempEntity( tr.endpos, EV_WOLFKICK_HIT_WALL );
-				tent->s.otherEntityNum = ent->s.number;	\
+				tent->s.otherEntityNum = ent->s.number; \
 				//----(SA)	end
 
 				AICast_AudibleEvent( ent->s.clientNum, tr.endpos, HEAR_RANGE_DOOR_KICKLOCKED ); // "someone kicked a locked door near me!"
@@ -1631,7 +1631,7 @@ int Cmd_WolfKick_f( gentity_t *ent ) {
 				if ( !( ent->client->ps.stats[STAT_KEYS] & ( 1 << item->giTag ) ) ) {
 					//----(SA)	play kick "hit" sound
 					tent = G_TempEntity( tr.endpos, EV_WOLFKICK_HIT_WALL );
-					tent->s.otherEntityNum = ent->s.number;	\
+					tent->s.otherEntityNum = ent->s.number; \
 					//----(SA)	end
 
 					AICast_AudibleEvent( ent->s.clientNum, tr.endpos, HEAR_RANGE_DOOR_KICKLOCKED ); // "someone kicked a locked door near me!"
@@ -1661,17 +1661,17 @@ int Cmd_WolfKick_f( gentity_t *ent ) {
 			Use_BinaryMover( traceEnt, ent, ent );
 			traceEnt->active = qtrue;
 
-		} else if ( !Q_stricmp( traceEnt->classname, "func_invisible_user" ) )     {
+		} else if ( !Q_stricmp( traceEnt->classname, "func_invisible_user" ) ) {
 			traceEnt->flags |= FL_KICKACTIVATE;     // so cell doors know they were kicked
-													// It doesn't hurt to pass this along since only ent use() funcs who care about it will check.
-													// However, it may become handy to put a "KICKABLE" or "NOTKICKABLE" flag on the invisible_user
+			                                        // It doesn't hurt to pass this along since only ent use() funcs who care about it will check.
+			                                        // However, it may become handy to put a "KICKABLE" or "NOTKICKABLE" flag on the invisible_user
 			traceEnt->use( traceEnt, ent, ent );
 			traceEnt->flags &= ~FL_KICKACTIVATE;    // reset
 
 			solidKick = qtrue;  //----(SA)
-		} else if ( !Q_stricmp( traceEnt->classname, "props_flippy_table" ) && traceEnt->use )       {
+		} else if ( !Q_stricmp( traceEnt->classname, "props_flippy_table" ) && traceEnt->use ) {
 			traceEnt->use( traceEnt, ent, ent );
-		} else if ( !Q_stricmp( traceEnt->classname, "misc_mg42" ) )     {
+		} else if ( !Q_stricmp( traceEnt->classname, "misc_mg42" ) ) {
 			solidKick = qtrue;  //----(SA)	play kick hit sound
 		}
 	}
@@ -2098,27 +2098,27 @@ void ClientCommand( int clientNum ) {
 
 	if ( Q_stricmp( cmd, "give" ) == 0 ) {
 		Cmd_Give_f( ent );
-	} else if ( Q_stricmp( cmd, "god" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "god" ) == 0 ) {
 		Cmd_God_f( ent );
-	} else if ( Q_stricmp( cmd, "nofatigue" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "nofatigue" ) == 0 ) {
 		Cmd_Nofatigue_f( ent );
-	} else if ( Q_stricmp( cmd, "notarget" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "notarget" ) == 0 ) {
 		Cmd_Notarget_f( ent );
-	} else if ( Q_stricmp( cmd, "noclip" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "noclip" ) == 0 ) {
 		Cmd_Noclip_f( ent );
-	} else if ( Q_stricmp( cmd, "kill" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "kill" ) == 0 ) {
 		Cmd_Kill_f( ent );
-	} else if ( Q_stricmp( cmd, "levelshot" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "levelshot" ) == 0 ) {
 		Cmd_LevelShot_f( ent );
-	} else if ( Q_stricmp( cmd, "follow" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "follow" ) == 0 ) {
 		Cmd_Follow_f( ent );
-	} else if ( Q_stricmp( cmd, "follownext" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "follownext" ) == 0 ) {
 		Cmd_FollowCycle_f( ent, 1 );
-	} else if ( Q_stricmp( cmd, "followprev" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "followprev" ) == 0 ) {
 		Cmd_FollowCycle_f( ent, -1 );
-	} else if ( Q_stricmp( cmd, "team" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "team" ) == 0 ) {
 		Cmd_Team_f( ent );
-	} else if ( Q_stricmp( cmd, "where" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "where" ) == 0 ) {
 		Cmd_Where_f( ent );
 	}
 //	else if (Q_stricmp (cmd, "callvote") == 0)	//----(SA)	id requests these gone in sp
@@ -2127,19 +2127,19 @@ void ClientCommand( int clientNum ) {
 //		Cmd_Vote_f (ent);
 	else if ( Q_stricmp( cmd, "gc" ) == 0 ) {
 		Cmd_GameCommand_f( ent );
-	} else if ( Q_stricmp( cmd, "startCamera" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "startCamera" ) == 0 ) {
 		Cmd_StartCamera_f( ent );
-	} else if ( Q_stricmp( cmd, "stopCamera" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "stopCamera" ) == 0 ) {
 		Cmd_StopCamera_f( ent );
-	} else if ( Q_stricmp( cmd, "setCameraOrigin" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "setCameraOrigin" ) == 0 ) {
 		Cmd_SetCameraOrigin_f( ent );
-	} else if ( Q_stricmp( cmd, "cameraInterrupt" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "cameraInterrupt" ) == 0 ) {
 		Cmd_InterruptCamera_f( ent );
-	} else if ( Q_stricmp( cmd, "setviewpos" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "setviewpos" ) == 0 ) {
 		Cmd_SetViewpos_f( ent );
-	} else if ( Q_stricmp( cmd, "entitycount" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "entitycount" ) == 0 ) {
 		Cmd_EntityCount_f( ent );
-	} else if ( Q_stricmp( cmd, "setspawnpt" ) == 0 )  {
+	} else if ( Q_stricmp( cmd, "setspawnpt" ) == 0 ) {
 		Cmd_SetSpawnPoint_f( ent );
 	} else {
 		trap_SendServerCommand( clientNum, va( "print \"unknown cmd %s\n\"", cmd ) );

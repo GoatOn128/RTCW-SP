@@ -65,7 +65,7 @@ char *AIFunc_BattleMG42( cast_state_t *cs ) {
 		AICast_ScriptEvent( cs, "forced_mg42_unmount", "destroyed" );
 		return NULL;
 	}
-*/
+	*/
 	// if enemy is dead, stop attacking them
 	if ( g_entities[cs->enemyNum].health <= 0 ) {
 		cs->enemyNum = -1;

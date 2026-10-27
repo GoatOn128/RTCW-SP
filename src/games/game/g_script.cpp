@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -340,17 +340,17 @@ void G_Script_ScriptParse( gentity_t *ent ) {
 				G_Error( "G_Script_ScriptParse(), Error (line %d): '}' found, but not expected.\n", COM_GetCurrentParseLine() );
 			}
 			wantName = qtrue;
-		} else if ( token[0] == '{' )    {
+		} else if ( token[0] == '{' ) {
 			if ( wantName ) {
 				G_Error( "G_Script_ScriptParse(), Error (line %d): '{' found, NAME expected.\n", COM_GetCurrentParseLine() );
 			}
-		} else if ( wantName )   {
+		} else if ( wantName ) {
 			if ( !Q_strcasecmp( ent->scriptName, token ) ) {
 				inScript = qtrue;
 				numEventItems = 0;
 			}
 			wantName = qfalse;
-		} else if ( inScript )   {
+		} else if ( inScript ) {
 			//if ( !Q_strcasecmp( token, "attributes" ) ) {
 			//	// read in all the attributes
 			//	G_Script_CheckLevelAttributes( cs, ent, &pScript );
@@ -382,7 +382,7 @@ void G_Script_ScriptParse( gentity_t *ent ) {
 			}
 
 			if ( strlen( params ) ) { // copy the params into the event
-					curEvent->params = (char *) G_Alloc( strlen( params ) + 1 );
+				curEvent->params = (char *) G_Alloc( strlen( params ) + 1 );
 				Q_strncpyz( curEvent->params, params, strlen( params ) + 1 );
 			}
 
@@ -443,7 +443,7 @@ void G_Script_ScriptParse( gentity_t *ent ) {
 				}
 
 				if ( strlen( params ) ) { // copy the params into the event
-						curEvent->stack.items[curEvent->stack.numItems].params = (char *) G_Alloc( strlen( params ) + 1 );
+					curEvent->stack.items[curEvent->stack.numItems].params = (char *) G_Alloc( strlen( params ) + 1 );
 					Q_strncpyz( curEvent->stack.items[curEvent->stack.numItems].params, params, strlen( params ) + 1 );
 				}
 

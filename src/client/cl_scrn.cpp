@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -469,15 +469,15 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 		case CA_DISCONNECTED:
 			// force menu up
 			S_StopAllSounds();
-			uivm->UI_SET_ACTIVE_MENU(UIMENU_MAIN );
+			uivm->UI_SET_ACTIVE_MENU( UIMENU_MAIN );
 			break;
 		case CA_CONNECTING:
 		case CA_CHALLENGING:
 		case CA_CONNECTED:
 			// connecting clients will only show the connection dialog
 			// refresh to update the time
-			uivm->UI_REFRESH(cls.realtime );
-			uivm->UI_DRAW_CONNECT_SCREEN(qfalse );
+			uivm->UI_REFRESH( cls.realtime );
+			uivm->UI_DRAW_CONNECT_SCREEN( qfalse );
 			break;
 //			// Ridah, if the cgame is valid, fall through to there
 //			if (!cls.cgameStarted || !com_sv_running->integer) {
@@ -493,8 +493,8 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 			// also draw the connection information, so it doesn't
 			// flash away too briefly on local or lan games
 			//if (!com_sv_running->value || Cvar_VariableIntegerValue("sv_cheats"))	// Ridah, don't draw useless text if not in dev mode
-			uivm->UI_REFRESH(cls.realtime );
-			uivm->UI_DRAW_CONNECT_SCREEN(qtrue );
+			uivm->UI_REFRESH( cls.realtime );
+			uivm->UI_DRAW_CONNECT_SCREEN( qtrue );
 			break;
 		case CA_ACTIVE:
 			CL_CGameRendering( stereoFrame );
@@ -505,7 +505,7 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 
 	// the menu draws next
 	if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-		uivm->UI_REFRESH(cls.realtime );
+		uivm->UI_REFRESH( cls.realtime );
 	}
 
 	// console draws next

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1176,10 +1176,10 @@ void Sys_Init( void ) {
 
 	if ( g_wv.osversion.dwPlatformId == VER_PLATFORM_WIN32_NT ) {
 		Cvar_Set( "arch", "winnt" );
-	} else if ( g_wv.osversion.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS )   {
+	} else if ( g_wv.osversion.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS ) {
 		if ( LOWORD( g_wv.osversion.dwBuildNumber ) >= WIN98_BUILD_NUMBER ) {
 			Cvar_Set( "arch", "win98" );
-		} else if ( LOWORD( g_wv.osversion.dwBuildNumber ) >= OSR2_BUILD_NUMBER )   {
+		} else if ( LOWORD( g_wv.osversion.dwBuildNumber ) >= OSR2_BUILD_NUMBER ) {
 			Cvar_Set( "arch", "win95 osr2.x" );
 		} else
 		{
@@ -1235,15 +1235,15 @@ void Sys_Init( void ) {
 		Com_Printf( "...forcing CPU type to " );
 		if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "generic" ) ) {
 			cpuid = CPUID_GENERIC;
-		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "x87" ) )     {
+		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "x87" ) ) {
 			cpuid = CPUID_INTEL_PENTIUM;
-		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "mmx" ) )     {
+		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "mmx" ) ) {
 			cpuid = CPUID_INTEL_MMX;
-		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "3dnow" ) )     {
+		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "3dnow" ) ) {
 			cpuid = CPUID_AMD_3DNOW;
-		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "PentiumIII" ) )     {
+		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "PentiumIII" ) ) {
 			cpuid = CPUID_INTEL_KATMAI;
-		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "axp" ) )     {
+		} else if ( !Q_stricmp( Cvar_VariableString( "sys_cpustring" ), "axp" ) ) {
 			cpuid = CPUID_AXP;
 		} else
 		{
@@ -1346,5 +1346,3 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 	// never gets here
 }
-
-

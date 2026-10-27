@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -86,11 +86,11 @@ __declspec( naked ) void S_WriteLinearBlastStereo16( void ) {
 
 		push edi
 		push ebx
-		mov ecx,ds : dword ptr[snd_linear_count]
-		mov ebx,ds : dword ptr[snd_p]
-		mov edi,ds : dword ptr[snd_out]
+		mov ecx,ds:dword ptr[snd_linear_count]
+		mov ebx,ds:dword ptr[snd_p]
+		mov edi,ds:dword ptr[snd_out]
 LWLBLoopTop:
-		mov eax,ds : dword ptr[-8 + ebx + ecx * 4]
+		mov eax,ds:dword ptr[-8 + ebx + ecx * 4]
 		sar eax,8
 		cmp eax,07FFFh
 		jg LClampHigh
@@ -101,7 +101,7 @@ LWLBLoopTop:
 LClampHigh:
 		mov eax,07FFFh
 LClampDone:
-		mov edx,ds : dword ptr[-4 + ebx + ecx * 4]
+		mov edx,ds:dword ptr[-4 + ebx + ecx * 4]
 		sar edx,8
 		cmp edx,07FFFh
 		jg LClampHigh2
@@ -115,7 +115,7 @@ LClampDone2:
 		shl edx,16
 		and eax,0FFFFh
 		or edx,eax
-		mov ds : dword ptr[-4 + edi + ecx * 2],edx
+		mov ds:dword ptr[-4 + edi + ecx * 2],edx
 		sub ecx,2
 		jnz LWLBLoopTop
 		pop ebx
@@ -225,7 +225,7 @@ void S_TransferPaintBuffer( int endtime ) {
 				out[out_idx] = val;
 				out_idx = ( out_idx + 1 ) & out_mask;
 			}
-		} else if ( dma.samplebits == 8 )     {
+		} else if ( dma.samplebits == 8 ) {
 			unsigned char *out = (unsigned char *) pbuf;
 			while ( count-- )
 			{

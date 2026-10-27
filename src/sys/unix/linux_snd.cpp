@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -237,8 +237,9 @@ qboolean SNDDMA_Init( void ) {
 		dma.buffer = (unsigned char *) mmap( NULL, info.fragstotal
 											 * info.fragsize, PROT_WRITE, MAP_FILE | MAP_SHARED, audio_fd, 0 );
 		// LordHavoc MAP_FAILED is a bad value to have outside init code
-		if (dma.buffer == MAP_FAILED)
+		if ( dma.buffer == MAP_FAILED ) {
 			dma.buffer = NULL;
+		}
 		// NOTE TTimo could add a variable to force using regular memset on systems that are known to be safe
 		use_custom_memset = qtrue;
 	}

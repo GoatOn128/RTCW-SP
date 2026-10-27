@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -160,16 +160,18 @@ qhandle_t RE_RegisterModel( const char *name ) {
 	//
 	numLoaded = 0;
 
-	const char *extension = strrchr(name, '.');
-    if (extension && !Q_stricmp(extension, ".md5mesh")) {
-        if (R_LoadMD5(mod, name)) return mod->index;
-        mod->type = MOD_BAD;
-        return 0;
-    }
-    if (!extension || Q_stricmp(extension, ".md3")) {
-        mod->type = MOD_BAD;
-        return 0;
-    }
+	const char *extension = strrchr( name, '.' );
+	if ( extension && !Q_stricmp( extension, ".md5mesh" ) ) {
+		if ( R_LoadMD5( mod, name ) ) {
+			return mod->index;
+		}
+		mod->type = MOD_BAD;
+		return 0;
+	}
+	if ( !extension || Q_stricmp( extension, ".md3" ) ) {
+		mod->type = MOD_BAD;
+		return 0;
+	}
 
 	for ( lod = MD3_MAX_LODS - 1 ; lod >= 0 ; lod-- ) {
 		char filename[1024];
@@ -186,21 +188,23 @@ qhandle_t RE_RegisterModel( const char *name ) {
 			strcat( filename, namebuf );
 		}
 
-        int fileSize = ri.FS_ReadFile(filename, (void **)&buf);
-        if (!buf) continue;
-        if (fileSize < (int)sizeof(md3Header_t)) {
-            ri.FS_FreeFile(buf);
-            goto fail;
-        }
+		int fileSize = ri.FS_ReadFile( filename, (void **)&buf );
+		if ( !buf ) {
+			continue;
+		}
+		if ( fileSize < (int)sizeof( md3Header_t ) ) {
+			ri.FS_FreeFile( buf );
+			goto fail;
+		}
 
 		loadmodel = mod;
 
 		ident = LittleLong( *(unsigned *)buf );
-        if (ident != MD3_IDENT) {
-            ri.FS_FreeFile(buf);
-            goto fail;
-        }
-        loaded = R_LoadMD3(mod, lod, buf, name);
+		if ( ident != MD3_IDENT ) {
+			ri.FS_FreeFile( buf );
+			goto fail;
+		}
+		loaded = R_LoadMD3( mod, lod, buf, name );
 
 		ri.FS_FreeFile( buf );
 
@@ -695,12 +699,12 @@ void R_ModelBounds( qhandle_t handle, vec3_t mins, vec3_t maxs ) {
 		VectorCopy( frame->bounds[0], mins );
 		VectorCopy( frame->bounds[1], maxs );
 		return;
-    } else if (model->md5) {
-        skelFrame_t *f = (skelFrame_t *)((byte *)model->md5 + model->md5->ofsFrames);
-        VectorCopy(f->bounds[0], mins);
-        VectorCopy(f->bounds[1], maxs);
-        return;
-    }
+	} else if ( model->md5 ) {
+		skelFrame_t *f = (skelFrame_t *)( (byte *)model->md5 + model->md5->ofsFrames );
+		VectorCopy( f->bounds[0], mins );
+		VectorCopy( f->bounds[1], maxs );
+		return;
+	}
 
 	VectorClear( mins );
 	VectorClear( maxs );
@@ -724,7 +728,7 @@ int hunkmaxsize;
 int hunkcursize;        //DAJ renamed from cursize
 
 #define R_HUNK_MEGS     24
-#define R_HUNK_SIZE     ( R_HUNK_MEGS*1024*1024 )
+#define R_HUNK_SIZE     ( R_HUNK_MEGS * 1024 * 1024 )
 
 void *R_Hunk_Begin( void ) {
 	int maxsize = R_HUNK_SIZE;

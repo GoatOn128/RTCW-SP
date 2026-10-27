@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -173,12 +173,12 @@ int Com_Filter( const char *filter, const char *name, int casesensitive ) {
 				}
 				name = ptr + strlen( buf );
 			}
-		} else if ( *filter == '?' )      {
+		} else if ( *filter == '?' ) {
 			filter++;
 			name++;
-		} else if ( *filter == '[' && *( filter + 1 ) == '[' )           {
+		} else if ( *filter == '[' && *( filter + 1 ) == '[' ) {
 			filter++;
-		} else if ( *filter == '[' )      {
+		} else if ( *filter == '[' ) {
 			filter++;
 			found = qfalse;
 			while ( *filter && !found ) {
@@ -674,7 +674,7 @@ char *Q_CleanStr( char *string ) {
 	while ( ( c = *s ) != 0 ) {
 		if ( Q_IsColorString( s ) ) {
 			s++;
-		} else if ( c >= 0x20 && c <= 0x7E )   {
+		} else if ( c >= 0x20 && c <= 0x7E ) {
 			*d++ = c;
 		}
 		s++;
@@ -749,7 +749,7 @@ FIXME: overflow check?
 char *Info_ValueForKey( const char *s, const char *key ) {
 	char pkey[MAX_INFO_KEY];
 	static char value[2][MAX_INFO_VALUE];   // use two buffers so compares
-											// work without stomping on each other
+	                                        // work without stomping on each other
 	static int valueindex = 0;
 	char    *o;
 

@@ -46,7 +46,7 @@ void AICast_SpecialFunc( cast_state_t *cs ) {
 			 ( Distance( cs->clientState->origin, enemy->s.pos.trBase ) > 200 ) &&
 			 ( Distance( cs->clientState->origin, enemy->s.pos.trBase ) < 600 ) &&
 			 ( cs->clientState->cur_ps.groundEntityNum != ENTITYNUM_NONE )
-			 //&&	(infront( ent, enemy ))
+		     //&&	(infront( ent, enemy ))
 			 && ( infront( enemy, ent ) ) ) {
 			// crouch
 			trap_EA_Crouch( cs->entityNum );
@@ -378,7 +378,7 @@ qboolean AICast_GetAvoid( cast_state_t *cs, bot_goal_t *goal, vec3_t outpos, qbo
 			distmoved = Distance( castmove.endpos, cs->clientState->cur_ps.origin );
 		}
 		if ( ( distmoved > bestmoved )
-			 //&&	((cs->clientState->origin[2] - castmove.endpos[2]) < 64)	// allow up, but not down (falling)
+		     //&&	((cs->clientState->origin[2] - castmove.endpos[2]) < 64)	// allow up, but not down (falling)
 			 && ( castmove.groundEntityNum != ENTITYNUM_NONE ) ) {
 			// they all passed, check any other stuff
 			if ( !enemyVisible ||
@@ -724,5 +724,5 @@ void AICast_DeadClipWalls( cast_state_t *cs ) {
 		vel[2] = 0;
 		VectorAdd( g_entities[cs->entityNum].client->ps.velocity, vel, g_entities[cs->entityNum].client->ps.velocity );
 	}
-*/
+	*/
 }

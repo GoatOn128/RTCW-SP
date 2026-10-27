@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -771,7 +771,7 @@ int BotGetLevelItemGoal( int index, char *name, bot_goal_t *goal ) {
 			if ( li->notsingle ) {
 				continue;
 			}
-		} else if ( g_gametype >= GT_TEAM )     {
+		} else if ( g_gametype >= GT_TEAM ) {
 			if ( li->notteam ) {
 				continue;
 			}
@@ -1148,7 +1148,7 @@ int BotChooseLTGItem( int goalstate, vec3_t origin, int *inventory, int travelfl
 			if ( li->notsingle ) {
 				continue;
 			}
-		} else if ( g_gametype >= GT_TEAM )     {
+		} else if ( g_gametype >= GT_TEAM ) {
 			if ( li->notteam ) {
 				continue;
 			}
@@ -1214,9 +1214,9 @@ int BotChooseLTGItem( int goalstate, vec3_t origin, int *inventory, int travelfl
 				//push the goal on the stack
 				BotPushGoal(goalstate, &goal);
 				//
-#ifdef DEBUG
+		#ifdef DEBUG
 				botimport.Print(PRT_MESSAGE, "chosen roam goal area %d\n", goal.areanum);
-#endif //DEBUG
+		#endif //DEBUG
 				return qtrue;
 			} //end if
 		} //end if
@@ -1311,7 +1311,7 @@ int BotChooseNBGItem( int goalstate, vec3_t origin, int *inventory, int travelfl
 			if ( li->notsingle ) {
 				continue;
 			}
-		} else if ( g_gametype >= GT_TEAM )     {
+		} else if ( g_gametype >= GT_TEAM ) {
 			if ( li->notteam ) {
 				continue;
 			}

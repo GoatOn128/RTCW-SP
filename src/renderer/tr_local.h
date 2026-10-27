@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -117,7 +117,7 @@ typedef enum {
 
 	SS_DECAL,           // scorch marks, etc.
 	SS_SEE_THROUGH,     // ladders, grates, grills that may have small blended edges
-						// in addition to alpha test
+	                    // in addition to alpha test
 	SS_BANNER,
 
 	SS_FOG,
@@ -268,11 +268,11 @@ typedef struct {
 
 	// used for TMOD_SCALE
 	float scale[2];                     // s *= scale[0]
-										// t *= scale[1]
+	                                    // t *= scale[1]
 
 	// used for TMOD_SCROLL
 	float scroll[2];                    // s' = s + scroll[0] * time
-										// t' = t + scroll[1] * time
+	                                    // t' = t + scroll[1] * time
 
 	// + = clockwise
 	// - = counterclockwise
@@ -368,10 +368,10 @@ typedef struct shader_s {
 	float sort;                         // lower numbered shaders draw before higher numbered
 
 	qboolean defaultShader;             // we want to return index 0 if the shader failed to
-										// load for some reason, but R_FindShader should
-										// still keep a name allocated for it, so if
-										// something calls RE_RegisterShader again with
-										// the same name, we don't try looking for it again
+	                                    // load for some reason, but R_FindShader should
+	                                    // still keep a name allocated for it, so if
+	                                    // something calls RE_RegisterShader again with
+	                                    // the same name, we don't try looking for it again
 
 	qboolean explicitlyDefined;         // found in a .shader file
 
@@ -435,7 +435,7 @@ typedef struct corona_s {
 	float scale;                // uses r_flaresize as the baseline (1.0)
 	int id;
 	int flags;                  // '1' is 'visible'
-								// still send the corona request, even if not visible, for proper fading
+	                            // still send the corona request, even if not visible, for proper fading
 } corona_t;
 
 typedef struct dlight_s {
@@ -656,7 +656,7 @@ typedef struct {
 	int numIndices;
 	int ofsIndices;
 	float points[1][VERTEXSIZE];        // variable sized
-										// there is a variable length list of indices here also
+	                                    // there is a variable length list of indices here also
 } srfSurfaceFace_t;
 
 
@@ -681,7 +681,7 @@ typedef struct {
 } srfTriangles_t;
 
 
-extern void( *rb_surfaceTable[SF_NUM_SURFACE_TYPES] ) ( void * );
+extern void ( *rb_surfaceTable[SF_NUM_SURFACE_TYPES] ) ( void * );
 
 /*
 ==============================================================================
@@ -948,7 +948,7 @@ typedef struct {
 	int frameCount;                         // incremented every frame
 	int sceneCount;                         // incremented every scene
 	int viewCount;                          // incremented every view (twice a scene if portaled)
-											// and every R_MarkFragments call
+	                                        // and every R_MarkFragments call
 
 	int smpFrame;                           // toggles from 0 to 1 every endFrame
 
@@ -1074,10 +1074,10 @@ extern cvar_t   *r_depthbits;           // number of desired depth bits
 extern cvar_t   *r_colorbits;           // number of desired color bits, only relevant for fullscreen
 extern cvar_t   *r_stereo;              // desired pixelformat stereo flag
 extern cvar_t   *r_texturebits;         // number of desired texture bits
-										// 0 = use framebuffer depth
-										// 16 = use 16-bit textures
-										// 32 = use 32-bit textures
-										// all else = error
+                                        // 0 = use framebuffer depth
+                                        // 16 = use 16-bit textures
+                                        // 32 = use 32-bit textures
+                                        // all else = error
 
 extern cvar_t   *r_measureOverdraw;     // enables stencil buffer overdraw measurement
 
@@ -1085,16 +1085,16 @@ extern cvar_t   *r_lodbias;             // push/pull LOD transitions
 extern cvar_t   *r_lodscale;
 
 extern cvar_t   *r_primitives;          // "0" = based on compiled vertex array existance
-										// "1" = glDrawElemet tristrips
-										// "2" = glDrawElements triangles
-										// "-1" = no drawing
+                                        // "1" = glDrawElemet tristrips
+                                        // "2" = glDrawElements triangles
+                                        // "-1" = no drawing
 
 extern cvar_t   *r_inGameVideo;             // controls whether in game video should be draw
 extern cvar_t   *r_fastsky;             // controls whether sky should be cleared or drawn
 extern cvar_t   *r_drawSun;             // controls drawing of sun quad
-										// "0" no sun
-										// "1" draw sun
-										// "2" also draw lens flare effect centered on sun
+                                        // "0" no sun
+                                        // "1" draw sun
+                                        // "2" also draw lens flare effect centered on sun
 extern cvar_t   *r_dynamiclight;        // dynamic lights enabled/disabled
 extern cvar_t   *r_dlightScale;         // global user attenuation of dlights
 extern cvar_t   *r_dlightBacks;         // dlight non-facing surfaces for continuity

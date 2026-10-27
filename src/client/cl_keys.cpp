@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ field_t historyEditLines[COMMAND_HISTORY];
 
 int nextHistoryLine;                // the last line in the history buffer, not masked
 int historyLine;            // the line being displayed from history buffer
-							// will be <= nextHistoryLine
+                            // will be <= nextHistoryLine
 
 field_t g_consoleField;
 field_t chatField;
@@ -1743,17 +1743,17 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 		// escape always gets out of CGAME stuff
 		if ( cls.keyCatchers & KEYCATCH_CGAME ) {
 			cls.keyCatchers &= ~KEYCATCH_CGAME;
-			cgvm->CG_EVENT_HANDLING(CGAME_EVENT_NONE );
+			cgvm->CG_EVENT_HANDLING( CGAME_EVENT_NONE );
 			return;
 		}
 
 		if ( !( cls.keyCatchers & KEYCATCH_UI ) ) {
 			if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-				uivm->UI_SET_ACTIVE_MENU(UIMENU_INGAME );
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_INGAME );
 			} else {
 				CL_Disconnect_f();
 				S_StopAllSounds();
-				uivm->UI_SET_ACTIVE_MENU(UIMENU_MAIN );
+				uivm->UI_SET_ACTIVE_MENU( UIMENU_MAIN );
 			}
 			return;
 		}
@@ -1762,7 +1762,7 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 			return;
 		}
 
-		uivm->UI_KEY_EVENT(key, down );
+		uivm->UI_KEY_EVENT( key, down );
 		return;
 	}
 
@@ -1782,9 +1782,9 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 		}
 
 		if ( cls.keyCatchers & KEYCATCH_UI && uivm ) {
-			uivm->UI_KEY_EVENT(key, down );
+			uivm->UI_KEY_EVENT( key, down );
 		} else if ( cls.keyCatchers & KEYCATCH_CGAME && cgvm ) {
-			cgvm->CG_KEY_EVENT(key, down );
+			cgvm->CG_KEY_EVENT( key, down );
 		}
 
 		return;
@@ -1823,12 +1823,12 @@ void CL_KeyEvent( int key, qboolean down, unsigned time ) {
 		}
 
 		if ( uivm ) {
-			uivm->UI_KEY_EVENT(key, down );
+			uivm->UI_KEY_EVENT( key, down );
 		}
 
 	} else if ( cls.keyCatchers & KEYCATCH_CGAME ) {
 		if ( cgvm ) {
-			cgvm->CG_KEY_EVENT(key, down );
+			cgvm->CG_KEY_EVENT( key, down );
 		}
 	} else if ( cls.keyCatchers & KEYCATCH_MESSAGE ) {
 		Message_Key( key );
@@ -1874,11 +1874,11 @@ void CL_CharEvent( int key ) {
 	// distribute the key down event to the apropriate handler
 	if ( cls.keyCatchers & KEYCATCH_CONSOLE ) {
 		Field_CharEvent( &g_consoleField, key );
-	} else if ( cls.keyCatchers & KEYCATCH_UI )   {
-		uivm->UI_KEY_EVENT(key | K_CHAR_FLAG, qtrue );
-	} else if ( cls.keyCatchers & KEYCATCH_MESSAGE )   {
+	} else if ( cls.keyCatchers & KEYCATCH_UI ) {
+		uivm->UI_KEY_EVENT( key | K_CHAR_FLAG, qtrue );
+	} else if ( cls.keyCatchers & KEYCATCH_MESSAGE ) {
 		Field_CharEvent( &chatField, key );
-	} else if ( cls.state == CA_DISCONNECTED )   {
+	} else if ( cls.state == CA_DISCONNECTED ) {
 		Field_CharEvent( &g_consoleField, key );
 	}
 }
@@ -1903,4 +1903,3 @@ void Key_ClearStates( void ) {
 		keys[i].repeats = 0;
 	}
 }
-

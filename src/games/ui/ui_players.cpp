@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1463,7 +1463,7 @@ qboolean UI_RegisterClientModelname( playerInfo_t *pi, const char *modelSkinName
 				backpack = "acc/backpack/backpack_german_sol.md3";
 				helmet = "acc/helmet_german/helmet_german_sol.md3";
 			}
-		} else if ( var == 1 )   {
+		} else if ( var == 1 ) {
 			playerClass = "medic";
 
 			if ( teamval == 1 ) {
@@ -1473,7 +1473,7 @@ qboolean UI_RegisterClientModelname( playerInfo_t *pi, const char *modelSkinName
 				backpack = "acc/backpack/backpack_german_med.md3";
 				helmet = "acc/helmet_german/helmet_german_med.md3";
 			}
-		} else if ( var == 2 )   {
+		} else if ( var == 2 ) {
 			playerClass = "engineer";
 
 			if ( teamval == 1 ) {
@@ -1628,7 +1628,7 @@ void UI_PlayerInfo_SetInfo( playerInfo_t *pi, int legsAnim, int torsoAnim, vec3_
 	if ( weaponNumber == -1 ) {
 		pi->pendingWeapon = (weapon_t)-1;
 		pi->weaponTimer = 0;
-	} else if ( weaponNumber != WP_NONE )   {
+	} else if ( weaponNumber != WP_NONE ) {
 		pi->pendingWeapon = weaponNumber;
 		pi->weaponTimer = dp_realtime + UI_TIMER_WEAPON_DELAY;
 	}
@@ -1654,7 +1654,7 @@ void UI_PlayerInfo_SetInfo( playerInfo_t *pi, int legsAnim, int torsoAnim, vec3_
 	currentAnim = pi->legsAnim & ~ANIM_TOGGLEBIT;
 	if ( legsAnim != LEGS_JUMP && ( currentAnim == LEGS_JUMP || currentAnim == LEGS_LAND ) ) {
 		pi->pendingLegsAnim = legsAnim;
-	} else if ( legsAnim != currentAnim )   {
+	} else if ( legsAnim != currentAnim ) {
 		jumpHeight = 0;
 		pi->pendingLegsAnim = 0;
 		UI_ForceLegsAnim( pi, legsAnim );
@@ -1683,9 +1683,9 @@ void UI_PlayerInfo_SetInfo( playerInfo_t *pi, int legsAnim, int torsoAnim, vec3_
 
 	if ( weaponNum != pi->currentWeapon || currentAnim == TORSO_RAISE || currentAnim == TORSO_DROP ) {
 		pi->pendingTorsoAnim = torsoAnim;
-	} else if ( ( currentAnim == TORSO_GESTURE || currentAnim == TORSO_ATTACK ) && ( torsoAnim != currentAnim ) )   {
+	} else if ( ( currentAnim == TORSO_GESTURE || currentAnim == TORSO_ATTACK ) && ( torsoAnim != currentAnim ) ) {
 		pi->pendingTorsoAnim = torsoAnim;
-	} else if ( torsoAnim != currentAnim )   {
+	} else if ( torsoAnim != currentAnim ) {
 		pi->pendingTorsoAnim = 0;
 		UI_ForceTorsoAnim( pi, torsoAnim );
 	}

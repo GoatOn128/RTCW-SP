@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -48,14 +48,14 @@ void trap_Error( const char *fmt ) {
 }
 
 void trap_Endgame( void ) {
-	gameImports->Com_ErrorEndGame(  );
+	gameImports->Com_ErrorEndGame();
 }
 
 int trap_Milliseconds( void ) {
-	return gameImports->Sys_Milliseconds(  );
+	return gameImports->Sys_Milliseconds();
 }
 int trap_Argc( void ) {
-	return gameImports->Cmd_Argc(  );
+	return gameImports->Cmd_Argc();
 }
 
 void trap_Argv( int n, char *buffer, int bufferLength ) {
@@ -203,7 +203,7 @@ qboolean trap_EntityContactCapsule( const vec3_t mins, const vec3_t maxs, const 
 }
 
 int trap_BotAllocateClient( void ) {
-	return gameImports->SV_BotAllocateClient(  );
+	return gameImports->SV_BotAllocateClient();
 }
 
 void trap_BotFreeClient( int clientNum ) {
@@ -240,11 +240,11 @@ qboolean trap_GetTag( int clientNum, char *tagName, orientation_t *or ) {
 
 // BotLib traps start here
 int trap_BotLibSetup( void ) {
-	return gameImports->SV_BotLibSetup(  );
+	return gameImports->SV_BotLibSetup();
 }
 
 int trap_BotLibShutdown( void ) {
-	return gameImports->SV_BotLibShutdown(  );
+	return gameImports->SV_BotLibShutdown();
 }
 
 int trap_BotLibVarSet( char *var_name, char *value ) {
@@ -292,7 +292,7 @@ void trap_AAS_EntityInfo( int entnum, struct aas_entityinfo_s *info ) {
 }
 
 int trap_AAS_Initialized( void ) {
-	return gameImports->AAS_Initialized(  );
+	return gameImports->AAS_Initialized();
 }
 
 void trap_AAS_PresenceTypeBoundingBox( int presencetype, vec3_t mins, vec3_t maxs ) {
@@ -300,7 +300,7 @@ void trap_AAS_PresenceTypeBoundingBox( int presencetype, vec3_t mins, vec3_t max
 }
 
 float trap_AAS_Time( void ) {
-	return gameImports->AAS_Time(  );
+	return gameImports->AAS_Time();
 }
 
 // Ridah, multiple AAS files
@@ -520,7 +520,7 @@ void trap_Characteristic_String( int character, int index, char *buf, int size )
 }
 
 int trap_BotAllocChatState( void ) {
-	return gameImports->BotAllocChatState(  );
+	return gameImports->BotAllocChatState();
 }
 
 void trap_BotFreeChatState( int handle ) {
@@ -676,11 +676,11 @@ float trap_BotAvoidGoalTime( int goalstate, int number ) {
 }
 
 void trap_BotInitLevelItems( void ) {
-	gameImports->BotInitLevelItems(  );
+	gameImports->BotInitLevelItems();
 }
 
 void trap_BotUpdateEntityItems( void ) {
-	gameImports->BotUpdateEntityItems(  );
+	gameImports->BotUpdateEntityItems();
 }
 
 int trap_BotLoadItemWeights( int goalstate, char *filename ) {
@@ -744,7 +744,7 @@ int trap_BotPredictVisiblePosition( vec3_t origin, int areanum, struct bot_goal_
 }
 
 int trap_BotAllocMoveState( void ) {
-	return gameImports->BotAllocMoveState(  );
+	return gameImports->BotAllocMoveState();
 }
 
 void trap_BotFreeMoveState( int handle ) {
@@ -774,7 +774,7 @@ int trap_BotLoadWeaponWeights( int weaponstate, char *filename ) {
 }
 
 int trap_BotAllocWeaponState( void ) {
-	return gameImports->BotAllocWeaponState(  );
+	return gameImports->BotAllocWeaponState();
 }
 
 void trap_BotFreeWeaponState( int weaponstate ) {

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -101,7 +101,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				if ( HIWORD( wParam ) ) {   // minimized flag
 					Cvar_Set( "viewlog", "2" );
 				}
-			} else if ( com_viewlog->integer == 2 )   {
+			} else if ( com_viewlog->integer == 2 ) {
 				if ( !HIWORD( wParam ) ) {      // minimized flag
 					Cvar_Set( "viewlog", "1" );
 				}
@@ -113,7 +113,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		if ( ( com_dedicated && com_dedicated->integer ) ) {
 			cmdString = CopyString( "quit" );
 			Sys_QueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
-		} else if ( s_wcd.quitOnClose )   {
+		} else if ( s_wcd.quitOnClose ) {
 			PostQuitMessage( 0 );
 		} else
 		{
@@ -139,7 +139,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 			}
 #endif
 			return ( long ) s_wcd.hbrEditBackground;
-		} else if ( ( HWND ) lParam == s_wcd.hwndErrorBox )   {
+		} else if ( ( HWND ) lParam == s_wcd.hwndErrorBox ) {
 			if ( s_timePolarity & 1 ) {
 				SetBkColor( ( HDC ) wParam, RGB( 0x80, 0x80, 0x80 ) );
 				SetTextColor( ( HDC ) wParam, RGB( 0xff, 0x0, 0x00 ) );
@@ -156,7 +156,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		if ( wParam == COPY_ID ) {
 			SendMessage( s_wcd.hwndBuffer, EM_SETSEL, 0, -1 );
 			SendMessage( s_wcd.hwndBuffer, WM_COPY, 0, 0 );
-		} else if ( wParam == QUIT_ID )   {
+		} else if ( wParam == QUIT_ID ) {
 			if ( s_wcd.quitOnClose ) {
 				PostQuitMessage( 0 );
 			} else
@@ -164,7 +164,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				cmdString = CopyString( "quit" );
 				Sys_QueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
 			}
-		} else if ( wParam == CLEAR_ID )   {
+		} else if ( wParam == CLEAR_ID ) {
 			SendMessage( s_wcd.hwndBuffer, EM_SETSEL, 0, -1 );
 			SendMessage( s_wcd.hwndBuffer, EM_REPLACESEL, FALSE, ( LPARAM ) "" );
 			UpdateWindow( s_wcd.hwndBuffer );
@@ -495,15 +495,15 @@ void Conbuf_AppendText( const char *pMsg ) {
 			b[1] = '\n';
 			b += 2;
 			i++;
-		} else if ( msg[i] == '\r' )     {
+		} else if ( msg[i] == '\r' ) {
 			b[0] = '\r';
 			b[1] = '\n';
 			b += 2;
-		} else if ( msg[i] == '\n' )     {
+		} else if ( msg[i] == '\n' ) {
 			b[0] = '\r';
 			b[1] = '\n';
 			b += 2;
-		} else if ( Q_IsColorString( &msg[i] ) )   {
+		} else if ( Q_IsColorString( &msg[i] ) ) {
 			i++;
 		} else
 		{

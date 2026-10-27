@@ -224,15 +224,15 @@ bot_moveresult_t *AICast_MoveToPos( cast_state_t *cs, vec3_t pos, int entnum ) {
 
 	//G_Printf("MoveToPos: %i ms\n", -pretime + Sys_MilliSeconds() );
 	/*
-// debug, print movement info
-if(0) // (SA) added to hide the print
-{
-bot_input_t bi;
+	// debug, print movement info
+	if(0) // (SA) added to hide the print
+	{
+	bot_input_t bi;
 
-trap_EA_GetInput(cs->clientState->client, (float) level.time / 1000, &bi);
-G_Printf("spd: %i\n", (int)bi.speed );
-}
-*/
+	trap_EA_GetInput(cs->clientState->client, (float) level.time / 1000, &bi);
+	G_Printf("spd: %i\n", (int)bi.speed );
+	}
+	*/
 	return ( moveresult = &lmoveresult );
 }
 
@@ -261,24 +261,24 @@ float AICast_SpeedScaleForDistance( cast_state_t *cs, float startdist, float ide
 			return 1.0;
 		}
 	} else
-		// if crouching
-		if ( cs->movestate == MS_CROUCH || cs->attackcrouch_time > level.time ) {
-			speed = cs->attributes[CROUCHING_SPEED];
-			if ( speed * PREDICT_TIME_CROUCH > dist ) {
-				return 0.3 + 0.7 * ( dist / ( speed * PREDICT_TIME_CROUCH ) );
-			} else {
-				return 1.0;
-			}
-		} else
-		// running
-		{
-			speed = cs->attributes[RUNNING_SPEED];
-			if ( speed * PREDICT_TIME_RUN > dist ) {
-				return 0.2 + 0.8 * ( dist / ( speed * PREDICT_TIME_RUN ) );
-			} else {
-				return 1.0;
-			}
+	// if crouching
+	if ( cs->movestate == MS_CROUCH || cs->attackcrouch_time > level.time ) {
+		speed = cs->attributes[CROUCHING_SPEED];
+		if ( speed * PREDICT_TIME_CROUCH > dist ) {
+			return 0.3 + 0.7 * ( dist / ( speed * PREDICT_TIME_CROUCH ) );
+		} else {
+			return 1.0;
 		}
+	} else
+	// running
+	{
+		speed = cs->attributes[RUNNING_SPEED];
+		if ( speed * PREDICT_TIME_RUN > dist ) {
+			return 0.2 + 0.8 * ( dist / ( speed * PREDICT_TIME_RUN ) );
+		} else {
+			return 1.0;
+		}
+	}
 }
 
 /*

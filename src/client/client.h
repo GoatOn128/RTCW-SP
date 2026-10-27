@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ typedef struct {
 	int parseEntitiesNum;                   // at the time of this snapshot
 
 	int serverCommandNum;                   // execute all commands up to this before
-											// making the snapshot current
+	                                        // making the snapshot current
 } clSnapshot_t;
 
 
@@ -90,15 +90,15 @@ extern int g_console_field_width;
 
 typedef struct {
 	int timeoutcount;               // it requres several frames in a timeout condition
-									// to disconnect, preventing debugging breaks from
-									// causing immediate disconnects on continue
+	                                // to disconnect, preventing debugging breaks from
+	                                // causing immediate disconnects on continue
 	clSnapshot_t snap;              // latest received from server
 
 	int serverTime;                 // may be paused during play
 	int oldServerTime;              // to prevent time from flowing bakcwards
 	int oldFrameServerTime;         // to check tournament restarts
 	int serverTimeDelta;            // cl.serverTime = cls.realtime + cl.serverTimeDelta
-									// this value changes as net lag varies
+	                                // this value changes as net lag varies
 	qboolean extrapolatedSnapshot;      // set if any cgame frame has been forced to extrapolate
 	// cleared when CL_AdjustTimeDelta looks at it
 	qboolean newSnapshots;          // set on parse of any valid packet
@@ -122,7 +122,7 @@ typedef struct {
 	// properly generated command
 	usercmd_t cmds[CMD_BACKUP];     // each mesage will send several old cmds
 	int cmdNumber;                  // incremented each frame, because multiple
-									// frames may need to be packed into a single packet
+	                                // frames may need to be packed into a single packet
 
 	outPacket_t outPackets[PACKET_BACKUP];  // information about each packet we have sent out
 
@@ -134,7 +134,7 @@ typedef struct {
 	vec3_t viewangles;
 
 	int serverId;                   // included in each client message so the server
-									// can tell if it is for a prior map_restart
+	                                // can tell if it is for a prior map_restart
 	// big stuff at end of structure so most offsets are 15 bits or less
 	clSnapshot_t snapshots[PACKET_BACKUP];
 

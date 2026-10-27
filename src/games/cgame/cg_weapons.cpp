@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -207,11 +207,11 @@ static void CG_MachineGunEjectBrass( centity_t *cent ) {
 		offset[0] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_x" );
 		offset[1] = -CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_y" );
 		offset[2] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_z" );
-	} else if ( cg.predictedPlayerState.weapon == WP_MP40 || cg.predictedPlayerState.weapon == WP_THOMPSON )     {
+	} else if ( cg.predictedPlayerState.weapon == WP_MP40 || cg.predictedPlayerState.weapon == WP_THOMPSON ) {
 		offset[0] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_x_2" ); // Maxx Kaufman offset value
 		offset[1] = -CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_y_2" );
 		offset[2] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_z_2" );
-	} else if ( cg.predictedPlayerState.weapon == WP_VENOM )     {
+	} else if ( cg.predictedPlayerState.weapon == WP_VENOM ) {
 		offset[0] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_x_3" );
 		offset[1] = -CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_y_3" );
 		offset[2] = CG_FxInt( "wolf/controller_machinegunejectbrass", "offset_z_3" );
@@ -458,7 +458,7 @@ void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 		FxParameters parameters;
 		VectorCopy( dir, parameters.velocity );
 		CG_FxPlayParameters( ent->currentState.otherEntityNum2 ? "wolf/pyro_red" : "wolf/pyro_blue",
-			origin, vec3_origin, parameters );
+							 origin, vec3_origin, parameters );
 	}
 }
 // jpw
@@ -527,20 +527,20 @@ void CG_RocketTrail( centity_t *ent, const weaponInfo_t *wi ) {
 
 			}
 			CG_ParticleExplosion( "blacksmokeanim", lastPos, vec3_origin, CG_FxInt( "wolf/controller_rockettrail", "tuning_9" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_10" ) ), CG_FxInt( "wolf/controller_rockettrail", "tuning_11" ), CG_FxInt( "wolf/controller_rockettrail", "tuning_12" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_13" ) ) );    // smoke
-		} else if ( ent->currentState.eType == ET_FP_PARTS )     {
+		} else if ( ent->currentState.eType == ET_FP_PARTS ) {
 			if ( ( rand() % CG_FxInt( "wolf/controller_rockettrail", "tuning_14" ) ) > CG_FxInt( "wolf/controller_rockettrail", "tuning_15" ) ) {
 				CG_ParticleExplosion( "twiltb2", lastPos, vec3_origin, CG_FxInt( "wolf/controller_rockettrail", "tuning_16" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_17" ) ), CG_FxInt( "wolf/controller_rockettrail", "tuning_18" ), CG_FxInt( "wolf/controller_rockettrail", "tuning_19" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_20" ) ) ); // fire
 
 			}
 			CG_ParticleExplosion( "blacksmokeanim", lastPos, vec3_origin, CG_FxInt( "wolf/controller_rockettrail", "tuning_21" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_22" ) ), CG_FxInt( "wolf/controller_rockettrail", "tuning_23" ), CG_FxInt( "wolf/controller_rockettrail", "tuning_24" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_25" ) ) );    // smoke
-		} else if ( ent->currentState.eType == ET_RAMJET )     {
+		} else if ( ent->currentState.eType == ET_RAMJET ) {
 			int duration;
 
 			VectorCopy( ent->lerpOrigin, lastPos );
 			duration = CG_FxInt( "wolf/controller_rockettrail", "duration" );
 			CG_ParticleExplosion( "twiltb2", lastPos, vec3_origin, duration + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_26" ) ), CG_FxInt( "wolf/controller_rockettrail", "tuning_27" ), CG_FxInt( "wolf/controller_rockettrail", "tuning_28" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_29" ) ) ); // fire
 			CG_ParticleExplosion( "blacksmokeanim", lastPos, vec3_origin, CG_FxInt( "wolf/controller_rockettrail", "tuning_30" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_31" ) ), CG_FxInt( "wolf/controller_rockettrail", "tuning_32" ), CG_FxInt( "wolf/controller_rockettrail", "tuning_33" ) + (int)( rnd * CG_FxInt( "wolf/controller_rockettrail", "tuning_34" ) ) );    // smoke
-		} else if ( ent->currentState.eType == ET_FIRE_COLUMN || ent->currentState.eType == ET_FIRE_COLUMN_SMOKE )     {
+		} else if ( ent->currentState.eType == ET_FIRE_COLUMN || ent->currentState.eType == ET_FIRE_COLUMN_SMOKE ) {
 			int duration;
 			int sizeStart;
 			int sizeEnd;
@@ -998,7 +998,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	if ( item->world_model[W_FP_MODEL] ) {
 		strcpy( comppath, item->world_model[W_FP_MODEL] );  // first try the fp view weap
-	} else if ( item->world_model[W_TP_MODEL] )                                                                {
+	} else if ( item->world_model[W_TP_MODEL] ) {
 		strcpy( comppath, item->world_model[W_TP_MODEL] );  // not there, use the standard view hand
 
 	}
@@ -1511,7 +1511,7 @@ static void CG_RunWeapLerpFrame( clientInfo_t *ci, weaponInfo_t *wi, lerpFrame_t
 	// see if the animation sequence is switching
 	if ( !lf->animation ) {
 		CG_ClearWeapLerpFrame( wi, lf, newAnimation );
-	} else if ( newAnimation != lf->animationNumber )   {
+	} else if ( newAnimation != lf->animationNumber ) {
 		if ( ( newAnimation & ~ANIM_TOGGLEBIT ) == WEAP_RAISE ||
 			 ( newAnimation & ~ANIM_TOGGLEBIT ) == WEAP_ALTSWITCHFROM ||
 			 ( newAnimation & ~ANIM_TOGGLEBIT ) == WEAP_ALTSWITCHTO ) {
@@ -1645,13 +1645,13 @@ static void CG_CalculateWeaponPosition( vec3_t origin, vec3_t angles ) {
 			leanscale = 2.0f;
 			break;
 
-			// never adjust
+		// never adjust
 		case WP_KNIFE:
 		case WP_GRENADE_LAUNCHER:
 		case WP_GRENADE_PINEAPPLE:
 			break;
 
-			// adjust when leaning right (in case of reload)
+		// adjust when leaning right (in case of reload)
 		default:
 			if ( cg.predictedPlayerState.leanf > 0 ) {
 				leanscale = 1.3f;
@@ -2122,7 +2122,7 @@ void CG_PlayerTeslaCoilFire( centity_t *cent, vec3_t flashorigin ) {
 				case AICHAR_PROTOSOLDIER:
 					continue;
 				}
-*/                                                                                                                              //
+*/              //
 				if ( ctrav->currentState.aiChar &&
 					 ( ctrav != cent ) &&
 					 ( ctrav->currentState.teamNum != playerTeam ) &&
@@ -2496,7 +2496,7 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 	playerScaled = (qboolean)( cgs.clientinfo[ cent->currentState.clientNum ].playermodelScale[0] != 0 );
 	if ( !ps && playerScaled ) {   // don't "un-scale" weap up in 1st person
 		for ( i = 0; i < 3; i++ ) {  // scale weapon back up so it doesn't pick up the adjusted scale of the character models.
-									 // this will affect any parts attached to the gun as well (barrel/bolt/flash/brass/etc.)
+			                         // this will affect any parts attached to the gun as well (barrel/bolt/flash/brass/etc.)
 			VectorScale( gun.axis[i], 1.0 / ( cgs.clientinfo[ cent->currentState.clientNum ].playermodelScale[i] ), gun.axis[i] );
 		}
 
@@ -2556,7 +2556,7 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 				if ( i == W_PART_1 ) {
 					angles[ROLL] = CG_VenomSpinAngle( cent );
 					spunpart = qtrue;
-				} else if ( i == W_PART_2 )    {
+				} else if ( i == W_PART_2 ) {
 					angles[ROLL] = -CG_VenomSpinAngle( cent );
 					spunpart = qtrue;
 				}
@@ -3558,13 +3558,13 @@ int getEquivWeapon( int weapnum ) {
 	int num = weapnum;
 
 	switch ( weapnum ) {
-		// going from german to american
+	// going from german to american
 	case WP_LUGER:              num = WP_COLT;              break;
 	case WP_MAUSER:             num = WP_GARAND;            break;
 	case WP_MP40:               num = WP_THOMPSON;          break;
 	case WP_GRENADE_LAUNCHER:   num = WP_GRENADE_PINEAPPLE; break;
 
-		// going from american to german
+	// going from american to german
 	case WP_COLT:               num = WP_LUGER;             break;
 	case WP_GARAND:             num = WP_MAUSER;            break;
 	case WP_THOMPSON:           num = WP_MP40;              break;
@@ -4465,15 +4465,15 @@ void CG_FLAKEFX( centity_t *cent, int whichgun ) {
 		VectorMA( point, 136, forward, point );
 		VectorMA( point, 31, up, point );
 		VectorMA( point, 22, right, point );
-	} else if ( whichgun == 1 )     {
+	} else if ( whichgun == 1 ) {
 		VectorMA( point, 136, forward, point );
 		VectorMA( point, 31, up, point );
 		VectorMA( point, -22, right, point );
-	} else if ( whichgun == 3 )     {
+	} else if ( whichgun == 3 ) {
 		VectorMA( point, 136, forward, point );
 		VectorMA( point, 10, up, point );
 		VectorMA( point, 22, right, point );
-	} else if ( whichgun == 4 )     {
+	} else if ( whichgun == 4 ) {
 		VectorMA( point, 136, forward, point );
 		VectorMA( point, 10, up, point );
 		VectorMA( point, -22, right, point );
@@ -5014,7 +5014,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_5" ),      // duration
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_6" ) + rand() % CG_FxInt( "wolf/controller_missilehitwall", "tuning_7" ),  // count
 						  CG_FxValue( "wolf/controller_missilehitwall", "AddSparks_value" ) );    // rand scale
-		} else if ( clientNum == 1 )      { // just do a little smoke puff
+		} else if ( clientNum == 1 ) {      // just do a little smoke puff
 			vec3_t d, o;
 			VectorMA( origin, CG_FxInt( "wolf/controller_missilehitwall", "tuning_8" ), dir, o );
 			VectorScale( dir, CG_FxInt( "wolf/controller_missilehitwall", "tuning_9" ), d );
@@ -5064,7 +5064,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 								  CG_FxValue( "wolf/controller_missilehitwall", "AddSparks_value_4" ) );    // rand scale
 				}
 			}
-		} else if ( clientNum == 2 )      {
+		} else if ( clientNum == 2 ) {
 			sfx = 0;
 			mark = 0;
 
@@ -5325,7 +5325,7 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		CG_AddDebris( origin, dir,
 					  CG_FxInt( "wolf/controller_missilehitwall", "tuning_74" ),      // speed
 					  CG_FxInt( "wolf/controller_missilehitwall", "tuning_75" ),     // duration
-					  // 15 + rand()%5 );	// count
+		              // 15 + rand()%5 );	// count
 					  CG_FxInt( "wolf/controller_missilehitwall", "tuning_76" ) + rand() % CG_FxInt( "wolf/controller_missilehitwall", "AddDebris_value_2" ) ); // count
 
 		break;
@@ -5387,7 +5387,7 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 			CG_AddDebris( origin, dir,
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_93" ),      // speed
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_94" ),  //350,	// duration
-						  // 15 + rand()%5 );	// count
+			              // 15 + rand()%5 );	// count
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_95" ) + rand() % CG_FxInt( "wolf/controller_missilehitwall", "AddDebris_value_3" ) ); // count
 		}
 // JPW NERVE -- multiplayer explosions over the top due to large damage radiusesesizes
@@ -5404,7 +5404,7 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 			CG_AddDebris( origin, dir,
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_104" ) + random() * CG_FxInt( "wolf/controller_missilehitwall", "tuning_105" ), // speed
 						  rand() % CG_FxInt( "wolf/controller_missilehitwall", "tuning_106" ) + CG_FxInt( "wolf/controller_missilehitwall", "AddDebris_value_4" ), //350,	// duration
-						  // 15 + rand()%5 );	// count
+			              // 15 + rand()%5 );	// count
 						  CG_FxInt( "wolf/controller_missilehitwall", "tuning_107" ) + rand() % CG_FxInt( "wolf/controller_missilehitwall", "tuning_108" ) ); // count
 
 		}
@@ -5532,7 +5532,7 @@ void CG_MissileHitWallSmall( int weapon, int clientNum, vec3_t origin, vec3_t di
 	CG_AddDebris( origin, dir,
 				  CG_FxInt( "wolf/controller_missilehitwallsmall", "tuning_6" ),          // speed
 				  CG_FxInt( "wolf/controller_missilehitwallsmall", "tuning_7" ),         // duration
-				  // 15 + rand()%5 );	// count
+	              // 15 + rand()%5 );	// count
 				  CG_FxInt( "wolf/controller_missilehitwallsmall", "tuning_8" ) + rand() % CG_FxInt( "wolf/controller_missilehitwallsmall", "AddDebris_value" ) );     // count
 
 	if ( sfx ) {
@@ -5575,7 +5575,7 @@ void CG_MissileHitPlayer( centity_t *cent, int weapon, vec3_t origin, vec3_t dir
 	// some weapons will make an explosion with the blood, while
 	// others will just make the blood
 	switch ( weapon ) {
-		// knives just make the flesh hit sound.  no other effects
+	// knives just make the flesh hit sound.  no other effects
 	case WP_KNIFE:
 		i = rand() % 4;
 		if ( cgs.media.sfx_knifehit[i] ) {

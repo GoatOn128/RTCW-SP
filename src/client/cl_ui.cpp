@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -95,13 +95,13 @@ void LAN_SaveServersToCache() {
 	/*
 	  int size;
 	  fileHandle_t fileOut;
-  #ifdef __MACOS__	//DAJ MacOS file typing
+	#ifdef __MACOS__	//DAJ MacOS file typing
 	  {
 		  extern _MSL_IMP_EXP_C long _fcreator, _ftype;
 		  _ftype = 'WlfB';
 		  _fcreator = 'WlfS';
 	  }
-  #endif
+	#endif
 	  fileOut = FS_SV_FOpenFileWrite("servercache.dat");
 	  FS_Write(&cls.numglobalservers, sizeof(int), fileOut);
 	  FS_Write(&cls.nummplayerservers, sizeof(int), fileOut);
@@ -450,7 +450,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_CLIENTS:
 		if ( server1->clients < server2->clients ) {
 			res = -1;
-		} else if ( server1->clients > server2->clients )     {
+		} else if ( server1->clients > server2->clients ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -459,7 +459,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_GAME:
 		if ( server1->gameType < server2->gameType ) {
 			res = -1;
-		} else if ( server1->gameType > server2->gameType )     {
+		} else if ( server1->gameType > server2->gameType ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -468,7 +468,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 	case SORT_PING:
 		if ( server1->ping < server2->ping ) {
 			res = -1;
-		} else if ( server1->ping > server2->ping )     {
+		} else if ( server1->ping > server2->ping ) {
 			res = 1;
 		} else {
 			res = 0;
@@ -793,7 +793,7 @@ static uiImport_t CL_CreateUIImports() {
 		return;
 	};
 	imports.Cvar_VariableValue = []( const char *var_name ) -> float {
-		return  Cvar_VariableValue( var_name ) ;
+		return Cvar_VariableValue( var_name ) ;
 	};
 	imports.Cvar_VariableStringBuffer = []( const char *var_name, char *buffer, int bufsize ) -> void {
 		Cvar_VariableStringBuffer( var_name, buffer, bufsize );
@@ -979,10 +979,18 @@ static uiImport_t CL_CreateUIImports() {
 	imports.GetConfigString = []( int index, char* buff, int buffsize ) -> int {
 		return GetConfigString( index, buff, buffsize );
 	};
-	imports.LAN_GetLocalServerCount = []( void ) -> int { return cls.numlocalservers; };
-	imports.LAN_GetLocalServerAddressString = []( int n, char *buf, int buflen ) -> void { LAN_GetServerAddressString( AS_LOCAL, n, buf, buflen ); };
-	imports.LAN_GetGlobalServerCount = []( void ) -> int { return cls.numglobalservers; };
-	imports.LAN_GetGlobalServerAddressString = []( int n, char *buf, int buflen ) -> void { LAN_GetServerAddressString( AS_GLOBAL, n, buf, buflen ); };
+	imports.LAN_GetLocalServerCount = []( void ) -> int {
+		return cls.numlocalservers;
+	};
+	imports.LAN_GetLocalServerAddressString = []( int n, char *buf, int buflen ) -> void {
+		LAN_GetServerAddressString( AS_LOCAL, n, buf, buflen );
+	};
+	imports.LAN_GetGlobalServerCount = []( void ) -> int {
+		return cls.numglobalservers;
+	};
+	imports.LAN_GetGlobalServerAddressString = []( int n, char *buf, int buflen ) -> void {
+		LAN_GetServerAddressString( AS_GLOBAL, n, buf, buflen );
+	};
 	imports.LAN_GetPingQueueCount = []( void ) -> int {
 		return LAN_GetPingQueueCount();
 	};
@@ -1163,7 +1171,7 @@ void CL_InitUI( void ) {
 
 	// init for this gamestate
 //	uivm->UI_INIT();
-	uivm->UI_INIT(( cls.state >= CA_AUTHORIZING && cls.state < CA_ACTIVE ) );
+	uivm->UI_INIT( ( cls.state >= CA_AUTHORIZING && cls.state < CA_ACTIVE ) );
 }
 
 
@@ -1187,5 +1195,5 @@ qboolean UI_GameCommand( void ) {
 		return qfalse;
 	}
 
-	return uivm->UI_CONSOLE_COMMAND(cls.realtime );
+	return uivm->UI_CONSOLE_COMMAND( cls.realtime );
 }

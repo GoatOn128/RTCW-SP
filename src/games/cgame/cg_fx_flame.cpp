@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -80,26 +80,26 @@ typedef struct flameChunk_s
 static std::list<CWolfFlameStream *> fxFlameStreams;
 
 class CWolfFlameStream : public CEffect {
-    std::list<flameChunk_t *> chunks;
-    std::list<CWolfFlameStream *>::iterator entry;
+std::list<flameChunk_t *> chunks;
+std::list<CWolfFlameStream *>::iterator entry;
 public:
-    flameChunk_t *head;
-    CWolfFlameStream() : head( NULL ) {
-        SetFlags( 0 );
-        fxFlameStreams.push_front( this );
-        entry = fxFlameStreams.begin();
-    }
-    ~CWolfFlameStream();
-    flameChunk_t *Append() {
-        flameChunk_t *chunk = new flameChunk_t();
-        chunk->stream = this;
-        chunk->inuse = qtrue;
-        chunk->nextFlameChunk = head;
-        head = chunk;
-        chunks.push_front( chunk );
-        return chunk;
-    }
-    bool Update() override;
+flameChunk_t *head;
+CWolfFlameStream() : head( NULL ) {
+	SetFlags( 0 );
+	fxFlameStreams.push_front( this );
+	entry = fxFlameStreams.begin();
+}
+~CWolfFlameStream();
+flameChunk_t *Append() {
+	flameChunk_t *chunk = new flameChunk_t();
+	chunk->stream = this;
+	chunk->inuse = qtrue;
+	chunk->nextFlameChunk = head;
+	head = chunk;
+	chunks.push_front( chunk );
+	return chunk;
+}
+bool Update() override;
 };
 
 // this structure stores information relevant to each cent in the game, this way we keep
@@ -194,7 +194,7 @@ struct FxFlameSettings {
 	float ignitionWidthScale;
 	float fuelWidthDivisor;
 	float fuelMaxWidthDivisor;
-	float Lifetime() const { return (FLAMETHROWER_RANGE + rangePadding) / startSpeed * 1000.0f; }
+	float Lifetime() const { return ( FLAMETHROWER_RANGE + rangePadding ) / startSpeed * 1000.0f; }
 	float BlueLife() const { return blueLength / startSpeed * 1000.0f; }
 	void Load() {
 		startSize = CG_FxValue( "wolf/flame_stream", "startSize" );
@@ -546,7 +546,7 @@ void CG_FireFlameChunks( centity_t *cent, vec3_t origin, vec3_t angles, float sp
 				if ( dot >= 0.99 ) {
 					dot -= 0.99;
 					dot *= ( 1.0 / ( 1.0 - 0.99 ) );
-					CG_FlameAdjustSpeed( f, /*(0.3+0.7*f->speedScale) **/ 0.5 * frametime * (flameSettings.frictionScale * flameSettings.startSpeed) * pow( dot,4 ) );
+					CG_FlameAdjustSpeed( f, /*(0.3+0.7*f->speedScale) **/ 0.5 * frametime * ( flameSettings.frictionScale * flameSettings.startSpeed ) * pow( dot,4 ) );
 				}
 			}
 
@@ -565,8 +565,8 @@ CG_ClearFlameChunks
 ===============
 */
 void CG_ClearFlameChunks( void ) {
-    memset( centFlameInfo, 0, sizeof( centFlameInfo ) );
-    memset( centFlameStatus, 0, sizeof( centFlameStatus ) );
+	memset( centFlameInfo, 0, sizeof( centFlameInfo ) );
+	memset( centFlameStatus, 0, sizeof( centFlameStatus ) );
 }
 
 /*
@@ -575,14 +575,16 @@ CG_SpawnFlameChunk
 ===============
 */
 flameChunk_t *CG_SpawnFlameChunk( flameChunk_t *previous ) {
-    if ( theFxHelper.mTimeFrozen ) { return NULL; }
-    CWolfFlameStream *stream = previous && previous->inuse ? previous->stream : NULL;
-    if ( !stream ) {
-        stream = new CWolfFlameStream;
-        CEffect *effect = stream;
-        FX_AddPrimitive( &effect, 24 * 60 * 60 * 1000 );
-    }
-    return stream->Append();
+	if ( theFxHelper.mTimeFrozen ) {
+		return NULL;
+	}
+	CWolfFlameStream *stream = previous && previous->inuse ? previous->stream : NULL;
+	if ( !stream ) {
+		stream = new CWolfFlameStream;
+		CEffect *effect = stream;
+		FX_AddPrimitive( &effect, 24 * 60 * 60 * 1000 );
+	}
+	return stream->Append();
 }
 
 /*
@@ -591,11 +593,11 @@ CG_FreeFlameChunk
 ===========
 */
 void CG_FreeFlameChunk( flameChunk_t *chunk ) {
-    while ( chunk ) {
-        chunk->inuse = qfalse;
-        chunk->dead = qtrue;
-        chunk = chunk->nextFlameChunk;
-    }
+	while ( chunk ) {
+		chunk->inuse = qfalse;
+		chunk->dead = qtrue;
+		chunk = chunk->nextFlameChunk;
+	}
 }
 
 /*
@@ -674,7 +676,7 @@ void CG_MoveFlameChunk( flameChunk_t *f, int t ) {
 
 	// subtract friction from speed
 	if ( f->velSpeed > 1 && f->lastFrictionTake < t - 50 ) {
-		CG_FlameAdjustSpeed( f, /*(0.3+0.7*f->speedScale) **/ -( (float)( t - f->lastFrictionTake ) / 1000.0 ) * (flameSettings.frictionScale * flameSettings.startSpeed) );
+		CG_FlameAdjustSpeed( f, /*(0.3+0.7*f->speedScale) **/ -( (float)( t - f->lastFrictionTake ) / 1000.0 ) * ( flameSettings.frictionScale * flameSettings.startSpeed ) );
 		f->lastFrictionTake = t;
 	}
 /*
@@ -1020,11 +1022,11 @@ void CG_AddFlameSpriteToScene( flameChunk_t *f, float lifeFrac, float alpha ) {
 		verts[3].st[1] = 0;
 	}
 
-	frameNum = (int)floor( lifeFrac * static_cast<int>(flameShaders.size()) );
+	frameNum = (int)floor( lifeFrac * static_cast<int>( flameShaders.size() ) );
 	if ( frameNum < 0 ) {
 		frameNum = 0;
-	} else if ( frameNum > static_cast<int>(flameShaders.size()) - 1 )  {
-		frameNum = static_cast<int>(flameShaders.size()) - 1;
+	} else if ( frameNum > static_cast<int>( flameShaders.size() ) - 1 ) {
+		frameNum = static_cast<int>( flameShaders.size() ) - 1;
 	}
 
 	trap_R_AddPolyToScene( flameShaders[frameNum], 4, verts );
@@ -1170,10 +1172,10 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 					//if (cg_entities[f->ownerCent].currentState.aiChar == AICHAR_ZOMBIE)
 					//	shader = cgs.media.funnelFireShader[(cg.time/50 + (cg.time/50 >> 1))%NUM_FUNNEL_SPRITES];
 					//else
-					shader = nozzleShaders[( cg.time / static_cast<int>(flameSettings.nozzleFrameTime) + ( cg.time / static_cast<int>(flameSettings.nozzleFrameTime) >> 1 ) ) % static_cast<int>(nozzleShaders.size())];
+					shader = nozzleShaders[( cg.time / static_cast<int>( flameSettings.nozzleFrameTime ) + ( cg.time / static_cast<int>( flameSettings.nozzleFrameTime ) >> 1 ) ) % static_cast<int>( nozzleShaders.size() )];
 
 					blueTrailHead = CG_FxTrail( "wolf/trail_flame_nozzle", blueTrailHead, f->org,
-			FxTrailInputs().Alpha( alpha ).AlphaEnd( alpha ).Width( f->size * ( f->ignitionOnly ? flameSettings.ignitionWidthScale : 1.0 ) ).Color( c ).ColorEnd( c ).Shader( shader ) );
+												FxTrailInputs().Alpha( alpha ).AlphaEnd( alpha ).Width( f->size * ( f->ignitionOnly ? flameSettings.ignitionWidthScale : 1.0 ) ).Color( c ).ColorEnd( c ).Shader( shader ) );
 				}
 
 				// fire stream
@@ -1208,7 +1210,7 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 						droppedTrail = qtrue;
 
 						fuelTrailHead = CG_FxTrail( "wolf/trail_flame_fuel", fuelTrailHead, f->org,
-			FxTrailInputs().Alpha( alpha ).AlphaEnd( alpha ).Width( ( f->size / flameSettings.fuelWidthDivisor < f->sizeMax / flameSettings.fuelMaxWidthDivisor ? f->size / flameSettings.fuelWidthDivisor : f->sizeMax / flameSettings.fuelMaxWidthDivisor ) ).Mapping( ( f->ignitionOnly ? STYPE_STRETCH : STYPE_REPEAT ) ).Color( c ).ColorEnd( c ) );
+													FxTrailInputs().Alpha( alpha ).AlphaEnd( alpha ).Width( ( f->size / flameSettings.fuelWidthDivisor < f->sizeMax / flameSettings.fuelMaxWidthDivisor ? f->size / flameSettings.fuelWidthDivisor : f->sizeMax / flameSettings.fuelMaxWidthDivisor ) ).Mapping( ( f->ignitionOnly ? STYPE_STRETCH : STYPE_REPEAT ) ).Color( c ).ColorEnd( c ) );
 					}
 				}
 
@@ -1218,7 +1220,7 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 
 
 		if ( !f->ignitionOnly &&
-			 //!(cg_entities[f->ownerCent].currentState.aiChar == AICHAR_ZOMBIE) &&
+		     //!(cg_entities[f->ownerCent].currentState.aiChar == AICHAR_ZOMBIE) &&
 			 ( (float)( flameSettings.spriteStartBlueScale * f->blueLife ) < (float)lived ) ) {
 
 			float alpha, lifeFrac;
@@ -1291,7 +1293,9 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 	if ( alpha > 1.0 ) {
 		alpha = 1.0;
 	}
-	if ( lightFlameCount <= 0 ) { return; }
+	if ( lightFlameCount <= 0 ) {
+		return;
+	}
 	VectorScale( lightOrg, 1.0 / lightFlameCount, lightOrg );
 	// if it's only a nozzle, make it blue
 	if ( fHead->ignitionOnly ) {
@@ -1329,53 +1333,59 @@ CG_FxBeginFlames
 ===============
 */
 void CG_FxBeginFlames( void ) {
-    VectorCopy( cg.refdef.viewaxis[1], vright );
-    VectorCopy( cg.refdef.viewaxis[2], vup );
-    memset( centFlameStatus, 0, sizeof( centFlameStatus ) );
-    numClippedFlames = 0;
+	VectorCopy( cg.refdef.viewaxis[1], vright );
+	VectorCopy( cg.refdef.viewaxis[2], vup );
+	memset( centFlameStatus, 0, sizeof( centFlameStatus ) );
+	numClippedFlames = 0;
 }
 
 CWolfFlameStream::~CWolfFlameStream() {
-    for ( flameChunk_t *chunk : chunks ) {
-        if ( centFlameInfo[chunk->ownerCent].lastFlameChunk == chunk ) {
-            centFlameInfo[chunk->ownerCent].lastFlameChunk = NULL;
-        }
-        delete chunk;
-    }
-    fxFlameStreams.erase( entry );
+	for ( flameChunk_t *chunk : chunks ) {
+		if ( centFlameInfo[chunk->ownerCent].lastFlameChunk == chunk ) {
+			centFlameInfo[chunk->ownerCent].lastFlameChunk = NULL;
+		}
+		delete chunk;
+	}
+	fxFlameStreams.erase( entry );
 }
 
 bool CWolfFlameStream::Update() {
-    for ( flameChunk_t *f : chunks ) {
-        if ( !f->inuse || f->dead ) { continue; }
-        if ( cg.time > f->timeEnd || ( f->ignitionOnly && f->blueLife < cg.time - f->timeStart ) ) {
-            f->dead = qtrue;
-        } else {
-            if ( ( f->sizeTime - f->timeStart < f->blueLife ) != ( cg.time - f->timeStart < f->blueLife ) ) {
-                CG_AdjustFlameSize( f, f->timeStart + f->blueLife );
-            }
-            CG_AdjustFlameSize( f, cg.time );
-            CG_MoveFlameChunk( f, cg.time );
-            f->lifeFrac = static_cast<float>( f->baseOrgTime - f->timeStart ) / ( f->timeEnd - f->timeStart );
-        }
-    }
-    if ( head && head->dead ) {
-        CG_FreeFlameChunk( head );
-    } else if ( head && ( !head->ignitionOnly || centFlameInfo[head->ownerCent].lastFlameChunk == head ) ) {
-        CG_AddFlameToScene( head );
-    }
-    for ( auto it = chunks.begin(); it != chunks.end(); ) {
-        flameChunk_t *chunk = *it;
-        if ( chunk->inuse ) { ++it; continue; }
-        if ( centFlameInfo[chunk->ownerCent].lastFlameChunk == chunk ) {
-            centFlameInfo[chunk->ownerCent].lastFlameChunk = NULL;
-            centFlameInfo[chunk->ownerCent].lastClientFrame = 0;
-        }
-        if ( head == chunk ) { head = NULL; }
-        delete chunk;
-        it = chunks.erase( it );
-    }
-    return head != NULL;
+	for ( flameChunk_t *f : chunks ) {
+		if ( !f->inuse || f->dead ) {
+			continue;
+		}
+		if ( cg.time > f->timeEnd || ( f->ignitionOnly && f->blueLife < cg.time - f->timeStart ) ) {
+			f->dead = qtrue;
+		} else {
+			if ( ( f->sizeTime - f->timeStart < f->blueLife ) != ( cg.time - f->timeStart < f->blueLife ) ) {
+				CG_AdjustFlameSize( f, f->timeStart + f->blueLife );
+			}
+			CG_AdjustFlameSize( f, cg.time );
+			CG_MoveFlameChunk( f, cg.time );
+			f->lifeFrac = static_cast<float>( f->baseOrgTime - f->timeStart ) / ( f->timeEnd - f->timeStart );
+		}
+	}
+	if ( head && head->dead ) {
+		CG_FreeFlameChunk( head );
+	} else if ( head && ( !head->ignitionOnly || centFlameInfo[head->ownerCent].lastFlameChunk == head ) ) {
+		CG_AddFlameToScene( head );
+	}
+	for ( auto it = chunks.begin(); it != chunks.end(); ) {
+		flameChunk_t *chunk = *it;
+		if ( chunk->inuse ) {
+			++it; continue;
+		}
+		if ( centFlameInfo[chunk->ownerCent].lastFlameChunk == chunk ) {
+			centFlameInfo[chunk->ownerCent].lastFlameChunk = NULL;
+			centFlameInfo[chunk->ownerCent].lastClientFrame = 0;
+		}
+		if ( head == chunk ) {
+			head = NULL;
+		}
+		delete chunk;
+		it = chunks.erase( it );
+	}
+	return head != NULL;
 }
 
 /*
@@ -1393,7 +1403,9 @@ void CG_UpdateFlamethrowerSounds( void ) {
 	// draw each of the headFlameChunk's
 	for ( CWolfFlameStream *stream : fxFlameStreams ) {
 		f = stream->head;
-		if ( !f ) { continue; }
+		if ( !f ) {
+			continue;
+		}
 
 		if ( centFlameInfo[f->ownerCent].silent ) {
 			continue;

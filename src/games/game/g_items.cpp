@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -321,7 +321,7 @@ void Add_Ammo( gentity_t *ent, int weapon, int count, qboolean fillClip ) {
 	ent->client->ps.ammo[ammoweap] += count;
 
 	switch ( ammoweap ) {
-		// some weaps load straight into the 'clip' since they have no storage outside the clip
+	// some weaps load straight into the 'clip' since they have no storage outside the clip
 
 	case WP_GRENADE_LAUNCHER:       // make sure if he picks up a grenade that he get's the "launcher" too
 	case WP_GRENADE_PINEAPPLE:
@@ -512,7 +512,7 @@ int Pickup_Health( gentity_t *ent, gentity_t *other ) {
 		if ( ent->s.density ) {    // multi-stage health
 			if ( ent->s.density == 2 ) {       // first stage (it counts down)
 				quantity = ent->item->gameskillnumber[g_gameskill.integer];
-			} else if ( ent->s.density == 1 )      { // second stage
+			} else if ( ent->s.density == 1 ) {      // second stage
 				quantity = ent->item->quantity;
 			}
 		} else {
@@ -965,7 +965,7 @@ void FinishSpawningItem( gentity_t *ent ) {
 		}
 
 		ent->touch = Touch_Item;    // no auto-pickup, only activate
-	} else if ( ent->item->giType == IT_HOLDABLE )      {
+	} else if ( ent->item->giType == IT_HOLDABLE ) {
 		if ( ent->item->giTag >= HI_BOOK1 && ent->item->giTag <= HI_BOOK3 ) {
 			G_FindConfigstringIndex( va( "hbook%d", ent->item->giTag - HI_BOOK1 ), CS_CLIPBOARDS, MAX_CLIPBOARD_CONFIGSTRINGS, qtrue );
 		}
@@ -1266,7 +1266,7 @@ void G_RunItemProp( gentity_t *ent, vec3_t origin ) {
 		Prop_Break_Sound( ent );
 
 		return;
-	} else if ( trace.surfaceFlags & SURF_NOIMPACT )    {
+	} else if ( trace.surfaceFlags & SURF_NOIMPACT ) {
 		ent->takedamage = qfalse;
 
 		Props_Chair_Skyboxtouch( ent );
@@ -1345,4 +1345,3 @@ void G_RunItem( gentity_t *ent ) {
 
 	G_BounceItem( ent, &tr );
 }
-

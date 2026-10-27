@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ static void CG_MouseEventAPI( int dx, int dy ) {
 	CG_MouseEvent( dx, dy );
 }
 
-extern "C" const cgameExport_t *QDECL GetCGameAPI( const cgameImport_t *imports ) {
+extern "C" const cgameExport_t * QDECL GetCGameAPI( const cgameImport_t *imports ) {
 	static const cgameExport_t exports = {
 		CGAME_IMPORT_API_VERSION,
 		CG_Init,

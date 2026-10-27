@@ -415,8 +415,8 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 
 	// just return qfalse if this weapon isn't ready for use
 	switch ( weaponNum ) {
-		// don't attempt to lob a grenade more than this often, since we will abort a grenade
-		// throw if it's not safe, we shouldn't keep switching back too quickly
+	// don't attempt to lob a grenade more than this often, since we will abort a grenade
+	// throw if it's not safe, we shouldn't keep switching back too quickly
 	case WP_DYNAMITE:
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
@@ -682,7 +682,7 @@ qboolean AICast_AimAtEnemy( cast_state_t *cs ) {
 	if ( dist > 256 ) {
 		VectorMA( bestorigin,
 				  ( 0.3 + 0.7 * ( 1 - aim_accuracy ) ) * 0.4 *
-					  sin( (float)level.time / ( 500.0 + ( 100.0 * ( ( cs->entityNum + 3 ) % 4 ) ) ) ),
+				  sin( (float)level.time / ( 500.0 + ( 100.0 * ( ( cs->entityNum + 3 ) % 4 ) ) ) ),
 				  g_entities[cs->enemyNum].client->ps.velocity, bestorigin );
 	}
 	// if we are good at aiming, we should aim ahead of where they are now
@@ -709,7 +709,7 @@ qboolean AICast_CanMoveWhileFiringWeapon( int weaponnum ) {
 	case WP_GARAND:
 	case WP_SNIPERRIFLE: //----(SA)	added
 	case WP_SNOOPERSCOPE: //----(SA)	added
-		//case WP_FG42SCOPE:		//----(SA)	added
+	//case WP_FG42SCOPE:		//----(SA)	added
 	case WP_PANZERFAUST:
 		return qfalse;
 	default:
@@ -887,7 +887,7 @@ qboolean AICast_StopAndAttack( cast_state_t *cs ) {
 
 	switch ( cs->weaponNum ) {
 
-		// if they are using Venom, and are too far away to be effective, then keep chasing
+	// if they are using Venom, and are too far away to be effective, then keep chasing
 	case WP_VENOM:
 		if ( dist > 300 ) {
 			return qfalse;
@@ -900,7 +900,7 @@ qboolean AICast_StopAndAttack( cast_state_t *cs ) {
 			}
 		}
 		break;
-		// if they are using tesla (SUPERSOLDIER / BOSS2) try and get close
+	// if they are using tesla (SUPERSOLDIER / BOSS2) try and get close
 	case WP_TESLA:
 		if ( dist > 128 /*&& (level.time%10000 < 8000)*/ ) {
 			return qfalse;

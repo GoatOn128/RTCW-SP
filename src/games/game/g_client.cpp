@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -483,7 +483,7 @@ void limbo( gentity_t *ent ) {
 		if ( ent->client->sess.sessionTeam == TEAM_RED ) {
 			ent->client->deployQueueNumber = level.redNumWaiting;
 			level.redNumWaiting++;
-		} else if ( ent->client->sess.sessionTeam == TEAM_BLUE )     {
+		} else if ( ent->client->sess.sessionTeam == TEAM_BLUE ) {
 			ent->client->deployQueueNumber = level.blueNumWaiting;
 			level.blueNumWaiting++;
 		}
@@ -706,7 +706,7 @@ team_t PickTeam( int ignoreClientNum ) {
 		}
 		if ( level.clients[i].sess.sessionTeam == TEAM_BLUE ) {
 			counts[TEAM_BLUE]++;
-		} else if ( level.clients[i].sess.sessionTeam == TEAM_RED )   {
+		} else if ( level.clients[i].sess.sessionTeam == TEAM_RED ) {
 			counts[TEAM_RED]++;
 		}
 	}
@@ -1172,7 +1172,7 @@ qboolean G_CheckForExistingModelInfo( gclient_t *cl, char *modelName, animModelI
 				return qtrue;
 			}
 		} else {
-				level.animScriptData.modelInfo[i] = (animModelInfo_t *) G_Alloc( sizeof( animModelInfo_t ) );
+			level.animScriptData.modelInfo[i] = (animModelInfo_t *) G_Alloc( sizeof( animModelInfo_t ) );
 			*modelInfo = level.animScriptData.modelInfo[i];
 			// clear the structure out ready for use
 			memset( *modelInfo, 0, sizeof( **modelInfo ) );
@@ -1490,8 +1490,8 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 	gentity_t   *ent;
 
 	if ( isBot ) {
-        return "Arena bots are not supported";
-    }
+		return "Arena bots are not supported";
+	}
 
 	ent = &g_entities[ clientNum ];
 

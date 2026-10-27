@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -60,8 +60,8 @@ CG_MakeExplosion
 ====================
 */
 fxEntity_t *CG_MakeExplosion( vec3_t origin, vec3_t dir,
-								 qhandle_t hModel, qhandle_t shader,
-								 int msec, qboolean isSprite ) {
+							  qhandle_t hModel, qhandle_t shader,
+							  int msec, qboolean isSprite ) {
 	float ang;
 	fxEntity_t   *ex;
 	int offset;
@@ -127,7 +127,9 @@ CG_AddBloodTrails
 =================
 */
 void CG_AddBloodTrails( vec3_t origin, vec3_t direction ) {
-    if ( cg_blood.integer ) { CG_FxPlay( "wolf/blood_spurt", origin, direction ); }
+	if ( cg_blood.integer ) {
+		CG_FxPlay( "wolf/blood_spurt", origin, direction );
+	}
 }
 
 /*
@@ -358,9 +360,9 @@ void CG_LoseHat( centity_t *cent, vec3_t dir ) {
 		le->angles.trDelta[1]   = ( CG_FxInt( "wolf/controller_losehat", "le_angles_trDelta_y" ) + ( rand() & CG_FxInt( "wolf/controller_losehat", "le_angles_trDelta_y_2" ) ) ) - CG_FxInt( "wolf/controller_losehat", "le_angles_trDelta_y_3" );
 //		le->angles.trDelta[2]	= 0;
 		le->angles.trDelta[2]   = CG_FxInt( "wolf/controller_losehat", "le_angles_trDelta_z" );  // (SA) this is set with a very particular value to try to get it
-										// to flip exactly once before landing (based on player alive
-										// (standing) and on level ground) and will be unnecessary when
-										// I have things landing properly on their own
+		// to flip exactly once before landing (based on player alive
+		// (standing) and on level ground) and will be unnecessary when
+		// I have things landing properly on their own
 
 		le->angles.trTime       = cg.time;
 
@@ -892,7 +894,7 @@ void CG_DynamicLightningBolt( qhandle_t shader, vec3_t start, vec3_t pend, int n
 		}
 		//
 		curJunc = CG_FxTrail( "wolf/trail_tesla", 0, pos,
-			FxTrailInputs().Life( trailLife ).Width( thisWidth ).WidthEnd( thisWidth ).Ratio( stScale ).Color( c ).ColorEnd( c ).Shader( shader ) );
+							  FxTrailInputs().Life( trailLife ).Width( thisWidth ).WidthEnd( thisWidth ).Ratio( stScale ).Color( c ).ColorEnd( c ).Shader( shader ) );
 		while ( distLeft > 0 )
 		{   // create this bolt
 			thisSeg = segMin + ( segMax - segMin ) * lt_random( randseed,2 );
@@ -975,7 +977,7 @@ void CG_DynamicLightningBolt( qhandle_t shader, vec3_t start, vec3_t pend, int n
 			//
 			//stScale = maxSTscale * (0.4 + lt_random(randseed,1)*0.6);
 			curJunc = CG_FxTrail( "wolf/trail_tesla", curJunc, pos,
-			FxTrailInputs().Life( trailLife ).Width( thisWidth ).WidthEnd( thisWidth ).Ratio( stScale ).Color( c ).ColorEnd( c ).Shader( shader ) );
+								  FxTrailInputs().Life( trailLife ).Width( thisWidth ).WidthEnd( thisWidth ).Ratio( stScale ).Color( c ).ColorEnd( c ).Shader( shader ) );
 
 			// fork from here?
 			if ( thisWidth < CG_FxInt( "wolf/controller_dynamiclightningbolt", "tuning_4" ) && distLeft > CG_FxInt( "wolf/controller_dynamiclightningbolt", "tuning_5" ) && recursion < 3 && forks < 3 && lt_random( randseed,CG_FxInt( "wolf/controller_dynamiclightningbolt", "tuning_6" ) + i + forks ) < FORK_CHANCE ) {
@@ -1450,6 +1452,3 @@ void CG_RumbleEfx( float pitch, float yaw ) {
 	// set the recoil
 	cg.recoilPitch -= pitchRecoilAdd;
 }
-
-
-

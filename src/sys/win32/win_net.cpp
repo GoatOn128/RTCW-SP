@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -123,16 +123,16 @@ void NetadrToSockadr( netadr_t *a, struct sockaddr *s ) {
 		( (struct sockaddr_in *)s )->sin_family = AF_INET;
 		( (struct sockaddr_in *)s )->sin_port = a->port;
 		( (struct sockaddr_in *)s )->sin_addr.s_addr = INADDR_BROADCAST;
-	} else if ( a->type == NA_IP )    {
+	} else if ( a->type == NA_IP ) {
 		( (struct sockaddr_in *)s )->sin_family = AF_INET;
 		( (struct sockaddr_in *)s )->sin_addr.s_addr = *(int *)&a->ip;
 		( (struct sockaddr_in *)s )->sin_port = a->port;
-	} else if ( a->type == NA_IPX )    {
+	} else if ( a->type == NA_IPX ) {
 		( (struct sockaddr_ipx *)s )->sa_family = AF_IPX;
 		memcpy( ( (struct sockaddr_ipx *)s )->sa_netnum, &a->ipx[0], 4 );
 		memcpy( ( (struct sockaddr_ipx *)s )->sa_nodenum, &a->ipx[4], 6 );
 		( (struct sockaddr_ipx *)s )->sa_socket = a->port;
-	} else if ( a->type == NA_BROADCAST_IPX )    {
+	} else if ( a->type == NA_BROADCAST_IPX ) {
 		( (struct sockaddr_ipx *)s )->sa_family = AF_IPX;
 		memset( ( (struct sockaddr_ipx *)s )->sa_netnum, 0, 4 );
 		memset( ( (struct sockaddr_ipx *)s )->sa_nodenum, 0xff, 6 );
@@ -146,7 +146,7 @@ void SockadrToNetadr( struct sockaddr *s, netadr_t *a ) {
 		a->type = NA_IP;
 		*(int *)&a->ip = ( (struct sockaddr_in *)s )->sin_addr.s_addr;
 		a->port = ( (struct sockaddr_in *)s )->sin_port;
-	} else if ( s->sa_family == AF_IPX )    {
+	} else if ( s->sa_family == AF_IPX ) {
 		a->type = NA_IPX;
 		memcpy( &a->ipx[0], ( (struct sockaddr_ipx *)s )->sa_netnum, 4 );
 		memcpy( &a->ipx[4], ( (struct sockaddr_ipx *)s )->sa_nodenum, 6 );
@@ -164,11 +164,11 @@ idnewt
 12121212.121212121212
 =============
 */
-#define DO( src,dest )	  \
-	copy[0] = s[src];	\
-	copy[1] = s[src + 1];	\
-	sscanf( copy, "%x", &val );	  \
-	( (struct sockaddr_ipx *)sadr )->dest = val
+#define DO( src,dest )    \
+		copy[0] = s[src];   \
+		copy[1] = s[src + 1];   \
+		sscanf( copy, "%x", &val );   \
+		( (struct sockaddr_ipx *)sadr )->dest = val
 
 qboolean Sys_StringToSockaddr( const char *s, struct sockaddr *sadr ) {
 	struct hostent  *h;
@@ -321,11 +321,11 @@ void Sys_SendPacket( int length, const void *data, netadr_t to ) {
 
 	if ( to.type == NA_BROADCAST ) {
 		net_socket = ip_socket;
-	} else if ( to.type == NA_IP )    {
+	} else if ( to.type == NA_IP ) {
 		net_socket = ip_socket;
-	} else if ( to.type == NA_IPX )    {
+	} else if ( to.type == NA_IPX ) {
 		net_socket = ipx_socket;
-	} else if ( to.type == NA_BROADCAST_IPX )    {
+	} else if ( to.type == NA_BROADCAST_IPX ) {
 		net_socket = ipx_socket;
 	} else {
 		Com_Error( ERR_FATAL, "Sys_SendPacket: bad address type" );

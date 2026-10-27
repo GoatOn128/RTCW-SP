@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -82,8 +82,8 @@ typedef struct {
 } skelSurface_t;
 
 typedef struct {
-    vec4_t rotation; // unit quaternion, model space
-    vec3_t translation; // model space
+	vec4_t rotation; // unit quaternion, model space
+	vec3_t translation; // model space
 } skelPose_t;
 
 // NOTE: this only used at run-time
@@ -137,6 +137,6 @@ typedef struct {
 	int ofsEnd;                     // end of file
 } skelHeader_t;
 
-qboolean R_LoadMD5(model_t *mod, const char *name);
-void R_MD5QuatMatrix(const vec4_t q, vec3_t m[3]);
-void R_MD5BlendQuat(const vec4_t a, const vec4_t b, float fraction, vec4_t out);
+qboolean R_LoadMD5( model_t *mod, const char *name );
+void R_MD5QuatMatrix( const vec4_t q, vec3_t m[3] );
+void R_MD5BlendQuat( const vec4_t a, const vec4_t b, float fraction, vec4_t out );

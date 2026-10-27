@@ -80,10 +80,12 @@ NavWorld &World() {
 }
 
 void ClearWorld( NavWorld &world ) {
-	if ( world.query )
+	if ( world.query ) {
 		dtFreeNavMeshQuery( world.query );
-	if ( world.mesh )
+	}
+	if ( world.mesh ) {
 		dtFreeNavMesh( world.mesh );
+	}
 	world = NavWorld{};
 }
 
@@ -127,24 +129,28 @@ unsigned char PolyArea( const NavWorld &world, int area ) {
 	const dtPolyRef ref = RefForArea( world, area );
 	const dtMeshTile *tile = nullptr;
 	const dtPoly *poly = nullptr;
-	if ( !ref || !world.mesh || dtStatusFailed( world.mesh->getTileAndPolyByRef( ref, &tile, &poly ) ) )
+	if ( !ref || !world.mesh || dtStatusFailed( world.mesh->getTileAndPolyByRef( ref, &tile, &poly ) ) ) {
 		return 0;
+	}
 	return poly->getArea();
 }
 
 int NearestArea( NavWorld &world, const vec3_t point, float *nearestQuake = nullptr ) {
-	if ( !world.loaded || !world.query )
+	if ( !world.loaded || !world.query ) {
 		return 0;
+	}
 	float nav[3], nearest[3];
 	wolf::nav::QuakeToNav( point, nav );
 	const float extents[3]{ ( std::max )( 64.0f, world.header.agentRadius * 2 ),
 							( std::max )( 128.0f, world.header.agentHeight * 2 ),
 							( std::max )( 64.0f, world.header.agentRadius * 2 ) };
 	dtPolyRef ref = 0;
-	if ( dtStatusFailed( world.query->findNearestPoly( nav, extents, &world.filter, &ref, nearest ) ) || !ref )
+	if ( dtStatusFailed( world.query->findNearestPoly( nav, extents, &world.filter, &ref, nearest ) ) || !ref ) {
 		return 0;
-	if ( nearestQuake )
+	}
+	if ( nearestQuake ) {
 		wolf::nav::NavToQuake( nearest, nearestQuake );
+	}
 	return AreaForRef( world, ref );
 }
 
@@ -155,26 +161,30 @@ float NavDistance( const float *a, const float *b ) {
 
 int FindPath( NavWorld &world, int startArea, const vec3_t start, int goalArea, std::vector<dtPolyRef> &path ) {
 	const dtPolyRef startRef = RefForArea( world, startArea ), goalRef = RefForArea( world, goalArea );
-	if ( !startRef || !goalRef )
+	if ( !startRef || !goalRef ) {
 		return 0;
+	}
 	float navStart[3], navGoal[3];
 	wolf::nav::QuakeToNav( start, navStart );
 	wolf::nav::QuakeToNav( world.centers[goalArea], navGoal );
 	path.resize( 4096 );
 	int count = 0;
 	if ( dtStatusFailed( world.query->findPath( startRef, goalRef, navStart, navGoal, &world.filter, path.data(),
-												&count, static_cast<int>( path.size() ) ) ) )
+												&count, static_cast<int>( path.size() ) ) ) ) {
 		return 0;
+	}
 	path.resize( count );
 	return count && path.back() == goalRef ? count : 0;
 }
 
 int ReachBetween( const NavWorld &world, int fromArea, int toArea ) {
-	if ( fromArea <= 0 || fromArea >= static_cast<int>( world.areaReaches.size() ) )
+	if ( fromArea <= 0 || fromArea >= static_cast<int>( world.areaReaches.size() ) ) {
 		return 0;
+	}
 	for ( int reach : world.areaReaches[fromArea] )
-		if ( world.reaches[reach].areanum == toArea )
+		if ( world.reaches[reach].areanum == toArea ) {
 			return reach;
+		}
 	return 0;
 }
 
@@ -184,13 +194,15 @@ void BuildAreaIndex( NavWorld &world ) {
 	world.centers.resize( 1 );
 	for ( int tileIndex = 0; tileIndex < world.mesh->getMaxTiles(); ++tileIndex ) {
 		const dtMeshTile *tile = static_cast<const dtNavMesh *>( world.mesh )->getTile( tileIndex );
-		if ( !tile || !tile->header )
+		if ( !tile || !tile->header ) {
 			continue;
+		}
 		const dtPolyRef base = world.mesh->getPolyRefBase( tile );
 		for ( int polyIndex = 0; polyIndex < tile->header->polyCount; ++polyIndex ) {
 			const dtPoly &poly = tile->polys[polyIndex];
-			if ( poly.getType() != DT_POLYTYPE_GROUND )
+			if ( poly.getType() != DT_POLYTYPE_GROUND ) {
 				continue;
+			}
 			const dtPolyRef ref = base | static_cast<dtPolyRef>( polyIndex );
 			const int area = static_cast<int>( world.areaRefs.size() );
 			world.areaRefs.push_back( ref );
@@ -206,16 +218,19 @@ void BuildAreaIndex( NavWorld &world ) {
 	for ( int area = 1; area < static_cast<int>( world.areaRefs.size() ); ++area ) {
 		const dtMeshTile *tile = nullptr;
 		const dtPoly *poly = nullptr;
-		if ( dtStatusFailed( world.mesh->getTileAndPolyByRef( world.areaRefs[area], &tile, &poly ) ) )
+		if ( dtStatusFailed( world.mesh->getTileAndPolyByRef( world.areaRefs[area], &tile, &poly ) ) ) {
 			continue;
+		}
 		for ( unsigned int edge = 0; edge < poly->vertCount; ++edge ) {
 			const unsigned short nei = poly->neis[edge];
-			if ( !nei || ( nei & DT_EXT_LINK ) )
+			if ( !nei || ( nei & DT_EXT_LINK ) ) {
 				continue;
+			}
 			const dtPolyRef targetRef = world.mesh->getPolyRefBase( tile ) | static_cast<dtPolyRef>( nei - 1 );
 			const int targetArea = AreaForRef( world, targetRef );
-			if ( !targetArea )
+			if ( !targetArea ) {
 				continue;
+			}
 			aas_reachability_t reach{};
 			reach.areanum = targetArea;
 			reach.traveltype =
@@ -260,8 +275,9 @@ void BuildAreaIndex( NavWorld &world ) {
 bool LoadWorldFile( NavWorld &world, const std::string &path ) {
 	fileHandle_t file = 0;
 	const int length = botimport.FS_FOpenFile( path.c_str(), &file, FS_READ );
-	if ( length < static_cast<int>( sizeof( wolf::nav::FileHeader ) ) || !file )
+	if ( length < static_cast<int>( sizeof( wolf::nav::FileHeader ) ) || !file ) {
 		return false;
+	}
 	wolf::nav::FileHeader header{};
 	botimport.FS_Read( &header, sizeof( header ), file );
 	if ( header.magic != wolf::nav::kMagic || header.version != wolf::nav::kVersion ||
@@ -306,33 +322,38 @@ bool LoadWorldFile( NavWorld &world, const std::string &path ) {
 std::string BaseMapName( const char *mapname ) {
 	std::string name = mapname ? mapname : "";
 	const std::size_t slash = name.find_last_of( "/\\" );
-	if ( slash != std::string::npos )
+	if ( slash != std::string::npos ) {
 		name.erase( 0, slash + 1 );
+	}
 	const std::size_t dot = name.find_last_of( '.' );
-	if ( dot != std::string::npos )
+	if ( dot != std::string::npos ) {
 		name.erase( dot );
+	}
 	return name;
 }
 
 void ParseBspEntities() {
 	bspEntities.clear();
 	const char *data = botimport.BSPEntityData ? botimport.BSPEntityData() : nullptr;
-	if ( !data )
+	if ( !data ) {
 		return;
+	}
 	const char *p = data;
 	auto token = [&]() -> std::string {
 		while ( *p && static_cast<unsigned char>( *p ) <= ' ' )
 			++p;
-		if ( *p == '{' || *p == '}' )
+		if ( *p == '{' || *p == '}' ) {
 			return std::string( 1, *p++ );
+		}
 		if ( *p == '"' ) {
 			++p;
 			const char *start = p;
 			while ( *p && *p != '"' )
 				++p;
 			std::string result( start, p );
-			if ( *p )
+			if ( *p ) {
 				++p;
+			}
 			return result;
 		}
 		const char *start = p;
@@ -342,15 +363,18 @@ void ParseBspEntities() {
 	};
 	for ( ;; ) {
 		std::string open = token();
-		if ( open.empty() )
+		if ( open.empty() ) {
 			break;
-		if ( open != "{" )
+		}
+		if ( open != "{" ) {
 			continue;
+		}
 		std::unordered_map<std::string, std::string> entity;
 		for ( ;; ) {
 			std::string key = token();
-			if ( key.empty() || key == "}" )
+			if ( key.empty() || key == "}" ) {
 				break;
+			}
 			entity[key] = token();
 		}
 		bspEntities.push_back( std::move( entity ) );
@@ -401,8 +425,9 @@ float AAS_Time() {
 	return navTime;
 }
 void AAS_SetCurrentWorld( int index ) {
-	if ( index >= 0 && index < MAX_AAS_WORLDS && worlds[index].loaded )
+	if ( index >= 0 && index < MAX_AAS_WORLDS && worlds[index].loaded ) {
 		currentWorld = index;
+	}
 }
 char *AAS_ModelFromIndex( int index ) {
 	static char model[32];
@@ -414,8 +439,9 @@ int AAS_IndexFromModel( char *modelname ) {
 }
 
 int AAS_UpdateEntity( int entnum, bot_entitystate_t *state ) {
-	if ( entnum < 0 || entnum >= static_cast<int>( entities.size() ) || !state )
+	if ( entnum < 0 || entnum >= static_cast<int>( entities.size() ) || !state ) {
 		return BLERR_INVALIDENTITYNUMBER;
+	}
 	aas_entityinfo_t &info = entities[entnum];
 	info.update_time = navTime - info.ltime;
 	info.ltime = navTime;
@@ -442,17 +468,20 @@ int AAS_UpdateEntity( int entnum, bot_entitystate_t *state ) {
 	return BLERR_NOERROR;
 }
 void AAS_EntityInfo( int entnum, aas_entityinfo_t *info ) {
-	if ( !info )
+	if ( !info ) {
 		return;
-	if ( entnum >= 0 && entnum < static_cast<int>( entities.size() ) )
+	}
+	if ( entnum >= 0 && entnum < static_cast<int>( entities.size() ) ) {
 		*info = entities[entnum];
-	else
+	}else{
 		std::memset( info, 0, sizeof( *info ) );
+	}
 }
 int AAS_NextEntity( int entnum ) {
 	for ( int i = entnum + 1; i < static_cast<int>( entities.size() ); ++i )
-		if ( entities[i].valid )
+		if ( entities[i].valid ) {
 			return i;
+		}
 	return 0;
 }
 int AAS_EntityType( int entnum ) {
@@ -475,8 +504,9 @@ int AAS_OriginOfEntityWithModelNum( int modelnum, vec3_t origin ) {
 int AAS_IsEntityInArea( int ignore1, int ignore2, int area ) {
 	for ( const auto &entity : entities )
 		if ( entity.valid && entity.number != ignore1 && entity.number != ignore2 &&
-			 AAS_PointAreaNum( const_cast<float *>( entity.origin ) ) == area )
+			 AAS_PointAreaNum( const_cast<float *>( entity.origin ) ) == area ) {
 			return qtrue;
+		}
 	return qfalse;
 }
 
@@ -493,8 +523,9 @@ qboolean AAS_inPVS( vec3_t p1, vec3_t p2 ) {
 }
 qboolean AAS_AreasConnected( int area1, int area2 ) {
 	NavWorld &world = World();
-	if ( !RefForArea( world, area1 ) || !RefForArea( world, area2 ) )
+	if ( !RefForArea( world, area1 ) || !RefForArea( world, area2 ) ) {
 		return qfalse;
+	}
 	std::vector<dtPolyRef> path;
 	return FindPath( world, area1, world.centers[area1], area2, path ) ? qtrue : qfalse;
 }
@@ -506,34 +537,40 @@ int AAS_NextBSPEntity( int ent ) {
 	return next > 0 && next <= static_cast<int>( bspEntities.size() ) ? next : 0;
 }
 int AAS_ValueForBSPEpairKey( int ent, char *key, char *value, int size ) {
-	if ( value && size )
+	if ( value && size ) {
 		value[0] = 0;
-	if ( ent <= 0 || ent > static_cast<int>( bspEntities.size() ) || !key || !value || size <= 0 )
+	}
+	if ( ent <= 0 || ent > static_cast<int>( bspEntities.size() ) || !key || !value || size <= 0 ) {
 		return qfalse;
+	}
 	auto it = bspEntities[ent - 1].find( key );
-	if ( it == bspEntities[ent - 1].end() )
+	if ( it == bspEntities[ent - 1].end() ) {
 		return qfalse;
+	}
 	std::strncpy( value, it->second.c_str(), size - 1 );
 	value[size - 1] = 0;
 	return qtrue;
 }
 int AAS_VectorForBSPEpairKey( int ent, char *key, vec3_t v ) {
 	char value[MAX_EPAIRKEY]{};
-	if ( !AAS_ValueForBSPEpairKey( ent, key, value, sizeof( value ) ) )
+	if ( !AAS_ValueForBSPEpairKey( ent, key, value, sizeof( value ) ) ) {
 		return qfalse;
+	}
 	return std::sscanf( value, "%f %f %f", &v[0], &v[1], &v[2] ) == 3;
 }
 int AAS_FloatForBSPEpairKey( int ent, char *key, float *value ) {
 	char text[MAX_EPAIRKEY]{};
-	if ( !AAS_ValueForBSPEpairKey( ent, key, text, sizeof( text ) ) )
+	if ( !AAS_ValueForBSPEpairKey( ent, key, text, sizeof( text ) ) ) {
 		return qfalse;
+	}
 	*value = std::strtof( text, nullptr );
 	return qtrue;
 }
 int AAS_IntForBSPEpairKey( int ent, char *key, int *value ) {
 	char text[MAX_EPAIRKEY]{};
-	if ( !AAS_ValueForBSPEpairKey( ent, key, text, sizeof( text ) ) )
+	if ( !AAS_ValueForBSPEpairKey( ent, key, text, sizeof( text ) ) ) {
 		return qfalse;
+	}
 	*value = std::atoi( text );
 	return qtrue;
 }
@@ -548,8 +585,9 @@ int AAS_PointAreaNum( vec3_t point ) {
 	return NearestArea( World(), point );
 }
 int AAS_TraceAreas( vec3_t start, vec3_t end, int *areas, vec3_t *points, int maxareas ) {
-	if ( maxareas <= 0 )
+	if ( maxareas <= 0 ) {
 		return 0;
+	}
 	int count = 0, previous = 0;
 	for ( int sample = 0; sample <= 64 && count < maxareas; ++sample ) {
 		const float t = sample / 64.0f;
@@ -559,8 +597,9 @@ int AAS_TraceAreas( vec3_t start, vec3_t end, int *areas, vec3_t *points, int ma
 		const int area = AAS_PointAreaNum( p );
 		if ( area && area != previous ) {
 			areas[count] = area;
-			if ( points )
+			if ( points ) {
 				CopyVec( p, points[count] );
+			}
 			previous = area;
 			++count;
 		}
@@ -571,8 +610,9 @@ int AAS_AreaCluster( int areanum ) {
 	return RefForArea( World(), areanum ) ? 1 : 0;
 }
 int AAS_AreaPresenceType( int areanum ) {
-	if ( !RefForArea( World(), areanum ) )
+	if ( !RefForArea( World(), areanum ) ) {
 		return PRESENCE_NONE;
+	}
 	return PolyArea( World(), areanum ) == 1 ? PRESENCE_CROUCH : PRESENCE_NORMAL | PRESENCE_CROUCH;
 }
 int AAS_PointPresenceType( vec3_t point ) {
@@ -585,8 +625,9 @@ int AAS_AreaReachability( int areanum ) {
 }
 int AAS_BestReachableArea( vec3_t origin, vec3_t, vec3_t, vec3_t goalorigin ) {
 	const int area = NearestArea( World(), origin, goalorigin );
-	if ( !area )
+	if ( !area ) {
 		CopyVec( origin, goalorigin );
+	}
 	return area;
 }
 int AAS_NextModelReachability( int, int ) {
@@ -628,20 +669,24 @@ int AAS_AreaContentsTravelFlag( int ) {
 int AAS_NextAreaReachability( int area, int reach ) {
 	const auto &list = area > 0 && area < static_cast<int>( World().areaReaches.size() ) ? World().areaReaches[area]
 																						 : std::vector<int>{};
-	if ( list.empty() )
+	if ( list.empty() ) {
 		return 0;
-	if ( !reach )
+	}
+	if ( !reach ) {
 		return list.front();
+	}
 	auto it = std::find( list.begin(), list.end(), reach );
 	return it != list.end() && ++it != list.end() ? *it : 0;
 }
 void AAS_ReachabilityFromNum( int num, aas_reachability_t *reach ) {
-	if ( !reach )
+	if ( !reach ) {
 		return;
-	if ( num > 0 && num < static_cast<int>( World().reaches.size() ) )
+	}
+	if ( num > 0 && num < static_cast<int>( World().reaches.size() ) ) {
 		*reach = World().reaches[num];
-	else
+	}else{
 		std::memset( reach, 0, sizeof( *reach ) );
+	}
 }
 unsigned short AAS_AreaTravelTime( int, vec3_t start, vec3_t end ) {
 	const float speed = ( std::max )( 1.0f, World().header.maxWalkVelocity );
@@ -649,21 +694,26 @@ unsigned short AAS_AreaTravelTime( int, vec3_t start, vec3_t end ) {
 		( std::min )( 65535.0f, ( std::max )( 1.0f, NavDistance( start, end ) * 100.0f / speed ) ) );
 }
 int AAS_AreaRouteToGoalArea( int area, vec3_t origin, int goal, int, int *travelTime, int *reachNum ) {
-	if ( travelTime )
+	if ( travelTime ) {
 		*travelTime = 0;
-	if ( reachNum )
+	}
+	if ( reachNum ) {
 		*reachNum = 0;
+	}
 	std::vector<dtPolyRef> path;
-	if ( !FindPath( World(), area, origin, goal, path ) )
+	if ( !FindPath( World(), area, origin, goal, path ) ) {
 		return qfalse;
+	}
 	float total = NavDistance( origin, World().centers[area] );
 	for ( std::size_t i = 1; i < path.size(); ++i )
 		total += NavDistance( World().centers[AreaForRef( World(), path[i - 1] )],
 							  World().centers[AreaForRef( World(), path[i] )] );
-	if ( travelTime )
+	if ( travelTime ) {
 		*travelTime = static_cast<int>( total * 100 / ( std::max )( 1.0f, World().header.maxWalkVelocity ) );
-	if ( reachNum && path.size() > 1 )
+	}
+	if ( reachNum && path.size() > 1 ) {
 		*reachNum = ReachBetween( World(), area, AreaForRef( World(), path[1] ) );
+	}
 	return qtrue;
 }
 int AAS_AreaTravelTimeToGoalArea( int area, vec3_t origin, int goal, int flags ) {
@@ -674,11 +724,13 @@ int AAS_AreaTravelTimeToGoalAreaCheckLoop( int area, vec3_t origin, int goal, in
 	return area == loop ? 0 : AAS_AreaTravelTimeToGoalArea( area, origin, goal, flags );
 }
 int AAS_RandomGoalArea( int area, int, int *goalArea, vec3_t goalOrigin ) {
-	if ( World().areaRefs.size() <= 1 )
+	if ( World().areaRefs.size() <= 1 ) {
 		return qfalse;
+	}
 	int chosen = 1 + std::rand() % ( static_cast<int>( World().areaRefs.size() ) - 1 );
-	if ( chosen == area && World().areaRefs.size() > 2 )
+	if ( chosen == area && World().areaRefs.size() > 2 ) {
 		chosen = chosen % ( static_cast<int>( World().areaRefs.size() ) - 1 ) + 1;
+	}
 	*goalArea = chosen;
 	CopyVec( World().centers[chosen], goalOrigin );
 	return qtrue;
@@ -695,10 +747,11 @@ int AAS_Swimming( vec3_t origin ) {
 	return ( AAS_PointContents( origin ) & CONTENTS_WATER ) != 0;
 }
 void AAS_JumpReachRunStart( aas_reachability_t *reach, vec3_t runstart ) {
-	if ( reach )
+	if ( reach ) {
 		CopyVec( reach->start, runstart );
-	else
+	}else{
 		VectorClear( runstart );
+	}
 }
 int AAS_AgainstLadder( vec3_t, int ) {
 	return qfalse;
@@ -707,11 +760,13 @@ int AAS_HorizontalVelocityForJump( float zvel, vec3_t start, vec3_t end, float *
 	const float gravity = ( std::max )( 1.0f, World().header.gravity );
 	const float dz = end[2] - start[2];
 	const float disc = zvel * zvel - 2 * gravity * dz;
-	if ( disc < 0 )
+	if ( disc < 0 ) {
 		return qfalse;
+	}
 	const float time = ( zvel + std::sqrt( disc ) ) / gravity;
-	if ( time <= 0 )
+	if ( time <= 0 ) {
 		return qfalse;
+	}
 	*velocity =
 		std::sqrt( ( end[0] - start[0] ) * ( end[0] - start[0] ) + ( end[1] - start[1] ) * ( end[1] - start[1] ) ) /
 		time;
@@ -719,8 +774,9 @@ int AAS_HorizontalVelocityForJump( float zvel, vec3_t start, vec3_t end, float *
 }
 int AAS_DropToFloor( vec3_t origin, vec3_t, vec3_t ) {
 	vec3_t nearest;
-	if ( !NearestArea( World(), origin, nearest ) )
+	if ( !NearestArea( World(), origin, nearest ) ) {
 		return qfalse;
+	}
 	CopyVec( nearest, origin );
 	return qtrue;
 }
@@ -741,8 +797,9 @@ aas_trace_t AAS_TraceClientBBox( vec3_t start, vec3_t end, int presence, int pas
 int AAS_PredictClientMovement( aas_clientmove_t *move, int entnum, vec3_t origin, int presence, int onground,
 							   vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float dt, int stopEvent,
 							   int stopArea, int ) {
-	if ( !move )
+	if ( !move ) {
 		return qfalse;
+	}
 	std::memset( move, 0, sizeof( *move ) );
 	vec3_t pos, vel;
 	CopyVec( origin, pos );
@@ -753,8 +810,9 @@ int AAS_PredictClientMovement( aas_clientmove_t *move, int entnum, vec3_t origin
 			vel[1] += cmdmove[1] * dt;
 			vel[2] += cmdmove[2] * dt;
 		}
-		if ( !onground )
+		if ( !onground ) {
 			vel[2] -= World().header.gravity * dt;
+		}
 		vec3_t end{ pos[0] + vel[0] * dt, pos[1] + vel[1] * dt, pos[2] + vel[2] * dt };
 		move->trace = AAS_TraceClientBBox( pos, end, presence, entnum );
 		CopyVec( move->trace.endpos, pos );
@@ -779,13 +837,15 @@ int AAS_PredictClientMovement( aas_clientmove_t *move, int entnum, vec3_t origin
 
 void AAS_SetAASBlockingEntity( vec3_t mins, vec3_t maxs, qboolean blocking ) {
 	NavWorld &world = World();
-	if ( !world.loaded )
+	if ( !world.loaded ) {
 		return;
+	}
 	for ( int area = 1; area < static_cast<int>( world.centers.size() ); ++area ) {
 		const float *p = world.centers[area];
 		if ( p[0] >= mins[0] && p[0] <= maxs[0] && p[1] >= mins[1] && p[1] <= maxs[1] && p[2] >= mins[2] &&
-			 p[2] <= maxs[2] )
+			 p[2] <= maxs[2] ) {
 			world.mesh->setPolyFlags( world.areaRefs[area], blocking ? wolf::nav::PolyDisabled : wolf::nav::PolyWalk );
+		}
 	}
 }
 void AAS_RT_ShowRoute( vec3_t, int, int ) {
@@ -800,8 +860,9 @@ qboolean AAS_GetRouteFirstVisPos( vec3_t src, vec3_t dest, int, vec3_t result ) 
 	NavWorld &world = World();
 	const int startArea = AAS_PointAreaNum( src ), goalArea = AAS_PointAreaNum( dest );
 	std::vector<dtPolyRef> path;
-	if ( !FindPath( world, startArea, src, goalArea, path ) )
+	if ( !FindPath( world, startArea, src, goalArea, path ) ) {
 		return qfalse;
+	}
 	CopyVec( path.size() > 1 ? world.centers[AreaForRef( world, path[1] )] : dest, result );
 	return qtrue;
 }
@@ -837,8 +898,9 @@ void AAS_ShowArea( int, int ) {
 void AAS_ShowAreaPolygons( int, int, int ) {
 }
 void AAS_ShowReachability( aas_reachability_t *reach ) {
-	if ( reach )
+	if ( reach ) {
 		AAS_DebugLine( reach->start, reach->end, 4 );
+	}
 }
 void AAS_ShowReachableAreas( int area ) {
 	int reach = 0;

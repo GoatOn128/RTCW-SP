@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,45 +31,47 @@ If you have questions concerning this license or the applicable additional terms
 #include "cg_fx.h"
 
 class CWolfDecal : public CEffect {
-    polyVert_t vertices[MAX_VERTS_ON_POLY];
-    byte color[4];
-    int count, life;
-    qhandle_t shader;
-    qboolean alphaFade;
-    float fadeScale, fadeIn, energyStart, energyLife;
+polyVert_t vertices[MAX_VERTS_ON_POLY];
+byte color[4];
+int count, life;
+qhandle_t shader;
+qboolean alphaFade;
+float fadeScale, fadeIn, energyStart, energyLife;
 public:
-    CWolfDecal( qhandle_t material, const polyVert_t *verts, int numVerts, qboolean fadeAlpha, int duration ) :
-        count( numVerts ), life( duration > 0 ? duration : 1 ), shader( material ), alphaFade( fadeAlpha ) {
-        memcpy( vertices, verts, count * sizeof( vertices[0] ) );
-        memcpy( color, verts[0].modulate, sizeof( color ) );
-        const char *profile = material == cgs.media.energyMarkShader ? "wolf/decal_energy" :
-            (material == cgs.media.zombieSpiritWallShader ? "wolf/decal_spirit" : "wolf/decal_default");
-        fadeScale = CG_FxValue(profile, "fadeScale");
-        fadeIn = CG_FxValue(profile, "fadeIn");
-        energyStart = CG_FxValue(profile, "energyStart");
-        energyLife = CG_FxValue(profile, "energyLife");
-        SetFlags( 0 );
-    }
-    bool Update() override {
-        if ( !cg_markTime.integer ) { return true; }
-        float age = theFxHelper.mTime - mTimeStart;
-        float fade = fadeScale * ( 1 - age / life );
-        fade = fade < 0 ? 0 : ( fade > 1 ? 1 : fade );
-        float rgbFade = alphaFade ? 1 : fade;
-        if ( energyLife > 0 ) {
-            float energy = energyStart * ( 1 - age / energyLife );
-            rgbFade *= energy < 0 ? 0 : ( energy > 1 ? 1 : energy );
-        }
-        if ( fadeIn > 0 ) {
-            rgbFade *= age < fadeIn ? age / fadeIn : 1;
-        }
-        for ( int i = 0; i < count; i++ ) {
-            for ( int j = 0; j < 3; j++ ) { vertices[i].modulate[j] = static_cast<byte>( color[j] * rgbFade ); }
-            vertices[i].modulate[3] = static_cast<byte>( color[3] * ( alphaFade ? fade : 1 ) );
-        }
-        theFxHelper.AddPolyToScene( shader, count, vertices );
-        return true;
-    }
+CWolfDecal( qhandle_t material, const polyVert_t *verts, int numVerts, qboolean fadeAlpha, int duration ) :
+	count( numVerts ), life( duration > 0 ? duration : 1 ), shader( material ), alphaFade( fadeAlpha ) {
+	memcpy( vertices, verts, count * sizeof( vertices[0] ) );
+	memcpy( color, verts[0].modulate, sizeof( color ) );
+	const char *profile = material == cgs.media.energyMarkShader ? "wolf/decal_energy" :
+						  ( material == cgs.media.zombieSpiritWallShader ? "wolf/decal_spirit" : "wolf/decal_default" );
+	fadeScale = CG_FxValue( profile, "fadeScale" );
+	fadeIn = CG_FxValue( profile, "fadeIn" );
+	energyStart = CG_FxValue( profile, "energyStart" );
+	energyLife = CG_FxValue( profile, "energyLife" );
+	SetFlags( 0 );
+}
+bool Update() override {
+	if ( !cg_markTime.integer ) {
+		return true;
+	}
+	float age = theFxHelper.mTime - mTimeStart;
+	float fade = fadeScale * ( 1 - age / life );
+	fade = fade < 0 ? 0 : ( fade > 1 ? 1 : fade );
+	float rgbFade = alphaFade ? 1 : fade;
+	if ( energyLife > 0 ) {
+		float energy = energyStart * ( 1 - age / energyLife );
+		rgbFade *= energy < 0 ? 0 : ( energy > 1 ? 1 : energy );
+	}
+	if ( fadeIn > 0 ) {
+		rgbFade *= age < fadeIn ? age / fadeIn : 1;
+	}
+	for ( int i = 0; i < count; i++ ) {
+		for ( int j = 0; j < 3; j++ ) { vertices[i].modulate[j] = static_cast<byte>( color[j] * rgbFade ); }
+		vertices[i].modulate[3] = static_cast<byte>( color[3] * ( alphaFade ? fade : 1 ) );
+	}
+	theFxHelper.AddPolyToScene( shader, count, vertices );
+	return true;
+}
 };
 
 #define MAX_MARK_FRAGMENTS  384
@@ -151,10 +153,16 @@ void CG_ImpactMark( qhandle_t markShader, const vec3_t origin, const vec3_t dir,
 
 		// we have an upper limit on the complexity of polygons
 		// that we store persistantly
-        hasST = mf->numPoints < 0 ? qtrue : qfalse;
-        if ( hasST ) { mf->numPoints = -mf->numPoints; }
-        if ( mf->numPoints > MAX_VERTS_ON_POLY ) { mf->numPoints = MAX_VERTS_ON_POLY; }
-        if ( mf->numPoints < 3 || mf->firstPoint < 0 || mf->firstPoint + mf->numPoints > MAX_MARK_POINTS ) { continue; }
+		hasST = mf->numPoints < 0 ? qtrue : qfalse;
+		if ( hasST ) {
+			mf->numPoints = -mf->numPoints;
+		}
+		if ( mf->numPoints > MAX_VERTS_ON_POLY ) {
+			mf->numPoints = MAX_VERTS_ON_POLY;
+		}
+		if ( mf->numPoints < 3 || mf->firstPoint < 0 || mf->firstPoint + mf->numPoints > MAX_MARK_POINTS ) {
+			continue;
+		}
 		for ( j = 0, v = verts ; j < mf->numPoints ; j++, v++ ) {
 			vec3_t delta;
 
@@ -178,7 +186,7 @@ void CG_ImpactMark( qhandle_t markShader, const vec3_t origin, const vec3_t dir,
 			continue;
 		}
 
-        CEffect *effect = new CWolfDecal( markShader, verts, mf->numPoints, alphaFade, duration );
-        FX_AddPrimitive( &effect, duration );
-    }
+		CEffect *effect = new CWolfDecal( markShader, verts, mf->numPoints, alphaFade, duration );
+		FX_AddPrimitive( &effect, duration );
+	}
 }

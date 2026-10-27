@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -96,15 +96,15 @@ static void  swapfunc( char *, char *, int, int );
 /*
  * Qsort routine from Bentley & McIlroy's "Engineering a Sort Function".
  */
-#define swapcode( TYPE, parmi, parmj, n ) {		  \
-		long i = ( n ) / sizeof( TYPE );		   \
-		register TYPE *pi = (TYPE *) ( parmi );		  \
-		register TYPE *pj = (TYPE *) ( parmj );		  \
-		do {						\
-			register TYPE t = *pi;		  \
-			*pi++ = *pj;				\
-			*pj++ = t;				\
-		} while ( --i > 0 );			  \
+#define swapcode( TYPE, parmi, parmj, n ) {       \
+			long i = ( n ) / sizeof( TYPE );           \
+			register TYPE *pi = (TYPE *) ( parmi );       \
+			register TYPE *pj = (TYPE *) ( parmj );       \
+			do {                        \
+				register TYPE t = *pi;        \
+				*pi++ = *pj;                \
+				*pj++ = t;              \
+			} while ( --i > 0 );              \
 }
 
 #define SWAPINIT( a, es ) swaptype = ( (char *)a - (char *)0 ) % sizeof( long ) || \
@@ -118,12 +118,12 @@ static void swapfunc( char *a, char *b, int n, int swaptype ) {
 	}
 }
 
-#define swap( a, b )				  \
-	if ( swaptype == 0 ) {				  \
-		long t = *(long *)( a );		  \
-		*(long *)( a ) = *(long *)( b );		\
-		*(long *)( b ) = t;			  \
-	} else \
+#define swap( a, b )                  \
+		if ( swaptype == 0 ) {                \
+			long t = *(long *)( a );          \
+			*(long *)( a ) = *(long *)( b );        \
+			*(long *)( b ) = t;           \
+		} else \
 		swapfunc( (char *)( a ), (char *)( b ), es, swaptype )
 
 #define vecswap( a, b, n )    if ( ( n ) > 0 ) swapfunc( (char *)( a ), (char *)( b ), n, swaptype )

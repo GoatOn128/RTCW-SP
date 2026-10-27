@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -193,7 +193,7 @@ struct gentity_s {
 	int spawnflags;                 // set in QuakeEd
 
 	qboolean neverFree;             // if true, FreeEntity will only unlink
-									// bodyque uses this
+	                                // bodyque uses this
 
 	int flags;                      // FL_* variables
 
@@ -206,11 +206,11 @@ struct gentity_s {
 	qboolean unlinkAfterEvent;
 
 	qboolean physicsObject;         // if true, it can be pushed by movers and fall off edges
-									// all game items are physicsObjects,
+	                                // all game items are physicsObjects,
 	float physicsBounce;            // 1.0 = continuous bounce, 0.0 = no bounce
 	int clipmask;                   // brushes with this content value will be collided against
-									// when moving.  items and corpses do not collide against
-									// players, for instance
+	                                // when moving.  items and corpses do not collide against
+	                                // players, for instance
 
 	// movers
 	moverState_t moverState;
@@ -351,7 +351,7 @@ struct gentity_s {
 	// Ridah
 	int missionLevel;                   // highest mission level completed (for previous level de-briefings)
 	int missionObjectives;              // which objectives for the current level have been met
-										// gets reset each new level
+	                                    // gets reset each new level
 
 	int numSecretsFound;                //----(SA)	added to get into savegame
 	int numTreasureFound;               //----(SA)	added to get into savegame
@@ -526,8 +526,8 @@ struct gclient_s {
 	qboolean noclip;
 
 	int lastCmdTime;                // level.time of last usercmd_t, for EF_CONNECTION
-									// we can't just use pers.lastCommand.time, because
-									// of the g_sycronousclients case
+	                                // we can't just use pers.lastCommand.time, because
+	                                // of the g_sycronousclients case
 	int buttons;
 	int oldbuttons;
 	int latched_buttons;
@@ -633,7 +633,7 @@ typedef struct {
 	int lastTeamLocationTime;               // last time of client team location update
 
 	qboolean newSession;                // don't use any old session data, because
-										// we changed gametype
+	                                    // we changed gametype
 
 	qboolean restarted;                 // waiting for a map_restart to fire
 
@@ -672,10 +672,10 @@ typedef struct {
 
 	// intermission state
 	int intermissionQueued;             // intermission was qualified, but
-										// wait INTERMISSION_DELAY_TIME before
-										// actually going there so the last
-										// frag can be watched.  Disable future
-										// kills during this delay
+	                                    // wait INTERMISSION_DELAY_TIME before
+	                                    // actually going there so the last
+	                                    // frag can be watched.  Disable future
+	                                    // kills during this delay
 	int intermissiontime;               // time the intermission was started
 	char        *changemap;
 	qboolean readyToExit;               // at least one client wants to exit

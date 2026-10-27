@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -666,7 +666,7 @@ void *Sys_LoadDll( const char *name,
 // bk001129 - was RTLD_LAZY
 #define Q_RTLD    RTLD_NOW
 
-	homepath = Cvar_VariableString( "fs_homepath" );
+		homepath = Cvar_VariableString( "fs_homepath" );
 	basepath = Cvar_VariableString( "fs_basepath" );
 	gamedir = Cvar_VariableString( "fs_game" );
 
@@ -1183,7 +1183,7 @@ UGLY HACK:
 void Sys_DoStartProcess( char *cmdline ) {
 	switch ( fork() )
 	{
-	case - 1:
+	case -1:
 		// main thread
 		break;
 	case 0:

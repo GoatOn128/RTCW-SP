@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@ void SV_SetConfigstring( int index, const char *val ) {
 				while ( remaining > 0 ) {
 					if ( sent == 0 ) {
 						cmd = "bcs0";
-					} else if ( remaining < maxChunkSize )    {
+					} else if ( remaining < maxChunkSize ) {
 						cmd = "bcs2";
 					} else {
 						cmd = "bcs1";
@@ -767,7 +767,7 @@ void SV_SpawnServer( char *server, qboolean killBots ) {
 
 	// run a few frames to allow everything to settle
 	for ( i = 0 ; i < 3 ; i++ ) {
-		gvm->GAME_RUN_FRAME(svs.time );
+		gvm->GAME_RUN_FRAME( svs.time );
 		SV_BotFrame( svs.time );
 		svs.time += 100;
 	}
@@ -814,14 +814,14 @@ void SV_SpawnServer( char *server, qboolean killBots ) {
 					client->deltaMessage = -1;
 					client->nextSnapshotTime = svs.time;    // generate a snapshot immediately
 
-					gvm->GAME_CLIENT_BEGIN(i );
+					gvm->GAME_CLIENT_BEGIN( i );
 				}
 			}
 		}
 	}
 
 	// run another frame to allow things to look at all the players
-	gvm->GAME_RUN_FRAME(svs.time );
+	gvm->GAME_RUN_FRAME( svs.time );
 	SV_BotFrame( svs.time );
 	svs.time += 100;
 
@@ -1033,4 +1033,3 @@ void SV_Shutdown( char *finalmsg ) {
 	// disconnect any local clients
 	CL_Disconnect( qfalse );
 }
-

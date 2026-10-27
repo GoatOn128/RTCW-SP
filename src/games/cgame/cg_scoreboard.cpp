@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -229,7 +229,7 @@ static int WM_TeamScoreboard( int x, int y, team_t team, float fade ) {
 	hcolor[3] = fade;
 	if ( team == TEAM_RED ) {
 		VectorSet( hcolor, 0.4452, 0.1172, 0.0782 );        // LIGHT-RED
-	} else if ( team == TEAM_BLUE )                                                             {
+	} else if ( team == TEAM_BLUE ) {
 		VectorSet( hcolor, 0.1836, 0.2422, 0.1680 );        // LIGHT-GREEN
 	} else {
 		VectorSet( hcolor, 0.2, 0.2, 0.2 );                 // DARK-GREY
@@ -328,7 +328,7 @@ int WM_DrawObjectives( int x, int y, int width, float fade ) {
 			if ( status == 0 ) {
 				CG_DrawPic( x + width / 2 - strwidth / 2 - 16 - 24, y, 24, 16, trap_R_RegisterShaderNoMip( "ui/assets/ger_flag.tga" ) );
 				CG_DrawPic( x + width / 2 + strwidth / 2 - 12 + 4, y, 24, 16, trap_R_RegisterShaderNoMip( "ui/assets/ger_flag.tga" ) );
-			} else if ( status == 1 )   {
+			} else if ( status == 1 ) {
 				CG_DrawPic( x + width / 2 - strwidth / 2 - 16 - 24, y, 24, 16, trap_R_RegisterShaderNoMip( "ui/assets/usa_flag.tga" ) );
 				CG_DrawPic( x + width / 2 + strwidth / 2 - 12 + 4, y, 24, 16, trap_R_RegisterShaderNoMip( "ui/assets/usa_flag.tga" ) );
 			}
@@ -392,7 +392,7 @@ int WM_ScoreboardOverlay( int x, int y, float fade ) {
 
 		if ( cgs.clientinfo[cg.snap->ps.clientNum].team == TEAM_RED ) {
 			msec = cg_redlimbotime.integer - ( cg.time % cg_redlimbotime.integer );
-		} else if ( cgs.clientinfo[cg.snap->ps.clientNum].team == TEAM_BLUE )     {
+		} else if ( cgs.clientinfo[cg.snap->ps.clientNum].team == TEAM_BLUE ) {
 			msec = cg_bluelimbotime.integer - ( cg.time % cg_bluelimbotime.integer );
 		} else { // no team (spectator mode)
 			msec = 0;
@@ -695,4 +695,3 @@ void CG_DrawTourneyScoreboard( void ) {
 
 
 }
-

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -89,8 +89,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "../ft2/freetype.h"
 #include "../ft2/ftoutln.h"
 
-#define _FLOOR( x )  ( ( x ) & - 64 )
-#define _CEIL( x )   ( ( ( x ) + 63 ) & - 64 )
+#define _FLOOR( x )  ( ( x ) & -64 )
+#define _CEIL( x )   ( ( ( x ) + 63 ) & -64 )
 #define _TRUNC( x )  ( ( x ) >> 6 )
 
 FT_Library ftLibrary = NULL;
@@ -110,7 +110,7 @@ void R_GetGlyphInfo( FT_GlyphSlot glyph, int *left, int *right, int *width, int 
 	*top    = _CEIL( glyph->metrics.horiBearingY );
 	*bottom = _FLOOR( glyph->metrics.horiBearingY - glyph->metrics.height );
 	*height = _TRUNC( *top - *bottom );
-	*pitch  = ( qtrue ? ( *width + 3 ) & - 4 : ( *width + 7 ) >> 3 );
+	*pitch  = ( qtrue ? ( *width + 3 ) & -4 : ( *width + 7 ) >> 3 );
 }
 
 
@@ -547,4 +547,3 @@ void R_DoneFreeType() {
 #endif
 	registeredFontCount = 0;
 }
-

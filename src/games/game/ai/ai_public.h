@@ -37,7 +37,7 @@ along with IceWolf. If not, see <http://www.gnu.org/licenses/>.
 struct cast_state_s;
 
 #define AICAST_AIM_SPREAD                                                                                              \
-	2048.0 // a really bad shooter will offset a maximum of this per shot, from the end point of the 8192 trace length
+		2048.0 // a really bad shooter will offset a maximum of this per shot, from the end point of the 8192 trace length
 
 #define DANGER_MISSILE ( 1 << 0 )
 #define DANGER_CLIENTAIM ( 1 << 1 )

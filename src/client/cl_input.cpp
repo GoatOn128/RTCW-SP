@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -280,13 +280,13 @@ void IN_CenterView( void ) {
 void IN_Notebook( void ) {
 	if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
 		Cvar_Set( "cg_youGotMail", "0" ); // clear icon	//----(SA)	added
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_NOTEBOOK );    // startup notebook
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_NOTEBOOK );    // startup notebook
 	}
 }
 
 void IN_Help( void ) {
 	if ( cls.state == CA_ACTIVE && !clc.demoplaying ) {
-		uivm->UI_SET_ACTIVE_MENU(UIMENU_HELP );        // startup help system
+		uivm->UI_SET_ACTIVE_MENU( UIMENU_HELP );        // startup help system
 	}
 }
 
@@ -410,9 +410,9 @@ CL_MouseEvent
 */
 void CL_MouseEvent( int dx, int dy, int time ) {
 	if ( cls.keyCatchers & KEYCATCH_UI ) {
-		uivm->UI_MOUSE_EVENT(dx, dy );
+		uivm->UI_MOUSE_EVENT( dx, dy );
 	} else if ( cls.keyCatchers & KEYCATCH_CGAME ) {
-		cgvm->CG_MOUSE_EVENT(dx, dy );
+		cgvm->CG_MOUSE_EVENT( dx, dy );
 	} else {
 		cl.mouseDx[cl.mouseIndex] += dx;
 		cl.mouseDy[cl.mouseIndex] += dy;

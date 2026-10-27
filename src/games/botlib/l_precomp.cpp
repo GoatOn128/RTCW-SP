@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1201,7 +1201,7 @@ int PC_Directive_define( source_t *source ) {
 	define->next = source->defines;
 	source->defines = define;
 #endif //DEFINEHASHING
-	   //if nothing is defined, just return
+	//if nothing is defined, just return
 	if ( !PC_ReadLine( source, &token ) ) {
 		return qtrue;
 	}
@@ -1305,7 +1305,7 @@ define_t *PC_DefineFromString( char *string ) {
 #if DEFINEHASHING
 	src.definehash = (define_t **) GetClearedMemory( DEFINEHASHSIZE * sizeof( define_t * ) );
 #endif //DEFINEHASHING
-	   //create a define from the source
+	//create a define from the source
 	res = PC_Directive_define( &src );
 	//free any tokens if left
 	for ( t = src.tokens; t; t = src.tokens )
@@ -1325,11 +1325,11 @@ define_t *PC_DefineFromString( char *string ) {
 #else
 	def = src.defines;
 #endif //DEFINEHASHING
-	   //
+	//
 #if DEFINEHASHING
 	FreeMemory( src.definehash );
 #endif //DEFINEHASHING
-	   //
+	//
 	FreeScript( script );
 	//if the define was created succesfully
 	if ( res > 0 ) {
@@ -1625,24 +1625,24 @@ int PC_OperatorPriority( int op ) {
 
 #define MAX_VALUES      64
 #define MAX_OPERATORS   64
-#define AllocValue( val )								  \
-	if ( numvalues >= MAX_VALUES ) {					  \
-		SourceError( source, "out of value space\n" );		\
-		error = 1;										\
-		break;											\
-	}													\
-	else { \
-		val = &value_heap[numvalues++];}
+#define AllocValue( val )                                 \
+		if ( numvalues >= MAX_VALUES ) {                      \
+			SourceError( source, "out of value space\n" );      \
+			error = 1;                                      \
+			break;                                          \
+		}                                                   \
+		else { \
+			val = &value_heap[numvalues++];}
 #define FreeValue( val )
 //
-#define AllocOperator( op )								  \
-	if ( numoperators >= MAX_OPERATORS ) {				  \
-		SourceError( source, "out of operator space\n" );	\
-		error = 1;										\
-		break;											\
-	}													\
-	else { \
-		op = &operator_heap[numoperators++];}
+#define AllocOperator( op )                               \
+		if ( numoperators >= MAX_OPERATORS ) {                \
+			SourceError( source, "out of operator space\n" );   \
+			error = 1;                                      \
+			break;                                          \
+		}                                                   \
+		else { \
+			op = &operator_heap[numoperators++];}
 #define FreeOperator( op )
 
 int PC_EvaluateTokens( source_t *source, token_t *tokens, signed long int *intvalue,
@@ -1699,7 +1699,7 @@ int PC_EvaluateTokens( source_t *source, token_t *tokens, signed long int *intva
 				error = 1;
 				break;
 			}     //end if
-				  //v = (value_t *) GetClearedMemory(sizeof(value_t));
+			      //v = (value_t *) GetClearedMemory(sizeof(value_t));
 			AllocValue( v );
 #if DEFINEHASHING
 			if ( PC_FindHashedDefine( source->definehash, t->string ) )
@@ -1742,7 +1742,7 @@ int PC_EvaluateTokens( source_t *source, token_t *tokens, signed long int *intva
 				error = 1;
 				break;
 			}     //end if
-				  //v = (value_t *) GetClearedMemory(sizeof(value_t));
+			      //v = (value_t *) GetClearedMemory(sizeof(value_t));
 			AllocValue( v );
 			if ( negativevalue ) {
 				v->intvalue = -(signed int) t->intvalue;
@@ -1785,7 +1785,7 @@ int PC_EvaluateTokens( source_t *source, token_t *tokens, signed long int *intva
 				}     //end if
 				break;
 			}     //end else if
-				  //check for invalid operators on floating point values
+			      //check for invalid operators on floating point values
 			if ( !integer ) {
 				if ( t->subtype == P_BIN_NOT || t->subtype == P_MOD ||
 					 t->subtype == P_RSHIFT || t->subtype == P_LSHIFT ||
@@ -2206,7 +2206,7 @@ int PC_Evaluate( source_t *source, signed long int *intvalue,
 		Log_Write( "eval result: %d", *intvalue );
 	} else { Log_Write( "eval result: %f", *floatvalue );}
 #endif //DEBUG_EVAL
-	   //
+	//
 	return qtrue;
 } //end of the function PC_Evaluate
 //============================================================================
@@ -2323,7 +2323,7 @@ int PC_DollarEvaluate( source_t *source, signed long int *intvalue,
 		Log_Write( "$eval result: %d", *intvalue );
 	} else { Log_Write( "$eval result: %f", *floatvalue );}
 #endif //DEBUG_EVAL
-	   //
+	//
 	return qtrue;
 } //end of the function PC_DollarEvaluate
 //============================================================================
@@ -3081,7 +3081,7 @@ void FreeSource( source_t *source ) {
 		} //end while
 	} //end for
 #else //DEFINEHASHING
-	  //free all defines
+	//free all defines
 	while ( source->defines )
 	{
 		define = source->defines;
@@ -3089,7 +3089,7 @@ void FreeSource( source_t *source ) {
 		PC_FreeDefine( define );
 	} //end for
 #endif //DEFINEHASHING
-	   //free all indents
+	//free all indents
 	while ( source->indentstack )
 	{
 		indent = source->indentstack;
@@ -3102,7 +3102,7 @@ void FreeSource( source_t *source ) {
 		FreeMemory( source->definehash );
 	}
 #endif //DEFINEHASHING
-	   //free the source itself
+	//free the source itself
 	FreeMemory( source );
 } //end of the function FreeSource
 //============================================================================

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ void trap_Error( const char *string ) {
 }
 
 int trap_Milliseconds( void ) {
-	return uiImports->Sys_Milliseconds(  );
+	return uiImports->Sys_Milliseconds();
 }
 
 void trap_Cvar_Register( vmCvar_t *cvar, const char *var_name, const char *value, int flags ) {
@@ -86,7 +86,7 @@ void trap_Cvar_InfoStringBuffer( int bit, char *buffer, int bufsize ) {
 }
 
 int trap_Argc( void ) {
-	return uiImports->Cmd_Argc(  );
+	return uiImports->Cmd_Argc();
 }
 
 void trap_Argv( int n, char *buffer, int bufferLength ) {
@@ -144,7 +144,7 @@ qhandle_t trap_R_RegisterShaderNoMip( const char *name ) {
 }
 
 void trap_R_ClearScene( void ) {
-	uiImports->RE_ClearScene(  );
+	uiImports->RE_ClearScene();
 }
 
 void trap_R_AddRefEntityToScene( const refEntity_t *re ) {
@@ -180,7 +180,7 @@ void trap_R_ModelBounds( clipHandle_t model, vec3_t mins, vec3_t maxs ) {
 }
 
 void trap_UpdateScreen( void ) {
-	uiImports->SCR_UpdateScreen(  );
+	uiImports->SCR_UpdateScreen();
 }
 
 int trap_CM_LerpTag( orientation_t *tag, const refEntity_t *refent, const char *tagName, int startIndex ) {
@@ -223,7 +223,7 @@ qboolean trap_Key_IsDown( int keynum ) {
 }
 
 qboolean trap_Key_GetOverstrikeMode( void ) {
-	return uiImports->Key_GetOverstrikeMode(  );
+	return uiImports->Key_GetOverstrikeMode();
 }
 
 void trap_Key_SetOverstrikeMode( qboolean state ) {
@@ -231,11 +231,11 @@ void trap_Key_SetOverstrikeMode( qboolean state ) {
 }
 
 void trap_Key_ClearStates( void ) {
-	uiImports->Key_ClearStates(  );
+	uiImports->Key_ClearStates();
 }
 
 int trap_Key_GetCatcher( void ) {
-	return uiImports->Key_GetCatcher(  );
+	return uiImports->Key_GetCatcher();
 }
 
 void trap_Key_SetCatcher( int catcher ) {
@@ -259,7 +259,7 @@ int trap_GetConfigString( int index, char* buff, int buffsize ) {
 }
 
 int trap_LAN_GetLocalServerCount( void ) {
-	return uiImports->LAN_GetLocalServerCount(  );
+	return uiImports->LAN_GetLocalServerCount();
 }
 
 void trap_LAN_GetLocalServerAddressString( int n, char *buf, int buflen ) {
@@ -267,7 +267,7 @@ void trap_LAN_GetLocalServerAddressString( int n, char *buf, int buflen ) {
 }
 
 int trap_LAN_GetGlobalServerCount( void ) {
-	return uiImports->LAN_GetGlobalServerCount(  );
+	return uiImports->LAN_GetGlobalServerCount();
 }
 
 void trap_LAN_GetGlobalServerAddressString( int n, char *buf, int buflen ) {
@@ -275,7 +275,7 @@ void trap_LAN_GetGlobalServerAddressString( int n, char *buf, int buflen ) {
 }
 
 int trap_LAN_GetPingQueueCount( void ) {
-	return uiImports->LAN_GetPingQueueCount(  );
+	return uiImports->LAN_GetPingQueueCount();
 }
 
 void trap_LAN_ClearPing( int n ) {
@@ -349,7 +349,7 @@ void trap_LAN_ResetPings( int n ) {
 // -NERVE - SMF
 
 int trap_MemoryRemaining( void ) {
-	return uiImports->Hunk_MemoryRemaining(  );
+	return uiImports->Hunk_MemoryRemaining();
 }
 
 
@@ -382,7 +382,7 @@ int trap_PC_SourceFileAndLine( int handle, char *filename, int *line ) {
 }
 
 void trap_S_StopBackgroundTrack( void ) {
-	uiImports->S_StopBackgroundTrack(  );
+	uiImports->S_StopBackgroundTrack();
 }
 
 void trap_S_StartBackgroundTrack( const char *intro, const char *loop, int fadeupTime ) {

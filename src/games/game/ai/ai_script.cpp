@@ -663,7 +663,7 @@ qboolean AICast_ScriptRun( cast_state_t *cs, qboolean force ) {
 	if ( !cs->entityNum && saveGamePending &&
 		 Q_stricmp( "spawn",
 					scriptEvents[cs->script.castScriptEvents[cs->script.castScriptStatus.castScriptEventIndex].eventNum]
-						.eventStr ) ) {
+					.eventStr ) ) {
 		//char loading[4];
 		//trap_Cvar_VariableStringBuffer( "savegame_loading", loading, sizeof(loading) );
 		//if (strlen( loading ) > 0 && atoi(loading) != 0)	// we're loading a savegame

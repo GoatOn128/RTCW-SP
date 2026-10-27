@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ void trap_Error( const char *fmt ) {
 }
 
 int trap_Milliseconds( void ) {
-	return cgImports->Sys_Milliseconds(  );
+	return cgImports->Sys_Milliseconds();
 }
 
 void trap_Cvar_Register( vmCvar_t *vmCvar, const char *varName, const char *defaultValue, int flags ) {
@@ -64,7 +64,7 @@ void trap_Cvar_VariableStringBuffer( const char *var_name, char *buffer, int buf
 }
 
 int trap_Argc( void ) {
-	return cgImports->Cmd_Argc(  );
+	return cgImports->Cmd_Argc();
 }
 
 void trap_Argv( int n, char *buffer, int bufferLength ) {
@@ -104,7 +104,7 @@ void trap_SendClientCommand( const char *s ) {
 }
 
 void trap_UpdateScreen( void ) {
-	cgImports->SCR_UpdateScreen(  );
+	cgImports->SCR_UpdateScreen();
 }
 
 void trap_CM_LoadMap( const char *mapname ) {
@@ -112,7 +112,7 @@ void trap_CM_LoadMap( const char *mapname ) {
 }
 
 int trap_CM_NumInlineModels( void ) {
-	return cgImports->CM_NumInlineModels(  );
+	return cgImports->CM_NumInlineModels();
 }
 
 clipHandle_t trap_CM_InlineModel( int index ) {
@@ -281,7 +281,7 @@ void trap_R_RegisterFont( const char *fontName, int pointSize, fontInfo_t *font 
 }
 
 void trap_R_ClearScene( void ) {
-	cgImports->RE_ClearScene(  );
+	cgImports->RE_ClearScene();
 }
 
 void trap_R_AddRefEntityToScene( const refEntity_t *re ) {
@@ -369,7 +369,7 @@ qboolean trap_GetServerCommand( int serverCommandNumber ) {
 }
 
 int trap_GetCurrentCmdNumber( void ) {
-	return cgImports->CL_GetCurrentCmdNumber(  );
+	return cgImports->CL_GetCurrentCmdNumber();
 }
 
 qboolean trap_GetUserCmd( int cmdNumber, usercmd_t *ucmd ) {
@@ -389,7 +389,7 @@ void        testPrintFloat( char *string, float f ) {
 }
 
 int trap_MemoryRemaining( void ) {
-	return cgImports->Hunk_MemoryRemaining(  );
+	return cgImports->Hunk_MemoryRemaining();
 }
 
 qboolean trap_loadCamera( int camNum, const char *name ) {
@@ -416,7 +416,7 @@ qboolean trap_Key_IsDown( int keynum ) {
 }
 
 int trap_Key_GetCatcher( void ) {
-	return cgImports->Key_GetCatcher(  );
+	return cgImports->Key_GetCatcher();
 }
 
 void trap_Key_SetCatcher( int catcher ) {
@@ -450,7 +450,7 @@ int trap_PC_SourceFileAndLine( int handle, char *filename, int *line ) {
 }
 
 void trap_S_StopBackgroundTrack( void ) {
-	cgImports->S_StopBackgroundTrack(  );
+	cgImports->S_StopBackgroundTrack();
 }
 
 int trap_RealTime( qtime_t *qtime ) {

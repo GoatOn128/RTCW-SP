@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -287,7 +287,7 @@ void Weapon_Engineer( gentity_t *ent ) {
 			}
 // jpw
 		}
-	} else if ( !traceEnt->takedamage && !Q_stricmp( traceEnt->classname, "misc_mg42" ) )       {
+	} else if ( !traceEnt->takedamage && !Q_stricmp( traceEnt->classname, "misc_mg42" ) ) {
 		// "Ammo" for this weapon is time based
 		if ( ent->client->ps.classWeaponTime + g_engineerChargeTime.integer < level.time ) {
 			ent->client->ps.classWeaponTime = level.time - g_engineerChargeTime.integer;
@@ -787,11 +787,11 @@ void RubbleFlagCheck( gentity_t *ent, trace_t tr ) {
 	if ( tr.surfaceFlags & SURF_RUBBLE || tr.surfaceFlags & SURF_GRAVEL ) {
 		is_valid = qtrue;
 		type = 4;
-	} else if ( tr.surfaceFlags & SURF_METAL )     {
+	} else if ( tr.surfaceFlags & SURF_METAL ) {
 //----(SA)	removed
 //		is_valid = qtrue;
 //		type = 2;
-	} else if ( tr.surfaceFlags & SURF_WOOD )     {
+	} else if ( tr.surfaceFlags & SURF_WOOD ) {
 		is_valid = qtrue;
 		type = 1;
 	}
@@ -1158,7 +1158,7 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	// pineapples are not thrown as far as mashers
 	if ( grenType == WP_GRENADE_LAUNCHER ) {
 		upangle *= 800;     //									    0.0 / 800.0
-	} else if ( grenType == WP_GRENADE_PINEAPPLE )                                {
+	} else if ( grenType == WP_GRENADE_PINEAPPLE ) {
 // JPW NERVE
 		if ( g_gametype.integer != GT_SINGLE_PLAYER ) {
 			upangle *= 800;

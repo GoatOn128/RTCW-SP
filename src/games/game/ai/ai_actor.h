@@ -66,8 +66,8 @@ along with IceWolf. If not, see <http://www.gnu.org/licenses/>.
 #define ANIMLENGTH( frames, fps ) ( ( frames * 1000 ) / fps )
 //
 #define AICAST_TFL_DEFAULT                                                                                             \
-	TFL_DEFAULT & ~( TFL_JUMPPAD | TFL_ROCKETJUMP | TFL_BFGJUMP | TFL_GRAPPLEHOOK | TFL_DOUBLEJUMP | TFL_RAMPJUMP |    \
-					 TFL_STRAFEJUMP | TFL_LAVA ) //----(SA)	modified since slime is no longer deadly
+		TFL_DEFAULT & ~( TFL_JUMPPAD | TFL_ROCKETJUMP | TFL_BFGJUMP | TFL_GRAPPLEHOOK | TFL_DOUBLEJUMP | TFL_RAMPJUMP |    \
+						 TFL_STRAFEJUMP | TFL_LAVA ) //----(SA)	modified since slime is no longer deadly
 //#define AICAST_TFL_DEFAULT	TFL_DEFAULT & ~(TFL_JUMPPAD|TFL_ROCKETJUMP|TFL_BFGJUMP|TFL_GRAPPLEHOOK|TFL_DOUBLEJUMP|TFL_RAMPJUMP|TFL_STRAFEJUMP|TFL_SLIME|TFL_LAVA)
 //
 // AI flags

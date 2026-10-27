@@ -188,7 +188,7 @@ char *AIFunc_InspectFriendly( cast_state_t *cs ) {
 			}
 			cs->movestateType = MSTYPE_TEMPORARY;
 		}
-*/
+		*/
 	} else if ( cs->aiFlags & AIFL_MISCFLAG1 ) {
 		cs->aiFlags &= ~AIFL_MISCFLAG1;
 		if ( g_entities[cs->inspectNum].health <= 0 ) {
@@ -669,7 +669,7 @@ char *AIFunc_InspectAudibleEvent( cast_state_t *cs ) {
 			}
 			cs->movestateType = MSTYPE_TEMPORARY;
 		}
-*/
+		*/
 	} else if ( cs->aiFlags & AIFL_MISCFLAG1 ) {
 		cs->aiFlags &= ~AIFL_MISCFLAG1;
 		// call a script event

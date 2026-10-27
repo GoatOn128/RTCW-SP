@@ -165,7 +165,7 @@ AICharacterDefaults_t aiDefaults[NUM_CHARACTERS] = {
 	  { /*WP_GAUNTLET,*/ WP_MONSTER_ATTACK2, WP_MONSTER_ATTACK3 },
 	  BBOX_SMALL,
 	  { 32, 48 },
-	  /*AIFL_NOPAIN|AIFL_WALKFORWARD|*/ AIFL_NO_RELOAD,
+		/*AIFL_NOPAIN|AIFL_WALKFORWARD|*/AIFL_NO_RELOAD,
 	  &ai_ZombieAbilities,
 	  NULL,
 	  AISTATE_ALERT },
@@ -589,7 +589,7 @@ AICharacterDefaults_t aiDefaults[NUM_CHARACTERS] = {
 	  },
 	  AITEAM_NAZI,
 	  "blackguard/default",
-	  //		{WP_MP40, WP_GRENADE_LAUNCHER, WP_MONSTER_ATTACK1},	// attack1 is melee kick
+		//		{WP_MP40, WP_GRENADE_LAUNCHER, WP_MONSTER_ATTACK1},	// attack1 is melee kick
 	  { WP_FG42, WP_FG42SCOPE, WP_GRENADE_LAUNCHER, WP_MONSTER_ATTACK1 }, // attack1 is melee kick
 	  BBOX_SMALL,
 	  { 32, 48 },
@@ -1001,7 +1001,7 @@ AIChar_GetPainLocation
 */
 int AIChar_GetPainLocation( gentity_t *ent, vec3_t point ) {
 	static char *painTagNames[] = {
-		"tag_head",	   "tag_chest",	   "tag_torso",	  "tag_groin", "tag_armright",
+		"tag_head",    "tag_chest",    "tag_torso",   "tag_groin", "tag_armright",
 		"tag_armleft", "tag_legright", "tag_legleft", NULL,
 	};
 
