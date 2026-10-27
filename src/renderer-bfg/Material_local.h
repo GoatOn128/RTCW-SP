@@ -70,16 +70,16 @@ int                             FindShaderTextDef( const char *name ) const;
 bool                            ParseShaderDef( int offset, idMaterial *material );
 
 idList<idMaterial *, TAG_MATERIAL> materials;
-idHashIndex                     hash;
+idHashIndex hash;
 idMaterial *                    defaultMaterial;
-bool                            initialized;
+bool initialized;
 
 // the combined text of all shader files and the index of the
 // definitions: for every name, the byte offset right behind the name
-idStr                           shaderText;
+idStr shaderText;
 idList<idStr>                   shaderDefNames;
 idList<int>                     shaderDefOffsets;
-idHashIndex                     shaderTextHash;
+idHashIndex shaderTextHash;
 };
 
 #endif /* !__MATERIAL_LOCAL_H__ */
