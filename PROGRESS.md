@@ -25,7 +25,7 @@ material and is never modified.
    tracing, decals and overlays, the demo code, FindPortal and the
    winding code.
 
-⬜ Phase 3 - GLSL backend
+🚧 Phase 3 - GLSL backend
    Shader programs and material stages on top of the BFG GLSL paths.
 
 ⬜ Phase 4 - Q3 BSP adapter

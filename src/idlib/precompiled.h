@@ -51,6 +51,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "sys/sys_filesystem.h"
 
+// text parsing
+#include "Token.h"
+#include "Lexer.h"
+
 //-----------------------------------------------------
 
 #undef min
