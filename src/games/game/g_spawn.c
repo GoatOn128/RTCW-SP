@@ -108,90 +108,90 @@ typedef struct
 } field_t;
 
 field_t fields[] = {
-	{"classname",    FOFS( classname ),    F_LSTRING},
-	{"origin",       FOFS( s.origin ),     F_VECTOR},
-	{"model",        FOFS( model ),        F_LSTRING},
-	{"model2",       FOFS( model2 ),       F_LSTRING},
-	{"spawnflags",   FOFS( spawnflags ),   F_INT},
-	{"speed",        FOFS( speed ),        F_FLOAT},
-	{"closespeed",   FOFS( closespeed ),   F_FLOAT},   //----(SA)	added
-	{"target",       FOFS( target ),       F_LSTRING},
-	{"targetname",   FOFS( targetname ),   F_LSTRING},
-	{"targetdeath",  FOFS( targetdeath ),      F_LSTRING}, //----(SA)	added
-	{"message",      FOFS( message ),      F_LSTRING},
-	{"popup",        FOFS( message ),      F_LSTRING}, // (SA) mutually exclusive from 'message', but makes the ent more logical for the level designer
-	{"book",     FOFS( message ),      F_LSTRING}, // (SA) mutually exclusive from 'message', but makes the ent more logical for the level designer
-	{"team",     FOFS( team ),         F_LSTRING},
-	{"wait",     FOFS( wait ),         F_FLOAT},
-	{"random",       FOFS( random ),       F_FLOAT},
-	{"count",        FOFS( count ),        F_INT},
-	{"health",       FOFS( health ),       F_INT},
-	{"light",        0,                  F_IGNORE},
-	{"dmg",          FOFS( damage ),       F_INT},
-	{"angles",       FOFS( s.angles ),     F_VECTOR},
-	{"angle",        FOFS( s.angles ),     F_ANGLEHACK},
+	{"classname",    FOFS( classname ),    F_LSTRING, 0 },
+	{"origin",       FOFS( s.origin ),     F_VECTOR, 0 },
+	{"model",        FOFS( model ),        F_LSTRING, 0 },
+	{"model2",       FOFS( model2 ),       F_LSTRING, 0 },
+	{"spawnflags",   FOFS( spawnflags ),   F_INT, 0 },
+	{"speed",        FOFS( speed ),        F_FLOAT, 0 },
+	{"closespeed",   FOFS( closespeed ),   F_FLOAT, 0 }, //----(SA)	added
+	{"target",       FOFS( target ),       F_LSTRING, 0 },
+	{"targetname",   FOFS( targetname ),   F_LSTRING, 0 },
+	{"targetdeath",  FOFS( targetdeath ),      F_LSTRING, 0 }, //----(SA)	added
+	{"message",      FOFS( message ),      F_LSTRING, 0 },
+	{"popup",        FOFS( message ),      F_LSTRING, 0 }, // (SA) mutually exclusive from 'message', but makes the ent more logical for the level designer
+	{"book",     FOFS( message ),      F_LSTRING, 0 }, // (SA) mutually exclusive from 'message', but makes the ent more logical for the level designer
+	{"team",     FOFS( team ),         F_LSTRING, 0 },
+	{"wait",     FOFS( wait ),         F_FLOAT, 0 },
+	{"random",       FOFS( random ),       F_FLOAT, 0 },
+	{"count",        FOFS( count ),        F_INT, 0 },
+	{"health",       FOFS( health ),       F_INT, 0 },
+	{"light",        0,                  F_IGNORE, 0 },
+	{"dmg",          FOFS( damage ),       F_INT, 0 },
+	{"angles",       FOFS( s.angles ),     F_VECTOR, 0 },
+	{"angle",        FOFS( s.angles ),     F_ANGLEHACK, 0 },
 	// JOSEPH 9-27-99
-	{"duration", FOFS( duration ),     F_FLOAT},
-	{"rotate",       FOFS( rotate ),       F_VECTOR},
+	{"duration", FOFS( duration ),     F_FLOAT, 0 },
+	{"rotate",       FOFS( rotate ),       F_VECTOR, 0 },
 	// END JOSEPH
-	{"degrees",      FOFS( angle ),        F_FLOAT},
-	{"time",     FOFS( speed ),        F_FLOAT},
+	{"degrees",      FOFS( angle ),        F_FLOAT, 0 },
+	{"time",     FOFS( speed ),        F_FLOAT, 0 },
 
 	// Ridah, AI fields
-	{"aiattributes", FOFS( aiAttributes ), F_LSTRING},
-	{"ainame",       FOFS( aiName ),       F_LSTRING},
-	{"aiteam",       FOFS( aiTeam ),       F_INT},
+	{"aiattributes", FOFS( aiAttributes ), F_LSTRING, 0 },
+	{"ainame",       FOFS( aiName ),       F_LSTRING, 0 },
+	{"aiteam",       FOFS( aiTeam ),       F_INT, 0 },
 	// done.
 
 	//----(SA) additional ai field
-	{"skin",     FOFS( aiSkin ),       F_LSTRING},
-	{"head",     FOFS( aihSkin ),      F_LSTRING},
+	{"skin",     FOFS( aiSkin ),       F_LSTRING, 0 },
+	{"head",     FOFS( aihSkin ),      F_LSTRING, 0 },
 
 	//----(SA) done
 
 	// (SA) dlight lightstyles (made all these unique variables for testing)
-	{"_color",       FOFS( dl_color ),     F_VECTOR},      // color of the light	(the underscore is inserted by the color picker in QER)
-	{"color",        FOFS( dl_color ),     F_VECTOR},      // color of the light
-	{"stylestring",  FOFS( dl_stylestring ), F_LSTRING},   // user defined stylestring "fffndlsfaaaaaa" for example
+	{"_color",       FOFS( dl_color ),     F_VECTOR, 0 }, // color of the light	(the underscore is inserted by the color picker in QER)
+	{"color",        FOFS( dl_color ),     F_VECTOR, 0 }, // color of the light
+	{"stylestring",  FOFS( dl_stylestring ), F_LSTRING, 0 }, // user defined stylestring "fffndlsfaaaaaa" for example
 	// done
 
 	//----(SA)
-	{"shader",       FOFS( dl_shader ), F_LSTRING},    // shader to use for a target_effect or dlight
+	{"shader",       FOFS( dl_shader ), F_LSTRING, 0 }, // shader to use for a target_effect or dlight
 
 	// (SA) for target_unlock
-	{"key",          FOFS( key ),      F_INT},
+	{"key",          FOFS( key ),      F_INT, 0 },
 	// done
 
 	// (SA) for item placement
-	{"stand",        FOFS( s.frame ),      F_INT},
+	{"stand",        FOFS( s.frame ),      F_INT, 0 },
 	// (SA)	end
 
 	// Rafael - mg42
-	{"harc",     FOFS( harc ),         F_FLOAT},
-	{"varc",     FOFS( varc ),         F_FLOAT},
+	{"harc",     FOFS( harc ),         F_FLOAT, 0 },
+	{"varc",     FOFS( varc ),         F_FLOAT, 0 },
 	// done.
 
 	// Rafael - sniper
-	{"delay",    FOFS( delay ),        F_FLOAT},
-	{"radius",   FOFS( radius ),       F_INT},
+	{"delay",    FOFS( delay ),        F_FLOAT, 0 },
+	{"radius",   FOFS( radius ),       F_INT, 0 },
 
 	// Ridah, for reloading savegames at correct mission spot
 //	{"missionlevel",	FOFS(missionObjectives),	F_INT},
 
 	// Rafel
-	{"start_size", FOFS( start_size ), F_INT},
-	{"end_size", FOFS( end_size ), F_INT},
+	{"start_size", FOFS( start_size ), F_INT, 0 },
+	{"end_size", FOFS( end_size ), F_INT, 0 },
 
-	{"shard", FOFS( count ), F_INT},
+	{"shard", FOFS( count ), F_INT, 0 },
 
 	// Rafael
-	{"spawnitem",        FOFS( spawnitem ),            F_LSTRING},
+	{"spawnitem",        FOFS( spawnitem ),            F_LSTRING, 0 },
 
-	{"track",            FOFS( track ),                F_LSTRING},
+	{"track",            FOFS( track ),                F_LSTRING, 0 },
 
-	{"scriptName",       FOFS( scriptName ),           F_LSTRING},
+	{"scriptName",       FOFS( scriptName ),           F_LSTRING, 0 },
 
-	{NULL}
+	{NULL, 0, 0, 0}
 };
 
 
@@ -1052,3 +1052,4 @@ void G_SpawnEntitiesFromString( void ) {
 
 	level.spawning = qfalse;            // any future calls to G_Spawn*() will be errors
 }
+

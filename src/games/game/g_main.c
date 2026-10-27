@@ -142,111 +142,111 @@ vmCvar_t g_playerStart;         // set when the player enters the game
 
 cvarTable_t gameCvarTable[] = {
 	// don't override the cheat state set by the system
-	{ &g_cheats, "sv_cheats", "", 0, qfalse },
+	{ &g_cheats, "sv_cheats", "", 0, qfalse , qfalse, qfalse },
 
 	// noset vars
-	{ NULL, "gamename", GAMEVERSION, CVAR_SERVERINFO | CVAR_ROM, 0, qfalse  },
-	{ NULL, "gamedate", __DATE__, CVAR_ROM, 0, qfalse  },
-	{ &g_restarted, "g_restarted", "0", CVAR_ROM, 0, qfalse  },
-	{ NULL, "sv_mapname", "", CVAR_SERVERINFO | CVAR_ROM, 0, qfalse  },
+	{ NULL, "gamename", GAMEVERSION, CVAR_SERVERINFO | CVAR_ROM, 0, qfalse  , qfalse },
+	{ NULL, "gamedate", __DATE__, CVAR_ROM, 0, qfalse  , qfalse },
+	{ &g_restarted, "g_restarted", "0", CVAR_ROM, 0, qfalse  , qfalse },
+	{ NULL, "sv_mapname", "", CVAR_SERVERINFO | CVAR_ROM, 0, qfalse  , qfalse },
 
 	// latched vars
-	{ &g_gametype, "g_gametype", "0", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse  },
+	{ &g_gametype, "g_gametype", "0", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse  , qfalse },
 
 	// Rafael gameskill
-	{ &g_gameskill, "g_gameskill", "2", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse  },   // (SA) new default '2' (was '1')
+	{ &g_gameskill, "g_gameskill", "2", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse  , qfalse }, // (SA) new default '2' (was '1')
 	// done
 
-	{ &g_reloading, "g_reloading", "0", CVAR_ROM },   //----(SA)	added
+	{ &g_reloading, "g_reloading", "0", CVAR_ROM , 0, qfalse, qfalse }, //----(SA)	added
 
 // JPW NERVE multiplayer stuffs
-	{ &g_redlimbotime, "g_redlimbotime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
-	{ &g_bluelimbotime, "g_bluelimbotime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
-	{ &g_medicChargeTime, "g_medicChargeTime", "45000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
-	{ &g_engineerChargeTime, "g_engineerChargeTime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
-	{ &g_LTChargeTime, "g_LTChargeTime", "20000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
-	{ &g_soldierChargeTime, "g_soldierChargeTime", "20000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
+	{ &g_redlimbotime, "g_redlimbotime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
+	{ &g_bluelimbotime, "g_bluelimbotime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
+	{ &g_medicChargeTime, "g_medicChargeTime", "45000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
+	{ &g_engineerChargeTime, "g_engineerChargeTime", "30000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
+	{ &g_LTChargeTime, "g_LTChargeTime", "20000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
+	{ &g_soldierChargeTime, "g_soldierChargeTime", "20000", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse , qfalse },
 // jpw
 
 
-	{ &g_playerStart, "g_playerStart", "0", CVAR_ROM, 0, qfalse  },
+	{ &g_playerStart, "g_playerStart", "0", CVAR_ROM, 0, qfalse  , qfalse },
 
-	{ &g_maxclients, "sv_maxclients", "8", CVAR_SERVERINFO | CVAR_LATCH | CVAR_ARCHIVE, 0, qfalse  },
-	{ &g_maxGameClients, "g_maxGameClients", "0", CVAR_SERVERINFO | CVAR_LATCH | CVAR_ARCHIVE, 0, qfalse  },
+	{ &g_maxclients, "sv_maxclients", "8", CVAR_SERVERINFO | CVAR_LATCH | CVAR_ARCHIVE, 0, qfalse  , qfalse },
+	{ &g_maxGameClients, "g_maxGameClients", "0", CVAR_SERVERINFO | CVAR_LATCH | CVAR_ARCHIVE, 0, qfalse  , qfalse },
 
 	// change anytime vars
-	{ &g_dmflags, "dmflags", "0", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qtrue  },
-	{ &g_fraglimit, "fraglimit", "20", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
-	{ &g_timelimit, "timelimit", "0", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
-	{ &g_capturelimit, "capturelimit", "8", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
+	{ &g_dmflags, "dmflags", "0", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qtrue  , qfalse },
+	{ &g_fraglimit, "fraglimit", "20", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue , qfalse },
+	{ &g_timelimit, "timelimit", "0", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue , qfalse },
+	{ &g_capturelimit, "capturelimit", "8", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue , qfalse },
 
-	{ &g_syncronousClients, "g_syncronousClients", "0", CVAR_SYSTEMINFO, 0, qfalse  },
+	{ &g_syncronousClients, "g_syncronousClients", "0", CVAR_SYSTEMINFO, 0, qfalse  , qfalse },
 
-	{ &g_friendlyFire, "g_friendlyFire", "1", CVAR_ARCHIVE, 0, qtrue  },
+	{ &g_friendlyFire, "g_friendlyFire", "1", CVAR_ARCHIVE, 0, qtrue  , qfalse },
 
-	{ &g_warmup, "g_warmup", "20", CVAR_ARCHIVE, 0, qtrue  },
-	{ &g_doWarmup, "g_doWarmup", "0", 0, 0, qtrue  },
-	{ &g_log, "g_log", "games.log", CVAR_ARCHIVE, 0, qfalse  },
-	{ &g_logSync, "g_logSync", "0", CVAR_ARCHIVE, 0, qfalse  },
+	{ &g_warmup, "g_warmup", "20", CVAR_ARCHIVE, 0, qtrue  , qfalse },
+	{ &g_doWarmup, "g_doWarmup", "0", 0, 0, qtrue  , qfalse },
+	{ &g_log, "g_log", "games.log", CVAR_ARCHIVE, 0, qfalse  , qfalse },
+	{ &g_logSync, "g_logSync", "0", CVAR_ARCHIVE, 0, qfalse  , qfalse },
 
-	{ &g_password, "g_password", "", CVAR_USERINFO, 0, qfalse  },
-	{ &g_banIPs, "g_banIPs", "", CVAR_ARCHIVE, 0, qfalse  },
+	{ &g_password, "g_password", "", CVAR_USERINFO, 0, qfalse  , qfalse },
+	{ &g_banIPs, "g_banIPs", "", CVAR_ARCHIVE, 0, qfalse  , qfalse },
 
-	{ &g_dedicated, "dedicated", "0", 0, 0, qfalse  },
+	{ &g_dedicated, "dedicated", "0", 0, 0, qfalse  , qfalse },
 
-	{ &g_speed, "g_speed", "320", 0, 0, qtrue  },
-	{ &g_gravity, "g_gravity", "800", 0, 0, qtrue  },
-	{ &g_knockback, "g_knockback", "1000", 0, 0, qtrue  },
-	{ &g_quadfactor, "g_quadfactor", "3", 0, 0, qtrue  },
-	{ &g_weaponRespawn, "g_weaponrespawn", "5", 0, 0, qtrue  },
-	{ &g_weaponTeamRespawn, "g_weaponTeamRespawn", "30", 0, 0, qtrue },
-	{ &g_forcerespawn, "g_forcerespawn", "20", 0, 0, qtrue },
-	{ &g_inactivity, "g_inactivity", "0", 0, 0, qtrue },
-	{ &g_debugMove, "g_debugMove", "0", 0, 0, qfalse },
-	{ &g_debugDamage, "g_debugDamage", "0", 0, 0, qfalse },
-	{ &g_debugAlloc, "g_debugAlloc", "0", 0, 0, qfalse },
-	{ &g_debugBullets, "g_debugBullets", "0", CVAR_CHEAT, 0, qfalse}, //----(SA)	added
-	{ &g_debugAudibleEvents, "g_debugAudibleEvents", "0", CVAR_CHEAT, 0, qfalse}, //----(SA)	added
+	{ &g_speed, "g_speed", "320", 0, 0, qtrue  , qfalse },
+	{ &g_gravity, "g_gravity", "800", 0, 0, qtrue  , qfalse },
+	{ &g_knockback, "g_knockback", "1000", 0, 0, qtrue  , qfalse },
+	{ &g_quadfactor, "g_quadfactor", "3", 0, 0, qtrue  , qfalse },
+	{ &g_weaponRespawn, "g_weaponrespawn", "5", 0, 0, qtrue  , qfalse },
+	{ &g_weaponTeamRespawn, "g_weaponTeamRespawn", "30", 0, 0, qtrue , qfalse },
+	{ &g_forcerespawn, "g_forcerespawn", "20", 0, 0, qtrue , qfalse },
+	{ &g_inactivity, "g_inactivity", "0", 0, 0, qtrue , qfalse },
+	{ &g_debugMove, "g_debugMove", "0", 0, 0, qfalse , qfalse },
+	{ &g_debugDamage, "g_debugDamage", "0", 0, 0, qfalse , qfalse },
+	{ &g_debugAlloc, "g_debugAlloc", "0", 0, 0, qfalse , qfalse },
+	{ &g_debugBullets, "g_debugBullets", "0", CVAR_CHEAT, 0, qfalse, qfalse }, //----(SA)	added
+	{ &g_debugAudibleEvents, "g_debugAudibleEvents", "0", CVAR_CHEAT, 0, qfalse, qfalse }, //----(SA)	added
 
-	{ &g_headshotMaxDist, "g_headshotMaxDist", "1024", CVAR_CHEAT, 0, qfalse},    //----(SA)	added
-
-
-	{ &g_motd, "g_motd", "", 0, 0, qfalse },
-	{ &g_blood, "com_blood", "1", 0, 0, qfalse },
-
-	{ &g_podiumDist, "g_podiumDist", "80", 0, 0, qfalse },
-	{ &g_podiumDrop, "g_podiumDrop", "70", 0, 0, qfalse },
-
-	{ &g_allowVote, "g_allowVote", "1", 0, 0, qfalse },
-	{ &g_listEntity, "g_listEntity", "0", 0, 0, qfalse },
-
-	{ &g_enableBreath, "g_enableBreath", "1", CVAR_SERVERINFO, 0, qtrue},
-
-	{ &g_testPain, "g_testPain", "0", CVAR_CHEAT, 0, qfalse },
-
-	{ &g_missionStats, "g_missionStats", "0", CVAR_ROM, 0, qfalse },
-
-	{ &g_developer, "developer", "0", CVAR_TEMP, 0, qfalse },
-
-	{ &g_rankings, "g_rankings", "0", 0, 0, qfalse},
-
-	{ &g_userAim, "g_userAim", "1", CVAR_CHEAT, 0, qfalse },
-
-	{ &g_forceModel, "cg_forceModel", "0", CVAR_ARCHIVE, 0, qfalse},
-	{ &g_smoothClients, "g_smoothClients", "1", 0, 0, qfalse},
-	{ &pmove_fixed, "pmove_fixed", "0", CVAR_SYSTEMINFO, 0, qfalse},
-	{ &pmove_msec, "pmove_msec", "8", CVAR_SYSTEMINFO, 0, qfalse},
+	{ &g_headshotMaxDist, "g_headshotMaxDist", "1024", CVAR_CHEAT, 0, qfalse, qfalse }, //----(SA)	added
 
 
-	{&g_mg42arc, "g_mg42arc", "0", CVAR_TEMP, 0, qfalse},
+	{ &g_motd, "g_motd", "", 0, 0, qfalse , qfalse },
+	{ &g_blood, "com_blood", "1", 0, 0, qfalse , qfalse },
 
-	{&g_totalPlayTime, "g_totalPlayTime", "0", CVAR_ROM, 0, qfalse},
-	{&g_attempts, "g_attempts", "0", CVAR_ROM, 0, qfalse},
+	{ &g_podiumDist, "g_podiumDist", "80", 0, 0, qfalse , qfalse },
+	{ &g_podiumDrop, "g_podiumDrop", "70", 0, 0, qfalse , qfalse },
 
-	{&g_footstepAudibleRange, "g_footstepAudibleRange", "256", CVAR_CHEAT, 0, qfalse},
+	{ &g_allowVote, "g_allowVote", "1", 0, 0, qfalse , qfalse },
+	{ &g_listEntity, "g_listEntity", "0", 0, 0, qfalse , qfalse },
 
-	{&g_scriptName, "g_scriptName", "", CVAR_ROM, 0, qfalse},
-	{&ai_scriptName, "ai_scriptName", "", CVAR_ROM, 0, qfalse},
+	{ &g_enableBreath, "g_enableBreath", "1", CVAR_SERVERINFO, 0, qtrue, qfalse },
+
+	{ &g_testPain, "g_testPain", "0", CVAR_CHEAT, 0, qfalse , qfalse },
+
+	{ &g_missionStats, "g_missionStats", "0", CVAR_ROM, 0, qfalse , qfalse },
+
+	{ &g_developer, "developer", "0", CVAR_TEMP, 0, qfalse , qfalse },
+
+	{ &g_rankings, "g_rankings", "0", 0, 0, qfalse, qfalse },
+
+	{ &g_userAim, "g_userAim", "1", CVAR_CHEAT, 0, qfalse , qfalse },
+
+	{ &g_forceModel, "cg_forceModel", "0", CVAR_ARCHIVE, 0, qfalse, qfalse },
+	{ &g_smoothClients, "g_smoothClients", "1", 0, 0, qfalse, qfalse },
+	{ &pmove_fixed, "pmove_fixed", "0", CVAR_SYSTEMINFO, 0, qfalse, qfalse },
+	{ &pmove_msec, "pmove_msec", "8", CVAR_SYSTEMINFO, 0, qfalse, qfalse },
+
+
+	{&g_mg42arc, "g_mg42arc", "0", CVAR_TEMP, 0, qfalse, qfalse },
+
+	{&g_totalPlayTime, "g_totalPlayTime", "0", CVAR_ROM, 0, qfalse, qfalse },
+	{&g_attempts, "g_attempts", "0", CVAR_ROM, 0, qfalse, qfalse },
+
+	{&g_footstepAudibleRange, "g_footstepAudibleRange", "256", CVAR_CHEAT, 0, qfalse, qfalse },
+
+	{&g_scriptName, "g_scriptName", "", CVAR_ROM, 0, qfalse, qfalse },
+	{&ai_scriptName, "ai_scriptName", "", CVAR_ROM, 0, qfalse, qfalse },
 };
 
 // bk001129 - made static to avoid aliasing
@@ -2385,180 +2385,3 @@ void G_RunFrame( int levelTime ) {
 	level.framenum++;
 	level.previousTime = level.time;
 	level.time = levelTime;
-	msec = level.time - level.previousTime;
-
-	// Ridah, check for loading a save game
-	if ( g_gametype.integer == GT_SINGLE_PLAYER ) {
-		extern void AICast_CheckLoadGame( void );
-		AICast_CheckLoadGame();
-	}
-	// done.
-
-	// get any cvar changes
-	G_UpdateCvars();
-
-	//
-	// go through all allocated objects
-	//
-	//start = trap_Milliseconds();
-	ent = &g_entities[0];
-	for ( i = 0 ; i < level.num_entities ; i++, ent++ ) {
-		if ( !ent->inuse ) {
-			continue;
-		}
-
-		// check EF_NODRAW status for non-clients
-		if ( i > level.maxclients ) {
-			if ( ent->flags & FL_NODRAW ) {
-				ent->s.eFlags |= EF_NODRAW;
-			} else {
-				ent->s.eFlags &= ~EF_NODRAW;
-			}
-		}
-
-		// RF, if this entity is attached to a parent, move it around with it, so the server thinks it's at least close to where the client will view it
-		if ( ent->tagParent ) {
-			vec3_t org;
-			BG_EvaluateTrajectory( &ent->tagParent->s.pos, level.time, org );
-			G_SetOrigin( ent, org );
-			VectorCopy( org, ent->s.origin );
-			if ( ent->r.linked ) {    // update position
-				trap_LinkEntity( ent );
-			}
-		}
-
-		// clear events that are too old
-		if ( ent->eventTime && level.time - ent->eventTime > EVENT_VALID_MSEC ) {
-			if ( ent->s.event ) {
-				ent->s.event = 0;   // &= EV_EVENT_BITS;
-			}
-			// RF, clear all listed events (fixes hearing lots of sounds and events after vid_restart)
-			memset( ent->s.events, 0, sizeof( ent->s.events ) );
-			memset( ent->s.eventParms, 0, sizeof( ent->s.eventParms ) );
-			ent->s.eventSequence = 0;
-			if ( ent->client ) {
-				memset( ent->client->ps.events, 0, sizeof( ent->client->ps.events ) );
-				memset( ent->client->ps.eventParms, 0, sizeof( ent->client->ps.eventParms ) );
-				ent->client->ps.eventSequence = 0;
-				ent->client->ps.oldEventSequence = 0;
-				ent->client->ps.entityEventSequence = 0;
-			}
-			if ( ent->freeAfterEvent ) {
-				// tempEntities or dropped items completely go away after their event
-				G_FreeEntity( ent );
-				continue;
-			} else if ( ent->unlinkAfterEvent ) {
-				// items that will respawn will hide themselves after their pickup event
-				ent->unlinkAfterEvent = qfalse;
-				trap_UnlinkEntity( ent );
-			}
-			ent->eventTime = 0;
-		}
-
-		// MrE: let the server know about bbox or capsule collision
-		if ( ent->s.eFlags & EF_CAPSULE ) {
-			ent->r.svFlags |= SVF_CAPSULE;
-		} else {
-			ent->r.svFlags &= ~SVF_CAPSULE;
-		}
-
-		// temporary entities don't think
-		if ( ent->freeAfterEvent ) {
-			continue;
-		}
-
-		if ( !ent->r.linked && ent->neverFree ) {
-			continue;
-		}
-
-		if ( ent->s.eType == ET_MISSILE
-			 || ent->s.eType == ET_FLAMEBARREL
-			 || ent->s.eType == ET_FP_PARTS
-			 || ent->s.eType == ET_FIRE_COLUMN
-			 || ent->s.eType == ET_FIRE_COLUMN_SMOKE
-			 || ent->s.eType == ET_EXPLO_PART
-			 || ent->s.eType == ET_RAMJET ) {
-			G_RunMissile( ent );
-			continue;
-		}
-
-		if ( ent->s.eType == ET_ZOMBIESPIT ) {
-			G_RunSpit( ent );
-			continue;
-		}
-
-		if ( ent->s.eType == ET_CROWBAR ) {
-			G_RunCrowbar( ent );
-			continue;
-		}
-
-		if ( ent->s.eType == ET_ITEM || ent->physicsObject ) {
-			G_RunItem( ent );
-			continue;
-		}
-
-		if ( ent->s.eType == ET_ALARMBOX ) {
-			if ( ent->flags & FL_TEAMSLAVE ) {
-				continue;
-			}
-			G_RunThink( ent );
-			continue;
-		}
-
-		if ( ent->s.eType == ET_MOVER || ent->s.eType == ET_PROP ) {
-			G_RunMover( ent );
-			continue;
-		}
-
-		if ( i < MAX_CLIENTS ) {
-			G_RunClient( ent );
-			continue;
-		}
-
-		G_RunThink( ent );
-	}
-//end = trap_Milliseconds();
-
-	// Ridah, move the AI
-	AICast_StartServerFrame( level.time );
-
-//start = trap_Milliseconds();
-	// perform final fixups on the players
-	ent = &g_entities[0];
-	for ( i = 0 ; i < level.maxclients ; i++, ent++ ) {
-		if ( ent->inuse ) {
-			ClientEndFrame( ent );
-		}
-	}
-//end = trap_Milliseconds();
-
-	// see if it is time to do a tournement restart
-//	CheckTournament();
-
-	// see if it is time to end the level
-	CheckExitRules();
-
-	// update to team status?
-	CheckTeamStatus();
-
-	// cancel vote if timed out
-	CheckVote();
-
-	// check team votes
-//	CheckTeamVote( TEAM_RED );
-//	CheckTeamVote( TEAM_BLUE );
-
-	// for tracking changes
-	CheckCvars();
-
-	if ( g_listEntity.integer ) {
-		for ( i = 0; i < MAX_GENTITIES; i++ ) {
-			G_Printf( "%4i: %s\n", i, g_entities[i].classname );
-		}
-		trap_Cvar_Set( "g_listEntity", "0" );
-	}
-
-	// Ridah, check if we are reloading, and times have expired
-	CheckReloadStatus();
-
-}
