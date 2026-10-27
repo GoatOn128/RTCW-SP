@@ -1176,7 +1176,6 @@ static qboolean SurfIsOffscreen( const drawSurf_t *drawSurf, vec4_t clipDest[128
 	int atiTess;
 	vec4_t clip, eye;
 	int i;
-	unsigned int pointOr = 0;
 	unsigned int pointAnd = (unsigned int)~0;
 
 	if ( glConfig.smpActive ) {     // FIXME!  we can't do RB_BeginSurface/RB_EndSurface stuff with smp!
@@ -1208,7 +1207,6 @@ static qboolean SurfIsOffscreen( const drawSurf_t *drawSurf, vec4_t clipDest[128
 			}
 		}
 		pointAnd &= pointFlags;
-		pointOr |= pointFlags;
 	}
 
 	// trivially reject
