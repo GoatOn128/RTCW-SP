@@ -1052,4 +1052,3 @@ void G_SpawnEntitiesFromString( void ) {
 
 	level.spawning = qfalse;            // any future calls to G_Spawn*() will be errors
 }
-
