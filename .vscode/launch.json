@@ -1,97 +1,419 @@
 {
-    // Debugging needs the game data next to bin/ (WolfSP.exe, renderer dlls
-    // and bin/main/ modules are all inside bin/).
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WolfSP (Windows, x64 debug)",
-            "type": "cppvsdbg",
+            "name": "WolfSP (Windows, x64, debug)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x64.exe",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x64 debug)",
-            "console": "integratedTerminal"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
         },
         {
-            "name": "WolfSP (Windows, x64 release)",
-            "type": "cppvsdbg",
+            "name": "WolfSP (Windows, x64, release)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x64.exe",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x64 release)",
-            "console": "integratedTerminal"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
         },
         {
-            "name": "WolfSP (Windows, x86 debug)",
-            "type": "cppvsdbg",
+            "name": "WolfSP (Windows, x86, debug)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x86.exe",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x86 debug)",
-            "console": "integratedTerminal"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
         },
         {
-            "name": "WolfSP (Windows, x86 release)",
-            "type": "cppvsdbg",
+            "name": "WolfSP (Windows, x86, release)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x86.exe",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x86 release)",
-            "console": "integratedTerminal"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
         },
         {
-            "name": "WolfSP (Linux, x64 debug)",
-            "type": "cppdbg",
+            "name": "WolfSP (Windows, x64, release, renderer hard-linked)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/WolfSP_x64.exe",
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "Build (x64 release, renderer hard-linked)",
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
+        },
+        {
+            "name": "WolfSP (Windows, x86, release, renderer hard-linked)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/WolfSP_x86.exe",
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "Build (x86 release, renderer hard-linked)",
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ],
+            "env": {
+                "PATH": "C:\\Program Files\\LLVM\\bin;${env:PATH}"
+            }
+        },
+        {
+            "name": "WolfSP (Linux, x64, debug)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x64",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x64 debug)",
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Pretty printing",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
             ]
         },
         {
-            "name": "WolfSP (Linux, x64 release)",
-            "type": "cppdbg",
+            "name": "WolfSP (Linux, x64, release)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x64",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x64 release)",
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ]
         },
         {
-            "name": "WolfSP (Linux, x86 debug)",
-            "type": "cppdbg",
+            "name": "WolfSP (Linux, x86, debug)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x86",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x86 debug)",
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Pretty printing",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
             ]
         },
         {
-            "name": "WolfSP (Linux, x86 release)",
-            "type": "cppdbg",
+            "name": "WolfSP (Linux, x86, release)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/bin/WolfSP_x86",
             "cwd": "${workspaceFolder}/bin",
             "preLaunchTask": "Build (x86 release)",
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ]
+        },
+        {
+            "name": "WolfSP (Linux, x64, release, renderer hard-linked)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/WolfSP_x64",
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "Build (x64 release, renderer hard-linked)",
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ]
+        },
+        {
+            "name": "WolfSP (Linux, x86, release, renderer hard-linked)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/WolfSP_x86",
+            "cwd": "${workspaceFolder}/bin",
+            "preLaunchTask": "Build (x86 release, renderer hard-linked)",
+            "args": [
+                "+set",
+                "r_fullscreen",
+                "0",
+                "+set",
+                "win_viewlog",
+                "1",
+                "+set",
+                "sv_cheats",
+                "1",
+                "+set",
+                "developer",
+                "1"
+            ],
+            "terminal": "integrated",
+            "stopOnEntry": false,
+            "sourceLanguages": [
+                "c",
+                "cpp"
+            ],
+            "initCommands": [
+                "settings set target.max-children-count 256",
+                "settings set target.max-string-summary-length 2048",
+                "settings set target.x86-disassembly-flavor intel"
+            ]
         }
     ]
 }
