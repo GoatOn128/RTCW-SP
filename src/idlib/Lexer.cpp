@@ -1699,6 +1699,21 @@ idLexer::LoadFile
 ================
 */
 int idLexer::LoadFile( const char *filename, bool OSPath ) {
+	idStr pathname;
+	int length;
+	char *buf;
+
+	if ( idLexer::loaded ) {
+		idLib::Error( "idLexer::LoadFile: another script already loaded" );
+		return false;
+	}
+
+	if ( !OSPath && ( baseFolder[0] != '\0' ) ) {
+		pathname = va( "%s/%s", baseFolder, filename );
+	} else {
+		pathname = filename;
+	}
+
 	// interim: the engine file system is not ported yet, so the lexer
 	// reads straight from disk relative to the working directory; idParser
 	// include resolution relies on the file name staying the path opened here
