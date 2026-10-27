@@ -1,243 +1,1060 @@
 # Build digest
 
-commit: 2540b9d86df1
+commit: 0fb335b63b2a
 
-- ubuntu-latest-x64-debug-: cancelled
+- ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
-- ubuntu-latest-x64-release-game,renderer: cancelled
+- ubuntu-latest-x64-release-game,renderer: failure
 - ubuntu-latest-x86-debug-: cancelled
 - ubuntu-latest-x86-release-: cancelled
 - uncrustify: success
-- windows-latest-x64-debug-: failure
+- windows-latest-x64-debug-: cancelled
 - windows-latest-x64-release-: cancelled
 - windows-latest-x64-release-cgame: cancelled
-- windows-latest-x64-release-game,renderer: cancelled
+- windows-latest-x64-release-game,renderer: failure
 - windows-latest-x64-release-ui: cancelled
-- windows-latest-x86-debug-: failure
+- windows-latest-x86-debug-: cancelled
 - windows-latest-x86-release-: cancelled
 
 ## ubuntu-latest-x64-debug-
 
-status: cancelled
-
-errors: 0
-warnings: 0 in 0 kinds
-
-### errors
-
-
-### failure context
-
-
-### warning kinds
-
-## ubuntu-latest-x64-release-
-
 status: failure
 
-errors: 11
-warnings: 249 in 7 kinds
+errors: 20
+warnings: 244 in 6 kinds
 
 ### errors
 
-src/client/cl_cgame.c:857:16: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.c.o] Error 1
-src/client/cl_main.c:2430:14: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
 src/client/cl_main.c:2636:52: error: expected '}'
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
-src/client/cl_ui.c:1003:13: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.c.o] Error 1
-src/server/sv_game.c:647:15: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-scons: *** [build/linux-x64-release/client/obj/server/sv_game.c.o] Error 1
-src/splines/splines.h:36:12: fatal error: '../renderer/qgl.h' file not found
-scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_main.c.o] Error 1
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+src/games/game/bg_misc.c:2518:54: error: expected expression
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+scons: *** [build/linux-x64-debug/game/obj/games/game/bg_misc.c.o] Error 1
+src/games/game/g_main.c:2387:25: error: expected '}'
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_main.c.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/game/bg_misc.c.o] Error 1
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_players.c.o] Error 1
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+scons: *** [build/linux-x64-debug/cgame/obj/games/ui/ui_shared.c.o] Error 1
+scons: *** [build/linux-x64-debug/ui/obj/games/game/bg_misc.c.o] Error 1
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_shared.c.o] Error 1
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+scons: *** [build/linux-x64-debug/renderer/obj/renderer/tr_shader.c.o] Error 1
 
 ### failure context
 
-- build/linux-x64-release/client/obj/client/cl_cgame.c.o
+- build/linux-x64-debug/client/obj/client/cl_main.c.o
 
 ```
+      |                      ^
+src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
  1796 |         qboolean holdatend;
       |                  ^
-src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  681 |         usercmd_t   *cmd;
-      |                      ^
-src/client/cl_cgame.c:435:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  435 |         Sys_UnloadModule( cgame_library );
-      |         ^
-src/client/cl_cgame.c:857:18: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src/client/cl_cgame.c:857:16: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_cgame.c:862:34: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src/client/cl_cgame.c:862:16: warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_cgame.c:864:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src/client/cl_cgame.c:871:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
 src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
   960 |         int resetTime;
       |             ^
-7 warnings and 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.c.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/cl_main.c.o
-
-```
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src/client/cl_main.c:2430:16: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src/client/cl_main.c:2430:14: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_main.c:2435:30: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src/client/cl_main.c:2435:17: warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_main.c:2437:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src/client/cl_main.c:2453:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
+1 warning generated.
+clang -o build/linux-x64-debug/client/obj/client/cl_keys.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Is
+clang -o build/linux-x64-debug/client/obj/client/cl_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Is
+1 warning generated.
+2 warnings generated.
+clang -o build/linux-x64-debug/client/obj/client/cl_net_chan.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui
+clang -o build/linux-x64-debug/client/obj/client/cl_parse.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -I
+src/client/cl_main.c:198:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  590 |         msg_t msgback;
+      |               ^
+1 warning generated.
+clang -o build/linux-x64-debug/client/obj/client/cl_qgl.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isr
 src/client/cl_main.c:2636:52: error: expected '}'
  2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
       |                                                           ^
 src/client/cl_main.c:2523:22: note: to match this '{'
  2523 | void CL_Init( void ) {
       |                      ^
-7 warnings and 2 errors generated.
-src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  590 |         msg_t msgback;
-      |               ^
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
+1 warning and 1 error generated.
+clang -o build/linux-x64-debug/client/obj/client/cl_scrn.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIE -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Is
+scons: *** [build/linux-x64-debug/client/obj/client/cl_main.c.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_ui.c.o
+- build/linux-x64-debug/game/obj/games/game/bg_misc.c.o
 
 ```
-clang -o build/linux-x64-release/client/obj/client/cl_scrn.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+src/games/game/ai_cast_think.c:946:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  946 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
+clang -o build/linux-x64-debug/game/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/
+src/games/game/ai_cast_think.c:1241:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src/games/game/ai_cast_think.c:1247:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src/games/game/ai_cast_think.c:1251:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+6 warnings generated.
+clang -o build/linux-x64-debug/game/obj/games/game/bg_pmove.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-debug/game/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-debug/game/obj/games/game/g_main.c.o
+
+```
+clang -o build/linux-x64-debug/game/obj/games/game/g_client.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+clang -o build/linux-x64-debug/game/obj/games/game/g_cmds.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/t
+clang -o build/linux-x64-debug/game/obj/games/game/g_combat.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+clang -o build/linux-x64-debug/game/obj/games/game/g_items.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/
+src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  898 |         int save;
+      |             ^
 1 warning generated.
-clang -o build/linux-x64-release/client/obj/client/cl_ui.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+ 2019 |         int spawnIndex;
+      |             ^
+clang -o build/linux-x64-debug/game/obj/games/game/g_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/t
+clang -o build/linux-x64-debug/game/obj/games/game/g_mem.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/th
 1 warning generated.
-clang -o build/linux-x64-release/client/obj/client/snd_adpcm.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Is
-src/client/cl_scrn.c:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  386 |         int color;
+clang -o build/linux-x64-debug/game/obj/games/game/g_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/t
+clang -o build/linux-x64-debug/game/obj/games/game/g_missile.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isr
+clang -o build/linux-x64-debug/game/obj/games/game/g_mover.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/
+src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  410 |         int hintType, hintDist, hintVal, oldHintType;
+      |                                          ^
+src/games/game/g_missile.c:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  432 |         int etype;
       |             ^
-src/client/cl_ui.c:976:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src/client/cl_ui.c:1003:15: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src/client/cl_ui.c:1003:13: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_ui.c:1008:28: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src/client/cl_ui.c:1008:13: warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_ui.c:1010:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src/client/cl_ui.c:1017:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-6 warnings and 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.c.o] Error 1
+src/games/game/g_main.c:2387:25: error: expected '}'
+ 2387 |         level.time = levelTime;
+      |                                ^
+src/games/game/g_main.c:2374:34: note: to match this '{'
+ 2374 | void G_RunFrame( int levelTime ) {
+      |                                  ^
+1 warning and 1 error generated.
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_main.c.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/server/sv_game.c.o
+- build/linux-x64-debug/cgame/obj/games/game/bg_misc.c.o
 
 ```
-clang -o build/linux-x64-release/client/obj/server/sv_game.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
-clang -o build/linux-x64-release/client/obj/server/sv_init.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
-src/server/sv_game.c:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src/server/sv_game.c:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src/server/sv_game.c:566:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src/server/sv_game.c:647:17: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src/server/sv_game.c:647:15: error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/server/sv_game.c:652:32: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src/server/sv_game.c:652:15: warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/server/sv_game.c:654:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src/server/sv_game.c:661:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-8 warnings and 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/server/sv_game.c.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/splines/splines.cpp.o
-
-```
-  148 | static const char *Q_stristr( const char *s, const char *find ) {
-      |                    ^~~~~~~~~
-1 warning generated.
-clang++ -o build/linux-x64-release/client/obj/splines/math_vector.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -fPIE -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/
-clang++ -o build/linux-x64-release/client/obj/splines/q_parse.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -fPIE -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/
-clang++ -o build/linux-x64-release/client/obj/splines/q_shared.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -fPIE -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys
-clang++ -o build/linux-x64-release/client/obj/splines/splines.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -fPIE -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/
-clang++ -o build/linux-x64-release/client/obj/splines/util_str.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -fPIE -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys
-src/splines/util_str.cpp:437:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  437 |         int len;
-      |             ^
-src/splines/util_str.cpp:475:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
-      |             ^
-src/splines/util_str.cpp:480:14: warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src/splines/util_str.cpp:482:14: warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-In file included from src/splines/splines.cpp:30:
-src/splines/splines.h:36:12: fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-clang -o build/linux-x64-release/client/obj/games/botlib/be_aas_bspq3.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isr
-clang -o build/linux-x64-release/client/obj/games/botlib/be_aas_cluster.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -I
 4 warnings generated.
-clang -o build/linux-x64-release/client/obj/games/botlib/be_aas_debug.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isr
-clang -o build/linux-x64-release/client/obj/games/botlib/be_aas_entity.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DBOTLIB -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Is
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
+1 warning generated.
+clang -o build/linux-x64-debug/game/obj/games/botai/ai_dmq3.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+clang -o build/linux-x64-debug/game/obj/games/botai/ai_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+src/games/botai/ai_cmd.c:1272:42: warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+ 1272 |         int i, bestitem, redflagtt, blueflagtt, redtobluett;
+      |                                                 ^
+1 warning generated.
+clang -o build/linux-x64-debug/game/obj/games/botai/ai_team.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc
+clang -o build/linux-x64-debug/game/obj/qcommon/q_math.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/thir
+clang -o build/linux-x64-debug/game/obj/qcommon/q_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/th
+clang -o build/linux-x64-debug/cgame/obj/games/game/bg_animation.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui
+clang -o build/linux-x64-debug/cgame/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isr
+clang -o build/linux-x64-debug/cgame/obj/games/game/bg_pmove.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Is
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+clang -o build/linux-x64-debug/cgame/obj/games/game/bg_slidemove.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui
+scons: *** [build/linux-x64-debug/cgame/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.c.o
+
+```
+src/games/cgame/cg_effects.c:525:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  525 |         int tagIndex;
+      |             ^
+8 warnings generated.
+3 warnings generated.
+clang -o build/linux-x64-debug/cgame/obj/games/cgame/cg_event.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -I
+src/games/cgame/cg_ents.c:173:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  173 |         clientInfo_t *ci;
+      |                       ^
+src/games/cgame/cg_ents.c:181:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  181 |         int tagIndex;
+      |             ^
+clang -o build/linux-x64-debug/cgame/obj/games/cgame/cg_flamethrower.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/game
+src/games/cgame/cg_ents.c:407:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  407 |         int offsetwhole;
+      |             ^
+src/games/cgame/cg_ents.c:960:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  960 |         float scale;
+      |               ^
+src/games/cgame/cg_ents.c:1814:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+1 warning generated.
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src/games/cgame/cg_ents.c:2254:126: note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+5 warnings and 1 error generated.
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+```
+
+- build/linux-x64-debug/cgame/obj/games/cgame/cg_players.c.o
+
+```
+src/games/cgame/cg_newDraw.c:1839:25: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1839 |                                 if ( CG_Text_Width( s, font, useScale, 1 ) + x > max ) {
+      |                                                     ^
+src/games/cgame/cg_local.h:1897:32: note: passing argument to parameter 'text' here
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
+      |             ^
+13 warnings generated.
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1667:35: note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1648:93: note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+clang -o build/linux-x64-debug/cgame/obj/games/cgame/cg_playerstate.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_players.c.o] Error 1
+```
+
+- build/linux-x64-debug/cgame/obj/games/ui/ui_shared.c.o
+
+```
+2 warnings generated.
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/cgame/cg_weapons.c:2013:8: warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+ 2013 |         float ramp;
+      |               ^
+clang -o build/linux-x64-debug/cgame/obj/qcommon/q_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+src/games/cgame/cg_weapons.c:2932:19: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+ 2932 |         weaponInfo_t    *weapon;
+      |                          ^
+src/games/cgame/cg_weapons.c:2935:13: warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+ 2935 |         static int oldtime = 0;
+      |                    ^
+scons: *** [build/linux-x64-debug/cgame/obj/games/ui/ui_shared.c.o] Error 1
+```
+
+- build/linux-x64-debug/ui/obj/games/game/bg_misc.c.o
+
+```
+ 3746 |         float shake = 0;
+      |               ^
+src/games/cgame/cg_weapons.c:4167:6: warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+ 4167 |         int lastweap;
+      |             ^
+src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+src/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+clang -o build/linux-x64-debug/ui/obj/games/ui/ui_atoms.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/third-party/s
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-debug/ui/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-debug/ui/obj/games/ui/ui_shared.c.o
+
+```
+src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+ 6491 |         int start;
+      |             ^
+src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+clang -o build/linux-x64-debug/ui/obj/games/ui/ui_util.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/third-party/st
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+   70 | static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
+      |                  ^~~~~~~~~~~~~
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+clang -o build/linux-x64-debug/ui/obj/qcommon/q_math.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/third-party/stb 
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_shared.c.o] Error 1
+```
+
+- build/linux-x64-debug/renderer/obj/renderer/tr_shader.c.o
+
+```
+1 warning generated.
+clang -o build/linux-x64-debug/renderer/obj/renderer/tr_shade.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isr
+src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+ 1889 |         static int lastPurged = 0;
+      |                    ^
+1 warning generated.
+clang -o build/linux-x64-debug/renderer/obj/renderer/tr_shade_calc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui
+clang -o build/linux-x64-debug/renderer/obj/renderer/tr_shader.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Is
+src/renderer/tr_shade.c:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1391 |         shader_t        *shader;
+      |                          ^
+clang -o build/linux-x64-debug/renderer/obj/renderer/tr_shadows.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -I
+1 warning generated.
+clang -o build/linux-x64-debug/renderer/obj/renderer/tr_sky.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -g -O0 -include build/linux-x64-debug/q_buildconfig.h -fPIC -fPIC -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -Isrc/games/ui -Isrc/
+src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2156:56: note: to match this '{'
+ 2156 |         for ( stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+      |                                                               ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2131:39: note: to match this '{'
+ 2131 | static shader_t *FinishShader( void ) {
+      |                                       ^
+2 errors generated.
+scons: *** [build/linux-x64-debug/renderer/obj/renderer/tr_shader.c.o] Error 1
 ```
 
 
 ### warning kinds
 
-- [192x] -unused-but-set-variable
+- [181x] -unused-but-set-variable
+  - src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_main.c:198:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_scrn.c:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src/client/snd_dma.c:558:8: warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src/client/snd_mix.c:795:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cm_trace.c:738:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cm_trace.c:824:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cmd.c:247:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:945:6: warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:1014:12: warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:2270:6: warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/files.c:2766:20: warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/net_chan.c:318:6: warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/unzip.c:2139:16: warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_game.c:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_game.c:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_snapshot.c:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_world.c:406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_world.c:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src/sys/unix/unix_shared.c:187:6: warning: variable 'extLen' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:475:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:480:14: warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:482:14: warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1143:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1188:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1237:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_move.c:447:35: warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:717:22: warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:972:42: warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:972:61: warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:415:6: warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:829:15: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:829:23: warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841:7: warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841src/games/botlib/be_aas_reach.c:3372:21: warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - :25: warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841:103: warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:487:14: warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:490:15: warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2094:6: warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - 2094 |         int numvasrc/games/botlib/be_aas_reach.c:3926:21: warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2188:40: warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2409:40: warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_goal.c:241:19: warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_gen.c:59:13: warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_chat.c:2782:19: warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_move.c:1553:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_move.c:3013:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_script.c:384:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_precomp.c:1656:6: warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_events.c:500:28: warning: variable 'activator' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_events.c:501:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:164:22: warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:915:13: warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1112:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1218:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1290:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1313:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:68:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1369:8: warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1369:22: warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:190:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:2004:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:2104:21: warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:836:15: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - :66:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:498:16: warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:921:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:996:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:989:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:1829:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2179:19: warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2108:27: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2109:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2115:16: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2116:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2323:14: warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2327:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_script_actions.c:764:29: warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:3331:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:3700:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_script_actions.c:2698:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4355:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4361:6: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4663:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4714:6: warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_sight.c:227:28: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_sight.c:569:17: warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
+  - 2 warningsrc/games/game/ai_cast_think.c:172:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:946:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:946:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1241:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1247:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1251:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_active.c:577:8: warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_active.c:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_missile.c:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.c:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.c:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.c:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_target.c:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_tramcar.c:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:867:13: warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:1078:8: warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:1337:6: warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
+  - src/games/botai/ai_chat.c:1050:6: warning: variable 'cpm' set but not used [-Wunused-but-set-variable]
+  - src/games/botai/ai_cmd.c:1272:42: warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_effects.c:525:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:173:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:181:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:407:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:960:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:1814:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:738:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:1072:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:1363:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_localents.c:471:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - 471 |                 isrc/games/cgame/cg_info.c:210:8: warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_localents.c:498:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_sound.c:238:6: warning: variable 's' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_view.c:196:18: warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_view.c:972:8: warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:401:6: warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:402:6: warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:407:19: warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2013:8: warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2932:19: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2935:13: warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:3746:8: warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:4167:6: warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:2465:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:2465:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_bsp.c:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_flares.c:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_font.c:235:44: warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:3065:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:3223:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_main.c:1186:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_marks.c:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade.c:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shadows.c:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shadows.c:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
+- [30x] conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings
+  - src/splines/splines.cpp:488:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:492:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:496:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:569:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:573:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:582:38: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:585:25: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:870:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:873:36: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:876:41: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:977:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:979:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:981:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:983:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1261:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1264:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1267:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1270:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1273:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1283:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1286:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1289:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1292:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1296:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1303:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1306:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1313:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1316:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1318:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1325:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+- [29x] -pointer-sign
+  - src/sys/unix/unix_net.c:179:38: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:387:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:403:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:450:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:466:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:508:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:518:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:526:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:542:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_info.c:79:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1719:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:1721:5: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1723:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1755:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1758:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1762:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1764:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1766:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1769:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1803:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1839:25: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:308:23: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:381:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:462:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/renderer/tr_animation.c:1249:11: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/renderer/tr_animation.c:1376:13: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+- [2x] -unused-const-variable
+  - src/qcommon/unzip.c:3046:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+  - src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+- [1x] -unused-function
+  - src/sys/unix/linux_glimp.c:148:20: warning: unused function 'Q_stristr' [-Wunused-function]
+- [1x] -unused-variable
+  - src/games/botlib/be_ai_goal.c:198:12: warning: unused variable 'g_gameskill' [-Wunused-variable]
+
+## ubuntu-latest-x64-release-
+
+status: failure
+
+errors: 20
+warnings: 247 in 6 kinds
+
+### errors
+
+src/client/cl_main.c:2636:52: error: expected '}'
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+src/games/game/bg_misc.c:2518:54: error: expected expression
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+scons: *** [build/linux-x64-release/game/obj/games/game/bg_misc.c.o] Error 1
+src/games/game/g_main.c:2387:25: error: expected '}'
+scons: *** [build/linux-x64-release/game/obj/games/game/g_main.c.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o] Error 1
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o] Error 1
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+scons: *** [build/linux-x64-release/ui/obj/games/game/bg_misc.c.o] Error 1
+scons: *** [build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o] Error 1
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o] Error 1
+
+### failure context
+
+- build/linux-x64-release/client/obj/client/cl_main.c.o
+
+```
+clang -o build/linux-x64-release/client/obj/client/cl_console.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -I
+clang -o build/linux-x64-release/client/obj/client/cl_input.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isr
+src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+1 warning generated.
+2 warnings generated.
+clang -o build/linux-x64-release/client/obj/client/cl_keys.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+clang -o build/linux-x64-release/client/obj/client/cl_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+clang -o build/linux-x64-release/client/obj/client/cl_net_chan.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -
+src/client/cl_main.c:198:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src/client/cl_main.c:2636:52: error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src/client/cl_main.c:2523:22: note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+clang -o build/linux-x64-release/client/obj/client/cl_parse.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isr
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
+```
+
+- build/linux-x64-release/game/obj/games/game/bg_misc.c.o
+
+```
+      |                         ^
+src/games/game/ai_cast_think.c:946:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  946 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
+src/games/game/ai_cast_think.c:1241:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src/games/game/ai_cast_think.c:1247:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src/games/game/ai_cast_think.c:1251:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+6 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/ga
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/game/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/game/obj/games/game/g_main.c.o
+
+```
+      |               ^
+src/games/game/g_active.c:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+ 1568 |         clientPersistant_t  *pers;
+      |                              ^
+2 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/g_alarm.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/ga
+clang -o build/linux-x64-release/game/obj/games/game/g_bot.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/game
+clang -o build/linux-x64-release/game/obj/games/game/g_client.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+clang -o build/linux-x64-release/game/obj/games/game/g_cmds.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/gam
+src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+ 2019 |         int spawnIndex;
+      |             ^
+clang -o build/linux-x64-release/game/obj/games/game/g_combat.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  898 |         int save;
+      |             ^
+1 warning generated.
+clang -o build/linux-x64-release/game/obj/games/game/g_items.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/ga
+1 warning generated.
+clang -o build/linux-x64-release/game/obj/games/game/g_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/gam
+src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  410 |         int hintType, hintDist, hintVal, oldHintType;
+      |                                          ^
+src/games/game/g_main.c:2387:25: error: expected '}'
+ 2387 |         level.time = levelTime;
+      |                                ^
+src/games/game/g_main.c:2374:34: note: to match this '{'
+ 2374 | void G_RunFrame( int levelTime ) {
+      |                                  ^
+1 warning and 1 error generated.
+scons: *** [build/linux-x64-release/game/obj/games/game/g_main.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o
+
+```
+clang -o build/linux-x64-release/game/obj/games/botai/ai_dmnet.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+1 warning generated.
+src/games/botai/ai_cmd.c:1272:42: warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+ 1272 |         int i, bestitem, redflagtt, blueflagtt, redtobluett;
+      |                                                 ^
+clang -o build/linux-x64-release/game/obj/games/botai/ai_dmq3.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+clang++ -o bin/renderer_bfg_x64.so -m64 -shared build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderWorld.cpp.o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderEntity.cpp.o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/ScreenRect.cpp.o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderSystem.cpp.o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/GLContext
+1 warning generated.
+clang -o build/linux-x64-release/game/obj/games/botai/ai_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+clang -o build/linux-x64-release/game/obj/games/botai/ai_team.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+clang -o build/linux-x64-release/game/obj/qcommon/q_math.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/
+clang -o build/linux-x64-release/game/obj/qcommon/q_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/game
+clang -o build/linux-x64-release/cgame/obj/games/game/bg_animation.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -
+clang -o build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+clang -o build/linux-x64-release/cgame/obj/games/game/bg_pmove.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o
+
+```
+  525 |         int tagIndex;
+      |             ^
+8 warnings generated.
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_event.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isr
+src/games/cgame/cg_ents.c:173:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  173 |         clientInfo_t *ci;
+      |                       ^
+src/games/cgame/cg_ents.c:181:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  181 |         int tagIndex;
+      |             ^
+src/games/cgame/cg_ents.c:407:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  407 |         int offsetwhole;
+      |             ^
+3 warnings generated.
+src/games/cgame/cg_ents.c:960:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  960 |         float scale;
+      |               ^
+1 warning generated.
+src/games/cgame/cg_ents.c:1814:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src/games/cgame/cg_ents.c:2254:126: note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_flamethrower.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix
+t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+5 warnings and 1 error generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o
+
+```
+src/games/cgame/cg_local.h:1897:32: note: passing argument to parameter 'text' here
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -I
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_playerstate.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botli
+src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
+      |             ^
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1667:35: note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1648:93: note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o
+
+```
+ 5118 |         int markDuration;
+      |             ^
+src/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+```
+
+- build/linux-x64-release/ui/obj/games/game/bg_misc.c.o
+
+```
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+clang -o build/linux-x64-release/cgame/obj/qcommon/q_math.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/game
+clang -o build/linux-x64-release/cgame/obj/qcommon/q_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/ga
+2 warnings generated.
+clang -o build/linux-x64-release/ui/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -I
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/ui/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o
+
+```
+ 5708 |         static int lastServerTime = 0, lastSaveTime = 0;
+      |                                        ^
+src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+ 6491 |         int start;
+      |             ^
+src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+   70 | static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
+      |                  ^~~~~~~~~~~~~
+src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o] Error 1
+```
+
+- build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o
+
+```
+1 warning generated.
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_noise.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+1 warning generated.
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_scene.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+ 1889 |         static int lastPurged = 0;
+      |                    ^
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shade.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+3 warnings generated.
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shade_calc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+src/renderer/tr_shade.c:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1391 |         shader_t        *shader;
+      |                          ^
+src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2156:56: note: to match this '{'
+ 2156 |         for ( stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+      |                                                               ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2131:39: note: to match this '{'
+ 2131 | static shader_t *FinishShader( void ) {
+      |                                       ^
+2 errors generated.
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o] Error 1
+```
+
+
+### warning kinds
+
+- [184x] -unused-but-set-variable
   - src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
@@ -266,6 +1083,9 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/splines/util_str.cpp:475:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/splines/util_str.cpp:480:14: warning: variable 's1' set but not used [-Wunused-but-set-variable]
   - src/splines/util_str.cpp:482:14: warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1143:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1188:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1237:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_aas_move.c:447:35: warning: variable 'ax' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_aas_route.c:415:6: warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_aas_route.c:829:15: warning: variable 't' set but not used [-Wunused-but-set-variable]
@@ -339,11 +1159,10 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_main.c:2377:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.c:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_props.c:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.c:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.c:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.c:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.c:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.c:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.c:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -361,22 +1180,18 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/games/cgame/cg_event.c:738:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.c:1072:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.c:1363:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_info.c:210:8: warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_localents.c:471:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_localents.c:498:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_players.c:1774:26: warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_players.c:2438:15: warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_players.c:2596:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_players.c:4553:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_sound.c:238:6: warning: variable 's' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_view.c:196:18: warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_view.c:972:8: warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
@@ -394,26 +1209,23 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_shared.c:3712:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_shared.c:4173:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_shared.c:4820:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_main.c:2465:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_main.c:2465:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.c:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_bsp.c:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_flares.c:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_font.c:235:44: warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
-  - src/renderer/tr_image.c1 warning:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_image.c:3065:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_image.c:3223:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_main.c:1186:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
@@ -424,8 +1236,42 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/renderer/tr_shadows.c:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shadows.c:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_sky.c:717:15: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+- [30x] conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings
+  - src/splines/splines.cpp:488:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:492:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:496:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:569:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:573:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:582:38: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:585:25: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:870:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:873:36: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:876:41: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:977:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:979:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:981:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:983:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1261:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1264:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1267:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1270:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1273:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1283:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1286:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1289:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1292:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1296:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1303:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1306:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1313:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1316:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1318:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1325:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
 - [29x] -pointer-sign
   - src/sys/unix/unix_net.c:179:38: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_drawtools.c:387:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_drawtools.c:403:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_drawtools.c:450:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -434,9 +1280,6 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/games/cgame/cg_drawtools.c:518:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_drawtools.c:526:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_drawtools.c:542:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_info.c:79:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_newDraw.c:1719:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/games/cgame/cg_newDraw.c:1721:5: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -454,32 +1297,6 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
   - src/games/ui/ui_main.c:462:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src/renderer/tr_animation.c:1249:11: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
   - src/renderer/tr_animation.c:1376:13: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-- [20x] -implicit-function-declaration
-  - src/client/cl_cgame.c:435:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_cgame.c:857:18: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_cgame.c:862:34: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  - src/client/cl_cgame.c:864:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_cgame.c:871:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_main.c:2291:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_main.c:2430:16: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_main.c:2435:30: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  - src/client/cl_main.c:2437:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_main.c:2453:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_ui.c:976:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_ui.c:1003:15: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_ui.c:1008:28: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  - src/client/cl_ui.c:1010:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/client/cl_ui.c:1017:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/server/sv_game.c:566:2: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/server/sv_game.c:647:17: warning: implicit declaration of function 'Sys_LoadModule' [-Wimplicit-function-declaration]
-  - src/server/sv_game.c:652:32: warning: implicit declaration of function 'Sys_ModuleAddress' [-Wimplicit-function-declaration]
-  - src/server/sv_game.c:654:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-  - src/server/sv_game.c:661:3: warning: implicit declaration of function 'Sys_UnloadModule' [-Wimplicit-function-declaration]
-- [4x] -int-to-pointer-cast
-  - src/client/cl_cgame.c:862:16: warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src/client/cl_main.c:2435:17: warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src/client/cl_ui.c:1008:13: warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src/server/sv_game.c:652:15: warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
 - [2x] -unused-const-variable
   - src/qcommon/unzip.c:3046:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
   - src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
@@ -490,18 +1307,648 @@ scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
 
 ## ubuntu-latest-x64-release-game,renderer
 
-status: cancelled
+status: failure
 
-errors: 0
-warnings: 0 in 0 kinds
+errors: 20
+warnings: 246 in 6 kinds
 
 ### errors
 
+src/client/cl_main.c:2636:52: error: expected '}'
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+src/games/game/bg_misc.c:2518:54: error: expected expression
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+scons: *** [build/linux-x64-release/game/obj/games/game/bg_misc.c.o] Error 1
+src/games/game/g_main.c:2387:25: error: expected '}'
+scons: *** [build/linux-x64-release/game/obj/games/game/g_main.c.o] Error 1
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o] Error 1
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o] Error 1
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+scons: *** [build/linux-x64-release/ui/obj/games/game/bg_misc.c.o] Error 1
+scons: *** [build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o] Error 1
 
 ### failure context
 
+- build/linux-x64-release/client/obj/client/cl_main.c.o
+
+```
+clang -o build/linux-x64-release/client/obj/client/cl_cin.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -
+clang -o build/linux-x64-release/client/obj/client/cl_console.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win
+clang -o build/linux-x64-release/client/obj/client/cl_input.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32
+src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+1 warning generated.
+clang -o build/linux-x64-release/client/obj/client/cl_keys.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 
+2 warnings generated.
+clang -o build/linux-x64-release/client/obj/client/cl_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 
+clang -o build/linux-x64-release/client/obj/client/cl_net_chan.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIE -DNDEBUG -DQDECL= -DMAC_STATIC= -DBOTLIB_HARD_LINKED -DGAME_HARD_LINKED -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/wi
+src/client/cl_main.c:198:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src/client/cl_main.c:2636:52: error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src/client/cl_main.c:2523:22: note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.c.o] Error 1
+```
+
+- build/linux-x64-release/game/obj/games/game/bg_misc.c.o
+
+```
+src/games/game/ai_cast_think.c:1241:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src/games/game/ai_cast_think.c:1247:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src/games/game/ai_cast_think.c:1251:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+2 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/bg_animation.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/gam
+2 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/bo
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+6 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/bg_pmove.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/b
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/game/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/game/obj/games/game/g_main.c.o
+
+```
+      |               ^
+src/games/game/g_active.c:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+ 1568 |         clientPersistant_t  *pers;
+      |                              ^
+clang -o build/linux-x64-release/game/obj/games/game/g_client.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/b
+clang -o build/linux-x64-release/game/obj/games/game/g_cmds.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/bot
+2 warnings generated.
+clang -o build/linux-x64-release/game/obj/games/game/g_combat.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/b
+src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+ 2019 |         int spawnIndex;
+      |             ^
+src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  898 |         int save;
+      |             ^
+clang -o build/linux-x64-release/game/obj/games/game/g_items.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/bo
+clang -o build/linux-x64-release/game/obj/games/game/g_main.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/bot
+1 warning generated.
+clang -o build/linux-x64-release/game/obj/games/game/g_mem.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botl
+1 warning generated.
+src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  410 |         int hintType, hintDist, hintVal, oldHintType;
+      |                                          ^
+clang -o build/linux-x64-release/game/obj/games/game/g_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DGAMEDLL -DGAME_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/bot
+src/games/game/g_main.c:2387:25: error: expected '}'
+ 2387 |         level.time = levelTime;
+      |                                ^
+src/games/game/g_main.c:2374:34: note: to match this '{'
+ 2374 | void G_RunFrame( int levelTime ) {
+      |                                  ^
+1 warning and 1 error generated.
+scons: *** [build/linux-x64-release/game/obj/games/game/g_main.c.o] Error 1
+```
+
+- build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o
+
+```
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_noise.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/ga
+1 warning generated.
+src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+ 1889 |         static int lastPurged = 0;
+      |                    ^
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_scene.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/ga
+3 warnings generated.
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shade.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/ga
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shade_calc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Is
+clang -o build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DREFDLL -DRENDERER_HARD_LINKED -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/g
+src/renderer/tr_shade.c:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1391 |         shader_t        *shader;
+      |                          ^
+src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2156:56: note: to match this '{'
+ 2156 |         for ( stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+      |                                                               ^
+src/renderer/tr_shader.c:2205:55: error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src/renderer/tr_shader.c:2131:39: note: to match this '{'
+ 2131 | static shader_t *FinishShader( void ) {
+      |                                       ^
+2 errors generated.
+1 warning generated.
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_shader.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o
+
+```
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Material_shader.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Shadow.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Backend.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Tess.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/un
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Tess_calc.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/s
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Lighting.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sy
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Surface.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/ImageManager.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isr
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_files.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_intrinsic.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -
+clang++ -o build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_process.cpp.o -c -Wall -fsigned-char -std=gnu++98 -m64 -O2 -fno-strict-aliasing -std=c++14 -w -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Is
+clang -o build/linux-x64-release/renderer-bfg/obj/third-party/glad/src/gl.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+clang -o build/linux-x64-release/renderer-bfg/obj/third-party/stb/stb_impl.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -w -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/g
+clang -o build/linux-x64-release/cgame/obj/games/game/bg_animation.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -
+clang -o build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o
+
+```
+      |           ^ ~~~~~~
+3 warnings generated.
+8 warnings generated.
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_effects.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -I
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc
+src/games/cgame/cg_effects.c:525:src/games/cgame/cg_ents.c:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  173:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+525  173 |         clientInfo_t *ci;
+      |                       ^
+src/games/cgame/cg_ents.c:181:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  181 |         int tagIndex;
+      |             ^
+ |         int tagIndex;
+      |             ^
+src/games/cgame/cg_ents.c:407:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  407 |         int offsetwhole;
+      |             ^
+src/games/cgame/cg_ents.c:960:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  960 |         float scale;
+      |               ^
+src/games/cgame/cg_ents.c:1814:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+src/games/cgame/cg_ents.c:2256:40: error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src/games/cgame/cg_ents.c:2254:126: note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+5 warnings and 1 error generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_ents.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o
+
+```
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_particles.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib 
+src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+13 warnings generated.
+clang -o build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -I
+src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
+      |             ^
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1667:35: note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src/games/cgame/cg_players.c:1667:84: error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src/games/cgame/cg_players.c:1648:93: note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.c.o] Error 1
+```
+
+- build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o
+
+```
+ 1289 |                         int dec = 0;
+      |                             ^
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_Thumbsrc/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+Func( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+```
+
+- build/linux-x64-release/ui/obj/games/game/bg_misc.c.o
+
+```
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_Thumbsrc/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+Func( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.c.o] Error 1
+clang -o build/linux-x64-release/cgame/obj/qcommon/q_math.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/game
+clang -o build/linux-x64-release/cgame/obj/qcommon/q_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -DCGAMEDLL -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/ga
+clang -o build/linux-x64-release/ui/obj/games/game/bg_misc.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -I
+src/games/game/bg_misc.c:2516:1: error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src/games/game/bg_misc.c:2518:54: error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src/games/game/bg_misc.c:2518:54: error: expected '}'
+src/games/game/bg_misc.c:464:1: note: to match this '{'
+  464 | {
+      | ^
+src/games/game/bg_misc.c:2507:4: error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build/linux-x64-release/ui/obj/games/game/bg_misc.c.o] Error 1
+```
+
+- build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o
+
+```
+ 1280 |         int skip;
+      |             ^
+src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+   70 | static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
+      |                  ^~~~~~~~~~~~~
+clang -o build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame -I
+6 warnings generated.
+src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+clang -o build/linux-x64-release/ui/obj/games/ui/ui_syscalls.c.o -c -std=gnu89 -Wall -fsigned-char -m64 -O2 -fno-strict-aliasing -include build/linux-x64-release/q_buildconfig.h -fPIC -fPIC -DNDEBUG -DQDECL= -DMAC_STATIC= -Isrc -Isrc/games/game -Isrc/client -Isrc/qcommon -Isrc/renderer -Isrc/server -Isrc/splines -Isrc/sys/unix -Isrc/sys/win32 -Isrc/games/botai -Isrc/games/botlib -Isrc/games/cgame 
+src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2462:52: note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src/games/ui/ui_shared.c:2468:24: error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src/games/ui/ui_shared.c:2456:49: note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build/linux-x64-release/ui/obj/games/ui/ui_shared.c.o] Error 1
+```
+
 
 ### warning kinds
+
+- [183x] -unused-but-set-variable
+  - src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_main.c:198:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_scrn.c:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src/client/snd_dma.c:558:8: warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src/client/snd_mix.c:795:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cm_trace.c:738:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cm_trace.c:824:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/cmd.c:247:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:945:6: warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:1014:12: warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/common.c:2270:6: warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/files.c:2766:20: warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/net_chan.c:318:6: warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src/qcommon/unzip.c:2139:16: warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_game.c:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_game.c:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_snapshot.c:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - :406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_world.c:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src/sys/unix/unix_shared.c:187:6: warning: variable 'extLen' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:437:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:475:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:480:14: warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src/splines/util_str.cpp:482:14: warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1143:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1188:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/splines/splines.cpp:1237:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_move.c:447:35: warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:717:22: warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:972:42: warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:972:61: warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:415:6: warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:829:15: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:829:23: warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2094:6: warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:3372:21: warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2188:40: warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_route.c:2409:40: warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_reach.c:3926:21: warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841:7: warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841:25: warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:841:103: warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:487:14: warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_aas_routetable.c:490:15: warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_gen.c:59:13: warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_chat.c:2782:19: warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_goal.c:241:19: warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_move.c:1553:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/be_ai_move.c:3013:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_precomp.c:1656:6: warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_script.c:384:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_events.c:500:28: warning: variable 'activator' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_events.c:501:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:68:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:164:22: warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:190:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:915:13: warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1112:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_attack.c:836:15: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1218:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1290:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1313:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1369:8: warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:1369:22: warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:2004:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_fight.c:2104:21: warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:66:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:498:16: warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:921:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_func_boss1.c:996:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:989:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:1829:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2179:19: warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2108:27: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2109:15: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2115:16: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2116:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2323:14: warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:2327:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:3331:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:3700:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4355:11: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4361:6: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4663:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_funcs.c:4714:6: warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_script_actions.c:764:29: warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_script_actions.c:2698:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_sight.c:227:28: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_sight.c:569:17: warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:172:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:946:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:946:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1241:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1247:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai_cast_think.c:1251:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_active.c:577:8: warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_active.c:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_cmds.c:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_combat.c:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_main.c:410:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_missile.c:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.c:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.c:2150:6: warning: src/games/game/g_props.c:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_tramcar.c:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_target.c:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:867:13: warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:1078:8: warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_weapon.c:1337:6: warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
+  - src/games/botai/ai_chat.c:1050:6: warning: variable 'cpm' set but not used [-Wunused-but-set-variable]
+  - src/games/botai/ai_cmd.c:1272:42: warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_bsp.c:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_flares.c:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_font.c:235:44: warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:3065:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_image.c:3223:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_main.c:1186:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_marks.c:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade.c:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shadows.c:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shadows.c:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_sky.c:717:15: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_effects.c:525:src/games/cgame/cg_ents.c:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - 173:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:181:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:407:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:960:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.c:1814:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:738:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:1072:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.c:1363:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_info.c:210:8: warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_localents.c:471:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_localents.c:498:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_players.c:189:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_sound.c:238:6: warning: variable 's' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_view.c:196:18: warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_view.c:972:8: warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:401:6: warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:402:6: warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:407:19: warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2013:8: warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2932:19: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:2935:13: warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:3746:8: warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:4167:6: warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_shared.c:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+  - 2456 | static void Scroll_ListBox_Thumbsrc/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:2465:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:2465:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_players.c:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+- [30x] conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings
+  - src/splines/splines.cpp:488:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:492:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:496:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:569:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:573:23: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:582:38: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:585:25: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:870:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:873:36: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:876:41: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:977:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:979:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:981:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:983:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1261:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1264:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1267:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1270:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1273:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1283:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1286:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1289:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1292:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1296:11: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1303:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1306:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1313:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1316:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1318:10: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+  - src/splines/splines.cpp:1325:16: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings]
+- [29x] -pointer-sign
+  - src/sys/unix/unix_net.c:179:38: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/renderer/tr_animation.c:1249:11: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/renderer/tr_animation.c:1376:13: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:387:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:403:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:450:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:466:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:508:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:518:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:526:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_drawtools.c:542:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_info.c:79:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1719:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1721:5: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1723:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1755:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1758:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1762:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1764:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1766:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1769:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1803:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/cgame/cg_newDraw.c:1839:25: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:308:23: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:381:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src/games/ui/ui_main.c:462:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+- [2x] -unused-const-variable
+  - src/qcommon/unzip.c:3046:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+  - src/games/ui/ui_main.c:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+- [1x] -unused-function
+  - src/sys/unix/linux_glimp.c:148:20: warning: unused function 'Q_stristr' [-Wunused-function]
+- [1x] -unused-variable
+  - src/games/botlib/be_ai_goal.c:198:12: warning: unused variable 'g_gameskill' [-Wunused-variable]
 
 ## ubuntu-latest-x86-debug-
 
@@ -537,12 +1984,18 @@ warnings: 0 in 0 kinds
 
 status: success
 
-errors: 1
+errors: 7
 warnings: 0 in 0 kinds
 
 ### errors
 
 UNCRUSTIFY_FAILED: src/client/cl_main.c
+UNCRUSTIFY_FAILED: src/renderer/tr_shader.c
+UNCRUSTIFY_FAILED: src/games/game/g_main.c
+UNCRUSTIFY_FAILED: src/games/game/bg_misc.c
+UNCRUSTIFY_FAILED: src/games/cgame/cg_players.c
+UNCRUSTIFY_FAILED: src/games/cgame/cg_ents.c
+UNCRUSTIFY_FAILED: src/games/ui/ui_shared.c
 
 ### failure context
 
@@ -551,691 +2004,62 @@ UNCRUSTIFY_FAILED: src/client/cl_main.c
 
 ## windows-latest-x64-debug-
 
-status: failure
+status: cancelled
 
-errors: 39
-warnings: 734 in 8 kinds
+errors: 2
+warnings: 150 in 7 kinds
 
 ### errors
 
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.c.obj] Error 1
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
 src\client\cl_main.c(2636,52): error: expected '}'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-debug\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
 
 ### failure context
-
-- build\windows-x64-debug\client\obj\client\cl_cgame.c.obj
-
-```
-      |                      ^
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  435 |         Sys_UnloadModule( cgame_library );
-      |         ^
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qboolean holdatend;
-      |                  ^
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  960 |         int resetTime;
-      |             ^
-2 warnings and 6 errors generated.
-2 warnings generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.c.obj] Error 1
-```
 
 - build\windows-x64-debug\client\obj\client\cl_main.c.obj
 
 ```
-      |                 ^
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+2 warnings generated.
+1 warning generated.
+clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+1 warning generated.
+clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
+clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai 
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
 src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
   590 |         msg_t msgback;
       |               ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
 src\client\cl_main.c(2636,52): error: expected '}'
  2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
       |                                                           ^
 src\client\cl_main.c(2523,22): note: to match this '{'
  2523 | void CL_Init( void ) {
       |                      ^
-5 warnings and 7 errors generated.
+1 warning and 1 error generated.
 1 warning generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\client\cl_ui.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_scrn.c.obj /c src\client\cl_scrn.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-clang-cl /Fobuild\windows-x64-debug\client\obj\client\cl_ui.c.obj /c src\client\cl_ui.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isrc\
-clang-cl /Fobuild\windows-x64-debug\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
-src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  386 |         int color;
-      |             ^
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );1
- warning       generated|                 ^
-.
-1 warning and 6 errors generated.
-clang-cl /Fobuild\windows-x64-debug\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\server\sv_game.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-debug\client\obj\server\sv_main.c.obj /c src\server\sv_main.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-clang-cl /Fobuild\windows-x64-debug\client\obj\server\sv_net_chan.c.obj /c src\server\sv_net_chan.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-3 warnings and 6 errors generated.
-scons: *** [build\windows-x64-debug\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\sys\win32\win_glimp.c.obj
-
-```
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\sys\win32\win_main.c.obj
-
-```
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-debug\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
-4 warnings generated.
-clang-cl /Fobuild\windows-x64-debug\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\ga
-clang-cl /Fobuild\windows-x64-debug\client\obj\sys\win32\win_snd.c.obj /c src\sys\win32\win_snd.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_main.c.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\splines\splines.cpp.obj
-
-```
-src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  703 |         int error;
-      |             ^
-9 warnings generated.
-clang-cl /Fobuild\windows-x64-debug\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sy
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
-clang-cl /Fobuild\windows-x64-debug\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m64 /Z7 /Od /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc
-src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
-      |             ^
-src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-3 warnings generated.
-clang-cl /Fobuild\windows-x64-debug\client\obj\games\botlib\be_aas_cluster.c.obj /c src\games\botlib\be_aas_cluster.c /nologo /W4 -m64 /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
 ```
 
 
 ### warning kinds
 
-- [494x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-  - src\games\game\bg_misc.c(3458,7): warning: missing field 'pickup_sound' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(145,42): warning: missing field 'trackChange' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(148,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(149,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(150,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(151,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(154,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(157,79): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(160,47): warning: missing field 'modificationCount' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(163,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(164,90): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(165,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(166,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(167,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(168,98): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(172,63): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(174,97): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(175,104): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(178,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(179,95): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(180,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(181,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(183,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(185,68): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(187,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(188,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(189,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(190,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(192,61): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(193,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(195,50): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(197,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(198,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(199,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(200,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(201,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(202,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(203,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(204,52): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(205,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(206,55): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(207,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(208,65): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(209,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(211,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(214,40): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(215,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(217,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(218,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(220,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(221,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(223,69): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(225,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(227,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(229,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(231,48): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(233,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(235,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(236,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(237,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(238,62): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(241,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(243,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(244,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(246,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(248,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(249,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(111,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(112,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(113,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(114,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(115,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(116,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(117,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(118,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(119,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(120,54): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(121,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(122,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(123,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(124,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(125,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(126,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(127,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(128,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(129,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(130,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(131,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(132,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(134,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(135,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(137,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(138,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(141,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(142,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(143,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(147,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(148,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(153,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(154,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(155,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(159,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(162,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(166,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(170,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(171,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(175,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(176,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(182,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(183,38): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(185,32): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(188,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(190,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(192,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(194,7): warning: missing field 'ofs' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1416,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1417,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1418,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1419,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1420,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1421,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1438,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1439,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1440,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1441,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1442,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1443,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1444,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_info.c(189,9): warning: missing field 'YOfs' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_players.c(2914,11): warning: missing field 'maxdist' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(96,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(97,19): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(98,16): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(99,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(100,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(102,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(103,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(104,26): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(105,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(106,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(107,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(109,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(110,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(111,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(112,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(113,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(114,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(115,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(116,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(117,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(118,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(119,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(120,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(121,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(122,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(123,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(124,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(125,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(126,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(127,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(129,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(130,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(131,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(132,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(133,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(134,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(135,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(136,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(137,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(138,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(139,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(140,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(141,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(142,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(143,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(144,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(145,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(146,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(147,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3442,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3443,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3444,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3445,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3446,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3447,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3448,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3449,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3450,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3451,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3452,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3453,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3454,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3455,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3456,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3457,50): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3458,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3459,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3460,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3461,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3462,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3463,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3464,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3465,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3466,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3467,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3468,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3469,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3470,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3471,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3472,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3473,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3474,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3475,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3476,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3477,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3478,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3479,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3480,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3481,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3482,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3483,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3484,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3485,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3486,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3487,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3488,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3489,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3490,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3491,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3492,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3493,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3494,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3495,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3496,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3497,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3498,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3499,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3500,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3501,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3502,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3503,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3504,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3505,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3506,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3507,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3508,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3509,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3510,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3511,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3512,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3513,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3514,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3515,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3516,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3517,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3518,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3519,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3520,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3521,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3522,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3523,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3524,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3525,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3526,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3527,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3528,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3529,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3530,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3531,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3532,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3533,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3534,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3535,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3537,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3538,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3540,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3541,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3542,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3543,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3544,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3545,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3546,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3548,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3549,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3550,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(129 ,24658 | )        :f lwarning: omissing field 'localname' initializer [-Wmissing-field-initializers]a
-  - oatsrc\games\ui\ui_shared.c (x130,, 7y),:  wwarning: ,missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\renderer\tr_shader.c(1820,7): warning: missing field 'blendB' initializer [-Wmissing-field-initializers]
-- [190x] -unused-but-set-variable
+- [55x] -unused-but-set-variable
   - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
   - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
   - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
@@ -1257,6 +2081,9 @@ scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
   - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
   - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
@@ -1264,11 +2091,11 @@ scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
@@ -1277,13 +2104,666 @@ scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+- [47x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [7x] -unused-variable
+  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
+  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
+  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
+  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(616,13): warning: unused variable 'lastWarning' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
+  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
+- [7x] -pointer-sign
+  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+- [3x] -deprecated-declarations
+  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+- [1x] -unused-const-variable
+  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+
+## windows-latest-x64-release-
+
+status: cancelled
+
+errors: 2
+warnings: 150 in 7 kinds
+
+### errors
+
+src\client\cl_main.c(2636,52): error: expected '}'
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+
+### failure context
+
+- build\windows-x64-release\client\obj\client\cl_main.c.obj
+
+```
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_console.c.obj /c src\client\cl_console.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_input.c.obj /c src\client\cl_input.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\gam
+src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Is
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src\client\cl_main.c(2636,52): error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src\client\cl_main.c(2523,22): note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\gam
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+```
+
+
+### warning kinds
+
+- [56x] -unused-but-set-variable
+  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - 71 |         {"hspread", WEAsrc\games\botlib\be_ai_move.cPO(N1553_,O8F)S:(  warning: hvariable 'dist' set but not used [-Wunused-but-set-variable]s
+  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+- [47x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [7x] -pointer-sign
+  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+- [6x] -unused-variable
+  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
+  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
+  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
+  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
+  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
+- [3x] -deprecated-declarations
+  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+- [1x] -unused-const-variable
+  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+
+## windows-latest-x64-release-cgame
+
+status: cancelled
+
+errors: 14
+warnings: 268 in 7 kinds
+
+### errors
+
+src\client\cl_main.c(2636,52): error: expected '}'
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+src\games\game\bg_misc.c(2518,54): error: expected expression
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+
+### failure context
+
+- build\windows-x64-release\client\obj\client\cl_main.c.obj
+
+```
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_cin.c.obj /c src\client\cl_cin.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_console.c.obj /c src\client\cl_console.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_input.c.obj /c src\client\cl_input.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc
+src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src\client\cl_main.c(2636,52): error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src\client\cl_main.c(2523,22): note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj
+
+```
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_libvar.c.obj /c src\games\botlib\l_libvar.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splin
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
+src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  384 |         int c, val, i;
+      |                     ^
+src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+ 1656 |         int lastoperatortype = 0;
+      |             ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_animation.c.obj /c src\games\game\bg_animation.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix 
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj
+
+```
+ 1441 |         {"", 20,     211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1442 |         {"", 255,    211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1443 |         {"", 235,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi switching to american)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1444 |         {"", 470,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american switching to nazi)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  738 |         int howmany, total;
+      |                      ^
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src\games\cgame\cg_ents.c(2254,126): note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+18 warnings and 1 error generated.
+src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+ 1072 |         int mass;
+      |             ^
+src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+ 1363 |         int type;
+      |             ^
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj
+
+```
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj /c src\games\cgame\cg_players.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_playerstate.c.obj /c src\games\cgame\cg_playerstate.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys
+src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
+      |             ^
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1667,35): note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1648,93): note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+13 warnings generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj
+
+```
+      |             ^
+src\games\cgame\cg_weapons.c(2932,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+ 2932 |         weaponInfo_t    *weapon;
+      |                          ^
+src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+ 2935 |         static int oldtime = 0;
+      |                    ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+ 3746 |         float shake = 0;
+      |               ^
+3 warnings and 2 errors generated.
+src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+ 4167 |         int lastweap;
+      |             ^
+"C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64\rc.EXE" /nologo /fo build\windows-x64-release\client\winquake.res src\sys\win32\winquake.rc
+src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+```
+
+- build\windows-x64-release\game\obj\games\game\bg_misc.c.obj
+
+```
+  946 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
+src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\bg_animation.c.obj /c src\games\game\bg_animation.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
+6 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+
+### warning kinds
+
+- [138x] -unused-but-set-variable
+  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_effects.c(525,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(173,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(181,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(407,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(960,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_info.c(210,8): warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(1101,26): warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(1638,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_localents.c(471,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_localents.c(498,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_newDraw.c(202,15): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_newDraw.c(391,19): warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_sound.c(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_view.c(196,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_view.c(972,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(401,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(402,6): warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(407,19): warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2013,8): warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2932,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
@@ -1328,1282 +2808,67 @@ scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_active.c(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_active.c(1568,23): warning: variable 'pers' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_main.c(2377,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.c(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.c(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_mover.c(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_mover.c(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_target.c(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_tramcar.c(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(867,13): warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
-  - src\games\botai\ai_chat.c(1050,6): warning: variable 'cpm' set but not used [-Wunused-but-set-variable]
-  - src\games\botai\ai_cmd.c(1272,42): warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_effects.c(525,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(173,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(181,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(407,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(960,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(1101,26): warning: variable 'firing' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(1638,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_info.c(210,8): warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_localents.c(471,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_localents.c(498,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_newDraw.c(202,15): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_newDraw.c(391,19): warning: variable 'ps' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(1774,26): warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2438,15): warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2596,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(4553,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_sound.c(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_view.c(196,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(401,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(402,6): warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(407,19): warning: variable 'le' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_view.c(972,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2013,8): warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2932,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(3712,14): warning: variable 'value' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4173,13): warning: variable 'parent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4820,14): warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
-  - arsrc\games\ui\ui_players.c (*1275s, 24=) :t ewarning: xvariable 'prev' set but not used [-Wunused-but-set-variable]t
-  - src\games\ui\ui_players.c(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c ( 2465 , 17 ) :   warning:  variable 'h' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5082,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5085,13): warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5395,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5708,33): warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(6491,6): warning: variable 'start' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_bsp.c(147,9): warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_flares.c(128,23): warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_font.c(235,44): warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(1823,8): warning: variable 'g' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(3065,8): warning: variable 'name' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(3223,20): warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_main.c(1186,15): warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_marks.c(500,8): warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shade.c(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shade_calc.c(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shadows.c(103,6): warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shadows.c(103,15): warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_model.c(1889,13): warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
-- [35x] -pointer-sign
-  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_draw.c(1940,14): warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_draw.c(1955,20): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_draw.c(1986,8): warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(387,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(403,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(450,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(466,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(508,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(518,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(526,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_drawtools.c(542,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_info.c(79,14): warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1719,23): warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1721,5): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1723,9): warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1755,23): warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1758,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1762,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1764,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1766,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1769,9): warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1803,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\cgame\cg_newDraw.c(1839,25): warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c(308,23): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c(381,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c (1275462 | ,        24c)h:a rwarning:  initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1249,11): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1376,13): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-- [5x] -unused-variable
-  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
-- [4x] -int-to-pointer-cast
-  - src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-- [3x] -deprecated-declarations
-  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-- [2x] -unused-const-variable
-  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
-  - src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
-- [1x] )      :|                       ^warning:
-  - )      :|                       ^warning:
-
-## windows-latest-x64-release-
-
-status: cancelled
-
-errors: 39
-warnings: 160 in 7 kinds
-
-### errors
-
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2636,52): error: expected '}'
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-
-### failure context
-
-- build\windows-x64-release\client\obj\client\cl_cgame.c.obj
-
-```
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  960 |         int resetTime;
-      |             ^
-2 warnings and 6 errors generated.
-src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  442 |         int movespeed;
-      |             ^
-src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  681 |         usercmd_t   *cmd;
-      |                      ^
-src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qboolean holdatend;
-      |                  ^
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_main.c.obj
-
-```
-      |                                               ^
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2636,52): error: expected '}'
- 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
-      |                                                           ^
-src\client\cl_main.c(2523,22): note: to match this '{'
- 2523 | void CL_Init( void ) {
-      |                      ^
-5 warnings and 7 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_ui.c.obj
-
-```
-1 warning generated.
-1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_ui.c.obj /c src\client\cl_ui.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\g
-1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_mem.c.obj /c src\client\snd_mem.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-1 warning and 6 errors generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_mix.c.obj /c src\client\snd_mix.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\server\sv_game.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-release\client\obj\server\sv_game.c.obj /c src\server\sv_game.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadMclang-cl /Fobuild\windows-x64-release\client\obj\server\sv_init.c.obj /c src\server\sv_init.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
-odule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-3 warnings and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj
-
-```
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_main.c.obj
-
-```
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 1 error generated.
-4 warnings generated.
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\splines\splines.cpp.obj
-
-```
-  703 |         int error;
-      |             ^
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win
-9 warnings generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Is
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
-clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  437 |         int len;
-      |             ^
-src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
-      |             ^
-src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-```
-
-
-### warning kinds
-
-- [89x] -unused-but-set-variable
-  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(915,13): warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1112,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1218,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1290,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1313,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,8): warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,22): warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2004,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2104,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(68,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(996,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(989,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(1829,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2179,19): warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2108,27): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2109,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2115,16): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2116,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2323,14): warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2327,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3331,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3700,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4355,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4361,6): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4663,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4714,6): warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(764,29): warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(2698,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-- [51x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+- [60x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-- [7x] -pointer-sign
-  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-- [5x] -unused-variable
-  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
-- [4x] -int-to-pointer-cast
-  - src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - 2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-- [3x] -deprecated-declarations
-  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-- [1x] -unused-const-variable
-  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
-
-## windows-latest-x64-release-cgame
-
-status: cancelled
-
-errors: 32
-warnings: 362 in 7 kinds
-
-### errors
-
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2636,52): error: expected '}'
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-
-### failure context
-
-- build\windows-x64-release\client\obj\client\cl_main.c.obj
-
-```
- 2097 |         {{'i','m','a','g','e',0}, CACHE_IMAGES},
-      |                                               ^
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2636,52): error: expected '}'
- 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
-      |                                                           ^
-src\client\cl_main.c(2523,22): note: to match this '{'
- 2523 | void CL_Init( void ) {
-      |                      ^
-5 warnings and 7 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_ui.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Is
-src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  386 |         int color;
-      |             ^
-1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_mem.c.obj /c src\client\snd_mem.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_mix.c.obj /c src\client\snd_mix.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-1 warning and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\server\sv_game.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-release\client\obj\server\sv_init.c.obj /c src\server\sv_init.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-3 warnings and 6 errors generated.
-2 warnings generated.
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj
-
-```
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_main.c.obj
-
-```
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 1 error generated.
-4 warnings generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_snd.c.obj /c src\sys\win32\win_snd.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\splines\splines.cpp.obj
-
-```
-  703 |         int error;
-      |             ^
-9 warnings generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sy
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\serv
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splin
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splin
-src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  437 |         int len;
-      |             ^
-src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
-      |             ^
-src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-```
-
-
-### warning kinds
-
-- [222x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-  - src\games\game\bg_misc.c(3458,7): warning: missing field 'pickup_sound' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1416,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1417,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1418,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1419,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1420,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1421,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1438,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1439,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1440,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1441,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1442,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1443,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1444,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_info.c(189,9): warning: missing field 'YOfs' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_players.c(2914,11): warning: missing field 'maxdist' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(96,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(97,19): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(98,16): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(99,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(100,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(102,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(103,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(104,26): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(105,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(106,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(107,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(109,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(110,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(111,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(112,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(113,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(114,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(115,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(116,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(117,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(118,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(119,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(120,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(121,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(122,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(123,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(124,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(125,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(126,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(127,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(129,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(130,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(131,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(132,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(133,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(134,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(135,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(136,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(137,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(138,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(139,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(140,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(141,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(142,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(143,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(144,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(145,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(146,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(147,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3442,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3443,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3444,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3445,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3446,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3447,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3448,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3449,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3450,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3451,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3452,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3453,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3454,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3455,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3456,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3457,50): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3458,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3459,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3460,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3461,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3462,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3463,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3464,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3465,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3466,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3467,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3468,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3469,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3470,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3471,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3472,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3473,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3474,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3475,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3476,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3477,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3478,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3479,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3480,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3481,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3482,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3483,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3484,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3485,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3486,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3487,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3488,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3489,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3490,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3491,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3492,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3493,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3494,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3495,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3496,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3497,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3498,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3499,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3500,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3501,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3502,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3503,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3504,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3505,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3506,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3507,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3508,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3509,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3510,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3511,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3512,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3513,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3514,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3515,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3516,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3517,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3518,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3519,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3520,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3521,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3522,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3523,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3524,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3525,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3526,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3527,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3528,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3529,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3530,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3531,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3532,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3533,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3534,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3535,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3537,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3538,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3540,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3541,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3542,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3543,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3544,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3545,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3546,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3548,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3549,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3550,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-- [98x] -unused-but-set-variable
-  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_effects.c(525,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(173,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(181,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(407,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(960,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(1101,26): warning: variable 'firing' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(1638,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_info.c(210,8): warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_localents.c(471,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_localents.c(498,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_newDraw.c(202,15): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_newDraw.c(391,19): warning: variable 'ps' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(1774,26): warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2438,15): warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2596,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(4553,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_sound.c(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_view.c(196,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_view.c(972,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(401,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(402,6): warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(407,19): warning: variable 'le' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2013,8): warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2932,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(3712,14): warning: variable 'value' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4173,13): warning: variable 'parent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4820,14): warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(1416,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1417,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1418,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1419,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1420,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1421,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1438,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1439,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1440,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1441,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
 - [30x] -pointer-sign
   - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -2635,489 +2900,451 @@ scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 
   - src\games\cgame\cg_newDraw.c(1769,9): warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\cgame\cg_newDraw.c(1803,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\cgame\cg_newDraw.c(1839,25): warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-- [5x] -unused-variable
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [6x] -unused-variable
   - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
   - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
   - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
   - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
   - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
-- [3x] -int-to-pointer-cast
-  - src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
 - [3x] -deprecated-declarations
   - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
   - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
 - [1x] -unused-const-variable
   - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
 
 ## windows-latest-x64-release-game,renderer
 
-status: cancelled
+status: failure
 
-errors: 26
-warnings: 316 in 7 kinds
+errors: 20
+warnings: 321 in 7 kinds
 
 ### errors
 
-681src\client\cl_cgame.c | (        435u,s2e)r:c md_error: tcall to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
 src\client\cl_main.c(2636,52): error: expected '}'
 scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+src\games\game\bg_misc.c(2518,54): error: expected expression
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+src\games\game\g_main.c(2387,25): error: expected '}'
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.c.obj] Error 1
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+scons: *** [build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj] Error 1
 
 ### failure context
-
-- build\windows-x64-release\client\obj\client\cl_cgame.c.obj
-
-```
-  681src\client\cl_cgame.c | (        435u,s2e)r:c md_error: tcall to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]  
- *cmd;
-      |                        ^435
- |         Sys_UnloadModule( cgame_library );
-      |         ^
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  862 |         GetCgameAPI = ( GetCsrc\client\cl_cin.cga(m1796e,A11P)I:_t  warning: )variable 'holdatend' set but not used [-Wunused-but-set-variable] S
-ys_ModuleA d1796dr | e        sqsb(o oclgeaamne _hloilbdraatreyn,d ;"
-G      e| t                 ^C
-gameAPI" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  960 |         int resetTime;
-      |             ^
-2 warnings and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
-```
 
 - build\windows-x64-release\client\obj\client\cl_main.c.obj
 
 ```
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_cin.c.obj /c src\client\cl_cin.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_console.c.obj /c src\client\cl_console.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_input.c.obj /c src\client\cl_input.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\spline
+src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
 src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
   960 |         int resetTime;
       |             ^
-2 warnings and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+1 warning generated.
 clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
-clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
 2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
 clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\
 src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
   198 |         int r, index, l;
       |             ^
-src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
- 2095 |         {{'s','o','u','n','d',0}, CACHE_SOUNDS},
-      |                                               ^
-src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
- 2096 |         {{'m','o','d','e','l',0}, CACHE_MODELS},
-      |                                               ^
-src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
- 2097 |         {{'i','m','a','g','e',0}, CACHE_IMAGES},
-      |                                               ^
 src\client\cl_main.c(2636,52): error: expected '}'
  2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
       |                                                           ^
 src\client\cl_main.c(2523,22): note: to match this '{'
  2523 | void CL_Init( void ) {
       |                      ^
-4 warnings and 1 error generated.
+1 warning and 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\cl_ui.c.obj
+- build\windows-x64-release\game\obj\games\game\bg_misc.c.obj
 
 ```
+      |                         ^
+src\games\game\ai_cast_think.c(946,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  946 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
+src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+15 warnings generated.
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\bg_pmove.c.obj /c src\games\game\bg_pmove.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\w
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\game\obj\games\game\g_main.c.obj
+
+```
+ 1568 |         clientPersistant_t  *pers;
+      |                              ^
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_client.c.obj /c src\games\game\g_client.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\w
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_cmds.c.obj /c src\games\game\g_cmds.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_combat.c.obj /c src\games\game\g_combat.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\w
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_items.c.obj /c src\games\game\g_items.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win
+src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+ 2019 |         int spawnIndex;
+      |             ^
+src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  898 |         int save;
       |             ^
 1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_ui.c.obj /c src\client\cl_ui.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isr
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_main.c.obj /c src\games\game\g_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32
 1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\spli
-1 warning generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-1 warning and 6 errors generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\snd_mem.c.obj /c src\client\snd_mem.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj
-
-```
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_main.c.obj
-
-```
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /I
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-4 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_mem.c.obj /c src\games\game\g_mem.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_misc.c.obj /c src\games\game\g_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_missile.c.obj /c src\games\game\g_missile.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
+src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  410 |         int hintType, hintDist, hintVal, oldHintType;
+      |                                          ^
+src\games\game\g_main.c(2387,25): error: expected '}'
+ 2387 |         level.time = levelTime;
+      |                                ^
+src\games\game\g_main.c(2374,34): note: to match this '{'
+ 2374 | void G_RunFrame( int levelTime ) {
+      |                                  ^
 1 warning and 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_mover.c.obj /c src\games\game\g_mover.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /DGAME_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.c.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\splines\splines.cpp.obj
+- build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj
 
 ```
-  703 |         int error;
+  500 |         float texCoordScale;
+      |               ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_model.c.obj /c src\renderer\tr_model.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_noise.c.obj /c src\renderer\tr_noise.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_scene.c.obj /c src\renderer\tr_scene.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
+3 warnings generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shade.c.obj /c src\renderer\tr_shade.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shade_calc.c.obj /c src\renderer\tr_shade_calc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\uni
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj /c src\renderer\tr_shader.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\
+src\renderer\tr_shade.c(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1391 |         shader_t        *shader;
+      |                          ^
+src\renderer\tr_shade_calc.c(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
       |             ^
-9 warnings generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server 
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\rende
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\rende
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Is
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\rende
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isr
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /I
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isr
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /I
-clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED /DRENDERER_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\rende
-src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  437 |         int len;
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src\renderer\tr_shader.c(2156,56): note: to match this '{'
+ 2156 |         for ( stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+      |                                                               ^
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src\renderer\tr_shader.c(2131,39): note: to match this '{'
+ 2131 | static shader_t *FinishShader( void ) {
+      |                                       ^
+2 errors generated.
+scons: *** [build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj
+
+```
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Shadow.cpp.obj /c src\renderer-bfg\Shadow.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\s
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Backend.cpp.obj /c src\renderer-bfg\Backend.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Tess.cpp.obj /c src\renderer-bfg\Tess.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Tess_calc.cpp.obj /c src\renderer-bfg\Tess_calc.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Lighting.cpp.obj /c src\renderer-bfg\Lighting.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Is
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Surface.cpp.obj /c src\renderer-bfg\Surface.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\ImageManager.cpp.obj /c src\renderer-bfg\ImageManager.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\spl
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Image_files.cpp.obj /c src\renderer-bfg\Image_files.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splin
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Image_intrinsic.cpp.obj /c src\renderer-bfg\Image_intrinsic.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Is
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\renderer-bfg\Image_process.cpp.obj /c src\renderer-bfg\Image_process.cpp /TP /W4 -m64 /O2 /std:c++14 /W0 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\s
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\third-party\glad\src\gl.c.obj /c src\third-party\glad\src\gl.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 
+clang-cl /Fobuild\windows-x64-release\renderer-bfg\obj\third-party\stb\stb_impl.c.obj /c src\third-party\stb\stb_impl.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /W0 /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /I
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_animation.c.obj /c src\games\game\bg_animation.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isr
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_pmove.c.obj /c src\games\game\bg_pmove.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj
+
+```
+ 1438 |         {"", 0,      1,      0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (no flags, idle)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1439,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1439 |         {"", 0,      15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi flag rising)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1440,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1440 |         {"", 490,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american flag rising)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1441,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1441 |         {"", 20,     211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1442 |         {"", 255,    211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1443 |         {"", 235,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi switching to american)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1444 |         {"", 470,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american switching to nazi)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src\games\cgame\cg_ents.c(2254,126): note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+18 warnings and 1 error generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj
+
+```
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_particles.c.obj /c src\games\cgame\cg_particles.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /I
+src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
       |             ^
-src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
+src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
       |             ^
-src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
+13 warnings generated.
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj /c src\games\cgame\cg_players.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
+src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
+      |             ^
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1667,35): note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1648,93): note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj
+
+```
+ 5118 |         int markDuration;
+      |             ^
+src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+```
+
+- build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj
+
+```
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+clang-cl /Fobuild\windows-x64-release\cgame\obj\qcommon\q_math.c.obj /c src\qcommon\q_math.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isr
+clang-cl /Fobuild\windows-x64-release\cgame\obj\qcommon\q_shared.c.obj /c src\qcommon\q_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai 
+clang-cl /Fobuild\windows-x64-release\ui\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isrc\game
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj
+
+```
+src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+ 1280 |         int skip;
+      |             ^
+src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
+   70 | static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
+      |                  ^~~~~~~~~~~~~
+clang-cl /Fobuild\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj /c src\games\ui\ui_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isrc\game
+src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+6 warnings generated.
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj] Error 1
 ```
 
 
 ### warning kinds
 
-- [167x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-  - src\games\game\bg_misc.c(3458,7): warning: missing field 'pickup_sound' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(145,42): warning: missing field 'trackChange' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(148,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(149,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(150,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(151,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(154,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(157,79): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(160,47): warning: missing field 'modificationCount' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(163,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(164,90): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(165,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(166,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(167,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(168,98): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(172,63): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(174,97): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(175,104): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(178,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(179,95): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(180,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(181,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(183,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(185,68): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(187,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(188,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(189,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(190,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(192,61): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(193,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(195,50): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(197,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(198,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(199,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(200,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(201,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(202,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(203,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(204,52): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(205,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(206,55): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(207,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(208,65): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(209,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(211,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(214,40): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(215,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(217,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(218,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(220,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(221,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(223,69): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(225,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(227,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(229,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(231,48): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(233,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(235,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(236,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(237,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(238,62): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(241,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(243,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(244,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(246,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(248,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(249,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(111,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(112,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(113,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(114,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(115,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(116,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(117,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(118,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(119,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(120,54): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(121,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(122,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(123,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(124,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(125,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(126,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(127,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(128,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(129,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(130,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(131,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(132,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(134,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(135,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(137,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(138,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(141,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(142,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(143,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(147,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(148,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(153,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(154,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(155,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(159,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(162,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(166,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(170,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(171,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(175,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(176,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(182,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(183,38): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(185,32): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(188,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(190,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(192,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(194,7): warning: missing field 'ofs' initializer [-Wmissing-field-initializers]
-  - src\renderer\tr_shader.c(1820,7): warning: missing field 'blendB' initializer [-Wmissing-field-initializers]
-- [129x] -unused-but-set-variable
+- [185x] -unused-but-set-variable
   - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - 862 |         GetCgameAPI = ( GetCsrc\client\cl_cin.cga(m1796e,A11P)I:_t  warning: )variable 'holdatend' set but not used [-Wunused-but-set-variable] S
   - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
   - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
   - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
@@ -3143,15 +3370,18 @@ scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 
   - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
@@ -3170,21 +3400,21 @@ scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 
   - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_func_attack.c(68,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(915,13): warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1112,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1218,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1290,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1313,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1369,8): warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(1369,22): warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(2004,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_fight.c(2104,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_func_boss1.c(996,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_funcs.c(989,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai_cast_funcs.c(1829,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
@@ -3216,11 +3446,10 @@ scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 
   - src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_main.c(2377,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_missile.c(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.c(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.c(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.c(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.c(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_target.c(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_tramcar.c(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.c(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -3243,1484 +3472,16 @@ scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 
   - src\renderer\tr_shadows.c(103,6): warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_shadows.c(103,15): warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_sky.c(717,15): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
-- [9x] -pointer-sign
-  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1249,11): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1376,13): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-- [5x] -unused-variable
-  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
-- [3x] -deprecated-declarations
-  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-- [2x] -int-to-pointer-cast
-  - src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_ui.c(1008,13): warning: cast to 'GetUIAPI_t' (aka 'uiExport_t *(*)(int, uiImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-- [1x] -unused-const-variable
-  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
-
-## windows-latest-x64-release-ui
-
-status: cancelled
-
-errors: 32
-warnings: 338 in 7 kinds
-
-### errors
-
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2636,52): error: expected '}'
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-
-### failure context
-
-- build\windows-x64-release\client\obj\client\cl_cgame.c.obj
-
-```
-  681 |         usercmd_t   *cmd;
-      |                      ^
-src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qboolean holdatend;
-      |                  ^
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  435 |         Sys_UnloadModule( cgame_library );
-      |         ^
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  960 |         int resetTime;
-      |             ^
-2 warnings and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_main.c.obj
-
-```
-      |                                               ^
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2636,52): error: expected '}'
- 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
-      |                                                           ^
-src\client\cl_main.c(2523,22): note: to match this '{'
- 2523 | void CL_Init( void ) {
-      |                      ^
-5 warnings and 7 errors generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\server\sv_game.c.obj
-
-```
-clang-cl /Fobuild\windows-x64-release\client\obj\server\sv_game.c.obj /c src\server\sv_game.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\
-clang-cl /Fobuild\windows-x64-release\client\obj\server\sv_init.c.obj /c src\server\sv_init.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-3 warnings and 6 errors generated.
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj
-
-```
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\sys\win32\win_main.c.obj
-
-```
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\uni
-4 warnings generated.
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 1 error generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_snd.c.obj /c src\sys\win32\win_snd.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.c.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\splines\splines.cpp.obj
-
-```
-  817 |                      _In_reads_bytes_(len) const char FAR * buf,
-      |                                                             ^
-src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  667 |         len = recv( socks_socket, buf, 64, 0 );
-      |                                   ^~~
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winsock.h(796,95): note: passing argument to parameter 'buf' here
-  796 |                      _Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR * buf,
-      |                                                                                               ^
-src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  527 |         int err;
-      |             ^
-src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  703 |         int error;
-      |             ^
-9 warnings generated.
-clang-cl /Fobuild\windows-x64-release\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server 
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
-clang-cl /Fobuild\windows-x64-release\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m64 /O2 /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\sp
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-```
-
-
-### warning kinds
-
-- [207x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-  - src\games\game\bg_misc.c(3458,7): warning: missing field 'pickup_sound' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(96,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(97,19): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(98,16): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(99,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(100,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(102,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(103,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(104,26): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(105,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(106,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(107,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(109,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(110,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(111,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(112,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(113,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(114,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(115,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(116,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(117,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(118,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(119,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(120,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(121,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(122,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(123,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(124,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(125,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(126,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(127,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(129,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(130,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(131,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(132,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(133,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(134,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(135,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(136,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(137,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(138,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(139,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(140,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(141,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(142,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(143,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(144,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(145,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(146,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(147,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3442,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3443,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3444,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3445,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3446,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3447,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3448,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3449,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3450,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3451,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3452,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3453,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3454,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3455,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3456,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3457,50): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3458,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3459,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3460,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3461,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3462,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3463,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3464,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3465,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3466,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3467,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3468,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3469,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3470,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3471,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3472,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3473,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3474,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3475,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3476,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3477,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3478,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3479,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3480,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3481,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3482,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3483,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3484,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3485,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3486,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3487,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3488,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3489,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3490,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3491,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3492,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3493,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3494,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3495,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3496,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3497,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3498,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3499,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3500,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3501,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3502,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3503,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3504,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3505,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3506,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3507,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3508,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3509,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3510,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3511,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3512,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3513,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3514,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3515,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3516,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3517,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3518,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3519,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3520,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3521,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3522,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3523,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3524,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3525,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3526,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3527,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3528,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3529,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3530,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3531,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3532,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3533,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3534,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3535,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3537,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3538,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3540,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3541,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3542,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3543,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3544,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3545,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3546,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3548,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3549,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3550,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-- [108x] -unused-but-set-variable
-  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(2465,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(2465,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5082,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5085,13): warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5395,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.c(5708,33): warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
-  - 98 |         {"esrc\games\ui\ui_main.cnd(_6491s,e6c)r:e twarning: svariable 'start' set but not used [-Wunused-but-set-variable]"
-  - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(3712,14): warning: variable 'value' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4173,13): warning: variable 'parent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4820,14): warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(915,13): warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1112,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1218,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1290,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1313,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,8): warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,22): warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2004,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2104,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(68,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(996,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(989,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(1829,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2179,19): warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2108,27): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2109,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2115,16): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2116,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2323,14): warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2327,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3331,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3700,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4355,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4361,6): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4663,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4714,6): warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(764,29): warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(2698,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-- [10x] -pointer-sign
-  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c(308,23): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c(381,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\games\ui\ui_main.c(462,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-- [5x] -unused-variable
-  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
-- [3x] -int-to-pointer-cast
-  - src\client\cl_cgame.c(862,16): warning: cast to 'GetCgameAPI_t' (aka 'cgameExport_t *(*)(int, cgameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\client\cl_main.c(2435,17): warning: cast to 'GetRefAPI_t' (aka 'refexport_t *(*)(int, refimport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-  - src\server\sv_game.c(652,15): warning: cast to 'GetGameAPI_t' (aka 'gameExport_t *(*)(int, gameImport_t *)') from smaller integer type 'int' [-Wint-to-pointer-cast]
-- [3x] -deprecated-declarations
-  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-- [2x] -unused-const-variable
-  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
-  - src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
-
-## windows-latest-x86-debug-
-
-status: failure
-
-errors: 39
-warnings: 730 in 6 kinds
-
-### errors
-
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-1796 |         qbsrc\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.c.obj] Error 1
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2636,52): error: expected '}'
-scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-debug\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
-
-### failure context
-
-- build\windows-x86-debug\client\obj\client\cl_cgame.c.obj
-
-```
-      |             ^
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  435 |         Sys_UnloadModule( cgame_library );
-      |         ^
-src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  681 |         usercmd_t   *cmd;
-      |                      ^
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qbsrc\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-o  862o | l        eGaent ChgoalmdeaAtPeIn d=; 
-(       | G                 ^e
-tCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  960 |         int resetTime;
-      |             ^
-1 warning and 6 errors generated.
-2 warnings generated.
-scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\client\cl_main.c.obj
-
-```
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2636,52): error: expected '}'
- 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
-      |                                                           ^
-src\client\cl_main.c(2523,22): note: to match this '{'
- 2523 | void CL_Init( void ) {
-      |                      ^
-4 warnings and 7 errors generated.
-src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  590 |         msg_t msgback;
-      |               ^
-1 warning generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_qgl.c.obj /c src\client\cl_qgl.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isr
-scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\client\cl_ui.c.obj
-
-```
-1 warning generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_qgl.c.obj /c src\client\cl_qgl.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isr
-scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Error 1
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_scrn.c.obj /c src\client\cl_scrn.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_ui.c.obj /c src\client\cl_ui.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isrc\
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
-src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  386 |         int color;
-      |             ^
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-1 warning generated.
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-6 errors generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\server\sv_game.c.obj
-
-```
-clang-cl /Fobuild\windows-x86-debug\client\obj\server\sv_game.c.obj /c src\server\sv_game.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-2 warnings generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\server\sv_init.c.obj /c src\server\sv_init.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-clang-cl /Fobuild\windows-x86-debug\client\obj\server\sv_main.c.obj /c src\server\sv_main.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-clang-cl /Fobuild\windows-x86-debug\client\obj\server\sv_net_chan.c.obj /c src\server\sv_net_chan.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-2 warnings and 6 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\sys\win32\win_glimp.c.obj
-
-```
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\sys\win32\win_main.c.obj
-
-```
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x86-debug\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
-4 warnings generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\ga
-clang-cl /Fobuild\windows-x86-debug\client\obj\sys\win32\win_snd.c.obj /c src\sys\win32\win_snd.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_main.c.obj] Error 1
-```
-
-- build\windows-x86-debug\client\obj\splines\splines.cpp.obj
-
-```
-  817 |                      _In_reads_bytes_(len) const char FAR * buf,
-      |                                                             ^
-src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  667 |         len = recv( socks_socket, buf, 64, 0 );
-      |                                   ^~~
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winsock.h(796,95): note: passing argument to parameter 'buf' here
-  796 |                      _Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR * buf,
-      |                                                                                               ^
-src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  527 |         int err;
-      |             ^
-src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  703 |         int error;
-      |             ^
-9 warnings generated.
-clang-cl /Fobuild\windows-x86-debug\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sy
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys
-clang-cl /Fobuild\windows-x86-debug\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m32 /Z7 /Od /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\s
-clang-cl /Fobuild\windows-x86-debug\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
-```
-
-
-### warning kinds
-
-- [494x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
-  - src\games\game\bg_misc.c(3458,7): warning: missing field 'pickup_sound' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(145,42): warning: missing field 'trackChange' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(148,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(149,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(150,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(151,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(154,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(157,79): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(160,47): warning: missing field 'modificationCount' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(163,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(164,90): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(165,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(166,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(167,88): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(168,98): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(172,63): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(174,97): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(175,104): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(178,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(179,95): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(180,94): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(181,100): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(183,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(185,68): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(187,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(188,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(189,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(190,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(192,61): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(193,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(195,50): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(197,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(198,49): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(199,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(200,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(201,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(202,67): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(203,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(204,52): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(205,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(206,55): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(207,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(208,65): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(209,77): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(211,74): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(214,40): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(215,45): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(217,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(218,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(220,51): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(221,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(223,69): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(225,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(227,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(229,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(231,48): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(233,56): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(235,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(236,58): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(237,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(238,62): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(241,53): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(243,64): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(244,54): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(246,82): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(248,57): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_main.c(249,59): warning: missing field 'teamShader' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(111,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(112,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(113,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(114,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(115,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(116,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(117,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(118,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(119,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(120,54): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(121,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(122,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(123,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(124,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(125,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(126,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(127,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(128,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(129,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(130,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(131,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(132,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(134,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(135,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(137,48): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(138,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(141,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(142,50): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(143,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(147,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(148,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(153,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(154,49): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(155,52): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(159,47): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(162,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(166,46): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(170,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(171,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(175,44): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(176,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(182,42): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(183,38): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(185,32): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(188,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(190,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(192,62): warning: missing field 'flags' initializer [-Wmissing-field-initializers]
-  - src\games\game\g_spawn.c(194,7): warning: missing field 'ofs' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1416,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1417,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1418,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1419,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1420,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1421,43): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1438,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1439,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1440,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1441,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1442,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1443,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_ents.c(1444,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_info.c(189,9): warning: missing field 'YOfs' initializer [-Wmissing-field-initializers]
-  - src\games\cgame\cg_players.c(2914,11): warning: missing field 'maxdist' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(96,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(97,19): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(98,16): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(99,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(100,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - 17):  5118warning:  | missing field 'localname' initializer [-Wmissing-field-initializers]
-  - :       | warning:             ^missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(104,26): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(105,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(106,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(107,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(109,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(110,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(111,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(112,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(113,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(114,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(115,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(116,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(117,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(118,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(119,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(120,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(121,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(122,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(123,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(124,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(125,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(126,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(127,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(129,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(130,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(131,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(132,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(133,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(134,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(135,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(136,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(137,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(138,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(139,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(140,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(141,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(142,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(143,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(144,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(145,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(146,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(147,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3442,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3443,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3444,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3445,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3446,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3447,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3448,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3449,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3450,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3451,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3452,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3453,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3454,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3455,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3456,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3457,50): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3458,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3459,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3460,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3461,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3462,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3463,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3464,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3465,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3466,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3467,46): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3468,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3469,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3470,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3471,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3472,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3473,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3474,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3475,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3476,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3477,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3478,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3479,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3480,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3481,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3482,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3483,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3484,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3485,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3486,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3487,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3488,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3489,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3490,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3491,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3492,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3493,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3494,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3495,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3496,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3497,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3498,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3499,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3500,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3501,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3502,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3503,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3504,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3505,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3506,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3507,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3508,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3509,42): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3510,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3511,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3512,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3513,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3514,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3515,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3516,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3517,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3518,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3519,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3520,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3521,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3522,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3523,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3524,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3525,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3526,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3527,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3528,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3529,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3530,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3531,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3532,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3533,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3534,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3535,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3537,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3538,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3540,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3541,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3542,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3543,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3544,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3545,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3546,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3548,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3549,49): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(3550,45): warning: missing field 'bind2' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(102,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\games\ui\ui_shared.c(103,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
-  - src\renderer\tr_shader.c(1820,7): warning: missing field 'blendB' initializer [-Wmissing-field-initializers]
-- [191x] -unused-but-set-variable
-  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
-  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
-  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
-  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(915,13): warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1112,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1218,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1290,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1313,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,8): warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(1369,22): warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2004,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_fight.c(2104,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(68,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_func_boss1.c(996,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(989,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(1829,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2179,19): warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2108,27): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2109,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2115,16): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2116,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2323,14): warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(2327,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3331,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(3700,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4355,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4361,6): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4663,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_funcs.c(4714,6): warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(764,29): warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_script_actions.c(2698,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_sight.c(227,28): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_sight.c(569,17): warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(172,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(946,18): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(946,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_active.c(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_active.c(1568,23): warning: variable 'pers' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_main.c(2377,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.c(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_mover.c(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_mover.c(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.c(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_target.c(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_tramcar.c(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(867,13): warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_weapon.c(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
-  - src\games\botai\ai_chat.c(1050,6): warning: variable 'cpm' set but not used [-Wunused-but-set-variable]
-  - src\games\botai\ai_cmd.c(1272,42): warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_effects.c(525,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.c(173,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.c(181,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.c(407,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.c(960,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
-  - 1418 |         {"src\games\cgame\cg_event.c",( 7382,515,) :1 1warning: ,variable 'total' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_flamethrower.c(1101,26): warning: variable 'firing' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_flamethrower.c(1638,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_info.c(210,8): warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
@@ -4732,10 +3493,6 @@ scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(1774,26): warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2438,15): warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(2596,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_players.c(4553,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_sound.c(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_view.c(196,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_view.c(972,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
@@ -4747,21 +3504,12 @@ scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.c(5118,6):src\games\ui\ui_shared.c (warning: 102variable 'markDuration' set but not used [-Wunused-but-set-variable],
+  - src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(3712,14): warning: variable 'value' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4173,13): warning: variable 'parent' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_shared.c(4820,14): warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.c(2465,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.c(2465,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.c(5082,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
@@ -4769,19 +3517,73 @@ scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\ui\ui_main.c(5395,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.c(5708,33): warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.c(6491,6): warning: variable 'start' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_bsp.c(147,9): warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_flares.c(128,23): warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_font.c(235,44): warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(1823,8): warning: variable 'g' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(3065,8): warning: variable 'name' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_image.c(3223,20): warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_main.c(1186,15): warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_marks.c(500,8): warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shade.c(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shade_calc.c(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shadows.c(103,6): warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shadows.c(103,15): warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_model.c(1889,13): warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+- [60x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1416,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1417,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1418,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1419,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1420,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1421,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1438,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1439,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1440,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1441,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
 - [35x] -pointer-sign
   - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -4790,6 +3592,8 @@ scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\renderer\tr_animation.c(1249,11): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src\renderer\tr_animation.c(1376,13): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
   - src\games\cgame\cg_draw.c(1940,14): warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\cgame\cg_draw.c(1955,20): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\cgame\cg_draw.c(1986,8): warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -4816,365 +3620,1038 @@ scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
   - src\games\ui\ui_main.c(308,23): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\ui\ui_main.c(381,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\games\ui\ui_main.c(462,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1249,11): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-  - src\renderer\tr_animation.c(1376,13): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
-- [5x] -unused-variable
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [6x] -unused-variable
   - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
   - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
   - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
   - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
   - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
 - [3x] -deprecated-declarations
   - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
   - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
 - [2x] -unused-const-variable
   - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
   - src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
 
-## windows-latest-x86-release-
+## windows-latest-x64-release-ui
 
 status: cancelled
 
-errors: 39
-warnings: 120 in 6 kinds
+errors: 20
+warnings: 321 in 7 kinds
 
 ### errors
 
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.c.obj] Error 1
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
 src\client\cl_main.c(2636,52): error: expected '}'
-scons: *** [build\windows-x86-release\client\obj\client\cl_main.c.obj] Error 1
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-release\client\obj\client\cl_ui.c.obj] Error 1
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-scons: *** [build\windows-x86-release\client\obj\server\sv_game.c.obj] Error 1
-src\sys\win32\glw_win.h(38,2): error: unknown type name 'WNDPROC'
-src\sys\win32\glw_win.h(40,2): error: unknown type name 'HDC'
-src\sys\win32\glw_win.h(41,2): error: unknown type name 'HGLRC'
-src\sys\win32\glw_win.h(43,2): error: unknown type name 'HINSTANCE'
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_main.c.obj] Error 1
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+src\games\game\bg_misc.c(2518,54): error: expected expression
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj] Error 1
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+src\games\game\g_main.c(2387,25): error: expected '}'
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.c.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+scons: *** [build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj] Error 1
 
 ### failure context
 
-- build\windows-x86-release\client\obj\client\cl_cgame.c.obj
+- build\windows-x64-release\client\obj\client\cl_main.c.obj
 
 ```
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_cin.c.obj /c src\client\cl_cin.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\wi
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_console.c.obj /c src\client\cl_console.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_input.c.obj /c src\client\cl_input.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sy
+src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   442 |         int movespeed;
       |             ^
 src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
   681 |         usercmd_t   *cmd;
       |                      ^
-src\client\cl_cgame.c(435,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  435 |         Sys_UnloadModule( cgame_library );
-      |         ^
-src\client\cl_cgame.c(857,18): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                         ^
-src\client\cl_cgame.c(857,16): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  857 |         cgame_library = Sys_LoadModule( "cgame" );
-      |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_cgame.c(862,34): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  862 |         GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-      |                                         ^
-src\client\cl_cgame.c(864,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  864 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cgame.c(871,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  871 |                 Sys_UnloadModule( cgame_library );
-      |                 ^
-src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qboolean holdatend;
-      |                  ^
 src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
   960 |         int resetTime;
       |             ^
-1 warning and 6 errors generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\client\cl_main.c.obj
-
-```
-      |                                               ^
-src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
- 2097 |         {{'i','m','a','g','e',0}, CACHE_IMAGES},
-      |                                               ^
-src\client\cl_main.c(2291,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2291 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2430,16): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                       ^
-src\client\cl_main.c(2430,14): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 2430 |         ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
-      |                     ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_main.c(2435,30): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2435 |         GetRefAPI_fn = (GetRefAPI_t)Sys_ModuleAddress( ref_library, "GetRefAPI" );
-      |                                     ^
-src\client\cl_main.c(2437,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2437 |                 Sys_UnloadModule( ref_library );
-      |                 ^
-src\client\cl_main.c(2453,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 2453 |                 Sys_UnloadModule( ref_library );
-      |                 ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\
+clang-cl /Fobuild\windows-x64-release\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
 src\client\cl_main.c(2636,52): error: expected '}'
  2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
       |                                                           ^
 src\client\cl_main.c(2523,22): note: to match this '{'
  2523 | void CL_Init( void ) {
       |                      ^
-4 warnings and 7 errors generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\gam
-scons: *** [build\windows-x86-release\client\obj\client\cl_main.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\client\cl_ui.c.obj
-
-```
-      |               ^
-1 warning generated.
-src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
-  386 |         int color;
-      |             ^
-clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_ui.c.obj /c src\client\cl_ui.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
-1 warning generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\client\snd_adpcm.c.obj /c src\client\snd_adpcm.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\g
-1 warning generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\client\snd_dma.c.obj /c src\client\snd_dma.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-src\client\cl_ui.c(976,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  976 |         Sys_UnloadModule( ui_library );
-      |         ^
-src\client\cl_ui.c(1003,15): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                      ^
-src\client\cl_ui.c(1003,13): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
- 1003 |         ui_library = Sys_LoadModule( "ui" );
-      |                    ^ ~~~~~~~~~~~~~~~~~~~~~~
-src\client\cl_ui.c(1008,28): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1008 |         GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-      |                                   ^
-src\client\cl_ui.c(1010,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1010 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-src\client\cl_ui.c(1017,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
- 1017 |                 Sys_UnloadModule( ui_library );
-      |                 ^
-6 errors generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\client\snd_mem.c.obj /c src\client\snd_mem.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-scons: *** [build\windows-x86-release\client\obj\client\cl_ui.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\server\sv_game.c.obj
-
-```
-      |                   ^~~~~~~~~~~~~~~~~
-1 warning generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\server\sv_ccmds.c.obj /c src\server\sv_ccmds.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\gam
-clang-cl /Fobuild\windows-x86-release\client\obj\server\sv_client.c.obj /c src\server\sv_client.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\g
-clang-cl /Fobuild\windows-x86-release\client\obj\server\sv_game.c.obj /c src\server\sv_game.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
-src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |             ^
-src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  195 |         int area1, area2;
-      |                    ^
-src\server\sv_game.c(566,2): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  566 |         Sys_UnloadModule( game_library );
-      |         ^
-src\server\sv_game.c(647,17): error: call to undeclared function 'Sys_LoadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                        ^
-src\server\sv_game.c(647,15): error: incompatible integer to pointer conversion assigning to 'void *' from 'int' [-Wint-conversion]
-  647 |         game_library = Sys_LoadModule( "qagame" );
-      |                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\server\sv_game.c(652,32): error: call to undeclared function 'Sys_ModuleAddress'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  652 |         GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-      |                                       ^
-src\server\sv_game.c(654,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  654 |                 Sys_UnloadModule( game_library );
-      |                 ^
-src\server\sv_game.c(661,3): error: call to undeclared function 'Sys_UnloadModule'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-  661 |                 Sys_UnloadModule( game_library );
-      |                 ^
-2 warnings and 6 errors generated.
-scons: *** [build\windows-x86-release\client\obj\server\sv_game.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\sys\win32\win_gamma.c.obj
-
-```
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\sys\win32\win_glimp.c.obj
-
-```
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  870 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning and 4 errors generated.
-src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
-  225 | static HINSTANCE hInstDI;
-      |                  ^~~~~~~
-src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
-  249 | static DIDATAFORMAT df = {
-      |                     ^~
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\sys\win32\win_main.c.obj
-
-```
-src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
-  258 | static LPDIRECTINPUT g_pdi;
-      |                      ^~~~~
-src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
-  259 | static LPDIRECTINPUTDEVICE g_pMouse;
-      |                            ^~~~~~~~
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_gamma.c.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_glimp.c.obj] Error 1
-clang-cl /Fobuild\windows-x86-release\client\obj\sys\win32\win_net.c.obj /c src\sys\win32\win_net.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
-clang-cl /Fobuild\windows-x86-release\client\obj\sys\win32\win_shared.c.obj /c src\sys\win32\win_shared.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32
-src\sys\win32\win_main.c(614,14): error: conflicting types for 'Sys_LoadDll'
-  614 | void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-      |              ^
-src\client\../client\../qcommon/qcommon.h(890,17): note: previous declaration is here
-  890 | void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-      |                 ^
-src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1176 |         if ( !GetVersionEx( &g_wv.osversion ) ) {
-      |               ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
 1 warning and 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Error 1
+```
+
+- build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj
+
+```
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_log.c.obj /c src\games\botlib\l_log.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sy
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_memory.c.obj /c src\games\botlib\l_memory.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_precomp.c.obj /c src\games\botlib\l_precomp.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines 
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_script.c.obj /c src\games\botlib\l_script.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
+clang-cl /Fobuild\windows-x64-release\client\obj\games\botlib\l_struct.c.obj /c src\games\botlib\l_struct.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /I
+src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+ 1656 |         int lastoperatortype = 0;
+      |             ^
+src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  384 |         int c, val, i;
+      |                     ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\ui\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
+clang-cl /Fobuild\windows-x64-release\ui\obj\games\ui\ui_atoms.c.obj /c src\games\ui\ui_atoms.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\b
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj
+
+```
+      |             ^
+src\games\ui\ui_main.c(6491,6): warning: variable 'start' set but not used [-Wunused-but-set-variable]
+ 6491 |         int start;
+      |             ^
+src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
+   70 | static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
+      |                  ^~~~~~~~~~~~~
+clang-cl /Fobuild\windows-x64-release\ui\obj\games\ui\ui_syscalls.c.obj /c src\games\ui\ui_syscalls.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DUI_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\g
+src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+ 1289 |                         int dec = 0;
+      |                             ^
+src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+3 warnings and 2 errors generated.
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.c.obj] Error 1
+```
+
+- build\windows-x64-release\game\obj\games\game\bg_misc.c.obj
+
+```
+src\games\game\ai_cast_think.c(946,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  946 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
+src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+ 1241 |         float yaw, oldyaw, distmoved, bestmoved, bestyaw;
+      |                                                  ^
+src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+ 1247 |         int starttraveltime = 0, besttraveltime, traveltime;         // TTimo: init
+      |                                  ^
+src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+ 1251 |         float maxYaw, simTime;
+      |                       ^
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\bg_animation.c.obj /c src\games\game\bg_animation.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
+6 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.c.obj] Error 1
+```
+
+- build\windows-x64-release\game\obj\games\game\g_main.c.obj
+
+```
+src\games\game\g_active.c(1568,23): warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+ 1568 |         clientPersistant_t  *pers;
+      |                              ^
+2 warnings generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_alarm.c.obj /c src\games\game\g_alarm.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_bot.c.obj /c src\games\game\g_bot.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_client.c.obj /c src\games\game\g_client.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_cmds.c.obj /c src\games\game\g_cmds.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai 
+src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+ 2019 |         int spawnIndex;
+      |             ^
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_combat.c.obj /c src\games\game\g_combat.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_items.c.obj /c src\games\game\g_items.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bota
+src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  898 |         int save;
+      |             ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_main.c.obj /c src\games\game\g_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai 
+clang-cl /Fobuild\windows-x64-release\game\obj\games\game\g_mem.c.obj /c src\games\game\g_mem.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  410 |         int hintType, hintDist, hintVal, oldHintType;
+      |                                          ^
+src\games\game\g_main.c(2387,25): error: expected '}'
+ 2387 |         level.time = levelTime;
+      |                                ^
+src\games\game\g_main.c(2374,34): note: to match this '{'
+ 2374 | void G_RunFrame( int levelTime ) {
+      |                                  ^
+1 warning and 1 error generated.
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj
+
+```
+src\games\botai\ai_cmd.c(1272,42): warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+ 1272 |         int i, bestitem, redflagtt, blueflagtt, redtobluett;
+      |                                                 ^
 4 warnings generated.
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_main.c.obj] Error 1
+clang-cl /Fobuild\windows-x64-release\game\obj\games\botai\ai_dmq3.c.obj /c src\games\botai\ai_dmq3.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+1 warning generated.
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\game\obj\games\botai\ai_main.c.obj /c src\games\botai\ai_main.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+clang-cl /Fobuild\windows-x64-release\game\obj\games\botai\ai_team.c.obj /c src\games\botai\ai_team.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+clang-cl /Fobuild\windows-x64-release\game\obj\qcommon\q_math.c.obj /c src\qcommon\q_math.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /Isrc\
+clang-cl /Fobuild\windows-x64-release\game\obj\qcommon\q_shared.c.obj /c src\qcommon\q_shared.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_animation.c.obj /c src\games\game\bg_animation.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isr
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj /c src\games\game\bg_misc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bo
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_pmove.c.obj /c src\games\game\bg_pmove.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
+src\games\game\bg_misc.c(2516,1): error: unterminated /* comment
+ 2516 | /* holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+      | ^
+src\games\game\bg_misc.c(2518,54): error: expected expression
+ 2518 | pickup sound : "sound/pickup/holdable/get_medkit.wav"
+      |                                                      ^
+src\games\game\bg_misc.c(2518,54): error: expected '}'
+src\games\game\bg_misc.c(464,1): note: to match this '{'
+  464 | {
+      | ^
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\game\bg_slidemove.c.obj /c src\games\game\bg_slidemove.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isr
+src\games\game\bg_misc.c(2507,4): error: expected ';' after top level declarator
+ 2507 |         },
+      |           ^
+      |           ;
+4 errors generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.c.obj] Error 1
 ```
 
-- build\windows-x86-release\client\obj\splines\splines.cpp.obj
+- build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj
 
 ```
-  703 |         int error;
+ 1438 |         {"", 0,      1,      0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (no flags, idle)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1439,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1439 |         {"", 0,      15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi flag rising)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1440,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1440 |         {"", 490,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american flag rising)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1441,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1441 |         {"", 20,     211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1442 |         {"", 255,    211,    211,    1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american flag raised)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1443 |         {"", 235,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (nazi switching to american)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+ 1444 |         {"", 470,    15,     0,      1000 / 15,    1000 / 15 , 0, 0, 0, 0, 0, 0, 0 }, // (american switching to nazi)
+      |                                                                                    ^
+src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1814 |         lerpFrame_t         *traplf;
+      |                              ^
+src\games\cgame\cg_ents.c(2256,40): error: expected '}'
+ 2256 |         vec3_t oldOrigin, origin, deltaOrigin;
+      |                                               ^
+src\games\cgame\cg_ents.c(2254,126): note: to match this '{'
+ 2254 | void CG_AdjustPositionForMover( const vec3_t in, int moverNum, int fromTime, int toTime, vec3_t out, vec3_t outDeltaAngles ) {
+      |                                                                                                                              ^
+18 warnings and 1 error generated.
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj
+
+```
+      |                                ^
+src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
       |             ^
-clang-cl /Fobuild\windows-x86-release\client\obj\sys\win32\win_wndproc.c.obj /c src\sys\win32\win_wndproc.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win
-9 warnings generated.
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\math_angles.cpp.obj /c src\splines\math_angles.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\math_matrix.cpp.obj /c src\splines\math_matrix.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\math_quaternion.cpp.obj /c src\splines\math_quaternion.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Is
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\math_vector.cpp.obj /c src\splines\math_vector.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\q_parse.cpp.obj /c src\splines\q_parse.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\q_shared.cpp.obj /c src\splines\q_shared.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\splines.cpp.obj /c src\splines\splines.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isr
-clang-cl /Fobuild\windows-x86-release\client\obj\splines\util_str.cpp.obj /c src\splines\util_str.cpp /TP /W4 -m32 /O2 /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /I
-src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
-  437 |         int len;
+src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
       |             ^
-src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-  475 |         int i;                              // i == ?
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj /c src\games\cgame\cg_players.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_playerstate.c.obj /c src\games\cgame\cg_playerstate.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win3
+13 warnings generated.
+src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  189 |         int lastLow, low, numSteps, lastFirst, thisFirst;
       |             ^
-src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
-  480 |         const char *s1 = a.c_str(); // s1 == "\0"
-      |                     ^
-src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
-  482 |         const char *s2 = c.c_str(); // s2 == "test\0"
-      |                     ^
-In file included from src\splines\splines.cpp:30:
-src\splines\splines.h(36,12): fatal error: '../renderer/qgl.h' file not found
-   36 |   #include "../renderer/qgl.h"
-      |            ^~~~~~~~~~~~~~~~~~~
-clang-cl /Fobuild\windows-x86-release\client\obj\games\botlib\be_aas_bspq3.c.obj /c src\games\botlib\be_aas_bspq3.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DBOTLIB /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\u
-1 error generated.
-scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 1
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1667,35): note: to match this '{'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                          ^
+src\games\cgame\cg_players.c(1667,84): error: expected '}'
+ 1667 |         if ( cg_debugAnim.integer == 1 ) {              // DHM - Nerve :: extra debug info
+      |                                                                                           ^
+src\games\cgame\cg_players.c(1648,93): note: to match this '{'
+ 1648 | static void CG_SetLerpFrameAnimation( clientInfo_t *ci, lerpFrame_t *lf, int newAnimation ) {
+      |                                                                                             ^
+1 warning and 2 errors generated.
+clang-cl /Fobuild\windows-x64-release\cgame\obj\games\cgame\cg_predict.c.obj /c src\games\cgame\cg_predict.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DCGAMEDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.c.obj] Error 1
+```
+
+- build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj
+
+```
+ 1289 |                         int dec = 0;
+      |                             ^
+src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+ 1790 |         listBoxDef_t *listPtr;
+      |                       ^
+src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+ 1792 |         int count;
+      |             ^
+src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2462,52): note: to match this '{'
+ 2462 |         if ( si->item->window.flags & WINDOW_HORIZONTAL ) {
+      |                                                           ^
+src\games\ui\ui_shared.c(2468,24): error: expected '}'
+ 2468 |                 r.h = SCROLLBAR_SIZE;
+      |                                      ^
+src\games\ui\ui_shared.c(2456,49): note: to match this '{'
+ 2456 | static void Scroll_ListBox_ThumbFunc( void *p ) {
+      |                                                 ^
+src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+3 warnings and 2 errors generated.
+src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.c.obj] Error 1
+```
+
+- build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj
+
+```
+  500 |         float texCoordScale;
+      |               ^
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_model.c.obj /c src\renderer\tr_model.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_noise.c.obj /c src\renderer\tr_noise.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
+1 warning generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_scene.c.obj /c src\renderer\tr_scene.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
+3 warnings generated.
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shade.c.obj /c src\renderer\tr_shade.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\bot
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shade_calc.c.obj /c src\renderer\tr_shade_calc.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
+clang-cl /Fobuild\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj /c src\renderer\tr_shader.c /nologo /W4 -m64 /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DREFDLL /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\b
+src\renderer\tr_shade.c(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1391 |         shader_t        *shader;
+      |                          ^
+src\renderer\tr_shade_calc.c(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src\renderer\tr_shader.c(2156,56): note: to match this '{'
+ 2156 |         for ( stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+      |                                                               ^
+src\renderer\tr_shader.c(2205,55): error: expected '}'
+ 2205 |                 // not a true lightmap but we want to leave existing
+      |                                                                     ^
+src\renderer\tr_shader.c(2131,39): note: to match this '{'
+ 2131 | static shader_t *FinishShader( void ) {
+      |                                       ^
+2 errors generated.
+scons: *** [build\windows-x64-release\renderer\obj\renderer\tr_shader.c.obj] Error 1
 ```
 
 
 ### warning kinds
 
-- [53x] -unused-but-set-variable
+- [185x] -unused-but-set-variable
+  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(2465,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(2465,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(5082,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(5085,13): warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(5395,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(5708,33): warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.c(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.c(6491,6): warning: variable 'start' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.c(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_events.c(500,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_events.c(501,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(164,22): warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(915,13): warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1112,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1218,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1290,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1313,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1369,8): warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(1369,22): warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(2004,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_fight.c(2104,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_attack.c(68,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_attack.c(190,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_attack.c(836,15): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(66,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(498,16): warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(921,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_func_boss1.c(996,20): warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(989,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(1829,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2179,19): warning: variable 'shouldAttack' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2108,27): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2109,15): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2115,16): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2116,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2323,14): warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(2327,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(3331,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(3700,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(4355,11): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(4361,6): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(4663,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_funcs.c(4714,6): warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_script_actions.c(764,29): warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_script_actions.c(2698,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_sight.c(227,28): warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_sight.c(569,17): warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(172,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(946,18): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(946,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(1241,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(1247,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai_cast_think.c(1251,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_active.c(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_active.c(1568,23): warning: variable 'pers' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_cmds.c(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_combat.c(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_main.c(410,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_missile.c(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_mover.c(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_mover.c(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.c(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_target.c(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_tramcar.c(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_weapon.c(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_weapon.c(867,13): warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_weapon.c(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_weapon.c(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
+  - src\games\botai\ai_chat.c(1050,6): warning: variable 'cpm' set but not used [-Wunused-but-set-variable]
+  - src\games\botai\ai_cmd.c(1272,42): warning: variable 'redtobluett' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_effects.c(525,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(173,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(181,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(407,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(960,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.c(1814,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(738,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(1072,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_event.c(1363,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(701,6): warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(1101,26): warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_flamethrower.c(1638,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_info.c(210,8): warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_localents.c(471,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_localents.c(498,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_newDraw.c(202,15): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_newDraw.c(391,19): warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(271,10): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(936,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_particles.c(938,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_players.c(189,6): warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_sound.c(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_view.c(196,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_view.c(972,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(401,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(402,6): warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(407,19): warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2013,8): warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2932,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(2935,13): warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(3746,8): warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(4167,6): warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(5118,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(6041,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.c(6088,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_bsp.c(147,9): warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_flares.c(128,23): warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_font.c(235,44): warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_image.c(1823,8): warning: variable 'g' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_image.c(3065,8): warning: variable 'name' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_image.c(3223,20): warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_main.c(1186,15): warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_marks.c(500,8): warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_shade.c(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_shade_calc.c(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_model.c(1889,13): warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_shadows.c(103,6): warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_shadows.c(103,15): warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_sky.c(717,15): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+- [60x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1416,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1417,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1418,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1419,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1420,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1421,65): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1438,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1439,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1440,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1441,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1442,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1443,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+  - src\games\cgame\cg_ents.c(1444,77): warning: missing field 'stepGap' initializer [-Wmissing-field-initializers]
+- [35x] -pointer-sign
+  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\ui\ui_main.c(308,23): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\ui\ui_main.c(381,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\ui\ui_main.c(462,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_draw.c(1940,14): warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_draw.c(1955,20): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_draw.c(1986,8): warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(387,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(403,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(450,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(466,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(508,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(518,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(526,5): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_drawtools.c(542,4): warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_info.c(79,14): warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1719,23): warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1721,5): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1723,9): warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1755,23): warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1758,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1762,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1764,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1766,6): warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1769,9): warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1803,24): warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\games\cgame\cg_newDraw.c(1839,25): warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\renderer\tr_animation.c(1249,11): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  - src\renderer\tr_animation.c(1376,13): warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [6x] -unused-variable
+  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
+  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
+  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
+  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
+  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
+- [3x] -deprecated-declarations
+  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+- [2x] -unused-const-variable
+  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+  - src\games\ui\ui_main.c(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
+
+## windows-latest-x86-debug-
+
+status: cancelled
+
+errors: 2
+warnings: 150 in 7 kinds
+
+### errors
+
+src\client\cl_main.c(2636,52): error: expected '}'
+scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Error 1
+
+### failure context
+
+- build\windows-x86-debug\client\obj\client\cl_main.c.obj
+
+```
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+2 warnings generated.
+1 warning generated.
+1 warning generated.
+clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai /I
+clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\
+clang-cl /Fobuild\windows-x86-debug\client\obj\client\cl_parse.c.obj /c src\client\cl_parse.c /nologo /W4 -m32 /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\botai 
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  590 |         msg_t msgback;
+      |               ^
+src\client\cl_main.c(2636,52): error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src\client\cl_main.c(2523,22): note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+1 warning generated.
+scons: *** [build\windows-x86-debug\client\obj\client\cl_main.c.obj] Error 1
+```
+
+
+### warning kinds
+
+- [55x] -unused-but-set-variable
+  - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_parse.c(590,8): warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_scrn.c(386,6): warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_dma.c(558,8): warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  - src\client\snd_mix.c(795,10): warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(738,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cm_trace.c(824,8): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\cmd.c(247,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(945,6): warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(1014,12): warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\common.c(2270,6): warning: variable 'key' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\files.c(2766,20): warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\net_chan.c(318,6): warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  - src\qcommon\unzip.c(2139,16): warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,6): warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_game.c(195,13): warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_snapshot.c(303,6): warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(406,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\server\sv_world.c(701,15): warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
+  - src\sys\win32\win_net.c(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
+  - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(972,61): warning: variable 'water_bestface1' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3372,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_reach.c(3926,21): warning: variable 'hordist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+- [47x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [7x] -unused-variable
+  - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
+  - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
+  - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
+  - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(616,13): warning: unused variable 'lastWarning' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
+  - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
+- [7x] -pointer-sign
+  - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(590,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(630,28): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+- [3x] -deprecated-declarations
+  - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+- [1x] -unused-const-variable
+  - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+
+## windows-latest-x86-release-
+
+status: cancelled
+
+errors: 2
+warnings: 150 in 7 kinds
+
+### errors
+
+src\client\cl_main.c(2636,52): error: expected '}'
+scons: *** [build\windows-x86-release\client\obj\client\cl_main.c.obj] Error 1
+
+### failure context
+
+- build\windows-x86-release\client\obj\client\cl_main.c.obj
+
+```
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_cin.c.obj /c src\client\cl_cin.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games\b
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_console.c.obj /c src\client\cl_console.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_input.c.obj /c src\client\cl_input.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\gam
+src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+src\client\cl_cgame.c(960,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+1 warning generated.
+2 warnings generated.
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_keys.c.obj /c src\client\cl_keys.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_main.c.obj /c src\client\cl_main.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Isrc\games
+clang-cl /Fobuild\windows-x86-release\client\obj\client\cl_net_chan.c.obj /c src\client\cl_net_chan.c /nologo /W4 -m32 /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /Isrc /Isrc\games\game /Isrc\client /Isrc\qcommon /Isrc\renderer /Isrc\server /Isrc\splines /Isrc\sys\unix /Isrc\sys\win32 /Is
+src\client\cl_main.c(198,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
+  198 |         int r, index, l;
+      |             ^
+src\client\cl_main.c(2636,52): error: expected '}'
+ 2636 |         Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
+      |                                                           ^
+src\client\cl_main.c(2523,22): note: to match this '{'
+ 2523 | void CL_Init( void ) {
+      |                      ^
+1 warning and 1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_main.c.obj] Error 1
+```
+
+
+### warning kinds
+
+- [56x] -unused-but-set-variable
   - src\client\cl_input.c(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src\client\cl_input.c(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
   - src\client\cl_cin.c(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
@@ -5204,6 +4681,9 @@ scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 
   - src\splines\util_str.cpp(475,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(480,14): warning: variable 's1' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(482,14): warning: variable 's2' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1143,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1188,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\splines\splines.cpp(1237,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_move.c(447,35): warning: variable 'ax' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(717,22): warning: variable 'areasettings' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_reach.c(972,42): warning: variable 'ground_bestface1' set but not used [-Wunused-but-set-variable]
@@ -5213,73 +4693,100 @@ scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 
   - src\games\botlib\be_aas_route.c(415,6): warning: variable 'starttime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,15): warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_route.c(829,23): warning: variable 'numroutingareas' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(841,7): warning: variable 'localRoutesCount' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(841,25): warning: variable 'parentRoutesCount' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(841,103): warning: variable 'routeIndexesCount' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(487,14): warning: variable 'srcarea' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_aas_routetable.c(490,15): warning: variable 'totalcount' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2094,6): warning: variable 'numvalid' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2188,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_aas_route.c(2409,40): warning: variable 'enemytraveltime' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_chat.c(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_gen.c(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_goal.c(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_move.c(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
+  - 74 |         {"acceleration", WEAPON_OFS( acceleration ), FT_FLOAT, 0 }, //"acceleration" * time (in seconsrc\games\botlib\be_ai_move.cds()1553 ,+8 )":s pwarning: evariable 'dist' set but not used [-Wunused-but-set-variable]e
   - src\games\botlib\be_ai_move.c(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\l_precomp.c(1656,6): warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\l_script.c(384,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
-- [51x] -missing-field-initializers
-  - src\client\cl_main.c(2095,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2096,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\client\cl_main.c(2097,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(144,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(145,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(146,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(147,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(148,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(149,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+- [47x] -missing-field-initializers
+  - src\games\botlib\be_ai_goal.c(144,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(145,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(146,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(147,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(148,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(149,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_goal.c(150,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_goal.c(151,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_goal.c(152,10): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(63,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(64,40): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(65,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(66,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(67,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(68,39): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(69,52): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(70,57): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(71,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(72,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(73,41): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(74,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_goal.c(152,14): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(63,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(64,44): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(65,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(66,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(67,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(68,43): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(69,56): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(70,61): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(71,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(72,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(73,45): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(74,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(75,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(76,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(77,67): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(78,59): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(79,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(80,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(81,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(82,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(83,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(84,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(78,63): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(79,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(80,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(81,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(82,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(83,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(84,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(85,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(91,44): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(92,42): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(93,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(94,49): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(95,45): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(96,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(97,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(98,53): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(99,51): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(100,43): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(101,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(102,47): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(103,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\be_ai_weap.c(104,55): warning: missing field 'maxarray' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(91,48): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(92,46): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(93,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(94,53): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(95,49): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(96,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(97,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(98,57): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(99,55): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(100,47): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(101,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(102,51): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(103,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
+  - src\games\botlib\be_ai_weap.c(104,59): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
   - src\games\botlib\be_ai_weap.c(106,16): warning: missing field 'floatmin' initializer [-Wmissing-field-initializers]
-  - src\games\botlib\l_script.c(167,10): warning: missing field 'next' initializer [-Wmissing-field-initializers]
+- [30x] -writable-strings
+  - src\splines\splines.cpp(488,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(492,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(496,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(569,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(573,23): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(582,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(585,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(870,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(873,36): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(876,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(977,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(979,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(981,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(983,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1261,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1264,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1267,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1270,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1273,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1283,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1286,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1289,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1292,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1296,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1303,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1306,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1313,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1316,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1318,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\splines\splines.cpp(1325,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [7x] -pointer-sign
   - src\sys\win32\win_net.c(265,31): warning: passing 'byte *' (aka 'unsigned char *') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(583,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
@@ -5288,16 +4795,17 @@ scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 
   - src\sys\win32\win_net.c(637,29): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(660,27): warning: passing 'unsigned char[64]' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
   - src\sys\win32\win_net.c(667,28): warning: passing 'unsigned char[64]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-- [5x] -unused-variable
+- [6x] -unused-variable
   - src\sys\win32\win_input.c(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
   - src\sys\win32\win_input.c(249,21): warning: unused variable 'df' [-Wunused-variable]
   - src\sys\win32\win_input.c(258,22): warning: unused variable 'g_pdi' [-Wunused-variable]
   - src\sys\win32\win_input.c(259,28): warning: unused variable 'g_pMouse' [-Wunused-variable]
+  - src\sys\win32\win_main.c(785,22): warning: unused variable 'stream' [-Wunused-variable]
   - src\games\botlib\be_ai_goal.c(198,12): warning: unused variable 'g_gameskill' [-Wunused-variable]
 - [3x] -deprecated-declarations
   - src\sys\win32\win_gamma.c(138,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
   - src\sys\win32\win_glimp.c(870,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  - src\sys\win32\win_main.c(1176,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
+  - src\sys\win32\win_main.c(1247,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
 - [1x] -unused-const-variable
   - src\qcommon\unzip.c(3046,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
 
