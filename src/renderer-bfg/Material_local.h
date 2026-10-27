@@ -74,6 +74,7 @@ idHashIndex hash;
 idMaterial *                    defaultMaterial;
 bool initialized;
 
+public:
 // the global settings of the parsed shader files; the engine keeps
 // them in the tr structure. The runtime consumers (the sun lighting,
 // the lightgrid and the fog) are frontend phases.
@@ -95,6 +96,8 @@ bool skyFogDefined;
 // to the r_waterFogColor and r_mapFogColor cvars
 idStr waterFogString;
 idStr mapFogString;
+
+private:
 
 // the combined text of all shader files and the index of the
 // definitions: for every name, the byte offset right behind the name
