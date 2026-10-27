@@ -384,6 +384,7 @@ idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), idlib_o
 renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'RenderWorld.cpp', 'RenderEntity.cpp', 'ScreenRect.cpp',
     'RenderSystem.cpp', 'GLContext.cpp',
+    'CVarSystem.cpp', 'GLMatrix.cpp', 'RenderLog.cpp',
 ]]
 
 renderer_bfg_env = env.Clone()
