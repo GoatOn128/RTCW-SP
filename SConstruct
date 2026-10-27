@@ -101,9 +101,14 @@ if IS_WINDOWS:
     env['AR'] = 'llvm-lib'
     env.Append(CPPDEFINES=['WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
+
     # /W4 instead of -Wall: clang-cl maps -Wall onto every warning it
     # knows and floods the log
-    env.Append(CCFLAGS=['/W4', arch_flag], CXXFLAGS=['/W4', arch_flag])
+    env.Append(
+        CCFLAGS=['/W4', arch_flag, '/nologo', '/showFilenames'], 
+        CXXFLAGS=['/W4', arch_flag, '/nologo', '/showFilenames']
+    )
+
     # ASLR
     env.Append(LINKFLAGS=['/DYNAMICBASE'] + (['/HIGHENTROPYVA'] if ARCH == 'x64' else []))
     if CONFIG == 'debug':
@@ -119,18 +124,28 @@ else:
         CPPPATH=common_cpppath,
     )
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
+
     # no lib prefix on module names
     env['SHLIBPREFIX'] = ''
+
     # the C code is 2001 era, the splines code is C++98 era
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
     env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
+
     if CONFIG == 'debug':
         env.Append(CCFLAGS=['-g', '-O0'], CXXFLAGS=['-g', '-O0'])
     else:
         env.Append(CPPDEFINES=['NDEBUG'])
         env.Append(CCFLAGS=['-O2', '-fno-strict-aliasing'], CXXFLAGS=['-O2', '-fno-strict-aliasing'])
+        
+    env['CCCOMSTR'] = "Compiling $SOURCE"
+    env['CXXCOMSTR'] = "Compiling $SOURCE"
+    env['SHCCCOMSTR'] = "Compiling $SOURCE (shared)"
+    env['SHCXXCOMSTR'] = "Compiling $SOURCE (shared)"
+    env['LINKCOMSTR'] = "Linking $TARGET"
+    env['SHLINKCOMSTR'] = "Linking $TARGET"
 
 # q_shared.h needs CPUSTRING and PATH_SEP everywhere, and Sys_LoadModule
 # needs ARCH_STRING as a quoted module name suffix. Quoted values cannot go
