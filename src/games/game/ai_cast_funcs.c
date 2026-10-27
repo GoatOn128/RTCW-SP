@@ -2105,7 +2105,7 @@ char *AIFunc_BattleHunt( cast_state_t *cs ) {
 //	gclient_t *client = &level.clients[cs->entityNum];
 	char *rval;
 	float dist;
-	int     i;
+	int i;
 
 	//
 	// do we need to avoid a danger?
