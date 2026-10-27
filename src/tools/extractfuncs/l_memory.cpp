@@ -35,10 +35,10 @@ If you have questions concerning this license or the applicable additional terms
  *
  *****************************************************************************/
 
-#include "../game/q_shared.h"
-#include "../game/botlib.h"
+#include "../../qcommon/q_shared.h"
+#include "../../games/game/botlib.h"
 #include "l_log.h"
-#include "../../src/botlib/be_interface.h"
+#include "../../games/botlib/be_interface.h"
 
 //#define MEMDEBUG
 //#define MEMORYMANEGER
