@@ -2628,3 +2628,1054 @@ void CL_Init( void ) {
 	Cmd_AddCommand( "clientinfo", CL_Clientinfo_f );
 	Cmd_AddCommand( "snd_restart", CL_Snd_Restart_f );
 	Cmd_AddCommand( "vid_restart", CL_Vid_Restart_f );
+	Cmd_AddCommand( "disconnect", CL_Disconnect_f );
+	Cmd_AddCommand( "record", CL_Record_f );
+	Cmd_AddCommand( "demo", CL_PlayDemo_f );
+	Cmd_AddCommand( "cinematic", CL_PlayCinematic_f );
+	Cmd_AddCommand( "stoprecord", CL_StopRecord_f );
+	Cmd_AddCommand( "connect", CL_Connect_f );
+	Cmd_AddCommand( "reconnect", CL_Reconnect_f );
+	Cmd_AddCommand( "localservers", CL_LocalServers_f );
+	Cmd_AddCommand( "globalservers", CL_GlobalServers_f );
+	Cmd_AddCommand( "rcon", CL_Rcon_f );
+	Cmd_AddCommand( "setenv", CL_Setenv_f );
+	Cmd_AddCommand( "ping", CL_Ping_f );
+	Cmd_AddCommand( "serverstatus", CL_ServerStatus_f );
+	Cmd_AddCommand( "showip", CL_ShowIP_f );
+	Cmd_AddCommand( "fs_openedList", CL_OpenedPK3List_f );
+	Cmd_AddCommand( "fs_referencedList", CL_ReferencedPK3List_f );
+
+	// Ridah, startup-caching system
+	Cmd_AddCommand( "cache_startgather", CL_Cache_StartGather_f );
+	Cmd_AddCommand( "cache_usedfile", CL_Cache_UsedFile_f );
+	Cmd_AddCommand( "cache_setindex", CL_Cache_SetIndex_f );
+	Cmd_AddCommand( "cache_mapchange", CL_Cache_MapChange_f );
+	Cmd_AddCommand( "cache_endgather", CL_Cache_EndGather_f );
+
+	Cmd_AddCommand( "updatehunkusage", CL_UpdateLevelHunkUsage );
+	Cmd_AddCommand( "updatescreen", SCR_UpdateScreen );
+	// done.
+
+	// RF, add this command so clients can't bind a key to send client damage commands to the server
+	Cmd_AddCommand( "cld", CL_ClientDamageCommand );
+
+	Cmd_AddCommand( "startMultiplayer", CL_startMultiplayer_f );        // NERVE - SMF
+
+	// TTimo
+	// show_bug.cgi?id=447
+	Cmd_AddCommand( "shellExecute", CL_ShellExecute_URL_f );
+	//Cmd_AddCommand ( "shellExecute", CL_ShellExecute_f );	//----(SA) added (mainly for opening web pages from the menu)
+
+	// RF, prevent users from issuing a map_restart manually
+	Cmd_AddCommand( "map_restart", CL_MapRestart_f );
+
+	Cmd_AddCommand( "setRecommended", CL_SetRecommended_f );
+
+	CL_InitRef();
+
+	SCR_Init();
+
+	Cbuf_Execute();
+
+	Cvar_Set( "cl_running", "1" );
+
+	Com_Printf( "----- Client Initialization Complete -----\n" );
+}
+
+
+/*
+===============
+CL_Shutdown
+
+===============
+*/
+void CL_Shutdown( void ) {
+	static qboolean recursive = qfalse;
+
+	Com_Printf( "----- CL_Shutdown -----\n" );
+
+	if ( recursive ) {
+		printf( "recursive shutdown\n" );
+		return;
+	}
+	recursive = qtrue;
+
+	CL_Disconnect( qtrue );
+
+	S_Shutdown();
+	CL_ShutdownRef();
+
+	CL_ShutdownUI();
+
+	Cmd_RemoveCommand( "cmd" );
+	Cmd_RemoveCommand( "configstrings" );
+	Cmd_RemoveCommand( "userinfo" );
+	Cmd_RemoveCommand( "snd_restart" );
+	Cmd_RemoveCommand( "vid_restart" );
+	Cmd_RemoveCommand( "disconnect" );
+	Cmd_RemoveCommand( "record" );
+	Cmd_RemoveCommand( "demo" );
+	Cmd_RemoveCommand( "cinematic" );
+	Cmd_RemoveCommand( "stoprecord" );
+	Cmd_RemoveCommand( "connect" );
+	Cmd_RemoveCommand( "localservers" );
+	Cmd_RemoveCommand( "globalservers" );
+	Cmd_RemoveCommand( "rcon" );
+	Cmd_RemoveCommand( "setenv" );
+	Cmd_RemoveCommand( "ping" );
+	Cmd_RemoveCommand( "serverstatus" );
+	Cmd_RemoveCommand( "showip" );
+	Cmd_RemoveCommand( "model" );
+
+	// Ridah, startup-caching system
+	Cmd_RemoveCommand( "cache_startgather" );
+	Cmd_RemoveCommand( "cache_usedfile" );
+	Cmd_RemoveCommand( "cache_setindex" );
+	Cmd_RemoveCommand( "cache_mapchange" );
+	Cmd_RemoveCommand( "cache_endgather" );
+
+	Cmd_RemoveCommand( "updatehunkusage" );
+	// done.
+
+	Cvar_Set( "cl_running", "0" );
+
+	recursive = qfalse;
+
+	memset( &cls, 0, sizeof( cls ) );
+
+	Com_Printf( "-----------------------\n" );
+}
+
+
+static void CL_SetServerInfo( serverInfo_t *server, const char *info, int ping ) {
+	if ( server ) {
+		if ( info ) {
+			server->clients = atoi( Info_ValueForKey( info, "clients" ) );
+			Q_strncpyz( server->hostName,Info_ValueForKey( info, "hostname" ), MAX_NAME_LENGTH );
+			Q_strncpyz( server->mapName, Info_ValueForKey( info, "mapname" ), MAX_NAME_LENGTH );
+			server->maxClients = atoi( Info_ValueForKey( info, "sv_maxclients" ) );
+			Q_strncpyz( server->game,Info_ValueForKey( info, "game" ), MAX_NAME_LENGTH );
+			server->gameType = atoi( Info_ValueForKey( info, "gametype" ) );
+			server->netType = atoi( Info_ValueForKey( info, "nettype" ) );
+			server->minPing = atoi( Info_ValueForKey( info, "minping" ) );
+			server->maxPing = atoi( Info_ValueForKey( info, "maxping" ) );
+			server->allowAnonymous = atoi( Info_ValueForKey( info, "sv_allowAnonymous" ) );
+		}
+		server->ping = ping;
+	}
+}
+
+static void CL_SetServerInfoByAddress( netadr_t from, const char *info, int ping ) {
+	int i;
+
+	for ( i = 0; i < MAX_OTHER_SERVERS; i++ ) {
+		if ( NET_CompareAdr( from, cls.localServers[i].adr ) ) {
+			CL_SetServerInfo( &cls.localServers[i], info, ping );
+		}
+	}
+
+	for ( i = 0; i < MAX_OTHER_SERVERS; i++ ) {
+		if ( NET_CompareAdr( from, cls.mplayerServers[i].adr ) ) {
+			CL_SetServerInfo( &cls.mplayerServers[i], info, ping );
+		}
+	}
+
+	for ( i = 0; i < MAX_GLOBAL_SERVERS; i++ ) {
+		if ( NET_CompareAdr( from, cls.globalServers[i].adr ) ) {
+			CL_SetServerInfo( &cls.globalServers[i], info, ping );
+		}
+	}
+
+	for ( i = 0; i < MAX_OTHER_SERVERS; i++ ) {
+		if ( NET_CompareAdr( from, cls.favoriteServers[i].adr ) ) {
+			CL_SetServerInfo( &cls.favoriteServers[i], info, ping );
+		}
+	}
+
+}
+
+/*
+===================
+CL_ServerInfoPacket
+===================
+*/
+void CL_ServerInfoPacket( netadr_t from, msg_t *msg ) {
+	int i, type;
+	char info[MAX_INFO_STRING];
+	char*   str;
+	char    *infoString;
+	int prot;
+
+	infoString = MSG_ReadString( msg );
+
+	// if this isn't the correct protocol version, ignore it
+	prot = atoi( Info_ValueForKey( infoString, "protocol" ) );
+	if ( prot != PROTOCOL_VERSION ) {
+		Com_DPrintf( "Different protocol info packet: %s\n", infoString );
+//		return;
+	}
+
+	// iterate servers waiting for ping response
+	for ( i = 0; i < MAX_PINGREQUESTS; i++ )
+	{
+		if ( cl_pinglist[i].adr.port && !cl_pinglist[i].time && NET_CompareAdr( from, cl_pinglist[i].adr ) ) {
+			// calc ping time
+			cl_pinglist[i].time = cls.realtime - cl_pinglist[i].start + 1;
+			Com_DPrintf( "ping time %dms from %s\n", cl_pinglist[i].time, NET_AdrToString( from ) );
+
+			// save of info
+			Q_strncpyz( cl_pinglist[i].info, infoString, sizeof( cl_pinglist[i].info ) );
+
+			// tack on the net type
+			// NOTE: make sure these types are in sync with the netnames strings in the UI
+			switch ( from.type )
+			{
+			case NA_BROADCAST:
+			case NA_IP:
+				str = "udp";
+				type = 1;
+				break;
+
+			case NA_IPX:
+			case NA_BROADCAST_IPX:
+				str = "ipx";
+				type = 2;
+				break;
+
+			default:
+				str = "???";
+				type = 0;
+				break;
+			}
+			Info_SetValueForKey( cl_pinglist[i].info, "nettype", va( "%d", type ) );
+			CL_SetServerInfoByAddress( from, infoString, cl_pinglist[i].time );
+
+			return;
+		}
+	}
+
+	// if not just sent a local broadcast or pinging local servers
+	if ( cls.pingUpdateSource != AS_LOCAL ) {
+		return;
+	}
+
+	for ( i = 0 ; i < MAX_OTHER_SERVERS ; i++ ) {
+		// empty slot
+		if ( cls.localServers[i].adr.port == 0 ) {
+			break;
+		}
+
+		// avoid duplicate
+		if ( NET_CompareAdr( from, cls.localServers[i].adr ) ) {
+			return;
+		}
+	}
+
+	if ( i == MAX_OTHER_SERVERS ) {
+		Com_DPrintf( "MAX_OTHER_SERVERS hit, dropping infoResponse\n" );
+		return;
+	}
+
+	// add this to the list
+	cls.numlocalservers = i + 1;
+	cls.localServers[i].adr = from;
+	cls.localServers[i].clients = 0;
+	cls.localServers[i].hostName[0] = '\0';
+	cls.localServers[i].mapName[0] = '\0';
+	cls.localServers[i].maxClients = 0;
+	cls.localServers[i].maxPing = 0;
+	cls.localServers[i].minPing = 0;
+	cls.localServers[i].ping = -1;
+	cls.localServers[i].game[0] = '\0';
+	cls.localServers[i].gameType = 0;
+	cls.localServers[i].netType = from.type;
+	cls.localServers[i].allowAnonymous = 0;
+
+	Q_strncpyz( info, MSG_ReadString( msg ), MAX_INFO_STRING );
+	if ( strlen( info ) ) {
+		if ( info[strlen( info ) - 1] != '\n' ) {
+			strncat( info, "\n", sizeof( info ) - strlen( info ) - 1 );
+		}
+		Com_Printf( "%s: %s", NET_AdrToString( from ), info );
+	}
+}
+
+/*
+===================
+CL_GetServerStatus
+===================
+*/
+serverStatus_t *CL_GetServerStatus( netadr_t from ) {
+	serverStatus_t *serverStatus;
+	int i, oldest, oldestTime;
+
+	serverStatus = NULL;
+	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
+		if ( NET_CompareAdr( from, cl_serverStatusList[i].address ) ) {
+			return &cl_serverStatusList[i];
+		}
+	}
+	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
+		if ( cl_serverStatusList[i].retrieved ) {
+			return &cl_serverStatusList[i];
+		}
+	}
+	oldest = -1;
+	oldestTime = 0;
+	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
+		if ( oldest == -1 || cl_serverStatusList[i].startTime < oldestTime ) {
+			oldest = i;
+			oldestTime = cl_serverStatusList[i].startTime;
+		}
+	}
+	if ( oldest != -1 ) {
+		return &cl_serverStatusList[oldest];
+	}
+	serverStatusCount++;
+	return &cl_serverStatusList[serverStatusCount & ( MAX_SERVERSTATUSREQUESTS - 1 )];
+}
+
+/*
+===================
+CL_ServerStatus
+===================
+*/
+int CL_ServerStatus( char *serverAddress, char *serverStatusString, int maxLen ) {
+	int i;
+	netadr_t to;
+	serverStatus_t *serverStatus;
+
+	// if no server address then reset all server status requests
+	if ( !serverAddress ) {
+		for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
+			cl_serverStatusList[i].address.port = 0;
+			cl_serverStatusList[i].retrieved = qtrue;
+		}
+		return qfalse;
+	}
+	// get the address
+	if ( !NET_StringToAdr( serverAddress, &to ) ) {
+		return qfalse;
+	}
+	serverStatus = CL_GetServerStatus( to );
+	// if no server status string then reset the server status request for this address
+	if ( !serverStatusString ) {
+		serverStatus->retrieved = qtrue;
+		return qfalse;
+	}
+
+	// if this server status request has the same address
+	if ( NET_CompareAdr( to, serverStatus->address ) ) {
+		// if we recieved an response for this server status request
+		if ( !serverStatus->pending ) {
+			Q_strncpyz( serverStatusString, serverStatus->string, maxLen );
+			serverStatus->retrieved = qtrue;
+			serverStatus->startTime = 0;
+			return qtrue;
+		}
+		// resend the request regularly
+		else if ( serverStatus->startTime < Sys_Milliseconds() - cl_serverStatusResendTime->integer ) {
+			serverStatus->print = qfalse;
+			serverStatus->pending = qtrue;
+			serverStatus->retrieved = qfalse;
+			serverStatus->time = 0;
+			serverStatus->startTime = Sys_Milliseconds();
+			NET_OutOfBandPrint( NS_CLIENT, to, "getstatus" );
+			return qfalse;
+		}
+	}
+	// if retrieved
+	else if ( serverStatus->retrieved ) {
+		serverStatus->address = to;
+		serverStatus->print = qfalse;
+		serverStatus->pending = qtrue;
+		serverStatus->retrieved = qfalse;
+		serverStatus->startTime = Sys_Milliseconds();
+		serverStatus->time = 0;
+		NET_OutOfBandPrint( NS_CLIENT, to, "getstatus" );
+		return qfalse;
+	}
+	return qfalse;
+}
+
+/*
+===================
+CL_ServerStatusResponse
+===================
+*/
+void CL_ServerStatusResponse( netadr_t from, msg_t *msg ) {
+	char    *s;
+	char info[MAX_INFO_STRING];
+	int i, l, score, ping;
+	int len;
+	serverStatus_t *serverStatus;
+
+	serverStatus = NULL;
+	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
+		if ( NET_CompareAdr( from, cl_serverStatusList[i].address ) ) {
+			serverStatus = &cl_serverStatusList[i];
+			break;
+		}
+	}
+	// if we didn't request this server status
+	if ( !serverStatus ) {
+		return;
+	}
+
+	s = MSG_ReadStringLine( msg );
+
+	len = 0;
+	Com_sprintf( &serverStatus->string[len], sizeof( serverStatus->string ) - len, "%s", s );
+
+	if ( serverStatus->print ) {
+		Com_Printf( "Server settings:\n" );
+		// print cvars
+		while ( *s ) {
+			for ( i = 0; i < 2 && *s; i++ ) {
+				if ( *s == '\\' ) {
+					s++;
+				}
+				l = 0;
+				while ( *s ) {
+					info[l++] = *s;
+					if ( l >= MAX_INFO_STRING - 1 ) {
+						break;
+					}
+					s++;
+					if ( *s == '\\' ) {
+						break;
+					}
+				}
+				info[l] = '\0';
+				if ( i ) {
+					Com_Printf( "%s\n", info );
+				} else {
+					Com_Printf( "%-24s", info );
+				}
+			}
+		}
+	}
+
+	len = strlen( serverStatus->string );
+	Com_sprintf( &serverStatus->string[len], sizeof( serverStatus->string ) - len, "\\" );
+
+	if ( serverStatus->print ) {
+		Com_Printf( "\nPlayers:\n" );
+		Com_Printf( "num: score: ping: name:\n" );
+	}
+	for ( i = 0, s = MSG_ReadStringLine( msg ); *s; s = MSG_ReadStringLine( msg ), i++ ) {
+
+		len = strlen( serverStatus->string );
+		Com_sprintf( &serverStatus->string[len], sizeof( serverStatus->string ) - len, "\\%s", s );
+
+		if ( serverStatus->print ) {
+			score = ping = 0;
+			sscanf( s, "%d %d", &score, &ping );
+			s = strchr( s, ' ' );
+			if ( s ) {
+				s = strchr( s + 1, ' ' );
+			}
+			if ( s ) {
+				s++;
+			} else {
+				s = "unknown";
+			}
+			Com_Printf( "%-2d   %-3d    %-3d   %s\n", i, score, ping, s );
+		}
+	}
+	len = strlen( serverStatus->string );
+	Com_sprintf( &serverStatus->string[len], sizeof( serverStatus->string ) - len, "\\" );
+
+	serverStatus->time = Sys_Milliseconds();
+	serverStatus->address = from;
+	serverStatus->pending = qfalse;
+	if ( serverStatus->print ) {
+		serverStatus->retrieved = qtrue;
+	}
+}
+
+/*
+==================
+CL_LocalServers_f
+==================
+*/
+void CL_LocalServers_f( void ) {
+	char        *message;
+	int i, j;
+	netadr_t to;
+
+	Com_Printf( "Scanning for servers on the local network...\n" );
+
+	// reset the list, waiting for response
+	cls.numlocalservers = 0;
+	cls.pingUpdateSource = AS_LOCAL;
+
+	for ( i = 0; i < MAX_OTHER_SERVERS; i++ ) {
+		qboolean b = cls.localServers[i].visible;
+		Com_Memset( &cls.localServers[i], 0, sizeof( cls.localServers[i] ) );
+		cls.localServers[i].visible = b;
+	}
+	Com_Memset( &to, 0, sizeof( to ) );
+
+	// The 'xxx' in the message is a challenge that will be echoed back
+	// by the server.  We don't care about that here, but master servers
+	// can use that to prevent spoofed server responses from invalid ip
+	message = "\377\377\377\377getinfo xxx";
+
+	// send each message twice in case one is dropped
+	for ( i = 0 ; i < 2 ; i++ ) {
+		// send a broadcast packet on each server port
+		// we support multiple server ports so a single machine
+		// can nicely run multiple servers
+		for ( j = 0 ; j < NUM_SERVER_PORTS ; j++ ) {
+			to.port = BigShort( (short)( PORT_SERVER + j ) );
+
+			to.type = NA_BROADCAST;
+			NET_SendPacket( NS_CLIENT, strlen( message ), message, to );
+
+			to.type = NA_BROADCAST_IPX;
+			NET_SendPacket( NS_CLIENT, strlen( message ), message, to );
+		}
+	}
+}
+
+/*
+==================
+CL_GlobalServers_f
+==================
+*/
+void CL_GlobalServers_f( void ) {
+	netadr_t to;
+	int i;
+	int count;
+	char        *buffptr;
+	char command[1024];
+
+	if ( Cmd_Argc() < 3 ) {
+		Com_Printf( "usage: globalservers <master# 0-1> <protocol> [keywords]\n" );
+		return;
+	}
+
+	cls.masterNum = atoi( Cmd_Argv( 1 ) );
+
+	Com_Printf( "Requesting servers from the master...\n" );
+
+	// reset the list, waiting for response
+	// -1 is used to distinguish a "no response"
+
+	if ( cls.masterNum == 1 ) {
+		NET_StringToAdr( "master.quake3world.com", &to );
+		cls.nummplayerservers = -1;
+		cls.pingUpdateSource = AS_MPLAYER;
+	} else {
+		NET_StringToAdr( MASTER_SERVER_NAME, &to );
+		cls.numglobalservers = -1;
+		cls.pingUpdateSource = AS_GLOBAL;
+	}
+	to.type = NA_IP;
+	to.port = BigShort( PORT_MASTER );
+
+	sprintf( command, "getservers %s", Cmd_Argv( 2 ) );
+
+	// tack on keywords
+	buffptr = command + strlen( command );
+	count   = Cmd_Argc();
+	for ( i = 3; i < count; i++ )
+		buffptr += sprintf( buffptr, " %s", Cmd_Argv( i ) );
+
+	// if we are a demo, automatically add a "demo" keyword
+	if ( Cvar_VariableValue( "fs_restrict" ) ) {
+		buffptr += sprintf( buffptr, " demo" );
+	}
+
+	NET_OutOfBandPrint( NS_SERVER, to, command );
+}
+
+
+/*
+==================
+CL_GetPing
+==================
+*/
+void CL_GetPing( int n, char *buf, int buflen, int *pingtime ) {
+	const char  *str;
+	int time;
+	int maxPing;
+
+	if ( !cl_pinglist[n].adr.port ) {
+		// empty slot
+		buf[0]    = '\0';
+		*pingtime = 0;
+		return;
+	}
+
+	str = NET_AdrToString( cl_pinglist[n].adr );
+	Q_strncpyz( buf, str, buflen );
+
+	time = cl_pinglist[n].time;
+	if ( !time ) {
+		// check for timeout
+		time = cls.realtime - cl_pinglist[n].start;
+		maxPing = Cvar_VariableIntegerValue( "cl_maxPing" );
+		if ( maxPing < 100 ) {
+			maxPing = 100;
+		}
+		if ( time < maxPing ) {
+			// not timed out yet
+			time = 0;
+		}
+	}
+
+	CL_SetServerInfoByAddress( cl_pinglist[n].adr, cl_pinglist[n].info, cl_pinglist[n].time );
+
+	*pingtime = time;
+}
+
+/*
+==================
+CL_UpdateServerInfo
+==================
+*/
+void CL_UpdateServerInfo( int n ) {
+	if ( !cl_pinglist[n].adr.port ) {
+		return;
+	}
+
+	CL_SetServerInfoByAddress( cl_pinglist[n].adr, cl_pinglist[n].info, cl_pinglist[n].time );
+}
+
+/*
+==================
+CL_GetPingInfo
+==================
+*/
+void CL_GetPingInfo( int n, char *buf, int buflen ) {
+	if ( !cl_pinglist[n].adr.port ) {
+		// empty slot
+		if ( buflen ) {
+			buf[0] = '\0';
+		}
+		return;
+	}
+
+	Q_strncpyz( buf, cl_pinglist[n].info, buflen );
+}
+
+/*
+==================
+CL_ClearPing
+==================
+*/
+void CL_ClearPing( int n ) {
+	if ( n < 0 || n >= MAX_PINGREQUESTS ) {
+		return;
+	}
+
+	cl_pinglist[n].adr.port = 0;
+}
+
+/*
+==================
+CL_GetPingQueueCount
+==================
+*/
+int CL_GetPingQueueCount( void ) {
+	int i;
+	int count;
+	ping_t* pingptr;
+
+	count   = 0;
+	pingptr = cl_pinglist;
+
+	for ( i = 0; i < MAX_PINGREQUESTS; i++, pingptr++ ) {
+		if ( pingptr->adr.port ) {
+			count++;
+		}
+	}
+
+	return ( count );
+}
+
+/*
+==================
+CL_GetFreePing
+==================
+*/
+ping_t* CL_GetFreePing( void ) {
+	ping_t* pingptr;
+	ping_t* best;
+	int oldest;
+	int i;
+	int time;
+
+	pingptr = cl_pinglist;
+	for ( i = 0; i < MAX_PINGREQUESTS; i++, pingptr++ )
+	{
+		// find free ping slot
+		if ( pingptr->adr.port ) {
+			if ( !pingptr->time ) {
+				if ( cls.realtime - pingptr->start < 500 ) {
+					// still waiting for response
+					continue;
+				}
+			} else if ( pingptr->time < 500 ) {
+				// results have not been queried
+				continue;
+			}
+		}
+
+		// clear it
+		pingptr->adr.port = 0;
+		return ( pingptr );
+	}
+
+	// use oldest entry
+	pingptr = cl_pinglist;
+	best    = cl_pinglist;
+	oldest  = INT_MIN;
+	for ( i = 0; i < MAX_PINGREQUESTS; i++, pingptr++ )
+	{
+		// scan for oldest
+		time = cls.realtime - pingptr->start;
+		if ( time > oldest ) {
+			oldest = time;
+			best   = pingptr;
+		}
+	}
+
+	return ( best );
+}
+
+/*
+==================
+CL_Ping_f
+==================
+*/
+void CL_Ping_f( void ) {
+	netadr_t to;
+	ping_t*     pingptr;
+	char*       server;
+
+	if ( Cmd_Argc() != 2 ) {
+		Com_Printf( "usage: ping [server]\n" );
+		return;
+	}
+
+	memset( &to, 0, sizeof( netadr_t ) );
+
+	server = Cmd_Argv( 1 );
+
+	if ( !NET_StringToAdr( server, &to ) ) {
+		return;
+	}
+
+	pingptr = CL_GetFreePing();
+
+	memcpy( &pingptr->adr, &to, sizeof( netadr_t ) );
+	pingptr->start = cls.realtime;
+	pingptr->time  = 0;
+
+	CL_SetServerInfoByAddress( pingptr->adr, NULL, 0 );
+
+	NET_OutOfBandPrint( NS_CLIENT, to, "getinfo xxx" );
+}
+
+/*
+==================
+CL_UpdateVisiblePings_f
+==================
+*/
+qboolean CL_UpdateVisiblePings_f( int source ) {
+	int slots, i;
+	char buff[MAX_STRING_CHARS];
+	int pingTime;
+	int max;
+	qboolean status = qfalse;
+
+	if ( source < 0 || source > AS_FAVORITES ) {
+		return qfalse;
+	}
+
+	cls.pingUpdateSource = source;
+
+	slots = CL_GetPingQueueCount();
+	if ( slots < MAX_PINGREQUESTS ) {
+		serverInfo_t *server = NULL;
+
+		max = ( source == AS_GLOBAL ) ? MAX_GLOBAL_SERVERS : MAX_OTHER_SERVERS;
+		switch ( source ) {
+		case AS_LOCAL:
+			server = &cls.localServers[0];
+			max = cls.numlocalservers;
+			break;
+		case AS_MPLAYER:
+			server = &cls.mplayerServers[0];
+			max = cls.nummplayerservers;
+			break;
+		case AS_GLOBAL:
+			server = &cls.globalServers[0];
+			max = cls.numglobalservers;
+			break;
+		case AS_FAVORITES:
+			server = &cls.favoriteServers[0];
+			max = cls.numfavoriteservers;
+			break;
+		}
+		for ( i = 0; i < max; i++ ) {
+			if ( server[i].visible ) {
+				if ( server[i].ping == -1 ) {
+					int j;
+
+					if ( slots >= MAX_PINGREQUESTS ) {
+						break;
+					}
+					for ( j = 0; j < MAX_PINGREQUESTS; j++ ) {
+						if ( !cl_pinglist[j].adr.port ) {
+							continue;
+						}
+						if ( NET_CompareAdr( cl_pinglist[j].adr, server[i].adr ) ) {
+							// already on the list
+							break;
+						}
+					}
+					if ( j >= MAX_PINGREQUESTS ) {
+						status = qtrue;
+						for ( j = 0; j < MAX_PINGREQUESTS; j++ ) {
+							if ( !cl_pinglist[j].adr.port ) {
+								break;
+							}
+						}
+						memcpy( &cl_pinglist[j].adr, &server[i].adr, sizeof( netadr_t ) );
+						cl_pinglist[j].start = cls.realtime;
+						cl_pinglist[j].time = 0;
+						NET_OutOfBandPrint( NS_CLIENT, cl_pinglist[j].adr, "getinfo xxx" );
+						slots++;
+					}
+				}
+				// if the server has a ping higher than cl_maxPing or
+				// the ping packet got lost
+				else if ( server[i].ping == 0 ) {
+					// if we are updating global servers
+					if ( source == AS_GLOBAL ) {
+						//
+						if ( cls.numGlobalServerAddresses > 0 ) {
+							// overwrite this server with one from the additional global servers
+							cls.numGlobalServerAddresses--;
+							CL_InitServerInfo( &server[i], &cls.globalServerAddresses[cls.numGlobalServerAddresses] );
+							// NOTE: the server[i].visible flag stays untouched
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if ( slots ) {
+		status = qtrue;
+	}
+	for ( i = 0; i < MAX_PINGREQUESTS; i++ ) {
+		if ( !cl_pinglist[i].adr.port ) {
+			continue;
+		}
+		CL_GetPing( i, buff, MAX_STRING_CHARS, &pingTime );
+		if ( pingTime != 0 ) {
+			CL_ClearPing( i );
+			status = qtrue;
+		}
+	}
+
+	return status;
+}
+
+/*
+==================
+CL_ServerStatus_f
+==================
+*/
+void CL_ServerStatus_f( void ) {
+	netadr_t to;
+	char        *server;
+	serverStatus_t *serverStatus;
+
+	Com_Memset( &to, 0, sizeof( netadr_t ) );
+
+	if ( Cmd_Argc() != 2 ) {
+		if ( cls.state != CA_ACTIVE || clc.demoplaying ) {
+			Com_Printf( "Not connected to a server.\n" );
+			Com_Printf( "Usage: serverstatus [server]\n" );
+			return;
+		}
+		server = cls.servername;
+	} else {
+		server = Cmd_Argv( 1 );
+	}
+
+	if ( !NET_StringToAdr( server, &to ) ) {
+		return;
+	}
+
+	NET_OutOfBandPrint( NS_CLIENT, to, "getstatus" );
+
+	serverStatus = CL_GetServerStatus( to );
+	serverStatus->address = to;
+	serverStatus->print = qtrue;
+	serverStatus->pending = qtrue;
+}
+
+/*
+==================
+CL_ShowIP_f
+==================
+*/
+void CL_ShowIP_f( void ) {
+	Sys_ShowIP();
+}
+
+/*
+=================
+bool CL_CDKeyValidate
+=================
+*/
+qboolean CL_CDKeyValidate( const char *key, const char *checksum ) {
+	char ch;
+	byte sum;
+	char chs[3];
+	int i, len;
+
+	len = strlen( key );
+	if ( len != CDKEY_LEN ) {
+		return qfalse;
+	}
+
+	if ( checksum && strlen( checksum ) != CDCHKSUM_LEN ) {
+		return qfalse;
+	}
+
+	sum = 0;
+	// for loop gets rid of conditional assignment warning
+	for ( i = 0; i < len; i++ ) {
+		ch = *key++;
+		if ( ch >= 'a' && ch <= 'z' ) {
+			ch -= 32;
+		}
+		switch ( ch ) {
+		case '2':
+		case '3':
+		case '7':
+		case 'A':
+		case 'B':
+		case 'C':
+		case 'D':
+		case 'G':
+		case 'H':
+		case 'J':
+		case 'L':
+		case 'P':
+		case 'R':
+		case 'S':
+		case 'T':
+		case 'W':
+			sum += ch;
+			continue;
+		default:
+			return qfalse;
+		}
+	}
+
+
+	sprintf( chs, "%02x", sum );
+
+	if ( checksum && !Q_stricmp( chs, checksum ) ) {
+		return qtrue;
+	}
+
+	if ( !checksum ) {
+		return qtrue;
+	}
+
+	return qfalse;
+}
+
+// NERVE - SMF
+/*
+=======================
+CL_AddToLimboChat
+
+=======================
+*/
+void CL_AddToLimboChat( const char *str ) {
+	int len;
+	char *p, *ls;
+	int lastcolor;
+	int chatHeight;
+	int i;
+
+	chatHeight = LIMBOCHAT_HEIGHT;
+	cl.limboChatPos = LIMBOCHAT_HEIGHT - 1;
+	len = 0;
+
+	// copy old strings
+	for ( i = cl.limboChatPos; i > 0; i-- ) {
+		strcpy( cl.limboChatMsgs[i], cl.limboChatMsgs[i - 1] );
+	}
+
+	// copy new string
+	p = cl.limboChatMsgs[0];
+	*p = 0;
+
+	lastcolor = '7';
+
+	ls = NULL;
+	while ( *str ) {
+		if ( len > LIMBOCHAT_WIDTH - 1 ) {
+#if 0
+			if ( ls ) {
+				str -= ( p - ls );
+				str++;
+				p -= ( p - ls );
+			}
+			*p = 0;
+
+			if ( cl.limboChatPos < LIMBOCHAT_HEIGHT - 1 ) {
+				cl.limboChatPos++;
+			}
+			p = cl.limboChatMsgs[cl.limboChatPos];
+			*p = 0;
+			*p++ = Q_COLOR_ESCAPE;
+			*p++ = lastcolor;
+			len = 0;
+			ls = NULL;
+#endif
+			break;
+		}
+
+		if ( Q_IsColorString( str ) ) {
+			*p++ = *str++;
+			lastcolor = *str;
+			*p++ = *str++;
+			continue;
+		}
+		if ( *str == ' ' ) {
+			ls = p;
+		}
+		*p++ = *str++;
+		len++;
+	}
+	*p = 0;
+}
+
+/*
+=======================
+CL_GetLimboString
+
+=======================
+*/
+qboolean CL_GetLimboString( int index, char *buf ) {
+	if ( index >= LIMBOCHAT_HEIGHT ) {
+		return qfalse;
+	}
+
+	strncpy( buf, cl.limboChatMsgs[index], 140 );
+	return qtrue;
+}
+// -NERVE - SMF
