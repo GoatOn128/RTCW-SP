@@ -38,9 +38,23 @@ material and is never modified.
    them as reference data, the install location is decided by the
    engine integration phase.
 
-⬜ Phase 4 - Q3 BSP adapter
-   Load the RTCW .bsp files: surfaces, patches, lightmaps and vis data
-   feeding the BFG idRenderWorld structures. The lightmaps stay.
+✅ Phase 4 - Q3 BSP adapter
+   The Q3 BSP on-disk structures with size checks, the patch
+   subdivision ported from this repo's own tr_curve.c, and the
+   RenderWorld_load.cpp loader behind InitFromMap: shaders,
+   surfaces, patches, flares, leafs, area nodes, models, vis and
+   lightmaps feed the BFG idRenderWorld structures. The BFG area
+   nodes are built from the BSP tree and every BSP area gets its
+   own portal area, all flooded connected. The lightmaps stay raw
+   on the world, the image phase uploads them. Builds green on
+   every CI config. Deferred to later phases: the area portal
+   windings and the SetPortalState hookup (need the CM areaportal
+   data, engine integration), the lightmap upload (image phase),
+   moving the loaded surfaces into render models (model adapter
+   phase), the map time stamp fast reload and trace and decal
+   support on the BSP data. The loader reads the .bsp file from
+   the working directory with stdio until the engine file system
+   is hooked up.
 
 ⬜ Phase 5 - model adapters
    The MD3, MDS and MDC model formats into the BFG render model code.
