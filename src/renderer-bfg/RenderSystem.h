@@ -177,9 +177,9 @@ const int TITLESAFE_HEIGHT  = TITLESAFE_BOTTOM - TITLESAFE_TOP;
 
 class idRenderWorld;
 
-// The BFG reference defines triIndex_t in Model.h; the identical local
-// typedef keeps this header self contained until the model phase
-typedef unsigned short triIndex_t;
+// triIndex_t and the render model interface live in Model.h, like in the
+// BFG reference
+#include "Model.h"
 
 struct MemInfo_t;
 class idFont;
