@@ -33,6 +33,9 @@ If you have questions concerning this license or the applicable additional terms
 #ifndef GLW_WIN_H
 #define GLW_WIN_H
 
+// the window types below come from the platform header
+#include <windows.h>
+
 typedef struct
 {
 	WNDPROC wndproc;
