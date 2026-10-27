@@ -34,9 +34,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 
   The stencil shadow pass of the engine backend, ported from
-  src/renderer/tr_shadows.c of this code base, with the GL state
-  function and the white image bind it uses from
-  src/renderer/tr_backend.c.
+  src/renderer/tr_shadows.c of this code base.
 
   For a projection shadow:
 
@@ -53,7 +51,7 @@ If you have questions concerning this license or the applicable additional terms
   darken.
 
   Nothing calls this yet: the module has no live GL context until the
-  backend phase, which wires the pass into RB_EndSurface for the
+  backend draw phase, which wires the pass into RB_EndSurface for the
   shadow shader, into the view draw loop, into the
   DEFORM_PROJECTION_SHADOW stage of a material and into the stencil
   clear bit of the frame buffer clear.
@@ -63,14 +61,6 @@ If you have questions concerning this license or the applicable additional terms
 // engine tr_init.c: r_shadows = ri.Cvar_Get( "cg_shadows", "1", 0 );
 // 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection
 static idCVar r_shadows( "cg_shadows", "1", CVAR_RENDERER, "shadow mode: 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection" );
-
-// the dormant backend globals of Shadow.h, the backend phase owns
-// the real state; glConfig.stencilBits decides whether the pass can
-// run at all
-shadowTess_t tess;
-shadowBackEndState_t backEnd;
-shadowGlState_t glState;
-glconfig_t glConfig;
 
 // the vector math of the engine's q_shared.h as inline functions;
 // VectorMA is not redefined here because idlib's math/Vector.h
@@ -109,8 +99,8 @@ typedef struct {
 
 #define MAX_EDGE_DEFS   32
 
-// edges per vertex: this module has no tesselator yet, the shadow
-// pass works on the tess slice of Shadow.h
+// edges per vertex: this module has no full tesselator yet, the shadow
+// pass works on the tesselator slice of Backend.h
 static edgeDef_t edgeDefs[SHADER_MAX_VERTEXES][MAX_EDGE_DEFS];
 static int numEdgeDefs[SHADER_MAX_VERTEXES];
 static int facing[SHADER_MAX_INDEXES / 3];
@@ -357,7 +347,7 @@ void RB_ProjectionShadowDeform( void ) {
 	ground[1] = backEnd.orientation.axis[1][2];
 	ground[2] = backEnd.orientation.axis[2][2];
 
-	groundDist = backEnd.orientation.origin[2] - backEnd.currentEntity->shadowPlane;
+	groundDist = backEnd.orientation.origin[2] - backEnd.currentEntity->e.shadowPlane;
 
 	VectorCopy( backEnd.currentEntity->lightDir, lightDir );
 	d = DotProduct( lightDir, ground );
@@ -379,165 +369,4 @@ void RB_ProjectionShadowDeform( void ) {
 		xyz[1] -= light[1] * h;
 		xyz[2] -= light[2] * h;
 	}
-}
-
-/*
-=================
-GL_State
-
-The state function of the engine backend, ported from
-src/renderer/tr_backend.c: it tracks the current GLS_ bits in
-glState.glStateBits and only issues the GL calls for the bits that
-change. The engine GLS_FOG_DISABLE bit shares its value with
-GLS_DEPTHFUNC_EQUAL and is not ported; no shadow code sets it.
-=================
-*/
-void GL_State( unsigned long stateBits ) {
-	unsigned long diff = stateBits ^ glState.glStateBits;
-
-	if ( !diff ) {
-		return;
-	}
-
-	// check depthFunc bits
-	if ( diff & GLS_DEPTHFUNC_EQUAL ) {
-		if ( stateBits & GLS_DEPTHFUNC_EQUAL ) {
-			glDepthFunc( GL_EQUAL );
-		} else {
-			glDepthFunc( GL_LEQUAL );
-		}
-	}
-
-	// check blend bits
-	if ( diff & ( GLS_SRCBLEND_BITS | GLS_DSTBLEND_BITS ) ) {
-		GLenum srcFactor, dstFactor;
-
-		if ( stateBits & ( GLS_SRCBLEND_BITS | GLS_DSTBLEND_BITS ) ) {
-			switch ( stateBits & GLS_SRCBLEND_BITS )
-			{
-			case GLS_SRCBLEND_ZERO:
-				srcFactor = GL_ZERO;
-				break;
-			case GLS_SRCBLEND_ONE:
-				srcFactor = GL_ONE;
-				break;
-			case GLS_SRCBLEND_DST_COLOR:
-				srcFactor = GL_DST_COLOR;
-				break;
-			case GLS_SRCBLEND_ONE_MINUS_DST_COLOR:
-				srcFactor = GL_ONE_MINUS_DST_COLOR;
-				break;
-			case GLS_SRCBLEND_SRC_ALPHA:
-				srcFactor = GL_SRC_ALPHA;
-				break;
-			case GLS_SRCBLEND_ONE_MINUS_SRC_ALPHA:
-				srcFactor = GL_ONE_MINUS_SRC_ALPHA;
-				break;
-			case GLS_SRCBLEND_DST_ALPHA:
-				srcFactor = GL_DST_ALPHA;
-				break;
-			case GLS_SRCBLEND_ONE_MINUS_DST_ALPHA:
-				srcFactor = GL_ONE_MINUS_DST_ALPHA;
-				break;
-			case GLS_SRCBLEND_ALPHA_SATURATE:
-				srcFactor = GL_SRC_ALPHA_SATURATE;
-				break;
-			default:
-				srcFactor = GL_ONE;     // to get warning to shut up
-				idLib::Error( "GL_State: invalid src blend state bits\n" );
-				break;
-			}
-
-			switch ( stateBits & GLS_DSTBLEND_BITS )
-			{
-			case GLS_DSTBLEND_ZERO:
-				dstFactor = GL_ZERO;
-				break;
-			case GLS_DSTBLEND_ONE:
-				dstFactor = GL_ONE;
-				break;
-			case GLS_DSTBLEND_SRC_COLOR:
-				dstFactor = GL_SRC_COLOR;
-				break;
-			case GLS_DSTBLEND_ONE_MINUS_SRC_COLOR:
-				dstFactor = GL_ONE_MINUS_SRC_COLOR;
-				break;
-			case GLS_DSTBLEND_SRC_ALPHA:
-				dstFactor = GL_SRC_ALPHA;
-				break;
-			case GLS_DSTBLEND_ONE_MINUS_SRC_ALPHA:
-				dstFactor = GL_ONE_MINUS_SRC_ALPHA;
-				break;
-			case GLS_DSTBLEND_DST_ALPHA:
-				dstFactor = GL_DST_ALPHA;
-				break;
-			case GLS_DSTBLEND_ONE_MINUS_DST_ALPHA:
-				dstFactor = GL_ONE_MINUS_DST_ALPHA;
-				break;
-			default:
-				dstFactor = GL_ONE;     // to get warning to shut up
-				idLib::Error( "GL_State: invalid dst blend state bits\n" );
-				break;
-			}
-
-			glEnable( GL_BLEND );
-			glBlendFunc( srcFactor, dstFactor );
-		} else {
-			glDisable( GL_BLEND );
-		}
-	}
-
-	// check depthmask
-	if ( diff & GLS_DEPTHMASK_TRUE ) {
-		if ( stateBits & GLS_DEPTHMASK_TRUE ) {
-			glDepthMask( GL_TRUE );
-		} else {
-			glDepthMask( GL_FALSE );
-		}
-	}
-
-	// fill/line mode
-	if ( diff & GLS_POLYMODE_LINE ) {
-		if ( stateBits & GLS_POLYMODE_LINE ) {
-			glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-		} else {
-			glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-		}
-	}
-
-	// depthtest
-	if ( diff & GLS_DEPTHTEST_DISABLE ) {
-		if ( stateBits & GLS_DEPTHTEST_DISABLE ) {
-			glDisable( GL_DEPTH_TEST );
-		} else {
-			glEnable( GL_DEPTH_TEST );
-		}
-	}
-
-	// alpha test
-	if ( diff & GLS_ATEST_BITS ) {
-		switch ( stateBits & GLS_ATEST_BITS )
-		{
-		case 0:
-			glDisable( GL_ALPHA_TEST );
-			break;
-		case GLS_ATEST_GT_0:
-			glEnable( GL_ALPHA_TEST );
-			glAlphaFunc( GL_GREATER, 0.0f );
-			break;
-		case GLS_ATEST_LT_80:
-			glEnable( GL_ALPHA_TEST );
-			glAlphaFunc( GL_LESS, 0.5f );
-			break;
-		case GLS_ATEST_GE_80:
-			glEnable( GL_ALPHA_TEST );
-			glAlphaFunc( GL_GEQUAL, 0.5f );
-			break;
-		default:
-			assert( 0 );
-			break;
-		}
-	}
-
-	glState.glStateBits = stateBits;
 }
