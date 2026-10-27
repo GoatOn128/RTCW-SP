@@ -29,6 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "precompiled.h"
 #include "Material_local.h"
 #include "ImageManager.h"
+#include "Image_local.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -55,16 +56,22 @@ If you have questions concerning this license or the applicable additional terms
   into its own token, so negative numbers are reassembled in the float
   helper.
 
-  Deferred with the fog, sun and lightgrid phases: the sky fog, water
-  fog and map fog variables (skyfogvars, waterfogvars, fogvars), the
-  sun parameters (q3map_sun, sunshader), the lightgrid multipliers,
-  the state shader time clamping (clampTime) and the mapcomp keyword
-  set. The stage images load through the image manager like the
-  engine loads them in ParseStage; the videoMap playback needs the
-  client cinematic system (the BFG renderer plays Bink instead), so
-  the stage keeps the video file name and no image.
+  Deferred with the client systems they belong to: the videoMap
+  playback needs the client cinematic system (the BFG renderer plays
+  Bink instead), so the stage keeps the video file name and no image,
+  and the runtime consumers of the kept settings (the sun lighting,
+  the lightgrid and the fog) are frontend phases. Everything the
+  engine parses has a home: the fog, sun and lightgrid values sit on
+  the material manager like they sit in the engine's tr structure,
+  clampTime sits on the material, and allowcompress and nocompress
+  drive the image compression control of the image manager like the
+  engine's tr.allowCompress.
 
 */
+
+// the parse functions are static, the global shader settings land on
+// the local manager instance like they land on the engine's tr
+static idMaterialManagerLocal *parserManager = NULL;
 
 /*
 =================
@@ -1347,11 +1354,41 @@ static bool ParseShader( idLexer *src, idMaterial *shader ) {
 		}
 		// sun parms
 		else if ( !token.Icmp( "q3map_sun" ) ) {
-			// the sun lighting is deferred with the light phase, the
-			// parameters are consumed here to keep the parse position
-			for ( int i = 0; i < 6; i++ ) {
-				src->ReadTokenOnLine( &token );
+			// the sun lighting is a light phase concern, the parsed
+			// parameters are kept like the engine keeps tr.sunLight and
+			// tr.sunDirection
+			bool present;
+
+			float r = ParseFloatParm( src, &present );
+			float g = ParseFloatParm( src, &present );
+			float b = ParseFloatParm( src, &present );
+
+			float length = sqrtf( r * r + g * g + b * b );
+			if ( length > 0.0f ) {
+				r /= length;
+				g /= length;
+				b /= length;
 			}
+
+			// the sun intensity scales the normalized color
+			float intensity = ParseFloatParm( src, &present );
+			r *= intensity;
+			g *= intensity;
+			b *= intensity;
+
+			// the sun direction comes as azimuth and elevation in degrees
+			float a = ParseFloatParm( src, &present );
+			a = a / 180 * idMath::PI;
+			float elevation = ParseFloatParm( src, &present );
+			elevation = elevation / 180 * idMath::PI;
+
+			parserManager->sunLight[0] = r;
+			parserManager->sunLight[1] = g;
+			parserManager->sunLight[2] = b;
+			parserManager->sunDirection[0] = cosf( a ) * cosf( elevation );
+			parserManager->sunDirection[1] = sinf( a ) * cosf( elevation );
+			parserManager->sunDirection[2] = sinf( elevation );
+			continue;
 		} else if ( !token.Icmp( "deformVertexes" ) ) {
 			ParseDeform( src, shader );
 			continue;
@@ -1359,9 +1396,11 @@ static bool ParseShader( idLexer *src, idMaterial *shader ) {
 			src->SkipRestOfLine();
 			continue;
 		} else if ( !token.Icmp( "clampTime" ) ) {
-			// the state shader time clamping is deferred, the
-			// parameter is consumed to keep the parse position
-			src->ReadTokenOnLine( &token );
+			// the state shader time clamping is a frontend concern, the
+			// engine keeps the value on the shader
+			if ( src->ReadTokenOnLine( &token ) ) {
+				shader->clampTime = atof( token.c_str() );
+			}
 		}
 		// skip stuff that only the q3map needs
 		else if ( !token.Icmpn( "q3map", 5 ) ) {
@@ -1431,48 +1470,105 @@ static bool ParseShader( idLexer *src, idMaterial *shader ) {
 		}
 		// skyfogvars <(r,g,b)> <dist>
 		else if ( !token.Icmp( "skyfogvars" ) ) {
-			// the sky fog is deferred with the fog system, the
-			// parameters are consumed to keep the parse position
+			// the runtime fog is a frontend concern, the parsed values
+			// are kept like the engine hands them to R_SetFog
 			float fogColor[3];
 			if ( !ParseVector( src, 3, fogColor ) ) {
 				return false;
 			}
-			src->ReadTokenOnLine( &token );
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing density value for sky fog\n" );
+				continue;
+			}
+			const float density = atof( token.c_str() );
+			if ( density > 1 ) {
+				idLib::Warning( "WARNING: last value for skyfogvars is 'density' which needs to be 0.0-1.0\n" );
+				continue;
+			}
+			parserManager->skyFogColor[0] = fogColor[0];
+			parserManager->skyFogColor[1] = fogColor[1];
+			parserManager->skyFogColor[2] = fogColor[2];
+			parserManager->skyFogDensity = density;
+			parserManager->skyFogDefined = true;
 			continue;
 		} else if ( !token.Icmp( "sunshader" ) ) {
-			// the sun shader is deferred with the light phase, the
-			// parameter is consumed to keep the parse position
-			src->ReadTokenOnLine( &token );
+			// the sun shader draws the sun disc, a light phase concern;
+			// the name is kept like the engine keeps tr.sunShaderName
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing shader name for 'sunshader'\n" );
+				continue;
+			}
+			parserManager->sunShaderName = token;
 		}
 //----(SA) added
 		else if ( !token.Icmp( "lightgridmulamb" ) ) { // ambient multiplier for lightgrid
-			// the lightgrid multipliers are deferred with the
-			// lightgrid phase, the parameter is consumed to keep the
-			// parse position
-			src->ReadTokenOnLine( &token );
+			// the lightgrid runtime is a frontend concern, the parsed
+			// value is kept like the engine keeps tr.lightGridMulAmbient
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing value for 'lightgrid ambient multiplier'\n" );
+				continue;
+			}
+			const float value = atof( token.c_str() );
+			if ( value > 0 ) {
+				parserManager->lightGridMulAmbient = value;
+			}
 		} else if ( !token.Icmp( "lightgridmuldir" ) ) {        // directional multiplier for lightgrid
-			src->ReadTokenOnLine( &token );
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing value for 'lightgrid directional multiplier'\n" );
+				continue;
+			}
+			const float value = atof( token.c_str() );
+			if ( value > 0 ) {
+				parserManager->lightGridMulDirected = value;
+			}
 		}
 //----(SA) end
 		else if ( !token.Icmp( "waterfogvars" ) ) {
-			// the water fog is deferred with the fog system, the
-			// parameters are consumed to keep the parse position
+			// the runtime fog is a frontend concern; the engine builds
+			// a fog string and hands it to the r_waterFogColor cvar,
+			// this port keeps the string on the material manager
 			float watercolor[3];
 			if ( !ParseVector( src, 3, watercolor ) ) {
 				return false;
 			}
-			src->ReadTokenOnLine( &token );
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing density/distance value for water fog\n" );
+				continue;
+			}
+			const float fogvar = atof( token.c_str() );
+
+			if ( fogvar == 0 ) {
+				// '0' means "use the map values for everything except
+				// the fog color", the engine leaves this case open too
+			} else if ( fogvar > 1 ) {       // distance "linear" fog
+				parserManager->waterFogString.Format( "0 %d 1.1 %f %f %f 200", ( int )fogvar,
+													  watercolor[0], watercolor[1], watercolor[2] );
+			} else {                        // density "exp" fog
+				parserManager->waterFogString.Format( "0 5 %f %f %f %f 200", fogvar,
+													  watercolor[0], watercolor[1], watercolor[2] );
+			}
 			continue;
 		}
 		// fogvars
 		else if ( !token.Icmp( "fogvars" ) ) {
-			// the map fog is deferred with the fog system, the
-			// parameters are consumed to keep the parse position
+			// the runtime fog is a frontend concern; the engine builds
+			// a fog string and hands it to the r_mapFogColor cvar,
+			// this port keeps the string on the material manager
 			float fogColor[3];
 			if ( !ParseVector( src, 3, fogColor ) ) {
 				return false;
 			}
-			src->ReadTokenOnLine( &token );
+			if ( !src->ReadTokenOnLine( &token ) ) {
+				idLib::Warning( "WARNING: missing density value for the fog\n" );
+				continue;
+			}
+
+			// fogFar > 1 means the shader sets the farclip, < 1 the density
+			const float fogDensity = atof( token.c_str() );
+			const int fogFar = ( fogDensity >= 1 ) ? ( int )fogDensity : 5;
+
+			parserManager->mapFogString.Format( "0 %d %f %f %f %f 0", fogFar,
+												 fogDensity, fogColor[0], fogColor[1], fogColor[2] );
 			continue;
 		}
 		// done.
@@ -1484,10 +1580,12 @@ static bool ParseShader( idLexer *src, idMaterial *shader ) {
 		// done.
 		// RF, allow each shader to permit compression if available
 		else if ( !token.Icmp( "allowcompress" ) ) {
-			// texture compression is an image phase concern, the
-			// shader texture names carry no compression state
+			// the shader compression control of the engine's
+			// tr.allowCompress, the image manager carries it
+			imageManager->SetAllowCompress( 1 );
 			continue;
 		} else if ( !token.Icmp( "nocompress" ) ) {
+			imageManager->SetAllowCompress( -1 );
 			continue;
 		}
 		// done.
@@ -1684,6 +1782,10 @@ decides what the material becomes.
 =================
 */
 bool idMaterialManagerLocal::ParseShaderDef( int offset, idMaterial *material ) {
+	// the static parse functions land the global settings on this
+	// manager instance
+	parserManager = this;
+
 	idLexer src;
 	src.SetFlags( LEXFL_ALLOWPATHNAMES | LEXFL_NOERRORS | LEXFL_NOFATALERRORS );
 	src.LoadMemory( shaderText.c_str() + offset, shaderText.Length() - offset, "<shader files>" );
@@ -1693,5 +1795,14 @@ bool idMaterialManagerLocal::ParseShaderDef( int offset, idMaterial *material ) 
 	}
 
 	material->Finish();
+
+	// the engine resets the shader compression control at the end of
+	// FinishShader when the driver uses the strict compression mode,
+	// so an allowcompress or nocompress never leaks into the next
+	// definition
+	if ( r_ext_compressed_textures.GetInteger() == 2 ) {
+		imageManager->SetAllowCompress( 0 );
+	}
+
 	return true;
 }

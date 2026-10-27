@@ -55,6 +55,21 @@ idMaterialManagerLocal::Init
 void idMaterialManagerLocal::Init() {
 	initialized = true;
 
+	// the global shader settings of the engine's tr structure: the sun
+	// and the fog start cleared, the lightgrid multipliers stay 0 so
+	// they do not scale anything until a shader sets them, matching
+	// the engine's zeroed tr and its checks for non-zero multipliers
+	sunLight[0] = sunLight[1] = sunLight[2] = 0.0f;
+	sunDirection[0] = sunDirection[1] = sunDirection[2] = 0.0f;
+	sunShaderName.Clear();
+	lightGridMulAmbient = 0.0f;
+	lightGridMulDirected = 0.0f;
+	skyFogColor[0] = skyFogColor[1] = skyFogColor[2] = 0.0f;
+	skyFogDensity = 0.0f;
+	skyFogDefined = false;
+	waterFogString.Clear();
+	mapFogString.Clear();
+
 	// create a default material that is never drawn, like the engine's
 	// default shader
 	defaultMaterial = new idMaterial;

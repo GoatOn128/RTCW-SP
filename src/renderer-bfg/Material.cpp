@@ -83,6 +83,7 @@ void idMaterial::Reset() {
 	noPicMip = false;
 	characterMip = false;
 	noFog = false;
+	clampTime = 0;
 
 	numDeforms = 0;
 	for ( int i = 0; i < MAX_SHADER_DEFORMS; i++ ) {

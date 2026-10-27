@@ -54,6 +54,7 @@ extern idCVar r_picmip;
 extern idCVar r_picmip2;
 extern idCVar r_simpleMipMaps;
 extern idCVar r_roundImagesDown;
+extern idCVar r_ext_compressed_textures;
 
 // the color mapping tables of the engine's R_SetColorMappings,
 // implemented in Image_process.cpp

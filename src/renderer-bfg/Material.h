@@ -466,6 +466,7 @@ bool noMipMaps;
 bool noPicMip;
 bool characterMip;                    // picmip2: reduced mipping for the in-game character textures
 bool noFog;
+float clampTime;                      // state shaders can clamp their time, 0 means no clamp
 
 int numDeforms;
 deformStage_t deforms[MAX_SHADER_DEFORMS];

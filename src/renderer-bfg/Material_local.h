@@ -74,6 +74,28 @@ idHashIndex hash;
 idMaterial *                    defaultMaterial;
 bool initialized;
 
+// the global settings of the parsed shader files; the engine keeps
+// them in the tr structure. The runtime consumers (the sun lighting,
+// the lightgrid and the fog) are frontend phases.
+float sunLight[3];
+float sunDirection[3];
+idStr sunShaderName;
+
+// the lightgrid multipliers of lightgridmulamb and lightgridmuldir,
+// 0 means no multiplier like the engine's zeroed tr structure
+float lightGridMulAmbient;
+float lightGridMulDirected;
+
+// the sky fog of skyfogvars, the engine hands it to R_SetFog
+float skyFogColor[3];
+float skyFogDensity;
+bool skyFogDefined;
+
+// the fog strings of waterfogvars and fogvars, the engine hands them
+// to the r_waterFogColor and r_mapFogColor cvars
+idStr waterFogString;
+idStr mapFogString;
+
 // the combined text of all shader files and the index of the
 // definitions: for every name, the byte offset right behind the name
 idStr shaderText;
