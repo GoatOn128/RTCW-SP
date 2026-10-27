@@ -664,4 +664,3 @@ void CG_DrawInformation( void ) {
 
 	callCount--;
 }
-
