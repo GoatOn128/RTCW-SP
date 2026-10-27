@@ -199,10 +199,8 @@ static void CG_DrawPlayerArmorIcon( rectDef_t *rect, qboolean draw2D ) {
 static void CG_DrawPlayerArmorValue( rectDef_t *rect, int font, float scale, vec4_t color, qhandle_t shader, int textStyle ) {
 	char num[16];
 	int value;
-	centity_t   *cent;
 	playerState_t   *ps;
 
-	cent = &cg_entities[cg.snap->ps.clientNum];
 	ps = &cg.snap->ps;
 
 	value = ps->stats[STAT_ARMOR];
@@ -388,12 +386,10 @@ CG_DrawPlayerAmmoIcon
 */
 static void CG_DrawPlayerAmmoIcon( rectDef_t *rect, qboolean draw2D ) {
 	centity_t   *cent;
-	playerState_t   *ps;
 	vec3_t angles;
 	vec3_t origin;
 
 	cent = &cg_entities[cg.snap->ps.clientNum];
-	ps = &cg.snap->ps;
 
 	// TTimo: gcc: suggests () around && within ||
 	if ( draw2D || ( !cg_draw3dIcons.integer && cg_drawIcons.integer ) ) {

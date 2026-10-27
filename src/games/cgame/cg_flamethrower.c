@@ -698,7 +698,6 @@ CG_MoveFlameChunk
 void CG_MoveFlameChunk( flameChunk_t *f, int t ) {
 	vec3_t newOrigin, sOrg;
 	trace_t trace;
-	int jiggleCount;
 	float dot;
 	//static vec3_t	umins = {-1,-1,-1}; // TTimo: unused
 	//static vec3_t	umaxs = { 1, 1, 1}; // TTimo: unused
@@ -724,7 +723,6 @@ void CG_MoveFlameChunk( flameChunk_t *f, int t ) {
 	}
 */
 
-	jiggleCount = 0;
 	VectorCopy( f->baseOrg, sOrg );
 	while ( f->velSpeed > 1 && ( ( t - f->baseOrgTime ) > 20 ) ) {
 		CG_FlameCalcOrg( f, t, newOrigin );
@@ -1098,7 +1096,7 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 
 	//flameChunk_t *lastSoundFlameChunk=NULL; // TTimo: unused
 	flameChunk_t *lastBlowChunk = NULL;
-	qboolean isClientFlame, firing;
+	qboolean isClientFlame;
 	int shader;
 
 	flameChunk_t *lastBlueChunk = NULL;
@@ -1125,11 +1123,9 @@ void CG_AddFlameToScene( flameChunk_t *fHead ) {
 
 	if ( ( cg_entities[fHead->ownerCent].currentState.eFlags & EF_FIRING ) /*(centFlameInfo[fHead->ownerCent].lastClientFrame == cg_entities[fHead->ownerCent].lastWeaponClientFrame)*/ && ( centFlameInfo[fHead->ownerCent].lastFlameChunk == fHead ) ) {
 		headTimeStart = fHead->timeStart;
-		firing = qtrue;
 	} else {
 		//isClientFlame = qfalse;
 		headTimeStart = cg.time;
-		firing = qfalse;
 	}
 
 	// Zombie ignition is just to make on/off transitions look better
@@ -1635,7 +1631,6 @@ void CG_UpdateFlamethrowerSounds( void ) {
 	flameChunk_t *f, *trav;
 	//flameChunk_t *lastSoundFlameChunk=NULL; // TTimo: unused
 	int i;
-	centity_t *cent;
 	#define MIN_BLOW_VOLUME     30
 
 	// draw each of the headFlameChunk's
@@ -1682,7 +1677,7 @@ void CG_UpdateFlamethrowerSounds( void ) {
 	}
 
 	// send client damage updates if required
-	for ( cent = cg_entities, i = 0; i < cgs.maxclients; cent++, i++ ) {
+	for ( i = 0; i < cgs.maxclients; i++ ) {
 		if ( centFlameInfo[i].lastDmgCheck > centFlameInfo[i].lastDmgUpdate &&
 			 centFlameInfo[i].lastDmgUpdate < cg.time - 50 ) { // JPW NERVE (cgs.gametype == GT_SINGLE_PLAYER ? 50 : 50)) -- sean changed clientdamage so this isn't a saturation issue any longer
 			if ( ( cg.snap->ps.pm_flags & PMF_LIMBO ) || ( cg.snap->ps.persistant[PERS_TEAM] == TEAM_SPECTATOR ) ) { // JPW NERVE

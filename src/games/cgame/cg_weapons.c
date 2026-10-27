@@ -398,13 +398,11 @@ CG_PyroSmokeTrail
 void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 	int step;
 	vec3_t origin, lastPos, dir;
-	int contents;
-	int lastContents, startTime;
+	int startTime;
 	entityState_t   *es;
 	int t;
 	float rnd;
 	static float grounddir = 99;
-	localEntity_t   *le;
 
 	if ( grounddir == 99 ) { // pick a wind direction -- cheap trick because it can be different
 		grounddir = crandom(); // on different clients, but it's all smoke and mirrors anyway
@@ -416,10 +414,7 @@ void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 	t = step * ( ( startTime + step ) / step );
 
 	BG_EvaluateTrajectory( &es->pos, cg.time, origin );
-	contents = CG_PointContents( origin, -1 );
-
 	BG_EvaluateTrajectory( &es->pos, ent->trailTime, lastPos );
-	lastContents = CG_PointContents( lastPos, -1 );
 
 	ent->trailTime = cg.time;
 
@@ -459,7 +454,7 @@ void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 		VectorScale( dir,45,dir ); // was 75
 
 		if ( !ent->currentState.otherEntityNum2 ) { // axis team, generate red smoke
-			le = CG_SmokePuff( origin, dir,
+			CG_SmokePuff( origin, dir,
 							   25 + rnd * 110, // width
 							   rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 1, 0.5,
 							   4800 + ( rand() % 2800 ), // duration was 2800+
@@ -468,7 +463,7 @@ void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 							   0,
 							   cgs.media.smokePuffShader );
 		} else {
-			le = CG_SmokePuff( origin, dir,
+			CG_SmokePuff( origin, dir,
 							   25 + rnd * 110, // width
 							   1.0, rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 0.5,
 							   4800 + ( rand() % 2800 ), // duration was 2800+
@@ -2010,14 +2005,11 @@ CG_VenomSpinAngle
 
 static float CG_VenomSpinAngle( centity_t *cent ) {
 	int delta;
-	float ramp;
 	float angle;
 	float speed;
 	qboolean firing;
 
 	delta = cg.time - cent->pe.barrelTime;
-
-	ramp = delta % VENOM_DELTATIME;
 
 	firing = (qboolean)( cent->currentState.eFlags & EF_FIRING );
 
@@ -2929,18 +2921,11 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 void CG_AddPlayerFoot( refEntity_t *parent, playerState_t *ps, centity_t *cent ) {
 	refEntity_t wolfkick;
 	vec3_t kickangle;
-	weaponInfo_t    *weapon;
-	weapon_t weaponNum;
 	int frame;
-	static int oldtime = 0;
 
 	if ( !( cg.snap->ps.persistant[PERS_WOLFKICK] ) ) {
-		oldtime = 0;
 		return;
 	}
-
-	weaponNum = cent->currentState.weapon;
-	weapon = &cg_weapons[weaponNum];
 
 	memset( &wolfkick, 0, sizeof( wolfkick ) );
 
@@ -3743,7 +3728,6 @@ CG_SetSniperZoom
 
 void CG_SetSniperZoom( int lastweap, int newweap ) {
 	int zoomindex;
-	float shake = 0;
 
 	if ( lastweap == newweap ) {
 		return;
@@ -3778,19 +3762,16 @@ void CG_SetSniperZoom( int lastweap, int newweap ) {
 		cg.zoomedScope  = 900;      // TODO: add to zoomTable
 		zoomindex = ZOOM_SNIPER;
 //			shake = 0.04;
-		shake = 0.03f;
 		break;
 	case WP_SNOOPERSCOPE:
 		cg.zoomval = cg_zoomDefaultSnooper.value;
 		cg.zoomedScope  = 800;      // TODO: add to zoomTable
 		zoomindex = ZOOM_SNOOPER;
-		shake = 0.04f;
 		break;
 	case WP_FG42SCOPE:
 		cg.zoomval = cg_zoomDefaultFG.value;
 		cg.zoomedScope  = 1;        // TODO: add to zoomTable
 		zoomindex = ZOOM_FG42SCOPE;
-		shake = 0.01f;
 		break;
 	}
 
@@ -4164,8 +4145,6 @@ CG_LastWeaponUsed_f
 ==============
 */
 void CG_LastWeaponUsed_f( void ) {
-	int lastweap;
-
 	if ( cg.time - cg.weaponSelectTime < cg_weaponCycleDelay.integer ) {
 		return; // force pause so holding it down won't go too fast
 
@@ -4183,7 +4162,6 @@ void CG_LastWeaponUsed_f( void ) {
 	}
 
 	if ( CG_WeaponSelectable( cg.switchbackWeapon ) ) {
-		lastweap = cg.weaponSelect;
 		CG_FinishWeaponChange( cg.weaponSelect, cg.switchbackWeapon );
 	} else {    // switchback no longer selectable, reset cycle
 		cg.switchbackWeapon = 0;
@@ -5115,7 +5093,6 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	vec3_t sprOrg;
 	vec3_t sprVel;
 	int i,j;
-	int markDuration;
 
 //----(SA)	added
 	float shakeAmt;
@@ -5140,7 +5117,6 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	// set defaults
 	isSprite = qfalse;
 	duration = 600;
-	markDuration = -1;
 
 	if ( surfFlags & SURF_SKY ) {
 		return;
@@ -5366,7 +5342,6 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 	case WP_MORTAR:
 		sfx = cgs.media.sfx_rockexp;
 		mark = cgs.media.burnMarkShader;
-		markDuration = 60000;
 		radius = 64;
 		light = 300;
 		isSprite = qtrue;
@@ -5400,7 +5375,6 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		sfx = cgs.media.sfx_dynamiteexp;
 		sfx2 = cgs.media.sfx_dynamiteexpDist;
 		mark = cgs.media.burnMarkShader;
-		markDuration = 60000;
 		radius = 64;
 		light = 300;
 		isSprite = qtrue;
@@ -5476,7 +5450,6 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		shader = cgs.media.rocketExplosionShader;       // copied from RL
 		sfx = cgs.media.sfx_rockexp;
 		mark = cgs.media.burnMarkShader;
-		markDuration = 60000;
 		radius = 64;
 		light = 300;
 		isSprite = qtrue;
@@ -5520,7 +5493,6 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 //		shader = cgs.media.rocketExplosionShader;
 		sfx = cgs.media.sfx_rockexp;
 		mark = cgs.media.burnMarkShader;
-		markDuration = 60000;
 		radius = 64;
 		light = 600;
 		isSprite = qtrue;
@@ -6038,7 +6010,6 @@ CG_CalcMuzzlePoint
 static qboolean CG_CalcMuzzlePoint( int entityNum, vec3_t muzzle ) {
 	vec3_t forward, right, up;
 	centity_t   *cent;
-	int anim;
 
 	if ( entityNum == cg.snap->ps.clientNum ) {
 		VectorCopy( cg.snap->ps.origin, muzzle );
@@ -6058,7 +6029,6 @@ static qboolean CG_CalcMuzzlePoint( int entityNum, vec3_t muzzle ) {
 	VectorCopy( cent->currentState.pos.trBase, muzzle );
 
 	AngleVectors( cent->currentState.apos.trBase, forward, right, up );
-	anim = cent->currentState.legsAnim & ~ANIM_TOGGLEBIT;
 // RF, this is all broken by scripting system
 //	if ( anim == LEGS_WALKCR || anim == LEGS_IDLECR || anim  == LEGS_IDLE_ALT ) {
 //		muzzle[2] += CROUCH_VIEWHEIGHT;
@@ -6085,9 +6055,6 @@ void CG_Bullet( vec3_t end, int sourceEntityNum, vec3_t normal, qboolean flesh, 
 	vec3_t dir;
 	vec3_t start, trend, tmp;      // JPW
 	static int lastBloodSpat;
-	centity_t *cent;
-
-	cent = &cg_entities[fleshEntityNum];
 
 	// if the shooter is currently valid, calc a source point and possibly
 	// do trail effects
