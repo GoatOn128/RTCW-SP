@@ -455,22 +455,22 @@ void CG_PyroSmokeTrail( centity_t *ent, const weaponInfo_t *wi ) {
 
 		if ( !ent->currentState.otherEntityNum2 ) { // axis team, generate red smoke
 			CG_SmokePuff( origin, dir,
-							   25 + rnd * 110, // width
-							   rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 1, 0.5,
-							   4800 + ( rand() % 2800 ), // duration was 2800+
-							   t,
-							   0,
-							   0,
-							   cgs.media.smokePuffShader );
+						  25 + rnd * 110,      // width
+						  rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 1, 0.5,
+						  4800 + ( rand() % 2800 ),      // duration was 2800+
+						  t,
+						  0,
+						  0,
+						  cgs.media.smokePuffShader );
 		} else {
 			CG_SmokePuff( origin, dir,
-							   25 + rnd * 110, // width
-							   1.0, rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 0.5,
-							   4800 + ( rand() % 2800 ), // duration was 2800+
-							   t,
-							   0,
-							   0,
-							   cgs.media.smokePuffShader );
+						  25 + rnd * 110,      // width
+						  1.0, rnd * 0.5 + 0.5, rnd * 0.5 + 0.5, 0.5,
+						  4800 + ( rand() % 2800 ),      // duration was 2800+
+						  t,
+						  0,
+						  0,
+						  cgs.media.smokePuffShader );
 		}
 //			CG_ParticleExplosion( "expblue", lastPos, vec3_origin, 100 + (int)(rnd*400), 4, 4 );	// fire "flare"
 
