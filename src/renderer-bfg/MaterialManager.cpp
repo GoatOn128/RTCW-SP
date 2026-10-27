@@ -151,15 +151,6 @@ const idMaterial *idMaterialManagerLocal::FindMaterial( const char *name, int li
 
 /*
 =================
-idMaterialManagerLocal::NumMaterials
-=================
-*/
-int idMaterialManagerLocal::NumMaterials() const {
-	return materials.Num();
-}
-
-/*
-=================
 idMaterialManagerLocal::ListMaterials
 =================
 */
