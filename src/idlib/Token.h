@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,30 +38,30 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 // token types
-#define TT_STRING					1		// string
-#define TT_LITERAL					2		// literal
-#define TT_NUMBER					3		// number
-#define TT_NAME						4		// name
-#define TT_PUNCTUATION				5		// punctuation
+#define TT_STRING                   1       // string
+#define TT_LITERAL                  2       // literal
+#define TT_NUMBER                   3       // number
+#define TT_NAME                     4       // name
+#define TT_PUNCTUATION              5       // punctuation
 
 // number sub types
-#define TT_INTEGER					0x00001		// integer
-#define TT_DECIMAL					0x00002		// decimal number
-#define TT_HEX						0x00004		// hexadecimal number
-#define TT_OCTAL					0x00008		// octal number
-#define TT_BINARY					0x00010		// binary number
-#define TT_LONG						0x00020		// long int
-#define TT_UNSIGNED					0x00040		// unsigned int
-#define TT_FLOAT					0x00080		// floating point number
-#define TT_SINGLE_PRECISION			0x00100		// float
-#define TT_DOUBLE_PRECISION			0x00200		// double
-#define TT_EXTENDED_PRECISION		0x00400		// long double
-#define TT_INFINITE					0x00800		// infinite 1.#INF
-#define TT_INDEFINITE				0x01000		// indefinite 1.#IND
-#define TT_NAN						0x02000		// NaN
-#define TT_IPADDRESS				0x04000		// ip address
-#define TT_IPPORT					0x08000		// ip port
-#define TT_VALUESVALID				0x10000		// set if intvalue and floatvalue are valid
+#define TT_INTEGER                  0x00001     // integer
+#define TT_DECIMAL                  0x00002     // decimal number
+#define TT_HEX                      0x00004     // hexadecimal number
+#define TT_OCTAL                    0x00008     // octal number
+#define TT_BINARY                   0x00010     // binary number
+#define TT_LONG                     0x00020     // long int
+#define TT_UNSIGNED                 0x00040     // unsigned int
+#define TT_FLOAT                    0x00080     // floating point number
+#define TT_SINGLE_PRECISION         0x00100     // float
+#define TT_DOUBLE_PRECISION         0x00200     // double
+#define TT_EXTENDED_PRECISION       0x00400     // long double
+#define TT_INFINITE                 0x00800     // infinite 1.#INF
+#define TT_INDEFINITE               0x01000     // indefinite 1.#IND
+#define TT_NAN                      0x02000     // NaN
+#define TT_IPADDRESS                0x04000     // ip address
+#define TT_IPPORT                   0x08000     // ip port
+#define TT_VALUESVALID              0x10000     // set if intvalue and floatvalue are valid
 
 // string sub type is the length of the string
 // literal sub type is the ASCII code
@@ -70,41 +70,41 @@ If you have questions concerning this license or the applicable additional terms
 
 class idToken : public idStr {
 
-	friend class idParser;
-	friend class idLexer;
+friend class idParser;
+friend class idLexer;
 
 public:
-	int				type;								// token type
-	int				subtype;							// token sub type
-	int				line;								// line in script the token was on
-	int				linesCrossed;						// number of lines crossed in white space before token
-	int				flags;								// token flags, used for recursive defines
+int type;                                               // token type
+int subtype;                                            // token sub type
+int line;                                               // line in script the token was on
+int linesCrossed;                                       // number of lines crossed in white space before token
+int flags;                                              // token flags, used for recursive defines
 
 public:
-					idToken();
-					idToken( const idToken *token );
-					~idToken();
+idToken();
+idToken( const idToken *token );
+~idToken();
 
-	void			operator=( const idStr& text );
-	void			operator=( const char *text );
+void operator=( const idStr& text );
+void operator=( const char *text );
 
-	double			GetDoubleValue();				// double value of TT_NUMBER
-	float			GetFloatValue();				// float value of TT_NUMBER
-	unsigned long	GetUnsignedLongValue();		// unsigned long value of TT_NUMBER
-	int				GetIntValue();				// int value of TT_NUMBER
-	int				WhiteSpaceBeforeToken() const;// returns length of whitespace before token
-	void			ClearTokenWhiteSpace();		// forget whitespace before token
+double          GetDoubleValue();                   // double value of TT_NUMBER
+float           GetFloatValue();                    // float value of TT_NUMBER
+unsigned long   GetUnsignedLongValue();         // unsigned long value of TT_NUMBER
+int             GetIntValue();                  // int value of TT_NUMBER
+int             WhiteSpaceBeforeToken() const;    // returns length of whitespace before token
+void            ClearTokenWhiteSpace();         // forget whitespace before token
 
-	void			NumberValue();				// calculate values for a TT_NUMBER
+void            NumberValue();                  // calculate values for a TT_NUMBER
 
 private:
-	unsigned long	intvalue;							// integer value
-	double			floatvalue;							// floating point value
-	const char *	whiteSpaceStart_p;					// start of white space before token, only used by idLexer
-	const char *	whiteSpaceEnd_p;					// end of white space before token, only used by idLexer
-	idToken *		next;								// next token in chain, only used by idParser
+unsigned long intvalue;                                 // integer value
+double floatvalue;                                      // floating point value
+const char *    whiteSpaceStart_p;                      // start of white space before token, only used by idLexer
+const char *    whiteSpaceEnd_p;                        // end of white space before token, only used by idLexer
+idToken *       next;                                   // next token in chain, only used by idParser
 
-	void			AppendDirty( const char a );		// append character without adding trailing zero
+void            AppendDirty( const char a );            // append character without adding trailing zero
 };
 
 ID_INLINE idToken::idToken() : type(), subtype(), line(), linesCrossed(), flags() {
@@ -117,19 +117,19 @@ ID_INLINE idToken::idToken( const idToken *token ) {
 ID_INLINE idToken::~idToken() {
 }
 
-ID_INLINE void idToken::operator=( const char *text) {
-	*static_cast<idStr *>(this) = text;
+ID_INLINE void idToken::operator=( const char *text ) {
+	*static_cast<idStr *>( this ) = text;
 }
 
 ID_INLINE void idToken::operator=( const idStr& text ) {
-	*static_cast<idStr *>(this) = text;
+	*static_cast<idStr *>( this ) = text;
 }
 
 ID_INLINE double idToken::GetDoubleValue() {
 	if ( type != TT_NUMBER ) {
 		return 0.0;
 	}
-	if ( !(subtype & TT_VALUESVALID) ) {
+	if ( !( subtype & TT_VALUESVALID ) ) {
 		NumberValue();
 	}
 	return floatvalue;
@@ -139,11 +139,11 @@ ID_INLINE float idToken::GetFloatValue() {
 	return (float) GetDoubleValue();
 }
 
-ID_INLINE unsigned long	idToken::GetUnsignedLongValue() {
+ID_INLINE unsigned long idToken::GetUnsignedLongValue() {
 	if ( type != TT_NUMBER ) {
 		return 0;
 	}
-	if ( !(subtype & TT_VALUESVALID) ) {
+	if ( !( subtype & TT_VALUESVALID ) ) {
 		NumberValue();
 	}
 	return intvalue;
