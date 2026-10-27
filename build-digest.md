@@ -1,6 +1,6 @@
 # Build digest
 
-commit: c6cda352c401
+commit: 04ffee357c60
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
@@ -2046,12 +2046,12 @@ scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.c.o] Source `src/c
   - src/splines/splines.cpp:1126:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/splines/splines.cpp:1171:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/splines/splines.cpp:1220:16: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+- [6x] -logical-op-parentheses
+  - src/splines/math_quaternion.h:167:62: warning: '&&' within '||' [-Wlogical-op-parentheses]
 - [6x] -sizeof-array-argument
   - src/splines/math_matrix.h:94:26: warning: sizeof on array function parameter will return size of 'float (*)[3]' instead of 'float[3][3]' [-Wsizeof-array-argument]
 - [6x] -sizeof-pointer-memaccess
   - src/splines/math_matrix.h:94:28: warning: 'memcpy' call operates on objects of type 'float[3]' while the size is based on a different type 'float (*)[3]' [-Wsizeof-pointer-memaccess]
-- [6x] -logical-op-parentheses
-  - src/splines/math_quaternion.h:167:62: warning: '&&' within '||' [-Wlogical-op-parentheses]
 - [5x] -macro-redefined
   - src/splines/q_splineshared.h:208:9: warning: 'CPUSTRING' macro redefined [-Wmacro-redefined]
 - [1x] -unused-value
@@ -2326,10 +2326,16 @@ scons: *** [build/linux-x86-debug/renderer/obj/qcommon/q_shared.c.o] Source `src
 - build/linux-x86-debug/client/obj/client/cl_cgame.c.o
 
 ```
+Setting up libxxf86vm-dev:i386 (1:1.1.4-2) ...
+Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
+Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
 Setting up libgl1:i386 (1.7.0-3) ...
 Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.5-0ubuntu3.4) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -2338,19 +2344,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2362,9 +2362,15 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.c.o] Source `src/cl
 - build/linux-x86-debug/client/obj/client/cl_cin.c.o
 
 ```
+Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
+Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
 Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.5-0ubuntu3.4) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -2373,19 +2379,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2398,8 +2398,14 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.c.o] Source `src/clie
 - build/linux-x86-debug/client/obj/client/cl_console.c.o
 
 ```
+Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
+Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.5-0ubuntu3.4) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -2408,19 +2414,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2434,7 +2434,13 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_console.c.o] Source `src/
 - build/linux-x86-debug/client/obj/client/cl_input.c.o
 
 ```
-Processing triggers for systemd (259.5-0ubuntu3.4) ...
+Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -2443,19 +2449,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2470,6 +2470,12 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_input.c.o] Source `src/cl
 - build/linux-x86-debug/client/obj/client/cl_keys.c.o
 
 ```
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -2478,19 +2484,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2506,6 +2506,12 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.c.o] Source `src/cli
 - build/linux-x86-debug/client/obj/client/cl_main.c.o
 
 ```
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
@@ -2513,19 +2519,13 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2542,25 +2542,25 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_main.c.o] Source `src/cli
 - build/linux-x86-debug/client/obj/client/cl_net_chan.c.o
 
 ```
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2578,24 +2578,24 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.c.o] Source `src
 - build/linux-x86-debug/client/obj/client/cl_parse.c.o
 
 ```
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2614,23 +2614,23 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.c.o] Source `src/cl
 - build/linux-x86-debug/client/obj/client/cl_qgl.c.o
 
 ```
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2650,22 +2650,22 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_qgl.c.o] Source `src/clie
 - build/linux-x86-debug/client/obj/client/cl_scrn.c.o
 
 ```
+Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+
 Running kernel seems to be up-to-date.
 
 Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
- systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1335]
+No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3006,16 +3006,10 @@ scons: *** [build/linux-x86-release/renderer/obj/qcommon/q_shared.c.o] Source `s
 - build/linux-x86-release/client/obj/client/cl_cgame.c.o
 
 ```
-Setting up libxxf86vm-dev:i386 (1:1.1.4-2) ...
-Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
-Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
 Setting up libgl1:i386 (1.7.0-3) ...
 Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for systemd (259.5-0ubuntu3.4) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -3024,13 +3018,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3042,15 +3042,9 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.c.o] Source `src/
 - build/linux-x86-release/client/obj/client/cl_cin.c.o
 
 ```
-Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
-Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
 Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for systemd (259.5-0ubuntu3.4) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -3059,13 +3053,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3078,14 +3078,8 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_cin.c.o] Source `src/cl
 - build/linux-x86-release/client/obj/client/cl_console.c.o
 
 ```
-Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
-Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
 Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for systemd (259.5-0ubuntu3.4) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -3094,13 +3088,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3114,13 +3114,7 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_console.c.o] Source `sr
 - build/linux-x86-release/client/obj/client/cl_input.c.o
 
 ```
-Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
+Processing triggers for systemd (259.5-0ubuntu3.4) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -3129,13 +3123,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3150,12 +3150,6 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_input.c.o] Source `src/
 - build/linux-x86-release/client/obj/client/cl_keys.c.o
 
 ```
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
 Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
@@ -3164,13 +3158,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3186,12 +3186,6 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_keys.c.o] Source `src/c
 - build/linux-x86-release/client/obj/client/cl_main.c.o
 
 ```
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
-Processing triggers for man-db (2.13.1-1build1) ...
 Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
@@ -3199,13 +3193,19 @@ Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3222,25 +3222,25 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_main.c.o] Source `src/c
 - build/linux-x86-release/client/obj/client/cl_net_chan.c.o
 
 ```
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
-Processing triggers for man-db (2.13.1-1build1) ...
-Not building database; man-db/auto-update is not 'true'.
 Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3258,24 +3258,24 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.c.o] Source `s
 - build/linux-x86-release/client/obj/client/cl_parse.c.o
 
 ```
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
-Processing triggers for man-db (2.13.1-1build1) ...
-Not building database; man-db/auto-update is not 'true'.
-Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
 Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3294,23 +3294,23 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_parse.c.o] Source `src/
 - build/linux-x86-release/client/obj/client/cl_qgl.c.o
 
 ```
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
-Processing triggers for man-db (2.13.1-1build1) ...
-Not building database; man-db/auto-update is not 'true'.
-Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
-Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
 
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3330,22 +3330,22 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_qgl.c.o] Source `src/cl
 - build/linux-x86-release/client/obj/client/cl_scrn.c.o
 
 ```
-Processing triggers for systemd (259.9-0ubuntu0.1) ...
-Processing triggers for man-db (2.13.1-1build1) ...
-Not building database; man-db/auto-update is not 'true'.
-Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
-Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
-
 Running kernel seems to be up-to-date.
 
 Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
 
 Service restarts being deferred:
+ systemctl restart ModemManager.service
  systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
 
 No containers need to be restarted.
 
-No user sessions are running outdated binaries.
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1150]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3708,11 +3708,11 @@ scons: *** [build\windows-x64-debug\renderer\obj\qcommon\q_shared.c.obj] Source 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3725,11 +3725,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3743,11 +3743,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3762,11 +3762,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_console.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3782,11 +3782,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_input.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3803,11 +3803,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3825,11 +3825,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_main.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3848,11 +3848,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.c.obj] Source 
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3872,11 +3872,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3897,11 +3897,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_qgl.c.obj] Source `src\
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 43.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 30.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -3957,8 +3957,8 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_scrn.c.obj] Source `src
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [7x] -unused-but-set-variable
   - src\splines\util_str.cpp(468,7): warning: variable 'ch' set but not used [-Wunused-but-set-variable]
@@ -4249,11 +4249,11 @@ scons: *** [build\windows-x64-release\renderer\obj\qcommon\q_shared.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4266,11 +4266,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4284,11 +4284,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4303,11 +4303,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4323,11 +4323,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4344,11 +4344,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4366,11 +4366,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4389,11 +4389,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4413,11 +4413,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4438,11 +4438,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 36.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4791,11 +4791,11 @@ scons: *** [build\windows-x64-release\renderer\obj\qcommon\q_shared.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4808,11 +4808,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4826,11 +4826,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4845,11 +4845,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4865,11 +4865,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4886,11 +4886,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4908,11 +4908,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4931,11 +4931,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4955,11 +4955,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -4980,11 +4980,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 9.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 33.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5040,8 +5040,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -5330,11 +5330,11 @@ scons: *** [build\windows-x64-release\ui\obj\qcommon\q_shared.c.obj] Source `src
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5347,11 +5347,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5365,11 +5365,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5384,11 +5384,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5404,11 +5404,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5425,11 +5425,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5447,11 +5447,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5470,11 +5470,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5494,11 +5494,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5519,11 +5519,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  119G   32G  80% /c
+C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 40.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5579,8 +5579,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -5876,7 +5876,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5893,7 +5893,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5911,7 +5911,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5930,7 +5930,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5950,7 +5950,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5971,7 +5971,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5993,7 +5993,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6016,7 +6016,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6040,7 +6040,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6065,7 +6065,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6121,8 +6121,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
@@ -6420,7 +6420,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6437,7 +6437,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6455,7 +6455,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6474,7 +6474,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6494,7 +6494,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6515,7 +6515,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6537,7 +6537,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6560,7 +6560,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6584,7 +6584,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6609,7 +6609,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 38.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6665,8 +6665,8 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.c.obj] Source `src
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [7x] -unused-but-set-variable
   - src\splines\util_str.cpp(468,7): warning: variable 'ch' set but not used [-Wunused-but-set-variable]
@@ -6957,11 +6957,11 @@ scons: *** [build\windows-x86-release\renderer\obj\qcommon\q_shared.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6974,11 +6974,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -6992,11 +6992,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_cin.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7011,11 +7011,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_console.c.obj] Source
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7031,11 +7031,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_input.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7052,11 +7052,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_keys.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7074,11 +7074,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_main.c.obj] Source `s
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7097,11 +7097,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.c.obj] Sourc
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7121,11 +7121,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_parse.c.obj] Source `
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7146,11 +7146,11 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_qgl.c.obj] Source `sr
 
 ```
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 46.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7206,8 +7206,8 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.c.obj] Source `s
   - src\splines\splines.cpp(1301,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
   - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [8x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
