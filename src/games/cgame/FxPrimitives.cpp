@@ -27,7 +27,7 @@ void ClampVec( vec3_t dat, byte *res ) {
 
 		if ( r < 0 ) {
 			r = 0;
-		}else if ( r > 255 )  {
+		}else if ( r > 255 ) {
 			r = 255;
 		}
 
@@ -189,7 +189,7 @@ bool CParticle::Update() {
 		// Now move us to where we should be at the given time
 		VectorMA( org, time, realVel, mOrigin1 );
 
-	}else if ( ( mTimeStart < theFxHelper.mTime ) && UpdateOrigin() == false )   {
+	}else if ( ( mTimeStart < theFxHelper.mTime ) && UpdateOrigin() == false ) {
 		// we are marked for death
 		return false;
 	}
@@ -318,10 +318,10 @@ void CParticle::UpdateSize() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_WAVE )   {
+	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mSizeParm );
-	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_CLAMP )   {
+	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_CLAMP ) {
 		if ( theFxHelper.mTime < mSizeParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mSizeParm - theFxHelper.mTime )
@@ -380,10 +380,10 @@ void CParticle::UpdateRGB() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_WAVE )   {
+	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mRGBParm );
-	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_CLAMP )   {
+	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_CLAMP ) {
 		if ( theFxHelper.mTime < mRGBParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mRGBParm - theFxHelper.mTime )
@@ -444,10 +444,10 @@ void CParticle::UpdateAlpha() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_ALPHA_PARM_MASK ) == FX_ALPHA_WAVE )   {
+	}else if ( ( mFlags & FX_ALPHA_PARM_MASK ) == FX_ALPHA_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mAlphaParm );
-	}else if ( ( mFlags & FX_ALPHA_PARM_MASK ) == FX_ALPHA_CLAMP )   {
+	}else if ( ( mFlags & FX_ALPHA_PARM_MASK ) == FX_ALPHA_CLAMP ) {
 		if ( theFxHelper.mTime < mAlphaParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mAlphaParm - theFxHelper.mTime )
@@ -472,7 +472,7 @@ void CParticle::UpdateAlpha() {
 	// We should be in the right range, but clamp to ensure
 	if ( perc1 < 0.0f ) {
 		perc1 = 0.0f;
-	}else if ( perc1 > 1.0f )  {
+	}else if ( perc1 > 1.0f ) {
 		perc1 = 1.0f;
 	}
 
@@ -790,7 +790,7 @@ bool CTail::Update() {
 
 		// Just calc an old point some time in the past, doesn't really matter when
 		VectorMA( org, ( ( theFxHelper.mTime - mTimeStart ) - 3 ) * 0.001f, realVel, mOldOrigin );
-	}else if ( ( mTimeStart < theFxHelper.mTime ) && UpdateOrigin() == false )   {
+	}else if ( ( mTimeStart < theFxHelper.mTime ) && UpdateOrigin() == false ) {
 		// we are marked for death
 		return false;
 	}
@@ -836,10 +836,10 @@ void CTail::UpdateLength() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_LENGTH_PARM_MASK ) == FX_LENGTH_WAVE )   {
+	}else if ( ( mFlags & FX_LENGTH_PARM_MASK ) == FX_LENGTH_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mLengthParm );
-	}else if ( ( mFlags & FX_LENGTH_PARM_MASK ) == FX_LENGTH_CLAMP )   {
+	}else if ( ( mFlags & FX_LENGTH_PARM_MASK ) == FX_LENGTH_CLAMP ) {
 		if ( theFxHelper.mTime < mLengthParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mLengthParm - theFxHelper.mTime )
@@ -930,10 +930,10 @@ void CCylinder::UpdateSize2() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_SIZE2_PARM_MASK ) == FX_SIZE2_WAVE )   {
+	}else if ( ( mFlags & FX_SIZE2_PARM_MASK ) == FX_SIZE2_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mSize2Parm );
-	}else if ( ( mFlags & FX_SIZE2_PARM_MASK ) == FX_SIZE2_CLAMP )   {
+	}else if ( ( mFlags & FX_SIZE2_PARM_MASK ) == FX_SIZE2_CLAMP ) {
 		if ( theFxHelper.mTime < mSize2Parm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mSize2Parm - theFxHelper.mTime )
@@ -1178,10 +1178,10 @@ void CLight::UpdateSize() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_WAVE )   {
+	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mSizeParm );
-	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_CLAMP )   {
+	}else if ( ( mFlags & FX_SIZE_PARM_MASK ) == FX_SIZE_CLAMP ) {
 		if ( theFxHelper.mTime < mSizeParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mSizeParm - theFxHelper.mTime )
@@ -1240,10 +1240,10 @@ void CLight::UpdateRGB() {
 			// just copy it over...sigh
 			perc1 = perc2;
 		}
-	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_WAVE )   {
+	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_WAVE ) {
 		// wave gen, with parm being the frequency multiplier
 		perc1 = perc1 * (float)cos( ( theFxHelper.mTime - mTimeStart ) * mRGBParm );
-	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_CLAMP )   {
+	}else if ( ( mFlags & FX_RGB_PARM_MASK ) == FX_RGB_CLAMP ) {
 		if ( theFxHelper.mTime < mRGBParm ) {
 			// get percent done, using parm as the start of the non-linear fade
 			perc2 = (float)( mRGBParm - theFxHelper.mTime )
@@ -1651,7 +1651,7 @@ void CFlash::Init( void ) {
 
 	if ( dis > 600 || ( mod < 0.5f && dis > 100 ) ) {
 		mod = 0.0f;
-	}else if ( mod < 0.5f && dis <= 100 )  {
+	}else if ( mod < 0.5f && dis <= 100 ) {
 		mod += 1.1f;
 	}
 
@@ -1669,7 +1669,7 @@ void CFlash::Draw( void ) {
 	{
 		if ( mRefEnt.lightingOrigin[i] > 1.0f ) {
 			mRefEnt.lightingOrigin[i] = 1.0f;
-		}else if ( mRefEnt.lightingOrigin[i] < 0.0f )  {
+		}else if ( mRefEnt.lightingOrigin[i] < 0.0f ) {
 			mRefEnt.lightingOrigin[i] = 0.0f;
 		}
 	}

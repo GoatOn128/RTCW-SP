@@ -271,33 +271,33 @@ int CFxScheduler::ParseEffect( const char *file, CGPGroup *base ) {
 		// Huge stricmp lists suxor
 		if ( !stricmp( grpName, "controller" ) ) {
 			type = Controller;
-		}else if ( !stricmp( grpName, "ribbon" ) )                                                                {
+		}else if ( !stricmp( grpName, "ribbon" ) ) {
 			type = Ribbon;
-		}else if ( ( !stricmp( grpName, "particle" ) || !stricmp( grpName, "screenParticle" ) ) )                                                                                                                             {
+		}else if ( ( !stricmp( grpName, "particle" ) || !stricmp( grpName, "screenParticle" ) ) ) {
 			type = Particle;
-		}else if ( !stricmp( grpName, "line" ) )   {
+		}else if ( !stricmp( grpName, "line" ) ) {
 			type = Line;
-		}else if ( !stricmp( grpName, "tail" ) )   {
+		}else if ( !stricmp( grpName, "tail" ) ) {
 			type = Tail;
-		}else if ( !stricmp( grpName, "sound" ) )   {
+		}else if ( !stricmp( grpName, "sound" ) ) {
 			type = Sound;
-		}else if ( !stricmp( grpName, "cylinder" ) )   {
+		}else if ( !stricmp( grpName, "cylinder" ) ) {
 			type = Cylinder;
-		}else if ( !stricmp( grpName, "electricity" ) )   {
+		}else if ( !stricmp( grpName, "electricity" ) ) {
 			type = Electricity;
-		}else if ( !stricmp( grpName, "emitter" ) )   {
+		}else if ( !stricmp( grpName, "emitter" ) ) {
 			type = Emitter;
-		}else if ( !stricmp( grpName, "decal" ) )   {
+		}else if ( !stricmp( grpName, "decal" ) ) {
 			type = Decal;
-		}else if ( !stricmp( grpName, "orientedparticle" ) || !stricmp( grpName, "screenDecal" ) )  {
+		}else if ( !stricmp( grpName, "orientedparticle" ) || !stricmp( grpName, "screenDecal" ) ) {
 			type = OrientedParticle;
-		}else if ( !stricmp( grpName, "fxrunner" ) )   {
+		}else if ( !stricmp( grpName, "fxrunner" ) ) {
 			type = FxRunner;
-		}else if ( !stricmp( grpName, "light" ) )   {
+		}else if ( !stricmp( grpName, "light" ) ) {
 			type = Light;
-		}else if ( !stricmp( grpName, "cameraShake" ) )   {
+		}else if ( !stricmp( grpName, "cameraShake" ) ) {
 			type = CameraShake;
-		}else if ( !stricmp( grpName, "flash" ) )   {
+		}else if ( !stricmp( grpName, "flash" ) ) {
 			type = ScreenFlash;
 		}else
 		{
@@ -1110,7 +1110,7 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, vec3_t origin, vec3_t a
 			VectorNormalize2( temp, ax[0] );
 			MakeNormalVectors( ax[0], ax[1], ax[2] );
 		}
-	}else if ( fx->mSpawnFlags & FX_ORG_ON_CYLINDER )  {
+	}else if ( fx->mSpawnFlags & FX_ORG_ON_CYLINDER ) {
 		vec3_t pt;
 
 		// set up our point, then rotate around the current direction to.  Make unrotated cylinder centered around 0,0,0

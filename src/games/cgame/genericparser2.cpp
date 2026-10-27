@@ -70,14 +70,14 @@ static char *GetToken( char **text, bool allowLineBreaks, bool readUntilEOL = fa
 			if ( c == '\"' ) {
 //				token[length++] = c;
 				break;
-			}else if ( !c )    {
+			}else if ( !c ) {
 				pointer--;
 				break;
-			}else if ( length < MAX_TOKEN_SIZE - 1 )    {
+			}else if ( length < MAX_TOKEN_SIZE - 1 ) {
 				token[length++] = c;
 			}
 		}
-	}else if ( readUntilEOL )    {
+	}else if ( readUntilEOL ) {
 		// absorb all characters until EOL
 		while ( c && c != '\n' && c != '\r' )
 		{
@@ -309,7 +309,7 @@ bool CGPValue::Parse( char **dataPtr, CTextPool **textPool ) {
 
 		if ( !token[0] ) { // end of data - error!
 			return false;
-		}else if ( strcmpi( token, "]" ) == 0 )      { // ending brace for this list
+		}else if ( strcmpi( token, "]" ) == 0 ) {      // ending brace for this list
 			break;
 		}
 
@@ -601,7 +601,7 @@ bool CGPGroup::Parse( char **dataPtr, CTextPool **textPool ) {
 			{
 				break;
 			}
-		}else if ( strcmpi( token, "}" ) == 0 )      { // ending brace for this group
+		}else if ( strcmpi( token, "}" ) == 0 ) {      // ending brace for this group
 			break;
 		}
 
@@ -615,7 +615,7 @@ bool CGPGroup::Parse( char **dataPtr, CTextPool **textPool ) {
 			if ( !newSubGroup->Parse( dataPtr, textPool ) ) {
 				return false;
 			}
-		}else if ( strcmpi( token, "[" ) == 0 )      { // new pair list
+		}else if ( strcmpi( token, "[" ) == 0 ) {      // new pair list
 			newPair = AddPair( lastToken, 0, textPool );
 			if ( !newPair->Parse( dataPtr, textPool ) ) {
 				return false;

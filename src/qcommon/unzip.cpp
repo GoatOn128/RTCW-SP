@@ -1884,7 +1884,7 @@ static int unzlocal_CheckCurrentFileCoherencyHeader( unz_s* s, uInt* piSizeVar,
 
 	if ( unzlocal_getShort( s->file,&uData ) != UNZ_OK ) {
 		err = UNZ_ERRNO;
-	}else if ( ( err == UNZ_OK ) && ( uData != s->cur_file_info.compression_method ) )       {
+	}else if ( ( err == UNZ_OK ) && ( uData != s->cur_file_info.compression_method ) ) {
 		err = UNZ_BADZIPFILE;
 	}
 
@@ -1921,7 +1921,7 @@ static int unzlocal_CheckCurrentFileCoherencyHeader( unz_s* s, uInt* piSizeVar,
 
 	if ( unzlocal_getShort( s->file,&size_filename ) != UNZ_OK ) {
 		err = UNZ_ERRNO;
-	}else if ( ( err == UNZ_OK ) && ( size_filename != s->cur_file_info.size_filename ) )       {
+	}else if ( ( err == UNZ_OK ) && ( size_filename != s->cur_file_info.size_filename ) ) {
 		err = UNZ_BADZIPFILE;
 	}
 
@@ -3291,7 +3291,7 @@ static int huft_build( uInt *b, uInt n, uInt s, const uInt *d, const uInt *e, in
 			r.bits = (Byte)( k - w );
 			if ( p >= v + n ) {
 				r.exop = 128 + 64; /* out of values--invalid code */
-			}else if ( *p < s )                                                                     {
+			}else if ( *p < s ) {
 				r.exop = (Byte)( *p < 256 ? 0 : 32 + 64 ); /* 256 is end-of-block */
 				r.base = *p++;  /* simple code is just the value */
 			}else
@@ -3397,7 +3397,7 @@ int inflate_trees_dynamic( uInt nl, uInt nd, uInt *c, uInt *bl, uInt *bd, inflat
 #else
 			z->msg = (char*)"incomplete distance tree";
 			r = Z_DATA_ERROR;
-		}else if ( r != Z_MEM_ERROR )    {
+		}else if ( r != Z_MEM_ERROR ) {
 			z->msg = (char*)"empty distance tree with lengths";
 			r = Z_DATA_ERROR;
 		}
@@ -3669,7 +3669,7 @@ static int inflate_fast( uInt bl, uInt bd, inflate_huft *tl, inflate_huft *td, i
 							*q++ = *r++;
 						} while ( --c );
 						break;
-					}else if ( ( e & 64 ) == 0 )      {
+					}else if ( ( e & 64 ) == 0 ) {
 						t += t->base;
 						e = ( t += ( (uInt)b & inflate_mask[e] ) )->exop;
 					}else
@@ -3693,7 +3693,7 @@ static int inflate_fast( uInt bl, uInt bd, inflate_huft *tl, inflate_huft *td, i
 					m--;
 					break;
 				}
-			}else if ( e & 32 )    {
+			}else if ( e & 32 ) {
 				Tracevv( ( "inflate:         * end of block\n" ) );
 				UNGRAB
 					UPDATE
@@ -3901,7 +3901,7 @@ int inflate_codes( inflate_blocks_statef *s, z_streamp z, int r ) {
 			while ( c->len )
 			{
 				NEEDOUT
-					OUTBYTE( *f++ )
+				OUTBYTE( *f++ )
 				if ( f == s->end ) {
 					f = s->window;
 				}
