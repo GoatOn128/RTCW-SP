@@ -149,6 +149,35 @@ material and is never modified.
    there, the shadow surfaces route through RB_ShadowTessEnd instead)
    and the mirror view flag of the view parameters.
 
+✅ Phase 9 - backend state and tesselator
+   The backend the stage iterators run on: the backEndState_t,
+   glstate_t and view parameter slices of tr_local.h, the trRefdef,
+   refEntity and orientation structures, the wave form tables and
+   the noise of R_Init, and the GL helpers of tr_backend.c and
+   tr_init.c (GL_State, GL_Bind, GL_SelectTexture, GL_TexEnv, GL_Cull,
+   GL_SetDefaultState). The shaderCommands_t tesselator and the back
+   end of tr_shade.c: RB_BeginSurface and RB_EndSurface frame a
+   batch, the stage iterators compute the colors and texture
+   coordinates of every pass and issue the GL drawing calls, and the
+   iterator selection of ComputeStageIteratorFunc is wired into
+   idMaterial::Finish with the optimal iterator member of the engine
+   shader. The calculators of tr_shade_calc.c port the wave, deform,
+   color and texture coordinate math, and the overflow flush and the
+   quad stamps of tr_surface.c build the text and sprite deform
+   geometry. The shadow pass now reads the real tesselator, and the
+   world entity global sits on the backend for the sprite deforms
+   until the front end global lands. Everything is dormant: the
+   module has no live GL context and no surface functions until the
+   backend draw phase wires the draw loop. Builds green on every CI
+   config. Deferred to later phases, documented at each call site:
+   the dynamic light projection (dlight phase), the fog pass, the
+   fog texture coordinate and fog color calculators (fog phase), the
+   sky iterator and the portal sky filter (sky phase), the shader
+   remap and the compiled vertex array lock of the engine (dropped,
+   this renderer has no such extension), the ATI pn_triangles
+   tesselation (dropped) and the videoMap playback (client
+   integration).
+
 ## Notes
 
 - License: the ported idlib files are Doom 3 BFG code, which is GPLv3.
