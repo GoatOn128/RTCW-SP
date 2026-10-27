@@ -516,6 +516,7 @@ common_cpppath = [
     'src/sys/win32',
     'src/games/botlib',
     'src/games/cgame',
+    'src/games/cgame/fx',
     'src/games/ui',
     'src/third-party/stb',
     'src/third-party/recast/Detour/Include',
@@ -665,7 +666,7 @@ def module_objects(menv, module, files, shared=False):
 def module_link_files(module, files):
     if module not in HARDLINK:
         return files
-    drop = ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
+    drop = ['src/qcommon/q_math.cpp', 'src/qcommon/q_shared.cpp']
     return [f for f in files if f not in drop]
 
 renderer_files = ['src/renderer/' + f for f in [
@@ -742,7 +743,7 @@ sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 # straight into the client image
 client_sources = (
     client_files + qcommon_files + server_files + renderer_files +
-    ['src/games/game/q_shared.cpp', 'src/games/game/q_math.cpp'] +
+    ['src/qcommon/q_shared.cpp', 'src/qcommon/q_math.cpp'] +
     sys_files + splines_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
@@ -823,14 +824,34 @@ game_files = ['src/games/game/' + f for f in [
     'g_script.cpp', 'g_script_actions.cpp', 'g_session.cpp', 'g_spawn.cpp',
     'g_svcmds.cpp', 'g_syscalls.cpp', 'g_target.cpp', 'g_team.cpp',
     'g_tramcar.cpp', 'g_trigger.cpp', 'g_utils.cpp', 'g_weapon.cpp',
-]] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
+]] + ['src/games/game/ai/' + f for f in [
+    'ai_actor.cpp', 'ai_awareness.cpp', 'ai_characters.cpp', 'ai_danger.cpp',
+    'ai_debug.cpp', 'ai_events.cpp', 'ai_input.cpp', 'ai_movement.cpp',
+    'ai_navigation.cpp', 'ai_perception.cpp', 'ai_scheduler.cpp',
+    'ai_script.cpp', 'ai_script_actions_animation.cpp',
+    'ai_script_actions_combat.cpp', 'ai_script_actions_mission.cpp',
+    'ai_script_actions_movement.cpp', 'ai_script_entities.cpp',
+    'ai_spawn.cpp', 'ai_system.cpp', 'ai_targeting.cpp', 'ai_weapons.cpp',
+]] + ['src/games/game/ai/fsm/' + f for f in [
+    'ai_ability.cpp', 'ai_behavior_cover.cpp', 'ai_behavior_doors.cpp',
+    'ai_behavior_evasion.cpp', 'ai_behavior_grenades.cpp',
+    'ai_behavior_idle.cpp', 'ai_behavior_investigate.cpp',
+    'ai_behavior_mounted.cpp', 'ai_behavior_pursuit.cpp',
+    'ai_boss_heinrich.cpp', 'ai_boss_helga.cpp', 'ai_combat.cpp',
+    'ai_monster_blackguard.cpp', 'ai_monster_loper.cpp',
+    'ai_monster_reject.cpp', 'ai_monster_stimsoldier.cpp',
+    'ai_monster_warzombie.cpp', 'ai_monster_zombie.cpp',
+    'ai_state_legacy.cpp', 'ai_state_machine.cpp',
+]] + ['src/qcommon/q_math.cpp', 'src/qcommon/q_shared.cpp']
 
 # The savegame function table headers are checked in. The extractfuncs
 # scanner crashes under the modern 64 bit toolchains (heap corruption on
 # Windows, SIGSEGV on Linux), so the regeneration run is opt-in with
 # funcs=1; the tool itself still builds on every run.
 extractfuncs_headers = ['src/games/game/g_funcs.h', 'src/games/game/g_func_decs.h']
-game_scan_files = [f for f in game_files if f.startswith('src/games/game/')]
+# the scanner is invoked with plain file names from the game directory, so
+# the ai/ subdirectory stays out of the scan
+game_scan_files = [f for f in game_files if f.startswith('src/games/game/') and '/ai/' not in f]
 REGEN_FUNCS = ARGUMENTS.get('funcs') == '1'
 
 def run_extractfuncs(target, source, env):
@@ -883,9 +904,10 @@ cgame_files = ['src/games/game/' + f for f in [
     'cg_players.cpp', 'cg_playerstate.cpp', 'cg_predict.cpp',
     'cg_scoreboard.cpp', 'cg_servercmds.cpp', 'cg_snapshot.cpp', 'cg_sound.cpp',
     'cg_syscalls.cpp', 'cg_view.cpp', 'cg_weapons.cpp',
+]] + ['src/games/cgame/fx/' + f for f in [
     'FxPrimitives.cpp', 'FxScheduler.cpp', 'FxSystem.cpp', 'FxTemplate.cpp',
     'FxUtil.cpp', 'genericparser2.cpp',
-]] + ['src/games/ui/ui_shared.cpp'] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
+]] + ['src/games/ui/ui_shared.cpp'] + ['src/qcommon/q_math.cpp', 'src/qcommon/q_shared.cpp']
 
 cgame_env = env.Clone()
 cgame_env.Append(CPPDEFINES=['CGAMEDLL'])
@@ -908,7 +930,7 @@ ui_files = ['src/games/game/' + f for f in [
 ]] + ['src/games/ui/' + f for f in [
     'ui_atoms.cpp', 'ui_gameinfo.cpp', 'ui_main.cpp', 'ui_players.cpp',
     'ui_shared.cpp', 'ui_syscalls.cpp', 'ui_util.cpp',
-]] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
+]] + ['src/qcommon/q_math.cpp', 'src/qcommon/q_shared.cpp']
 
 ui_env = env.Clone()
 if 'ui' in HARDLINK:
