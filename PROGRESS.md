@@ -128,6 +128,27 @@ material and is never modified.
    the engine, the map change image purge (engine integration) and
    a decl manager proper (out of scope for this port).
 
+✅ Phase 8 - stencil shadow pass
+   The planar projection stencil shadows of this repo's own
+   tr_shadows.c: the silhouette edge list of the tesselated surface,
+   the shadow volume pass projecting the vertexes away from the entity
+   light direction, the stencil darkening of RB_ShadowFinish and the
+   projection shadow deform of the DEFORM_PROJECTION_SHADOW stages.
+   The GL state function and the GLS state bits come from
+   tr_backend.c and tr_local.h, and the cg_shadows cvar keeps the
+   engine default, value 2 selects the stencil pass. The shadow code
+   runs on a dormant backend slice (tess, backEnd, glState, glConfig)
+   because the module has no live GL context until the backend phase,
+   which wires RB_ShadowTessEnd into the surface end, RB_ShadowFinish
+   into the view draw loop, the projection deform into the deform
+   stages and the stencil clear bit into the frame buffer clear.
+   Builds green on every CI config. Deferred to the backend phase:
+   the full tesselator and backend state these functions run on, the
+   entity light direction setup (frontend lighting), the shadow
+   shader assignment of the engine (its tr.shadowShader stays NULL
+   there, the shadow surfaces route through RB_ShadowTessEnd instead)
+   and the mirror view flag of the view parameters.
+
 ## Notes
 
 - License: the ported idlib files are Doom 3 BFG code, which is GPLv3.
