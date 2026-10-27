@@ -33,8 +33,7 @@ If you have questions concerning this license or the applicable additional terms
 #define ITEM_TYPE_CHECKBOX          3       // check box
 #define ITEM_TYPE_EDITFIELD         4       // editable text, associated with a cvar
 #define ITEM_TYPE_COMBO             5       // drop down list
-#defin
-e ITEM_TYPE_LISTBOX           6       // scrollable list
+#define ITEM_TYPE_LISTBOX           6       // scrollable list
 #define ITEM_TYPE_MODEL             7       // model
 #define ITEM_TYPE_OWNERDRAW         8       // owner draw, name specs what it is
 #define ITEM_TYPE_NUMERICFIELD      9       // editable text, associated with a cvar
@@ -65,8 +64,7 @@ e ITEM_TYPE_LISTBOX           6       // scrollable list
 
 #define WINDOW_STYLE_EMPTY          0       // no background
 #define WINDOW_STYLE_FILLED         1       // filled with background color
-#define WINDOW_STYLE_GRADIENT
-2             // gradient bar based on background color
+#define WINDOW_STYLE_GRADIENT		2       // gradient bar based on background color
 #define WINDOW_STYLE_SHADER         3       // gradient bar based on background color
 #define WINDOW_STYLE_TEAMCOLOR      4       // team color
 #define WINDOW_STYLE_CINEMATIC      5       // cinematic
@@ -108,8 +106,7 @@ e ITEM_TYPE_LISTBOX           6       // scrollable list
 #define CG_SHOW_BLUE_TEAM_HAS_REDFLAG       0x00000001
 #define CG_SHOW_RED_TEAM_HAS_BLUEFLAG       0x00000002
 #define CG_SHOW_ANYTEAMGAME                 0x00000004
-#define CG_SHOW_HARVES
-TER                   0x00000008
+#define CG_SHOW_HARVESTER                   0x00000008
 #define CG_SHOW_ONEFLAG                     0x00000010
 #define CG_SHOW_CTF                         0x00000020
 #define CG_SHOW_OBELISK                     0x00000040
@@ -146,8 +143,7 @@ TER                   0x00000008
 #define UI_SHOW_ANYTEAMGAME                 0x00000010
 #define UI_SHOW_NEWHIGHSCORE                0x00000020
 #define UI_SHOW_DEMOAVAILABLE               0x00000040
-#define UI_SHOW_NEWBESTTIME
-0x00000080
+#define UI_SHOW_NEWBESTTIME					0x00000080
 #define UI_SHOW_FFA                         0x00000100
 #define UI_SHOW_NOTFFA                      0x00000200
 #define UI_SHOW_NETANYNONTEAMGAME           0x00000400
@@ -201,8 +197,7 @@ TER                   0x00000008
 #define CG_RED_NAME                 29
 #define CG_BLUE_NAME                30
 #define CG_HARVESTER_SKULLS         31  // only shows in harvester
-#define CG_ONEFL
-AG_STATUS           32  // only shows in one flag
+#define CG_ONEFLAG_STATUS           32  // only shows in one flag
 #define CG_PLAYER_LOCATION          33
 #define CG_TEAM_COLOR               34
 #define CG_CTF_POWERUP              35
@@ -250,8 +245,7 @@ AG_STATUS           32  // only shows in one flag
 #define CG_STAMINA                  73
 #define CG_PLAYER_WEAPON_HEAT       74
 #define CG_PLAYER_POWERUP           75
-#define CG_PLAYER_
-HOLDABLE          76
+#define CG_PLAYER_HOLDABLE          76
 #define CG_PLAYER_INVENTORY         77
 #define CG_AREA_WEAPON              78  // draw weapons here
 #define CG_AREA_HOLDABLE            79
@@ -298,8 +292,7 @@ HOLDABLE          76
 #define UI_TIER_GAMETYPE            235
 #define UI_ALLMAPS_SELECTION        236
 #define UI_OPPONENT_NAME            237
-#define UI_VOTE_KICK                23
-8
+#define UI_VOTE_KICK                238
 #define UI_BOTNAME                  239
 #define UI_BOTSKILL                 240
 #define UI_REDBLUE                  241
@@ -340,8 +333,7 @@ HOLDABLE          76
 #define VOICECHAT_FOLLOWME          "followme"               // command someone to follow you
 #define VOICECHAT_RETURNFLAG        "returnflag"         // command someone to return our flag
 #define VOICECHAT_FOLLOWFLAGCARRIER "followflagcarrier"  // command someone to follow the flag carrier
-#define VOICECHAT_YES               "yes"                    // yes
-, affirmative, etc.
+#define VOICECHAT_YES               "yes"                    // yes, affirmative, etc.
 #define VOICECHAT_NO                "no"                 // no, negative, etc.
 #define VOICECHAT_ONGETFLAG         "ongetflag"          // I'm getting the flag
 #define VOICECHAT_ONOFFENSE         "onoffense"          // I'm on offense
@@ -367,8 +359,7 @@ HOLDABLE          76
 #define VOICECHAT_PRAISE            "praise"             // you did something good
 
 // NERVE - SMF - wolf multiplayer class/item selection mechanism
-#defin
-e WM_START_SELECT         0
+#define WM_START_SELECT         0
 
 #define WM_SELECT_TEAM          1
 #define WM_SELECT_CLASS         2

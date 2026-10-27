@@ -42,8 +42,7 @@ typedef struct {
 	// which will keep the screen from flashing to the desktop.
 	void ( *Shutdown )( qboolean destroyWindow );
 
-	// All data that wil
-	l be used in a level should be
+	// All data that will be used in a level should be
 	// registered before rendering any frames to prevent disk hits,
 	// but they can still be registered at a later time
 	// if necessary.
@@ -81,8 +80,7 @@ typedef struct {
 	void ( *AddLightToScene )( const vec3_t org, float intensity, float r, float g, float b, int overdraw );
 //----(SA)
 	void ( *AddCoronaToScene )( const vec3_t org, float r, float g, float b, float scale, int id, int flags );
-	void
-	( *SetFog )( int fogvar, int var1, int var2, float r, float g, float b, float density );
+	void ( *SetFog )( int fogvar, int var1, int var2, float r, float g, float b, float density );
 //----(SA)
 	void ( *RenderScene )( const refdef_t *fd );
 
@@ -125,8 +123,7 @@ typedef struct {
 //
 typedef struct {
 	// print message on the local console
-	void( QDECL * Printf )( i
-							nt printLevel, const char *fmt, ... );
+	void( QDECL * Printf )( int printLevel, const char *fmt, ... );
 
 	// abort the game
 	void( QDECL * Error )( int errorLevel, const char *fmt, ... );
@@ -139,11 +136,11 @@ typedef struct {
 	// won't be freed
 	void ( *Hunk_Clear )( void );
 #ifdef HUNK_DEBUG
-	void    *( *Hunk_AllocDebug )( int size, ha_pref pref, char *label, char *file, int line );
+	void *( *Hunk_AllocDebug )( int size, ha_pref pref, char *label, char *file, int line );
 #else
-	void    *( *Hunk_Alloc )( int size, ha_pref pref );
+	void *( *Hunk_Alloc )( int size, ha_pref pref );
 #endif
-	void    *( *Hunk_AllocateTempMemory )( int size );
+	void *( *Hunk_AllocateTempMemory )( int size );
 	void ( *Hunk_FreeTempMemory )( void *block );
 
 	cvar_t  *( *Cvar_Get )( const char *name, const char *value, int flags );
@@ -153,7 +150,7 @@ typedef struct {
 	void ( *Cmd_RemoveCommand )( const char *name );
 
 	int ( *Cmd_Argc )( void );
-	char    *( *Cmd_Argv )( int i );
+	char *( *Cmd_Argv )( int i );
 
 	void ( *Cmd_ExecuteText )( int exec_when, const char *text );
 
@@ -175,8 +172,7 @@ typedef struct {
 
 	// cinematic stuff
 	void ( *CIN_UploadCinematic )( int handle );
-	int( *CIN_Play
-		 Cinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
+	int( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
 	e_status ( *CIN_RunCinematic )( int handle );
 
 } refimport_t;

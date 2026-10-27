@@ -48,8 +48,7 @@ Bounds boundsZero;
 float idVec3::toYaw( void ) {
 	float yaw;
 
-	if ( ( y == 0
-		   ) && ( x == 0 ) ) {
+	if ( ( y == 0 ) && ( x == 0 ) ) {
 		yaw = 0;
 	} else {
 		yaw = atan2( y, x ) * 180 / M_PI;
