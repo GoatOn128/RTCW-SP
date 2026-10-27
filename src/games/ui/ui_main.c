@@ -67,8 +67,6 @@ static const char *netSources[] = {
 	"Internet",
 	"Favorites"
 };
-static const int numNetSources = sizeof( netSources ) / sizeof( const char* );
-
 static const serverFilter_t serverFilters[] = {
 	{"All", "" },
 	{"Quake 3 Arena", "" },
@@ -2409,7 +2407,7 @@ static void UI_DrawGLInfo( rectDef_t *rect, int font, float scale, vec4_t color,
 static void UI_DrawLimboChat( rectDef_t *rect, int font, float scale, vec4_t color, int textStyle ) {
 	int i, count;
 	char buf[140];
-	float x, y, w, h;
+	float x, y;
 
 	memset( buf, 0, 140 );
 
@@ -2424,8 +2422,6 @@ static void UI_DrawLimboChat( rectDef_t *rect, int font, float scale, vec4_t col
 	for ( i = 0; i < count; i++ ) {
 		x = rect->x;
 		y = rect->y + 9 * i;
-		w = 1;
-		h = 1;
 
 		trap_GetLimboString( i, buf );
 		Text_Paint( x, y, font, scale, color, buf, 0, 0, textStyle );
@@ -5026,12 +5022,9 @@ UI_BuildServerDisplayList
 */
 static void UI_BuildServerDisplayList( qboolean force ) {
 	//#ifdef MISSIONPACK			// NERVE - SMF - enabled for multiplayer
-	int i, count, clients, maxClients, ping, game, len, visible;
+	int i, count, clients, maxClients, ping, len, visible;
 	char info[MAX_STRING_CHARS];
 	//qboolean startRefresh = qtrue;// TTimo: unused
-	static int numinvisible;
-
-	game = 0;       // NERVE - SMF - shut up compiler warning
 
 	if ( !( force || uiInfo.uiDC.realTime > uiInfo.serverStatus.nextDisplayRefresh ) ) {
 		return;
@@ -5054,7 +5047,6 @@ static void UI_BuildServerDisplayList( qboolean force ) {
 	}
 
 	if ( force ) {
-		numinvisible = 0;
 		// clear number of displayed servers
 		uiInfo.serverStatus.numDisplayServers = 0;
 		uiInfo.serverStatus.numPlayersOnServers = 0;
@@ -5129,7 +5121,6 @@ static void UI_BuildServerDisplayList( qboolean force ) {
 			// done with this server
 			if ( ping > 0 ) {
 				trap_LAN_MarkServerVisible( ui_netSource.integer, i, qfalse );
-				numinvisible++;
 			}
 		}
 	}
@@ -5339,7 +5330,7 @@ UI_BuildFindPlayerList
 */
 static void UI_BuildFindPlayerList( qboolean force ) {
 	//#ifdef MISSIONPACK			// NERVE - SMF - enabled for multiplayer
-	static int numFound, numTimeOuts;
+	static int numFound;
 	int i, j, resend;
 	serverStatusInfo_t info;
 	char name[MAX_NAME_LENGTH + 2];
@@ -5374,7 +5365,6 @@ static void UI_BuildFindPlayerList( qboolean force ) {
 					 sizeof( uiInfo.foundPlayerServerNames[uiInfo.numFoundPlayerServers - 1] ),
 					 "searching %d...", uiInfo.pendingServerStatus.num );
 		numFound = 0;
-		numTimeOuts++;
 	}
 	for ( i = 0; i < MAX_SERVERSTATUSREQUESTS; i++ ) {
 		// if this pending server is valid
@@ -5420,9 +5410,6 @@ static void UI_BuildFindPlayerList( qboolean force ) {
 		// if empty pending slot or timed out
 		if ( !uiInfo.pendingServerStatus.server[i].valid ||
 			 uiInfo.pendingServerStatus.server[i].startTime < uiInfo.uiDC.realTime - ui_serverStatusTimeOut.integer ) {
-			if ( uiInfo.pendingServerStatus.server[i].valid ) {
-				numTimeOuts++;
-			}
 			// reset server status request for this address
 			UI_GetServerStatusInfo( uiInfo.pendingServerStatus.server[i].adrstr, NULL );
 			// reuse pending slot
@@ -5652,7 +5639,7 @@ static const char *UI_FeederItemText( float feederID, int index, int column, qha
 	static char hostname[1024];
 	static char clientBuff[32];
 	static int lastServerColumn = -1, lastSaveColumn = -1;
-	static int lastServerTime = 0, lastSaveTime = 0;
+	static int lastServerTime = 0;
 	*handle = -1;
 	if ( feederID == FEEDER_HEADS ) {
 		if ( index >= 0 && index < uiInfo.characterCount ) {
@@ -5748,7 +5735,6 @@ static const char *UI_FeederItemText( float feederID, int index, int column, qha
 			if ( lastSaveColumn != column ) {
 //				trap_LAN_GetServerInfo(ui_netSource.integer, uiInfo.serverStatus.displayServers[index], info, MAX_STRING_CHARS);
 				lastSaveColumn = column;
-				lastSaveTime = uiInfo.uiDC.realTime;
 			}
 
 			switch ( column ) {
@@ -6435,7 +6421,6 @@ UI_Init
 */
 void _UI_Init( qboolean inGameLoad ) {
 	const char *menuSet;
-	int start;
 
 	//uiInfo.inGameLoad = inGameLoad;
 
@@ -6525,8 +6510,6 @@ void _UI_Init( qboolean inGameLoad ) {
 	uiInfo.uiDC.whiteShader = trap_R_RegisterShaderNoMip( "white" );
 
 	AssetCache();
-
-	start = trap_Milliseconds();
 
 	uiInfo.teamCount = 0;
 	uiInfo.characterCount = 0;
