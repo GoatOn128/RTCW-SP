@@ -100,8 +100,33 @@ material and is never modified.
    the videoMap playback and the detail texture cvar filtering
    (frontend).
 
-⬜ Phase 7 - lighting decision
-   Lightmaps first, shadow maps optional later.
+✅ Phase 7 - lighting decision
+   Lightmaps first, shadow maps optional later. The image manager
+   follows the create and find semantics of this repo's own
+   R_FindImageFile and R_CreateImageExt: the TGA loader is ported,
+   the JPEG loader goes through the vendored stb_image, and the
+   builtin images (default, white, identityLight, dlight, fog)
+   match the engine's R_CreateBuiltinImages. The pixel pipeline of
+   the engine's Upload32 (resample, picmip, mip chain, light scale,
+   internal format) runs on the CPU at image creation and the
+   prepared levels wait for the backend: this renderer has no live
+   GL context until then, so nothing touches GL at load time. The
+   BSP loader turns the lightmap lump into lightmap images with the
+   overbright color shift of R_LoadLightmaps, gated by r_vertexLight.
+   The shader keywords Phase 6 deferred now have their homes: the
+   sun, fog and lightgrid values sit on the material manager like
+   the engine's tr structure, clampTime sits on the material, and
+   allowcompress and nocompress drive the image compression control
+   of the image manager. The stage collapses of FinishShader are
+   ported too: the detail stage filtering through r_detailtextures,
+   the vertex lighting collapse and the multitexture collapse with
+   two bundles per stage. Builds green on every CI config.
+   Deferred to later phases: the GL upload and the lightmap binding
+   at draw time (backend), the runtime fog, sun and lightgrid
+   consumers (frontend), the videoMap playback (the client cinematic
+   system, the BFG renderer plays Bink), the pcx and bmp loaders of
+   the engine, the map change image purge (engine integration) and
+   a decl manager proper (out of scope for this port).
 
 ## Notes
 
