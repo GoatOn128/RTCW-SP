@@ -1,6 +1,6 @@
 # Build digest
 
-commit: 506f19cd266c
+commit: cd73ceb60150
 
 - ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
