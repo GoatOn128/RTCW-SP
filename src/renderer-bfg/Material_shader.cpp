@@ -572,7 +572,7 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 			} else
 			{
 				idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
-															 !shader->noPicMip, shader->characterMip, GL_REPEAT );
+															  !shader->noPicMip, shader->characterMip, GL_REPEAT );
 				if ( image == NULL ) {
 					idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
 					return false;
@@ -595,7 +595,7 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 			}
 
 			idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
-														 !shader->noPicMip, shader->characterMip, GL_CLAMP );
+														  !shader->noPicMip, shader->characterMip, GL_CLAMP );
 			if ( image == NULL ) {
 				idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
 				return false;
@@ -624,7 +624,7 @@ static bool ParseStage( idLexer *src, idMaterial *shader, shaderStage_t *stage )
 				int num = stage->bundle[0].numImages;
 				if ( num < MAX_IMAGE_ANIMATIONS ) {
 					idImage *image = imageManager->ImageFromFile( mapName.c_str(), !shader->noMipMaps,
-																 !shader->noPicMip, shader->characterMip, GL_REPEAT );
+																  !shader->noPicMip, shader->characterMip, GL_REPEAT );
 					if ( image == NULL ) {
 						idLib::Warning( "WARNING: R_FindImageFile could not find '%s' in shader '%s'\n", mapName.c_str(), shader->GetName() );
 						return false;

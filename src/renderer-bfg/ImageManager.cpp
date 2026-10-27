@@ -213,7 +213,7 @@ pixel preparation in idImage::GenerateImage.
 =================
 */
 idImage *idImageManagerLocal::CreateImage( const char *name, const byte *pic, int width, int height,
-										  bool mipmap, bool allowPicmip, bool characterMIP, int wrapClampMode ) {
+										   bool mipmap, bool allowPicmip, bool characterMIP, int wrapClampMode ) {
 	EnsureInitialized();
 
 	// a name that exists comes back unchanged: the builtin images and

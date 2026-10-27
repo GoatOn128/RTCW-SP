@@ -75,8 +75,8 @@ int                     WrapClampMode() const { return wrapClampMode; }
 // values. lightMap selects the lightmap format (no alpha scan, GL_RGB)
 // and noCompress turns the S3TC compression decision off
 void                    GenerateImage( const byte *pic, int width, int height,
-									  bool mipmap, bool allowPicmip, bool characterMIP,
-									  bool lightMap, bool noCompress );
+									   bool mipmap, bool allowPicmip, bool characterMIP,
+									   bool lightMap, bool noCompress );
 
 // uploads the prepared levels and the filter and wrap state; the
 // backend calls this once the GL context is live
@@ -100,7 +100,7 @@ private:
 static const GLuint TEXTURE_NOT_LOADED = 0;
 
 // the level offsets into the pic list
-int                     levelOffsets[MAX_TEXTURE_LEVELS];
+int levelOffsets[MAX_TEXTURE_LEVELS];
 
 public:
 // like the engine's image_t, the fields are public: the manager and
