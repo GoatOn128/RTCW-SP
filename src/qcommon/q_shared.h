@@ -1565,4 +1565,3 @@ typedef enum {
 } languages_t;
 
 #endif  // Q_SHARED_H
-
