@@ -1108,7 +1108,7 @@ void ClientThink_real( gentity_t *ent ) {
 			if ( !bogus ) {
 				// when an actor dies test if tag_head is in a contents_solid and stop slide
 				{
-					orientation_t   tagOrientation;
+					orientation_t tagOrientation;
 					trace_t tr;
 					vec3_t start, end;
 					qboolean slide = qtrue;

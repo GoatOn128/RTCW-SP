@@ -1473,9 +1473,10 @@ void RB_StageIteratorVertexLitTexture( void ) {
 	}
 
 	if ( qglPNTrianglesiATI && tess.ATI_tess )
-#ifdef __MACOS__ //DAJ ATI{{
+#ifdef __MACOS__ //DAJ ATI{{{
 		qglPNTrianglesiATI( GL_PN_TRIANGLES_ATI, 0 );
 	}
+}
 }
 }
 #else
@@ -1608,9 +1609,10 @@ void RB_StageIteratorLightmappedMultitexture( void ) {
 	}
 
 	if ( qglPNTrianglesiATI && tess.ATI_tess )
-#ifdef __MACOS__ //DAJ ATI{{
+#ifdef __MACOS__ //DAJ ATI{{{
 		qglPNTrianglesiATI( GL_PN_TRIANGLES_ATI, 0 );
 	}
+}
 }
 }
 #else
