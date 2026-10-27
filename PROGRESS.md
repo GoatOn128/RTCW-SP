@@ -56,8 +56,23 @@ material and is never modified.
    the working directory with stdio until the engine file system
    is hooked up.
 
-⬜ Phase 5 - model adapters
-   The MD3, MDS and MDC model formats into the BFG render model code.
+✅ Phase 5 - model adapters
+   The BFG idRenderModelStatic base and the render model manager, the
+   MD3, MDC and MDS adapters for the RTCW model formats, and the BSP
+   models converted into local render models: model 0 keeps the map
+   name, the submodels follow the Q3 bmodel convention *<num>. The
+   adapters decode the RTCW on-disk layouts with size checks: MD3
+   animates between frames through the MD3 frame shader parms, MDC
+   decompresses every frame into plain surfaces at load, MDS bakes the
+   frame 0 bind pose into static surfaces with the bone matrices from
+   this repo's own tr_animation.c. Vertex normals decode exactly like
+   the engine renderer (lat/long for MD3, the compressed ofVec normal
+   table for MDC). Builds green on every CI config. Deferred to later
+   phases: the MDS skeletal animation and skinning beyond the bind
+   pose, the MD3 and MDC tags and MD3 LOD files, the MDS
+   fixedParent/fixedDist paths, the MD5 formats, resolving the shader
+   names to materials (material phase) and replacing the direct stdio
+   reads with the engine file system.
 
 ⬜ Phase 6 - shader file translation
    Translate the .shader script files to the BFG material system.
