@@ -1472,15 +1472,12 @@ void RB_StageIteratorVertexLitTexture( void ) {
 		GLimp_LogComment( "glUnlockArraysEXT\n" );
 	}
 
-	if ( qglPNTrianglesiATI && tess.ATI_tess )
-#ifdef __MACOS__ //DAJ ATI{
+#ifdef __MACOS__ //DAJ ATI
+	if ( qglPNTrianglesiATI && tess.ATI_tess ) {
 		qglPNTrianglesiATI( GL_PN_TRIANGLES_ATI, 0 );
 	}
-}
 #else
-	{
-		qglDisable( GL_PN_TRIANGLES_ATI );    // ATI PN-Triangles extension
-	}
+	qglDisable( GL_PN_TRIANGLES_ATI );    // ATI PN-Triangles extension
 #endif
 }
 
@@ -1606,15 +1603,12 @@ void RB_StageIteratorLightmappedMultitexture( void ) {
 		GLimp_LogComment( "glUnlockArraysEXT\n" );
 	}
 
-	if ( qglPNTrianglesiATI && tess.ATI_tess )
-#ifdef __MACOS__ //DAJ ATI{
+#ifdef __MACOS__ //DAJ ATI
+	if ( qglPNTrianglesiATI && tess.ATI_tess ) {
 		qglPNTrianglesiATI( GL_PN_TRIANGLES_ATI, 0 );
 	}
-}
 #else
-	{
-		qglDisable( GL_PN_TRIANGLES_ATI );    // ATI PN-Triangles extension
-	}
+	qglDisable( GL_PN_TRIANGLES_ATI );    // ATI PN-Triangles extension
 #endif
 }
 
