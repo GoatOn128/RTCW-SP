@@ -294,6 +294,20 @@ enum clc_ops_e {
 /*
 ==============================================================
 
+VIRTUAL MACHINE
+
+==============================================================
+*/
+
+// native module loading (Doom3 style game/cgame/ui modules)
+void    *Sys_LoadModule( const char *name );                     // load a native module, returns a handle or NULL
+void    *Sys_ModuleAddress( void *module, const char *procName ); // find an exported function in a module
+void    Sys_UnloadModule( void *module );                       // free a module loaded with Sys_LoadModule
+
+
+/*
+==============================================================
+
 CMD
 
 Command text buffering and command execution
