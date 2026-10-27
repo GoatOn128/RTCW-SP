@@ -144,6 +144,7 @@ If you have questions concerning this license or the applicable additional terms
 #define SURF_GLASS                             0x00200000  //----(SA) added for bullet impact
 #define SURF_SNOW                              0x00400000  //----(SA) added for snow
 #define SURF_ROOF                              0x00800000  //----(SA) so we can walk on roofs
+#define SURF_RUBBLE                            0x01000000  //----(SA) added for bullet impact
 #define SURF_CARPET                            0x02000000  //----(SA) added
 #define SURF_MONSTERSLICK                      0x04000000  //----(SA) added
 #define SURF_MONSLICK_W                        0x08000000  //----(SA) added
@@ -453,6 +454,7 @@ cullType_t cullType;
 bool polygonOffset;
 bool noMipMaps;
 bool noPicMip;
+bool characterMip;                    // picmip2: reduced mipping for the in-game character textures
 bool noFog;
 
 int numDeforms;

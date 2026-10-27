@@ -33,12 +33,13 @@ If you have questions concerning this license or the applicable additional terms
 
   The material manager keeps the registry of the loaded materials,
   following the model manager of this module. The name lookup matches
-  the engine's shader lookup in src/renderer/tr_shader.c: the names are
-  compared case-insensitively and a material registered with a negative
-  lightmap index satisfies every non-negative lookup, so a shader
-  definition serves all lightmap indexes of the same texture.
+  the engine's shader lookup in src/renderer/tr_shader.c: the names
+  are compared case-insensitively and a material registered with a
+  negative lightmap index satisfies every non-negative lookup, so a
+  shader definition serves all lightmap indexes of the same texture.
 
-  Until the script translation lands, every unknown name gets the
+  The explicit definitions come from the shader script translation in
+  Material_shader.cpp; a name without a definition gets the
   texture-only fallback material.
 
 */
@@ -60,7 +61,8 @@ void idMaterialManagerLocal::Init() {
 	defaultMaterial->InitDefault();
 	AddMaterial( defaultMaterial );
 
-	// the shader file scan lands with the script translation
+	// scan the shader files and index their definitions
+	LoadShaderFiles();
 }
 
 /*
@@ -102,15 +104,18 @@ const idMaterial *idMaterialManagerLocal::GetMaterial( const char *_name, int li
 	canonical.ToLower();
 	canonical.StripFileExtension();
 
-	// see if it is already loaded, with the lightmap match of the
-	// engine's shader lookup
+	// see if it is already loaded. The engine keeps one shader per
+	// lightmap index because the $lightmap stage bakes in the lightmap
+	// image; this renderer binds the surface lightmap at draw time, so
+	// one material serves every non-negative index
+	int lmClass = lightmapIndex >= 0 ? 0 : lightmapIndex;
 	int key = hash.GenerateKey( canonical, false );
 	for ( int i = hash.First( key ); i != -1; i = hash.Next( i ) ) {
 		idMaterial *material = materials[i];
 
 		if ( canonical.Icmp( material->GetName() ) == 0 ) {
-			if ( ( material->lightmapIndex == lightmapIndex ) ||
-				 ( material->lightmapIndex < 0 && lightmapIndex >= 0 ) ) {
+			int materialClass = material->lightmapIndex >= 0 ? 0 : material->lightmapIndex;
+			if ( materialClass == lmClass ) {
 				return material;
 			}
 		}
@@ -120,8 +125,28 @@ const idMaterial *idMaterialManagerLocal::GetMaterial( const char *_name, int li
 		return NULL;
 	}
 
-	// no explicit shader definition is known yet, so build the
-	// texture-only fallback
+	// an explicit shader definition wins over the fallback
+	const int defOffset = FindShaderTextDef( canonical );
+	if ( defOffset >= 0 ) {
+		idMaterial *material = new idMaterial;
+		material->name = canonical;
+		material->lightmapIndex = lightmapIndex;
+		if ( !ParseShaderDef( defOffset, material ) ) {
+			// the engine marks a shader as the default shader after a
+			// parse failure and caches it under its name so the broken
+			// script is not re-parsed; this port also clears the
+			// partially parsed stages, so nothing wrong draws
+			material->Reset();
+			material->name = canonical;
+			material->lightmapIndex = lightmapIndex;
+			material->defaulted = true;
+		}
+		AddMaterial( material );
+
+		return material;
+	}
+
+	// no explicit shader definition: build the texture-only fallback
 	idMaterial *material = new idMaterial;
 	material->InitTextureOnly( canonical, lightmapIndex );
 	AddMaterial( material );

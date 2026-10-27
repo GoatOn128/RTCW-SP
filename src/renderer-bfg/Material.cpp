@@ -78,6 +78,7 @@ void idMaterial::Reset() {
 	polygonOffset = false;
 	noMipMaps = false;
 	noPicMip = false;
+	characterMip = false;
 	noFog = false;
 
 	numDeforms = 0;

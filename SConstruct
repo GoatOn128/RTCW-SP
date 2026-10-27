@@ -389,6 +389,7 @@ renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'Model_md3.cpp', 'Model_mdc.cpp', 'Model_mds.cpp',
     'Material.cpp',
     'MaterialManager.cpp',
+    'Material_shader.cpp',
 ]]
 
 renderer_bfg_env = env.Clone()
