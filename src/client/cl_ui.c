@@ -770,9 +770,17 @@ static int GetConfigString( int index, char *buf, int size ) {
 // module with Sys_LoadModule and exchanges structs of function pointers
 
 static uiImport_t cl_uiImport;      // engine functions handed to the ui module
+#ifndef UI_HARD_LINKED
 static void *ui_library = NULL;    // handle from Sys_LoadModule
+#endif
 
+#ifdef UI_HARD_LINKED
+// hard-linked build: ui compiles straight into the engine binary,
+// so its entry point is a plain extern instead of a module symbol
+extern uiExport_t *GetUIAPI( int apiVersion, uiImport_t *import );
+#else
 typedef uiExport_t *( *GetUIAPI_t )( int apiVersion, uiImport_t *import );
+#endif
 
 static void CL_UI_Error( const char *string ) {
 	Com_Error( ERR_DROP, "%s", string );
@@ -964,8 +972,10 @@ void CL_ShutdownUI( void ) {
 		return;
 	}
 	uie->Shutdown();
+#ifndef UI_HARD_LINKED
 	Sys_UnloadModule( ui_library );
 	ui_library = NULL;
+#endif
 	uie = NULL;
 }
 
@@ -976,11 +986,20 @@ CL_InitUI
 */
 
 void CL_InitUI( void ) {
+#ifndef UI_HARD_LINKED
 	GetUIAPI_t GetUIAPI;
+#endif
 
 	// exchange function pointer structs with the native ui module
 	CL_FillUIImport( &cl_uiImport );
 
+#ifdef UI_HARD_LINKED
+	uie = GetUIAPI( UI_API_VERSION, &cl_uiImport );
+	if ( !uie || uie->apiVersion != UI_API_VERSION ) {
+		uie = NULL;
+		Com_Error( ERR_FATAL, "GetUIAPI on ui failed" );
+	}
+#else
 	ui_library = Sys_LoadModule( "ui" );
 	if ( !ui_library ) {
 		Com_Error( ERR_FATAL, "Sys_LoadModule on ui failed" );
@@ -1000,6 +1019,7 @@ void CL_InitUI( void ) {
 		uie = NULL;
 		Com_Error( ERR_FATAL, "GetUIAPI on ui failed" );
 	}
+#endif
 
 	// init for this gamestate
 	uie->Init( ( cls.state >= CA_AUTHORIZING && cls.state < CA_ACTIVE ) );
@@ -1028,3 +1048,4 @@ qboolean UI_GameCommand( void ) {
 
 	return uie->ConsoleCommand( cls.realtime );
 }
+

@@ -299,9 +299,17 @@ void SV_GetUsercmd( int clientNum, usercmd_t *cmd ) {
 // module with Sys_LoadModule and exchanges structs of function pointers
 
 static gameImport_t sv_gameImport;     // engine functions handed to the game module
+#ifndef GAME_HARD_LINKED
 static void *game_library = NULL;      // handle from Sys_LoadModule
+#endif
 
+#ifdef GAME_HARD_LINKED
+// hard-linked build: qagame compiles straight into the engine binary,
+// so its entry point is a plain extern instead of a module symbol
+extern gameExport_t *GetGameAPI( int apiVersion, gameImport_t *import );
+#else
 typedef gameExport_t *( *GetGameAPI_t )( int apiVersion, gameImport_t *import );
+#endif
 
 static void G_Endgame( void ) {
 	Com_Error( ERR_ENDGAME, "endgame" );   // no message, no error print
@@ -554,8 +562,10 @@ void SV_ShutdownGameProgs( void ) {
 		return;
 	}
 	ge->Shutdown( qfalse );
+#ifndef GAME_HARD_LINKED
 	Sys_UnloadModule( game_library );
 	game_library = NULL;
+#endif
 	ge = NULL;
 }
 
@@ -611,7 +621,9 @@ Called on a normal map change, not on a map_restart
 */
 void SV_InitGameProgs( void ) {
 	cvar_t  *var;
+#ifndef GAME_HARD_LINKED
 	GetGameAPI_t GetGameAPI;
+#endif
 	//FIXME these are temp while I make bots run in vm
 	extern int bot_enable;
 
@@ -625,6 +637,13 @@ void SV_InitGameProgs( void ) {
 	// exchange function pointer structs with the native game module
 	SV_FillGameImport( &sv_gameImport );
 
+#ifdef GAME_HARD_LINKED
+	ge = GetGameAPI( GAME_API_VERSION, &sv_gameImport );
+	if ( !ge || ge->apiVersion != GAME_API_VERSION ) {
+		ge = NULL;
+		Com_Error( ERR_FATAL, "GetGameAPI on game failed" );
+	}
+#else
 	game_library = Sys_LoadModule( "qagame" );
 	if ( !game_library ) {
 		Com_Error( ERR_FATAL, "Sys_LoadModule on qagame failed" );
@@ -644,6 +663,7 @@ void SV_InitGameProgs( void ) {
 		ge = NULL;
 		Com_Error( ERR_FATAL, "GetGameAPI on game failed" );
 	}
+#endif
 
 	SV_InitGameVM( qfalse );
 }

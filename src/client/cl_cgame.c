@@ -404,11 +404,19 @@ void CL_CM_LoadMap( const char *mapname ) {
 // module with Sys_LoadModule and exchanges structs of function pointers
 
 static cgameImport_t cl_cgameImport;    // engine functions handed to the cgame module
+#ifndef CGAME_HARD_LINKED
 static void *cgame_library = NULL;      // handle from Sys_LoadModule
+#endif
 
 cgameExport_t *cge = NULL;              // cgame module export
 
+#ifdef CGAME_HARD_LINKED
+// hard-linked build: cgame compiles straight into the engine binary,
+// so its entry point is a plain extern instead of a module symbol
+extern cgameExport_t *GetCgameAPI( int apiVersion, cgameImport_t *import );
+#else
 typedef cgameExport_t *( *GetCgameAPI_t )( int apiVersion, cgameImport_t *import );
+#endif
 
 /*
 ====================
@@ -423,8 +431,10 @@ void CL_ShutdownCGame( void ) {
 		return;
 	}
 	cge->Shutdown();
+#ifndef CGAME_HARD_LINKED
 	Sys_UnloadModule( cgame_library );
 	cgame_library = NULL;
+#endif
 	cge = NULL;
 }
 
@@ -820,7 +830,9 @@ void CL_InitCGame( void ) {
 	const char          *info;
 	const char          *mapname;
 	int t1, t2;
+#ifndef CGAME_HARD_LINKED
 	GetCgameAPI_t GetCgameAPI;
+#endif
 
 	t1 = Sys_Milliseconds();
 
@@ -835,6 +847,13 @@ void CL_InitCGame( void ) {
 	// exchange function pointer structs with the native cgame module
 	CL_FillCgameImport( &cl_cgameImport );
 
+#ifdef CGAME_HARD_LINKED
+	cge = GetCgameAPI( CGAME_IMPORT_API_VERSION, &cl_cgameImport );
+	if ( !cge || cge->apiVersion != CGAME_IMPORT_API_VERSION ) {
+		cge = NULL;
+		Com_Error( ERR_DROP, "GetCgameAPI on cgame failed" );
+	}
+#else
 	cgame_library = Sys_LoadModule( "cgame" );
 	if ( !cgame_library ) {
 		Com_Error( ERR_DROP, "Sys_LoadModule on cgame failed" );
@@ -854,6 +873,7 @@ void CL_InitCGame( void ) {
 		cge = NULL;
 		Com_Error( ERR_DROP, "GetCgameAPI on cgame failed" );
 	}
+#endif
 
 	cls.state = CA_LOADING;
 
@@ -1160,3 +1180,4 @@ qboolean CL_GetTag( int clientNum, char *tagname, orientation_t *or ) {
 
 	return cge->GetTag( clientNum, tagname, or );
 }
+
