@@ -389,7 +389,7 @@ renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'Model_md3.cpp', 'Model_mdc.cpp', 'Model_mds.cpp',
     'Material.cpp',
     'MaterialManager.cpp',
-    'Material_shader.cpp',
+    'Material_shader.cpp', 'Shadow.cpp',
     'ImageManager.cpp', 'Image_files.cpp', 'Image_intrinsic.cpp', 'Image_process.cpp',
 ]]
 
