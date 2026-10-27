@@ -54,10 +54,8 @@ If you have questions concerning this license or the applicable additional terms
 // performance evaluation option
 static idCVar r_nobind( "r_nobind", "0", CVAR_RENDERER | CVAR_CHEAT, "performance evaluation: bind the dlight image instead of the shader images" );
 
-// engine q_shared.h: DEG2RAD( a ) = a * M_PI / 180
-static ID_INLINE float DEG2RAD( float a ) {
-	return a * idMath::PI / 180.0f;
-}
+// the engine spells the degree conversion of q_shared.h; idlib's
+// math/Math.h already carries the DEG2RAD macro, so it is used here
 
 // the dormant backend globals
 shadowTess_t tess;
