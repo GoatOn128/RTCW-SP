@@ -58,6 +58,8 @@ typedef unsigned short triIndex_t;
 // our only drawing geometry type
 struct srfTriangles_t {
 	srfTriangles_t() {
+		lightmapCoords = NULL;
+		lightmapNum = -1;
 	}
 
 	idBounds bounds;                                    // for culling
@@ -73,6 +75,12 @@ struct srfTriangles_t {
 
 	int numIndexes;                                     // for shadows, this has both front and rear end caps and silhouette planes
 	triIndex_t *                indexes;                // indexes
+
+	// the Q3 lightmap texture channel the BFG vertex does not carry:
+	// one s and t pair per vertex for the world surfaces, NULL
+	// otherwise; the engine bakes it into its drawVert_t
+	float *                     lightmapCoords;
+	int                         lightmapNum;           // negative (LIGHTMAP_NONE/BY_VERTEX) means no lightmap
 
 	DISALLOW_COPY_AND_ASSIGN( srfTriangles_t );
 };

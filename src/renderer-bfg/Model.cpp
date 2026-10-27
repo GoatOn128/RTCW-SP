@@ -436,6 +436,8 @@ void idRenderModelStatic::FreeSurfaceTriangles( srfTriangles_t *tris ) const {
 	if ( !tris->referencedIndexes ) {
 		delete[] tris->indexes;
 	}
+	// the Q3 lightmap channel is module owned, it is never referenced
+	delete[] tris->lightmapCoords;
 	delete tris;
 }
 

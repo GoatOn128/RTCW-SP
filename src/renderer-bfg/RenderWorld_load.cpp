@@ -672,6 +672,19 @@ static void BuildBspLocalModels( idRenderWorldLocal *world, const q3BspWorld_t *
 			tri->numVerts = surf.numVerts;
 			tri->numIndexes = surf.numIndexes;
 
+			// the Q3 lightmap channel the BFG vertex does not carry:
+			// the lightmapped surfaces keep their lightmap texture
+			// coordinates on the geometry, everything else draws with
+			// none
+			tri->lightmapNum = lightmapIndex;
+			if ( lightmapIndex >= 0 ) {
+				tri->lightmapCoords = new float[surf.numVerts * 2];
+				for ( int i = 0; i < surf.numVerts; i++ ) {
+					tri->lightmapCoords[i * 2 + 0] = surf.verts[i].lightmap[0];
+					tri->lightmapCoords[i * 2 + 1] = surf.verts[i].lightmap[1];
+				}
+			}
+
 			for ( int i = 0; i < surf.numVerts; i++ ) {
 				const q3BspDrawVert_t &in = surf.verts[i];
 				idDrawVert &out = tri->verts[i];
@@ -679,9 +692,7 @@ static void BuildBspLocalModels( idRenderWorldLocal *world, const q3BspWorld_t *
 				out.xyz = idVec3( in.xyz[0], in.xyz[1], in.xyz[2] );
 				out.SetNormal( idVec3( in.normal[0], in.normal[1], in.normal[2] ) );
 				out.SetTexCoord( in.st[0], in.st[1] );
-				// the color is packed in native order, the lightmap
-				// coordinates stay on the BSP data until the lightmap
-				// phase adds the lightmap texture channels
+				// the color is packed in native order
 				unsigned int color;
 				memcpy( &color, in.color, sizeof( color ) );
 				out.SetNativeOrderColor( color );
