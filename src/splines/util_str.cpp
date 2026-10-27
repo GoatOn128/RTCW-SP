@@ -442,6 +442,8 @@ void idStr::snprintf
 	va_end( argptr );
 
 	assert( len < size );
+	// len is only read by the assert, mark it used for release builds
+	( void )len;
 
 	strncpy( dst, buffer, size - 1 );
 }
@@ -563,6 +565,12 @@ void TestStringClass
 	a = b;
 
 	a[1] = '1';                 // a.data = "t1st", b.data = "test"
+
+	// the test values above are intentionally write-only, mark them used
+	( void )ch;
+	( void )i;
+	( void )s1;
+	( void )s2;
 }
 
 #ifdef _WIN32
