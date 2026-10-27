@@ -118,11 +118,6 @@ typedef struct {
 	qboolean ( *GetEntityToken )( char *buffer, int size );
 } refexport_t;
 
-//
-// OpenGL function table defined in qgl.h and filled by the engine; the
-// renderer module receives it through refimport_t
-typedef struct qglimport_s qglimport_t;
-
 // platform window and GL management provided by the engine glimp code
 void GLimp_Init( void );
 void GLimp_Shutdown( void );
@@ -201,10 +196,6 @@ typedef struct {
 	unsigned int ( *Sys_ProcessorCount )( void );
 	qboolean ( *Sys_LowPhysicalMemory )( void );
 
-	// fill the GL import table after the platform GL context is up
-	void ( *QGL_FillImportTable )( void );
-
-	qglimport_t *qgl;
 	glconfig_t *glConfig;
 
 } refimport_t;
@@ -216,3 +207,4 @@ typedef struct {
 refexport_t*GetRefAPI( int apiVersion, refimport_t *rimp );
 
 #endif  // TR_PUBLIC_H
+

@@ -121,7 +121,6 @@ cvar_t   *in_joystickDebug = NULL;
 cvar_t   *joy_threshold    = NULL;
 
 cvar_t  *r_allowSoftwareGL;   // don't abort out if the pixelformat claims software
-cvar_t  *r_previousglDriver;
 
 qboolean dgamouse = qfalse;
 qboolean vidmode_ext = qfalse;
@@ -755,7 +754,7 @@ void GLimp_Shutdown( void ) {
 	// autorepeaton = qfalse; // bk001130 - from cvs1.17 (mkv)
 	if ( dpy ) {
 		if ( ctx ) {
-			qglXDestroyContext( dpy, ctx );
+			glXDestroyContext( dpy, ctx );
 		}
 		if ( win ) {
 			XDestroyWindow( dpy, win );
@@ -767,7 +766,7 @@ void GLimp_Shutdown( void ) {
 			XF86VidModeSetGamma( dpy, scrnum, &vidmode_InitialGamma );
 		}
 		// NOTE TTimo opening/closing the display should be necessary only once per run
-		//   but it seems QGL_Shutdown gets called in a lot of occasion
+		//   but it seems the platform shutdown gets called in a lot of occasions
 		//   in some cases, this XCloseDisplay is known to raise some X errors
 		//   ( show_bug.cgi?id=33 )
 		XCloseDisplay( dpy );
@@ -779,7 +778,6 @@ void GLimp_Shutdown( void ) {
 
 	memset( &glConfig, 0, sizeof( glConfig ) );
 
-	QGL_Shutdown();
 }
 
 /*
@@ -795,22 +793,11 @@ void GLimp_LogComment( char *comment ) {
 ** GLW_StartDriverAndSetMode
 */
 // bk001204 - prototype needed
-int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen );
-static qboolean GLW_StartDriverAndSetMode( const char *drivername,
-										   int mode,
-										   qboolean fullscreen ) {
+int GLW_SetMode( int mode, qboolean fullscreen );
+static qboolean GLW_StartDriverAndSetMode( int mode, qboolean fullscreen ) {
 	rserr_t err;
 
-	// don't ever bother going into fullscreen with a voodoo card
-#if 1   // JDC: I reenabled this
-	if ( Q_stristr( drivername, "Voodoo" ) ) {
-		ri.Cvar_Set( "r_fullscreen", "0" );
-		r_fullscreen->modified = qfalse;
-		fullscreen = qfalse;
-	}
-#endif
-
-	err = GLW_SetMode( drivername, mode, fullscreen );
+	err = GLW_SetMode( mode, fullscreen );
 
 	switch ( err )
 	{
@@ -829,7 +816,7 @@ static qboolean GLW_StartDriverAndSetMode( const char *drivername,
 /*
 ** GLW_SetMode
 */
-int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
+int GLW_SetMode( int mode, qboolean fullscreen ) {
 	int attrib[] = {
 		GLX_RGBA,     // 0
 		GLX_RED_SIZE, 4,  // 1, 2
@@ -855,7 +842,6 @@ int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
 	int dga_MajorVersion, dga_MinorVersion;
 	int actualWidth, actualHeight;
 	int i;
-	const char*   glstring; // bk001130 - from cvs1.17 (mkv)
 
 	ri.Printf( PRINT_ALL, "Initializing OpenGL display\n" );
 
@@ -960,9 +946,6 @@ int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
 		colorbits = r_colorbits->value;
 	}
 
-	if ( !Q_stricmp( r_glDriver->string, _3DFX_DRIVER_NAME ) ) {
-		colorbits = 16;
-	}
 
 	if ( !r_depthbits->value ) {
 		depthbits = 24;
@@ -1044,7 +1027,7 @@ int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
 		attrib[ATTR_DEPTH_IDX] = tdepthbits; // default to 24 depth
 		attrib[ATTR_STENCIL_IDX] = tstencilbits;
 
-		visinfo = qglXChooseVisual( dpy, scrnum, attrib );
+		visinfo = glXChooseVisual( dpy, scrnum, attrib );
 		if ( !visinfo ) {
 			continue;
 		}
@@ -1094,144 +1077,12 @@ int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
 
 	XFlush( dpy );
 	XSync( dpy,False ); // bk001130 - from cvs1.17 (mkv)
-	ctx = qglXCreateContext( dpy, visinfo, NULL, True );
+	ctx = glXCreateContext( dpy, visinfo, NULL, True );
 	XSync( dpy,False ); // bk001130 - from cvs1.17 (mkv)
 
-	qglXMakeCurrent( dpy, win, ctx );
-
-	// bk001130 - from cvs1.17 (mkv)
-	glstring = qglGetString( GL_RENDERER );
-	ri.Printf( PRINT_ALL, "GL_RENDERER: %s\n", glstring );
-
-	// bk010122 - new software token (Indirect)
-	if ( !Q_stricmp( glstring, "Mesa X11" )
-		 || !Q_stricmp( glstring, "Mesa GLX Indirect" ) ) {
-		if ( !r_allowSoftwareGL->integer ) {
-			ri.Printf( PRINT_ALL, "\n\n***********************************************************\n" );
-			ri.Printf( PRINT_ALL, " You are using software Mesa (no hardware acceleration)!   \n" );
-			ri.Printf( PRINT_ALL, " Driver DLL used: %s\n", drivername );
-			ri.Printf( PRINT_ALL, " If this is intentional, add\n" );
-			ri.Printf( PRINT_ALL, "       \"+set r_allowSoftwareGL 1\"\n" );
-			ri.Printf( PRINT_ALL, " to the command line when starting the game.\n" );
-			ri.Printf( PRINT_ALL, "***********************************************************\n" );
-			GLimp_Shutdown();
-			return RSERR_INVALID_MODE;
-		} else
-		{
-			ri.Printf( PRINT_ALL, "...using software Mesa (r_allowSoftwareGL==1).\n" );
-		}
-	}
+	glXMakeCurrent( dpy, win, ctx );
 
 	return RSERR_OK;
-}
-
-/*
-** GLW_InitExtensions
-*/
-static void GLW_InitExtensions( void ) {
-	if ( !r_allowExtensions->integer ) {
-		ri.Printf( PRINT_ALL, "*** IGNORING OPENGL EXTENSIONS ***\n" );
-		return;
-	}
-
-	ri.Printf( PRINT_ALL, "Initializing OpenGL extensions\n" );
-
-	// GL_S3_s3tc
-	if ( Q_stristr( glConfig.extensions_string, "GL_S3_s3tc" ) ) {
-		if ( r_ext_compressed_textures->value ) {
-			glConfig.textureCompression = TC_S3TC;
-			ri.Printf( PRINT_ALL, "...using GL_S3_s3tc\n" );
-		} else
-		{
-			glConfig.textureCompression = TC_NONE;
-			ri.Printf( PRINT_ALL, "...ignoring GL_S3_s3tc\n" );
-		}
-	} else
-	{
-		glConfig.textureCompression = TC_NONE;
-		ri.Printf( PRINT_ALL, "...GL_S3_s3tc not found\n" );
-	}
-
-	// GL_EXT_texture_env_add
-	glConfig.textureEnvAddAvailable = qfalse;
-	if ( Q_stristr( glConfig.extensions_string, "EXT_texture_env_add" ) ) {
-		if ( r_ext_texture_env_add->integer ) {
-			glConfig.textureEnvAddAvailable = qtrue;
-			ri.Printf( PRINT_ALL, "...using GL_EXT_texture_env_add\n" );
-		} else
-		{
-			glConfig.textureEnvAddAvailable = qfalse;
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_texture_env_add\n" );
-		}
-	} else
-	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_texture_env_add not found\n" );
-	}
-
-	// GL_ARB_multitexture
-	qglMultiTexCoord2fARB = NULL;
-	qglActiveTextureARB = NULL;
-	qglClientActiveTextureARB = NULL;
-	if ( Q_stristr( glConfig.extensions_string, "GL_ARB_multitexture" ) ) {
-		if ( r_ext_multitexture->value ) {
-			qglMultiTexCoord2fARB = ( PFNGLMULTITEXCOORD2FARBPROC ) dlsym( glw_state.OpenGLLib, "glMultiTexCoord2fARB" );
-			qglActiveTextureARB = ( PFNGLACTIVETEXTUREARBPROC ) dlsym( glw_state.OpenGLLib, "glActiveTextureARB" );
-			qglClientActiveTextureARB = ( PFNGLCLIENTACTIVETEXTUREARBPROC ) dlsym( glw_state.OpenGLLib, "glClientActiveTextureARB" );
-
-			if ( qglActiveTextureARB ) {
-				qglGetIntegerv( GL_MAX_ACTIVE_TEXTURES_ARB, &glConfig.maxActiveTextures );
-
-				if ( glConfig.maxActiveTextures > 1 ) {
-					ri.Printf( PRINT_ALL, "...using GL_ARB_multitexture\n" );
-				} else
-				{
-					qglMultiTexCoord2fARB = NULL;
-					qglActiveTextureARB = NULL;
-					qglClientActiveTextureARB = NULL;
-					ri.Printf( PRINT_ALL, "...not using GL_ARB_multitexture, < 2 texture units\n" );
-				}
-			}
-		} else
-		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_ARB_multitexture\n" );
-		}
-	} else
-	{
-		ri.Printf( PRINT_ALL, "...GL_ARB_multitexture not found\n" );
-	}
-
-	// GL_EXT_compiled_vertex_array
-	if ( Q_stristr( glConfig.extensions_string, "GL_EXT_compiled_vertex_array" ) ) {
-		if ( r_ext_compiled_vertex_array->value ) {
-			ri.Printf( PRINT_ALL, "...using GL_EXT_compiled_vertex_array\n" );
-			qglLockArraysEXT = ( void( APIENTRY * )( int, int ) )dlsym( glw_state.OpenGLLib, "glLockArraysEXT" );
-			qglUnlockArraysEXT = ( void( APIENTRY * )( void ) )dlsym( glw_state.OpenGLLib, "glUnlockArraysEXT" );
-			if ( !qglLockArraysEXT || !qglUnlockArraysEXT ) {
-				ri.Error( ERR_FATAL, "bad getprocaddress" );
-			}
-		} else
-		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_compiled_vertex_array\n" );
-		}
-	} else
-	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_compiled_vertex_array not found\n" );
-	}
-
-	// GL_NV_fog_distance
-	if ( Q_stristr( glConfig.extensions_string, "GL_NV_fog_distance" ) ) {
-		if ( r_ext_NV_fog_dist->integer ) {
-			glConfig.NVFogAvailable = qtrue;
-			ri.Printf( PRINT_ALL, "...using GL_NV_fog_distance\n" );
-		} else {
-			ri.Printf( PRINT_ALL, "...ignoring GL_NV_fog_distance\n" );
-			ri.Cvar_Set( "r_ext_NV_fog_dist", "0" );
-		}
-	} else {
-		ri.Printf( PRINT_ALL, "...GL_NV_fog_distance not found\n" );
-		ri.Cvar_Set( "r_ext_NV_fog_dist", "0" );
-	}
-
 }
 
 static void GLW_InitGamma() {
@@ -1251,52 +1102,6 @@ static void GLW_InitGamma() {
 		ri.Printf( PRINT_ALL, "XF86 Gamma extension initialized\n" );
 		glConfig.deviceSupportsGamma = qtrue;
 	}
-}
-
-/*
-** GLW_LoadOpenGL
-**
-** GLimp_win.c internal function that that attempts to load and use
-** a specific OpenGL DLL.
-*/
-static qboolean GLW_LoadOpenGL( const char *name ) {
-	qboolean fullscreen;
-
-	ri.Printf( PRINT_ALL, "...loading %s: ", name );
-
-	// disable the 3Dfx splash screen and set gamma
-	// we do this all the time, but it shouldn't hurt anything
-	// on non-3Dfx stuff
-	putenv( "FX_GLIDE_NO_SPLASH=0" );
-
-	// Mesa VooDoo hacks
-	putenv( "MESA_GLX_FX=fullscreen\n" );
-
-	// load the QGL layer
-	if ( QGL_Init( name ) ) {
-		fullscreen = r_fullscreen->integer;
-
-		// create the window and set up the context
-		if ( !GLW_StartDriverAndSetMode( name, r_mode->integer, fullscreen ) ) {
-			if ( r_mode->integer != 3 ) {
-				if ( !GLW_StartDriverAndSetMode( name, 3, fullscreen ) ) {
-					goto fail;
-				}
-			} else {
-				goto fail;
-			}
-		}
-
-		return qtrue;
-	} else
-	{
-		ri.Printf( PRINT_ALL, "failed\n" );
-	}
-fail:
-
-	QGL_Shutdown();
-
-	return qfalse;
 }
 
 /*
@@ -1323,142 +1128,32 @@ int qXErrorHandler( Display *dpy, XErrorEvent *ev ) {
 ** of OpenGL.
 */
 void GLimp_Init( void ) {
-	qboolean attemptedlibGL = qfalse;
-	qboolean attempted3Dfx = qfalse;
-	qboolean success = qfalse;
-	char buf[1024];
-	cvar_t *lastValidRenderer = ri.Cvar_Get( "r_lastValidRenderer", "(uninitialized)", CVAR_ARCHIVE );
-	// cvar_t	*cv; // bk001204 - unused
-
 	r_allowSoftwareGL = ri.Cvar_Get( "r_allowSoftwareGL", "0", CVAR_LATCH );
 
-	r_previousglDriver = ri.Cvar_Get( "r_previousglDriver", "", CVAR_ROM );
-
 	InitSig();
-
-	// Hack here so that if the UI
-	if ( *r_previousglDriver->string ) {
-		// The UI changed it on us, hack it back
-		// This means the renderer can't be changed on the fly
-		ri.Cvar_Set( "r_glDriver", r_previousglDriver->string );
-	}
 
 	// set up our custom error handler for X failures
 	XSetErrorHandler( &qXErrorHandler );
 
-	//
-	// load and initialize the specific OpenGL driver
-	//
-	if ( !GLW_LoadOpenGL( r_glDriver->string ) ) {
-		if ( !Q_stricmp( r_glDriver->string, OPENGL_DRIVER_NAME ) ) {
-			attemptedlibGL = qtrue;
-		} else if ( !Q_stricmp( r_glDriver->string, _3DFX_DRIVER_NAME ) ) {
-			attempted3Dfx = qtrue;
-		}
-
-	#if 0
-		// show_bug.cgi?id=455
-		// removing outdated Voodoo GL loading
-		if ( !attempted3Dfx && !success ) {
-			attempted3Dfx = qtrue;
-			if ( GLW_LoadOpenGL( _3DFX_DRIVER_NAME ) ) {
-				ri.Cvar_Set( "r_glDriver", _3DFX_DRIVER_NAME );
-				r_glDriver->modified = qfalse;
-				success = qtrue;
+	// glX* are real libGL entry points, no driver library to pick anymore
+	if ( !GLW_StartDriverAndSetMode( r_mode->integer, r_fullscreen->integer ) ) {
+		if ( r_mode->integer != 3 ) {
+			if ( !GLW_StartDriverAndSetMode( 3, r_fullscreen->integer ) ) {
+				ri.Error( ERR_FATAL, "GLimp_Init() - could not load OpenGL subsystem\n" );
 			}
-		}
-	#endif
-
-		// try ICD before trying 3Dfx standalone driver
-		if ( !attemptedlibGL && !success ) {
-			attemptedlibGL = qtrue;
-			if ( GLW_LoadOpenGL( OPENGL_DRIVER_NAME ) ) {
-				ri.Cvar_Set( "r_glDriver", OPENGL_DRIVER_NAME );
-				r_glDriver->modified = qfalse;
-				success = qtrue;
-			}
-		}
-
-		if ( !success ) {
+		} else
+		{
 			ri.Error( ERR_FATAL, "GLimp_Init() - could not load OpenGL subsystem\n" );
 		}
-
 	}
 
-	// Save it in case the UI stomps it
-	ri.Cvar_Set( "r_previousglDriver", r_glDriver->string );
-
-	// This values force the UI to disable driver selection
+	// This value forces the UI to disable driver selection
 	glConfig.driverType = GLDRV_ICD;
 	glConfig.hardwareType = GLHW_GENERIC;
 
-	// get our config strings
-	Q_strncpyz( glConfig.vendor_string, qglGetString( GL_VENDOR ), sizeof( glConfig.vendor_string ) );
-	Q_strncpyz( glConfig.renderer_string, qglGetString( GL_RENDERER ), sizeof( glConfig.renderer_string ) );
-	if ( *glConfig.renderer_string && glConfig.renderer_string[strlen( glConfig.renderer_string ) - 1] == '\n' ) {
-		glConfig.renderer_string[strlen( glConfig.renderer_string ) - 1] = 0;
-	}
-	Q_strncpyz( glConfig.version_string, qglGetString( GL_VERSION ), sizeof( glConfig.version_string ) );
-	Q_strncpyz( glConfig.extensions_string, qglGetString( GL_EXTENSIONS ), sizeof( glConfig.extensions_string ) );
-
-	//
-	// chipset specific configuration
-	//
-	strcpy( buf, glConfig.renderer_string );
-	strlwr( buf );
-
-	//
-	// NOTE: if changing cvars, do it within this block.  This allows them
-	// to be overridden when testing driver fixes, etc. but only sets
-	// them to their default state when the hardware is first installed/run.
-	//
-	if ( Q_stricmp( lastValidRenderer->string, glConfig.renderer_string ) ) {
-		glConfig.hardwareType = GLHW_GENERIC;
-
-		ri.Cvar_Set( "r_textureMode", "GL_LINEAR_MIPMAP_NEAREST" );
-
-		// VOODOO GRAPHICS w/ 2MB
-		if ( Q_stristr( buf, "voodoo graphics/1 tmu/2 mb" ) ) {
-			ri.Cvar_Set( "r_picmip", "2" );
-			ri.Cvar_Get( "r_picmip", "1", CVAR_ARCHIVE | CVAR_LATCH );
-		} else
-		{
-			ri.Cvar_Set( "r_picmip", "1" );
-
-			if ( Q_stristr( buf, "rage 128" ) || Q_stristr( buf, "rage128" ) ) {
-				ri.Cvar_Set( "r_finish", "0" );
-			}
-			// Savage3D and Savage4 should always have trilinear enabled
-			else if ( Q_stristr( buf, "savage3d" ) || Q_stristr( buf, "s3 savage4" ) ) {
-				ri.Cvar_Set( "r_texturemode", "GL_LINEAR_MIPMAP_LINEAR" );
-			}
-		}
-	}
-
-	//
-	// this is where hardware specific workarounds that should be
-	// detected/initialized every startup should go.
-	//
-	if ( Q_stristr( buf, "banshee" ) || Q_stristr( buf, "Voodoo_Graphics" ) ) {
-		glConfig.hardwareType = GLHW_3DFX_2D3D;
-	} else if ( Q_stristr( buf, "rage pro" ) || Q_stristr( buf, "RagePro" ) ) {
-		glConfig.hardwareType = GLHW_RAGEPRO;
-	} else if ( Q_stristr( buf, "permedia2" ) ) {
-		glConfig.hardwareType = GLHW_PERMEDIA2;
-	} else if ( Q_stristr( buf, "riva 128" ) ) {
-		glConfig.hardwareType = GLHW_RIVA128;
-	} else if ( Q_stristr( buf, "riva tnt " ) ) {
-	}
-
-	ri.Cvar_Set( "r_lastValidRenderer", glConfig.renderer_string );
-
-	// initialize extensions
-	GLW_InitExtensions();
 	GLW_InitGamma();
 
 	InitSig();
-
-	return;
 }
 
 
@@ -1472,11 +1167,16 @@ void GLimp_Init( void ) {
 void GLimp_EndFrame( void ) {
 	// don't flip if drawing to front buffer
 	if ( Q_stricmp( r_drawBuffer->string, "GL_FRONT" ) != 0 ) {
-		qglXSwapBuffers( dpy, win );
+		glXSwapBuffers( dpy, win );
 	}
 
 	// check logging
-	QGL_EnableLogging( (qboolean)r_logFile->integer ); // bk001205 - was ->value
+	if ( r_logFile->integer && !glw_state.log_fp ) {
+		glw_state.log_fp = fopen( "gl.log", "wt" );
+	} else if ( !r_logFile->integer && glw_state.log_fp ) {
+		fclose( glw_state.log_fp );
+		glw_state.log_fp = 0;
+	}
 }
 
 #ifdef SMP
@@ -1607,8 +1307,7 @@ void IN_Frame( void ) {
 		// temporarily deactivate if not in the game and
 		// running on the desktop
 		// voodoo always counts as full screen
-		if ( Cvar_VariableValue( "r_fullscreen" ) == 0
-			 && strcmp( Cvar_VariableString( "r_glDriver" ), _3DFX_DRIVER_NAME ) ) {
+		if ( Cvar_VariableValue( "r_fullscreen" ) == 0 ) {
 			IN_DeactivateMouse();
 			return;
 		}
@@ -1639,3 +1338,4 @@ void Sys_SendKeyEvents( void ) {
 void IN_StartupJoystick( void ) {}
 void IN_JoyMove( void ) {}
 #endif
+

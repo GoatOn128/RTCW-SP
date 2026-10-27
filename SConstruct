@@ -222,14 +222,14 @@ botlib_files = ['src/games/botlib/' + f for f in [
 
 unix_sys_files = ['src/sys/unix/' + f for f in [
     'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
-    'linux_qgl.c', 'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
+    'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
 ]]
 # the unix asm files are not built: q_shared.h forces id386 to 0, so the
 # portable C implementations are used
 
 win_sys_files = ['src/sys/win32/' + f for f in [
     'win_gamma.c', 'win_glimp.c', 'win_input.c', 'win_main.c', 'win_net.c',
-    'win_qgl.c', 'win_shared.c', 'win_snd.c', 'win_syscon.c',
+    'win_shared.c', 'win_snd.c', 'win_syscon.c',
     'win_wndproc.c',
 ]]
 
@@ -245,7 +245,8 @@ if IS_WINDOWS:
     client_env.Append(LINKFLAGS=['/SUBSYSTEM:WINDOWS'])
     client_env.Append(LIBS=['user32', 'gdi32', 'winmm', 'wsock32', 'advapi32', 'ole32', 'opengl32', 'shell32'])
 else:
-    client_env.Append(LIBS=['dl', 'm', 'X11', 'Xext', 'Xxf86dga', 'Xxf86vm'])
+    # the client calls glX* directly on Linux
+    client_env.Append(LIBS=['dl', 'm', 'GL', 'X11', 'Xext', 'Xxf86dga', 'Xxf86vm'])
     # ASLR
     client_env.Append(CCFLAGS=['-fPIE'], CXXFLAGS=['-fPIE'], LINKFLAGS=['-pie'])
 
