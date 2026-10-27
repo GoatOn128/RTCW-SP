@@ -322,5 +322,7 @@ ID_INLINE void idCVar::RegisterStaticVars() {
 // CVarSystem.cpp; the cvars of a single file stay local to it
 extern idCVar r_vertexLight;
 extern idCVar r_mapOverBrightBits;
+extern idCVar r_detailTextures;
+extern idCVar r_uiFullScreen;
 
 #endif /* !__CVARSYSTEM_H__ */

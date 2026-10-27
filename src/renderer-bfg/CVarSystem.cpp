@@ -40,3 +40,5 @@ idCVar * idCVar::staticVars = NULL;
 // externs in CVarSystem.h; the cvars of a single file stay local to it
 idCVar r_vertexLight( "r_vertexLight", "0", CVAR_RENDERER | CVAR_ARCHIVE, "vertex lighting" );
 idCVar r_mapOverBrightBits( "r_mapOverBrightBits", "2", CVAR_RENDERER | CVAR_ARCHIVE, "map overbright bits" );
+idCVar r_detailTextures( "r_detailtextures", "1", CVAR_RENDERER | CVAR_ARCHIVE, "detail textures" );
+idCVar r_uiFullScreen( "r_uifullscreen", "0", CVAR_RENDERER, "ui fullscreen" );

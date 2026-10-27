@@ -372,13 +372,12 @@ typedef struct {
 	bool isVideoMap;
 } textureBundle_t;
 
-// the engine keeps two bundles per stage for the multitexture collapse;
-// this renderer always draws the stages as separate passes, so only
-// bundle 0 exists
+// the engine keeps two bundles per stage; the multitexture collapse
+// in Finish fills bundle 1 when it merges two stages into one pass
 typedef struct {
 	bool active;
 
-	textureBundle_t bundle[1];
+	textureBundle_t bundle[2];
 
 	waveForm_t rgbWave;
 	colorGen_t rgbGen;
@@ -418,6 +417,20 @@ void                    InitTextureOnly( const char *name, int lightmapIndex );
 // in src/renderer/tr_shader.c, and computes the coverage; must be
 // called after the parser filled the stages
 void                    Finish();
+
+private:
+// with r_vertexLight on, only a single pass renders; the best stage
+// of the opaque shaders wins. Ported from VertexLightingCollapse in
+// src/renderer/tr_shader.c
+void                    VertexLightingCollapse();
+
+// attempts to combine the two first stages into a single
+// multitexture pass. Ported from CollapseMultitexture in
+// src/renderer/tr_shader.c; the hardware checks of the engine drop
+// out, this renderer always has the modern GL feature set
+bool                    CollapseMultitexture();
+
+public:
 
 // accessors
 const char *            GetName() const { return name.c_str(); }
@@ -472,6 +485,7 @@ int numDeforms;
 deformStage_t deforms[MAX_SHADER_DEFORMS];
 
 int numStages;
+int multitextureEnv;                 // GL_MODULATE or GL_ADD when Finish merged two stages into one multitexture pass, 0 otherwise
 shaderStage_t stages[MAX_SHADER_STAGES];
 
 int lightmapIndex;

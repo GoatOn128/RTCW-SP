@@ -29,6 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "precompiled.h"
 #include "Material.h"
 #include "ImageManager.h"
+#include "CVarSystem.h"
 
 /*
 
@@ -84,6 +85,7 @@ void idMaterial::Reset() {
 	characterMip = false;
 	noFog = false;
 	clampTime = 0;
+	multitextureEnv = 0;
 
 	numDeforms = 0;
 	for ( int i = 0; i < MAX_SHADER_DEFORMS; i++ ) {
@@ -210,10 +212,11 @@ void idMaterial::InitTextureOnly( const char *textureName, int lmIndex ) {
 =================
 idMaterial::Finish
 
-The stage defaulting and the sort order of FinishShader in
-src/renderer/tr_shader.c. The multitexture collapse, the vertex
-lighting collapse and the stage iterator function are not ported:
-this renderer draws every stage as a separate pass.
+The stage defaulting, the sort order and the stage collapses of
+FinishShader in src/renderer/tr_shader.c, plus the coverage of the
+drawn stages. The stage iterator function of the engine is not
+ported: the backend picks its draw path from the stages when it
+lands.
 =================
 */
 void idMaterial::Finish() {
@@ -247,9 +250,24 @@ void idMaterial::Finish() {
 			continue;
 		}
 
-		// the engine drops the detail stages when r_detailTextures is
-		// off; the stage is kept here and the frontend skips it when
-		// the cvar is off
+		// ditch this stage if it's detail and detail textures are
+		// disabled, the engine removes the stage here too
+		if ( pStage->isDetail && !r_detailTextures.GetBool() ) {
+			if ( stage < ( MAX_SHADER_STAGES - 1 ) ) {
+				memmove( pStage, pStage + 1, sizeof( *pStage ) * ( MAX_SHADER_STAGES - stage - 1 ) );
+				// kill the last stage, since it's now a duplicate
+				for ( int i = MAX_SHADER_STAGES - 1; i > stage; i-- ) {
+					if ( stages[i].active ) {
+						memset( &stages[i], 0, sizeof( *pStage ) );
+						break;
+					}
+				}
+				stage--;    // the next stage is now the current stage, so check it again
+			} else {
+				memset( pStage, 0, sizeof( *pStage ) );
+			}
+			continue;
+		}
 
 		// default texture coordinate generation
 		if ( pStage->bundle[0].isLightmap ) {
@@ -311,6 +329,20 @@ void idMaterial::Finish() {
 		sort = SS_OPAQUE;
 	}
 
+	// if we are in r_vertexLight mode, never use a lightmap texture;
+	// the engine also collapses for the Permedia2 hardware type,
+	// which has no equivalent here
+	if ( numActiveStages > 1 && r_vertexLight.GetBool() && !r_uiFullScreen.GetBool() ) {
+		VertexLightingCollapse();
+		numActiveStages = 1;
+		hasLightmapStage = false;
+	}
+
+	// look for multitexture potential
+	if ( numActiveStages > 1 && CollapseMultitexture() ) {
+		numActiveStages--;
+	}
+
 	if ( lightmapIndex >= 0 && !hasLightmapStage ) {
 		idLib::Warning( "Material '%s' has lightmap but no lightmap stage", name.c_str() );
 		lightmapIndex = LIGHTMAP_NONE;
@@ -342,4 +374,210 @@ void idMaterial::Finish() {
 		// the box textures
 		coverage = MC_TRANSLUCENT;
 	}
+}
+
+// the multitexture collapse table of the engine: the blend state of
+// the two stages and the resulting multitexture environment and
+// blend, from src/renderer/tr_shader.c
+typedef struct {
+	int blendA;
+	int blendB;
+
+	int multitextureEnv;
+	int multitextureBlend;
+} collapse_t;
+
+static collapse_t collapse[] = {
+	{ 0, GLS_DSTBLEND_SRC_COLOR | GLS_SRCBLEND_ZERO,
+	  GL_MODULATE, 0 },
+
+	{ 0, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR,
+	  GL_MODULATE, 0 },
+
+	{ GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR,
+	  GL_MODULATE, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR },
+
+	{ GLS_DSTBLEND_SRC_COLOR | GLS_SRCBLEND_ZERO, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR,
+	  GL_MODULATE, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR },
+
+	{ GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR, GLS_DSTBLEND_SRC_COLOR | GLS_SRCBLEND_ZERO,
+	  GL_MODULATE, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR },
+
+	{ GLS_DSTBLEND_SRC_COLOR | GLS_SRCBLEND_ZERO, GLS_DSTBLEND_SRC_COLOR | GLS_SRCBLEND_ZERO,
+	  GL_MODULATE, GLS_DSTBLEND_ZERO | GLS_SRCBLEND_DST_COLOR },
+
+	{ 0, GLS_DSTBLEND_ONE | GLS_SRCBLEND_ONE,
+	  GL_ADD, 0 },
+
+	{ GLS_DSTBLEND_ONE | GLS_SRCBLEND_ONE, GLS_DSTBLEND_ONE | GLS_SRCBLEND_ONE,
+	  GL_ADD, GLS_DSTBLEND_ONE | GLS_SRCBLEND_ONE },
+
+	{ -1 }
+};
+
+/*
+=================
+idMaterial::VertexLightingCollapse
+
+If vertex lighting is enabled, only render a single pass, trying to
+guess which is the correct one to best approximate what it is
+supposed to look like.
+=================
+*/
+void idMaterial::VertexLightingCollapse() {
+	// if we aren't opaque, just use the first pass
+	if ( sort == SS_OPAQUE ) {
+		// pick the best texture for the single pass
+		shaderStage_t *bestStage = &stages[0];
+		int bestImageRank = -999999;
+
+		for ( int stage = 0; stage < MAX_SHADER_STAGES; stage++ ) {
+			shaderStage_t *pStage = &stages[stage];
+
+			if ( !pStage->active ) {
+				break;
+			}
+
+			int rank = 0;
+
+			if ( pStage->bundle[0].isLightmap ) {
+				rank -= 100;
+			}
+			if ( pStage->bundle[0].tcGen != TCGEN_TEXTURE ) {
+				rank -= 5;
+			}
+			if ( pStage->bundle[0].numTexMods ) {
+				rank -= 5;
+			}
+			if ( pStage->rgbGen != CGEN_IDENTITY && pStage->rgbGen != CGEN_IDENTITY_LIGHTING ) {
+				rank -= 3;
+			}
+
+			if ( rank > bestImageRank ) {
+				bestImageRank = rank;
+				bestStage = pStage;
+			}
+		}
+
+		stages[0].bundle[0] = bestStage->bundle[0];
+		stages[0].stateBits &= ~( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS );
+		stages[0].stateBits |= GLS_DEPTHMASK_TRUE;
+		if ( lightmapIndex == LIGHTMAP_NONE ) {
+			stages[0].rgbGen = CGEN_LIGHTING_DIFFUSE;
+		} else {
+			stages[0].rgbGen = CGEN_EXACT_VERTEX;
+		}
+		stages[0].alphaGen = AGEN_SKIP;
+	} else {
+		// don't use a lightmap (tesla coils)
+		if ( stages[0].bundle[0].isLightmap ) {
+			stages[0] = stages[1];
+		}
+
+		// if we were in a cross-fade cgen, hack it to normal
+		if ( stages[0].rgbGen == CGEN_ONE_MINUS_ENTITY || stages[1].rgbGen == CGEN_ONE_MINUS_ENTITY ) {
+			stages[0].rgbGen = CGEN_IDENTITY_LIGHTING;
+		}
+		if ( ( stages[0].rgbGen == CGEN_WAVEFORM && stages[0].rgbWave.func == GF_SAWTOOTH )
+			 && ( stages[1].rgbGen == CGEN_WAVEFORM && stages[1].rgbWave.func == GF_INVERSE_SAWTOOTH ) ) {
+			stages[0].rgbGen = CGEN_IDENTITY_LIGHTING;
+		}
+		if ( ( stages[0].rgbGen == CGEN_WAVEFORM && stages[0].rgbWave.func == GF_INVERSE_SAWTOOTH )
+			 && ( stages[1].rgbGen == CGEN_WAVEFORM && stages[1].rgbWave.func == GF_SAWTOOTH ) ) {
+			stages[0].rgbGen = CGEN_IDENTITY_LIGHTING;
+		}
+	}
+
+	for ( int stage = 1; stage < MAX_SHADER_STAGES; stage++ ) {
+		shaderStage_t *pStage = &stages[stage];
+
+		if ( !pStage->active ) {
+			break;
+		}
+
+		memset( pStage, 0, sizeof( *pStage ) );
+	}
+}
+
+/*
+=================
+idMaterial::CollapseMultitexture
+
+Attempt to combine two stages into a single multitexture stage.
+FIXME: I think modulated add + modulated add collapses incorrectly
+=================
+*/
+bool idMaterial::CollapseMultitexture() {
+	// make sure both stages are active
+	if ( !stages[0].active || !stages[1].active ) {
+		return false;
+	}
+
+	int abits = stages[0].stateBits;
+	int bbits = stages[1].stateBits;
+
+	// make sure that both stages have identical state other than blend modes
+	if ( ( abits & ~( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS | GLS_DEPTHMASK_TRUE ) ) !=
+		 ( bbits & ~( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS | GLS_DEPTHMASK_TRUE ) ) ) {
+		return false;
+	}
+
+	abits &= ( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS );
+	bbits &= ( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS );
+
+	// search for a valid multitexture blend function
+	int i;
+	for ( i = 0; collapse[i].blendA != -1 ; i++ ) {
+		if ( abits == collapse[i].blendA
+			 && bbits == collapse[i].blendB ) {
+			break;
+		}
+	}
+
+	// nothing found
+	if ( collapse[i].blendA == -1 ) {
+		return false;
+	}
+
+	// make sure waveforms have identical parameters
+	if ( ( stages[0].rgbGen != stages[1].rgbGen ) ||
+		 ( stages[0].alphaGen != stages[1].alphaGen ) ) {
+		return false;
+	}
+
+	// an add collapse can only have identity colors
+	if ( collapse[i].multitextureEnv == GL_ADD && stages[0].rgbGen != CGEN_IDENTITY ) {
+		return false;
+	}
+
+	if ( stages[0].rgbGen == CGEN_WAVEFORM ) {
+		if ( memcmp( &stages[0].rgbWave, &stages[1].rgbWave, sizeof( stages[0].rgbWave ) ) ) {
+			return false;
+		}
+	}
+	if ( stages[0].alphaGen == AGEN_WAVEFORM ) {
+		if ( memcmp( &stages[0].alphaWave, &stages[1].alphaWave, sizeof( stages[0].alphaWave ) ) ) {
+			return false;
+		}
+	}
+
+	// make sure that lightmaps are in bundle 1
+	if ( stages[0].bundle[0].isLightmap ) {
+		textureBundle_t tmpBundle = stages[0].bundle[0];
+		stages[0].bundle[0] = stages[1].bundle[0];
+		stages[0].bundle[1] = tmpBundle;
+	} else {
+		stages[0].bundle[1] = stages[1].bundle[0];
+	}
+
+	// set the new blend state bits
+	multitextureEnv = collapse[i].multitextureEnv;
+	stages[0].stateBits &= ~( GLS_DSTBLEND_BITS | GLS_SRCBLEND_BITS );
+	stages[0].stateBits |= collapse[i].multitextureBlend;
+
+	// move down subsequent shaders
+	memmove( &stages[1], &stages[2], sizeof( stages[0] ) * ( MAX_SHADER_STAGES - 2 ) );
+	memset( &stages[MAX_SHADER_STAGES - 1], 0, sizeof( stages[0] ) );
+
+	return true;
 }
