@@ -164,7 +164,7 @@ punctuation_t default_punctuations[] =
 #ifdef DOLLAR
 	{"$",P_DOLLAR, NULL},
 #endif //DOLLAR
-	{NULL, 0}
+	{NULL, 0, NULL}
 };
 
 #ifdef BSPC
@@ -1450,3 +1450,4 @@ void PS_SetBaseFolder( char *path ) {
 	Com_sprintf( basefolder, sizeof( basefolder ), path );
 #endif
 } //end of the function PS_SetBaseFolder
+

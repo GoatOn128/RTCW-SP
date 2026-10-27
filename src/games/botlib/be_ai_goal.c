@@ -141,15 +141,15 @@ typedef struct iteminfo_s
 
 fielddef_t iteminfo_fields[] =
 {
-	{"name", ITEMINFO_OFS( name ), FT_STRING},
-	{"model", ITEMINFO_OFS( model ), FT_STRING},
-	{"modelindex", ITEMINFO_OFS( modelindex ), FT_INT},
-	{"type", ITEMINFO_OFS( type ), FT_INT},
-	{"index", ITEMINFO_OFS( index ), FT_INT},
-	{"respawntime", ITEMINFO_OFS( respawntime ), FT_FLOAT},
+	{"name", ITEMINFO_OFS( name ), FT_STRING, 0 },
+	{"model", ITEMINFO_OFS( model ), FT_STRING, 0 },
+	{"modelindex", ITEMINFO_OFS( modelindex ), FT_INT, 0 },
+	{"type", ITEMINFO_OFS( type ), FT_INT, 0 },
+	{"index", ITEMINFO_OFS( index ), FT_INT, 0 },
+	{"respawntime", ITEMINFO_OFS( respawntime ), FT_FLOAT, 0 },
 	{"mins", ITEMINFO_OFS( mins ), FT_FLOAT | FT_ARRAY, 3},
 	{"maxs", ITEMINFO_OFS( maxs ), FT_FLOAT | FT_ARRAY, 3},
-	{0, 0, 0}
+	{0, 0, 0, 0 },
 };
 
 structdef_t iteminfo_struct =
@@ -1628,3 +1628,4 @@ void BotShutdownGoalAI( void ) {
 		} //end if
 	} //end for
 } //end of the function BotShutdownGoalAI
+
