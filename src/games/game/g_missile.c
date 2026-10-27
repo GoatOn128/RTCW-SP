@@ -429,7 +429,6 @@ void G_ExplodeMissile( gentity_t *ent ) {
 	vec3_t origin;
 	qboolean small = qfalse;
 	qboolean zombiespit = qfalse;
-	int etype;
 
 	BG_EvaluateTrajectory( &ent->s.pos, level.time, origin );
 	SnapVector( origin );
@@ -438,8 +437,6 @@ void G_ExplodeMissile( gentity_t *ent ) {
 	// we don't have a valid direction, so just point straight up
 	dir[0] = dir[1] = 0;
 	dir[2] = 1;
-
-	etype = ent->s.eType;
 
 	ent->s.eType = ET_GENERAL;
 

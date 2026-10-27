@@ -2016,14 +2016,12 @@ Cmd_SetSpawnPoint_f
 */
 void Cmd_SetSpawnPoint_f( gentity_t *clent ) {
 	char arg[MAX_TOKEN_CHARS];
-	int spawnIndex;
 
 	if ( trap_Argc() != 2 ) {
 		return;
 	}
 
 	trap_Argv( 1, arg, sizeof( arg ) );
-	spawnIndex = atoi( arg );
 }
 // -NERVE - SMF
 

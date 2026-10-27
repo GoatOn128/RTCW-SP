@@ -885,7 +885,6 @@ void Props_Chair_Die( gentity_t *ent, gentity_t *inflictor, gentity_t *attacker,
 void Just_Got_Thrown( gentity_t *self ) {
 	float len;
 	vec3_t vec;
-	qboolean prop_hits = qfalse;
 
 	len = 0;
 
@@ -898,7 +897,6 @@ void Just_Got_Thrown( gentity_t *self ) {
 			player = AICast_FindEntityForName( "player" );
 
 			if ( player && player != self->enemy ) {
-				prop_hits = qtrue;
 				G_Damage( self->enemy, self, player, NULL, NULL, 5, 0, MOD_CRUSH );
 
 				self->die = Props_Chair_Die;

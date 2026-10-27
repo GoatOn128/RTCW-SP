@@ -987,7 +987,7 @@ void target_rumble_think( gentity_t * ent ) {
 	//gentity_t	*tent;
 	float ratio;
 	float time, time2;
-	float dapitch, dayaw;
+	float dapitch;
 	qboolean validrumble = qtrue;
 
 	if ( !( ent->count ) ) {
@@ -1004,7 +1004,6 @@ void target_rumble_think( gentity_t * ent ) {
 	}
 
 	dapitch = ent->delay;
-	dayaw = ent->random;
 	ratio = 1.0f;
 
 	if ( ent->start_size ) {

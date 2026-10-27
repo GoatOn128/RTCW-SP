@@ -161,7 +161,7 @@ int AICast_ScanForEnemies( cast_state_t *cs, int *enemies ) {
 	static float distances[MAX_CLIENTS];
 	static int sortedEnemies[MAX_CLIENTS];
 	float lastDist;
-	int best, oldEnemy, oldPauseTime;
+	int best, oldEnemy;
 	cast_state_t *ocs;
 
 	if ( cs->castScriptStatus.scriptAttackEnt >= 0 ) {
@@ -298,7 +298,6 @@ int AICast_ScanForEnemies( cast_state_t *cs, int *enemies ) {
 	}
 	if ( friendlyAlertCount ) {
 		// call a script event
-		oldPauseTime = cs->scriptPauseTime;
 		if ( g_entities[enemies[0]].health <= 0 ) {
 			AICast_ForceScriptEvent( cs, "inspectbodystart", g_entities[enemies[0]].aiName );
 			if ( cs->aiFlags & AIFL_DENYACTION ) {
@@ -912,7 +911,7 @@ AICast_WeaponUsable
 ==============
 */
 qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
-	int delay, oldweap, hitclient;
+	int delay, hitclient;
 	float dist = -1;
 	gentity_t *ent, *grenade;
 
@@ -920,7 +919,6 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 		dist = Distance( cs->bs->origin, g_entities[cs->enemyNum].s.pos.trBase );
 	}
 
-	oldweap = cs->weaponNum;
 	ent = &g_entities[cs->entityNum];
 	delay = -1;
 
@@ -1109,12 +1107,10 @@ AICast_ChooseWeapon
 */
 void AICast_ChooseWeapon( cast_state_t *cs, qboolean battleFunc ) {
 	int i;
-	int *ammo;
 	float wantScale, bestWantScale, enemyDist = 0;
 	qboolean inRange = qfalse, thisInRange, gotOne;
 
 	BotAI_GetClientState( cs->entityNum, &( cs->bs->cur_ps ) );
-	ammo = cs->bs->cur_ps.ammo;
 	bestWantScale = 0.0;
 
 	if ( cs->enemyNum >= 0 ) {
@@ -1215,12 +1211,10 @@ float AICast_Aggression( cast_state_t *cs ) {
 	bot_state_t *bs;
 	float scale, dist;
 	int painTime;
-	int     *ammo;
 
 	bs = cs->bs;
 
 	// if we are out of ammo, we should never chase
-	ammo = cs->bs->cur_ps.ammo;
 	if ( g_entities[cs->entityNum].aiTeam != AITEAM_MONSTER ) {
 		if ( !AICast_GotEnoughAmmoForWeapon( cs, cs->weaponNum ) ) {
 			return 0;
@@ -1287,8 +1281,7 @@ AICast_WantsToChase
 ==================
 */
 int AICast_WantsToChase( cast_state_t *cs ) {
-	int     *ammo;
-	ammo = cs->bs->cur_ps.ammo;
+	// if we are out of ammo, we should never chase
 	if ( g_entities[cs->entityNum].aiTeam != AITEAM_MONSTER ) {
 		if ( !AICast_GotEnoughAmmoForWeapon( cs, cs->weaponNum ) ) {
 			return qfalse;
@@ -1310,9 +1303,7 @@ AICast_WantsToTakeCover
 */
 int AICast_WantsToTakeCover( cast_state_t *cs, qboolean attacking ) {
 	float aggrScale;
-	int     *ammo;
 
-	ammo = cs->bs->cur_ps.ammo;
 	if ( g_entities[cs->entityNum].aiTeam != AITEAM_MONSTER ) {
 		if ( !cs->weaponNum ) {
 			return qtrue;
@@ -1366,7 +1357,7 @@ AICast_CombatMove
 */
 bot_moveresult_t AICast_CombatMove( cast_state_t *cs, int tfl ) {
 	bot_state_t *bs;
-	float attack_skill, croucher, dist;
+	float dist;
 	vec3_t forward, backward; //, up = {0, 0, 1};
 	bot_moveresult_t moveresult;
 	bot_goal_t goal;
@@ -1376,8 +1367,6 @@ bot_moveresult_t AICast_CombatMove( cast_state_t *cs, int tfl ) {
 	//get the enemy entity info
 	memset( &moveresult, 0, sizeof( bot_moveresult_t ) );
 	//
-	attack_skill = cs->attributes[ATTACK_SKILL];
-	croucher = ( cs->attributes[ATTACK_CROUCH] > 0.1 );
 
 	//initialize the movement state
 	BotSetupForMovement( bs );
@@ -2001,9 +1990,6 @@ AICast_WantToRetreat
 ==============
 */
 qboolean AICast_WantToRetreat( cast_state_t *cs ) {
-	int     *ammo;
-
-	ammo = cs->bs->cur_ps.ammo;
 	if ( g_entities[cs->entityNum].aiTeam != AITEAM_MONSTER ) {
 		if ( !cs->weaponNum ) {
 			return qtrue;
@@ -2101,7 +2087,7 @@ AICast_CheckDangerousEntity
 */
 void AICast_CheckDangerousEntity( gentity_t *ent, int dangerFlags, float dangerDist, float tacticalLevel, float aggressionLevel, qboolean hurtFriendly ) {
 	vec3_t org, fwd, vec;
-	cast_state_t *cs, *dcs;
+	cast_state_t *cs;
 	gentity_t *trav;
 	int i, endTime;
 	float dist;
@@ -2119,12 +2105,6 @@ void AICast_CheckDangerousEntity( gentity_t *ent, int dangerFlags, float dangerD
 	}
 	if ( dangerFlags & DANGER_CLIENTAIM ) {
 		AngleVectors( ent->client->ps.viewangles, fwd, NULL, NULL );
-	}
-	//
-	if ( ent->client ) {
-		dcs = AICast_GetCastState( ent->s.number );
-	} else {
-		dcs = NULL;
 	}
 	//
 	// see if this will hurt anyone

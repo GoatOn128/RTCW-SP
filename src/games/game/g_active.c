@@ -574,7 +574,6 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 	int damage;
 	vec3_t dir;
 	int stunTime;           //----(SA)	added
-	float fallSoundMul;
 //	vec3_t		origin, angles;
 //	qboolean	fired;
 //	gitem_t		*item;
@@ -606,7 +605,6 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 			}
 
 			stunTime = 0;   //----(SA)	added
-			fallSoundMul = 1.0f;    // default to normal range
 
 //----(SA)	FIXME: TODO:  hmm, going through here adding surfaceparms it seems that the value for ent->client->ps.pm_time was weird.  (1000 for all but dmg_25 which has 250?)
 			if ( event == EV_FALL_NDIE ) {
@@ -626,8 +624,6 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 			} else {
 				damage = 5; // never used
 			}
-
-			fallSoundMul *= 2;  // double range for falls greater than FALL_SHORT
 
 			if ( eventParm & SURF_SLICK ) { // don't stun when you drop onto slick
 				stunTime = 0;
@@ -1565,14 +1561,11 @@ while a slow client may have multiple ClientEndFrame between ClientThink.
 */
 void ClientEndFrame( gentity_t *ent ) {
 	int i;
-	clientPersistant_t  *pers;
 
 	if ( ( ent->client->sess.sessionTeam == TEAM_SPECTATOR ) || ( ent->client->ps.pm_flags & PMF_LIMBO ) ) { // JPW NERVE
 		SpectatorClientEndFrame( ent );
 		return;
 	}
-
-	pers = &ent->client->pers;
 
 	if ( !ent->aiCharacter ) {
 		// turn off any expired powerups

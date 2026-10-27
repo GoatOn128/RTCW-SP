@@ -566,7 +566,7 @@ AICast_SightUpdate
 static int lastsrc = 0, lastdest = 0;
 
 void AICast_SightUpdate( int numchecks ) {
-	int count = 0, destcount, srccount;
+	int count = 0, srccount;
 	int src, dest;
 	gentity_t       *srcent, *destent;
 	cast_state_t    *cs, *dcs;
@@ -619,7 +619,7 @@ void AICast_SightUpdate( int numchecks ) {
 		// make sure we are using the right AAS data for this entity (one's that don't get set will default to the player's AAS data)
 		trap_AAS_SetCurrentWorld( cs->aasWorldIndex );
 
-		for (   destcount = 0, dest = 0, destent = g_entities;
+		for (    dest = 0, destent = g_entities;
 		        //dest < aicast_maxclients && destcount < level.numPlayingClients;
 				destent == g_entities;  // only check the player
 				dest++, destent++ )
@@ -627,8 +627,6 @@ void AICast_SightUpdate( int numchecks ) {
 			if ( !destent->inuse ) {
 				continue;
 			}
-
-			destcount++;
 
 			if ( destent->health <= 0 ) {
 				continue;
@@ -700,15 +698,13 @@ void AICast_SightUpdate( int numchecks ) {
 			lastdest = 0;
 		}
 
-		for (   destcount = 0, dest = lastdest, destent = &g_entities[lastdest];
+		for (    dest = lastdest, destent = &g_entities[lastdest];
 				dest < aicast_maxclients; // && destcount < level.numPlayingClients;
 				dest++, destent++ )
 		{
 			if ( !destent->inuse ) {
 				continue;
 			}
-
-			destcount++;
 
 			if ( destent->aiInactive ) {
 				continue;

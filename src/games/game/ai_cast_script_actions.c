@@ -761,7 +761,7 @@ qboolean AICast_ScriptAction_PlayAnim( cast_state_t *cs, char *params ) {
 	gclient_t *client;
 	gentity_t *ent;
 	vec3_t org, vec;
-	qboolean forever = qfalse, setAngles = qfalse;
+	qboolean forever = qfalse;
 	qboolean holdframe = qfalse;
 
 	pString = params;
@@ -825,7 +825,6 @@ qboolean AICast_ScriptAction_PlayAnim( cast_state_t *cs, char *params ) {
 				VectorNormalize( vec );
 				vectoangles( vec, cs->ideal_viewangles );
 				VectorCopy( cs->ideal_viewangles, cs->castScriptStatus.playanim_viewangles );
-				setAngles = qtrue;
 			}
 
 		} else {
@@ -2695,9 +2694,6 @@ qboolean AICast_ScriptAction_StopCam( cast_state_t *cs, char *params ) {
 qboolean AICast_ScriptAction_Cigarette( cast_state_t *cs, char *params ) {
 
 	char    *pString, *token;
-	gentity_t *ent;
-
-	ent = &g_entities[cs->entityNum];
 
 	pString = params;
 	token = COM_ParseExt( &pString, qfalse );
