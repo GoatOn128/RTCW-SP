@@ -303,7 +303,7 @@ int Text_Height( const char *text, int font, float scale, int limit ) {
 	float max;
 	glyphInfo_t *glyph;
 	float useScale;
-	const unsigned char *s = text;
+	const unsigned char *s = (const unsigned char *)text;
 
 	fontInfo_t *fnt = &uiInfo.uiDC.Assets.textFont;
 	if ( font == UI_FONT_DEFAULT ) {
@@ -376,7 +376,7 @@ void Text_Paint( float x, float y, int font, float scale, vec4_t color, const ch
 
 	useScale = scale * fnt->glyphScale;
 	if ( text ) {
-		const unsigned char *s = text;
+		const unsigned char *s = (const unsigned char *)text;
 		trap_R_SetColor( color );
 		memcpy( &newColor[0], &color[0], sizeof( vec4_t ) );
 		len = strlen( text );
@@ -457,7 +457,7 @@ void Text_PaintWithCursor( float x, float y, int font, float scale, vec4_t color
 
 	useScale = scale * fnt->glyphScale;
 	if ( text ) {
-		const unsigned char *s = text;
+		const unsigned char *s = (const unsigned char *)text;
 		trap_R_SetColor( color );
 		memcpy( &newColor[0], &color[0], sizeof( vec4_t ) );
 		len = strlen( text );
