@@ -390,7 +390,7 @@ renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'Material.cpp',
     'MaterialManager.cpp',
     'Material_shader.cpp', 'Shadow.cpp', 'Backend.cpp',
-    'Tess.cpp', 'Tess_calc.cpp',
+    'Tess.cpp', 'Tess_calc.cpp', 'Lighting.cpp',
     'ImageManager.cpp', 'Image_files.cpp', 'Image_intrinsic.cpp', 'Image_process.cpp',
 ]]
 

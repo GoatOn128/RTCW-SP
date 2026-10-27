@@ -50,6 +50,15 @@ virtual const idMaterial *      FindMaterial( const char *name, int lightmapInde
 virtual int                     NumMaterials() const { return materials.Num(); }
 virtual void                    ListMaterials() const;
 
+// the global sun direction of the engine's tr.sunDirection, the
+// shader files set it with the sun keyword
+virtual const float *           SunDirection() const { return sunDirection; }
+
+// the lightgrid multipliers of the engine's tr.lightGridMulAmbient
+// and tr.lightGridMulDirected
+virtual float                   LightGridMulAmbient() const { return lightGridMulAmbient; }
+virtual float                   LightGridMulDirected() const { return lightGridMulDirected; }
+
 private:
 const idMaterial *              GetMaterial( const char *name, int lightmapIndex, bool createIfNotFound );
 void                            AddMaterial( idMaterial *material );

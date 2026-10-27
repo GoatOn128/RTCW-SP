@@ -241,6 +241,16 @@ struct q3BspWorld_t {
 	int numLightmaps;
 	byte * lightmaps;           // numLightmaps * 128 * 128 * 3, uploaded by the image phase
 
+	// the light grid of the engine's R_LoadLightGrid in tr_bsp.c,
+	// sampled by the entity lighting phase; lightGridSize comes from
+	// the worldspawn gridsize key, lightGridData holds numGridPoints
+	// samples of 8 bytes or NULL when the map has no grid
+	float lightGridSize[3];
+	float lightGridInverseSize[3];
+	float lightGridOrigin[3];
+	int lightGridBounds[3];
+	byte * lightGridData;
+
 	q3BspWorld_t() {
 		memset( this, 0, sizeof( *this ) );
 	}
@@ -258,7 +268,13 @@ struct q3BspWorld_t {
 		free( vis );
 		free( novis );
 		free( lightmaps );
+		free( lightGridData );
 	}
 };
+
+// the world behind the current scene, the engine's tr.world until the
+// scene phase carries a world pointer of its own; set by the BSP
+// loader of RenderWorld_load.cpp, cleared when the world is freed
+extern q3BspWorld_t *r_worldBsp;
 
 #endif /* !__Q3BSP_H__ */

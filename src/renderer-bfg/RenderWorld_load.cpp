@@ -429,6 +429,122 @@ static void LoadQ3BspLightmaps( const byte *buffer, const q3BspHeader_t *header,
 	memcpy( world->lightmaps, buffer + lump.fileofs, world->numLightmaps * Q3_LIGHTMAP_BYTES );
 }
 
+// the world behind the current scene, the engine's tr.world until the
+// scene phase carries a world pointer of its own
+q3BspWorld_t *r_worldBsp = NULL;
+
+/*
+===================
+LoadQ3BspEntities
+
+The worldspawn gridsize parse of R_LoadEntities in src/renderer/tr_bsp.c
+of this code base: the light grid cell size defaults to 64x64x128 and
+the worldspawn "gridsize" key overrides it. The shader remap keys of
+the engine are handled by the material phase.
+===================
+*/
+static void LoadQ3BspEntities( const byte *buffer, const q3BspHeader_t *header, q3BspWorld_t *world ) {
+	// the engine defaults of R_LoadEntities
+	world->lightGridSize[0] = 64.0f;
+	world->lightGridSize[1] = 64.0f;
+	world->lightGridSize[2] = 128.0f;
+
+	const q3BspLump_t &lump = header->lumps[LUMP_ENTITIES];
+	if ( lump.filelen <= 0 ) {
+		return;
+	}
+
+	// the lump is not NULL terminated, so it is copied into a scratch
+	// buffer before the lexer walks it
+	char *text = ( char * ) malloc( lump.filelen + 1 );
+	memcpy( text, buffer + lump.fileofs, lump.filelen );
+	text[lump.filelen] = '\0';
+
+	idLexer src;
+	idToken token;
+	src.LoadMemory( text, lump.filelen, "entities" );
+
+	// only parse the world spawn, the first entity of the lump
+	if ( !src.ReadToken( &token ) || token.Icmp( "{" ) != 0 ) {
+		free( text );
+		return;
+	}
+
+	while ( src.ReadToken( &token ) ) {
+		if ( token.Icmp( "}" ) == 0 ) {
+			break;
+		}
+		idStr key = token;
+
+		// parse value
+		if ( !src.ReadToken( &token ) || token.Icmp( "}" ) == 0 ) {
+			break;
+		}
+
+		// check for a different grid size
+		if ( key.Icmp( "gridsize" ) == 0 ) {
+			sscanf( token.c_str(), "%f %f %f",
+					&world->lightGridSize[0], &world->lightGridSize[1], &world->lightGridSize[2] );
+		}
+	}
+
+	free( text );
+}
+
+/*
+===================
+LoadQ3BspLightGrid
+
+The light grid of R_LoadLightGrid in src/renderer/tr_bsp.c of this code
+base, with the grid bounds of R_FindLightGridBounds, which the engine
+neutralized to the bounds of the world model. A lump that does not
+match the computed grid leaves the world without a grid, like the
+engine's light grid mismatch warning does.
+===================
+*/
+static void LoadQ3BspLightGrid( const byte *buffer, const q3BspHeader_t *header, q3BspWorld_t *world ) {
+	const q3BspLump_t &lump = header->lumps[LUMP_LIGHTGRID];
+
+	if ( world->numModels <= 0 ) {
+		// no world model to read the grid bounds from
+		world->lightGridData = NULL;
+		return;
+	}
+
+	world->lightGridInverseSize[0] = 1.0f / world->lightGridSize[0];
+	world->lightGridInverseSize[1] = 1.0f / world->lightGridSize[1];
+	world->lightGridInverseSize[2] = 1.0f / world->lightGridSize[2];
+
+	//----(SA)	the bounds the engine reads off the world model
+	const idBounds &bounds = world->models[0].bounds;
+	for ( int i = 0; i < 3; i++ ) {
+		world->lightGridOrigin[i] = world->lightGridSize[i] * ( float )ceil( bounds[0][i] / world->lightGridSize[i] );
+		const float maxs = world->lightGridSize[i] * ( float )floor( bounds[1][i] / world->lightGridSize[i] );
+		world->lightGridBounds[i] = ( maxs - world->lightGridOrigin[i] ) / world->lightGridSize[i] + 1;
+	}
+	//----(SA)	end
+
+	const int numGridPoints = world->lightGridBounds[0] * world->lightGridBounds[1] * world->lightGridBounds[2];
+
+	if ( lump.filelen != numGridPoints * 8 ) {
+		idLib::Warning( "LoadQ3BspLightGrid: light grid mismatch" );
+		world->lightGridData = NULL;
+		return;
+	}
+
+	world->lightGridData = (byte *) malloc( lump.filelen );
+	memcpy( world->lightGridData, buffer + lump.fileofs, lump.filelen );
+
+	// deal with overbright bits, the engine shifts the ambient and the
+	// directed color of every sample; the shift matches the lightmap
+	// upload of CreateBspLightmapImages
+	const int shift = r_mapOverBrightBits.GetInteger() - imageManager->OverbrightBits();
+	for ( int i = 0; i < numGridPoints; i++ ) {
+		R_ColorShiftLightingBytes( shift, &world->lightGridData[i * 8], &world->lightGridData[i * 8] );
+		R_ColorShiftLightingBytes( shift, &world->lightGridData[i * 8 + 3], &world->lightGridData[i * 8 + 3] );
+	}
+}
+
 /*
 ===================
 CreateBspLightmapImages
@@ -742,6 +858,8 @@ bool idRenderWorldLocal::LoadQ3BspWorld( const char *name ) {
 
 	LoadQ3BspVis( buffer, header, world );
 	LoadQ3BspLightmaps( buffer, header, world );
+	LoadQ3BspEntities( buffer, header, world );
+	LoadQ3BspLightGrid( buffer, header, world );
 
 	// the vis lump header carries the authoritative cluster counts, the
 	// leaf scan is the fallback for maps without vis data
@@ -779,5 +897,10 @@ bool idRenderWorldLocal::LoadQ3BspWorld( const char *name ) {
 
 	free( buffer );
 	bspWorld = world;
+
+	// the engine's tr.world until the scene phase carries its own
+	// world pointer; the entity lighting reads the grid through it
+	r_worldBsp = world;
+
 	return true;
 }

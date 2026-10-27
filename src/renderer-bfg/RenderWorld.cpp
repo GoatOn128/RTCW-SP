@@ -110,6 +110,9 @@ void idRenderWorldLocal::FreeWorld() {
 	delete bspWorld;
 	bspWorld = NULL;
 
+	// the scene world pointer of the lighting drops with it
+	r_worldBsp = NULL;
+
 	// free the area and portal memory
 	delete[] areaNodes;
 	areaNodes = NULL;

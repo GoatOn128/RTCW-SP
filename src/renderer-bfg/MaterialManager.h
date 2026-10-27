@@ -68,6 +68,16 @@ virtual int                     NumMaterials() const = 0;
 
 // prints the loaded materials, for development
 virtual void                    ListMaterials() const = 0;
+
+// the global sun direction of the engine's tr.sunDirection, set by
+// the sun keyword of the shader files
+virtual const float *           SunDirection() const = 0;
+
+// the light grid multipliers of the engine's tr.lightGridMulAmbient
+// and tr.lightGridMulDirected, set by the lightgridmul keywords,
+// 0 means no multiplier
+virtual float                   LightGridMulAmbient() const = 0;
+virtual float                   LightGridMulDirected() const = 0;
 };
 
 // this will be statically pointed at a private implementation

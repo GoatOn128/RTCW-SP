@@ -59,6 +59,10 @@ typedef int qhandle_t;
 typedef int qboolean;
 typedef unsigned int glIndex_t;
 
+// engine q_shared.h
+#define qtrue   1
+#define qfalse  0
+
 // plain float vectors of the engine's q_shared.h
 typedef float vec2_t[2];
 typedef float vec3_t[3];
