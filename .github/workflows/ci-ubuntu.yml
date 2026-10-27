@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    name: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+    name: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
     runs-on: ${{ matrix.os }}
     strategy:
       # one failing leg cancels the remaining legs of this OS, the other
@@ -26,6 +26,16 @@ jobs:
         os: [ubuntu-latest]
         arch: [x86, x64]
         config: [debug, release]
+        # the hardlink dimension must exist in the base matrix (empty
+        # string) or the include entries below would merge into the
+        # existing legs instead of adding new ones
+        hardlink: ['']
+        include:
+          # hard-link coverage: the game+renderer pair in one image
+          - os: ubuntu-latest
+            arch: x64
+            config: release
+            hardlink: 'game,renderer'
     steps:
       - uses: actions/checkout@v4
       - name: clean stale log
@@ -73,18 +83,18 @@ jobs:
           # no restore-keys: falling back to a cache from an older
           # SConstruct fills the disk with stale objects and slows
           # the restore down
-          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ hashFiles('SConstruct') }}
+          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}-${{ hashFiles('SConstruct') }}
       - name: build
         shell: bash
         run: |
           set -o pipefail
           # -k keeps going so the digest lists every failing file in one run
-          scons arch=${{ matrix.arch }} config=${{ matrix.config }} -j4 -k 2>&1 | tee -a build.log
+          scons arch=${{ matrix.arch }} config=${{ matrix.config }} hardlink=${{ matrix.hardlink }} -j4 -k 2>&1 | tee -a build.log
       - name: digest
         if: always()
         shell: bash
         env:
-          LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+          LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
           STATUS: ${{ job.status }}
         run: |
           cp build.log "log-$LEG.log" 2>/dev/null || true
@@ -93,9 +103,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+          name: logs-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
           path: |
-            log-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.log
-            digest-fragment-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.md
-            status-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
+            log-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}.log
+            digest-fragment-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}.md
+            status-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
           if-no-files-found: ignore

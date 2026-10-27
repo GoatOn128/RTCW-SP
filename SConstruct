@@ -3,6 +3,7 @@
 # Usage:
 #   scons arch=x86 config=debug -j4
 #   scons arch=x64 config=release -j4
+#   scons arch=x64 config=release hardlink=game,renderer -j4
 #
 # Outputs:
 #   bin/WolfSP(.exe)               - client binary
@@ -31,6 +32,23 @@ if CONFIG not in ('debug', 'release'):
     print('config must be debug or release')
     Exit(1)
 
+# Modules linked straight into the executable instead of built as
+# loadable libraries, e.g. hardlink=renderer or hardlink=game,renderer
+HARDLINK = [m.strip() for m in ARGUMENTS.get('hardlink', '').split(',') if m.strip()]
+HARDLINK_MODULES = ('game', 'cgame', 'ui', 'renderer')
+for m in HARDLINK:
+    if m not in HARDLINK_MODULES:
+        print('hardlink: unknown module %r (expected one of %s)' % (m, ', '.join(HARDLINK_MODULES)))
+        Exit(1)
+# g_syscalls.c, cg_syscalls.c and ui_syscalls.c all define the same
+# trap_* names, so at most one of game, cgame, ui can live in the
+# executable image; the remaining modules stay loadable libraries.
+# The renderer is independent and hard-links freely.
+linked_vm = [m for m in ('game', 'cgame', 'ui') if m in HARDLINK]
+if len(linked_vm) > 1:
+    print('hardlink: only one of game, cgame, ui can be hard-linked, got %s' % ', '.join(linked_vm))
+    Exit(1)
+
 IS_WINDOWS = pyplatform.system() == 'Windows'
 PLATFORM_NAME = 'windows' if IS_WINDOWS else pyplatform.system().lower()
 BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
@@ -48,9 +66,12 @@ DLL = '.dll' if IS_WINDOWS else '.so'
 OBJ = '.obj' if IS_WINDOWS else '.o'
 
 Help('''
-Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
+Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ hardlink=game,cgame,ui,renderer ] [ -j N ]
 Outputs go to bin/ (engine and renderer binaries) and bin/main/ (game
 modules); objects stay under build/<platform>-<arch>-<config>/.
+hardlink takes a comma-separated module list; game, cgame and ui clash
+on their trap_* exports so at most one of them can be linked into the
+executable, the renderer can be combined with any of them.
 ''')
 
 # Include paths. Most engine includes resolve file-relative, these cover
@@ -184,6 +205,18 @@ def module_objects(menv, module, files, shared=False):
         objs.append(builder(target, p)[0])
     return objs
 
+# Sources a hard-linked module must not recompile: the executable
+# already carries q_math.c and q_shared.c. The renderer also drops
+# tr_module.c, whose Com_Printf/Com_Error/Com_Memset/Com_Memcpy
+# wrappers would collide with the engine's common.c definitions.
+def module_link_files(module, files):
+    if module not in HARDLINK:
+        return files
+    drop = ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+    if module == 'renderer':
+        drop.append('src/renderer/tr_module.c')
+    return [f for f in files if f not in drop]
+
 renderer_files = ['src/renderer/' + f for f in [
     'tr_animation.c', 'tr_backend.c', 'tr_bsp.c', 'tr_cmds.c', 'tr_cmesh.c',
     'tr_curve.c', 'tr_flares.c', 'tr_font.c', 'tr_image.c', 'tr_init.c',
@@ -243,6 +276,10 @@ win_sys_files = ['src/sys/win32/' + f for f in [
 # ---------------------------------------------------------------- client
 
 client_env = env.Clone()
+# botlib is always linked into the executable, so its hard-link define
+# is always set; every hard-linked module adds its own define so the
+# engine calls its API entry point directly instead of loading it
+client_env.Append(CPPDEFINES=['BOTLIB_HARD_LINKED'] + [m.upper() + '_HARD_LINKED' for m in HARDLINK])
 if IS_WINDOWS:
     client_env.Append(LINKFLAGS=['/SUBSYSTEM:WINDOWS'])
     client_env.Append(LIBS=['user32', 'gdi32', 'winmm', 'wsock32', 'advapi32', 'ole32', 'opengl32', 'shell32'])
@@ -266,14 +303,14 @@ botlib_env.Append(CPPDEFINES=['BOTLIB'])
 client_objs += module_objects(botlib_env, 'client', botlib_files)
 
 client_target = os.path.join(BIN_DIR, 'WolfSP' + EXE)
+client_res = []
 if IS_WINDOWS:
     # winquake.rc embeds the application icon, the console background
     # bitmaps and the caption string; the .res file links straight
     # into the executable
     client_res = client_env.RES(os.path.join(BUILD_DIR, 'client', 'winquake.res'), 'src/sys/win32/winquake.rc')
-    client_env.Program(client_target, client_objs + client_res)
-else:
-    client_env.Program(client_target, client_objs)
+# the executable is linked after the module sections below: each
+# hard-linked module contributes its objects to the engine image
 
 # ---------------------------------------------------------------- tools
 
@@ -345,12 +382,13 @@ if IS_WINDOWS:
 else:
     game_env.Append(LIBS=['dl', 'm'])
     game_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-game_objs = module_objects(game_env, 'game', game_files, shared=not IS_WINDOWS)
+game_objs = module_objects(game_env, 'game', module_link_files('game', game_files), shared=(not IS_WINDOWS) and 'game' not in HARDLINK)
 # the whole module waits for the generated headers so a changed
 # function table never ends up half-compiled into qagame
 env.Depends(game_objs, extractfuncs_headers)
 game_target = os.path.join(MODULES_DIR, 'qagame' + DLL)
-game_env.SharedLibrary(game_target, game_objs)
+if 'game' not in HARDLINK:
+    game_env.SharedLibrary(game_target, game_objs)
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -371,7 +409,9 @@ else:
     cgame_env.Append(LIBS=['dl', 'm'])
     cgame_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 cgame_target = os.path.join(MODULES_DIR, 'cgame' + DLL)
-cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files, shared=not IS_WINDOWS))
+cgame_objs = module_objects(cgame_env, 'cgame', module_link_files('cgame', cgame_files), shared=(not IS_WINDOWS) and 'cgame' not in HARDLINK)
+if 'cgame' not in HARDLINK:
+    cgame_env.SharedLibrary(cgame_target, cgame_objs)
 
 ui_files = ['src/games/game/' + f for f in [
     'bg_misc.c',
@@ -387,11 +427,13 @@ else:
     ui_env.Append(LIBS=['dl', 'm'])
     ui_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 ui_target = os.path.join(MODULES_DIR, 'ui' + DLL)
-ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files, shared=not IS_WINDOWS))
+ui_objs = module_objects(ui_env, 'ui', module_link_files('ui', ui_files), shared=(not IS_WINDOWS) and 'ui' not in HARDLINK)
+if 'ui' not in HARDLINK:
+    ui_env.SharedLibrary(ui_target, ui_objs)
 
 # ---------------------------------------------------------------- renderer
 
-renderer_module_files = renderer_files + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+renderer_module_files = module_link_files('renderer', renderer_files + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c'])
 
 renderer_env = env.Clone()
 renderer_env.Append(CPPDEFINES=['REFDLL'])
@@ -401,7 +443,8 @@ else:
     renderer_env.Append(LIBS=['dl', 'm'])
     renderer_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
 renderer_target = os.path.join(BIN_DIR, 'renderer_gl' + DLL)
-renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=not IS_WINDOWS)
+renderer_shared = (not IS_WINDOWS) and 'renderer' not in HARDLINK
+renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=renderer_shared)
 # stb is vendored third party code, so the build mutes its warnings
 # the same way the old jpeg-6 build did; stb_impl.c is the single
 # translation unit that pulls in the implementations
@@ -410,8 +453,9 @@ if IS_WINDOWS:
     renderer_stb_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
 else:
     renderer_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
-renderer_env.SharedLibrary(renderer_target, renderer_objs)
+renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=renderer_shared)
+if 'renderer' not in HARDLINK:
+    renderer_env.SharedLibrary(renderer_target, renderer_objs)
 
 # ---------------------------------------------------------------- idlib
 
@@ -489,5 +533,27 @@ renderer_bfg_target = os.path.join(BIN_DIR, 'renderer_bfg' + DLL)
 # rejects a static library node as a shared library source on Linux
 renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_objs)
 
-Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0], renderer_bfg_target)
+# ------------------------------------------------------- client link
+
+# the executable links after the module sections: a hard-linked module
+# is compiled without its shared-library copies of the engine sources
+# and its objects go straight into the engine image
+client_link_objs = list(client_objs)
+if 'game' in HARDLINK:
+    client_link_objs += game_objs
+if 'cgame' in HARDLINK:
+    client_link_objs += cgame_objs
+if 'ui' in HARDLINK:
+    client_link_objs += ui_objs
+if 'renderer' in HARDLINK:
+    client_link_objs += renderer_objs
+client_env.Program(client_target, client_link_objs + client_res)
+
+# ------------------------------------------------------- defaults
+
+defaults = [client_target, extractfuncs_target, idlib_target[0], renderer_bfg_target]
+for target, module in ((game_target, 'game'), (cgame_target, 'cgame'), (ui_target, 'ui'), (renderer_target, 'renderer')):
+    if module not in HARDLINK:
+        defaults.append(target)
+Default(*defaults)
 
