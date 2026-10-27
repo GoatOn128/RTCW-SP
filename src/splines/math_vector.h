@@ -78,56 +78,11 @@ float Q_fabs( float f );
 #endif
 #endif
 
-// if this is defined, vec3 will take four elements, which may allow
-// easier SIMD optimizations
-//#define	FAT_VEC3
-//#ifdef __ppc__
-//#pragma align(16)
-//#endif
-
 class angles_t;
-#ifdef __ppc__
-// Vanilla PPC code, but since PPC has a reciprocal square root estimate instruction,
-// runs *much* faster than calling sqrt(). We'll use two Newton-Raphson
-// refinement steps to get bunch more precision in the 1/sqrt() value for very little cost.
-// We'll then multiply 1/sqrt times the original value to get the sqrt.
-// This is about 12.4 times faster than sqrt() and according to my testing (not exhaustive)
-// it returns fairly accurate results (error below 1.0e-5 up to 100000.0 in 0.1 increments).
 
-static inline float idSqrt( float x ) {
-	const float half = 0.5;
-	const float one = 1.0;
-	float B, y0, y1;
-
-	// This'll NaN if it hits frsqrte. Handle both +0.0 and -0.0
-	if ( fabs( x ) == 0.0 ) {
-		return x;
-	}
-	B = x;
-
-#ifdef __GNUC__
-	asm ( "frsqrte %0,%1" : "=f" ( y0 ) : "f" ( B ) );
-#else
-	y0 = __frsqrte( B );
-#endif
-	/* First refinement step */
-
-	y1 = y0 + half * y0 * ( one - B * y0 * y0 );
-
-	/* Second refinement step -- copy the output of the last step to the input of this step */
-
-	y0 = y1;
-	y1 = y0 + half * y0 * ( one - B * y0 * y0 );
-
-	/* Get sqrt(x) from x * 1/sqrt(x) */
-	return x * y1;
-}
-#else
 static inline double idSqrt( double x ) {
 	return sqrt( x );
 }
-#endif
-
 
 //class idVec3  : public idHeap<idVec3> {
 class idVec3 {

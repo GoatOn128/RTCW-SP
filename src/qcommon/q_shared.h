@@ -68,32 +68,6 @@ If you have questions concerning this license or the applicable additional terms
 #pragma warning(disable : 4220) // varargs matches remaining parameters
 #endif
 
-#if defined( ppc ) || defined( __ppc ) || defined( __ppc__ ) || defined( __POWERPC__ )
-#define idppc 1
-#endif
-
-/**********************************************************************
-  VM Considerations
-
-  The VM can not use the standard system headers because we aren't really
-  using the compiler they were meant for.  We use bg_lib.h which contains
-  prototypes for the functions we define for our own use in bg_lib.c.
-
-  When writing mods, please add needed headers HERE, do not start including
-  stuff like <stdio.h> in the various .c files that make up each of the VMs
-  since you will be including system headers files can will have issues.
-
-  Remember, if you use a C library function that is not defined in bg_lib.c,
-  you will have to add your own version for support in the VM.
-
- **********************************************************************/
-
-#ifdef Q3_VM
-
-#include "bg_lib.h"
-
-#else
-
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
@@ -103,15 +77,6 @@ If you have questions concerning this license or the applicable additional terms
 #include <time.h>
 #include <ctype.h>
 #include <limits.h>
-
-#endif
-
-#ifdef _WIN32
-
-//#pragma intrinsic( memset, memcpy )
-
-#endif
-
 
 // this is the define for determining if we have an asm version of a C function
 #if 0
@@ -124,126 +89,9 @@ If you have questions concerning this license or the applicable additional terms
 #endif
 
 // for windows fastcall option
-// QDECL, MAC_STATIC, CPUSTRING and PATH_SEP are supplied by the SCons
-// build on the compiler command line (see SConstruct); the guards below
-// keep the derived fallbacks for other build systems
-
 #ifndef QDECL
 #define QDECL
 #endif
-
-//======================= WIN32 DEFINES =================================
-
-#ifdef WIN32
-
-#ifndef MAC_STATIC
-#define MAC_STATIC
-#endif
-
-// QDECL comes from the SCons command line; only fall back to __cdecl
-// when a build did not supply it
-#ifndef QDECL
-#undef QDECL
-#define QDECL   __cdecl
-#endif
-
-// buildstring will be incorporated into the version string
-#ifndef CPUSTRING
-#ifdef NDEBUG
-// clang-cl does not define _M_IX86, so test the compiler builtins too
-#if defined _M_IX86 || defined __i386__
-#define CPUSTRING   "win-x86"
-#elif defined __x86_64__
-#define CPUSTRING   "win-x64"
-#endif
-#else
-// clang-cl does not define _M_IX86, so test the compiler builtins too
-#if defined _M_IX86 || defined __i386__
-#define CPUSTRING   "win-x86-debug"
-#elif defined __x86_64__
-#define CPUSTRING   "win-x64-debug"
-#endif
-#endif
-#endif
-
-#ifndef PATH_SEP
-#define PATH_SEP '\\'
-#endif
-
-#endif
-
-//======================= MAC OS X SERVER DEFINES =====================
-
-#if defined( __MACH__ ) && defined( __APPLE__ )
-
-#define MAC_STATIC
-
-#ifdef __ppc__
-#define CPUSTRING   "MacOSXS-ppc"
-#elif defined __i386__
-#define CPUSTRING   "MacOSXS-i386"
-#else
-#define CPUSTRING   "MacOSXS-other"
-#endif
-
-#define PATH_SEP    '/'
-
-#define GAME_HARD_LINKED
-#define CGAME_HARD_LINKED
-#define UI_HARD_LINKED
-#define BOTLIB_HARD_LINKED
-
-#endif
-
-//======================= MAC DEFINES =================================
-
-#ifdef __MACOS__
-
-#include <MacTypes.h>
-//DAJ #define	MAC_STATIC	static
-#define MAC_STATIC
-
-#define CPUSTRING   "MacOS-PPC"
-
-#define PATH_SEP ':'
-
-#define GAME_HARD_LINKED
-#define CGAME_HARD_LINKED
-#define UI_HARD_LINKED
-#define BOTLIB_HARD_LINKED
-
-void Sys_PumpEvents( void );
-
-#endif
-
-//======================= LINUX DEFINES =================================
-
-// the mac compiler can't handle >32k of locals, so we
-// just waste space and make big arrays static...
-#ifdef __linux__
-
-#ifndef MAC_STATIC
-#define MAC_STATIC
-#endif
-
-#ifndef CPUSTRING
-#ifdef __i386__
-#define CPUSTRING   "linux-i386"
-#elif defined __axp__
-#define CPUSTRING   "linux-alpha"
-#else
-#define CPUSTRING   "linux-other"
-#endif
-#endif
-
-#ifndef PATH_SEP
-#define PATH_SEP '/'
-#endif
-
-#endif
-
-//=============================================================
-
 
 typedef unsigned char byte;
 
