@@ -80,7 +80,7 @@ struct srfTriangles_t {
 	// one s and t pair per vertex for the world surfaces, NULL
 	// otherwise; the engine bakes it into its drawVert_t
 	float *                     lightmapCoords;
-	int                         lightmapNum;           // negative (LIGHTMAP_NONE/BY_VERTEX) means no lightmap
+	int lightmapNum;                                   // negative (LIGHTMAP_NONE/BY_VERTEX) means no lightmap
 
 	DISALLOW_COPY_AND_ASSIGN( srfTriangles_t );
 };
