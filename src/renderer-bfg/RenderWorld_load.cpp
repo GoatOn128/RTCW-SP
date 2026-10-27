@@ -29,13 +29,14 @@ If you have questions concerning this license or the applicable additional terms
 #include "precompiled.h"
 
 #include "RenderWorld_local.h"
+#include "Model_local.h"
 #include "Q3Bsp.h"
 #include "Q3Patch.h"
 
 // Trimmed and reworked from the BFG RenderWorld_load.cpp: instead of the
-// .proc format the loader reads the Q3/RTCW .bsp files of this engine, and
-// instead of the render model manager the map geometry stays on the world
-// until the model adapter phase.
+// .proc format the loader reads the Q3/RTCW .bsp files of this engine. The
+// BSP models become local render models, the raw BSP data stays on the
+// world for the lightmap and vis phases.
 
 /*
 ===================
@@ -427,6 +428,92 @@ static void LoadQ3BspLightmaps( const byte *buffer, const q3BspHeader_t *header,
 
 /*
 ===================
+BuildBspLocalModels
+
+Converts the BSP models into local render models. Model 0 is the map
+geometry and keeps the map name, the submodels follow the Q3 bmodel
+convention "*<num>" so the engine can reference them by model index.
+===================
+*/
+static void BuildBspLocalModels( idRenderWorldLocal *world, const q3BspWorld_t *bsp ) {
+	for ( int m = 0; m < bsp->numModels; m++ ) {
+		const q3BspModel_t &bspModel = bsp->models[m];
+
+		idStr modelName;
+		if ( m == 0 ) {
+			modelName = world->mapName;
+		} else {
+			modelName.Format( "*%i", m );
+		}
+
+		idRenderModelStatic *model = new idRenderModelStatic();
+		model->InitEmpty( modelName );
+
+		for ( int s = 0; s < bspModel.numSurfaces; s++ ) {
+			const q3BspSurface_t &surf = bsp->surfaces[bspModel.firstSurface + s];
+
+			// the BFG geometry indexes are unsigned shorts, so a surface
+			// cannot have more vertices than the index range holds
+			if ( surf.numVerts > 65535 ) {
+				idLib::Warning( "InitFromMap: surface %i of model %s has too many vertices",
+								bspModel.firstSurface + s, modelName.c_str() );
+				continue;
+			}
+
+			bool indexesOk = true;
+			for ( int i = 0; i < surf.numIndexes; i++ ) {
+				if ( surf.indexes[i] < 0 || surf.indexes[i] >= surf.numVerts ) {
+					indexesOk = false;
+					break;
+				}
+			}
+			if ( !indexesOk ) {
+				idLib::Warning( "InitFromMap: surface %i of model %s has out of range indexes",
+								bspModel.firstSurface + s, modelName.c_str() );
+				continue;
+			}
+
+			modelSurface_t surface;
+			surface.id = s;
+			// the shader names stay on the BSP data and are resolved by
+			// the material phase
+			surface.shader = NULL;
+			surface.geometry = model->AllocSurfaceTriangles( surf.numVerts, surf.numIndexes );
+			srfTriangles_t *tri = surface.geometry;
+			tri->numVerts = surf.numVerts;
+			tri->numIndexes = surf.numIndexes;
+
+			for ( int i = 0; i < surf.numVerts; i++ ) {
+				const q3BspDrawVert_t &in = surf.verts[i];
+				idDrawVert &out = tri->verts[i];
+				out.Clear();
+				out.xyz = idVec3( in.xyz[0], in.xyz[1], in.xyz[2] );
+				out.SetNormal( idVec3( in.normal[0], in.normal[1], in.normal[2] ) );
+				out.SetTexCoord( in.st[0], in.st[1] );
+				// the color is packed in native order, the lightmap
+				// coordinates stay on the BSP data until the lightmap
+				// phase adds the lightmap texture channels
+				unsigned int color;
+				memcpy( &color, in.color, sizeof( color ) );
+				out.SetNativeOrderColor( color );
+			}
+
+			for ( int i = 0; i < surf.numIndexes; i++ ) {
+				tri->indexes[i] = (triIndex_t) surf.indexes[i];
+			}
+
+			tri->bounds = surf.bounds;
+
+			model->AddSurface( surface );
+		}
+
+		model->FinishSurfaces();
+		world->localModels.Append( model );
+	}
+}
+
+/*
+===================
 idRenderWorldLocal::SetupPortalAreas
 ===================
 */
@@ -609,6 +696,9 @@ bool idRenderWorldLocal::LoadQ3BspWorld( const char *name ) {
 
 	idLib::Printf( "idRenderWorldLocal::InitFromMap: %s, %i areas, %i clusters, %i surfaces, %i lightmaps\n",
 				   filename.c_str(), numPortalAreas, world->numClusters, world->numSurfaces, world->numLightmaps );
+
+	// convert the BSP models into local render models
+	BuildBspLocalModels( this, world );
 
 	free( buffer );
 	bspWorld = world;

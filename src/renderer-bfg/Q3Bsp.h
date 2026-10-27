@@ -174,9 +174,9 @@ static_assert( sizeof( q3BspDiskSurface_t ) == 104, "unexpected BSP surface size
 /*
 ===============================================================================
 
-	Runtime structures filled in by the BSP adapter. These live on the
-	render world until the model adapter phase moves the map geometry
-	into render models like the BFG code does.
+	Runtime structures filled in by the BSP adapter. The map geometry is
+	copied into the local render models by the model adapter phase, the
+	data stays on the world for the lightmap, vis and shader lookups.
 
 ===============================================================================
 */

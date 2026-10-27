@@ -30,6 +30,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../idlib/precompiled.h"
 
 #include "RenderWorld_local.h"
+#include "ModelManager.h"
 #include "Q3Bsp.h"
 
 // Trimmed from the BFG RenderWorld.cpp: the interaction table, the decal
@@ -94,8 +95,11 @@ void idRenderWorldLocal::FreeWorld() {
 	}
 	lightDefs.Clear();
 
-	// the local models are owned by the model manager, which is ported
-	// with the model adapter phase
+	// free the local render models built by the BSP loader
+	for ( int i = 0; i < localModels.Num(); i++ ) {
+		renderModelManager->RemoveModel( localModels[i] );
+		delete localModels[i];
+	}
 	localModels.Clear();
 
 	// free the Q3 BSP data behind the world
@@ -156,8 +160,11 @@ idRenderWorldLocal::ResetLocalRenderModels
 ===================
 */
 void idRenderWorldLocal::ResetLocalRenderModels() {
-	// the BFG code frees the local render models through the model
-	// manager, which is ported with the model adapter phase
+	// the local render models were built by the BSP loader and are
+	// freed with the world
+	for ( int i = 0; i < localModels.Num(); i++ ) {
+		delete localModels[i];
+	}
 	localModels.Clear();
 }
 
