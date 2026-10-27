@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 // qcommon.h -- definitions common between client and server, but not game.or ref modules
-#ifndef QCOMMON_H
-#define QCOMMON_H
+#ifndef _QCOMMON_H_
+#define _QCOMMON_H_
 
 #include "../qcommon/cm_public.h"
 
@@ -129,7 +129,7 @@ NET
 #define DO_NET_ENCODE 0
 
 #define PACKET_BACKUP   32  // number of old messages that must be kept on client and
-                            // server for delta comrpession and ping estimation
+							// server for delta comrpession and ping estimation
 #define PACKET_MASK     ( PACKET_BACKUP - 1 )
 
 #define MAX_PACKET_USERCMDS     32      // max number of usercmd_t in a packet
@@ -258,8 +258,8 @@ PROTOCOL
 #define PORT_AUTHORIZE      27952
 #define PORT_SERVER         27960
 #define NUM_SERVER_PORTS    4       // broadcast scan this many ports after
-                                    // PORT_SERVER so a single machine can
-                                    // run multiple servers
+									// PORT_SERVER so a single machine can
+									// run multiple servers
 
 
 // the svc_strings[] array in cl_parse.c should mirror this
@@ -886,8 +886,8 @@ void *Sys_InitializeCriticalSection();
 void Sys_EnterCriticalSection( void *ptr );
 void Sys_LeaveCriticalSection( void *ptr );
 
-// engine module loading: load a native module and resolve its entry point
-void    * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint );
+// Load a native game module and resolve its function-table entry point.
+void    *QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint );
 void    Sys_UnloadDll( void *dllHandle );
 
 void    Sys_UnloadGame( void );
@@ -1018,4 +1018,4 @@ extern huffman_t clientHuffTables;
 #define CL_ENCODE_START     12
 #define CL_DECODE_START     4
 
-#endif // QCOMMON_H
+#endif // _QCOMMON_H_

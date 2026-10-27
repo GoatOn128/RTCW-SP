@@ -5945,7 +5945,7 @@
 		};
 		F5ABC7B9013B054201F6286D = {
 			isa = PBXFileReference;
-			path = tr_cmesh.c;
+			path = tr_md5.cpp;
 			refType = 4;
 		};
 		F5ABC7BA013B054201F6286D = {

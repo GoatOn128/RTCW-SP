@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef UI_PUBLIC_H
-#define UI_PUBLIC_H
+#ifndef __UI_PUBLIC_H__
+#define __UI_PUBLIC_H__
 
 #define UI_API_VERSION  4
 
@@ -41,136 +41,124 @@ typedef struct {
 } uiClientState_t;
 
 typedef struct {
-	void ( *UI_ERROR )( const char *string );
-	void ( *UI_PRINT )( const char *string );
-	int ( *UI_MILLISECONDS )( void );
-	void ( *UI_CVAR_SET )( const char *var_name, const char *value );
-	float ( *UI_CVAR_VARIABLEVALUE )( const char *var_name );
-	void ( *UI_CVAR_VARIABLESTRINGBUFFER )( const char *var_name, char *buffer, int bufsize );
-	void ( *UI_CVAR_SETVALUE )( const char *var_name, float value );
-	void ( *UI_CVAR_RESET )( const char *var_name );
-	void ( *UI_CVAR_CREATE )( const char *var_name, const char *var_value, int flags );
-	void ( *UI_CVAR_INFOSTRINGBUFFER )( int bit, char *buffer, int bufsize );
-	int ( *UI_ARGC )( void );
-	void ( *UI_ARGV )( int n, char *buffer, int bufferLength );
-	void ( *UI_CMD_EXECUTETEXT )( int exec_when, const char *text );
-	int ( *UI_FS_FOPENFILE )( const char *qpath, fileHandle_t *f, fsMode_t mode );
-	int ( *UI_FS_READ )( void *buffer, int len, fileHandle_t f );
-	int ( *UI_FS_SEEK )( fileHandle_t f, long offset, int origin );
-	int ( *UI_FS_WRITE )( const void *buffer, int len, fileHandle_t f );
-	void ( *UI_FS_FCLOSEFILE )( fileHandle_t f );
-	int ( *UI_FS_GETFILELIST )( const char *path, const char *extension, char *listbuf, int bufsize );
-	int ( *UI_FS_DELETEFILE )( const char *filename );
-	qhandle_t ( *UI_R_REGISTERMODEL )( const char *name );
-	qhandle_t ( *UI_R_REGISTERSKIN )( const char *name );
-	qhandle_t ( *UI_R_REGISTERSHADERNOMIP )( const char *name );
-	void ( *UI_R_CLEARSCENE )( void );
-	void ( *UI_R_ADDREFENTITYTOSCENE )( const refEntity_t *re );
-	void ( *UI_R_ADDPOLYTOSCENE )( qhandle_t hShader, int numVerts, const polyVert_t *verts );
-	void ( *UI_R_ADDPOLYSTOSCENE )( qhandle_t hShader, int numVerts, const polyVert_t *verts, int numPolys );
-	void ( *UI_R_ADDLIGHTTOSCENE )( const vec3_t org, float intensity, float r, float g, float b, int overdraw );
-	void ( *UI_R_ADDCORONATOSCENE )( const vec3_t org, float r, float g, float b, float scale, int id, int flags );
-	void ( *UI_R_RENDERSCENE )( const refdef_t *fd );
-	void ( *UI_R_SETCOLOR )( const float *rgba );
-	void ( *UI_R_DRAWSTRETCHPIC )( float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader );
-	void ( *UI_UPDATESCREEN )( void );
-	int ( *UI_CM_LERPTAG )( orientation_t *tag, const refEntity_t *refent, const char *tagName, int startIndex );
-	sfxHandle_t ( *UI_S_REGISTERSOUND )( const char *sample );
-	void ( *UI_S_STARTLOCALSOUND )( sfxHandle_t sfx, int channelNum );
-	void ( *UI_S_FADESTREAMINGSOUND )( float targetvol, int time, int num );
-	void ( *UI_S_FADEALLSOUNDS )( float targetvol, int time );
-	void ( *UI_KEY_KEYNUMTOSTRINGBUF )( int keynum, char *buf, int buflen );
-	void ( *UI_KEY_GETBINDINGBUF )( int keynum, char *buf, int buflen );
-	void ( *UI_KEY_SETBINDING )( int keynum, const char *binding );
-	qboolean ( *UI_KEY_ISDOWN )( int keynum );
-	qboolean ( *UI_KEY_GETOVERSTRIKEMODE )( void );
-	void ( *UI_KEY_SETOVERSTRIKEMODE )( qboolean state );
-	void ( *UI_KEY_CLEARSTATES )( void );
-	int ( *UI_KEY_GETCATCHER )( void );
-	void ( *UI_KEY_SETCATCHER )( int catcher );
-	void ( *UI_GETCLIPBOARDDATA )( char *buf, int bufsize );
-	void ( *UI_GETGLCONFIG )( glconfig_t *glconfig );
-	void ( *UI_GETCLIENTSTATE )( uiClientState_t *state );
-	int ( *UI_GETCONFIGSTRING )( int index, char *buf, int bufsize );
-	int ( *UI_LAN_GETLOCALSERVERCOUNT )( void );
-	void ( *UI_LAN_GETLOCALSERVERADDRESSSTRING )( int n, char *buf, int buflen );
-	int ( *UI_LAN_GETGLOBALSERVERCOUNT )( void );
-	void ( *UI_LAN_GETGLOBALSERVERADDRESSSTRING )( int n, char *buf, int buflen );
-	int ( *UI_LAN_GETPINGQUEUECOUNT )( void );
-	void ( *UI_LAN_CLEARPING )( int n );
-	void ( *UI_LAN_GETPING )( int n, char *buf, int buflen, int *pingtime );
-	void ( *UI_LAN_GETPINGINFO )( int n, char *buf, int buflen );
-	void ( *UI_CVAR_REGISTER )( vmCvar_t *vmCvar, const char *varName, const char *defaultValue, int flags );
-	void ( *UI_CVAR_UPDATE )( vmCvar_t *vmCvar );
-	int ( *UI_MEMORY_REMAINING )( void );
-	void ( *UI_GET_CDKEY )( char *buf, int buflen );
-	void ( *UI_SET_CDKEY )( char *buf );
-	void ( *UI_R_REGISTERFONT )( const char *fontName, int pointSize, fontInfo_t *font );
-	void ( *UI_R_MODELBOUNDS )( clipHandle_t model, vec3_t mins, vec3_t maxs );
-	int ( *UI_PC_ADD_GLOBAL_DEFINE )( char *define );
-	int ( *UI_PC_LOAD_SOURCE )( const char *filename );
-	int ( *UI_PC_FREE_SOURCE )( int handle );
-	int ( *UI_PC_READ_TOKEN )( int handle, pc_token_t *pc_token );
-	int ( *UI_PC_SOURCE_FILE_AND_LINE )( int handle, char *filename, int *line );
-	void ( *UI_S_STOPBACKGROUNDTRACK )( void );
-	void ( *UI_S_STARTBACKGROUNDTRACK )( const char *intro, const char *loop, int fadeupTime );
-	int ( *UI_REAL_TIME )( qtime_t *qtime );
-	int ( *UI_LAN_GETSERVERCOUNT )( int source );
-	void ( *UI_LAN_GETSERVERADDRESSSTRING )( int source, int n, char *buf, int buflen );
-	void ( *UI_LAN_GETSERVERINFO )( int source, int n, char *buf, int buflen );
-	void ( *UI_LAN_MARKSERVERVISIBLE )( int source, int n, qboolean visible );
-	qboolean ( *UI_LAN_UPDATEVISIBLEPINGS )( int source );
-	void ( *UI_LAN_RESETPINGS )( int n );
-	void ( *UI_LAN_LOADCACHEDSERVERS )( void );
-	void ( *UI_LAN_SAVECACHEDSERVERS )( void );
-	int ( *UI_LAN_ADDSERVER )( int source, const char *name, const char *addr );
-	void ( *UI_LAN_REMOVESERVER )( int source, const char *addr );
-	int ( *UI_CIN_PLAYCINEMATIC )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
-	e_status ( *UI_CIN_STOPCINEMATIC )( int handle );
-	e_status ( *UI_CIN_RUNCINEMATIC )( int handle );
-	void ( *UI_CIN_DRAWCINEMATIC )( int handle );
-	void ( *UI_CIN_SETEXTENTS )( int handle, int x, int y, int w, int h );
-	void ( *UI_R_REMAP_SHADER )( const char *oldShader, const char *newShader, const char *timeOffset );
-	qboolean ( *UI_VERIFY_CDKEY )( const char *key, const char *chksum );
-	int ( *UI_LAN_SERVERSTATUS )( const char *serverAddress, char *serverStatus, int maxLen );
-	int ( *UI_LAN_GETSERVERPING )( int source, int n );
-	int ( *UI_LAN_SERVERISVISIBLE )( int source, int n );
-	int ( *UI_LAN_COMPARESERVERS )( int source, int sortKey, int sortDir, int s1, int s2 );
-	qboolean ( *UI_CL_GETLIMBOSTRING )( int index, char *buf );
-	void *( *UI_MEMSET )( void *dest, int set, int count );
-	void *( *UI_MEMCPY )( void *dest, const void *src, int count );
-	char *( *UI_STRNCPY )( char *dest, const char *src, int count );
-	float ( *UI_SIN )( float x );
-	float ( *UI_COS )( float x );
-	float ( *UI_ATAN2 )( float y, float x );
-	float ( *UI_SQRT )( float x );
-	float ( *UI_FLOOR )( float x );
-	float ( *UI_CEIL )( float x );
+	void ( QDECL *Com_Printf )( const char *string );
+	void ( QDECL *Com_Error )( const char *string );
+	int ( QDECL *Sys_Milliseconds )( void );
+	void ( QDECL *Cvar_Register )( vmCvar_t *cvar, const char *var_name, const char *value, int flags );
+	void ( QDECL *Cvar_Update )( vmCvar_t *cvar );
+	void ( QDECL *Cvar_Set )( const char *var_name, const char *value );
+	float ( QDECL *Cvar_VariableValue )( const char *var_name );
+	void ( QDECL *Cvar_VariableStringBuffer )( const char *var_name, char *buffer, int bufsize );
+	void ( QDECL *Cvar_SetValue )( const char *var_name, float value );
+	void ( QDECL *Cvar_Reset )( const char *name );
+	void ( QDECL *Cvar_Get )( const char *var_name, const char *var_value, int flags );
+	void ( QDECL *Cvar_InfoStringBuffer )( int bit, char *buffer, int bufsize );
+	int ( QDECL *Cmd_Argc )( void );
+	void ( QDECL *Cmd_ArgvBuffer )( int n, char *buffer, int bufferLength );
+	void ( QDECL *Cbuf_ExecuteText )( int exec_when, const char *text );
+	int ( QDECL *FS_FOpenFileByMode )( const char *qpath, fileHandle_t *f, fsMode_t mode );
+	void ( QDECL *FS_Read )( void *buffer, int len, fileHandle_t f );
+	void ( QDECL *FS_Seek )( fileHandle_t f, long offset, int origin );
+	void ( QDECL *FS_Write )( const void *buffer, int len, fileHandle_t f );
+	void ( QDECL *FS_FCloseFile )( fileHandle_t f );
+	int ( QDECL *FS_GetFileList )( const char *path, const char *extension, char *listbuf, int bufsize );
+	int ( QDECL *FS_Delete )( const char *filename );
+	qhandle_t ( QDECL *RE_RegisterModel )( const char *name );
+	qhandle_t ( QDECL *RE_RegisterSkin )( const char *name );
+	void ( QDECL *RE_RegisterFont )( const char *fontName, int pointSize, fontInfo_t *font );
+	qhandle_t ( QDECL *RE_RegisterShaderNoMip )( const char *name );
+	void ( QDECL *RE_ClearScene )( void );
+	void ( QDECL *RE_AddRefEntityToScene )( const refEntity_t *re );
+	void ( QDECL *RE_AddPolyToScene )( qhandle_t hShader, int numVerts, const polyVert_t *verts );
+	void ( QDECL *RE_AddLightToScene )( const vec3_t org, float intensity, float r, float g, float b, int overdraw );
+	void ( QDECL *RE_AddCoronaToScene )( const vec3_t org, float r, float g, float b, float scale, int id, int flags );
+	void ( QDECL *RE_RenderScene )( const refdef_t *fd );
+	void ( QDECL *RE_SetColor )( const float *rgba );
+	void ( QDECL *RE_DrawStretchPic )( float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader );
+	void ( QDECL *RE_ModelBounds )( clipHandle_t model, vec3_t mins, vec3_t maxs );
+	void ( QDECL *SCR_UpdateScreen )( void );
+	int ( QDECL *RE_LerpTag )( orientation_t *tag, const refEntity_t *refent, const char *tagName, int startIndex );
+	void ( QDECL *S_StartLocalSound )( sfxHandle_t sfx, int channelNum );
+	sfxHandle_t ( QDECL *S_RegisterSound )( const char *sample );
+	void ( QDECL *S_FadeStreamingSound )( float targetvol, int time, int num );
+	void ( QDECL *S_FadeAllSounds )( float targetvol, int time );
+	void ( QDECL *Key_KeynumToStringBuf )( int keynum, char *buf, int buflen );
+	void ( QDECL *Key_GetBindingBuf )( int keynum, char *buf, int buflen );
+	void ( QDECL *Key_SetBinding )( int keynum, const char *binding );
+	qboolean ( QDECL *Key_IsDown )( int keynum );
+	qboolean ( QDECL *Key_GetOverstrikeMode )( void );
+	void ( QDECL *Key_SetOverstrikeMode )( qboolean state );
+	void ( QDECL *Key_ClearStates )( void );
+	int ( QDECL *Key_GetCatcher )( void );
+	void ( QDECL *Key_SetCatcher )( int catcher );
+	void ( QDECL *GetClipboardData )( char *buf, int bufsize );
+	void ( QDECL *GetClientState )( uiClientState_t *state );
+	void ( QDECL *CL_GetGlconfig )( glconfig_t *glconfig );
+	int ( QDECL *GetConfigString )( int index, char* buff, int buffsize );
+	int ( QDECL *LAN_GetLocalServerCount )( void );
+	void ( QDECL *LAN_GetLocalServerAddressString )( int n, char *buf, int buflen );
+	int ( QDECL *LAN_GetGlobalServerCount )( void );
+	void ( QDECL *LAN_GetGlobalServerAddressString )( int n, char *buf, int buflen );
+	int ( QDECL *LAN_GetPingQueueCount )( void );
+	void ( QDECL *LAN_ClearPing )( int n );
+	void ( QDECL *LAN_GetPing )( int n, char *buf, int buflen, int *pingtime );
+	void ( QDECL *LAN_GetPingInfo )( int n, char *buf, int buflen );
+	qboolean ( QDECL *LAN_UpdateVisiblePings )( int source );
+	int ( QDECL *LAN_GetServerCount )( int source );
+	int ( QDECL *LAN_CompareServers )( int source, int sortKey, int sortDir, int s1, int s2 );
+	void ( QDECL *LAN_GetServerAddressString )( int source, int n, char *buf, int buflen );
+	void ( QDECL *LAN_GetServerInfo )( int source, int n, char *buf, int buflen );
+	int ( QDECL *LAN_AddServer )( int source, const char *name, const char *addr );
+	void ( QDECL *LAN_RemoveServer )( int source, const char *addr );
+	int ( QDECL *LAN_GetServerPing )( int source, int n );
+	int ( QDECL *LAN_ServerIsVisible )( int source, int n );
+	int ( QDECL *LAN_GetServerStatus )( const char *serverAddress, char *serverStatus, int maxLen );
+	void ( QDECL *LAN_SaveServersToCache )( void );
+	void ( QDECL *LAN_LoadCachedServers )( void );
+	void ( QDECL *LAN_MarkServerVisible )( int source, int n, qboolean visible );
+	void ( QDECL *LAN_ResetPings )( int n );
+	int ( QDECL *Hunk_MemoryRemaining )( void );
+	void ( QDECL *CLUI_GetCDKey )( char *buf, int buflen );
+	void ( QDECL *CLUI_SetCDKey )( char *buf );
+	int ( QDECL *PC_AddGlobalDefine )( char *define );
+	int ( QDECL *PC_LoadSourceHandle )( const char *filename );
+	int ( QDECL *PC_FreeSourceHandle )( int handle );
+	int ( QDECL *PC_ReadTokenHandle )( int handle, pc_token_t *pc_token );
+	int ( QDECL *PC_SourceFileAndLine )( int handle, char *filename, int *line );
+	void ( QDECL *S_StopBackgroundTrack )( void );
+	void ( QDECL *S_StartBackgroundTrack )( const char *intro, const char *loop, int fadeupTime );
+	int ( QDECL *Com_RealTime )( qtime_t *qtime );
+	int ( QDECL *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
+	e_status ( QDECL *CIN_StopCinematic )( int handle );
+	e_status ( QDECL *CIN_RunCinematic )( int handle );
+	void ( QDECL *CIN_DrawCinematic )( int handle );
+	void ( QDECL *CIN_SetExtents )( int handle, int x, int y, int w, int h );
+	void ( QDECL *RE_RemapShader )( const char *oldShader, const char *newShader, const char *timeOffset );
+	qboolean ( QDECL *CL_CDKeyValidate )( const char *key, const char *chksum );
+	qboolean ( QDECL *CL_GetLimboString )( int index, char *buf );
 } uiImport_t;
-
-extern uiImport_t *uiImport;
 
 typedef enum {
 	UIMENU_NONE,
 	UIMENU_MAIN,
 	UIMENU_INGAME,
 	UIMENU_NEED_CD,
-	UIMENU_ENDGAME, //----(SA)	added
+	UIMENU_ENDGAME,
 	UIMENU_BAD_CD_KEY,
 	UIMENU_TEAM,
-	UIMENU_PREGAME, //----(SA)	added
+	UIMENU_PREGAME,
 	UIMENU_POSTGAME,
 	UIMENU_NOTEBOOK,
 	UIMENU_CLIPBOARD,
 	UIMENU_HELP,
-	UIMENU_BOOK1,           //----(SA)	added
-	UIMENU_BOOK2,           //----(SA)	added
-	UIMENU_BOOK3,           //----(SA)	added
-	UIMENU_WM_PICKTEAM,     // NERVE - SMF - for multiplayer only
-	UIMENU_WM_PICKPLAYER,   // NERVE - SMF - for multiplayer only
-	UIMENU_WM_QUICKMESSAGE, // NERVE - SMF
-	UIMENU_WM_LIMBO,        // NERVE - SMF
-	UIMENU_BRIEFING         //----(SA)	added
+	UIMENU_BOOK1,
+	UIMENU_BOOK2,
+	UIMENU_BOOK3,
+	UIMENU_WM_PICKTEAM,
+	UIMENU_WM_PICKPLAYER,
+	UIMENU_WM_QUICKMESSAGE,
+	UIMENU_WM_LIMBO,
+	UIMENU_BRIEFING
 } uiMenuCommand_t;
 
 #define SORT_HOST           0
@@ -184,20 +172,19 @@ typedef enum {
 
 typedef struct {
 	int apiVersion;
-
-	void ( *Init )( qboolean inGameLoad );
-	void ( *Shutdown )( void );
-	void ( *KeyEvent )( int key, qboolean down );
-	void ( *MouseEvent )( int dx, int dy );
-	void ( *Refresh )( int time );
-	qboolean ( *IsFullscreen )( void );
-	void ( *SetActiveMenu )( uiMenuCommand_t menu );
-	uiMenuCommand_t ( *GetActiveMenu )( void );
-	qboolean ( *ConsoleCommand )( int realTime );
-	void ( *DrawConnectScreen )( qboolean overlay );
-	qboolean ( *HasUniqueCDKey )( void );
+	void ( *UI_INIT )( qboolean inGameLoad );
+	void ( *UI_SHUTDOWN )( void );
+	void ( *UI_KEY_EVENT )( int key, qboolean down );
+	void ( *UI_MOUSE_EVENT )( int dx, int dy );
+	void ( *UI_REFRESH )( int realtime );
+	qboolean ( *UI_IS_FULLSCREEN )( void );
+	void ( *UI_SET_ACTIVE_MENU )( uiMenuCommand_t menu );
+	uiMenuCommand_t ( *UI_GET_ACTIVE_MENU )( void );
+	qboolean ( *UI_CONSOLE_COMMAND )( int realtime );
+	void ( *UI_DRAW_CONNECT_SCREEN )( qboolean overlay );
+	qboolean ( *UI_HASUNIQUECDKEY )( void );
 } uiExport_t;
 
-uiExport_t *GetUIAPI( int apiVersion, uiImport_t *import );
+typedef const uiExport_t *( QDECL *GetUIAPI_t )( const uiImport_t *imports );
 
 #endif

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef Q_SHARED_H
-#define Q_SHARED_H
+#ifndef __Q_SHARED_H
+#define __Q_SHARED_H
 
 // q_splineshared.h -- included first by ALL program modules.
 // these are the definitions that have no dependance on
@@ -83,19 +83,138 @@ If you have questions concerning this license or the applicable additional terms
 
 
 // this is the define for determining if we have an asm version of a C function
-#if 0
-// asm paths are disabled on every platform: clang-cl has no MSVC inline asm
-// and the SCons build no longer assembles the unix .s files, so the portable
-// C implementations in the #else branches are always used
+#if ( defined _M_IX86 || defined __i386__ ) && !defined __sun__  && !defined __LCC__
 #define id386   1
 #else
 #define id386   0
 #endif
 
 // for windows fastcall option
-#ifndef QDECL
+
 #define QDECL
+
+//======================= WIN32 DEFINES =================================
+
+#ifdef WIN32
+
+#define MAC_STATIC
+
+#undef QDECL
+#define QDECL   __cdecl
+
+// buildstring will be incorporated into the version string
+#ifdef NDEBUG
+#ifdef _M_IX86
+#define CPUSTRING   "win-x86"
+#elif defined _M_ALPHA
+#define CPUSTRING   "win-AXP"
 #endif
+#else
+#ifdef _M_IX86
+#define CPUSTRING   "win-x86-debug"
+#elif defined _M_ALPHA
+#define CPUSTRING   "win-AXP-debug"
+#endif
+#endif
+
+
+#define PATH_SEP '\\'
+
+#endif
+
+//======================= MAC OS X SERVER DEFINES =====================
+
+#if defined( __MACH__ ) && defined( __APPLE__ )
+
+#define MAC_STATIC
+
+#ifdef __ppc__
+#define CPUSTRING   "MacOSXS-ppc"
+#elif defined __i386__
+#define CPUSTRING   "MacOSXS-i386"
+#else
+#define CPUSTRING   "MacOSXS-other"
+#endif
+
+#define PATH_SEP    '/'
+
+#define GAME_HARD_LINKED
+#define CGAME_HARD_LINKED
+#define UI_HARD_LINKED
+#define _alloca alloca
+
+#undef ALIGN_ON
+#undef ALIGN_OFF
+#define ALIGN_ON        # pragma align( 16 )
+#define ALIGN_OFF       # pragma align()
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void *osxAllocateMemory( long size );
+void osxFreeMemory( void *pointer );
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+//======================= MAC DEFINES =================================
+
+#ifdef __MACOS__
+
+//DAJ #define	MAC_STATIC static
+#define MAC_STATIC
+
+#define CPUSTRING   "MacOS-PPC"
+
+#define PATH_SEP ':'
+
+void Sys_PumpEvents( void );
+
+#endif
+
+#ifdef __MRC__
+
+#define MAC_STATIC
+
+#define CPUSTRING   "MacOS-PPC"
+
+#define PATH_SEP ':'
+
+void Sys_PumpEvents( void );
+
+#undef QDECL
+#define QDECL   __cdecl
+
+#define _alloca alloca
+#endif
+
+//======================= LINUX DEFINES =================================
+
+// the mac compiler can't handle >32k of locals, so we
+// just waste space and make big arrays static...
+#ifdef __linux__
+
+#define MAC_STATIC
+
+#ifdef __i386__
+#define CPUSTRING   "linux-i386"
+#elif defined __axp__
+#define CPUSTRING   "linux-alpha"
+#else
+#define CPUSTRING   "linux-other"
+#endif
+
+#define PATH_SEP '/'
+
+#endif
+
+//=============================================================
+
+
 
 typedef enum {qfalse, qtrue}    qboolean;
 
@@ -152,7 +271,7 @@ typedef enum {
 // paramters for command buffer stuffing
 typedef enum {
 	EXEC_NOW,           // don't return until completed, a VM should NEVER use this,
-	                    // because some commands might cause the VM to be unloaded...
+						// because some commands might cause the VM to be unloaded...
 	EXEC_INSERT,        // insert at current position, but don't run yet
 	EXEC_APPEND         // add to end of the command buffer (normal case)
 } cbufExec_t;
@@ -305,7 +424,7 @@ extern mat3_t axisDefault;
 
 #define nanmask ( 255 << 23 )
 
-#define IS_NAN( x ) ( ( ( *(int *)&x )&nanmask ) == nanmask )
+#define IS_NAN( x ) ( ( ( *(int *)&x ) & nanmask ) == nanmask )
 
 // TTimo
 // handy stuff when tracking isnan problems
@@ -313,8 +432,8 @@ extern mat3_t axisDefault;
 #define CHECK_NAN( x ) assert( !IS_NAN( x ) )
 #define CHECK_NAN_VEC( v ) assert( !IS_NAN( v[0] ) && !IS_NAN( v[1] ) && !IS_NAN( v[2] ) )
 #else
-#define CHECK_NAN( x ) ( (void)0 )
-#define CHECK_NAN_VEC( v ) ( (void)0 )
+#define CHECK_NAN
+#define CHECK_NAN_VEC
 #endif
 
 float Q_fabs( float f );
@@ -484,10 +603,6 @@ void Com_Parse2DMatrix( const char *( *buf_p ), int y, int x, float *m );
 void Com_Parse3DMatrix( const char *( *buf_p ), int z, int y, int x, float *m );
 
 //=====================================================================================
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 void QDECL Com_sprintf( char *dest, int size, const char *fmt, ... );
 
 
@@ -543,11 +658,7 @@ float   BigFloat( float l );
 float   LittleFloat( float l );
 
 void    Swap_Init( void );
-char    * QDECL va( const char *format, ... );
-
-#ifdef __cplusplus
-}
-#endif
+char    * QDECL va( char *format, ... );
 
 
 //=============================================
@@ -642,17 +753,9 @@ drawVertMesh_t *SubdivideMapPatch( const mapPatch_t *patch, float maxError );
 
 //=========================================
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 void QDECL Com_Error( int level, const char *error, ... );
 void QDECL Com_Printf( const char *msg, ... );
 void QDECL Com_DPrintf( const char *msg, ... );
-
-#ifdef __cplusplus
-}
-#endif
 
 
 typedef struct {
@@ -693,4 +796,4 @@ void Info_NextPair( const char *( *s ), char key[MAX_INFO_KEY], char value[MAX_I
 //#include "../shared/idflags.h"
 #endif  // __cplusplus
 
-#endif  // Q_SHARED_H
+#endif  // __Q_SHARED_H

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,12 +26,13 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef SPLINES_H
-#define SPLINES_H
+#ifndef __SPLINES_H
+#define __SPLINES_H
 
 #ifdef Q3RADIANT
-// the editor build links GL directly through the vendored glad loader
-#include <glad/gl.h>
+  #include "../qgl.h"
+#else
+  #include "../renderer/qgl.h"
 #endif
 #include "util_list.h"
 #include "util_str.h"
@@ -83,7 +84,7 @@ int selectPointByRay( const idVec3 origin, const idVec3 direction, bool single )
 		temp2 = temp;
 		temp -= origin;
 		d = DotProduct( temp, direction );
-		VectorMA_( origin, d, direction, temp );
+		__VectorMA( origin, d, direction, temp );
 		temp2 -= temp;
 		d = temp2.Length();
 		if ( d <= bestd ) {
@@ -612,12 +613,10 @@ virtual void addPoint( const idVec3 &v ) {
 virtual void draw( bool editMode ) {
 	glLabeledPoint( blue, startPos, ( editMode ) ? 5 : 3, "Start interpolated" );
 	glLabeledPoint( blue, endPos, ( editMode ) ? 5 : 3, "End interpolated" );
-#ifdef Q3RADIANT
-	glBegin( GL_LINES );
-	glVertex3fv( startPos );
-	glVertex3fv( endPos );
-	glEnd();
-#endif
+	qglBegin( GL_LINES );
+	qglVertex3fv( startPos );
+	qglVertex3fv( endPos );
+	qglEnd();
 }
 
 virtual void start( long t ) {

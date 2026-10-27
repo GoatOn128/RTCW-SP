@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -92,28 +92,28 @@ typedef struct
 
 extern glwstate_t glw_state;
 
-#define OSX_SetGLContext( context ) \
-		do { \
-			NSOpenGLContext *_context = ( context ); \
-			glw_state._ctx = _context; \
-			glw_state._cgl_ctx = [_context cglContext]; \
-		} while ( 0 )
+#define OSX_SetGLContext( context )	\
+	do { \
+		NSOpenGLContext *_context = ( context ); \
+		glw_state._ctx = _context; \
+		glw_state._cgl_ctx = [_context cglContext];	\
+	} while ( 0 )
 
 #define OSX_GetNSGLContext() glw_state._ctx
 #define OSX_GetCGLContext() glw_state._cgl_ctx
 
 #define OSX_GLContextIsCurrent() glw_state._ctx_is_current
 #define OSX_GLContextSetCurrent() \
-		do { \
-			[glw_state._ctx makeCurrentContext]; \
-			glw_state._ctx_is_current = ( glw_state._ctx != nil ); \
-		} while ( 0 )
+	do { \
+		[glw_state._ctx makeCurrentContext]; \
+		glw_state._ctx_is_current = ( glw_state._ctx != nil ); \
+	} while ( 0 )
 
-#define OSX_GLContextClearCurrent() \
-		do { \
-			[NSOpenGLContext clearCurrentContext]; \
-			glw_state._ctx_is_current = NO; \
-		} while ( 0 )
+#define OSX_GLContextClearCurrent()	\
+	do { \
+		[NSOpenGLContext clearCurrentContext]; \
+		glw_state._ctx_is_current = NO;	\
+	} while ( 0 )
 
 
 extern void Sys_PauseGL();

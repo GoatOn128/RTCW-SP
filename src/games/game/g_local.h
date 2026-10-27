@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@ If you have questions concerning this license or the applicable additional terms
 
 ===========================================================================
 */
+
+#pragma once
 
 
 
@@ -173,7 +175,7 @@ void G_Script_ScriptEvent( gentity_t *ent, char *eventStr, char *params );
 //====================================================================
 
 
-#define CFOFS( x ) ( (int)(size_t)&( ( (gclient_t *)0 )->x ) )
+#define CFOFS( x ) ( (int)&( ( (gclient_t *)0 )->x ) )
 
 struct gentity_s {
 	entityState_t s;                // communicated by server to clients
@@ -191,7 +193,7 @@ struct gentity_s {
 	int spawnflags;                 // set in QuakeEd
 
 	qboolean neverFree;             // if true, FreeEntity will only unlink
-	                                // bodyque uses this
+									// bodyque uses this
 
 	int flags;                      // FL_* variables
 
@@ -204,11 +206,11 @@ struct gentity_s {
 	qboolean unlinkAfterEvent;
 
 	qboolean physicsObject;         // if true, it can be pushed by movers and fall off edges
-	                                // all game items are physicsObjects,
+									// all game items are physicsObjects,
 	float physicsBounce;            // 1.0 = continuous bounce, 0.0 = no bounce
 	int clipmask;                   // brushes with this content value will be collided against
-	                                // when moving.  items and corpses do not collide against
-	                                // players, for instance
+									// when moving.  items and corpses do not collide against
+									// players, for instance
 
 	// movers
 	moverState_t moverState;
@@ -335,7 +337,7 @@ struct gentity_s {
 	int key;                    // used by:  target_speaker->nopvs,
 
 	qboolean active;
-	qboolean botDelayBegin;
+	qboolean spiritSpawnDelayStarted; // Heinrich arena spirit spawner
 
 	// Rafael - mg42
 	float harc;
@@ -349,7 +351,7 @@ struct gentity_s {
 	// Ridah
 	int missionLevel;                   // highest mission level completed (for previous level de-briefings)
 	int missionObjectives;              // which objectives for the current level have been met
-	                                    // gets reset each new level
+										// gets reset each new level
 
 	int numSecretsFound;                //----(SA)	added to get into savegame
 	int numTreasureFound;               //----(SA)	added to get into savegame
@@ -416,7 +418,7 @@ struct gentity_s {
 };
 
 // Ridah
-#include "ai_cast_global.h"
+#include "ai/ai_public.h"
 // done.
 
 typedef enum {
@@ -524,8 +526,8 @@ struct gclient_s {
 	qboolean noclip;
 
 	int lastCmdTime;                // level.time of last usercmd_t, for EF_CONNECTION
-	                                // we can't just use pers.lastCommand.time, because
-	                                // of the g_sycronousclients case
+									// we can't just use pers.lastCommand.time, because
+									// of the g_sycronousclients case
 	int buttons;
 	int oldbuttons;
 	int latched_buttons;
@@ -631,7 +633,7 @@ typedef struct {
 	int lastTeamLocationTime;               // last time of client team location update
 
 	qboolean newSession;                // don't use any old session data, because
-	                                    // we changed gametype
+										// we changed gametype
 
 	qboolean restarted;                 // waiting for a map_restart to fire
 
@@ -670,10 +672,10 @@ typedef struct {
 
 	// intermission state
 	int intermissionQueued;             // intermission was qualified, but
-	                                    // wait INTERMISSION_DELAY_TIME before
-	                                    // actually going there so the last
-	                                    // frag can be watched.  Disable future
-	                                    // kills during this delay
+										// wait INTERMISSION_DELAY_TIME before
+										// actually going there so the last
+										// frag can be watched.  Disable future
+										// kills during this delay
 	int intermissiontime;               // time the intermission was started
 	char        *changemap;
 	qboolean readyToExit;               // at least one client wants to exit
@@ -1020,36 +1022,6 @@ void G_InitWorldSession( void );
 void G_WriteSessionData( void );
 
 //
-// g_bot.c
-//
-//void G_InitBots( qboolean restart );
-char *G_GetBotInfoByNumber( int num );
-char *G_GetBotInfoByName( const char *name );
-void G_CheckBotSpawn( void );
-void G_QueueBotBegin( int clientNum );
-qboolean G_BotConnect( int clientNum, qboolean restart );
-void Svcmd_AddBot_f( void );
-
-// ai_main.c
-#define MAX_FILEPATH            144
-
-//bot settings
-typedef struct bot_settings_s
-{
-	char characterfile[MAX_FILEPATH];
-	float skill;
-	char team[MAX_FILEPATH];
-} bot_settings_t;
-
-int BotAISetup( int restart );
-int BotAIShutdown( int restart );
-int BotAILoadMap( int restart );
-int BotAISetupClient( int client, struct bot_settings_s *settings );
-int BotAIShutdownClient( int client );
-int BotAIStartFrame( int time );
-void BotTestAAS( vec3_t origin );
-
-
 // g_cmd.c
 void Cmd_Activate_f( gentity_t *ent );
 int Cmd_WolfKick_f( gentity_t *ent );
@@ -1067,7 +1039,7 @@ qboolean G_Script_ScriptRun( gentity_t *ent );
 void G_Script_ScriptEvent( gentity_t *ent, char *eventStr, char *params );
 void G_Script_ScriptLoad( void );
 
-float AngleDifference( float ang1, float ang2 );
+float AI_AngleDifference( float ang1, float ang2 );
 
 // g_props.c
 void Props_Chair_Skyboxtouch( gentity_t *ent );
@@ -1079,7 +1051,7 @@ extern level_locals_t level;
 extern gentity_t g_entities[MAX_GENTITIES];
 extern gentity_t       *g_camEnt;
 
-#define FOFS( x ) ( (int)(size_t)&( ( (gentity_t *)0 )->x ) )
+#define FOFS( x ) ( (int)&( ( (gentity_t *)0 )->x ) )
 
 extern vmCvar_t g_gametype;
 
@@ -1224,7 +1196,7 @@ int     trap_BotLibVarGet( char *var_name, char *value, int size );
 int     trap_BotLibDefine( char *string );
 int     trap_BotLibStartFrame( float time );
 int     trap_BotLibLoadMap( const char *mapname );
-int     trap_BotLibUpdateEntity( int ent, void /* struct bot_updateentity_s */ *bue );
+int     trap_BotLibUpdateEntity( int ent, struct bot_entitystate_s *bue );
 int     trap_BotLibTest( int parm0, char *parm1, vec3_t parm2, vec3_t parm3 );
 
 int     trap_BotGetSnapshotEntity( int clientNum, int sequence );
@@ -1232,7 +1204,7 @@ int     trap_BotGetServerCommand( int clientNum, char *message, int size );
 //int		trap_BotGetConsoleMessage(int clientNum, char *message, int size);
 void    trap_BotUserCommand( int client, usercmd_t *ucmd );
 
-void        trap_AAS_EntityInfo( int entnum, void /* struct aas_entityinfo_s */ *info );
+void        trap_AAS_EntityInfo( int entnum, struct aas_entityinfo_s *info );
 
 int         trap_AAS_Initialized( void );
 void        trap_AAS_PresenceTypeBoundingBox( int presencetype, vec3_t mins, vec3_t maxs );
@@ -1257,7 +1229,7 @@ int         trap_AAS_AreaReachability( int areanum );
 int         trap_AAS_AreaTravelTimeToGoalArea( int areanum, vec3_t origin, int goalareanum, int travelflags );
 
 int         trap_AAS_Swimming( vec3_t origin );
-int         trap_AAS_PredictClientMovement( void /* aas_clientmove_s */ *move, int entnum, vec3_t origin, int presencetype, int onground, vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float frametime, int stopevent, int stopareanum, int visualize );
+int         trap_AAS_PredictClientMovement( struct aas_clientmove_s *move, int entnum, vec3_t origin, int presencetype, int onground, vec3_t velocity, vec3_t cmdmove, int cmdframes, int maxframes, float frametime, int stopevent, int stopareanum, int visualize );
 
 // Ridah, route-tables
 void        trap_AAS_RT_ShowRoute( vec3_t srcpos, int srcnum, int destnum );
@@ -1295,8 +1267,8 @@ void    trap_EA_Move( int client, vec3_t dir, float speed );
 void    trap_EA_View( int client, vec3_t viewangles );
 
 void    trap_EA_EndRegular( int client, float thinktime );
-void    trap_EA_GetInput( int client, float thinktime, void /* struct bot_input_s */ *input );
-void    trap_EA_ResetInput( int client, void *init );
+void    trap_EA_GetInput( int client, float thinktime, struct bot_input_s *input );
+void    trap_EA_ResetInput( int client, struct bot_input_s *init );
 
 
 int     trap_BotLoadCharacter( char *charfile, int skill );
@@ -1311,7 +1283,7 @@ int     trap_BotAllocChatState( void );
 void    trap_BotFreeChatState( int handle );
 void    trap_BotQueueConsoleMessage( int chatstate, int type, char *message );
 void    trap_BotRemoveConsoleMessage( int chatstate, int handle );
-int     trap_BotNextConsoleMessage( int chatstate, void /* struct bot_consolemessage_s */ *cm );
+int     trap_BotNextConsoleMessage( int chatstate, struct bot_consolemessage_s *cm );
 int     trap_BotNumConsoleMessages( int chatstate );
 void    trap_BotInitialChat( int chatstate, char *type, int mcontext, char *var0, char *var1, char *var2, char *var3, char *var4, char *var5, char *var6, char *var7 );
 int     trap_BotNumInitialChats( int chatstate, char *type );
@@ -1320,8 +1292,8 @@ int     trap_BotChatLength( int chatstate );
 void    trap_BotEnterChat( int chatstate, int client, int sendto );
 void    trap_BotGetChatMessage( int chatstate, char *buf, int size );
 int     trap_StringContains( char *str1, char *str2, int casesensitive );
-int     trap_BotFindMatch( char *str, void /* struct bot_match_s */ *match, unsigned long int context );
-void    trap_BotMatchVariable( void /* struct bot_match_s */ *match, int variable, char *buf, int size );
+int     trap_BotFindMatch( char *str, struct bot_match_s *match, unsigned long int context );
+void    trap_BotMatchVariable( struct bot_match_s *match, int variable, char *buf, int size );
 void    trap_UnifyWhiteSpaces( char *string );
 void    trap_BotReplaceSynonyms( char *string, unsigned long int context );
 int     trap_BotLoadChatFile( int chatstate, char *chatfile, char *chatname );
@@ -1330,21 +1302,21 @@ void    trap_BotSetChatName( int chatstate, char *name );
 void    trap_BotResetGoalState( int goalstate );
 void    trap_BotRemoveFromAvoidGoals( int goalstate, int number );
 void    trap_BotResetAvoidGoals( int goalstate );
-void    trap_BotPushGoal( int goalstate, void /* struct bot_goal_s */ *goal );
+void    trap_BotPushGoal( int goalstate, struct bot_goal_s *goal );
 void    trap_BotPopGoal( int goalstate );
 void    trap_BotEmptyGoalStack( int goalstate );
 void    trap_BotDumpAvoidGoals( int goalstate );
 void    trap_BotDumpGoalStack( int goalstate );
 void    trap_BotGoalName( int number, char *name, int size );
-int     trap_BotGetTopGoal( int goalstate, void /* struct bot_goal_s */ *goal );
-int     trap_BotGetSecondGoal( int goalstate, void /* struct bot_goal_s */ *goal );
+int     trap_BotGetTopGoal( int goalstate, struct bot_goal_s *goal );
+int     trap_BotGetSecondGoal( int goalstate, struct bot_goal_s *goal );
 int     trap_BotChooseLTGItem( int goalstate, vec3_t origin, int *inventory, int travelflags );
-int     trap_BotChooseNBGItem( int goalstate, vec3_t origin, int *inventory, int travelflags, void /* struct bot_goal_s */ *ltg, float maxtime );
-int     trap_BotTouchingGoal( vec3_t origin, void /* struct bot_goal_s */ *goal );
-int     trap_BotItemGoalInVisButNotVisible( int viewer, vec3_t eye, vec3_t viewangles, void /* struct bot_goal_s */ *goal );
-int     trap_BotGetNextCampSpotGoal( int num, void /* struct bot_goal_s */ *goal );
-int     trap_BotGetMapLocationGoal( char *name, void /* struct bot_goal_s */ *goal );
-int     trap_BotGetLevelItemGoal( int index, char *classname, void /* struct bot_goal_s */ *goal );
+int     trap_BotChooseNBGItem( int goalstate, vec3_t origin, int *inventory, int travelflags, struct bot_goal_s *ltg, float maxtime );
+int     trap_BotTouchingGoal( vec3_t origin, struct bot_goal_s *goal );
+int     trap_BotItemGoalInVisButNotVisible( int viewer, vec3_t eye, vec3_t viewangles, struct bot_goal_s *goal );
+int     trap_BotGetNextCampSpotGoal( int num, struct bot_goal_s *goal );
+int     trap_BotGetMapLocationGoal( char *name, struct bot_goal_s *goal );
+int     trap_BotGetLevelItemGoal( int index, char *classname, struct bot_goal_s *goal );
 float   trap_BotAvoidGoalTime( int goalstate, int number );
 void    trap_BotInitLevelItems( void );
 void    trap_BotUpdateEntityItems( void );
@@ -1357,22 +1329,22 @@ int     trap_BotAllocGoalState( int state );
 void    trap_BotFreeGoalState( int handle );
 
 void    trap_BotResetMoveState( int movestate );
-void    trap_BotMoveToGoal( void /* struct bot_moveresult_s */ *result, int movestate, void /* struct bot_goal_s */ *goal, int travelflags );
+void    trap_BotMoveToGoal( struct bot_moveresult_s *result, int movestate, struct bot_goal_s *goal, int travelflags );
 int     trap_BotMoveInDirection( int movestate, vec3_t dir, float speed, int type );
 void    trap_BotResetAvoidReach( int movestate );
 void    trap_BotResetLastAvoidReach( int movestate );
 int     trap_BotReachabilityArea( vec3_t origin, int testground );
-int     trap_BotMovementViewTarget( int movestate, void /* struct bot_goal_s */ *goal, int travelflags, float lookahead, vec3_t target );
-int     trap_BotPredictVisiblePosition( vec3_t origin, int areanum, void /* struct bot_goal_s */ *goal, int travelflags, vec3_t target );
+int     trap_BotMovementViewTarget( int movestate, struct bot_goal_s *goal, int travelflags, float lookahead, vec3_t target );
+int     trap_BotPredictVisiblePosition( vec3_t origin, int areanum, struct bot_goal_s *goal, int travelflags, vec3_t target );
 int     trap_BotAllocMoveState( void );
 void    trap_BotFreeMoveState( int handle );
-void    trap_BotInitMoveState( int handle, void /* struct bot_initmove_s */ *initmove );
+void    trap_BotInitMoveState( int handle, struct bot_initmove_s *initmove );
 // Ridah
 void    trap_BotInitAvoidReach( int handle );
 // done.
 
 int     trap_BotChooseBestFightWeapon( int weaponstate, int *inventory );
-void    trap_BotGetWeaponInfo( int weaponstate, int weapon, void /* struct weaponinfo_s */ *weaponinfo );
+void    trap_BotGetWeaponInfo( int weaponstate, int weapon, struct weaponinfo_s *weaponinfo );
 int     trap_BotLoadWeaponWeights( int weaponstate, char *filename );
 int     trap_BotAllocWeaponState( void );
 void    trap_BotFreeWeaponState( int weaponstate );

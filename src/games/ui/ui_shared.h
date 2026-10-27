@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,16 +26,15 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef UI_SHARED_H
-#define UI_SHARED_H
+#ifndef __UI_SHARED_H
+#define __UI_SHARED_H
 
 
 #include "../game/q_shared.h"
 #include "../cgame/tr_types.h"
 #include "keycodes.h"
 
-// menudef.h sits next to this file, no relative path needed
-#include "menudef.h"
+#include "../../main/ui/menudef.h"
 
 #define MAX_MENUNAME 32
 #define MAX_ITEMTEXT 64
@@ -236,6 +235,8 @@ typedef struct modelDef_s {
 	int frameTime;
 } modelDef_t;
 
+typedef struct menuDef_s menuDef_t;
+
 #define CVAR_ENABLE     0x00000001
 #define CVAR_DISABLE    0x00000002
 #define CVAR_SHOW       0x00000004
@@ -256,7 +257,7 @@ typedef struct itemDef_s {
 	int textStyle;                  // ( optional ) style, normal and shadowed are it for now
 	const char *text;               // display text
 	qboolean textSavegameInfo;      //----(SA)	added
-	void *parent;                   // menu owner
+	menuDef_t *parent;              // menu owner
 	qhandle_t asset;                // handle to asset
 	const char *mouseEnterText;     // mouse enter script
 	const char *mouseExitText;      // mouse exit script
@@ -279,7 +280,7 @@ typedef struct itemDef_s {
 	void *typeData;                 // type specific data ptr's
 } itemDef_t;
 
-typedef struct {
+struct menuDef_s {
 	Window window;
 	const char  *font;              // font
 	qboolean fullScreen;            // covers entire screen
@@ -299,7 +300,7 @@ typedef struct {
 	vec4_t focusColor;              // focus color for items
 	vec4_t disableColor;            // focus color for items
 	itemDef_t *items[MAX_MENUITEMS]; // items this menu contains
-} menuDef_t;
+};
 
 typedef struct {
 	const char  *fontStr;

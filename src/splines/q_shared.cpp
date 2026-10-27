@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,14 +37,9 @@ GROWLISTS
 ============================================================================
 */
 
-// the engine has no Com_Allocate, so the splines library provides it
-extern "C" void *Com_Allocate( int bytes ) {
-	return malloc( bytes );
-}
-
-extern "C" void Com_Dealloc( void *ptr ) {
-	free( ptr );
-}
+// malloc / free all in one place for debugging
+extern "C" void *Com_Allocate( int bytes );
+extern "C" void Com_Dealloc( void *ptr );
 
 void Com_InitGrowList( growList_t *list, int maxElements ) {
 	list->maxElements = maxElements;
@@ -122,8 +117,127 @@ float Com_Clamp( float min, float max, float value ) {
 	return value;
 }
 
-// Com_StringContains and Com_Filter are provided by qcommon (common.c)
-// and would collide as C symbols, no local copies needed
+/*
+============
+Com_StringContains
+============
+*/
+const char *Com_StringContains( const char *str1, const char *str2, int casesensitive ) {
+	int len, i, j;
+
+	len = strlen( str1 ) - strlen( str2 );
+	for ( i = 0; i <= len; i++, str1++ ) {
+		for ( j = 0; str2[j]; j++ ) {
+			if ( casesensitive ) {
+				if ( str1[j] != str2[j] ) {
+					break;
+				}
+			} else {
+				if ( toupper( str1[j] ) != toupper( str2[j] ) ) {
+					break;
+				}
+			}
+		}
+		if ( !str2[j] ) {
+			return str1;
+		}
+	}
+	return NULL;
+}
+
+/*
+============
+Com_Filter
+============
+*/
+int Com_Filter( const char *filter, const char *name, int casesensitive ) {
+	char buf[MAX_TOKEN_CHARS];
+	const char *ptr;
+	int i, found;
+
+	while ( *filter ) {
+		if ( *filter == '*' ) {
+			filter++;
+			for ( i = 0; *filter; i++ ) {
+				if ( *filter == '*' || *filter == '?' ) {
+					break;
+				}
+				buf[i] = *filter;
+				filter++;
+			}
+			buf[i] = '\0';
+			if ( strlen( buf ) ) {
+				ptr = Com_StringContains( name, buf, casesensitive );
+				if ( !ptr ) {
+					return qfalse;
+				}
+				name = ptr + strlen( buf );
+			}
+		} else if ( *filter == '?' )      {
+			filter++;
+			name++;
+		} else if ( *filter == '[' && *( filter + 1 ) == '[' )           {
+			filter++;
+		} else if ( *filter == '[' )      {
+			filter++;
+			found = qfalse;
+			while ( *filter && !found ) {
+				if ( *filter == ']' && *( filter + 1 ) != ']' ) {
+					break;
+				}
+				if ( *( filter + 1 ) == '-' && *( filter + 2 ) && ( *( filter + 2 ) != ']' || *( filter + 3 ) == ']' ) ) {
+					if ( casesensitive ) {
+						if ( *name >= *filter && *name <= *( filter + 2 ) ) {
+							found = qtrue;
+						}
+					} else {
+						if ( toupper( *name ) >= toupper( *filter ) &&
+							 toupper( *name ) <= toupper( *( filter + 2 ) ) ) {
+							found = qtrue;
+						}
+					}
+					filter += 3;
+				} else {
+					if ( casesensitive ) {
+						if ( *filter == *name ) {
+							found = qtrue;
+						}
+					} else {
+						if ( toupper( *filter ) == toupper( *name ) ) {
+							found = qtrue;
+						}
+					}
+					filter++;
+				}
+			}
+			if ( !found ) {
+				return qfalse;
+			}
+			while ( *filter ) {
+				if ( *filter == ']' && *( filter + 1 ) != ']' ) {
+					break;
+				}
+				filter++;
+			}
+			filter++;
+			name++;
+		} else {
+			if ( casesensitive ) {
+				if ( *filter != *name ) {
+					return qfalse;
+				}
+			} else {
+				if ( toupper( *filter ) != toupper( *name ) ) {
+					return qfalse;
+				}
+			}
+			filter++;
+			name++;
+		}
+	}
+	return qtrue;
+}
+
 
 /*
 ================
@@ -212,8 +326,105 @@ void Com_DefaultExtension( char *path, int maxSize, const char *extension ) {
 	Com_sprintf( path, maxSize, "%s%s", oldPath, extension );
 }
 
-// the byte order functions (BigShort .. Swap_Init) are provided by
-// qcommon (q_shared.c) and would collide as C symbols
+/*
+============================================================================
+
+					BYTE ORDER FUNCTIONS
+
+============================================================================
+*/
+
+// can't just use function pointers, or dll linkage can
+// mess up when qcommon is included in multiple places
+static short ( *_BigShort )( short l );
+static short ( *_LittleShort )( short l );
+static int ( *_BigLong )( int l );
+static int ( *_LittleLong )( int l );
+static float ( *_BigFloat )( float l );
+static float ( *_LittleFloat )( float l );
+
+short   BigShort( short l ) {return _BigShort( l );}
+short   LittleShort( short l ) {return _LittleShort( l );}
+int     BigLong( int l ) {return _BigLong( l );}
+int     LittleLong( int l ) {return _LittleLong( l );}
+float   BigFloat( float l ) {return _BigFloat( l );}
+float   LittleFloat( float l ) {return _LittleFloat( l );}
+
+short   ShortSwap( short l ) {
+	byte b1,b2;
+
+	b1 = l & 255;
+	b2 = ( l >> 8 ) & 255;
+
+	return ( b1 << 8 ) + b2;
+}
+
+short   ShortNoSwap( short l ) {
+	return l;
+}
+
+int    LongSwap( int l ) {
+	byte b1,b2,b3,b4;
+
+	b1 = l & 255;
+	b2 = ( l >> 8 ) & 255;
+	b3 = ( l >> 16 ) & 255;
+	b4 = ( l >> 24 ) & 255;
+
+	return ( (int)b1 << 24 ) + ( (int)b2 << 16 ) + ( (int)b3 << 8 ) + b4;
+}
+
+int LongNoSwap( int l ) {
+	return l;
+}
+
+float FloatSwap( float f ) {
+	union
+	{
+		float f;
+		byte b[4];
+	} dat1, dat2;
+
+
+	dat1.f = f;
+	dat2.b[0] = dat1.b[3];
+	dat2.b[1] = dat1.b[2];
+	dat2.b[2] = dat1.b[1];
+	dat2.b[3] = dat1.b[0];
+	return dat2.f;
+}
+
+float FloatNoSwap( float f ) {
+	return f;
+}
+
+/*
+================
+Swap_Init
+================
+*/
+void Swap_Init( void ) {
+	byte swaptest[2] = {1,0};
+
+// set the byte swapping variables in a portable manner
+	if ( *(short *)swaptest == 1 ) {
+		_BigShort = ShortSwap;
+		_LittleShort = ShortNoSwap;
+		_BigLong = LongSwap;
+		_LittleLong = LongNoSwap;
+		_BigFloat = FloatSwap;
+		_LittleFloat = FloatNoSwap;
+	} else
+	{
+		_BigShort = ShortNoSwap;
+		_LittleShort = ShortSwap;
+		_BigLong = LongNoSwap;
+		_LittleLong = LongSwap;
+		_BigFloat = FloatNoSwap;
+		_LittleFloat = FloatSwap;
+	}
+
+}
 
 /*
 ===============
@@ -268,9 +479,255 @@ int Com_ParseInfos( const char *buf, int max, char infos[][MAX_INFO_STRING] ) {
 
 
 
-// the library replacement functions (Q_is*, Q_str*, Q_PrintStrlen,
-// Q_CleanStr, Com_sprintf, va) are provided by qcommon (q_shared.c)
-// and would collide as C symbols
+/*
+============================================================================
+
+					LIBRARY REPLACEMENT FUNCTIONS
+
+============================================================================
+*/
+
+int Q_isprint( int c ) {
+	if ( c >= 0x20 && c <= 0x7E ) {
+		return ( 1 );
+	}
+	return ( 0 );
+}
+
+int Q_islower( int c ) {
+	if ( c >= 'a' && c <= 'z' ) {
+		return ( 1 );
+	}
+	return ( 0 );
+}
+
+int Q_isupper( int c ) {
+	if ( c >= 'A' && c <= 'Z' ) {
+		return ( 1 );
+	}
+	return ( 0 );
+}
+
+int Q_isalpha( int c ) {
+	if ( ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' ) ) {
+		return ( 1 );
+	}
+	return ( 0 );
+}
+
+char* Q_strrchr( const char* string, int c ) {
+	char cc = c;
+	char *s;
+	char *sp = (char *)0;
+
+	s = (char*)string;
+
+	while ( *s )
+	{
+		if ( *s == cc ) {
+			sp = s;
+		}
+		s++;
+	}
+	if ( cc == 0 ) {
+		sp = s;
+	}
+
+	return sp;
+}
+
+/*
+=============
+Q_strncpyz
+
+Safe strncpy that ensures a trailing zero
+=============
+*/
+void Q_strncpyz( char *dest, const char *src, int destsize ) {
+	if ( !src ) {
+		Com_Error( ERR_FATAL, "Q_strncpyz: NULL src" );
+	}
+	if ( destsize < 1 ) {
+		Com_Error( ERR_FATAL,"Q_strncpyz: destsize < 1" );
+	}
+
+	strncpy( dest, src, destsize - 1 );
+	dest[destsize - 1] = 0;
+}
+
+int Q_stricmpn( const char *s1, const char *s2, int n ) {
+	int c1, c2;
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		if ( !n-- ) {
+			return 0;       // strings are equal until end point
+		}
+
+		if ( c1 != c2 ) {
+			if ( c1 >= 'a' && c1 <= 'z' ) {
+				c1 -= ( 'a' - 'A' );
+			}
+			if ( c2 >= 'a' && c2 <= 'z' ) {
+				c2 -= ( 'a' - 'A' );
+			}
+			if ( c1 != c2 ) {
+				return c1 < c2 ? -1 : 1;
+			}
+		}
+	} while ( c1 );
+
+	return 0;       // strings are equal
+}
+
+int Q_strncmp( const char *s1, const char *s2, int n ) {
+	int c1, c2;
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		if ( !n-- ) {
+			return 0;       // strings are equal until end point
+		}
+
+		if ( c1 != c2 ) {
+			return c1 < c2 ? -1 : 1;
+		}
+	} while ( c1 );
+
+	return 0;       // strings are equal
+}
+
+int Q_stricmp( const char *s1, const char *s2 ) {
+	return Q_stricmpn( s1, s2, 99999 );
+}
+
+
+char *Q_strlwr( char *s1 ) {
+	char    *s;
+
+	s = s1;
+	while ( *s ) {
+		*s = tolower( *s );
+		s++;
+	}
+	return s1;
+}
+
+char *Q_strupr( char *s1 ) {
+	char    *s;
+
+	s = s1;
+	while ( *s ) {
+		*s = toupper( *s );
+		s++;
+	}
+	return s1;
+}
+
+
+// never goes past bounds or leaves without a terminating 0
+void Q_strcat( char *dest, int size, const char *src ) {
+	int l1;
+
+	l1 = strlen( dest );
+	if ( l1 >= size ) {
+		Com_Error( ERR_FATAL, "Q_strcat: already overflowed" );
+	}
+	Q_strncpyz( dest + l1, src, size - l1 );
+}
+
+
+int Q_PrintStrlen( const char *string ) {
+	int len;
+	const char  *p;
+
+	if ( !string ) {
+		return 0;
+	}
+
+	len = 0;
+	p = string;
+	while ( *p ) {
+		if ( Q_IsColorString( p ) ) {
+			p += 2;
+			continue;
+		}
+		p++;
+		len++;
+	}
+
+	return len;
+}
+
+
+char *Q_CleanStr( char *string ) {
+	char*   d;
+	char*   s;
+	int c;
+
+	s = string;
+	d = string;
+	while ( ( c = *s ) != 0 ) {
+		if ( Q_IsColorString( s ) ) {
+			s++;
+		} else if ( c >= 0x20 && c <= 0x7E )   {
+			*d++ = c;
+		}
+		s++;
+	}
+	*d = '\0';
+
+	return string;
+}
+
+
+void QDECL Com_sprintf( char *dest, int size, const char *fmt, ... ) {
+	unsigned int len;
+	va_list argptr;
+	char bigbuffer[32000];      // big, but small enough to fit in PPC stack
+
+	va_start( argptr,fmt );
+	len = vsprintf( bigbuffer,fmt,argptr );
+	va_end( argptr );
+	if ( len >= sizeof( bigbuffer ) ) {
+		Com_Error( ERR_FATAL, "Com_sprintf: overflowed bigbuffer" );
+	}
+	if ( len >= (unsigned int)size ) {
+		Com_Printf( "Com_sprintf: overflow of %i in %i\n", len, size );
+	}
+	Q_strncpyz( dest, bigbuffer, size );
+}
+
+
+/*
+============
+va
+
+does a varargs printf into a temp buffer, so I don't need to have
+varargs versions of all text functions.
+FIXME: make this buffer size safe someday
+============
+*/
+char    * QDECL va( char *format, ... ) {
+	va_list argptr;
+	static char string[2][32000];       // in case va is called by nested functions
+	static int index = 0;
+	char    *buf;
+
+	buf = string[index & 1];
+	index++;
+
+	va_start( argptr, format );
+	vsprintf( buf, format,argptr );
+	va_end( argptr );
+
+	return buf;
+}
+
 
 /*
 =====================================================================
@@ -292,12 +749,12 @@ FIXME: overflow check?
 char *Info_ValueForKey( const char *s, const char *key ) {
 	char pkey[MAX_INFO_KEY];
 	static char value[2][MAX_INFO_VALUE];   // use two buffers so compares
-	                                        // work without stomping on each other
+											// work without stomping on each other
 	static int valueindex = 0;
 	char    *o;
 
 	if ( !s || !key ) {
-		return (char *)"";
+		return "";
 	}
 
 	if ( strlen( s ) >= MAX_INFO_STRING ) {
@@ -314,7 +771,7 @@ char *Info_ValueForKey( const char *s, const char *key ) {
 		while ( *s != '\\' )
 		{
 			if ( !*s ) {
-				return (char *)"";
+				return "";
 			}
 			*o++ = *s++;
 		}
@@ -339,7 +796,7 @@ char *Info_ValueForKey( const char *s, const char *key ) {
 		s++;
 	}
 
-	return (char *)"";
+	return "";
 }
 
 

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef MATH_ANGLES_H
-#define MATH_ANGLES_H
+#ifndef __MATH_ANGLES_H__
+#define __MATH_ANGLES_H__
 
 #include <stdlib.h>
 #include <assert.h>
@@ -48,7 +48,6 @@ float roll;
 angles_t();
 angles_t( float pitch, float yaw, float roll );
 angles_t( const idVec3 &vec );
-angles_t( const angles_t &a );
 
 friend void     toAngles( idVec3 &src, angles_t &dst );
 friend void     toAngles( quat_t &src, angles_t &dst );
@@ -103,12 +102,6 @@ inline angles_t::angles_t( const idVec3 &vec ) {
 	this->pitch = vec.x;
 	this->yaw   = vec.y;
 	this->roll  = vec.z;
-}
-
-inline angles_t::angles_t( const angles_t &a ) {
-	this->pitch = a.pitch;
-	this->yaw   = a.yaw;
-	this->roll  = a.roll;
 }
 
 inline float angles_t::operator[]( int index ) const {
@@ -207,4 +200,4 @@ inline angles_t& angles_t::Zero( void ) {
 	return *this;
 }
 
-#endif /* !MATH_ANGLES_H */
+#endif /* !__MATH_ANGLES_H__ */

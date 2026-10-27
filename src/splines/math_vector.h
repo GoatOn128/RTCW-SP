@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef MATH_VECTOR_H
-#define MATH_VECTOR_H
+#ifndef __MATH_VECTOR_H__
+#define __MATH_VECTOR_H__
 
 #if defined( _WIN32 )
 #pragma warning(disable : 4244)
@@ -43,7 +43,7 @@ If you have questions concerning this license or the applicable additional terms
 //#define VectorCopy(a,b)			((b).x=(a).x,(b).y=(a).y,(b).z=(a).z])
 
 //#define	VectorScale(v, s, o)	((o)[0]=(v)[0]*(s),(o)[1]=(v)[1]*(s),(o)[2]=(v)[2]*(s))
-#define VectorMA_( v, s, b, o )  ( ( o )[0] = ( v )[0] + ( b )[0] * ( s ),( o )[1] = ( v )[1] + ( b )[1] * ( s ),( o )[2] = ( v )[2] + ( b )[2] * ( s ) )
+#define __VectorMA( v, s, b, o )  ( ( o )[0] = ( v )[0] + ( b )[0] * ( s ),( o )[1] = ( v )[1] + ( b )[1] * ( s ),( o )[2] = ( v )[2] + ( b )[2] * ( s ) )
 //#define CrossProduct(a,b,c)		((c)[0]=(a)[1]*(b)[2]-(a)[2]*(b)[1],(c)[1]=(a)[2]*(b)[0]-(a)[0]*(b)[2],(c)[2]=(a)[0]*(b)[1]-(a)[1]*(b)[0])
 
 #define DotProduct4( x,y )        ( ( x )[0] * ( y )[0] + ( x )[1] * ( y )[1] + ( x )[2] * ( y )[2] + ( x )[3] * ( y )[3] )
@@ -78,73 +78,117 @@ float Q_fabs( float f );
 #endif
 #endif
 
-class angles_t;
+// if this is defined, vec3 will take four elements, which may allow
+// easier SIMD optimizations
+//#define	FAT_VEC3
+//#ifdef __ppc__
+//#pragma align(16)
+//#endif
 
+class angles_t;
+#ifdef __ppc__
+// Vanilla PPC code, but since PPC has a reciprocal square root estimate instruction,
+// runs *much* faster than calling sqrt(). We'll use two Newton-Raphson
+// refinement steps to get bunch more precision in the 1/sqrt() value for very little cost.
+// We'll then multiply 1/sqrt times the original value to get the sqrt.
+// This is about 12.4 times faster than sqrt() and according to my testing (not exhaustive)
+// it returns fairly accurate results (error below 1.0e-5 up to 100000.0 in 0.1 increments).
+
+static inline float idSqrt( float x ) {
+	const float half = 0.5;
+	const float one = 1.0;
+	float B, y0, y1;
+
+	// This'll NaN if it hits frsqrte. Handle both +0.0 and -0.0
+	if ( fabs( x ) == 0.0 ) {
+		return x;
+	}
+	B = x;
+
+#ifdef __GNUC__
+	asm ( "frsqrte %0,%1" : "=f" ( y0 ) : "f" ( B ) );
+#else
+	y0 = __frsqrte( B );
+#endif
+	/* First refinement step */
+
+	y1 = y0 + half * y0 * ( one - B * y0 * y0 );
+
+	/* Second refinement step -- copy the output of the last step to the input of this step */
+
+	y0 = y1;
+	y1 = y0 + half * y0 * ( one - B * y0 * y0 );
+
+	/* Get sqrt(x) from x * 1/sqrt(x) */
+	return x * y1;
+}
+#else
 static inline double idSqrt( double x ) {
 	return sqrt( x );
 }
+#endif
+
 
 //class idVec3  : public idHeap<idVec3> {
 class idVec3 {
 public:
 #ifndef FAT_VEC3
-float x,y,z;
+	float x,y,z;
 #else
-float x,y,z,dist;
+	float x,y,z,dist;
 #endif
 
 #ifndef FAT_VEC3
-idVec3() {
-};
+	idVec3() {
+	};
 #else
-idVec3() {
-	dist = 0.0f;
-};
+	idVec3() {
+		dist = 0.0f;
+	};
 #endif
-idVec3( const float x, const float y, const float z );
-idVec3( const idVec3 &a );
+	idVec3( const float x, const float y, const float z );
 
-operator float*();
+	operator float*();
 
-float operator[]( const int index ) const;
-float           &operator[]( const int index );
+	float operator[]( const int index ) const;
+	float           &operator[]( const int index );
 
-void            set( const float x, const float y, const float z );
+	void            set( const float x, const float y, const float z );
 
-idVec3 operator-() const;
+	idVec3 operator-() const;
 
-idVec3          &operator=( const idVec3 &a );
+	idVec3          &operator=( const idVec3 &a );
 
-float operator*( const idVec3 &a ) const;
-idVec3 operator*( const float a ) const;
-friend idVec3 operator*( float a, idVec3 b );
+	float operator*( const idVec3 &a ) const;
+	idVec3 operator*( const float a ) const;
+	friend idVec3 operator*( float a, idVec3 b );
 
-idVec3 operator+( const idVec3 &a ) const;
-idVec3 operator-( const idVec3 &a ) const;
+	idVec3 operator+( const idVec3 &a ) const;
+	idVec3 operator-( const idVec3 &a ) const;
 
-idVec3          &operator+=( const idVec3 &a );
-idVec3          &operator-=( const idVec3 &a );
-idVec3          &operator*=( const float a );
+	idVec3          &operator+=( const idVec3 &a );
+	idVec3          &operator-=( const idVec3 &a );
+	idVec3          &operator*=( const float a );
 
-int operator==( const idVec3 &a ) const;
-int operator!=( const idVec3 &a ) const;
+	int operator==( const idVec3 &a ) const;
+	int operator!=( const idVec3 &a ) const;
 
-idVec3          Cross( const idVec3 &a ) const;
-idVec3          &Cross( const idVec3 &a, const idVec3 &b );
+	idVec3          Cross( const idVec3 &a ) const;
+	idVec3          &Cross( const idVec3 &a, const idVec3 &b );
 
-float           Length( void ) const;
-float           Normalize( void );
+	float           Length( void ) const;
+	float           Normalize( void );
 
-void            Zero( void );
-void            Snap( void );
-void            SnapTowards( const idVec3 &to );
+	void            Zero( void );
+	void            Snap( void );
+	void            SnapTowards( const idVec3 &to );
 
-float           toYaw( void );
-float           toPitch( void );
-angles_t        toAngles( void );
-friend idVec3   LerpVector( const idVec3 &w1, const idVec3 &w2, const float t );
+	float           toYaw( void );
+	float           toPitch( void );
+	angles_t        toAngles( void );
+	friend idVec3   LerpVector( const idVec3 &w1, const idVec3 &w2, const float t );
 
-char            *string( void );
+	char            *string( void );
 };
 
 extern idVec3 vec_zero;
@@ -156,12 +200,6 @@ ID_INLINE idVec3::idVec3( const float x, const float y, const float z ) {
 #ifdef  FAT_VEC3
 	this->dist = 0.0f;
 #endif
-}
-
-ID_INLINE idVec3::idVec3( const idVec3 &a ) {
-	x = a.x;
-	y = a.y;
-	z = a.z;
 }
 
 ID_INLINE float idVec3::operator[]( const int index ) const {
@@ -350,20 +388,20 @@ ID_INLINE void idVec3::SnapTowards( const idVec3 &to ) {
 
 class Bounds {
 public:
-idVec3 b[2];
+	idVec3 b[2];
 
-Bounds();
-Bounds( const idVec3 &mins, const idVec3 &maxs );
+	Bounds();
+	Bounds( const idVec3 &mins, const idVec3 &maxs );
 
-void    Clear();
-void    Zero();
-float   Radius();           // radius from origin, not from center
-idVec3  Center();
-void    AddPoint( const idVec3 &v );
-void    AddBounds( const Bounds &bb );
-bool    IsCleared();
-bool    ContainsPoint( const idVec3 &p );
-bool    IntersectsBounds( const Bounds &b2 );       // touching is NOT intersecting
+	void    Clear();
+	void    Zero();
+	float   Radius();       // radius from origin, not from center
+	idVec3  Center();
+	void    AddPoint( const idVec3 &v );
+	void    AddBounds( const Bounds &bb );
+	bool    IsCleared();
+	bool    ContainsPoint( const idVec3 &p );
+	bool    IntersectsBounds( const Bounds &b2 );   // touching is NOT intersecting
 };
 
 extern Bounds boundsZero;
@@ -407,7 +445,7 @@ ID_INLINE void Bounds::Clear() {
 
 ID_INLINE void Bounds::Zero() {
 	b[0][0] = b[0][1] = b[0][2] =
-		b[1][0] = b[1][1] = b[1][2] = 0;
+							b[1][0] = b[1][1] = b[1][2] = 0;
 }
 
 ID_INLINE void Bounds::AddPoint( const idVec3 &v ) {
@@ -477,12 +515,12 @@ ID_INLINE float Bounds::Radius() {
 
 class idVec2 {
 public:
-float x;
-float y;
+	float x;
+	float y;
 
-operator float*();
-float operator[]( int index ) const;
-float           &operator[]( int index );
+	operator float*();
+	float operator[]( int index ) const;
+	float           &operator[]( int index );
 };
 
 ID_INLINE float idVec2::operator[]( int index ) const {
@@ -500,15 +538,15 @@ ID_INLINE idVec2::operator float*( void ) {
 class idVec4 : public idVec3 {
 public:
 #ifndef FAT_VEC3
-float dist;
+	float dist;
 #endif
-idVec4();
-~idVec4() {
-};
+	idVec4();
+	~idVec4() {
+	};
 
-idVec4( float x, float y, float z, float dist );
-float operator[]( int index ) const;
-float           &operator[]( int index );
+	idVec4( float x, float y, float z, float dist );
+	float operator[]( int index ) const;
+	float           &operator[]( int index );
 };
 
 ID_INLINE idVec4::idVec4() {
@@ -531,10 +569,10 @@ ID_INLINE float& idVec4::operator[]( int index ) {
 
 class idVec5_t : public idVec3 {
 public:
-float s;
-float t;
-float operator[]( int index ) const;
-float           &operator[]( int index );
+	float s;
+	float t;
+	float operator[]( int index ) const;
+	float           &operator[]( int index );
 };
 
 
@@ -546,4 +584,4 @@ ID_INLINE float& idVec5_t::operator[]( int index ) {
 	return ( &x )[ index ];
 }
 
-#endif /* !MATH_VECTOR_H */
+#endif /* !__MATH_VECTOR_H__ */

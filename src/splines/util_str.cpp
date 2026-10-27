@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -104,7 +104,7 @@ int idStr::icmpn
 			if ( c1 < c2 ) {
 				// strings less than
 				return -1;
-			} else if ( c1 > c2 ) {
+			} else if ( c1 > c2 )         {
 				// strings greater than
 				return 1;
 			}
@@ -141,7 +141,7 @@ int idStr::icmp
 			if ( c1 < c2 ) {
 				// strings less than
 				return -1;
-			} else if ( c1 > c2 ) {
+			} else if ( c1 > c2 )         {
 				// strings greater than
 				return 1;
 			}
@@ -175,7 +175,7 @@ int idStr::cmpn
 		if ( c1 < c2 ) {
 			// strings less than
 			return -1;
-		} else if ( c1 > c2 ) {
+		} else if ( c1 > c2 )         {
 			// strings greater than
 			return 1;
 		}
@@ -202,7 +202,7 @@ int idStr::cmp
 		if ( c1 < c2 ) {
 			// strings less than
 			return -1;
-		} else if ( c1 > c2 ) {
+		} else if ( c1 > c2 )         {
 			// strings greater than
 			return 1;
 		}
@@ -434,13 +434,14 @@ void idStr::snprintf
 	...
 ) {
 	char buffer[0x10000];
+	int len;
 	va_list argptr;
 
 	va_start( argptr,fmt );
-	vsprintf( buffer,fmt,argptr );
+	len = vsprintf( buffer,fmt,argptr );
 	va_end( argptr );
 
-	assert( (int)strlen( buffer ) < size );
+	assert( len < size );
 
 	strncpy( dst, buffer, size - 1 );
 }
@@ -464,6 +465,7 @@ void TestStringClass
 (
 	void
 ) {
+	char ch;                            // ch == ?
 	idStr   *t;                         // t == ?
 	idStr a;                                // a.len == 0, a.data == "\0"
 	idStr b;                                // b.len == 0, b.data == "\0"
@@ -471,12 +473,15 @@ void TestStringClass
 	idStr d( c );                       // d.len == 4, d.data == "test\0"
 	idStr e( reinterpret_cast<const char *>( NULL ) );
 	// e.len == 0, e.data == "\0"					ASSERT!
+	int i;                              // i == ?
 
-	(void)a.length();                 // i == 0
-	(void)c.length();                 // i == 4
+	i = a.length();                 // i == 0
+	i = c.length();                 // i == 4
 
-	(void)a.c_str(); // s1 == "\0"
-	(void)c.c_str(); // s2 == "test\0"
+	const char *s1 = a.c_str(); // s1 == "\0"
+	s1 = NULL;
+	const char *s2 = c.c_str(); // s2 == "test\0"
+	s2 = NULL;
 
 	t = new idStr();                        // t->len == 0, t->data == "\0"
 	delete t;                           // t == ?
@@ -501,15 +506,15 @@ void TestStringClass
 	// a.len == 11, a.data == "testtestwow\0"	ASSERT!
 
 	a = "test";                          // a.len == 4, a.data == "test\0"
-	(void)a[ 0 ];;                        // ch == 't'
-	(void)a[ -1 ];;                       // ch == 0											ASSERT!
-	(void)a[ 1000 ];;                 // ch == 0											ASSERT!
-	(void)a[ 0 ];;                        // ch == 't'
-	(void)a[ 1 ];;                        // ch == 'e'
-	(void)a[ 2 ];;                        // ch == 's'
-	(void)a[ 3 ];;                        // ch == 't'
-	(void)a[ 4 ];;                        // ch == '\0'										ASSERT!
-	(void)a[ 5 ];;                        // ch == '\0'										ASSERT!
+	ch = a[ 0 ];                        // ch == 't'
+	ch = a[ -1 ];                       // ch == 0											ASSERT!
+	ch = a[ 1000 ];                 // ch == 0											ASSERT!
+	ch = a[ 0 ];                        // ch == 't'
+	ch = a[ 1 ];                        // ch == 'e'
+	ch = a[ 2 ];                        // ch == 's'
+	ch = a[ 3 ];                        // ch == 't'
+	ch = a[ 4 ];                        // ch == '\0'										ASSERT!
+	ch = a[ 5 ];                        // ch == '\0'										ASSERT!
 
 	a[ 1 ] = 'b';                        // a.len == 4, a.data == "tbst\0"
 	a[ -1 ] = 'b';                       // a.len == 4, a.data == "tbst\0"			ASSERT!
@@ -524,27 +529,27 @@ void TestStringClass
 	a = "test";                          // a.len == 4, a.data == "test\0"
 	b = "no";                            // b.len == 2, b.data == "no\0"
 
-	(void)( a == b );                 // i == 0
-	(void)( a == c );                 // i == 1
+	i = ( a == b );                 // i == 0
+	i = ( a == c );                 // i == 1
 
-	(void)( a == "blow" );             // i == 0
-	(void)( a == "test" );             // i == 1
-	(void)( a == NULL );              // i == 0											ASSERT!
+	i = ( a == "blow" );             // i == 0
+	i = ( a == "test" );             // i == 1
+	i = ( a == NULL );              // i == 0											ASSERT!
 
-	(void)( "test" == b );             // i == 0
-	(void)( "test" == a );             // i == 1
-	(void)( NULL == a );              // i == 0											ASSERT!
+	i = ( "test" == b );             // i == 0
+	i = ( "test" == a );             // i == 1
+	i = ( NULL == a );              // i == 0											ASSERT!
 
-	(void)( a != b );                 // i == 1
-	(void)( a != c );                 // i == 0
+	i = ( a != b );                 // i == 1
+	i = ( a != c );                 // i == 0
 
-	(void)( a != "blow" );             // i == 1
-	(void)( a != "test" );             // i == 0
-	(void)( a != NULL );              // i == 1											ASSERT!
+	i = ( a != "blow" );             // i == 1
+	i = ( a != "test" );             // i == 0
+	i = ( a != NULL );              // i == 1											ASSERT!
 
-	(void)( "test" != b );             // i == 1
-	(void)( "test" != a );             // i == 0
-	(void)( NULL != a );              // i == 1											ASSERT!
+	i = ( "test" != b );             // i == 1
+	i = ( "test" != a );             // i == 0
+	i = ( NULL != a );              // i == 1											ASSERT!
 
 	a = "test";                 // a.data == "test"
 	b = a;                       // b.data == "test"

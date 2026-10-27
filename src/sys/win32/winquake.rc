@@ -7,9 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-// use the plain SDK header instead of the MFC winres.h so the resource
-// compiles on any MSVC/LLVM install that has the Windows SDK
-#include "windows.h"
+#include "winres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -77,3 +75,5 @@ END
 
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
+
+

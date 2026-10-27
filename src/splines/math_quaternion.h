@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef MATH_QUATERNION_H__
-#define MATH_QUATERNION_H__
+#ifndef __MATH_QUATERNION_H__
+#define __MATH_QUATERNION_H__
 
 #include <assert.h>
 #include <math.h>
@@ -45,7 +45,6 @@ float w;
 
 quat_t();
 quat_t( float x, float y, float z, float w );
-quat_t( const quat_t &a );
 
 friend void     toQuat( idVec3_t &src, quat_t &dst );
 friend void     toQuat( angles_t &src, quat_t &dst );
@@ -87,13 +86,6 @@ inline quat_t::quat_t( float x, float y, float z, float w ) {
 	this->y = y;
 	this->z = z;
 	this->w = w;
-}
-
-inline quat_t::quat_t( const quat_t &a ) {
-	this->x = a.x;
-	this->y = a.y;
-	this->z = a.z;
-	this->w = a.w;
 }
 
 inline float *quat_t::vec4( void ) {
@@ -172,7 +164,7 @@ inline int operator==( quat_t a, quat_t b ) {
 }
 
 inline int operator!=( quat_t a, quat_t b ) {
-	return ( ( a.x != b.x ) || ( a.y != b.y ) || ( ( a.z != b.z ) && ( a.w != b.w ) ) );
+	return ( ( a.x != b.x ) || ( a.y != b.y ) || ( a.z != b.z ) && ( a.w != b.w ) );
 }
 
 inline float quat_t::Length( void ) {
@@ -202,4 +194,4 @@ inline quat_t quat_t::operator-() {
 	return quat_t( -x, -y, -z, -w );
 }
 
-#endif /* !MATH_QUATERNION_H__ */
+#endif /* !__MATH_QUATERNION_H__ */

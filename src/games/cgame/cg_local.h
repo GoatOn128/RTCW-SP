@@ -1,10 +1,11 @@
+#pragma once
 /*
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -71,7 +72,6 @@ If you have questions concerning this license or the applicable additional terms
 #define MAX_STEP_CHANGE     32
 
 #define MAX_VERTS_ON_POLY   10
-#define MAX_MARK_POLYS      1024
 
 #define STAT_MINUS          10  // num frame for '-' stats digit
 
@@ -361,17 +361,7 @@ typedef struct centity_s {
 // local entities are created as a result of events or predicted actions,
 // and live independantly from all server transmitted entities
 
-typedef struct markPoly_s {
-	struct markPoly_s   *prevMark, *nextMark;
-	int time;
-	qhandle_t markShader;
-	qboolean alphaFade;         // fade alpha instead of rgb
-	float color[4];
-	poly_t poly;
-	polyVert_t verts[MAX_VERTS_ON_POLY];
 
-	int duration;           // Ridah
-} markPoly_t;
 
 //----(SA)	moved in from cg_view.c
 typedef enum {
@@ -398,14 +388,10 @@ typedef enum {
 	LE_EXPLOSION,
 	LE_SPRITE_EXPLOSION,
 	LE_FRAGMENT,
-	LE_MOVE_SCALE_FADE,
-	LE_FALL_SCALE_FADE,
 	LE_FADE_RGB,
-	LE_SCALE_FADE,
 	LE_SPARK,
 	LE_DEBRIS,
 	LE_BLOOD,
-	LE_FUSE_SPARK,
 	LE_ZOMBIE_SPIRIT,
 	LE_HELGA_SPIRIT,
 	LE_ZOMBIE_BAT,
@@ -439,8 +425,7 @@ typedef enum {
 
 #define MAX_OLD_POS     3
 
-typedef struct localEntity_s {
-	struct localEntity_s    *prev, *next;
+typedef struct fxEntity_s {
 	leType_t leType;
 	int leFlags;
 
@@ -473,7 +458,7 @@ typedef struct localEntity_s {
 	int headJuncIndex, headJuncIndex2;
 	float effectWidth;
 	int effectFlags;
-	struct localEntity_s    *chain;     // used for grouping entities (like for flamethrower junctions)
+	struct fxEntity_s    *chain;     // used for grouping entities (like for flamethrower junctions)
 	int onFireStart, onFireEnd;
 	int ownerNum;
 	int lastSpiritDmgTime;
@@ -488,7 +473,7 @@ typedef struct localEntity_s {
 	int oldPosHead;
 	// done.
 
-} localEntity_t;
+} fxEntity_t;
 
 //======================================================================
 
@@ -524,7 +509,7 @@ typedef enum {
 	ACC_MOUTH3,     //
 	//
 	ACC_MAX     // this is bound by network limits, must change network stream to increase this
-	            // (SA) No, really?  that's not true is it?  isn't this client-side only?
+				// (SA) No, really?  that's not true is it?  isn't this client-side only?
 } accType_t;
 
 #define ACC_NUM_MOUTH 3 // matches the above count (hat/mouth2/mouth3)
@@ -752,7 +737,7 @@ typedef struct {
 	int frametime;              // cg.time - cg.oldTime
 
 	int time;                   // this is the time value that the client
-	                            // is rendering at.
+								// is rendering at.
 	int oldTime;                // time at last frame, used for missile trails and prediction checking
 
 	int physicsTime;            // either cg.snap->time or cg.nextSnap->time
@@ -971,12 +956,12 @@ typedef struct {
 
 	// RF, new kick angles
 	vec3_t kickAVel;            // for damage feedback, weapon recoil, etc
-	                            // This is the angular velocity, to give a smooth
-	                            // rotational feedback, rather than sudden jerks
+								// This is the angular velocity, to give a smooth
+								// rotational feedback, rather than sudden jerks
 	vec3_t kickAngles;          // for damage feedback, weapon recoil, etc
-	                            // NOTE: this is not transmitted through MSG.C stream
-	                            // since weapon kicks are client-side, and damage feedback
-	                            // is rare enough that we can transmit that as an event
+								// NOTE: this is not transmitted through MSG.C stream
+								// since weapon kicks are client-side, and damage feedback
+								// is rare enough that we can transmit that as an event
 	float recoilPitch, recoilPitchAngle;
 
 	// Duffy
@@ -1615,7 +1600,7 @@ extern cg_t cg;
 extern centity_t cg_entities[MAX_GENTITIES];
 extern weaponInfo_t cg_weapons[MAX_WEAPONS];
 extern itemInfo_t cg_items[MAX_ITEMS];
-extern markPoly_t cg_markPolys[MAX_MARK_POLYS];
+
 
 extern vmCvar_t cg_centertime;
 extern vmCvar_t cg_runpitch;
@@ -1996,6 +1981,7 @@ void CG_RegisterItemVisuals( int itemNum );
 
 void CG_FireWeapon( centity_t *cent );   //----(SA)	modified.
 //void CG_EndFireWeapon( centity_t *cent, int firemode );	//----(SA)	added
+void CG_WaterRipple( qhandle_t shader, vec3_t loc, vec3_t dir, int size, int lifetime );
 void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, int surfaceFlags );   //	(SA) modified to send missilehitwall surface parameters
 
 void CG_MissileHitWallSmall( int weapon, int clientNum, vec3_t origin, vec3_t dir );
@@ -2042,8 +2028,6 @@ void CG_AddBulletParticles( vec3_t origin, vec3_t dir, int speed, int duration, 
 //
 // cg_marks.c
 //
-void    CG_InitMarkPolys( void );
-void    CG_AddMarks( void );
 void    CG_ImpactMark( qhandle_t markShader,
 					   const vec3_t origin, const vec3_t dir,
 					   float orientation,
@@ -2055,11 +2039,9 @@ void    CG_ImpactMark( qhandle_t markShader,
 //
 // cg_particles.c
 //
-void    CG_ClearParticles( void );
-void    CG_AddParticles( void );
 void    CG_ParticleSnow( qhandle_t pshader, vec3_t origin, vec3_t origin2, int turb, float range, int snum );
 void    CG_ParticleSmoke( qhandle_t pshader, centity_t *cent );
-void    CG_AddParticleShrapnel( localEntity_t *le );
+void    CG_AddParticleShrapnel( fxEntity_t *le );
 void    CG_ParticleSnowFlurry( qhandle_t pshader, centity_t *cent );
 void    CG_ParticleBulletDebris( vec3_t org, vec3_t vel, int duration );
 void    CG_ParticleDirtBulletDebris( vec3_t org, vec3_t vel, int duration );     // DHM - Nerve
@@ -2086,7 +2068,7 @@ void CG_GetBleedOrigin( vec3_t head_origin, vec3_t torso_origin, vec3_t legs_ori
 void CG_Particle_OilParticle( qhandle_t pshader, vec3_t origin, vec3_t origin2, int ptime, int snum );
 void CG_Particle_OilSlick( qhandle_t pshader, centity_t *cent );
 void CG_OilSlickRemove( centity_t *cent );
-void CG_BloodPool( localEntity_t *le, qhandle_t pshader, trace_t *tr );
+void CG_BloodPool( fxEntity_t *le, qhandle_t pshader, trace_t *tr );
 void CG_ParticleBloodCloudZombie( centity_t *cent, vec3_t origin, vec3_t dir );
 void CG_ParticleBloodCloud( centity_t *cent, vec3_t origin, vec3_t dir );
 // done
@@ -2095,12 +2077,7 @@ void CG_ParticleBloodCloud( centity_t *cent, vec3_t origin, vec3_t dir );
 //
 // cg_trails.c
 //
-int CG_AddTrailJunc( int headJuncIndex, qhandle_t shader, int spawnTime, int sType, vec3_t pos, int trailLife, float alphaStart, float alphaEnd, float startWidth, float endWidth, int flags, vec3_t colorStart, vec3_t colorEnd, float sRatio, float animSpeed );
-int CG_AddSparkJunc( int headJuncIndex, qhandle_t shader, vec3_t pos, int trailLife, float alphaStart, float alphaEnd, float startWidth, float endWidth );
-int CG_AddSmokeJunc( int headJuncIndex, qhandle_t shader, vec3_t pos, int trailLife, float alpha, float startWidth, float endWidth );
 int CG_AddFireJunc( int headJuncIndex, qhandle_t shader, vec3_t pos, int trailLife, float alpha, float startWidth, float endWidth );
-void CG_AddTrails( void );
-void CG_ClearTrails( void );
 // done.
 
 // Ridah, sound scripting
@@ -2113,7 +2090,7 @@ void CG_SoundInit( void );
 // Ridah, flamethrower
 void CG_FireFlameChunks( centity_t *cent, vec3_t origin, vec3_t angles, float speedScale, qboolean firing, int flags ); //----(SA)	added 'flags'
 void CG_InitFlameChunks( void );
-void CG_AddFlameChunks( void );
+void CG_FxBeginFlames( void );
 void CG_UpdateFlamethrowerSounds( void );
 void CG_FlameDamage( int owner, vec3_t org, float radius );
 // done.
@@ -2121,23 +2098,12 @@ void CG_FlameDamage( int owner, vec3_t org, float radius );
 //
 // cg_localents.c
 //
-void    CG_InitLocalEntities( void );
-localEntity_t   *CG_AllocLocalEntity( void );
-void    CG_AddLocalEntities( void );
+fxEntity_t   *CG_FxSpawnModel( const char *name );
 
 //
 // cg_effects.c
 //
 int CG_GetOriginForTag( centity_t * cent, refEntity_t * parent, char *tagName, int startIndex, vec3_t org, vec3_t axis[3] );
-localEntity_t *CG_SmokePuff( const vec3_t p,
-							 const vec3_t vel,
-							 float radius,
-							 float r, float g, float b, float a,
-							 float duration,
-							 int startTime,
-							 int fadeInTime,
-							 int leFlags,
-							 qhandle_t hShader );
 
 void CG_BubbleTrail( vec3_t start, vec3_t end, float size, float spacing );
 void CG_SpawnEffect( vec3_t org );
@@ -2147,12 +2113,11 @@ void CG_GibHead( vec3_t headOrigin );
 
 void CG_Bleed( vec3_t origin, int entityNum );
 
-localEntity_t *CG_MakeExplosion( vec3_t origin, vec3_t dir,
+fxEntity_t *CG_MakeExplosion( vec3_t origin, vec3_t dir,
 								 qhandle_t hModel, qhandle_t shader, int msec,
 								 qboolean isSprite );
 // Ridah
 void CG_DynamicLightningBolt( qhandle_t shader, vec3_t start, vec3_t pend, int numBolts, float maxWidth, qboolean fade, float startAlpha, int recursion, int randseed );
-void CG_SparklerSparks( vec3_t origin, int count );
 void CG_ClearFlameChunks( void );
 void CG_ProjectedSpotLight( vec3_t start, vec3_t dir );
 // done.

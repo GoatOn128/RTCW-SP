@@ -159,7 +159,7 @@ $env = new cons(
   ../renderer/tr_backend.c   
   ../renderer/tr_bsp.c   
   ../renderer/tr_cmds.c   
-  ../renderer/tr_cmesh.c
+  ../renderer/tr_md5.cpp
   ../renderer/tr_curve.c   
   ../renderer/tr_flares.c   
   ../renderer/tr_font.c    

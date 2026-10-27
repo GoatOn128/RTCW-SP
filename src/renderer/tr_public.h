@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef TR_PUBLIC_H
-#define TR_PUBLIC_H
+#ifndef __TR_PUBLIC_H
+#define __TR_PUBLIC_H
 
 #include "../cgame/tr_types.h"
 
@@ -118,25 +118,15 @@ typedef struct {
 	qboolean ( *GetEntityToken )( char *buffer, int size );
 } refexport_t;
 
-// platform window and GL management provided by the engine glimp code
-void GLimp_Init( void );
-void GLimp_Shutdown( void );
-void GLimp_EndFrame( void );
-qboolean GLimp_SpawnRenderThread( void ( *function )( void ) );
-void *GLimp_RendererSleep( void );
-void GLimp_FrontEndSleep( void );
-void GLimp_WakeRenderer( void *data );
-void GLimp_LogComment( char *comment );
-void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned char blue[256] );
-
+//
 // these are the functions imported by the refresh module
 //
 typedef struct {
 	// print message on the local console
-	void( QDECL * Printf )( int printLevel, const char *fmt, ... );
+	void ( QDECL * Printf )( int printLevel, const char *fmt, ... );
 
 	// abort the game
-	void( QDECL * Error )( int errorLevel, const char *fmt, ... );
+	void ( QDECL * Error )( int errorLevel, const char *fmt, ... );
 
 	// milliseconds should only be used for profiling, never
 	// for anything game related.  Get time from the refdef
@@ -156,7 +146,7 @@ typedef struct {
 	cvar_t  *( *Cvar_Get )( const char *name, const char *value, int flags );
 	void ( *Cvar_Set )( const char *name, const char *value );
 
-	void ( *Cmd_AddCommand )( const char *name, void ( *cmd ) ( void ) );
+	void ( *Cmd_AddCommand )( const char *name, void( *cmd ) ( void ) );
 	void ( *Cmd_RemoveCommand )( const char *name );
 
 	int ( *Cmd_Argc )( void );
@@ -165,12 +155,15 @@ typedef struct {
 	void ( *Cmd_ExecuteText )( int exec_when, const char *text );
 
 	// visualization for debugging collision detection
-	void ( *CM_DrawDebugSurface )( void ( *drawPoly ) ( int color, int numPoints, float *points ) );
+	void ( *CM_DrawDebugSurface )( void( *drawPoly ) ( int color, int numPoints, float *points ) );
 
 	// a -1 return means the file does not exist
 	// NULL can be passed for buf to just determine existance
 	int ( *FS_FileIsInPAK )( const char *name, int *pChecksum );
 	int ( *FS_ReadFile )( const char *name, void **buf );
+	int ( *FS_FOpenFileRead )( const char *name, fileHandle_t *file, qboolean uniqueFile );
+	int ( *FS_Read )( void *buffer, int len, fileHandle_t file );
+	void ( *FS_FCloseFile )( fileHandle_t file );
 	void ( *FS_FreeFile )( void *buf );
 	char ** ( *FS_ListFiles )( const char *name, const char *extension, int *numfilesfound );
 	void ( *FS_FreeFileList )( char **filelist );
@@ -182,22 +175,6 @@ typedef struct {
 	int ( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
 	e_status ( *CIN_RunCinematic )( int handle );
 
-	// platform support the renderer module calls back through the import table
-	void ( *GLimp_Init )( void );
-	void ( *GLimp_Shutdown )( void );
-	void ( *GLimp_EndFrame )( void );
-	void ( *GLimp_LogComment )( char *comment );
-	qboolean ( *GLimp_SpawnRenderThread )( void ( *function )( void ) );
-	void *( *GLimp_RendererSleep )( void );
-	void ( *GLimp_FrontEndSleep )( void );
-	void ( *GLimp_WakeRenderer )( void *data );
-	void ( *GLimp_SetGamma )( unsigned char red[256], unsigned char green[256], unsigned char blue[256] );
-
-	unsigned int ( *Sys_ProcessorCount )( void );
-	qboolean ( *Sys_LowPhysicalMemory )( void );
-
-	glconfig_t *glConfig;
-
 } refimport_t;
 
 
@@ -206,4 +183,4 @@ typedef struct {
 // returned.
 refexport_t*GetRefAPI( int apiVersion, refimport_t *rimp );
 
-#endif  // TR_PUBLIC_H
+#endif  // __TR_PUBLIC_H

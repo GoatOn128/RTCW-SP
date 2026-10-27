@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,13 +30,13 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../game/q_shared.h"
 #include "../qcommon/qcommon.h"
-#include "../game/bg_public.h"
 #include "../game/g_public.h"
+#include "../game/bg_public.h"
 
 //=============================================================================
 
 #define PERS_SCORE              0       // !!! MUST NOT CHANGE, SERVER AND
-                                        // GAME BOTH REFERENCE !!!
+										// GAME BOTH REFERENCE !!!
 
 #define MAX_ENT_CLUSTERS    16
 
@@ -94,8 +94,8 @@ typedef struct {
 	playerState_t ps;
 	int num_entities;
 	int first_entity;                   // into the circular sv_packet_entities[]
-	                                    // the entities MUST be in increasing state number
-	                                    // order, otherwise the delta compression will fail
+										// the entities MUST be in increasing state number
+										// order, otherwise the delta compression will fail
 	int messageSent;                    // time the message was transmitted
 	int messageAcked;                   // time the message was acked
 	int messageSize;                    // used to rate drop packets
@@ -104,7 +104,7 @@ typedef struct {
 typedef enum {
 	CS_FREE,        // can be reused for a new connection
 	CS_ZOMBIE,      // client has been disconnected, but don't reuse
-	                // connection for a couple seconds
+					// connection for a couple seconds
 	CS_CONNECTED,   // has been assigned to a client_t, but no gamestate yet
 	CS_PRIMED,      // gamestate has been sent, but client hasn't sent a usercmd
 	CS_ACTIVE       // client is fully in game
@@ -219,7 +219,8 @@ typedef struct {
 
 extern serverStatic_t svs;                  // persistant server info across maps
 extern server_t sv;                         // cleared each map
-extern gameExport_t *ge;                // game virtual machine
+extern const gameExport_t *gvm;
+extern void               *gvmHandle;
 
 #define MAX_MASTER_SERVERS  5
 

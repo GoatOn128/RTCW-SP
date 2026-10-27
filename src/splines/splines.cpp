@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@ If you have questions concerning this license or the applicable additional terms
 #include "q_splineshared.h"
 #include "splines.h"
 
-extern "C" {
 int FS_Write( const void *buffer, int len, fileHandle_t h );
 int FS_ReadFile( const char *qpath, void **buffer );
 void FS_FreeFile( void *buffer );
@@ -37,13 +36,6 @@ fileHandle_t FS_FOpenFileWrite( const char *filename );
 void FS_FCloseFile( fileHandle_t f );
 void Cbuf_AddText( const char *text );
 void Cbuf_Execute( void );
-}
-
-float Q_fabs( float f ) {
-	int tmp = *( int * ) &f;
-	tmp &= 0x7FFFFFFF;
-	return *( float * ) &tmp;
-}
 
 // (SA) making a list of cameras so I can use
 //		the splines as targets for other things.
@@ -54,8 +46,7 @@ float Q_fabs( float f ) {
 
 idCameraDef camera[MAX_CAMERAS];
 
-extern "C" {
-qboolean loadCamera( int camNum, const char *name ) {
+int loadCamera( int camNum, const char *name ) {
 	if ( camNum < 0 || camNum >= MAX_CAMERAS ) {
 		return qfalse;
 	}
@@ -64,7 +55,7 @@ qboolean loadCamera( int camNum, const char *name ) {
 	return (qboolean)( camera[camNum].load( name ) );
 }
 
-qboolean getCameraInfo( int camNum, int time, float *origin, float *angles, float *fov ) {
+int getCameraInfo( int camNum, int time, float *origin, float *angles, float *fov ) {
 	idVec3 dir, org;
 	if ( camNum < 0 || camNum >= MAX_CAMERAS ) {
 		return qfalse;
@@ -90,9 +81,6 @@ void startCamera( int camNum, int time ) {
 	camera[camNum].startCamera( time );
 }
 
-}
-
-
 //#include "../shared/windings.h"
 //#include "../qcommon/qcommon.h"
 //#include "../sys/sys_public.h"
@@ -104,24 +92,21 @@ idCameraDef *g_splineList = &splineList;
 idVec3 idSplineList::zero( 0,0,0 );
 
 void glLabeledPoint( idVec3 &color, idVec3 &point, float size, const char *label ) {
-#ifdef Q3RADIANT
-	glColor3fv( color );
-	glPointSize( size );
-	glBegin( GL_POINTS );
-	glVertex3fv( point );
-	glEnd();
+	qglColor3fv( color );
+	qglPointSize( size );
+	qglBegin( GL_POINTS );
+	qglVertex3fv( point );
+	qglEnd();
 	idVec3 v = point;
 	v.x += 1;
 	v.y += 1;
 	v.z += 1;
-	glRasterPos3fv( v );
-	glCallLists( strlen( label ), GL_UNSIGNED_BYTE, label );
-#endif
+	qglRasterPos3fv( v );
+	qglCallLists( strlen( label ), GL_UNSIGNED_BYTE, label );
 }
 
 
 void glBox( idVec3 &color, idVec3 &point, float size ) {
-#ifdef Q3RADIANT
 	idVec3 mins( point );
 	idVec3 maxs( point );
 	mins[0] -= size;
@@ -130,31 +115,31 @@ void glBox( idVec3 &color, idVec3 &point, float size ) {
 	maxs[0] += size;
 	maxs[1] -= size;
 	maxs[2] += size;
-	glColor3fv( color );
-	glBegin( GL_LINE_LOOP );
-	glVertex3f( mins[0],mins[1],mins[2] );
-	glVertex3f( maxs[0],mins[1],mins[2] );
-	glVertex3f( maxs[0],maxs[1],mins[2] );
-	glVertex3f( mins[0],maxs[1],mins[2] );
-	glEnd();
-	glBegin( GL_LINE_LOOP );
-	glVertex3f( mins[0],mins[1],maxs[2] );
-	glVertex3f( maxs[0],mins[1],maxs[2] );
-	glVertex3f( maxs[0],maxs[1],maxs[2] );
-	glVertex3f( mins[0],maxs[1],maxs[2] );
-	glEnd();
+	qglColor3fv( color );
+	qglBegin( GL_LINE_LOOP );
+	qglVertex3f( mins[0],mins[1],mins[2] );
+	qglVertex3f( maxs[0],mins[1],mins[2] );
+	qglVertex3f( maxs[0],maxs[1],mins[2] );
+	qglVertex3f( mins[0],maxs[1],mins[2] );
+	qglEnd();
+	qglBegin( GL_LINE_LOOP );
+	qglVertex3f( mins[0],mins[1],maxs[2] );
+	qglVertex3f( maxs[0],mins[1],maxs[2] );
+	qglVertex3f( maxs[0],maxs[1],maxs[2] );
+	qglVertex3f( mins[0],maxs[1],maxs[2] );
+	qglEnd();
 
-	glBegin( GL_LINES );
-	glVertex3f( mins[0],mins[1],mins[2] );
-	glVertex3f( mins[0],mins[1],maxs[2] );
-	glVertex3f( mins[0],maxs[1],maxs[2] );
-	glVertex3f( mins[0],maxs[1],mins[2] );
-	glVertex3f( maxs[0],mins[1],mins[2] );
-	glVertex3f( maxs[0],mins[1],maxs[2] );
-	glVertex3f( maxs[0],maxs[1],maxs[2] );
-	glVertex3f( maxs[0],maxs[1],mins[2] );
-	glEnd();
-#endif
+	qglBegin( GL_LINES );
+	qglVertex3f( mins[0],mins[1],mins[2] );
+	qglVertex3f( mins[0],mins[1],maxs[2] );
+	qglVertex3f( mins[0],maxs[1],maxs[2] );
+	qglVertex3f( mins[0],maxs[1],mins[2] );
+	qglVertex3f( maxs[0],mins[1],mins[2] );
+	qglVertex3f( maxs[0],mins[1],maxs[2] );
+	qglVertex3f( maxs[0],maxs[1],maxs[2] );
+	qglVertex3f( maxs[0],maxs[1],mins[2] );
+	qglEnd();
+
 }
 
 void splineTest() {
@@ -254,6 +239,9 @@ void idSplineList::buildSpline() {
 
 
 void idSplineList::draw( bool editMode ) {
+	int i;
+	idVec4 yellow( 1, 1, 0, 1 );
+
 	if ( controlPoints.Num() == 0 ) {
 		return;
 	}
@@ -262,20 +250,15 @@ void idSplineList::draw( bool editMode ) {
 		buildSpline();
 	}
 
-#ifdef Q3RADIANT
-	// the GL debug drawing below is only built for the editor,
-	// the engine build has no GL access here
-	int i;
-	idVec4 yellow( 1, 1, 0, 1 );
 
-	glColor3fv( controlColor );
-	glPointSize( 5 );
+	qglColor3fv( controlColor );
+	qglPointSize( 5 );
 
-	glBegin( GL_POINTS );
+	qglBegin( GL_POINTS );
 	for ( i = 0; i < controlPoints.Num(); i++ ) {
-		glVertex3fv( *controlPoints[i] );
+		qglVertex3fv( *controlPoints[i] );
 	}
-	glEnd();
+	qglEnd();
 
 	if ( editMode ) {
 		for ( i = 0; i < controlPoints.Num(); i++ ) {
@@ -284,22 +267,22 @@ void idSplineList::draw( bool editMode ) {
 	}
 
 	//Draw the curve
-	glColor3fv( pathColor );
-	glBegin( GL_LINE_STRIP );
+	qglColor3fv( pathColor );
+	qglBegin( GL_LINE_STRIP );
 	int count = splinePoints.Num();
 	for ( i = 0; i < count; i++ ) {
-		glVertex3fv( *splinePoints[i] );
+		qglVertex3fv( *splinePoints[i] );
 	}
-	glEnd();
+	qglEnd();
 
 	if ( editMode ) {
-		glColor3fv( segmentColor );
-		glPointSize( 3 );
-		glBegin( GL_POINTS );
+		qglColor3fv( segmentColor );
+		qglPointSize( 3 );
+		qglBegin( GL_POINTS );
 		for ( i = 0; i < count; i++ ) {
-			glVertex3fv( *splinePoints[i] );
+			qglVertex3fv( *splinePoints[i] );
 		}
-		glEnd();
+		qglEnd();
 	}
 	if ( count > 0 ) {
 		//assert(activeSegment >=0 && activeSegment < count);
@@ -308,7 +291,7 @@ void idSplineList::draw( bool editMode ) {
 			glBox( yellow, *splinePoints[activeSegment], 8 );
 		}
 	}
-#endif
+
 }
 
 float idSplineList::totalDistance() {
@@ -710,38 +693,38 @@ void idCameraDef::buildCamera() {
 			break;
 		}
 		case idCameraEvent::EVENT_SPEED: {
-			/*
-							// take the average delay between up to the next five segments
-							float adjust = atof(events[i]->getParam());
-							int index = events[i]->getSegment();
-							total = 0;
-							count = 0;
+/*
+				// take the average delay between up to the next five segments
+				float adjust = atof(events[i]->getParam());
+				int index = events[i]->getSegment();
+				total = 0;
+				count = 0;
 
-							// get total amount of time over the remainder of the segment
-							for (j = index; j < cameraSpline.numSegments() - 1; j++) {
-								total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
-								count++;
-							}
+				// get total amount of time over the remainder of the segment
+				for (j = index; j < cameraSpline.numSegments() - 1; j++) {
+					total += cameraSpline.getSegmentTime(j + 1) - cameraSpline.getSegmentTime(j);
+					count++;
+				}
 
-							// multiply that by the adjustment
-							double newTotal = total * adjust;
-							// what is the difference..
-							newTotal -= total;
-							totalTime += newTotal / 1000;
+				// multiply that by the adjustment
+				double newTotal = total * adjust;
+				// what is the difference..
+				newTotal -= total;
+				totalTime += newTotal / 1000;
 
-							// per segment difference
-							newTotal /= count;
-							int additive = newTotal;
+				// per segment difference
+				newTotal /= count;
+				int additive = newTotal;
 
-							// now propogate that difference out to each segment
-							for (j = index; j < cameraSpline.numSegments(); j++) {
-								cameraSpline.addSegmentTime(j, additive);
-								additive += newTotal;
-							}
-							break;
-			*/
-			default:
+				// now propogate that difference out to each segment
+				for (j = index; j < cameraSpline.numSegments(); j++) {
+					cameraSpline.addSegmentTime(j, additive);
+					additive += newTotal;
+				}
 				break;
+*/
+		default:
+			break;
 		}
 		}
 	}
@@ -799,30 +782,30 @@ void idCameraDef::parse( const char *( *text )  ) {
 
 		if ( Q_stricmp( token, "time" ) == 0 ) {
 			baseTime = Com_ParseFloat( text );
-		} else if ( Q_stricmp( token, "camera_fixed" ) == 0 ) {
+		} else if ( Q_stricmp( token, "camera_fixed" ) == 0 )        {
 			cameraPosition = new idFixedPosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "camera_interpolated" ) == 0 ) {
+		} else if ( Q_stricmp( token, "camera_interpolated" ) == 0 )        {
 			cameraPosition = new idInterpolatedPosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "camera_spline" ) == 0 ) {
+		} else if ( Q_stricmp( token, "camera_spline" ) == 0 )        {
 			cameraPosition = new idSplinePosition();
 			cameraPosition->parse( text );
-		} else if ( Q_stricmp( token, "target_fixed" ) == 0 ) {
+		} else if ( Q_stricmp( token, "target_fixed" ) == 0 )        {
 			idFixedPosition *pos = new idFixedPosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "target_interpolated" ) == 0 ) {
+		} else if ( Q_stricmp( token, "target_interpolated" ) == 0 )        {
 			idInterpolatedPosition *pos = new idInterpolatedPosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "target_spline" ) == 0 ) {
+		} else if ( Q_stricmp( token, "target_spline" ) == 0 )        {
 			idSplinePosition *pos = new idSplinePosition();
 			pos->parse( text );
 			targetPositions.Append( pos );
-		} else if ( Q_stricmp( token, "fov" ) == 0 ) {
+		} else if ( Q_stricmp( token, "fov" ) == 0 )        {
 			fov.parse( text );
-		} else if ( Q_stricmp( token, "event" ) == 0 ) {
+		} else if ( Q_stricmp( token, "event" ) == 0 )        {
 			idCameraEvent *event = new idCameraEvent();
 			event->parse( text );
 			addEvent( event );
@@ -1140,7 +1123,7 @@ void idFixedPosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			Com_Parse( text );
+			const char *token = Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "pos" ) == 0 ) {
 				Com_UngetToken();
 				Com_Parse1DMatrix( text, 3, pos );
@@ -1185,7 +1168,7 @@ void idInterpolatedPosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			Com_Parse( text );
+			const char *token = Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "startPos" ) == 0 ) {
 				Com_UngetToken();
 				Com_Parse1DMatrix( text, 3, startPos );
@@ -1234,7 +1217,7 @@ void idSplinePosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			Com_Parse( text );
+			const char *token = Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "target" ) == 0 ) {
 				target.parse( text );
 			} else {
@@ -1418,3 +1401,4 @@ const idVec3 *idSplinePosition::getPosition( long t ) {
 	return &interpolatedPos;
 
 }
+
