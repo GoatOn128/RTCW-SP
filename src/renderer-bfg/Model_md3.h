@@ -146,8 +146,9 @@ idRenderModelMD3
 
 Adapted from the BFG Model_md3.cpp: the raw file is kept in memory and
 the frame lerping runs on it, the shader names stay in the raw data
-until the material phase resolves them. The lat/long normal decode and
-the frame validation come from this engine's own src/renderer code.
+and are resolved through the material manager when the dynamic model
+is instantiated. The lat/long normal decode and the frame validation
+come from this engine's own src/renderer code.
 
 The engine drives the animation through the shader parms
 (SHADERPARM_MD3_FRAME, SHADERPARM_MD3_LASTFRAME and

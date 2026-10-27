@@ -143,8 +143,8 @@ idRenderModelMDC
 
 The mdc adapter decompresses every frame at load time, then behaves
 like the md3 adapter: the frames are lerped on demand through the
-entity shader parms and the shader names stay stored until the
-material phase resolves them.
+entity shader parms and the shader names are resolved through the
+material manager when the dynamic model is instantiated.
 
 The compressed frame decode follows R_MDC_DecodeXyzCompressed and
 LerpCMeshVertexes in the src/renderer code of this code base.
@@ -153,7 +153,7 @@ LerpCMeshVertexes in the src/renderer code of this code base.
 
 // the decompressed frames of one mdc surface
 struct mdcRuntimeSurface_t {
-	idStr shaderName;                   // resolved by the material phase
+	idStr shaderName;                   // resolved at instantiation
 	int numVerts;
 	int numTriangles;
 	triIndex_t *    indexes;

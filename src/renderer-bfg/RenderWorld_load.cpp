@@ -32,6 +32,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "Model_local.h"
 #include "Q3Bsp.h"
 #include "Q3Patch.h"
+#include "MaterialManager.h"
 
 // Trimmed and reworked from the BFG RenderWorld_load.cpp: instead of the
 // .proc format the loader reads the Q3/RTCW .bsp files of this engine. The
@@ -452,6 +453,13 @@ static void BuildBspLocalModels( idRenderWorldLocal *world, const q3BspWorld_t *
 		for ( int s = 0; s < bspModel.numSurfaces; s++ ) {
 			const q3BspSurface_t &surf = bsp->surfaces[bspModel.firstSurface + s];
 
+			// every surface must reference one of the map shaders
+			if ( surf.shaderNum < 0 || surf.shaderNum >= bsp->numShaders ) {
+				idLib::Warning( "InitFromMap: surface %i of model %s has a bad shader reference",
+								bspModel.firstSurface + s, modelName.c_str() );
+				continue;
+			}
+
 			// the BFG geometry indexes are unsigned shorts, so a surface
 			// cannot have more vertices than the index range holds
 			if ( surf.numVerts > 65535 ) {
@@ -475,9 +483,14 @@ static void BuildBspLocalModels( idRenderWorldLocal *world, const q3BspWorld_t *
 
 			modelSurface_t surface;
 			surface.id = s;
-			// the shader names stay on the BSP data and are resolved by
-			// the material phase
-			surface.shader = NULL;
+			// resolve the stored shader name through the material manager.
+			// A lightmap index beyond the world lightmaps means the
+			// surface is lit per vertex, the same rule the engine applies
+			int lightmapIndex = surf.lightmapNum;
+			if ( lightmapIndex >= bsp->numLightmaps ) {
+				lightmapIndex = LIGHTMAP_BY_VERTEX;
+			}
+			surface.shader = materialManager->FindMaterial( bsp->shaders[surf.shaderNum].name, lightmapIndex );
 			surface.geometry = model->AllocSurfaceTriangles( surf.numVerts, surf.numIndexes );
 			srfTriangles_t *tri = surface.geometry;
 			tri->numVerts = surf.numVerts;

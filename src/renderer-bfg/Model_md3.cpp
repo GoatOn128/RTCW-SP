@@ -29,6 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../idlib/precompiled.h"
 
 #include "RenderWorld.h"
+#include "MaterialManager.h"
 #include "Model_md3.h"
 
 /*
@@ -175,8 +176,9 @@ idRenderModelMD3::~idRenderModelMD3() {
 idRenderModelMD3::InitFromFile
 
 The BFG code base keeps the raw md3 file in memory and lerps the
-frames on the fly; this port does the same. The shader pointers stay
-NULL until the material phase resolves the names stored in the file.
+frames on the fly; this port does the same. The shader names stay in
+the raw data and are resolved through the material manager when the
+dynamic model is instantiated.
 =================
 */
 void idRenderModelMD3::InitFromFile( const char *fileName ) {
@@ -342,9 +344,19 @@ idRenderModel *idRenderModelMD3::InstantiateDynamicModel( const struct renderEnt
 
 		modelSurface_t surf;
 		surf.id = i;
-		// the shader name stays in the raw md3 data; the material system
-		// resolves it in the material phase
-		surf.shader = NULL;
+		// resolve the shader name stored with the surface through the
+		// material manager; an md3 surface carries no lightmap, so the
+		// name lookup has no lightmap index
+		idStr shaderName;
+		if ( surface->numShaders > 0 ) {
+			const md3Shader_t *shader = (const md3Shader_t *)( (const byte *)surface + surface->ofsShaders );
+			// the on-disk name is not guaranteed to be null terminated
+			char name[65];
+			strncpy( name, shader[0].name, 64 );
+			name[64] = '\0';
+			shaderName = name;
+		}
+		surf.shader = materialManager->FindMaterial( shaderName.c_str() );
 		surf.geometry = staticModel->AllocSurfaceTriangles( surface->numVerts, surface->numTriangles * 3 );
 
 		srfTriangles_t *tri = surf.geometry;

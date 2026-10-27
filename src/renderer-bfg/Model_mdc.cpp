@@ -29,6 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../idlib/precompiled.h"
 
 #include "RenderWorld.h"
+#include "MaterialManager.h"
 #include "Model_mdc.h"
 
 // the compressed normals index into this table, it is the very table the
@@ -218,8 +219,9 @@ static bool LoadMDCSurfaces( const mdcHeader_t *mdc, int fileLength, idList<mdcR
 			runtime.texCoords[j].y = st[j].st[1];
 		}
 
-		// keep the shader name for the material phase; the on-disk name is
-		// not guaranteed to be null terminated
+		// keep the shader name for the material resolution at
+		// instantiation; the on-disk name is not guaranteed to be null
+		// terminated
 		if ( surf->numShaders > 0 ) {
 			const md3Shader_t *shader = (const md3Shader_t *)( surfStart + surf->ofsShaders );
 			char name[65];
@@ -399,9 +401,10 @@ idRenderModel *idRenderModelMDC::InstantiateDynamicModel( const struct renderEnt
 
 		modelSurface_t surf;
 		surf.id = i;
-		// the shader name is stored on the runtime surface; the material
-		// system resolves it in the material phase
-		surf.shader = NULL;
+		// resolve the shader name the load kept on the runtime surface
+		// through the material manager; an empty name yields the
+		// default material
+		surf.shader = materialManager->FindMaterial( surface.shaderName.c_str() );
 		surf.geometry = staticModel->AllocSurfaceTriangles( surface.numVerts, surface.numTriangles * 3 );
 
 		srfTriangles_t *tri = surf.geometry;

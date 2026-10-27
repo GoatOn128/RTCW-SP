@@ -79,7 +79,7 @@ struct srfTriangles_t {
 
 struct modelSurface_t {
 	int id;
-	const idMaterial *          shader;                 // NULL until the material phase resolves the stored names
+	const idMaterial *          shader;                 // the material the surface draws with
 	srfTriangles_t *            geometry;
 };
 

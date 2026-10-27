@@ -28,6 +28,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../idlib/precompiled.h"
 
+#include "MaterialManager.h"
 #include "Model_mds.h"
 
 // from src/qcommon/q_shared.h of this code base
@@ -285,9 +286,14 @@ void idRenderModelMDS::InitFromFile( const char *fileName ) {
 
 			modelSurface_t modelSurf;
 			modelSurf.id = i;
-			// the shader name stays in the raw mds data; the material system
-			// resolves it in the material phase
-			modelSurf.shader = NULL;
+			// the shader name is stored inline on the on-disk surface and
+			// is not guaranteed to be null terminated; an mds surface
+			// carries no lightmap, so the name lookup has no lightmap
+			// index
+			char shaderName[65];
+			strncpy( shaderName, surf->shader, 64 );
+			shaderName[64] = '\0';
+			modelSurf.shader = materialManager->FindMaterial( shaderName );
 			modelSurf.geometry = AllocSurfaceTriangles( surf->numVerts, surf->numTriangles * 3 );
 
 			srfTriangles_t *tri = modelSurf.geometry;

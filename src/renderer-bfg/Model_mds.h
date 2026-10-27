@@ -172,8 +172,8 @@ at load time and bakes the weighted vertices into static surfaces,
 following R_CalcBone in src/renderer/tr_animation.c and the vertex
 skinning in RB_SurfaceAnim for the pose math.
 
-The shader names stay in the raw file copy until the material phase
-resolves them.
+The shader names stay in the raw file copy and are resolved through
+the material manager when the surfaces are built.
 
 */
 
