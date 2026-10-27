@@ -29,13 +29,10 @@ If you have questions concerning this license or the applicable additional terms
 #ifndef SPLINES_H
 #define SPLINES_H
 
-extern "C" {
 #ifdef Q3RADIANT
-  #include "../qgl.h"
-#else
-  #include "../renderer/qgl.h"
+// the editor build links GL directly through the vendored glad loader
+#include <glad/gl.h>
 #endif
-}
 #include "util_list.h"
 #include "util_str.h"
 #include "math_vector.h"
@@ -615,10 +612,12 @@ virtual void addPoint( const idVec3 &v ) {
 virtual void draw( bool editMode ) {
 	glLabeledPoint( blue, startPos, ( editMode ) ? 5 : 3, "Start interpolated" );
 	glLabeledPoint( blue, endPos, ( editMode ) ? 5 : 3, "End interpolated" );
-	qglBegin( GL_LINES );
-	qglVertex3fv( startPos );
-	qglVertex3fv( endPos );
-	qglEnd();
+#ifdef Q3RADIANT
+	glBegin( GL_LINES );
+	glVertex3fv( startPos );
+	glVertex3fv( endPos );
+	glEnd();
+#endif
 }
 
 virtual void start( long t ) {
