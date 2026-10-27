@@ -368,4 +368,3 @@ void                    BoundsInAreas_r( int nodeNum, const idBounds &bounds, in
 };
 
 #endif /* !__RENDERWORLDLOCAL_H__ */
-

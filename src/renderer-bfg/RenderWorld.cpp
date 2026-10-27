@@ -1042,4 +1042,3 @@ bool idRenderWorldLocal::ProcessDemoCommand( idDemoFile *readDemo, renderView_t 
 	// the demo playback is ported with the backend phases
 	return false;
 }
-
