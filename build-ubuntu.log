@@ -1,1 +1,2612 @@
-all ubuntu legs succeeded
+==== ubuntu-latest-x64-debug- (cancelled) ====
+
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 63.8 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+Selecting previously unselected package libc6-dev-i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 211065 files and directories currently installed.)
+Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-x32.
+Preparing to unpack .../01-libc6-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-dev-x32.
+Preparing to unpack .../02-libc6-dev-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libx32gcc-s1.
+Preparing to unpack .../03-libx32gcc-s1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gomp1.
+Preparing to unpack .../04-lib32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32gomp1.
+Preparing to unpack .../05-libx32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32itm1.
+Preparing to unpack .../06-lib32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32itm1.
+Preparing to unpack .../07-libx32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32atomic1.
+Preparing to unpack .../08-lib32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32atomic1.
+Preparing to unpack .../09-libx32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32asan8.
+Preparing to unpack .../10-lib32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32asan8.
+Preparing to unpack .../11-libx32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32ubsan1.
+Preparing to unpack .../12-lib32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32stdc++6.
+Preparing to unpack .../13-libx32stdc++6_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++6 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32ubsan1.
+Preparing to unpack .../14-libx32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32quadmath0.
+Preparing to unpack .../15-lib32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32quadmath0.
+Preparing to unpack .../16-libx32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gcc-15-dev.
+Preparing to unpack .../17-lib32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32gcc-15-dev.
+Preparing to unpack .../18-libx32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-15-multilib.
+Preparing to unpack .../19-gcc-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking gcc-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package lib32stdc++-15-dev.
+Preparing to unpack .../20-lib32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32stdc++-15-dev.
+Preparing to unpack .../21-libx32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package g++-15-multilib.
+Preparing to unpack .../22-g++-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking g++-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-multilib.
+Preparing to unpack .../23-gcc-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking gcc-multilib (4:15.2.0-5ubuntu1) ...
+Selecting previously unselected package g++-multilib.
+Preparing to unpack .../24-g++-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking g++-multilib (4:15.2.0-5ubuntu1) ...
+Setting up libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Setting up lib32itm1 (16-20260322-1ubuntu1) ...
+Setting up lib32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up libc6-x32 (2.43-2ubuntu2.4) ...
+Setting up libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Setting up lib32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up libx32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up lib32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Setting up libx32itm1 (16-20260322-1ubuntu1) ...
+Setting up libx32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32stdc++6 (16-20260322-1ubuntu1) ...
+Setting up libx32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up gcc-15-multilib (15.2.0-16ubuntu1) ...
+Setting up g++-15-multilib (15.2.0-16ubuntu1) ...
+Setting up gcc-multilib (4:15.2.0-5ubuntu1) ...
+Setting up g++-multilib (4:15.2.0-5ubuntu1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+Processing triggers for base-files (14ubuntu6.2) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+
+==== ubuntu-latest-x64-release- (cancelled) ====
+
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 58.7 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+
+
+==== ubuntu-latest-x64-release-game,renderer (failure) ====
+
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 58.3 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+Selecting previously unselected package libc6-dev-i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 211065 files and directories currently installed.)
+Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-x32.
+Preparing to unpack .../01-libc6-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-dev-x32.
+Preparing to unpack .../02-libc6-dev-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libx32gcc-s1.
+Preparing to unpack .../03-libx32gcc-s1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gomp1.
+Preparing to unpack .../04-lib32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32gomp1.
+Preparing to unpack .../05-libx32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32itm1.
+Preparing to unpack .../06-lib32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32itm1.
+Preparing to unpack .../07-libx32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32atomic1.
+Preparing to unpack .../08-lib32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32atomic1.
+Preparing to unpack .../09-libx32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32asan8.
+Preparing to unpack .../10-lib32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32asan8.
+Preparing to unpack .../11-libx32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32ubsan1.
+Preparing to unpack .../12-lib32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32stdc++6.
+Preparing to unpack .../13-libx32stdc++6_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++6 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32ubsan1.
+Preparing to unpack .../14-libx32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32quadmath0.
+Preparing to unpack .../15-lib32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32quadmath0.
+Preparing to unpack .../16-libx32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gcc-15-dev.
+Preparing to unpack .../17-lib32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32gcc-15-dev.
+Preparing to unpack .../18-libx32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-15-multilib.
+Preparing to unpack .../19-gcc-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking gcc-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package lib32stdc++-15-dev.
+Preparing to unpack .../20-lib32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32stdc++-15-dev.
+Preparing to unpack .../21-libx32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package g++-15-multilib.
+Preparing to unpack .../22-g++-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking g++-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-multilib.
+Preparing to unpack .../23-gcc-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking gcc-multilib (4:15.2.0-5ubuntu1) ...
+Selecting previously unselected package g++-multilib.
+Preparing to unpack .../24-g++-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking g++-multilib (4:15.2.0-5ubuntu1) ...
+Setting up libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Setting up lib32itm1 (16-20260322-1ubuntu1) ...
+Setting up lib32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up libc6-x32 (2.43-2ubuntu2.4) ...
+Setting up libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Setting up lib32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up libx32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up lib32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Setting up libx32itm1 (16-20260322-1ubuntu1) ...
+Setting up libx32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32stdc++6 (16-20260322-1ubuntu1) ...
+Setting up libx32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up gcc-15-multilib (15.2.0-16ubuntu1) ...
+Setting up g++-15-multilib (15.2.0-16ubuntu1) ...
+Setting up gcc-multilib (4:15.2.0-5ubuntu1) ...
+Setting up g++-multilib (4:15.2.0-5ubuntu1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+Processing triggers for base-files (14ubuntu6.2) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Selecting previously unselected package xorg-sgml-doctools.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 211703 files and directories currently installed.)
+Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
+Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
+Selecting previously unselected package x11proto-dev.
+Preparing to unpack .../1-x11proto-dev_2025.1-1_all.deb ...
+Unpacking x11proto-dev (2025.1-1) ...
+Selecting previously unselected package libxau-dev:amd64.
+Preparing to unpack .../2-libxau-dev_1%3a1.0.11-1build2_amd64v3.deb ...
+Unpacking libxau-dev:amd64 (1:1.0.11-1build2) ...
+Selecting previously unselected package libxdmcp-dev:amd64.
+Preparing to unpack .../3-libxdmcp-dev_1%3a1.1.5-2_amd64v3.deb ...
+Unpacking libxdmcp-dev:amd64 (1:1.1.5-2) ...
+Selecting previously unselected package xtrans-dev.
+Preparing to unpack .../4-xtrans-dev_1.6.0-1build1_all.deb ...
+Unpacking xtrans-dev (1.6.0-1build1) ...
+Selecting previously unselected package libxcb1-dev:amd64.
+Preparing to unpack .../5-libxcb1-dev_1.17.0-2ubuntu1_amd64v3.deb ...
+Unpacking libxcb1-dev:amd64 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libx11-dev:amd64.
+Preparing to unpack .../6-libx11-dev_2%3a1.8.13-1ubuntu0.1_amd64v3.deb ...
+Unpacking libx11-dev:amd64 (2:1.8.13-1ubuntu0.1) ...
+Selecting previously unselected package libglx-dev:amd64.
+Preparing to unpack .../7-libglx-dev_1.7.0-3_amd64v3.deb ...
+Unpacking libglx-dev:amd64 (1.7.0-3) ...
+Selecting previously unselected package libgl-dev:amd64.
+Preparing to unpack .../8-libgl-dev_1.7.0-3_amd64v3.deb ...
+Unpacking libgl-dev:amd64 (1.7.0-3) ...
+Setting up xtrans-dev (1.6.0-1build1) ...
+Setting up xorg-sgml-doctools (1:1.11-1.1build1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for sgml-base (1.31+nmu1build1) ...
+Setting up x11proto-dev (2025.1-1) ...
+Setting up libxau-dev:amd64 (1:1.0.11-1build2) ...
+Setting up libxdmcp-dev:amd64 (1:1.1.5-2) ...
+Setting up libxcb1-dev:amd64 (1.17.0-2ubuntu1) ...
+Setting up libx11-dev:amd64 (2:1.8.13-1ubuntu0.1) ...
+Setting up libglx-dev:amd64 (1.7.0-3) ...
+Setting up libgl-dev:amd64 (1.7.0-3) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Selecting previously unselected package libxext-dev:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 212015 files and directories currently installed.)
+Preparing to unpack .../libxext-dev_2%3a1.3.4-1build3_amd64v3.deb ...
+Unpacking libxext-dev:amd64 (2:1.3.4-1build3) ...
+Selecting previously unselected package libxxf86dga1:amd64.
+Preparing to unpack .../libxxf86dga1_2%3a1.1.5-1build2_amd64v3.deb ...
+Unpacking libxxf86dga1:amd64 (2:1.1.5-1build2) ...
+Selecting previously unselected package libxxf86dga-dev:amd64.
+Preparing to unpack .../libxxf86dga-dev_2%3a1.1.5-1build2_amd64v3.deb ...
+Unpacking libxxf86dga-dev:amd64 (2:1.1.5-1build2) ...
+Selecting previously unselected package libxxf86vm-dev:amd64.
+Preparing to unpack .../libxxf86vm-dev_1%3a1.1.4-2_amd64v3.deb ...
+Unpacking libxxf86vm-dev:amd64 (1:1.1.4-2) ...
+Setting up libxxf86vm-dev:amd64 (1:1.1.4-2) ...
+Setting up libxxf86dga1:amd64 (2:1.1.5-1build2) ...
+Setting up libxext-dev:amd64 (2:1.3.4-1build3) ...
+Setting up libxxf86dga-dev:amd64 (2:1.1.5-1build2) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling src/client/cl_cgame.c
+Compiling src/client/cl_cin.c
+Compiling src/client/cl_console.c
+Compiling src/client/cl_input.c
+src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+1 warning generated.
+2 warnings generated.
+Compiling src/client/cl_keys.c
+Compiling src/client/cl_main.c
+Compiling src/client/cl_net_chan.c
+Compiling src/client/cl_parse.c
+src/client/cl_main.c:2812:10: warning: variable 'str' set but not used [-Wunused-but-set-variable]
+ 2812 |         char*   str;
+      |                 ^
+src/client/cl_main.c:2916:18: warning: variable 'serverStatus' set but not used [-Wunused-but-set-variable]
+ 2916 |         serverStatus_t *serverStatus;
+      |                         ^
+src/client/cl_main.c:3615:12: warning: variable 'ls' set but not used [-Wunused-but-set-variable]
+ 3615 |         char *p, *ls;
+      |                   ^
+src/client/cl_main.c:3616:6: warning: variable 'lastcolor' set but not used [-Wunused-but-set-variable]
+ 3616 |         int lastcolor;
+      |             ^
+src/client/cl_main.c:3617:6: warning: variable 'chatHeight' set but not used [-Wunused-but-set-variable]
+ 3617 |         int chatHeight;
+      |             ^
+src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  590 |         msg_t msgback;
+      |               ^
+1 warning generated.
+1 warning generated.
+Compiling src/client/cl_qgl.c
+Compiling src/client/cl_scrn.c
+Compiling src/client/cl_ui.c
+src/client/cl_scrn.c:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  386 |         int color;
+      |             ^
+1 warning generated.
+Compiling src/client/snd_adpcm.c
+Compiling src/client/snd_dma.c
+src/client/snd_dma.c:558:8: warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  558 |         float dist_mult, dist_fullvol;
+      |               ^
+Compiling src/client/snd_mem.c
+Compiling src/client/snd_mix.c
+5 warnings generated.
+Compiling src/client/snd_wavelet.c
+src/client/snd_mix.c:795:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  795 |                                         int talkcnt, talktime;
+      |                                             ^
+Compiling src/qcommon/cm_load.c
+Compiling src/qcommon/cm_patch.c
+1 warning generated.
+1 warning generated.
+Compiling src/qcommon/cm_polylib.c
+Compiling src/qcommon/cm_test.c
+Compiling src/qcommon/cm_trace.c
+src/qcommon/cm_trace.c:738:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  738 |         float a, b, c, d, sqrtd;
+      |               ^
+src/qcommon/cm_trace.c:824:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  824 |         float a, b, c, d, sqrtd;
+      |               ^
+Compiling src/qcommon/cmd.c
+src/qcommon/cmd.c:247:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  247 |         int len;
+      |             ^
+2 warnings generated.
+Compiling src/qcommon/common.c
+Compiling src/qcommon/cvar.c
+src/qcommon/common.c:945:6: warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  945 |         int sum;
+      |             ^
+src/qcommon/common.c:1014:12: warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+1 warning generated.
+ 1014 |         int size, locsize, numBlocks;
+      |                   ^
+src/qcommon/common.c:2270:6: warning: variable 'key' set but not used [-Wunused-but-set-variable]
+ 2270 |         int key;Compiling src/qcommon/files.c
+
+      |             ^
+Compiling src/qcommon/huffman.c
+src/qcommon/files.c:2766:20: warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+ 2766 |         qboolean havepak, badchecksum;
+      |                           ^
+Retrieved `build/linux-x64-release/client/obj/qcommon/md4.c.o' from cache
+Compiling src/qcommon/msg.c
+Compiling src/qcommon/net_chan.c
+src/qcommon/net_chan.c:318:6: warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  318 |         int qport;
+      |             ^
+3 warnings generated.
+Compiling src/qcommon/unzip.c
+1 warning generated.
+Compiling src/server/sv_bot.c
+src/qcommon/unzip.c:2139:16: warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+ 2139 |                         const Byte *bufBefore;
+      |                                     ^
+src/qcommon/unzip.c:3046:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+ 3046 | static const char inflate_copyright[] =
+      |                   ^~~~~~~~~~~~~~~~~
+Compiling src/server/sv_ccmds.c
+1 warning generated.
+Compiling src/server/sv_client.c
+Compiling src/server/sv_game.c
+src/server/sv_game.c:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  195 |         int area1, area2;
+      |             ^
+src/server/sv_game.c:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  195 |         int area1, area2;
+      |                    ^
+Compiling src/server/sv_init.c
+2 warnings generated.
+Compiling src/server/sv_main.c
+Compiling src/server/sv_net_chan.c
+Compiling src/server/sv_snapshot.c
+Compiling src/server/sv_world.c
+2 warnings generated.
+Retrieved `build/linux-x64-release/client/obj/qcommon/q_shared.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/qcommon/q_math.c.o' from cache
+Compiling src/sys/unix/unix_main.c
+Compiling src/sys/unix/unix_net.c
+src/server/sv_snapshot.c:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  303 |         int c_fullsend;
+      |             ^
+src/server/sv_world.c:406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  406 |         int count;
+      |             ^
+src/server/sv_world.c:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  701 |         float       *angles;
+      |                      ^
+1 warning generated.
+2 warnings generated.
+Compiling src/sys/unix/unix_shared.c
+src/sys/unix/unix_net.c:179:38: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  179 |                                                 , 0, (struct sockaddr *)&from, &fromlen );
+      |                                                                                ^~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:165:27: note: passing argument to parameter '__addr_len' here
+  165 |                          socklen_t *__restrict __addr_len);
+      |                                                ^
+Retrieved `build/linux-x64-release/client/obj/sys/unix/linux_common.c.o' from cache
+Compiling src/sys/unix/linux_glimp.c
+1 warning generated.
+Compiling src/sys/unix/linux_joystick.c
+Compiling src/sys/unix/linux_snd.c
+Retrieved `build/linux-x64-release/client/obj/splines/math_angles.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/math_matrix.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/math_quaternion.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/math_vector.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/q_parse.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/q_shared.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/splines.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/splines/util_str.cpp.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_bspq3.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_cluster.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_debug.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_entity.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_file.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_main.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_move.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_optimize.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_reach.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_route.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_routealt.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_routetable.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_aas_sample.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_char.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_chat.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_gen.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_goal.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_move.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_weap.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ai_weight.c.o' from cache
+src/sys/unix/linux_glimp.c:148:20: warning: unused function 'Q_stristr' [-Wunused-function]
+  148 | static const char *Q_stristr( const char *s, const char *find ) {
+      |                    ^~~~~~~~~
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_ea.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/be_interface.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_crc.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_libvar.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_log.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_memory.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_precomp.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_script.c.o' from cache
+Retrieved `build/linux-x64-release/client/obj/games/botlib/l_struct.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_characters.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_debug.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_events.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_fight.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_func_attack.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_func_boss1.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_funcs.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_script.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_script_actions.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_script_ents.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_sight.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/ai_cast_think.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/bg_animation.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/bg_misc.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/bg_pmove.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/bg_slidemove.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_active.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_alarm.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_bot.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_client.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_cmds.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_combat.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_items.c.o' from cache
+Compiling src/games/game/g_main.c
+Retrieved `build/linux-x64-release/game/obj/games/game/g_mem.c.o' from cache
+1 warning generated.
+Retrieved `build/linux-x64-release/game/obj/games/game/g_misc.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_missile.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_mover.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_props.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_save.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_script.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_script_actions.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_session.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_spawn.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_svcmds.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_syscalls.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_target.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_team.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_tramcar.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_trigger.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_utils.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/game/g_weapon.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_chat.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_cmd.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_dmnet.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_dmq3.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_main.c.o' from cache
+Retrieved `build/linux-x64-release/game/obj/games/botai/ai_team.c.o' from cache
+Compiling src/renderer/tr_animation.c
+Compiling src/renderer/tr_backend.c
+Compiling src/renderer/tr_bsp.c
+src/renderer/tr_bsp.c:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
+  147 |         double sumIntensity = 0;
+      |                ^
+src/renderer/tr_animation.c:1249:11: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+ 1249 |         pIndexes = &tess.indexes[baseIndex];
+      |                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+src/renderer/tr_animation.c:1376:13: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+ 1376 |                         pIndexes = &tess.indexes[oldIndexes];
+      |                                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
+Compiling src/renderer/tr_cmds.c
+Compiling src/renderer/tr_cmesh.c
+2 warnings generated.
+Compiling src/renderer/tr_curve.c
+src/renderer/tr_cmesh.c:417:81: error: no member named 'ATI_tess' in 'struct model_s'
+  417 |                         R_AddDrawSurf( (void *)surface, tr.shadowShader, 0, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                     ~~~~~~~~~~~~~~~  ^
+src/renderer/tr_cmesh.c:439:77: error: no member named 'ATI_tess' in 'struct model_s'
+  439 |                         R_AddDrawSurf( (void *)surface, shader, fogNum, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                 ~~~~~~~~~~~~~~~  ^
+2 errors generated.
+Compiling src/renderer/tr_flares.c
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_cmesh.c.o] Error 1
+Compiling src/renderer/tr_font.c
+src/renderer/tr_flares.c:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  128 |         flare_t         *f, *oldest;
+      |                              ^
+src/renderer/tr_font.c:235:44: warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
+  235 |         int scaledSize, newSize, maxHeight, left, satLevels;
+      |                                                   ^
+1 warning generated.
+Compiling src/renderer/tr_image.c
+1 warning generated.
+Compiling src/renderer/tr_init.c
+1 warning generated.
+Compiling src/renderer/tr_light.c
+src/renderer/tr_image.c:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+ 1823 |         float g;
+      |               ^
+src/renderer/tr_image.c:3065:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
+ 3065 |         char *name;
+      |               ^
+src/renderer/tr_image.c:3223:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
+ 3223 |         image_t *bImage, *bImagePrev;
+      |                           ^
+Compiling src/renderer/tr_main.c
+Compiling src/renderer/tr_marks.c
+Compiling src/renderer/tr_mesh.c
+src/renderer/tr_main.c:1179:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
+ 1179 |         unsigned int pointOr = 0;
+      |                      ^
+src/renderer/tr_mesh.c:423:81: error: no member named 'ATI_tess' in 'struct model_s'
+  423 |                         R_AddDrawSurf( (void *)surface, tr.shadowShader, 0, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                     ~~~~~~~~~~~~~~~  ^
+src/renderer/tr_mesh.c:443:77: error: no member named 'ATI_tess' in 'struct model_s'
+  443 |                         R_AddDrawSurf( (void *)surface, shader, fogNum, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                 ~~~~~~~~~~~~~~~  ^
+2 errors generated.
+src/renderer/tr_marks.c:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
+  500 |         float texCoordScale;
+      |               ^
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_mesh.c.o] Error 1
+Compiling src/renderer/tr_model.c
+src/renderer/tr_model.c:150:7: error: no member named 'ATI_tess' in 'struct model_s'
+  150 |         mod->ATI_tess = qfalse;
+      |         ~~~  ^
+src/renderer/tr_model.c:154:8: error: no member named 'ATI_tess' in 'struct model_s'
+  154 |                 mod->ATI_tess = qtrue;
+      |                 ~~~  ^
+src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+ 1889 |         static int lastPurged = 0;
+      |                    ^
+1 warning and 2 errors generated.
+scons: *** [build/linux-x64-release/renderer/obj/renderer/tr_model.c.o] Error 1
+Compiling src/renderer/tr_noise.c
+1 warning generated.
+Compiling src/renderer/tr_scene.c
+1 warning generated.
+Compiling src/renderer/tr_shade.c
+Compiling src/renderer/tr_shade_calc.c
+3 warnings generated.
+src/renderer/tr_shade.c:1345:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1345 |         shader_t        *shader;
+      |                          ^
+Compiling src/renderer/tr_shader.c
+Compiling src/renderer/tr_shadows.c
+src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+src/renderer/tr_shadows.c:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
+  103 |         int c_edges, c_rejected;
+      |             ^
+src/renderer/tr_shadows.c:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
+  103 |         int c_edges, c_rejected;
+      |                      ^
+1 warning generated.
+2 warnings generated.
+Compiling src/renderer/tr_sky.c
+Compiling src/renderer/tr_surface.c
+1 warning generated.
+src/renderer/tr_sky.c:717:15: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  717 |         shader_t    *shader;
+      |                      ^
+Compiling src/renderer/tr_world.c
+1 warning generated.
+Retrieved `build/linux-x64-release/renderer/obj/third-party/stb/stb_impl.c.o' from cache
+Retrieved `build/linux-x64-release/renderer/obj/third-party/glad/src/gl.c.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs_tool/obj/tools/extractfuncs/extractfuncs.c.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs_tool/obj/tools/extractfuncs/l_log.c.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs_tool/obj/tools/extractfuncs/l_memory.c.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs_tool/obj/tools/extractfuncs/l_precomp.c.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs_tool/obj/tools/extractfuncs/l_script.c.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Heap.cpp.o' from cache
+Retrieved `build/linux-x64-release/extractfuncs' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Str.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Lib.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Token.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Lexer.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/Parser.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/sys/sys_assert.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/containers/HashIndex.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Math.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Vector.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Matrix.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Angles.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Quat.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Plane.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/Rotation.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/VecX.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/math/MatX.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/bv/Bounds.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/bv/Box.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/bv/Sphere.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/geometry/DrawVert.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/geometry/JointTransform.cpp.o' from cache
+Retrieved `build/linux-x64-release/idlib/obj/idlib/geometry/RenderMatrix.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderWorld.cpp.o' from cache
+Retrieved `build/linux-x64-release/libidlib.a' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderEntity.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/ScreenRect.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderSystem.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/GLContext.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/CVarSystem.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/GLMatrix.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderLog.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderProgs.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderProgs_GLSL.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Q3Patch.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/RenderWorld_load.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Model.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/ModelManager.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Model_md3.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Model_mdc.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Model_mds.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Material.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/MaterialManager.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Material_shader.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Shadow.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Backend.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Tess.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Tess_calc.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Lighting.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Surface.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/ImageManager.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_files.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_intrinsic.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/renderer-bfg/Image_process.cpp.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/third-party/glad/src/gl.c.o' from cache
+Retrieved `build/linux-x64-release/renderer-bfg/obj/third-party/stb/stb_impl.c.o' from cache
+Retrieved `build/linux-x64-release/cgame/obj/games/game/bg_animation.c.o' from cache
+Retrieved `bin/renderer_bfg_x64.so' from cache
+Retrieved `build/linux-x64-release/cgame/obj/games/game/bg_misc.c.o' from cache
+Retrieved `build/linux-x64-release/cgame/obj/games/game/bg_pmove.c.o' from cache
+Retrieved `build/linux-x64-release/cgame/obj/games/game/bg_slidemove.c.o' from cache
+Compiling src/games/cgame/cg_consolecmds.c (shared)
+Compiling src/games/cgame/cg_draw.c (shared)
+Compiling src/games/cgame/cg_drawtools.c (shared)
+Compiling src/games/cgame/cg_effects.c (shared)
+src/games/cgame/cg_drawtools.c:387:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  387 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:403:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  403 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:450:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  450 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:466:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  466 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:508:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  508 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:518:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  518 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:526:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  526 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:542:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  542 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_effects.c:525:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  525 |         int tagIndex;
+      |             ^
+src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1940 |         Q_strncpyz( cg.centerPrint, CG_translateString( (char*)str ), sizeof( cg.centerPrint ) );
+      |                     ^~~~~~~~~~~~~~
+src/games/cgame/../game/../../qcommon/q_shared.h:600:27: note: passing argument to parameter 'dest' here
+  600 | void    Q_strncpyz( char *dest, const char *src, int destsize );
+      |                           ^
+src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1955 |                 if ( !Q_strncmp( s, "\\n", 1 ) ) {
+      |                                  ^
+src/games/cgame/../game/../../qcommon/q_shared.h:587:32: note: passing argument to parameter 's1' here
+  587 | int     Q_strncmp( const char *s1, const char *s2, int n );
+      |                                ^
+src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1986 |         start = cg.centerPrint;
+      |               ^ ~~~~~~~~~~~~~~
+Compiling src/games/cgame/cg_ents.c (shared)
+8 warnings generated.
+Compiling src/games/cgame/cg_event.c (shared)
+src/games/cgame/cg_event.c:738:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  738 |         int howmany, total;
+      |                      ^
+src/games/cgame/cg_event.c:1072:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+ 1072 |         int mass;
+      |             ^
+src/games/cgame/cg_event.c:1363:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+ 1363 |         int type;
+      |             ^
+1 warning generated.
+Compiling src/games/cgame/cg_flamethrower.c (shared)
+3 warnings generated.
+Compiling src/games/cgame/cg_info.c (shared)
+src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  701 |         int jiggleCount;
+      |             ^
+src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+ 1101 |         qboolean isClientFlame, firing;
+      |                                 ^
+src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 1638 |         centity_t *cent;
+      |                    ^
+src/games/cgame/cg_info.c:79:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+   79 |         Q_strncpyz( cg.infoScreenText, s, sizeof( cg.infoScreenText ) );
+      |                     ^~~~~~~~~~~~~~~~~
+src/games/cgame/../game/../../qcommon/q_shared.h:600:27: note: passing argument to parameter 'dest' here
+  600 | void    Q_strncpyz( char *dest, const char *src, int destsize );
+      |                           ^
+Compiling src/games/cgame/cg_localents.c (shared)
+1 warning generated.
+Compiling src/games/cgame/cg_main.c (shared)
+3 warnings generated.
+src/games/cgame/cg_localents.c:471:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  471 |                 int t;
+      |                     ^
+src/games/cgame/cg_localents.c:498:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  498 |                 int t;
+      |                     ^
+Compiling src/games/cgame/cg_marks.c (shared)
+3 warnings generated.
+Compiling src/games/cgame/cg_newDraw.c (shared)
+src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  202 |         centity_t   *cent;
+      |                      ^
+src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  391 |         playerState_t   *ps;
+      |                          ^
+src/games/cgame/cg_newDraw.c:1719:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1719 |         const unsigned char *s = "";
+      |                              ^   ~~
+src/games/cgame/cg_newDraw.c:1721:5: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1721 |                 s = va( "Fragged by %s", cg.killerName );
+      |                   ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1723:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1723 |         return s;
+      |                ^
+src/games/cgame/cg_newDraw.c:1755:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1755 |         const unsigned char *s = "";
+      |                              ^   ~~
+src/games/cgame/cg_newDraw.c:1758:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1758 |                         s = va( "%s place with %i",CG_PlaceString( cg.snap->ps.persistant[PERS_RANK] + 1 ),cg.snap->ps.persistant[PERS_SCORE] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1762:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1762 |                         s = va( "Teams are tied at %i", cg.teamScores[0] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1764:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1764 |                         s = va( "Red leads Blue, %i to %i", cg.teamScores[0], cg.teamScores[1] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1766:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1766 |                         s = va( "Blue leads Red, %i to %i", cg.teamScores[1], cg.teamScores[0] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1769:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1769 |         return s;
+      |                ^
+src/games/cgame/cg_newDraw.c:1803:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1803 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/cgame/cg_newDraw.c:1839:25: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1839 |                                 if ( CG_Text_Width( s, font, useScale, 1 ) + x > max ) {
+      |                                                     ^
+src/games/cgame/cg_local.h:1897:32: note: passing argument to parameter 'text' here
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+Compiling src/games/cgame/cg_particles.c (shared)
+2 warnings generated.
+Compiling src/games/cgame/cg_players.c (shared)
+src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+src/games/cgame/cg_players.c:1772:26: warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
+ 1772 |         int transitionMin = -1, oldAnimTime, oldAnimNum;
+      |                                 ^
+src/games/cgame/cg_players.c:2436:15: warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
+ 2436 |         int legsSet, torsoSet;
+      |                      ^
+src/games/cgame/cg_players.c:2594:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 2594 |         int anim;
+      |             ^
+src/games/cgame/cg_players.c:4551:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+ 4551 |         clientInfo_t *ci;
+      |                       ^
+Compiling src/games/cgame/cg_playerstate.c (shared)
+13 warnings generated.
+Compiling src/games/cgame/cg_predict.c (shared)
+Compiling src/games/cgame/cg_scoreboard.c (shared)
+3 warnings generated.
+Compiling src/games/cgame/cg_servercmds.c (shared)
+Compiling src/games/cgame/cg_snapshot.c (shared)
+Compiling src/games/cgame/cg_sound.c (shared)
+Compiling src/games/cgame/cg_syscalls.c (shared)
+src/games/cgame/cg_sound.c:238:6: warning: variable 's' set but not used [-Wunused-but-set-variable]
+  238 |         int s;
+      |             ^
+Compiling src/games/cgame/cg_trails.c (shared)
+1 warning generated.
+Compiling src/games/cgame/cg_view.c (shared)
+Compiling src/games/cgame/cg_weapons.c (shared)
+src/games/cgame/cg_view.c:196:18: warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  196 |         float lbheight, lbdiff;
+      |                         ^
+src/games/cgame/cg_view.c:972:8: warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  972 |         float redFlash;
+      |               ^
+src/games/cgame/cg_weapons.c:401:6: warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  401 |         int contents;
+      |             ^
+src/games/cgame/cg_weapons.c:402:6: warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  402 |         int lastContents, startTime;
+      |             ^
+src/games/cgame/cg_weapons.c:407:19: warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  407 |         localEntity_t   *le;
+      |                          ^
+4 warnings generated.
+src/games/cgame/cg_weapons.c:2013:8: warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+ 2013 |         float ramp;
+      |               ^
+src/games/cgame/cg_weapons.c:2932:19: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+ 2932 |         weaponInfo_t    *weapon;
+      |                          ^
+src/games/cgame/cg_weapons.c:2935:13: warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+ 2935 |         static int oldtime = 0;
+      |                    ^
+Compiling src/games/ui/ui_shared.c (shared)
+Retrieved `build/linux-x64-release/cgame/obj/qcommon/q_math.c.o' from cache
+src/games/cgame/cg_weapons.c:3746:8: warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+ 3746 |         float shake = 0;
+      |               ^
+Retrieved `build/linux-x64-release/cgame/obj/qcommon/q_shared.c.o' from cache
+src/games/cgame/cg_weapons.c:4167:6: warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+ 4167 |         int lastweap;
+      |             ^
+Retrieved `build/linux-x64-release/ui/obj/games/game/bg_misc.c.o' from cache
+Compiling src/games/ui/ui_atoms.c (shared)
+src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+src/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+src/games/ui/ui_shared.c:3706:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
+ 3706 |         float x, y, value;
+      |                     ^
+src/games/ui/ui_shared.c:4167:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
+ 4167 |         menuDef_t *parent;
+      |                    ^
+src/games/ui/ui_shared.c:4814:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+ 4814 |         modelDef_t *modelPtr;
+      |                     ^
+2 warnings generated.
+Compiling src/games/ui/ui_gameinfo.c (shared)
+Compiling src/games/ui/ui_main.c (shared)
+src/games/ui/ui_main.c:308:23: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  308 |         const unsigned char *s = text;
+      |                              ^   ~~~~
+src/games/ui/ui_main.c:381:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  381 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/ui/ui_main.c:462:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  462 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/ui/ui_main.c:2413:41: error: no member named 'extensions_string' in 'glconfig_t'
+ 2413 |         Q_strncpyz( buff, uiInfo.uiDC.glconfig.extensions_string, 4096 );
+      |                           ~~~~~~~~~~~~~~~~~~~~ ^
+src/games/ui/ui_main.c:2465:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+ 2465 |         float x, y, w, h;
+      |                     ^
+src/games/ui/ui_main.c:2465:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
+ 2465 |         float x, y, w, h;
+      |                        ^
+src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+ 5082 |         int i, count, clients, maxClients, ping, game, len, visible;
+      |                                                  ^
+src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+ 5085 |         static int numinvisible;
+      |                    ^
+src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+ 5395 |         static int numFound, numTimeOuts;
+      |                              ^
+src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+ 5708 |         static int lastServerTime = 0, lastSaveTime = 0;
+      |                                        ^
+src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+ 6491 |         int start;
+      |             ^
+Compiling src/games/ui/ui_players.c (shared)
+10 warnings and 1 error generated.
+scons: *** [build/linux-x64-release/ui/obj/games/ui/ui_main.c.o] Error 1
+Compiling src/games/ui/ui_shared.c (shared)
+src/games/ui/ui_players.c:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+ 1275 |         char        *text_p, *prev;
+      |                      ^
+src/games/ui/ui_players.c:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+ 1275 |         char        *text_p, *prev;
+      |                               ^
+src/games/ui/ui_players.c:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+ 1277 |         int i;
+      |             ^
+src/games/ui/ui_players.c:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+ 1278 |         char        *token;
+      |                      ^
+src/games/ui/ui_players.c:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+ 1279 |         float fps;
+      |               ^
+src/games/ui/ui_players.c:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+ 1280 |         int skip;
+      |             ^
+src/games/ui/ui_shared.c:3706:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
+ 3706 |         float x, y, value;
+      |                     ^
+src/games/ui/ui_shared.c:4167:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
+ 4167 |         menuDef_t *parent;
+      |                    ^
+src/games/ui/ui_shared.c:4814:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+ 4814 |         modelDef_t *modelPtr;
+      |                     ^
+6 warnings generated.
+Compiling src/games/ui/ui_syscalls.c (shared)
+Retrieved `build/linux-x64-release/ui/obj/games/ui/ui_util.c.o' from cache
+Retrieved `build/linux-x64-release/ui/obj/qcommon/q_math.c.o' from cache
+Retrieved `build/linux-x64-release/ui/obj/qcommon/q_shared.c.o' from cache
+11 warnings generated.
+3 warnings generated.
+Linking bin/main/cgame_x64.so
+3 warnings generated.
+scons: done building targets (errors occurred during build).
+
+
+==== ubuntu-latest-x86-debug- (failure) ====
+
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 106.2 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+Selecting previously unselected package libc6-dev-i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 211065 files and directories currently installed.)
+Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-x32.
+Preparing to unpack .../01-libc6-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-dev-x32.
+Preparing to unpack .../02-libc6-dev-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libx32gcc-s1.
+Preparing to unpack .../03-libx32gcc-s1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gomp1.
+Preparing to unpack .../04-lib32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32gomp1.
+Preparing to unpack .../05-libx32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32itm1.
+Preparing to unpack .../06-lib32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32itm1.
+Preparing to unpack .../07-libx32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32atomic1.
+Preparing to unpack .../08-lib32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32atomic1.
+Preparing to unpack .../09-libx32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32asan8.
+Preparing to unpack .../10-lib32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32asan8.
+Preparing to unpack .../11-libx32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32ubsan1.
+Preparing to unpack .../12-lib32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32stdc++6.
+Preparing to unpack .../13-libx32stdc++6_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++6 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32ubsan1.
+Preparing to unpack .../14-libx32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32quadmath0.
+Preparing to unpack .../15-lib32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32quadmath0.
+Preparing to unpack .../16-libx32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gcc-15-dev.
+Preparing to unpack .../17-lib32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32gcc-15-dev.
+Preparing to unpack .../18-libx32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-15-multilib.
+Preparing to unpack .../19-gcc-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking gcc-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package lib32stdc++-15-dev.
+Preparing to unpack .../20-lib32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32stdc++-15-dev.
+Preparing to unpack .../21-libx32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package g++-15-multilib.
+Preparing to unpack .../22-g++-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking g++-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-multilib.
+Preparing to unpack .../23-gcc-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking gcc-multilib (4:15.2.0-5ubuntu1) ...
+Selecting previously unselected package g++-multilib.
+Preparing to unpack .../24-g++-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking g++-multilib (4:15.2.0-5ubuntu1) ...
+Setting up libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Setting up lib32itm1 (16-20260322-1ubuntu1) ...
+Setting up lib32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up libc6-x32 (2.43-2ubuntu2.4) ...
+Setting up libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Setting up lib32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up libx32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up lib32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Setting up libx32itm1 (16-20260322-1ubuntu1) ...
+Setting up libx32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32stdc++6 (16-20260322-1ubuntu1) ...
+Setting up libx32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up gcc-15-multilib (15.2.0-16ubuntu1) ...
+Setting up g++-15-multilib (15.2.0-16ubuntu1) ...
+Setting up gcc-multilib (4:15.2.0-5ubuntu1) ...
+Setting up g++-multilib (4:15.2.0-5ubuntu1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+Processing triggers for base-files (14ubuntu6.2) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Selecting previously unselected package xorg-sgml-doctools.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 211703 files and directories currently installed.)
+Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
+Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
+Selecting previously unselected package x11proto-dev.
+Preparing to unpack .../1-x11proto-dev_2025.1-1_all.deb ...
+Unpacking x11proto-dev (2025.1-1) ...
+Selecting previously unselected package libxau-dev:amd64.
+Preparing to unpack .../2-libxau-dev_1%3a1.0.11-1build2_amd64v3.deb ...
+Unpacking libxau-dev:amd64 (1:1.0.11-1build2) ...
+Selecting previously unselected package libxdmcp-dev:amd64.
+Preparing to unpack .../3-libxdmcp-dev_1%3a1.1.5-2_amd64v3.deb ...
+Unpacking libxdmcp-dev:amd64 (1:1.1.5-2) ...
+Selecting previously unselected package xtrans-dev.
+Preparing to unpack .../4-xtrans-dev_1.6.0-1build1_all.deb ...
+Unpacking xtrans-dev (1.6.0-1build1) ...
+Selecting previously unselected package libxcb1-dev:amd64.
+Preparing to unpack .../5-libxcb1-dev_1.17.0-2ubuntu1_amd64v3.deb ...
+Unpacking libxcb1-dev:amd64 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libx11-dev:amd64.
+Preparing to unpack .../6-libx11-dev_2%3a1.8.13-1ubuntu0.1_amd64v3.deb ...
+Unpacking libx11-dev:amd64 (2:1.8.13-1ubuntu0.1) ...
+Selecting previously unselected package libglx-dev:amd64.
+Preparing to unpack .../7-libglx-dev_1.7.0-3_amd64v3.deb ...
+Unpacking libglx-dev:amd64 (1.7.0-3) ...
+Selecting previously unselected package libgl-dev:amd64.
+Preparing to unpack .../8-libgl-dev_1.7.0-3_amd64v3.deb ...
+Unpacking libgl-dev:amd64 (1.7.0-3) ...
+Setting up xtrans-dev (1.6.0-1build1) ...
+Setting up xorg-sgml-doctools (1:1.11-1.1build1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for sgml-base (1.31+nmu1build1) ...
+Setting up x11proto-dev (2025.1-1) ...
+Setting up libxau-dev:amd64 (1:1.0.11-1build2) ...
+Setting up libxdmcp-dev:amd64 (1:1.1.5-2) ...
+Setting up libxcb1-dev:amd64 (1.17.0-2ubuntu1) ...
+Setting up libx11-dev:amd64 (2:1.8.13-1ubuntu0.1) ...
+Setting up libglx-dev:amd64 (1.7.0-3) ...
+Setting up libgl-dev:amd64 (1.7.0-3) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Preconfiguring packages ...
+Selecting previously unselected package gcc-16-base:i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 212015 files and directories currently installed.)
+Preparing to unpack .../gcc-16-base_16-20260322-1ubuntu1_i386.deb ...
+Unpacking gcc-16-base:i386 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libgcc-s1:i386.
+Preparing to unpack .../libgcc-s1_16-20260322-1ubuntu1_i386.deb ...
+Unpacking libgcc-s1:i386 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libc-gconv-modules-extra:i386.
+Preparing to unpack .../libc-gconv-modules-extra_2.43-2ubuntu2.4_i386.deb ...
+Unpacking libc-gconv-modules-extra:i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6:i386.
+Preparing to unpack .../libc6_2.43-2ubuntu2.4_i386.deb ...
+Unpacking libc6:i386 (2.43-2ubuntu2.4) ...
+Setting up gcc-16-base:i386 (16-20260322-1ubuntu1) ...
+Setting up libc-gconv-modules-extra:i386 (2.43-2ubuntu2.4) ...
+Setting up libgcc-s1:i386 (16-20260322-1ubuntu1) ...
+Setting up libc6:i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libexpat1:i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 212298 files and directories currently installed.)
+Preparing to unpack .../libexpat1_2.7.4-1ubuntu0.2_i386.deb ...
+Unpacking libexpat1:i386 (2.7.4-1ubuntu0.2) ...
+Preparing to unpack .../zlib1g-dev_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_amd64v3.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) over (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
+Preparing to unpack .../zlib1g_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_amd64v3.deb ...
+Unpacking zlib1g:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) over (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
+Selecting previously unselected package zlib1g:i386.
+Preparing to unpack .../zlib1g_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_i386.deb ...
+Unpacking zlib1g:i386 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
+Setting up zlib1g:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
+Selecting previously unselected package libmd0:i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 212304 files and directories currently installed.)
+Preparing to unpack .../00-libmd0_1.1.0-2build4_i386.deb ...
+Unpacking libmd0:i386 (1.1.0-2build4) ...
+Selecting previously unselected package libbsd0:i386.
+Preparing to unpack .../01-libbsd0_0.12.2-2build2_i386.deb ...
+Unpacking libbsd0:i386 (0.12.2-2build2) ...
+Selecting previously unselected package libtinfo6:i386.
+Preparing to unpack .../02-libtinfo6_6.6+20251231-1_i386.deb ...
+Unpacking libtinfo6:i386 (6.6+20251231-1) ...
+Selecting previously unselected package libzstd1:i386.
+Preparing to unpack .../03-libzstd1_1.5.7+dfsg-3_i386.deb ...
+Unpacking libzstd1:i386 (1.5.7+dfsg-3) ...
+Selecting previously unselected package libatomic1:i386.
+Preparing to unpack .../04-libatomic1_16-20260322-1ubuntu1_i386.deb ...
+Unpacking libatomic1:i386 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libedit2:i386.
+Preparing to unpack .../05-libedit2_3.1-20251016-1_i386.deb ...
+Unpacking libedit2:i386 (3.1-20251016-1) ...
+Selecting previously unselected package libelf1t64:i386.
+Preparing to unpack .../06-libelf1t64_0.194-4_i386.deb ...
+Unpacking libelf1t64:i386 (0.194-4) ...
+Selecting previously unselected package libffi8:i386.
+Preparing to unpack .../07-libffi8_3.5.2-4_i386.deb ...
+Unpacking libffi8:i386 (3.5.2-4) ...
+Selecting previously unselected package libunistring5:i386.
+Preparing to unpack .../08-libunistring5_1.3-2build1_i386.deb ...
+Unpacking libunistring5:i386 (1.3-2build1) ...
+Selecting previously unselected package libidn2-0:i386.
+Preparing to unpack .../09-libidn2-0_2.3.8-4build1_i386.deb ...
+Unpacking libidn2-0:i386 (2.3.8-4build1) ...
+Selecting previously unselected package libstdc++6:i386.
+Preparing to unpack .../10-libstdc++6_16-20260322-1ubuntu1_i386.deb ...
+Unpacking libstdc++6:i386 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libxml2-16:i386.
+Preparing to unpack .../11-libxml2-16_2.15.2+dfsg-0.1ubuntu0.3_i386.deb ...
+Unpacking libxml2-16:i386 (2.15.2+dfsg-0.1ubuntu0.3) ...
+Selecting previously unselected package libpng16-16t64:i386.
+Preparing to unpack .../12-libpng16-16t64_1.6.57-1ubuntu0.1_i386.deb ...
+Unpacking libpng16-16t64:i386 (1.6.57-1ubuntu0.1) ...
+Selecting previously unselected package libsensors5:i386.
+Preparing to unpack .../13-libsensors5_1%3a3.6.2-2build1_i386.deb ...
+Unpacking libsensors5:i386 (1:3.6.2-2build1) ...
+Selecting previously unselected package libxau6:i386.
+Preparing to unpack .../14-libxau6_1%3a1.0.11-1build2_i386.deb ...
+Unpacking libxau6:i386 (1:1.0.11-1build2) ...
+Selecting previously unselected package libxdmcp6:i386.
+Preparing to unpack .../15-libxdmcp6_1%3a1.1.5-2_i386.deb ...
+Unpacking libxdmcp6:i386 (1:1.1.5-2) ...
+Selecting previously unselected package libxcb1:i386.
+Preparing to unpack .../16-libxcb1_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb1:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libx11-6:i386.
+Preparing to unpack .../17-libx11-6_2%3a1.8.13-1ubuntu0.1_i386.deb ...
+Unpacking libx11-6:i386 (2:1.8.13-1ubuntu0.1) ...
+Selecting previously unselected package libxext6:i386.
+Preparing to unpack .../18-libxext6_2%3a1.3.4-1build3_i386.deb ...
+Unpacking libxext6:i386 (2:1.3.4-1build3) ...
+Selecting previously unselected package libdisplay-info3:i386.
+Preparing to unpack .../19-libdisplay-info3_0.3.0-1_i386.deb ...
+Unpacking libdisplay-info3:i386 (0.3.0-1) ...
+Selecting previously unselected package libdrm2:i386.
+Preparing to unpack .../20-libdrm2_2.4.131-1_i386.deb ...
+Unpacking libdrm2:i386 (2.4.131-1) ...
+Selecting previously unselected package libdrm-amdgpu1:i386.
+Preparing to unpack .../21-libdrm-amdgpu1_2.4.131-1_i386.deb ...
+Unpacking libdrm-amdgpu1:i386 (2.4.131-1) ...
+Selecting previously unselected package libpciaccess0:i386.
+Preparing to unpack .../22-libpciaccess0_0.18.1-1ubuntu4.1_i386.deb ...
+Unpacking libpciaccess0:i386 (0.18.1-1ubuntu4.1) ...
+Selecting previously unselected package libdrm-intel1:i386.
+Preparing to unpack .../23-libdrm-intel1_2.4.131-1_i386.deb ...
+Unpacking libdrm-intel1:i386 (2.4.131-1) ...
+Selecting previously unselected package libllvm21:i386.
+Preparing to unpack .../24-libllvm21_1%3a21.1.8-6ubuntu1_i386.deb ...
+Unpacking libllvm21:i386 (1:21.1.8-6ubuntu1) ...
+Selecting previously unselected package libx11-xcb1:i386.
+Preparing to unpack .../25-libx11-xcb1_2%3a1.8.13-1ubuntu0.1_i386.deb ...
+Unpacking libx11-xcb1:i386 (2:1.8.13-1ubuntu0.1) ...
+Selecting previously unselected package libxcb-dri3-0:i386.
+Preparing to unpack .../26-libxcb-dri3-0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-dri3-0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxcb-present0:i386.
+Preparing to unpack .../27-libxcb-present0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-present0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxcb-randr0:i386.
+Preparing to unpack .../28-libxcb-randr0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-randr0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxcb-sync1:i386.
+Preparing to unpack .../29-libxcb-sync1_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-sync1:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxcb-xfixes0:i386.
+Preparing to unpack .../30-libxcb-xfixes0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-xfixes0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxshmfence1:i386.
+Preparing to unpack .../31-libxshmfence1_1.3.3-1build1_i386.deb ...
+Unpacking libxshmfence1:i386 (1.3.3-1build1) ...
+Selecting previously unselected package mesa-libgallium:i386.
+Preparing to unpack .../32-mesa-libgallium_26.0.8-1ubuntu0.3_i386.deb ...
+Unpacking mesa-libgallium:i386 (26.0.8-1ubuntu0.3) ...
+Selecting previously unselected package libgbm1:i386.
+Preparing to unpack .../33-libgbm1_26.0.8-1ubuntu0.3_i386.deb ...
+Unpacking libgbm1:i386 (26.0.8-1ubuntu0.3) ...
+Selecting previously unselected package libglvnd0:i386.
+Preparing to unpack .../34-libglvnd0_1.7.0-3_i386.deb ...
+Unpacking libglvnd0:i386 (1.7.0-3) ...
+Selecting previously unselected package libvulkan1:i386.
+Preparing to unpack .../35-libvulkan1_1.4.341.0-1_i386.deb ...
+Unpacking libvulkan1:i386 (1.4.341.0-1) ...
+Selecting previously unselected package libgl1-mesa-dri:i386.
+Preparing to unpack .../36-libgl1-mesa-dri_26.0.8-1ubuntu0.3_i386.deb ...
+Unpacking libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
+Selecting previously unselected package libxcb-glx0:i386.
+Preparing to unpack .../37-libxcb-glx0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-glx0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxcb-shm0:i386.
+Preparing to unpack .../38-libxcb-shm0_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb-shm0:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libxxf86vm1:i386.
+Preparing to unpack .../39-libxxf86vm1_1%3a1.1.4-2_i386.deb ...
+Unpacking libxxf86vm1:i386 (1:1.1.4-2) ...
+Selecting previously unselected package libglx-mesa0:i386.
+Preparing to unpack .../40-libglx-mesa0_26.0.8-1ubuntu0.3_i386.deb ...
+Unpacking libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Selecting previously unselected package libglx0:i386.
+Preparing to unpack .../41-libglx0_1.7.0-3_i386.deb ...
+Unpacking libglx0:i386 (1.7.0-3) ...
+Selecting previously unselected package libgl1:i386.
+Preparing to unpack .../42-libgl1_1.7.0-3_i386.deb ...
+Unpacking libgl1:i386 (1.7.0-3) ...
+Selecting previously unselected package libxau-dev:i386.
+Preparing to unpack .../43-libxau-dev_1%3a1.0.11-1build2_i386.deb ...
+Unpacking libxau-dev:i386 (1:1.0.11-1build2) ...
+Selecting previously unselected package libxdmcp-dev:i386.
+Preparing to unpack .../44-libxdmcp-dev_1%3a1.1.5-2_i386.deb ...
+Unpacking libxdmcp-dev:i386 (1:1.1.5-2) ...
+Selecting previously unselected package libxcb1-dev:i386.
+Preparing to unpack .../45-libxcb1-dev_1.17.0-2ubuntu1_i386.deb ...
+Unpacking libxcb1-dev:i386 (1.17.0-2ubuntu1) ...
+Selecting previously unselected package libx11-dev:i386.
+Preparing to unpack .../46-libx11-dev_2%3a1.8.13-1ubuntu0.1_i386.deb ...
+Unpacking libx11-dev:i386 (2:1.8.13-1ubuntu0.1) ...
+Selecting previously unselected package libglx-dev:i386.
+Preparing to unpack .../47-libglx-dev_1.7.0-3_i386.deb ...
+Unpacking libglx-dev:i386 (1.7.0-3) ...
+Selecting previously unselected package libgl-dev:i386.
+Preparing to unpack .../48-libgl-dev_1.7.0-3_i386.deb ...
+Unpacking libgl-dev:i386 (1.7.0-3) ...
+Selecting previously unselected package libwayland-client0:i386.
+Preparing to unpack .../49-libwayland-client0_1.24.0-2_i386.deb ...
+Unpacking libwayland-client0:i386 (1.24.0-2) ...
+Selecting previously unselected package libxext-dev:i386.
+Preparing to unpack .../50-libxext-dev_2%3a1.3.4-1build3_i386.deb ...
+Unpacking libxext-dev:i386 (2:1.3.4-1build3) ...
+Selecting previously unselected package libxxf86dga1:i386.
+Preparing to unpack .../51-libxxf86dga1_2%3a1.1.5-1build2_i386.deb ...
+Unpacking libxxf86dga1:i386 (2:1.1.5-1build2) ...
+Selecting previously unselected package libxxf86dga-dev:i386.
+Preparing to unpack .../52-libxxf86dga-dev_2%3a1.1.5-1build2_i386.deb ...
+Unpacking libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Selecting previously unselected package libxxf86vm-dev:i386.
+Preparing to unpack .../53-libxxf86vm-dev_1%3a1.1.4-2_i386.deb ...
+Unpacking libxxf86vm-dev:i386 (1:1.1.4-2) ...
+Selecting previously unselected package mesa-vulkan-drivers:i386.
+Preparing to unpack .../54-mesa-vulkan-drivers_26.0.8-1ubuntu0.3_i386.deb ...
+Unpacking mesa-vulkan-drivers:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libexpat1:i386 (2.7.4-1ubuntu0.2) ...
+Setting up libzstd1:i386 (1.5.7+dfsg-3) ...
+Setting up libxau6:i386 (1:1.0.11-1build2) ...
+Setting up libxdmcp6:i386 (1:1.1.5-2) ...
+Setting up libxcb1:i386 (1.17.0-2ubuntu1) ...
+Setting up libxcb-xfixes0:i386 (1.17.0-2ubuntu1) ...
+Setting up libxau-dev:i386 (1:1.0.11-1build2) ...
+Setting up libglvnd0:i386 (1.7.0-3) ...
+Setting up libdisplay-info3:i386 (0.3.0-1) ...
+Setting up libxcb-glx0:i386 (1.17.0-2ubuntu1) ...
+Setting up zlib1g:i386 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
+Setting up libxcb-shm0:i386 (1.17.0-2ubuntu1) ...
+Setting up libelf1t64:i386 (0.194-4) ...
+Setting up libxcb-present0:i386 (1.17.0-2ubuntu1) ...
+Setting up libxdmcp-dev:i386 (1:1.1.5-2) ...
+Setting up libxcb-sync1:i386 (1.17.0-2ubuntu1) ...
+Setting up libunistring5:i386 (1.3-2build1) ...
+Setting up libpng16-16t64:i386 (1.6.57-1ubuntu0.1) ...
+Setting up libatomic1:i386 (16-20260322-1ubuntu1) ...
+Setting up libsensors5:i386 (1:3.6.2-2build1) ...
+Setting up libvulkan1:i386 (1.4.341.0-1) ...
+Setting up zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
+Setting up libffi8:i386 (3.5.2-4) ...
+Setting up libdrm2:i386 (2.4.131-1) ...
+Setting up libmd0:i386 (1.1.0-2build4) ...
+Setting up libxshmfence1:i386 (1.3.3-1build1) ...
+Setting up libxcb-randr0:i386 (1.17.0-2ubuntu1) ...
+Setting up libx11-6:i386 (2:1.8.13-1ubuntu0.1) ...
+Setting up libbsd0:i386 (0.12.2-2build2) ...
+Setting up libstdc++6:i386 (16-20260322-1ubuntu1) ...
+Setting up libtinfo6:i386 (6.6+20251231-1) ...
+Setting up libdrm-amdgpu1:i386 (2.4.131-1) ...
+Setting up libwayland-client0:i386 (1.24.0-2) ...
+Setting up libxcb-dri3-0:i386 (1.17.0-2ubuntu1) ...
+Setting up libx11-xcb1:i386 (2:1.8.13-1ubuntu0.1) ...
+Setting up libpciaccess0:i386 (0.18.1-1ubuntu4.1) ...
+Setting up libxcb1-dev:i386 (1.17.0-2ubuntu1) ...
+Setting up libxml2-16:i386 (2.15.2+dfsg-0.1ubuntu0.3) ...
+Setting up libedit2:i386 (3.1-20251016-1) ...
+Setting up libdrm-intel1:i386 (2.4.131-1) ...
+Setting up libx11-dev:i386 (2:1.8.13-1ubuntu0.1) ...
+Setting up libxext6:i386 (2:1.3.4-1build3) ...
+Setting up libidn2-0:i386 (2.3.8-4build1) ...
+Setting up libxxf86vm1:i386 (1:1.1.4-2) ...
+Setting up libllvm21:i386 (1:21.1.8-6ubuntu1) ...
+Setting up libxext-dev:i386 (2:1.3.4-1build3) ...
+Setting up mesa-vulkan-drivers:i386 (26.0.8-1ubuntu0.3) ...
+Setting up mesa-libgallium:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libgbm1:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libxxf86vm-dev:i386 (1:1.1.4-2) ...
+Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
+Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
+Setting up libglx0:i386 (1.7.0-3) ...
+Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
+Setting up libgl1:i386 (1.7.0-3) ...
+Setting up libglx-dev:i386 (1.7.0-3) ...
+Setting up libgl-dev:i386 (1.7.0-3) ...
+Processing triggers for systemd (259.5-0ubuntu3.4) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
+
+Service restarts being deferred:
+ systemctl restart ModemManager.service
+ systemctl restart hosted-compute-agent.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart walinuxagent.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ runner @ user manager: (sd-pam)[1336]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling src/client/cl_cgame.c
+Compiling src/client/cl_cin.c
+Compiling src/client/cl_console.c
+Compiling src/client/cl_input.c
+src/client/cl_input.c:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  442 |         int movespeed;
+      |             ^
+src/client/cl_input.c:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
+  681 |         usercmd_t   *cmd;
+      |                      ^
+src/client/cl_cgame.c:960:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
+  960 |         int resetTime;
+      |             ^
+src/client/cl_cin.c:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+ 1796 |         qboolean holdatend;
+      |                  ^
+1 warning generated.
+Compiling src/client/cl_keys.c
+Compiling src/client/cl_main.c
+1 warning generated.
+Compiling src/client/cl_net_chan.c
+2 warnings generated.
+Compiling src/client/cl_parse.c
+src/client/cl_parse.c:590:8: warning: variable 'msgback' set but not used [-Wunused-but-set-variable]
+  590 |         msg_t msgback;
+      |               ^
+Compiling src/client/cl_qgl.c
+1 warning generated.
+src/client/cl_main.c:2812:10: warning: variable 'str' set but not used [-Wunused-but-set-variable]
+ 2812 |         char*   str;
+      |                 ^
+src/client/cl_main.c:2916:18: warning: variable 'serverStatus' set but not used [-Wunused-but-set-variable]
+ 2916 |         serverStatus_t *serverStatus;
+      |                         ^
+Compiling src/client/cl_scrn.c
+src/client/cl_main.c:3615:12: warning: variable 'ls' set but not used [-Wunused-but-set-variable]
+ 3615 |         char *p, *ls;
+      |                   ^
+src/client/cl_main.c:3616:6: warning: variable 'lastcolor' set but not used [-Wunused-but-set-variable]
+ 3616 |         int lastcolor;
+      |             ^
+src/client/cl_main.c:3617:6: warning: variable 'chatHeight' set but not used [-Wunused-but-set-variable]
+ 3617 |         int chatHeight;
+      |             ^
+Compiling src/client/cl_ui.c
+src/client/cl_scrn.c:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  386 |         int color;
+      |             ^
+1 warning generated.
+5 warnings generated.
+Compiling src/client/snd_adpcm.c
+Compiling src/client/snd_dma.c
+Compiling src/client/snd_mem.c
+Compiling src/client/snd_mix.c
+Compiling src/client/snd_wavelet.c
+Compiling src/qcommon/cm_load.c
+src/client/snd_dma.c:558:8: warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
+  558 |         float dist_mult, dist_fullvol;
+      |               ^
+src/client/snd_mix.c:795:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
+  795 |                                         int talkcnt, talktime;
+      |                                             ^
+1 warning generated.
+Compiling src/qcommon/cm_patch.c
+1 warning generated.
+Compiling src/qcommon/cm_polylib.c
+Compiling src/qcommon/cm_test.c
+Compiling src/qcommon/cm_trace.c
+Compiling src/qcommon/cmd.c
+Compiling src/qcommon/common.c
+Compiling src/qcommon/cvar.c
+src/qcommon/cm_trace.c:738:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  738 |         float a, b, c, d, sqrtd;
+      |               ^
+src/qcommon/cm_trace.c:824:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  824 |         float a, b, c, d, sqrtd;
+      |               ^
+src/qcommon/cmd.c:247:6: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+  247 |         int len;
+      |             ^
+1 warning generated.
+2 warnings generated.
+Compiling src/qcommon/files.c
+Compiling src/qcommon/huffman.c
+src/qcommon/common.c:945:6: warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+  945 |         int sum;
+      |             ^
+src/qcommon/common.c:1014:12: warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
+ 1014 |         int size, locsize, numBlocks;
+      |                   ^
+src/qcommon/common.c:2270:6: warning: variable 'key' set but not used [-Wunused-but-set-variable]
+ 2270 |         int key;
+      |             ^
+Retrieved `build/linux-x86-debug/client/obj/qcommon/md4.c.o' from cache
+Compiling src/qcommon/msg.c
+3 warnings generated.
+Compiling src/qcommon/net_chan.c
+Compiling src/qcommon/unzip.c
+src/qcommon/files.c:2766:20: warning: variable 'badchecksum' set but not used [-Wunused-but-set-variable]
+ 2766 |         qboolean havepak, badchecksum;
+      |                           ^
+src/qcommon/net_chan.c:318:6: warning: variable 'qport' set but not used [-Wunused-but-set-variable]
+  318 |         int qport;
+      |             ^
+1 warning generated.
+1 warning generated.
+Compiling src/server/sv_bot.c
+Compiling src/server/sv_ccmds.c
+Compiling src/server/sv_client.c
+src/qcommon/unzip.c:2139:16: warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
+ 2139 |                         const Byte *bufBefore;
+      |                                     ^
+src/qcommon/unzip.c:3046:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+ 3046 | static const char inflate_copyright[] =
+      |                   ^~~~~~~~~~~~~~~~~
+Compiling src/server/sv_game.c
+Compiling src/server/sv_init.c
+2 warnings generated.
+Compiling src/server/sv_main.c
+Compiling src/server/sv_net_chan.c
+src/server/sv_game.c:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
+  195 |         int area1, area2;
+      |             ^
+src/server/sv_game.c:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
+  195 |         int area1, area2;
+      |                    ^
+2 warnings generated.
+Compiling src/server/sv_snapshot.c
+Compiling src/server/sv_world.c
+Retrieved `build/linux-x86-debug/client/obj/qcommon/q_shared.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/qcommon/q_math.c.o' from cache
+Compiling src/sys/unix/unix_main.c
+src/server/sv_snapshot.c:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
+  303 |         int c_fullsend;
+      |             ^
+1 warning generated.
+Compiling src/sys/unix/unix_net.c
+Compiling src/sys/unix/unix_shared.c
+src/server/sv_world.c:406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  406 |         int count;
+      |             ^
+src/server/sv_world.c:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
+  701 |         float       *angles;
+      |                      ^
+2 warnings generated.
+Retrieved `build/linux-x86-debug/client/obj/sys/unix/linux_common.c.o' from cache
+Compiling src/sys/unix/linux_glimp.c
+Compiling src/sys/unix/linux_joystick.c
+src/sys/unix/unix_net.c:179:38: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  179 |                                                 , 0, (struct sockaddr *)&from, &fromlen );
+      |                                                                                ^~~~~~~~
+/usr/include/sys/socket.h:165:27: note: passing argument to parameter '__addr_len' here
+  165 |                          socklen_t *__restrict __addr_len);
+      |                                                ^
+1 warning generated.
+Compiling src/sys/unix/linux_snd.c
+Retrieved `build/linux-x86-debug/client/obj/splines/math_angles.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/math_matrix.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/math_quaternion.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/math_vector.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/q_parse.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/q_shared.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/splines.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/splines/util_str.cpp.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_bspq3.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_cluster.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_debug.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_entity.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_file.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_main.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_move.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_optimize.c.o' from cache
+src/sys/unix/linux_glimp.c:148:20: warning: unused function 'Q_stristr' [-Wunused-function]
+  148 | static const char *Q_stristr( const char *s, const char *find ) {
+      |                    ^~~~~~~~~
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_reach.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_route.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_routealt.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_routetable.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_aas_sample.c.o' from cache
+1 warning generated.
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_char.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_chat.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_gen.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_goal.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_move.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_weap.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ai_weight.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_ea.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/be_interface.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_crc.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_libvar.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_log.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_memory.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_precomp.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_script.c.o' from cache
+Retrieved `build/linux-x86-debug/client/obj/games/botlib/l_struct.c.o' from cache
+Retrieved `build/linux-x86-debug/extractfuncs_tool/obj/tools/extractfuncs/extractfuncs.c.o' from cache
+Linking bin/WolfSP_x86
+Retrieved `build/linux-x86-debug/extractfuncs_tool/obj/tools/extractfuncs/l_log.c.o' from cache
+Retrieved `build/linux-x86-debug/extractfuncs_tool/obj/tools/extractfuncs/l_memory.c.o' from cache
+Retrieved `build/linux-x86-debug/extractfuncs_tool/obj/tools/extractfuncs/l_precomp.c.o' from cache
+Retrieved `build/linux-x86-debug/extractfuncs_tool/obj/tools/extractfuncs/l_script.c.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Heap.cpp.o' from cache
+Retrieved `build/linux-x86-debug/extractfuncs' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Str.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Lib.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Token.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Lexer.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/Parser.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/sys/sys_assert.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/containers/HashIndex.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Math.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Vector.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Matrix.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Angles.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Quat.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Plane.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/Rotation.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/VecX.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/math/MatX.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/bv/Bounds.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/bv/Box.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/bv/Sphere.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/geometry/DrawVert.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/geometry/JointTransform.cpp.o' from cache
+Retrieved `build/linux-x86-debug/idlib/obj/idlib/geometry/RenderMatrix.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderWorld.cpp.o' from cache
+Retrieved `build/linux-x86-debug/libidlib.a' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderEntity.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/ScreenRect.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderSystem.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/GLContext.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/CVarSystem.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/GLMatrix.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderLog.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderProgs.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderProgs_GLSL.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Q3Patch.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/RenderWorld_load.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Model.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/ModelManager.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Model_md3.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Model_mdc.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Model_mds.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Material.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/MaterialManager.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Material_shader.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Shadow.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Backend.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Tess.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Tess_calc.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Lighting.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Surface.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/ImageManager.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Image_files.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Image_intrinsic.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/renderer-bfg/Image_process.cpp.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/third-party/glad/src/gl.c.o' from cache
+Retrieved `build/linux-x86-debug/renderer-bfg/obj/third-party/stb/stb_impl.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast.c.o' from cache
+Retrieved `bin/renderer_bfg_x86.so' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_characters.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_debug.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_events.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_fight.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_func_attack.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_func_boss1.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_funcs.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_script.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_script_actions.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_script_ents.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_sight.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/ai_cast_think.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/bg_animation.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/bg_misc.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/bg_pmove.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/bg_slidemove.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_active.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_alarm.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_bot.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_client.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_cmds.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_combat.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_items.c.o' from cache
+Compiling src/games/game/g_main.c (shared)
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_mem.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_misc.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_missile.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_mover.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_props.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_save.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_script.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_script_actions.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_session.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_spawn.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_svcmds.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_syscalls.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_target.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_team.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_tramcar.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_trigger.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_utils.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/game/g_weapon.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_chat.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_cmd.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_dmnet.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_dmq3.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_main.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/games/botai/ai_team.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/qcommon/q_math.c.o' from cache
+Retrieved `build/linux-x86-debug/game/obj/qcommon/q_shared.c.o' from cache
+Retrieved `build/linux-x86-debug/cgame/obj/games/game/bg_animation.c.o' from cache
+Retrieved `build/linux-x86-debug/cgame/obj/games/game/bg_misc.c.o' from cache
+Retrieved `build/linux-x86-debug/cgame/obj/games/game/bg_pmove.c.o' from cache
+Retrieved `build/linux-x86-debug/cgame/obj/games/game/bg_slidemove.c.o' from cache
+Compiling src/games/cgame/cg_consolecmds.c (shared)
+Compiling src/games/cgame/cg_draw.c (shared)
+Compiling src/games/cgame/cg_drawtools.c (shared)
+Linking bin/main/qagame_x86.so
+src/games/cgame/cg_drawtools.c:387:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  387 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:403:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  403 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:450:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  450 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:466:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  466 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:508:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  508 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:518:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  518 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:526:5: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  526 |                 s = string;
+      |                   ^ ~~~~~~
+src/games/cgame/cg_drawtools.c:542:4: warning: assigning to 'const unsigned char *' from 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  542 |         s = string;
+      |           ^ ~~~~~~
+src/games/cgame/cg_draw.c:1940:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1940 |         Q_strncpyz( cg.centerPrint, CG_translateString( (char*)str ), sizeof( cg.centerPrint ) );
+      |                     ^~~~~~~~~~~~~~
+src/games/cgame/../game/../../qcommon/q_shared.h:600:27: note: passing argument to parameter 'dest' here
+  600 | void    Q_strncpyz( char *dest, const char *src, int destsize );
+      |                           ^
+src/games/cgame/cg_draw.c:1955:20: warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1955 |                 if ( !Q_strncmp( s, "\\n", 1 ) ) {
+      |                                  ^
+src/games/cgame/../game/../../qcommon/q_shared.h:587:32: note: passing argument to parameter 's1' here
+  587 | int     Q_strncmp( const char *s1, const char *s2, int n );
+      |                                ^
+src/games/cgame/cg_draw.c:1986:8: warning: assigning to 'char *' from 'unsigned char[1024]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1986 |         start = cg.centerPrint;
+      |               ^ ~~~~~~~~~~~~~~
+8 warnings generated.
+Compiling src/games/cgame/cg_effects.c (shared)
+Compiling src/games/cgame/cg_ents.c (shared)
+Compiling src/games/cgame/cg_event.c (shared)
+3 warnings generated.
+src/games/cgame/cg_effects.c:525:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  525 |         int tagIndex;
+      |             ^
+Compiling src/games/cgame/cg_flamethrower.c (shared)
+src/games/cgame/cg_event.c:738:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  738 |         int howmany, total;
+      |                      ^
+src/games/cgame/cg_event.c:1072:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
+ 1072 |         int mass;
+      |             ^
+src/games/cgame/cg_event.c:1363:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+ 1363 |         int type;
+      |             ^
+Compiling src/games/cgame/cg_info.c (shared)
+1 warning generated.
+src/games/cgame/cg_flamethrower.c:701:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
+  701 |         int jiggleCount;
+      |             ^
+Compiling src/games/cgame/cg_localents.c (shared)
+src/games/cgame/cg_flamethrower.c:1101:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
+ 1101 |         qboolean isClientFlame, firing;
+      |                                 ^
+src/games/cgame/cg_flamethrower.c:1638:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 1638 |         centity_t *cent;
+      |                    ^
+3 warnings generated.
+Compiling src/games/cgame/cg_main.c (shared)
+3 warnings generated.
+src/games/cgame/cg_info.c:79:14: warning: passing 'unsigned char[1024]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+   79 |         Q_strncpyz( cg.infoScreenText, s, sizeof( cg.infoScreenText ) );
+      |                     ^~~~~~~~~~~~~~~~~
+src/games/cgame/../game/../../qcommon/q_shared.h:600:27: note: passing argument to parameter 'dest' here
+  600 | void    Q_strncpyz( char *dest, const char *src, int destsize );
+      |                           ^
+Compiling src/games/cgame/cg_marks.c (shared)
+src/games/cgame/cg_localents.c:471:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  471 |                 int t;
+      |                     ^
+src/games/cgame/cg_localents.c:498:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
+  498 |                 int t;
+      |                     ^
+1 warning generated.
+Compiling src/games/cgame/cg_newDraw.c (shared)
+2 warnings generated.
+Compiling src/games/cgame/cg_particles.c (shared)
+Compiling src/games/cgame/cg_players.c (shared)
+src/games/cgame/cg_newDraw.c:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+  202 |         centity_t   *cent;
+      |                      ^
+src/games/cgame/cg_newDraw.c:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  391 |         playerState_t   *ps;
+      |                          ^
+src/games/cgame/cg_newDraw.c:1719:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1719 |         const unsigned char *s = "";
+      |                              ^   ~~
+src/games/cgame/cg_newDraw.c:1721:5: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1721 |                 s = va( "Fragged by %s", cg.killerName );
+      |                   ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1723:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1723 |         return s;
+      |                ^
+src/games/cgame/cg_newDraw.c:1755:23: warning: initializing 'const unsigned char *' with an expression of type 'char[1]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1755 |         const unsigned char *s = "";
+      |                              ^   ~~
+src/games/cgame/cg_newDraw.c:1758:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1758 |                         s = va( "%s place with %i",CG_PlaceString( cg.snap->ps.persistant[PERS_RANK] + 1 ),cg.snap->ps.persistant[PERS_SCORE] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1762:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1762 |                         s = va( "Teams are tied at %i", cg.teamScores[0] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1764:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1764 |                         s = va( "Red leads Blue, %i to %i", cg.teamScores[0], cg.teamScores[1] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1766:6: warning: assigning to 'const unsigned char *' from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1766 |                         s = va( "Blue leads Red, %i to %i", cg.teamScores[1], cg.teamScores[0] );
+      |                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/games/cgame/cg_newDraw.c:1769:9: warning: returning 'const unsigned char *' from a function with result type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1769 |         return s;
+      |                ^
+src/games/cgame/cg_newDraw.c:1803:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1803 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/cgame/cg_newDraw.c:1839:25: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1839 |                                 if ( CG_Text_Width( s, font, useScale, 1 ) + x > max ) {
+      |                                                     ^
+src/games/cgame/cg_local.h:1897:32: note: passing argument to parameter 'text' here
+ 1897 | int CG_Text_Width( const char *text, int font, float scale, int limit );
+      |                                ^
+Compiling src/games/cgame/cg_playerstate.c (shared)
+src/games/cgame/cg_particles.c:271:10: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
+  271 |                         float dot, distSqrd;
+      |                               ^
+src/games/cgame/cg_particles.c:936:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
+  936 |         int color;
+      |             ^
+src/games/cgame/cg_particles.c:938:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
+  938 |         int type;
+      |             ^
+13 warnings generated.
+src/games/cgame/cg_players.c:1772:26: warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
+ 1772 |         int transitionMin = -1, oldAnimTime, oldAnimNum;
+      |                                 ^
+Compiling src/games/cgame/cg_predict.c (shared)
+src/games/cgame/cg_players.c:2436:15: warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
+ 2436 |         int legsSet, torsoSet;
+      |                      ^
+src/games/cgame/cg_players.c:2594:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 2594 |         int anim;
+      |             ^
+Compiling src/games/cgame/cg_scoreboard.c (shared)
+src/games/cgame/cg_players.c:4551:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
+ 4551 |         clientInfo_t *ci;
+      |                       ^
+3 warnings generated.
+Compiling src/games/cgame/cg_servercmds.c (shared)
+Compiling src/games/cgame/cg_snapshot.c (shared)
+Compiling src/games/cgame/cg_sound.c (shared)
+4 warnings generated.
+Compiling src/games/cgame/cg_syscalls.c (shared)
+Compiling src/games/cgame/cg_trails.c (shared)
+Compiling src/games/cgame/cg_view.c (shared)
+src/games/cgame/cg_sound.c:238:6: warning: variable 's' set but not used [-Wunused-but-set-variable]
+  238 |         int s;
+      |             ^
+1 warning generated.
+Compiling src/games/cgame/cg_weapons.c (shared)
+src/games/cgame/cg_view.c:196:18: warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
+  196 |         float lbheight, lbdiff;
+      |                         ^
+src/games/cgame/cg_view.c:972:8: warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  972 |         float redFlash;
+      |               ^
+Compiling src/games/ui/ui_shared.c (shared)
+Retrieved `build/linux-x86-debug/cgame/obj/qcommon/q_math.c.o' from cache
+Retrieved `build/linux-x86-debug/cgame/obj/qcommon/q_shared.c.o' from cache
+Retrieved `build/linux-x86-debug/ui/obj/games/game/bg_misc.c.o' from cache
+Compiling src/games/ui/ui_atoms.c (shared)
+src/games/cgame/cg_weapons.c:401:6: warning: variable 'contents' set but not used [-Wunused-but-set-variable]
+  401 |         int contents;
+      |             ^
+src/games/cgame/cg_weapons.c:402:6: warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
+  402 |         int lastContents, startTime;
+      |             ^
+src/games/cgame/cg_weapons.c:407:19: warning: variable 'le' set but not used [-Wunused-but-set-variable]
+  407 |         localEntity_t   *le;
+      |                          ^
+2 warnings generated.
+Compiling src/games/ui/ui_gameinfo.c (shared)
+src/games/cgame/cg_weapons.c:2013:8: warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
+ 2013 |         float ramp;
+      |               ^
+src/games/cgame/cg_weapons.c:2932:19: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
+ 2932 |         weaponInfo_t    *weapon;
+      |                          ^
+src/games/cgame/cg_weapons.c:2935:13: warning: variable 'oldtime' set but not used [-Wunused-but-set-variable]
+ 2935 |         static int oldtime = 0;
+      |                    ^
+src/games/cgame/cg_weapons.c:3746:8: warning: variable 'shake' set but not used [-Wunused-but-set-variable]
+ 3746 |         float shake = 0;
+      |               ^
+src/games/cgame/cg_weapons.c:4167:6: warning: variable 'lastweap' set but not used [-Wunused-but-set-variable]
+ 4167 |         int lastweap;
+      |             ^
+src/games/cgame/cg_weapons.c:5118:6: warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
+ 5118 |         int markDuration;
+      |             ^
+Compiling src/games/ui/ui_main.c (shared)
+src/games/cgame/cg_weapons.c:6041:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
+ 6041 |         int anim;
+      |             ^
+src/games/cgame/cg_weapons.c:6088:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
+ 6088 |         centity_t *cent;
+      |                    ^
+Compiling src/games/ui/ui_players.c (shared)
+src/games/ui/ui_shared.c:3706:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
+ 3706 |         float x, y, value;
+      |                     ^
+src/games/ui/ui_shared.c:4167:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
+ 4167 |         menuDef_t *parent;
+      |                    ^
+src/games/ui/ui_shared.c:4814:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+ 4814 |         modelDef_t *modelPtr;
+      |                     ^
+src/games/ui/ui_main.c:308:23: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  308 |         const unsigned char *s = text;
+      |                              ^   ~~~~
+src/games/ui/ui_main.c:381:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  381 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/ui/ui_main.c:462:24: warning: initializing 'const unsigned char *' with an expression of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  462 |                 const unsigned char *s = text;
+      |                                      ^   ~~~~
+src/games/ui/ui_players.c:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+ 1275 |         char        *text_p, *prev;
+      |                      ^
+src/games/ui/ui_players.c:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+ 1275 |         char        *text_p, *prev;
+      |                               ^
+src/games/ui/ui_players.c:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+ 1277 |         int i;
+      |             ^
+src/games/ui/ui_players.c:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
+ 1278 |         char        *token;
+      |                      ^
+src/games/ui/ui_players.c:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+ 1279 |         float fps;
+      |               ^
+src/games/ui/ui_players.c:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+ 1280 |         int skip;
+      |             ^
+11 warnings generated.
+6 warnings generated.
+Compiling src/games/ui/ui_shared.c (shared)
+Compiling src/games/ui/ui_syscalls.c (shared)
+src/games/ui/ui_main.c:2413:41: error: no member named 'extensions_string' in 'glconfig_t'
+ 2413 |         Q_strncpyz( buff, uiInfo.uiDC.glconfig.extensions_string, 4096 );
+      |                           ~~~~~~~~~~~~~~~~~~~~ ^
+src/games/ui/ui_main.c:2465:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+ 2465 |         float x, y, w, h;
+      |                     ^
+src/games/ui/ui_main.c:2465:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
+ 2465 |         float x, y, w, h;
+      |                        ^
+src/games/ui/ui_main.c:5082:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+ 5082 |         int i, count, clients, maxClients, ping, game, len, visible;
+      |                                                  ^
+src/games/ui/ui_main.c:5085:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+ 5085 |         static int numinvisible;
+      |                    ^
+src/games/ui/ui_main.c:5395:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+ 5395 |         static int numFound, numTimeOuts;
+      |                              ^
+src/games/ui/ui_main.c:5708:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+ 5708 |         static int lastServerTime = 0, lastSaveTime = 0;
+      |                                        ^
+src/games/ui/ui_main.c:6491:6: warning: variable 'start' set but not used [-Wunused-but-set-variable]
+ 6491 |         int start;
+      |             ^
+10 warnings and 1 error generated.
+scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_main.c.o] Error 1
+Retrieved `build/linux-x86-debug/ui/obj/games/ui/ui_util.c.o' from cache
+Retrieved `build/linux-x86-debug/ui/obj/qcommon/q_math.c.o' from cache
+Retrieved `build/linux-x86-debug/ui/obj/qcommon/q_shared.c.o' from cache
+Compiling src/renderer/tr_animation.c (shared)
+3 warnings generated.
+Linking bin/main/cgame_x86.so
+Compiling src/renderer/tr_backend.c (shared)
+src/games/ui/ui_shared.c:3706:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
+ 3706 |         float x, y, value;
+      |                     ^
+src/games/ui/ui_shared.c:4167:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
+ 4167 |         menuDef_t *parent;
+      |                    ^
+src/games/ui/ui_shared.c:4814:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+ 4814 |         modelDef_t *modelPtr;
+      |                     ^
+Compiling src/renderer/tr_bsp.c (shared)
+src/renderer/tr_animation.c:1249:11: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+ 1249 |         pIndexes = &tess.indexes[baseIndex];
+      |                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+src/renderer/tr_animation.c:1376:13: warning: assigning to 'int *' from 'glIndex_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+ 1376 |                         pIndexes = &tess.indexes[oldIndexes];
+      |                                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
+Compiling src/renderer/tr_cmds.c (shared)
+2 warnings generated.
+Compiling src/renderer/tr_cmesh.c (shared)
+src/renderer/tr_bsp.c:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
+  147 |         double sumIntensity = 0;
+      |                ^
+3 warnings generated.
+Compiling src/renderer/tr_curve.c (shared)
+1 warning generated.
+Compiling src/renderer/tr_flares.c (shared)
+src/renderer/tr_cmesh.c:417:81: error: no member named 'ATI_tess' in 'struct model_s'
+  417 |                         R_AddDrawSurf( (void *)surface, tr.shadowShader, 0, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                     ~~~~~~~~~~~~~~~  ^
+src/renderer/tr_cmesh.c:439:77: error: no member named 'ATI_tess' in 'struct model_s'
+  439 |                         R_AddDrawSurf( (void *)surface, shader, fogNum, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                 ~~~~~~~~~~~~~~~  ^
+2 errors generated.
+scons: *** [build/linux-x86-debug/renderer/obj/renderer/tr_cmesh.c.o] Error 1
+Compiling src/renderer/tr_font.c (shared)
+Compiling src/renderer/tr_image.c (shared)
+Compiling src/renderer/tr_init.c (shared)
+src/renderer/tr_flares.c:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  128 |         flare_t         *f, *oldest;
+      |                              ^
+1 warning generated.
+Compiling src/renderer/tr_light.c (shared)
+src/renderer/tr_font.c:235:44: warning: variable 'satLevels' set but not used [-Wunused-but-set-variable]
+  235 |         int scaledSize, newSize, maxHeight, left, satLevels;
+      |                                                   ^
+1 warning generated.
+Compiling src/renderer/tr_main.c (shared)
+src/renderer/tr_image.c:1823:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+ 1823 |         float g;
+      |               ^
+src/renderer/tr_image.c:3065:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
+ 3065 |         char *name;
+      |               ^
+src/renderer/tr_image.c:3223:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
+ 3223 |         image_t *bImage, *bImagePrev;
+      |                           ^
+Compiling src/renderer/tr_marks.c (shared)
+3 warnings generated.
+Compiling src/renderer/tr_mesh.c (shared)
+Compiling src/renderer/tr_model.c (shared)
+src/renderer/tr_main.c:1179:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
+ 1179 |         unsigned int pointOr = 0;
+      |                      ^
+1 warning generated.
+Compiling src/renderer/tr_noise.c (shared)
+src/renderer/tr_mesh.c:423:81: error: no member named 'ATI_tess' in 'struct model_s'
+  423 |                         R_AddDrawSurf( (void *)surface, tr.shadowShader, 0, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                     ~~~~~~~~~~~~~~~  ^
+src/renderer/tr_mesh.c:443:77: error: no member named 'ATI_tess' in 'struct model_s'
+  443 |                         R_AddDrawSurf( (void *)surface, shader, fogNum, qfalse, tr.currentModel->ATI_tess );
+      |                                                                                 ~~~~~~~~~~~~~~~  ^
+2 errors generated.
+src/renderer/tr_marks.c:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
+  500 |         float texCoordScale;
+      |               ^
+scons: *** [build/linux-x86-debug/renderer/obj/renderer/tr_mesh.c.o] Error 1
+Compiling src/renderer/tr_scene.c (shared)
+src/renderer/tr_model.c:150:7: error: no member named 'ATI_tess' in 'struct model_s'
+  150 |         mod->ATI_tess = qfalse;
+      |         ~~~  ^
+src/renderer/tr_model.c:154:8: error: no member named 'ATI_tess' in 'struct model_s'
+  154 |                 mod-1 warning generated.
+>ATI_tess = qtrue;
+      |                 ~~~  ^
+Compiling src/renderer/tr_shade.c (shared)
+src/renderer/tr_model.c:1889:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
+ 1889 |         static int lastPurged = 0;
+      |                    ^
+1 warning and 2 errors generated.
+scons: *** [build/linux-x86-debug/renderer/obj/renderer/tr_model.c.o] Error 1
+Compiling src/renderer/tr_shade_calc.c (shared)
+Compiling src/renderer/tr_shader.c (shared)
+Compiling src/renderer/tr_shadows.c (shared)
+src/renderer/tr_shade.c:1345:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+ 1345 |         shader_t        *shader;
+      |                          ^
+src/renderer/tr_shade_calc.c:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  670 |         int c;
+      |             ^
+1 warning generated.
+Compiling src/renderer/tr_sky.c (shared)
+1 warning generated.
+Compiling src/renderer/tr_surface.c (shared)
+src/renderer/tr_shadows.c:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
+  103 |         int c_edges, c_rejected;
+      |             ^
+src/renderer/tr_shadows.c:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
+  103 |         int c_edges, c_rejected;
+      |                      ^
+2 warnings generated.
+Compiling src/renderer/tr_world.c (shared)
+Compiling src/renderer/tr_module.c (shared)
+Retrieved `build/linux-x86-debug/renderer/obj/qcommon/q_math.c.o' from cache
+Retrieved `build/linux-x86-debug/renderer/obj/qcommon/q_shared.c.o' from cache
+Retrieved `build/linux-x86-debug/renderer/obj/third-party/stb/stb_impl.c.o' from cache
+Retrieved `build/linux-x86-debug/renderer/obj/third-party/glad/src/gl.c.o' from cache
+scons: done building targets (errors occurred during build).
+
+
+==== ubuntu-latest-x86-release- (cancelled) ====
+
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 124.6 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+Selecting previously unselected package libc6-dev-i386.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 212715 files and directories currently installed.)
+Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-x32.
+Preparing to unpack .../01-libc6-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libc6-dev-x32.
+Preparing to unpack .../02-libc6-dev-x32_2.43-2ubuntu2.4_amd64v3.deb ...
+Unpacking libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Selecting previously unselected package libx32gcc-s1.
+Preparing to unpack .../03-libx32gcc-s1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gomp1.
+Preparing to unpack .../04-lib32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32gomp1.
+Preparing to unpack .../05-libx32gomp1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32gomp1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32itm1.
+Preparing to unpack .../06-lib32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32itm1.
+Preparing to unpack .../07-libx32itm1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32itm1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32atomic1.
+Preparing to unpack .../08-lib32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32atomic1.
+Preparing to unpack .../09-libx32atomic1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32atomic1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32asan8.
+Preparing to unpack .../10-lib32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32asan8.
+Preparing to unpack .../11-libx32asan8_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32asan8 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32ubsan1.
+Preparing to unpack .../12-lib32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32stdc++6.
+Preparing to unpack .../13-libx32stdc++6_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++6 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32ubsan1.
+Preparing to unpack .../14-libx32ubsan1_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32ubsan1 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32quadmath0.
+Preparing to unpack .../15-lib32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking lib32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package libx32quadmath0.
+Preparing to unpack .../16-libx32quadmath0_16-20260322-1ubuntu1_amd64v3.deb ...
+Unpacking libx32quadmath0 (16-20260322-1ubuntu1) ...
+Selecting previously unselected package lib32gcc-15-dev.
+Preparing to unpack .../17-lib32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32gcc-15-dev.
+Preparing to unpack .../18-libx32gcc-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-15-multilib.
+Preparing to unpack .../19-gcc-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking gcc-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package lib32stdc++-15-dev.
+Preparing to unpack .../20-lib32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package libx32stdc++-15-dev.
+Preparing to unpack .../21-libx32stdc++-15-dev_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Selecting previously unselected package g++-15-multilib.
+Preparing to unpack .../22-g++-15-multilib_15.2.0-16ubuntu1_amd64v3.deb ...
+Unpacking g++-15-multilib (15.2.0-16ubuntu1) ...
+Selecting previously unselected package gcc-multilib.
+Preparing to unpack .../23-gcc-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking gcc-multilib (4:15.2.0-5ubuntu1) ...
+Selecting previously unselected package g++-multilib.
+Preparing to unpack .../24-g++-multilib_4%3a15.2.0-5ubuntu1_amd64v3.deb ...
+Unpacking g++-multilib (4:15.2.0-5ubuntu1) ...
+Setting up libc6-dev-i386 (2.43-2ubuntu2.4) ...
+Setting up lib32itm1 (16-20260322-1ubuntu1) ...
+Setting up lib32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up libc6-x32 (2.43-2ubuntu2.4) ...
+Setting up libc6-dev-x32 (2.43-2ubuntu2.4) ...
+Setting up lib32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32gomp1 (16-20260322-1ubuntu1) ...
+Setting up lib32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up libx32quadmath0 (16-20260322-1ubuntu1) ...
+Setting up lib32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32atomic1 (16-20260322-1ubuntu1) ...
+Setting up libx32gcc-s1 (16-20260322-1ubuntu1) ...
+Setting up libx32itm1 (16-20260322-1ubuntu1) ...
+Setting up libx32asan8 (16-20260322-1ubuntu1) ...
+Setting up libx32stdc++6 (16-20260322-1ubuntu1) ...
+Setting up libx32ubsan1 (16-20260322-1ubuntu1) ...
+Setting up lib32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32gcc-15-dev (15.2.0-16ubuntu1) ...
+Setting up libx32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up lib32stdc++-15-dev (15.2.0-16ubuntu1) ...
+Setting up gcc-15-multilib (15.2.0-16ubuntu1) ...
+Setting up g++-15-multilib (15.2.0-16ubuntu1) ...
+Setting up gcc-multilib (4:15.2.0-5ubuntu1) ...
+Setting up g++-multilib (4:15.2.0-5ubuntu1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+Processing triggers for base-files (14ubuntu6.2) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+
