@@ -611,11 +611,9 @@ Used to load a development dll instead of a virtual machine
 */
 extern char     *FS_BuildOSPath( const char *base, const char *game, const char *qpath );
 
-void * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-						  int( QDECL *systemcalls )( int, ... ) ) {
+void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
 	static int lastWarning = 0;
 	HINSTANCE libHandle;
-	void( QDECL * dllEntry )( int( QDECL *syscallptr )( int, ... ) );
 	char    *basepath;
 	char    *cdpath;
 	char    *gamedir;
@@ -626,12 +624,7 @@ void * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ..
 #endif
 	char filename[MAX_QPATH];
 
-#ifdef WOLF_SP_DEMO
-	Com_sprintf( filename, sizeof( filename ), "%sx86_d.dll", name );
-#else
-	Com_sprintf( filename, sizeof( filename ), "%sx86.dll", name );
-#endif
-
+	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING_STR( ARCH_STRING ) ".dll", name );
 
 #ifdef NDEBUG
 	timestamp = Sys_Milliseconds();
@@ -682,77 +675,13 @@ void * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ..
 
 found_dll:
 
-	dllEntry = ( void( QDECL * )( int( QDECL * )( int, ... ) ) )GetProcAddress( libHandle, "dllEntry" );
-	*entryPoint = ( int( QDECL * )( int,... ) )GetProcAddress( libHandle, "vmMain" );
-	if ( !*entryPoint || !dllEntry ) {
+	*entryPoint = (void *)GetProcAddress( libHandle, entryPointName );
+	if ( !*entryPoint ) {
 		FreeLibrary( libHandle );
 		return NULL;
 	}
-	dllEntry( systemcalls );
 
 	return libHandle;
-}
-
-
-
-// arch suffix appended to the module file names (qagame_x64.dll);
-// q_buildconfig.h defines ARCH_STRING as a quoted string ("x86"/"x64")
-
-/*
-=================
-Sys_LoadModule
-
-Loads a native module by name ("qagame", "cgame", "ui") and returns
-an opaque handle. The arch suffix and the platform specific file
-extension are appended.
-=================
-*/
-void *Sys_LoadModule( const char *name ) {
-	HINSTANCE libHandle;
-	char filename[MAX_QPATH];
-	char *fn;
-	char *basepath, *cdpath, *gamedir;
-
-	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING ".dll", name );
-
-	// check the current working directory first
-	libHandle = LoadLibrary( filename );
-	if ( libHandle ) {
-		return libHandle;
-	}
-
-	basepath = Cvar_VariableString( "fs_basepath" );
-	cdpath = Cvar_VariableString( "fs_cdpath" );
-	gamedir = Cvar_VariableString( "fs_game" );
-	if ( !gamedir[0] ) {
-		gamedir = "base";
-	}
-
-	fn = FS_BuildOSPath( basepath, gamedir, filename );
-	libHandle = LoadLibrary( fn );
-	if ( libHandle ) {
-		return libHandle;
-	}
-
-	if ( cdpath[0] ) {
-		fn = FS_BuildOSPath( cdpath, gamedir, filename );
-		libHandle = LoadLibrary( fn );
-	}
-
-	return libHandle;
-}
-
-void *Sys_ModuleAddress( void *module, const char *procName ) {
-	return ( void * ) GetProcAddress( ( HINSTANCE ) module, procName );
-}
-
-void Sys_UnloadModule( void *module ) {
-	if ( !module ) {
-		return;
-	}
-	if ( !FreeLibrary( ( HINSTANCE ) module ) ) {
-		Com_Error( ERR_FATAL, "Sys_UnloadModule: FreeLibrary failed" );
-	}
 }
 
 /*

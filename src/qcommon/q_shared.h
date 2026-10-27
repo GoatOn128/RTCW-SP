@@ -93,6 +93,9 @@ If you have questions concerning this license or the applicable additional terms
 #define QDECL
 #endif
 
+#define ARCH_STRING_( x ) #x
+#define ARCH_STRING_STR( x ) ARCH_STRING_( x )
+
 typedef unsigned char byte;
 
 typedef enum {qfalse, qtrue}    qboolean;
