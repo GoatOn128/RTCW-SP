@@ -29,6 +29,9 @@ If you have questions concerning this license or the applicable additional terms
 #include "../idlib/precompiled.h"
 #include "ModelManager.h"
 #include "Model_local.h"
+#include "Model_md3.h"
+#include "Model_mdc.h"
+#include "Model_mds.h"
 
 /*
 
@@ -134,8 +137,15 @@ idRenderModel *idRenderModelManagerLocal::GetModel( const char *_modelName, bool
 	// see if we can load it
 
 	// determine which subclass of idRenderModel to initialize
-	// the md3, mdc and mds adapters land with the Q3 format commit
 	idRenderModel *model = NULL;
+
+	if ( extension.Icmp( "md3" ) == 0 ) {
+		model = new idRenderModelMD3;
+	} else if ( extension.Icmp( "mdc" ) == 0 ) {
+		model = new idRenderModelMDC;
+	} else if ( extension.Icmp( "mds" ) == 0 ) {
+		model = new idRenderModelMDS;
+	}
 
 	// Not one of the known formats
 	if ( model == NULL ) {
