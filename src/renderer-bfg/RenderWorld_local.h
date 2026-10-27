@@ -61,6 +61,7 @@ class idRenderModelDecal;
 class idRenderModelOverlay;
 struct viewEntity_t;
 struct viewLight_t;
+struct q3BspWorld_t;
 
 // areas have references to hold all the lights and entities in them
 struct areaReference_t {
@@ -336,6 +337,8 @@ public:
 idStr mapName;                                  // ie: maps/tim_dm2.proc, written to demoFile
 ID_TIME_T mapTimeStamp;                         // for fast reloads of the same level
 
+q3BspWorld_t *          bspWorld;               // the Q3 BSP data behind this world, freed with it
+
 areaNode_t *            areaNodes;
 int numAreaNodes;
 
@@ -357,7 +360,12 @@ bool generateAllInteractionsCalled;
 
 private:
 void                    FreeWorld();
+void                    ClearWorld();
+void                    SetupPortalAreas( int numAreas );
+bool                    LoadQ3BspWorld( const char *name );
+int                     CommonChildrenArea_r( areaNode_t *node );
 void                    BoundsInAreas_r( int nodeNum, const idBounds &bounds, int *areas, int *numAreas, int maxAreas ) const;
 };
 
 #endif /* !__RENDERWORLDLOCAL_H__ */
+

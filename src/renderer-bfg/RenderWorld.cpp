@@ -30,6 +30,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../idlib/precompiled.h"
 
 #include "RenderWorld_local.h"
+#include "Q3Bsp.h"
 
 // Trimmed from the BFG RenderWorld.cpp: the interaction table, the decal
 // and overlay allocation, the demo writes and the debug drawing all go
@@ -45,6 +46,8 @@ idRenderWorldLocal::idRenderWorldLocal
 idRenderWorldLocal::idRenderWorldLocal() {
 	mapName.Clear();
 	mapTimeStamp = FILE_NOT_FOUND_TIMESTAMP;
+
+	bspWorld = NULL;
 
 	generateAllInteractionsCalled = false;
 
@@ -95,8 +98,11 @@ void idRenderWorldLocal::FreeWorld() {
 	// with the model adapter phase
 	localModels.Clear();
 
-	// free the area and portal memory; the portal windings are owned by
-	// the map loading code, which is ported with the BSP adapter phase
+	// free the Q3 BSP data behind the world
+	delete bspWorld;
+	bspWorld = NULL;
+
+	// free the area and portal memory
 	delete[] areaNodes;
 	areaNodes = NULL;
 	numAreaNodes = 0;
@@ -119,9 +125,9 @@ void idRenderWorldLocal::FreeWorld() {
 ===================
 idRenderWorldLocal::InitFromMap
 
-The BFG map loading code lives in RenderWorld_load.cpp and is ported
-with the BSP adapter phase; every world starts as the empty single
-area world that BFG gives a NULL or empty map name.
+An empty map name still gives the empty single area world. A name is
+handed to the Q3 BSP loader in RenderWorld_load.cpp, which fills the
+BFG world structures from the RTCW .bsp file.
 ===================
 */
 bool idRenderWorldLocal::InitFromMap( const char *mapName ) {
@@ -129,39 +135,16 @@ bool idRenderWorldLocal::InitFromMap( const char *mapName ) {
 
 	this->mapName = mapName ? mapName : "";
 
-	numPortalAreas = 1;
-	portalAreas = new portalArea_t[numPortalAreas];
-	areaScreenRect = new idScreenRect[numPortalAreas];
-	for ( int i = 0; i < numPortalAreas; i++ ) {
-		portalArea_t *area = &portalAreas[i];
-
-		area->areaNum = i;
-		area->viewCount = 0;
-		area->portals = NULL;
-
-		area->entityRefs.areaNext = area->entityRefs.areaPrev = &area->entityRefs;
-		area->entityRefs.ownerNext = NULL;
-		area->entityRefs.entity = NULL;
-		area->entityRefs.light = NULL;
-		area->entityRefs.area = NULL;
-
-		area->lightRefs.areaNext = area->lightRefs.areaPrev = &area->lightRefs;
-		area->lightRefs.ownerNext = NULL;
-		area->lightRefs.entity = NULL;
-		area->lightRefs.light = NULL;
-		area->lightRefs.area = NULL;
-
-		for ( int j = 0; j < NUM_PORTAL_ATTRIBUTES; j++ ) {
-			area->connectedAreaNum[j] = 0;
-		}
-
-		areaScreenRect[i].Clear();
+	if ( this->mapName.Length() == 0 ) {
+		ClearWorld();
+		return true;
 	}
 
-	// all areas start fully connected for every portal attribute
-	for ( int i = 0; i < NUM_PORTAL_ATTRIBUTES; i++ ) {
-		connectedAreaNum++;
-		FloodConnectedAreas( &portalAreas[0], i );
+	if ( !LoadQ3BspWorld( this->mapName ) ) {
+		idLib::Warning( "idRenderWorldLocal::InitFromMap: could not load '%s'", this->mapName.c_str() );
+		this->mapName = "";
+		ClearWorld();
+		return false;
 	}
 
 	return true;
@@ -1059,3 +1042,4 @@ bool idRenderWorldLocal::ProcessDemoCommand( idDemoFile *readDemo, renderView_t 
 	// the demo playback is ported with the backend phases
 	return false;
 }
+
