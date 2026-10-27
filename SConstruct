@@ -385,6 +385,7 @@ renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
     'RenderWorld.cpp', 'RenderEntity.cpp', 'ScreenRect.cpp',
     'RenderSystem.cpp', 'GLContext.cpp',
     'CVarSystem.cpp', 'GLMatrix.cpp', 'RenderLog.cpp',
+    'RenderProgs.cpp', 'RenderProgs_GLSL.cpp',
 ]]
 
 renderer_bfg_env = env.Clone()
