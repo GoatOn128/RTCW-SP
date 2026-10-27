@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
-"""Merge per-leg logs and digest fragments into build.log and build-digest.md."""
+"""Merge per-leg logs and digest fragments into per-platform build logs
+and build-digest.md. Legs are grouped by their runner prefix: windows-*
+legs land in build-windows.log, ubuntu-* legs in build-ubuntu.log."""
 
 import glob
 import os
 
 MAX_LOG = 400000  # bytes kept per failed leg
+
+PLATFORMS = {
+    "windows": "build-windows.log",
+    "ubuntu": "build-ubuntu.log",
+}
 
 
 def read(path):
@@ -36,20 +43,34 @@ def main():
     with open("build-digest.md", "w") as f:
         f.write("".join(digest))
 
-    parts_out = []
+    # group the failed leg logs by runner platform; legs with another
+    # prefix (uncrustify) carry no build log and stay in the artifacts
+    by_platform = {name: [] for name in PLATFORMS}
     for lf in log_files:
         leg = os.path.basename(lf)[len("log-"):-len(".log")]
         if statuses.get(leg) == "success":
             # successful leg logs stay in the artifacts only
             continue
-        text = read(lf)
-        if len(text) > MAX_LOG:
-            half = MAX_LOG // 2
-            text = text[:half] + "\n... [truncated] ...\n" + text[-half:]
-        parts_out.append("==== %s (%s) ====\n\n" % (leg, statuses.get(leg, "unknown")))
-        parts_out.append(text + "\n\n")
-    with open("build.log", "w") as f:
-        f.write("".join(parts_out) if parts_out else "all legs succeeded\n")
+        for prefix, out in PLATFORMS.items():
+            if leg.startswith(prefix):
+                text = read(lf)
+                if len(text) > MAX_LOG:
+                    half = MAX_LOG // 2
+                    text = text[:half] + "\n... [truncated] ...\n" + text[-half:]
+                by_platform[prefix].append("==== %s (%s) ====\n\n" % (leg, statuses.get(leg, "unknown")))
+                by_platform[prefix].append(text + "\n\n")
+                break
+
+    for prefix, out in PLATFORMS.items():
+        legs = [l for l in sorted(statuses) if l.startswith(prefix)]
+        if by_platform[prefix]:
+            content = "".join(by_platform[prefix])
+        elif legs:
+            content = "all %s legs succeeded\n" % prefix
+        else:
+            content = "no %s legs ran\n" % prefix
+        with open(PLATFORMS[prefix], "w") as f:
+            f.write(content)
 
 
 main()

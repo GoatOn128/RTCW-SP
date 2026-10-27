@@ -126,10 +126,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          touch build.log build-digest.md
-          git add build.log build-digest.md
+          touch build-windows.log build-ubuntu.log build-digest.md
+          git add build-windows.log build-ubuntu.log build-digest.md
+          # the merged build.log was replaced by per-platform logs
+          git rm -q --ignore-unmatch build.log
           git diff --cached --quiet && exit 0
-          git commit -m "CI: publish build log and digest [skip ci]"
+          git commit -m "CI: publish build logs and digest [skip ci]"
           if ! git push; then
             # -X theirs: on a push race the newest output wins instead of
             # committing conflict markers
