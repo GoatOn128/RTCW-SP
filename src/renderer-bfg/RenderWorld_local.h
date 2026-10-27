@@ -54,6 +54,7 @@ const int LUDICROUS_INDEX   = 10000;
 
 class idRenderEntityLocal;
 class idRenderLightLocal;
+class idRenderWorldLocal;
 class idImage;
 class idInteraction;
 class idRenderModelDecal;
@@ -317,6 +318,12 @@ virtual void            DebugPolygon( const idVec4 &color, const idWinding &wind
 
 virtual void            DrawText( const char *text, const idVec3 &origin, float scale, const idVec4 &color, const idMat3 &viewAxis, const int align, const int lifetime, bool depthTest );
 
+//-------------- Demo Control  -----------------
+
+virtual void            StartWritingDemo( idDemoFile *demo );
+virtual void            StopWritingDemo();
+virtual bool            ProcessDemoCommand( idDemoFile *readDemo, renderView_t *demoRenderView, int *demoTimeOffset );
+
 //-----------------------
 
 void                    AddEntityRefToArea( idRenderEntityLocal *def, portalArea_t *area );
@@ -350,6 +357,7 @@ bool generateAllInteractionsCalled;
 
 private:
 void                    FreeWorld();
+void                    BoundsInAreas_r( int nodeNum, const idBounds &bounds, int *areas, int *numAreas, int maxAreas ) const;
 };
 
 #endif /* !__RENDERWORLDLOCAL_H__ */

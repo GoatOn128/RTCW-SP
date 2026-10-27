@@ -95,6 +95,11 @@ ID_INLINE void SIMD_INIT_LAST_JOINT( idJointMat * joints, int numJoints ) {
 	}
 }
 
+// the callback is declared before the struct definitions like in the
+// reference, so the structs are forward declared here
+struct renderEntity_s;
+struct renderView_s;
+
 typedef bool (*deferredEntityCallback_t)( renderEntity_s *, const renderView_s * );
 
 
