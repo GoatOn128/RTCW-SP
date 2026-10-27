@@ -1,11 +1,11 @@
 # Build digest
 
-commit: 195003256fe8
+commit: 19f3560d7825
 
 - ubuntu-latest-x64-debug-: success
 - ubuntu-latest-x64-release-: success
 - ubuntu-latest-x64-release-game,renderer: success
-- ubuntu-latest-x86-debug-: success
+- ubuntu-latest-x86-debug-: cancelled
 - ubuntu-latest-x86-release-: success
 - uncrustify: success
 - windows-latest-x64-debug-: success
@@ -63,7 +63,7 @@ warnings: 0 in 0 kinds
 
 ## ubuntu-latest-x86-debug-
 
-status: success
+status: cancelled
 
 errors: 0
 warnings: 0 in 0 kinds
