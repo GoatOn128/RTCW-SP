@@ -30,20 +30,17 @@ jobs:
         # string) or the include entries below would merge into the
         # existing legs instead of adding new ones
         hardlink: ['']
-        # cache key variant of hardlink: GitHub cache keys cannot
-        # contain commas, so hardlink=game,renderer keys the cache
-        # as game-renderer
         cachekey: ['']
         include:
-          # hard-link coverage: the game+renderer pair exercises a
-          # module and the renderer in one image, cgame and ui get
-          # their own legs because only one of game/cgame/ui can be
-          # linked into the executable
+          # hard-link coverage: each of game, cgame and ui gets its own
+          # leg because only one of them can be linked into the
+          # executable; the renderer is always built into the
+          # executable now
           - os: windows-latest
             arch: x64
             config: release
-            hardlink: 'game,renderer'
-            cachekey: 'game-renderer'
+            hardlink: 'game'
+            cachekey: 'game'
           - os: windows-latest
             arch: x64
             config: release

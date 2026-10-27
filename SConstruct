@@ -3,10 +3,10 @@
 # Usage:
 #   scons arch=x86 config=debug
 #   scons arch=x64 config=release
-#   scons arch=x64 config=release hardlink=game,renderer
+#   scons arch=x64 config=release hardlink=game
 # Parallel jobs default to up to 16 CPU cores; use -jN or -j1 to override.
 #
-# Outputs go to bin/ (engine and renderers) and bin/main/ (game modules).
+# Outputs go to bin/ (engine) and bin/main/ (game modules).
 # Every output name ends with its arch, so x86 and x64 builds share the
 # same tree. Objects and tools go to build/<platform>-<arch>-<config>/.
 
@@ -461,13 +461,14 @@ if CONFIG not in ('debug', 'release'):
 # hardlink=... links these modules into the executable instead of
 # building them as separate libraries
 HARDLINK = [m.strip() for m in ARGUMENTS.get('hardlink', '').split(',') if m.strip()]
-HARDLINK_MODULES = ('game', 'cgame', 'ui', 'renderer')
+HARDLINK_MODULES = ('game', 'cgame', 'ui')
 for m in HARDLINK:
     if m not in HARDLINK_MODULES:
         print('hardlink: unknown module %r (expected one of %s)' % (m, ', '.join(HARDLINK_MODULES)))
         Exit(1)
 # game, cgame and ui all define the same trap_* names, so only one of
-# them can be linked into the executable. The renderer is independent.
+# them can be linked into the executable. The renderer is always built
+# into the executable.
 linked_vm = [m for m in ('game', 'cgame', 'ui') if m in HARDLINK]
 if len(linked_vm) > 1:
     print('hardlink: only one of game, cgame, ui can be hard-linked, got %s' % ', '.join(linked_vm))
@@ -492,8 +493,8 @@ OBJ = '.obj' if IS_WINDOWS else '.o'
 ARCH_SUFFIX = '_' + ARCH
 
 Help('''
-Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ hardlink=game,cgame,ui,renderer ] [ funcs=1 ] [ verbose=1 ] [ -j N ]
-Outputs go to bin/ (engine and renderers) and bin/main/ (game modules),
+Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ hardlink=game,cgame,ui ] [ funcs=1 ] [ verbose=1 ] [ -j N ]
+Outputs go to bin/ (engine) and bin/main/ (game modules),
 each name suffixed with the arch. Objects stay under build/<platform>-<arch>-<config>/.
 hardlink links the listed modules into the executable; only one of
 game, cgame, ui can be linked at a time because they share trap_* names.
@@ -513,11 +514,11 @@ common_cpppath = [
     'src/splines',
     'src/sys/unix',
     'src/sys/win32',
-    'src/games/botai',
     'src/games/botlib',
     'src/games/cgame',
     'src/games/ui',
     'src/third-party/stb',
+    'src/third-party/recast/Detour/Include',
 ]
 
 if IS_WINDOWS:
@@ -541,10 +542,11 @@ if IS_WINDOWS:
     arch_flag = '-m32' if ARCH == 'x86' else '-m64'
 
     # /W4 instead of -Wall: clang-cl maps -Wall onto every warning it
-    # knows and floods the log
+    # knows and floods the log. The engine is C++ now, so pick the
+    # language standard for it.
     env.Append(
         CCFLAGS=['/W4', arch_flag, '/nologo'],
-        CXXFLAGS=['/W4', arch_flag, '/nologo']
+        CXXFLAGS=['/W4', arch_flag, '/nologo', '/std:c++14']
     )
 
     # ASLR
@@ -566,10 +568,11 @@ else:
     # no lib prefix on module names
     env['SHLIBPREFIX'] = ''
 
-    # the C code is 2001 era, the splines code is C++98 era
+    # stb_impl.c is the only C unit left; the engine is C++ now, and the
+    # modernized units need at least C++14
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
-    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++98', arch_flag])
+    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++14', arch_flag])
     env.Append(LINKFLAGS=[arch_flag])
 
     if CONFIG == 'debug':
@@ -658,39 +661,37 @@ def module_objects(menv, module, files, shared=False):
     return objs
 
 # A hard-linked module must not recompile what the executable already
-# carries. The renderer also drops tr_module.c: its Com_* wrappers clash
-# with the engine's common.c.
+# carries.
 def module_link_files(module, files):
     if module not in HARDLINK:
         return files
-    drop = ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
-    if module == 'renderer':
-        drop.append('src/renderer/tr_module.c')
+    drop = ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
     return [f for f in files if f not in drop]
 
 renderer_files = ['src/renderer/' + f for f in [
-    'tr_animation.c', 'tr_backend.c', 'tr_bsp.c', 'tr_cmds.c', 'tr_cmesh.c',
-    'tr_curve.c', 'tr_flares.c', 'tr_font.c', 'tr_image.c', 'tr_init.c',
-    'tr_light.c', 'tr_main.c', 'tr_marks.c', 'tr_mesh.c', 'tr_model.c',
-    'tr_noise.c', 'tr_scene.c', 'tr_shade.c', 'tr_shade_calc.c',
-    'tr_shader.c', 'tr_shadows.c', 'tr_sky.c', 'tr_surface.c', 'tr_world.c', 'tr_module.c',
+    'tr_animation.cpp', 'tr_backend.cpp', 'tr_bsp.cpp', 'tr_cmds.cpp', 'tr_curve.cpp',
+    'tr_decals.cpp', 'tr_flares.cpp', 'tr_font.cpp', 'tr_image.cpp', 'tr_init.cpp',
+    'tr_light.cpp', 'tr_main.cpp', 'tr_marks.cpp', 'tr_md5.cpp', 'tr_mesh.cpp',
+    'tr_model.cpp', 'tr_noise.cpp', 'tr_renderprog.cpp', 'tr_scene.cpp',
+    'tr_shade.cpp', 'tr_shade_calc.cpp', 'tr_shader.cpp', 'tr_shadows.cpp',
+    'tr_sky.cpp', 'tr_surface.cpp', 'tr_vfx.cpp', 'tr_world.cpp',
 ]]
 
 client_files = ['src/client/' + f for f in [
-    'cl_cgame.c', 'cl_cin.c', 'cl_console.c', 'cl_input.c', 'cl_keys.c',
-    'cl_main.c', 'cl_net_chan.c', 'cl_parse.c', 'cl_qgl.c', 'cl_scrn.c', 'cl_ui.c',
-    'snd_adpcm.c', 'snd_dma.c', 'snd_mem.c', 'snd_mix.c', 'snd_wavelet.c',
+    'cl_cgame.cpp', 'cl_cin.cpp', 'cl_console.cpp', 'cl_input.cpp', 'cl_keys.cpp',
+    'cl_main.cpp', 'cl_net_chan.cpp', 'cl_parse.cpp', 'cl_scrn.cpp', 'cl_ui.cpp',
+    'snd_adpcm.cpp', 'snd_dma.cpp', 'snd_mem.cpp', 'snd_mix.cpp', 'snd_wavelet.cpp',
 ]]
 
 qcommon_files = ['src/qcommon/' + f for f in [
-    'cm_load.c', 'cm_patch.c', 'cm_polylib.c', 'cm_test.c', 'cm_trace.c',
-    'cmd.c', 'common.c', 'cvar.c', 'files.c', 'huffman.c', 'md4.c', 'msg.c',
-    'net_chan.c', 'unzip.c',
+    'cm_load.cpp', 'cm_patch.cpp', 'cm_polylib.cpp', 'cm_test.cpp', 'cm_trace.cpp',
+    'cmd.cpp', 'common.cpp', 'cvar.cpp', 'files.cpp', 'huffman.cpp', 'md4.cpp', 'msg.cpp',
+    'net_chan.cpp', 'unzip.cpp',
 ]]
 
 server_files = ['src/server/' + f for f in [
-    'sv_bot.c', 'sv_ccmds.c', 'sv_client.c', 'sv_game.c', 'sv_init.c',
-    'sv_main.c', 'sv_net_chan.c', 'sv_snapshot.c', 'sv_world.c',
+    'sv_bot.cpp', 'sv_ccmds.cpp', 'sv_client.cpp', 'sv_game.cpp', 'sv_init.cpp',
+    'sv_main.cpp', 'sv_net_chan.cpp', 'sv_snapshot.cpp', 'sv_world.cpp',
 ]]
 
 splines_files = ['src/splines/' + f for f in [
@@ -700,35 +701,29 @@ splines_files = ['src/splines/' + f for f in [
 ]]
 
 botlib_files = ['src/games/botlib/' + f for f in [
-    'be_aas_bspq3.c', 'be_aas_cluster.c', 'be_aas_debug.c',
-    'be_aas_entity.c', 'be_aas_file.c', 'be_aas_main.c', 'be_aas_move.c',
-    'be_aas_optimize.c', 'be_aas_reach.c', 'be_aas_route.c',
-    'be_aas_routealt.c', 'be_aas_routetable.c', 'be_aas_sample.c',
-    'be_ai_char.c', 'be_ai_chat.c', 'be_ai_gen.c', 'be_ai_goal.c',
-    'be_ai_move.c', 'be_ai_weap.c', 'be_ai_weight.c', 'be_ea.c',
-    'be_interface.c', 'l_crc.c', 'l_libvar.c', 'l_log.c', 'l_memory.c',
-    'l_precomp.c', 'l_script.c', 'l_struct.c',
+    'be_ai_char.cpp', 'be_ai_chat.cpp', 'be_ai_gen.cpp', 'be_ai_goal.cpp',
+    'be_ai_move.cpp', 'be_ai_weap.cpp', 'be_ai_weight.cpp', 'be_ea.cpp',
+    'be_interface.cpp', 'be_nav_interface.cpp', 'l_crc.cpp', 'l_libvar.cpp',
+    'l_log.cpp', 'l_memory.cpp', 'l_precomp.cpp', 'l_script.cpp', 'l_struct.cpp',
 ]]
 
 
 unix_sys_files = ['src/sys/unix/' + f for f in [
-    'unix_main.c', 'unix_net.c', 'unix_shared.c', 'linux_common.c',
-    'linux_glimp.c', 'linux_joystick.c', 'linux_snd.c',
+    'unix_main.cpp', 'unix_net.cpp', 'unix_shared.cpp', 'linux_common.cpp',
+    'linux_glimp.cpp', 'linux_joystick.cpp', 'linux_qgl.cpp', 'linux_snd.cpp',
 ]]
 # the unix asm files are not built: q_shared.h forces id386 to 0, so the
 # portable C implementations are used
 
 win_sys_files = ['src/sys/win32/' + f for f in [
-    'win_gamma.c', 'win_glimp.c', 'win_input.c', 'win_main.c', 'win_net.c',
-    'win_shared.c', 'win_snd.c', 'win_syscon.c',
-    'win_wndproc.c',
+    'win_gamma.cpp', 'win_glimp.cpp', 'win_input.cpp', 'win_main.cpp', 'win_net.cpp',
+    'win_qgl.cpp', 'win_shared.cpp', 'win_snd.cpp', 'win_syscon.cpp',
+    'win_wndproc.cpp',
 ]]
 
 # ---------------------------------------------------------------- client
 
 client_env = env.Clone()
-# engine units include the renderer headers, so they see glad too
-client_env.Append(CPPPATH=['src/third-party/glad/include'])
 # botlib is always linked into the executable; each hard-linked module
 # adds its define so the engine calls it directly instead of loading it
 client_env.Append(CPPDEFINES=['BOTLIB_HARD_LINKED'] + [m.upper() + '_HARD_LINKED' for m in HARDLINK])
@@ -743,9 +738,11 @@ else:
 
 sys_files = win_sys_files if IS_WINDOWS else unix_sys_files
 
+# the renderer is built into the executable, so its sources compile
+# straight into the client image
 client_sources = (
-    client_files + qcommon_files + server_files +
-    ['src/qcommon/q_shared.c', 'src/qcommon/q_math.c'] +
+    client_files + qcommon_files + server_files + renderer_files +
+    ['src/games/game/q_shared.cpp', 'src/games/game/q_math.cpp'] +
     sys_files + splines_files
 )
 client_objs = module_objects(client_env, 'client', client_sources)
@@ -753,6 +750,29 @@ client_objs = module_objects(client_env, 'client', client_sources)
 botlib_env = client_env.Clone()
 botlib_env.Append(CPPDEFINES=['BOTLIB'])
 client_objs += module_objects(botlib_env, 'client', botlib_files)
+
+# stb is vendored third party code, its warnings stay muted; stb_impl.c
+# is the single unit that pulls in the implementations
+client_stb_env = client_env.Clone()
+if IS_WINDOWS:
+    client_stb_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    client_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+client_objs += module_objects(client_stb_env, 'client', ['src/third-party/stb/stb_impl.c'])
+
+# Detour is the vendored runtime navigation library behind botlib's nav
+# interface; vendored third party code, so its warnings stay muted
+detour_files = ['src/third-party/recast/Detour/Source/' + f for f in [
+    'DetourAlloc.cpp', 'DetourAssert.cpp', 'DetourCommon.cpp',
+    'DetourNavMesh.cpp', 'DetourNavMeshBuilder.cpp',
+    'DetourNavMeshQuery.cpp', 'DetourNode.cpp',
+]]
+detour_env = client_env.Clone()
+if IS_WINDOWS:
+    detour_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    detour_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+client_objs += module_objects(detour_env, 'client', detour_files)
 
 client_target = os.path.join(BIN_DIR, 'WolfSP' + ARCH_SUFFIX + EXE)
 client_res = []
@@ -776,7 +796,7 @@ if IS_WINDOWS:
 # table; host tool. With funcs=1 the game module build runs it to
 # regenerate its headers.
 extractfuncs_files = ['src/tools/extractfuncs/' + f for f in [
-    'extractfuncs.c', 'l_log.c', 'l_memory.c', 'l_precomp.c', 'l_script.c',
+    'extractfuncs.cpp', 'l_log.cpp', 'l_memory.cpp', 'l_precomp.cpp', 'l_script.cpp',
 ]]
 
 extractfuncs_env = env.Clone()
@@ -796,20 +816,14 @@ _track_progress(extractfuncs_env, extractfuncs_nodes)
 # ---------------------------------------------------------------- modules
 
 game_files = ['src/games/game/' + f for f in [
-    'ai_cast.c', 'ai_cast_characters.c', 'ai_cast_debug.c',
-    'ai_cast_events.c', 'ai_cast_fight.c', 'ai_cast_func_attack.c',
-    'ai_cast_func_boss1.c', 'ai_cast_funcs.c', 'ai_cast_script.c',
-    'ai_cast_script_actions.c', 'ai_cast_script_ents.c', 'ai_cast_sight.c',
-    'ai_cast_think.c', 'bg_animation.c', 'bg_misc.c', 'bg_pmove.c',
-    'bg_slidemove.c', 'g_active.c', 'g_alarm.c', 'g_bot.c', 'g_client.c',
-    'g_cmds.c', 'g_combat.c', 'g_items.c', 'g_main.c', 'g_mem.c', 'g_misc.c',
-    'g_missile.c', 'g_mover.c', 'g_props.c', 'g_save.c', 'g_script.c',
-    'g_script_actions.c', 'g_session.c', 'g_spawn.c', 'g_svcmds.c',
-    'g_syscalls.c', 'g_target.c', 'g_team.c', 'g_tramcar.c', 'g_trigger.c',
-    'g_utils.c', 'g_weapon.c',
-]] + ['src/games/botai/' + f for f in [
-    'ai_chat.c', 'ai_cmd.c', 'ai_dmnet.c', 'ai_dmq3.c', 'ai_main.c', 'ai_team.c',
-]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+    'bg_animation.cpp', 'bg_misc.cpp', 'bg_pmove.cpp',
+    'bg_slidemove.cpp', 'g_active.cpp', 'g_alarm.cpp', 'g_client.cpp',
+    'g_cmds.cpp', 'g_combat.cpp', 'g_items.cpp', 'g_main.cpp', 'g_mem.cpp',
+    'g_misc.cpp', 'g_missile.cpp', 'g_mover.cpp', 'g_props.cpp', 'g_save.cpp',
+    'g_script.cpp', 'g_script_actions.cpp', 'g_session.cpp', 'g_spawn.cpp',
+    'g_svcmds.cpp', 'g_syscalls.cpp', 'g_target.cpp', 'g_team.cpp',
+    'g_tramcar.cpp', 'g_trigger.cpp', 'g_utils.cpp', 'g_weapon.cpp',
+]] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
 
 # The savegame function table headers are checked in. The extractfuncs
 # scanner crashes under the modern 64 bit toolchains (heap corruption on
@@ -823,11 +837,11 @@ def run_extractfuncs(target, source, env):
     # Run from src/games/game so the headers land next to the sources.
     # Windows main() takes a file filter, Linux main() takes file names;
     # sorted names keep both platforms producing the same table. The
-    # scan files must not be Command sources: SCons scans .c sources for
+    # scan files must not be Command sources: SCons scans the sources for
     # includes, which made the headers depend on themselves.
     args = [source[0].abspath]
     if IS_WINDOWS:
-        args.append('*.c')
+        args.append('*.cpp')
     else:
         args += sorted(os.path.basename(f) for f in game_scan_files)
     return subprocess.call(args, cwd=GAME_SOURCE_DIR)
@@ -860,15 +874,18 @@ if 'game' not in HARDLINK:
     _track_progress(game_env, game_env.SharedLibrary(game_target, game_objs))
 
 cgame_files = ['src/games/game/' + f for f in [
-    'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
+    'bg_animation.cpp', 'bg_misc.cpp', 'bg_pmove.cpp', 'bg_slidemove.cpp',
 ]] + ['src/games/cgame/' + f for f in [
-    'cg_consolecmds.c', 'cg_draw.c', 'cg_drawtools.c', 'cg_effects.c',
-    'cg_ents.c', 'cg_event.c', 'cg_flamethrower.c', 'cg_info.c',
-    'cg_localents.c', 'cg_main.c', 'cg_marks.c', 'cg_newDraw.c',
-    'cg_particles.c', 'cg_players.c', 'cg_playerstate.c', 'cg_predict.c',
-    'cg_scoreboard.c', 'cg_servercmds.c', 'cg_snapshot.c', 'cg_sound.c',
-    'cg_syscalls.c', 'cg_trails.c', 'cg_view.c', 'cg_weapons.c',
-]] + ['src/games/ui/ui_shared.c'] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+    'cg_consolecmds.cpp', 'cg_draw.cpp', 'cg_drawtools.cpp', 'cg_effects.cpp',
+    'cg_ents.cpp', 'cg_event.cpp', 'cg_fx.cpp', 'cg_fx_entities.cpp',
+    'cg_fx_flame.cpp', 'cg_fx_marks.cpp', 'cg_fx_particles.cpp',
+    'cg_fx_trails.cpp', 'cg_info.cpp', 'cg_main.cpp', 'cg_newDraw.cpp',
+    'cg_players.cpp', 'cg_playerstate.cpp', 'cg_predict.cpp',
+    'cg_scoreboard.cpp', 'cg_servercmds.cpp', 'cg_snapshot.cpp', 'cg_sound.cpp',
+    'cg_syscalls.cpp', 'cg_view.cpp', 'cg_weapons.cpp',
+    'FxPrimitives.cpp', 'FxScheduler.cpp', 'FxSystem.cpp', 'FxTemplate.cpp',
+    'FxUtil.cpp', 'genericparser2.cpp',
+]] + ['src/games/ui/ui_shared.cpp'] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
 
 cgame_env = env.Clone()
 cgame_env.Append(CPPDEFINES=['CGAMEDLL'])
@@ -887,11 +904,11 @@ if 'cgame' not in HARDLINK:
     _track_progress(cgame_env, cgame_env.SharedLibrary(cgame_target, cgame_objs))
 
 ui_files = ['src/games/game/' + f for f in [
-    'bg_misc.c',
+    'bg_misc.cpp',
 ]] + ['src/games/ui/' + f for f in [
-    'ui_atoms.c', 'ui_gameinfo.c', 'ui_main.c', 'ui_players.c',
-    'ui_shared.c', 'ui_syscalls.c', 'ui_util.c',
-]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
+    'ui_atoms.cpp', 'ui_gameinfo.cpp', 'ui_main.cpp', 'ui_players.cpp',
+    'ui_shared.cpp', 'ui_syscalls.cpp', 'ui_util.cpp',
+]] + ['src/games/game/q_math.cpp', 'src/games/game/q_shared.cpp']
 
 ui_env = env.Clone()
 if 'ui' in HARDLINK:
@@ -907,115 +924,11 @@ ui_objs = module_objects(ui_env, 'ui', module_link_files('ui', ui_files), shared
 if 'ui' not in HARDLINK:
     _track_progress(ui_env, ui_env.SharedLibrary(ui_target, ui_objs))
 
-# ---------------------------------------------------------------- renderer
-
-renderer_module_files = module_link_files('renderer', renderer_files + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c'])
-
-renderer_env = env.Clone()
-renderer_env.Append(CPPDEFINES=['REFDLL'])
-if 'renderer' in HARDLINK:
-    # in one image the engine owns the video cvars and the import
-    # struct, so the renderer keeps off those names
-    renderer_env.Append(CPPDEFINES=['RENDERER_HARD_LINKED'])
-# glad supplies the OpenGL 3.3 compatibility profile and its loader
-renderer_env.Append(CPPPATH=['src/third-party/glad/include'])
-if IS_WINDOWS:
-    renderer_env.Append(LINKFLAGS=['/DEF:src/renderer/renderer.def'])
-else:
-    renderer_env.Append(LIBS=['dl', 'm'])
-    renderer_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-renderer_target = os.path.join(BIN_DIR, 'renderer_gl' + ARCH_SUFFIX + DLL)
-renderer_shared = (not IS_WINDOWS) and 'renderer' not in HARDLINK
-renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=renderer_shared)
-# stb is vendored third party code, its warnings stay muted; stb_impl.c
-# is the single unit that pulls in the implementations
-renderer_stb_env = renderer_env.Clone()
-if IS_WINDOWS:
-    renderer_stb_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
-else:
-    renderer_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=renderer_shared)
-# glad is vendored third party code, its warnings stay muted
-renderer_glad_env = renderer_env.Clone()
-if IS_WINDOWS:
-    renderer_glad_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
-else:
-    renderer_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-renderer_objs += module_objects(renderer_glad_env, 'renderer', ['src/third-party/glad/src/gl.c'], shared=renderer_shared)
-if 'renderer' not in HARDLINK:
-    _track_progress(renderer_env, renderer_env.SharedLibrary(renderer_target, renderer_objs))
-
-# ---------------------------------------------------------------- idlib
-
-# the Doom 3 BFG idlib port behind the new renderer; kept close to the
-# original, so it needs C++14 and its warnings stay muted
-idlib_files = ['src/idlib/' + f for f in [
-    'Heap.cpp', 'Str.cpp', 'Lib.cpp',
-    'Token.cpp', 'Lexer.cpp', 'Parser.cpp',
-    'sys/sys_assert.cpp',
-    'containers/HashIndex.cpp',
-    'math/Math.cpp', 'math/Vector.cpp', 'math/Matrix.cpp', 'math/Angles.cpp',
-    'math/Quat.cpp', 'math/Plane.cpp', 'math/Rotation.cpp', 'math/VecX.cpp',
-    'math/MatX.cpp',
-    'bv/Bounds.cpp', 'bv/Box.cpp', 'bv/Sphere.cpp',
-    'geometry/DrawVert.cpp', 'geometry/JointTransform.cpp',
-    'geometry/RenderMatrix.cpp',
-]]
-
-idlib_env = env.Clone()
-if IS_WINDOWS:
-    idlib_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
-else:
-    idlib_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
-# let SCons name the library (libidlib.a / idlib.lib); naming the file
-# idlib.a left the Default() target without a builder on Linux.
-# The objects are position independent on Linux: they link into a
-# shared library.
-idlib_objs = module_objects(idlib_env, 'idlib', idlib_files, shared=not IS_WINDOWS)
-idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), idlib_objs)
-_track_progress(idlib_env, idlib_target)
-
-# ------------------------------------------------------- renderer-bfg
-
-# the new Doom 3 BFG based renderer; vendored port, so its warnings
-# stay muted like the rest of the third party code
-renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
-    'RenderWorld.cpp', 'RenderEntity.cpp', 'ScreenRect.cpp',
-    'RenderSystem.cpp', 'GLContext.cpp',
-    'CVarSystem.cpp', 'GLMatrix.cpp', 'RenderLog.cpp',
-    'RenderProgs.cpp', 'RenderProgs_GLSL.cpp', 'Q3Patch.cpp', 'RenderWorld_load.cpp', 'Model.cpp', 'ModelManager.cpp',
-    'Model_md3.cpp', 'Model_mdc.cpp', 'Model_mds.cpp',
-    'Material.cpp',
-    'MaterialManager.cpp',
-    'Material_shader.cpp', 'Shadow.cpp', 'Backend.cpp',
-    'Tess.cpp', 'Tess_calc.cpp', 'Lighting.cpp', 'Surface.cpp',
-    'ImageManager.cpp', 'Image_files.cpp', 'Image_intrinsic.cpp', 'Image_process.cpp',
-]]
-
-renderer_bfg_env = env.Clone()
-renderer_bfg_env.Append(CPPPATH=['src/third-party/glad/include'])
-if IS_WINDOWS:
-    renderer_bfg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
-else:
-    renderer_bfg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
-renderer_bfg_objs = module_objects(renderer_bfg_env, 'renderer-bfg', renderer_bfg_files, shared=not IS_WINDOWS)
-# glad is vendored third party code
-renderer_bfg_glad_env = renderer_bfg_env.Clone()
-if IS_WINDOWS:
-    renderer_bfg_glad_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
-else:
-    renderer_bfg_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src/third-party/glad/src/gl.c'], shared=not IS_WINDOWS)
-renderer_bfg_objs += module_objects(renderer_bfg_env, 'renderer-bfg', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
-renderer_bfg_target = os.path.join(BIN_DIR, 'renderer_bfg' + ARCH_SUFFIX + DLL)
-# the idlib objects link straight into the shared library: SCons rejects
-# a static library node as a shared library source on Linux
-_track_progress(renderer_bfg_env, renderer_bfg_env.SharedLibrary(
-    renderer_bfg_target, renderer_bfg_objs + idlib_objs))
 
 # ------------------------------------------------------- client link
 
-# each hard-linked module contributes its objects to the engine image
+# each hard-linked module contributes its objects to the engine image;
+# the renderer objects are already part of client_objs
 client_link_objs = list(client_objs)
 if 'game' in HARDLINK:
     client_link_objs += game_objs
@@ -1023,15 +936,13 @@ if 'cgame' in HARDLINK:
     client_link_objs += cgame_objs
 if 'ui' in HARDLINK:
     client_link_objs += ui_objs
-if 'renderer' in HARDLINK:
-    client_link_objs += renderer_objs
 _track_progress(client_env, client_env.Program(
     client_target, client_link_objs + client_res))
 
 # ------------------------------------------------------- defaults
 
-defaults = [client_target, extractfuncs_target, idlib_target[0], renderer_bfg_target]
-for target, module in ((game_target, 'game'), (cgame_target, 'cgame'), (ui_target, 'ui'), (renderer_target, 'renderer')):
+defaults = [client_target, extractfuncs_target]
+for target, module in ((game_target, 'game'), (cgame_target, 'cgame'), (ui_target, 'ui')):
     if module not in HARDLINK:
         defaults.append(target)
 Default(*defaults)
@@ -1043,3 +954,4 @@ _PROGRESS_STATE['total'] = len(_PROGRESS_NODES)
 if _PROGRESS_ENABLED:
     _setup_progress_footer()
     _draw_progress(0, _PROGRESS_STATE['total'])
+

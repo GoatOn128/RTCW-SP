@@ -30,17 +30,15 @@ jobs:
         # string) or the include entries below would merge into the
         # existing legs instead of adding new ones
         hardlink: ['']
-        # cache key variant of hardlink: GitHub cache keys cannot
-        # contain commas, so hardlink=game,renderer keys the cache
-        # as game-renderer
         cachekey: ['']
         include:
-          # hard-link coverage: the game+renderer pair in one image
+          # hard-link coverage: the game module in one image; the
+          # renderer is always built into the executable now
           - os: ubuntu-latest
             arch: x64
             config: release
-            hardlink: 'game,renderer'
-            cachekey: 'game-renderer'
+            hardlink: 'game'
+            cachekey: 'game'
     steps:
       - uses: actions/checkout@v4
       - name: clean stale log
