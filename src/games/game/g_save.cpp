@@ -32,7 +32,7 @@ If you have questions concerning this license or the applicable additional terms
  */
 
 #include "../game/g_local.h"
-#include "../game/q_shared.h"
+#include "../../qcommon/q_shared.h"
 #include "../game/botlib.h"      //bot lib interface
 #include "../botlib/be_aas.h"
 #include "../botlib/be_ea.h"
@@ -77,7 +77,7 @@ typedef enum {
 } saveFieldtype_t;
 
 typedef struct {
-	int ofs;
+	size_t ofs;
 	saveFieldtype_t type;
 } saveField_t;
 
@@ -159,7 +159,7 @@ static saveField_t castStateFields[] = {
 //.......................................................................................
 // this is where we define fields or sections of structures that we should totally ignore
 typedef struct {
-	int ofs;
+	size_t ofs;
 	int len;
 } ignoreField_t;
 
@@ -200,7 +200,7 @@ static ignoreField_t castStateIgnoreFields[] = {
 // persistant data is optionally carried across level changes
 // !! WARNING: cannot save pointer or string variables
 typedef struct {
-	int ofs;
+	size_t ofs;
 	int len;
 } persField_t;
 

@@ -175,7 +175,7 @@ void G_Script_ScriptEvent( gentity_t *ent, char *eventStr, char *params );
 //====================================================================
 
 
-#define CFOFS( x ) ( (int)&( ( (gclient_t *)0 )->x ) )
+#define CFOFS( x ) ( (size_t)&( ( (gclient_t *)0 )->x ) )
 
 struct gentity_s {
 	entityState_t s;                // communicated by server to clients
@@ -798,7 +798,7 @@ int G_ModelIndex( char *name );
 int     G_SoundIndex( const char *name );
 void    G_TeamCommand( team_t team, char *cmd );
 void    G_KillBox( gentity_t *ent );
-gentity_t *G_Find( gentity_t *from, int fieldofs, const char *match );
+gentity_t *G_Find( gentity_t *from, size_t fieldofs, const char *match );
 gentity_t *G_PickTarget( char *targetname );
 void    G_UseTargets( gentity_t *ent, gentity_t *activator );
 void    G_SetMovedir( vec3_t angles, vec3_t movedir );
@@ -1051,7 +1051,7 @@ extern level_locals_t level;
 extern gentity_t g_entities[MAX_GENTITIES];
 extern gentity_t       *g_camEnt;
 
-#define FOFS( x ) ( (int)&( ( (gentity_t *)0 )->x ) )
+#define FOFS( x ) ( (size_t)&( ( (gentity_t *)0 )->x ) )
 
 extern vmCvar_t g_gametype;
 
@@ -1184,7 +1184,7 @@ int     trap_BotAllocateClient( void );
 void    trap_BotFreeClient( int clientNum );
 void    trap_GetUsercmd( int clientNum, usercmd_t *cmd );
 qboolean    trap_GetEntityToken( char *buffer, int bufferSize );
-qboolean trap_GetTag( int clientNum, char *tagName, orientation_t * or );
+qboolean trap_GetTag( int clientNum, char *tagName, orientation_t *tagOrientation );
 
 int     trap_DebugPolygonCreate( int color, int numPoints, vec3_t *points );
 void    trap_DebugPolygonDelete( int id );
