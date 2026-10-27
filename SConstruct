@@ -407,6 +407,8 @@ renderer_module_files = module_link_files('renderer', renderer_files + ['src/qco
 
 renderer_env = env.Clone()
 renderer_env.Append(CPPDEFINES=['REFDLL'])
+# glad supplies the OpenGL 3.3 compatibility profile and its loader
+renderer_env.Append(CPPPATH=['src/third-party/glad/include'])
 if IS_WINDOWS:
     renderer_env.Append(LINKFLAGS=['/DEF:src/renderer/renderer.def'])
 else:
@@ -423,6 +425,13 @@ if IS_WINDOWS:
 else:
     renderer_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=renderer_shared)
+# glad is vendored third party code, its warnings stay muted
+renderer_glad_env = renderer_env.Clone()
+if IS_WINDOWS:
+    renderer_glad_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    renderer_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+renderer_objs += module_objects(renderer_glad_env, 'renderer', ['src/third-party/glad/src/gl.c'], shared=renderer_shared)
 if 'renderer' not in HARDLINK:
     renderer_env.SharedLibrary(renderer_target, renderer_objs)
 
