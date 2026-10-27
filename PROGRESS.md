@@ -25,8 +25,18 @@ material and is never modified.
    tracing, decals and overlays, the demo code, FindPortal and the
    winding code.
 
-🚧 Phase 3 - GLSL backend
-   Shader programs and material stages on top of the BFG GLSL paths.
+✅ Phase 3 - GLSL backend
+   The idlib token, lexer and parser, the cvar, matrix and render log
+   support files, and the idRenderProgManager with the CG to GLSL
+   converter and the builtin shader table. Builds green on every CI
+   config. Deferred to later phases: the material stages (Material
+   needs the decl manager and idImage), the RenderScene backend and
+   the view structures, the full render log (needs the engine file
+   system), the reloadShaders command hookup and the GLSL file cache.
+   The shader loader reads the CG sources from a renderprogs directory
+   next to the working directory; references/doom3bfg-renderprogs holds
+   them as reference data, the install location is decided by the
+   engine integration phase.
 
 ⬜ Phase 4 - Q3 BSP adapter
    Load the RTCW .bsp files: surfaces, patches, lightmaps and vis data
@@ -50,4 +60,4 @@ material and is never modified.
 - glad is already vendored under src/third-party/glad (glad 2.0.8,
   GL 3.3 compatibility profile, ALIAS mode).
 - idlib printing and errors go to stdout and stderr until the engine is
-  hooked up in phase 2.
+  hooked up by the engine integration phase.
