@@ -63,7 +63,7 @@ void CL_RegisterVideoCvars( void ) {
 	r_stencilbits = Cvar_Get( "r_stencilbits", "0", CVAR_ARCHIVE | CVAR_LATCH );
 	r_depthbits = Cvar_Get( "r_depthbits", "0", CVAR_ARCHIVE | CVAR_LATCH );
 	r_ignorehwgamma = Cvar_Get( "r_ignorehwgamma", "1", CVAR_ARCHIVE | CVAR_LATCH );
-	r_mode = Cvar_Get( "r_mode", "3", CVAR_ARCHIVE | CVAR_LATCH );
+	r_mode = Cvar_Get( "r_mode", "-2", CVAR_ARCHIVE | CVAR_LATCH );
 	r_fullscreen = Cvar_Get( "r_fullscreen", "1", CVAR_ARCHIVE | CVAR_LATCH );
 	r_displayRefresh = Cvar_Get( "r_displayRefresh", "0", CVAR_LATCH );
 	r_swapInterval = Cvar_Get( "r_swapInterval", "0", CVAR_ARCHIVE );
@@ -74,54 +74,75 @@ void CL_RegisterVideoCvars( void ) {
 
 /*
 ** R_GetModeInfo
+
+The BFG edition video mode system: the platform GL layer enumerates
+the modes the display reports into this table at startup, so r_mode
+values from 0 up index what the hardware actually supports. r_mode -2
+uses the current desktop resolution and r_mode -1 the r_customwidth,
+r_customheight cvars.
 */
+#define MAX_VID_MODES 128
+
 typedef struct vidmode_s
 {
-	const char *description;
 	int width, height;
-	float pixelAspect;              // pixel width / height
 } vidmode_t;
 
-static vidmode_t r_vidModes[] =
-{
-	{ "Mode  0: 320x240",        320,    240,    1 },
-	{ "Mode  1: 400x300",        400,    300,    1 },
-	{ "Mode  2: 512x384",        512,    384,    1 },
-	{ "Mode  3: 640x480",        640,    480,    1 },
-	{ "Mode  4: 800x600",        800,    600,    1 },
-	{ "Mode  5: 960x720",        960,    720,    1 },
-	{ "Mode  6: 1024x768",       1024,   768,    1 },
-	{ "Mode  7: 1152x864",       1152,   864,    1 },
-	{ "Mode  8: 1280x1024",      1280,   1024,   1 },
-	{ "Mode  9: 1600x1200",      1600,   1200,   1 },
-	{ "Mode 10: 2048x1536",      2048,   1536,   1 },
-	{ "Mode 11: 856x480 (wide)",856, 480,    1 },
-	{ "Mode 12: 1920x1200 (wide)",1920,  1200,   1 }     //----(SA)	added
-};
-static int s_numVidModes = ( sizeof( r_vidModes ) / sizeof( r_vidModes[0] ) );
+static vidmode_t r_vidModes[MAX_VID_MODES];
+static int s_numVidModes = 0;
+
+// the desktop resolution the platform layer reports for r_mode -2
+static int r_desktopWidth = 0;
+static int r_desktopHeight = 0;
+
+void R_SetDesktopResolution( int width, int height ) {
+	r_desktopWidth = width;
+	r_desktopHeight = height;
+}
+
+// add a mode to the list, skipping sizes that are already in it
+void R_AddVideoMode( int width, int height ) {
+	int i;
+
+	if ( s_numVidModes >= MAX_VID_MODES ) {
+		return;
+	}
+	for ( i = 0; i < s_numVidModes; i++ ) {
+		if ( r_vidModes[i].width == width && r_vidModes[i].height == height ) {
+			return;
+		}
+	}
+
+	r_vidModes[s_numVidModes].width = width;
+	r_vidModes[s_numVidModes].height = height;
+	s_numVidModes++;
+}
 
 qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode ) {
-	vidmode_t   *vm;
-
-	if ( mode < -1 ) {
-		return qfalse;
-	}
-	if ( mode >= s_numVidModes ) {
-		return qfalse;
-	}
-
-	if ( mode == -1 ) {
+	if ( mode == -2 ) {
+		// desktop resolution
+		if ( r_desktopWidth <= 0 || r_desktopHeight <= 0 ) {
+			return qfalse;
+		}
+		*width = r_desktopWidth;
+		*height = r_desktopHeight;
+	} else if ( mode == -1 ) {
+		// custom resolution through the cvars
 		*width = Cvar_VariableIntegerValue( "r_customwidth" );
 		*height = Cvar_VariableIntegerValue( "r_customheight" );
-		*windowAspect = Cvar_VariableValue( "r_customaspect" );
-		return qtrue;
+		if ( *width <= 0 || *height <= 0 ) {
+			return qfalse;
+		}
+	} else
+	{
+		if ( mode < 0 || mode >= s_numVidModes ) {
+			return qfalse;
+		}
+		*width = r_vidModes[mode].width;
+		*height = r_vidModes[mode].height;
 	}
 
-	vm = &r_vidModes[mode];
-
-	*width  = vm->width;
-	*height = vm->height;
-	*windowAspect = (float)vm->width / ( vm->height * vm->pixelAspect );
+	*windowAspect = (float)*width / ( *height );
 
 	return qtrue;
 }
@@ -133,9 +154,11 @@ void R_ModeList_f( void ) {
 	int i;
 
 	Com_Printf( "\n" );
+	Com_Printf( "Mode -2: desktop resolution\n" );
+	Com_Printf( "Mode -1: r_customwidth x r_customheight\n" );
 	for ( i = 0; i < s_numVidModes; i++ )
 	{
-		Com_Printf( "%s\n", r_vidModes[i].description );
+		Com_Printf( "Mode %2d: %4d x %d\n", i, r_vidModes[i].width, r_vidModes[i].height );
 	}
 	Com_Printf( "\n" );
 }

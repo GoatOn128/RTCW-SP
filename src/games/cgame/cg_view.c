@@ -892,9 +892,13 @@ static int CG_CalcFov( void ) {
 		fov_x = 55;
 	}
 
-	x = cg.refdef.width / tan( fov_x / 360 * M_PI );
-	fov_y = atan2( cg.refdef.height, x );
-	fov_y = fov_y * 360 / M_PI;
+	// BFG edition widescreen: fov_x is the horizontal FOV a 4:3 window
+	// would have. Derive the vertical FOV from that 4:3 reference, then
+	// widen the horizontal FOV for the real window aspect, so widescreen
+	// resolutions show more to the sides instead of cropping the view
+	x = 2 * atan( 0.75 * tan( fov_x / 360 * M_PI ) );
+	fov_y = x * 360 / M_PI;
+	fov_x = 2 * atan( tan( x ) * cg.refdef.width / cg.refdef.height ) * 360 / M_PI;
 
 	// warp if underwater
 	contents = CG_PointContents( cg.refdef.vieworg, -1 );

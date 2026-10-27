@@ -899,8 +899,30 @@ void GLimp_EndFrame( void ) {
 }
 
 
+static void GLW_EnumerateVideoModes( void ) {
+	DEVMODE dm;
+	HDC hDC;
+	int modeNum;
+
+	hDC = GetDC( GetDesktopWindow() );
+	R_SetDesktopResolution( GetDeviceCaps( hDC, HORZRES ), GetDeviceCaps( hDC, VERTRES ) );
+	ReleaseDC( GetDesktopWindow(), hDC );
+
+	memset( &dm, 0, sizeof( dm ) );
+	dm.dmSize = sizeof( dm );
+	for ( modeNum = 0; EnumDisplaySettings( NULL, modeNum, &dm ); modeNum++ ) {
+		if ( dm.dmBitsPerPel >= 15 ) {
+			R_AddVideoMode( dm.dmPelsWidth, dm.dmPelsHeight );
+		}
+	}
+}
+
 static void GLW_StartOpenGL( void ) {
 	glConfig.driverType = GLDRV_ICD;
+
+	// BFG edition: enumerate the modes the display reports instead of
+	// using a hardcoded table
+	GLW_EnumerateVideoModes();
 
 	// opengl32.dll is linked with the client; create the window and set up
 	// the context, no driver dll to load anymore
@@ -909,8 +931,8 @@ static void GLW_StartOpenGL( void ) {
 		// try it again but with a 16-bit desktop
 		if ( r_colorbits->integer != 16 ||
 			 !r_fullscreen->integer ||
-			 r_mode->integer != 3 ) {
-			if ( !GLW_StartDriverAndSetMode( 3, 16, qtrue ) ) {
+			 r_mode->integer != -2 ) {
+			if ( !GLW_StartDriverAndSetMode( -2, 16, qtrue ) ) {
 				ri.Error( ERR_FATAL, "GLW_StartOpenGL() - could not load OpenGL subsystem\n" );
 			}
 		} else

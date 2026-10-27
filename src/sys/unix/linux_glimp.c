@@ -814,14 +814,6 @@ int GLW_SetMode( int mode, qboolean fullscreen ) {
 
 	ri.Printf( PRINT_ALL, "Initializing OpenGL display\n" );
 
-	ri.Printf( PRINT_ALL, "...setting mode %d:", mode );
-
-	if ( !R_GetModeInfo( &glConfig.vidWidth, &glConfig.vidHeight, &glConfig.windowAspect, mode ) ) {
-		ri.Printf( PRINT_ALL, " invalid mode\n" );
-		return RSERR_INVALID_MODE;
-	}
-	ri.Printf( PRINT_ALL, " %d %d\n", glConfig.vidWidth, glConfig.vidHeight );
-
 	if ( !( dpy = XOpenDisplay( NULL ) ) ) {
 		fprintf( stderr, "Error couldn't open the X display\n" );
 		return RSERR_INVALID_MODE;
@@ -829,9 +821,6 @@ int GLW_SetMode( int mode, qboolean fullscreen ) {
 
 	scrnum = DefaultScreen( dpy );
 	root = RootWindow( dpy, scrnum );
-
-	actualWidth = glConfig.vidWidth;
-	actualHeight = glConfig.vidHeight;
 
 	// Get video mode list
 	if ( !XF86VidModeQueryVersion( dpy, &vidmode_MajorVersion, &vidmode_MinorVersion ) ) {
@@ -842,6 +831,29 @@ int GLW_SetMode( int mode, qboolean fullscreen ) {
 				   vidmode_MajorVersion, vidmode_MinorVersion );
 		vidmode_ext = qtrue;
 	}
+
+	// BFG edition: enumerate the modes the display reports into the
+	// engine side video mode table, then resolve the mode now that the
+	// list is filled
+	R_SetDesktopResolution( DisplayWidth( dpy, scrnum ), DisplayHeight( dpy, scrnum ) );
+	if ( vidmode_ext ) {
+		int m;
+
+		XF86VidModeGetAllModeLines( dpy, scrnum, &num_vidmodes, &vidmodes );
+		for ( m = 0; m < num_vidmodes; m++ ) {
+			R_AddVideoMode( vidmodes[m]->hdisplay, vidmodes[m]->vdisplay );
+		}
+	}
+
+	ri.Printf( PRINT_ALL, "...setting mode %d:", mode );
+	if ( !R_GetModeInfo( &glConfig.vidWidth, &glConfig.vidHeight, &glConfig.windowAspect, mode ) ) {
+		ri.Printf( PRINT_ALL, " invalid mode\n" );
+		return RSERR_INVALID_MODE;
+	}
+	ri.Printf( PRINT_ALL, " %d %d\n", glConfig.vidWidth, glConfig.vidHeight );
+
+	actualWidth = glConfig.vidWidth;
+	actualHeight = glConfig.vidHeight;
 
 	// Check for DGA
 	dga_MajorVersion = 0, dga_MinorVersion = 0;
@@ -859,8 +871,6 @@ int GLW_SetMode( int mode, qboolean fullscreen ) {
 
 	if ( vidmode_ext ) {
 		int best_fit, best_dist, dist, x, y;
-
-		XF86VidModeGetAllModeLines( dpy, scrnum, &num_vidmodes, &vidmodes );
 
 		// Are we going fullscreen?  If so, let's change video mode
 		if ( fullscreen ) {
@@ -1106,8 +1116,8 @@ void GLimp_Init( void ) {
 
 	// glX* are real libGL entry points, no driver library to pick anymore
 	if ( !GLW_StartDriverAndSetMode( r_mode->integer, r_fullscreen->integer ) ) {
-		if ( r_mode->integer != 3 ) {
-			if ( !GLW_StartDriverAndSetMode( 3, r_fullscreen->integer ) ) {
+		if ( r_mode->integer != -2 ) {
+			if ( !GLW_StartDriverAndSetMode( -2, r_fullscreen->integer ) ) {
 				ri.Error( ERR_FATAL, "GLimp_Init() - could not load OpenGL subsystem\n" );
 			}
 		} else

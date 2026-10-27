@@ -829,10 +829,14 @@ void R_SetupProjection( void ) {
 		zFar = tr.viewParms.zFar;
 	}
 
+	// BFG edition widescreen: the vertical FOV is aspect independent,
+	// the horizontal extents are derived from it and the actual window
+	// aspect, so widescreen resolutions show more to the sides instead
+	// of cropping the view
 	ymax = zNear * tan( tr.refdef.fov_y * M_PI / 360.0f );
 	ymin = -ymax;
 
-	xmax = zNear * tan( tr.refdef.fov_x * M_PI / 360.0f );
+	xmax = ymax * (float)tr.viewParms.viewportWidth / tr.viewParms.viewportHeight;
 	xmin = -xmax;
 
 	width = xmax - xmin;
