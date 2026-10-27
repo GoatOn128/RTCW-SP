@@ -942,7 +942,7 @@ Touch all known used data to make sure it is paged in
 void Com_TouchMemory( void ) {
 	int start, end;
 	int i, j;
-	int sum;
+	volatile int sum;
 
 	start = Sys_Milliseconds();
 
@@ -1011,7 +1011,7 @@ Hunk_SmallLog
 void Hunk_SmallLog( void ) {
 	hunkblock_t *block, *block2;
 	char buf[4096];
-	int size, locsize, numBlocks;
+	int size, numBlocks;
 
 	if ( !logfile || !FS_Initialized() ) {
 		return;
@@ -1027,7 +1027,6 @@ void Hunk_SmallLog( void ) {
 		if ( block->printed ) {
 			continue;
 		}
-		locsize = block->size;
 		for ( block2 = block->next; block2; block2 = block2->next ) {
 			if ( block->line != block2->line ) {
 				continue;
@@ -1036,11 +1035,10 @@ void Hunk_SmallLog( void ) {
 				continue;
 			}
 			size += block2->size;
-			locsize += block2->size;
 			block2->printed = qtrue;
 		}
 #ifdef HUNK_DEBUG
-		Com_sprintf( buf, sizeof( buf ), "size = %8d: %s, line: %d (%s)\r\n", locsize, block->file, block->line, block->label );
+		Com_sprintf( buf, sizeof( buf ), "size = %8d: %s, line: %d (%s)\r\n", block->size, block->file, block->line, block->label );
 		FS_Write( buf, strlen( buf ), logfile );
 #endif
 		size += block->size;
@@ -2267,7 +2265,6 @@ void Com_Frame( void ) {
 
 	int msec, minMsec;
 	static int lastTime;
-	int key;
 
 	int timeBeforeFirstEvents;
 	int timeBeforeServer;
@@ -2292,8 +2289,6 @@ void Com_Frame( void ) {
 	timeAfter = 0;
 
 
-	// old net chan encryption key
-	key = 0x87243987;
 
 	// write config file if anything changed
 	Com_WriteConfiguration();
