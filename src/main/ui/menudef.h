@@ -64,7 +64,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #define WINDOW_STYLE_EMPTY          0       // no background
 #define WINDOW_STYLE_FILLED         1       // filled with background color
-#define WINDOW_STYLE_GRADIENT		2       // gradient bar based on background color
+#define WINDOW_STYLE_GRADIENT       2       // gradient bar based on background color
 #define WINDOW_STYLE_SHADER         3       // gradient bar based on background color
 #define WINDOW_STYLE_TEAMCOLOR      4       // team color
 #define WINDOW_STYLE_CINEMATIC      5       // cinematic
@@ -143,7 +143,7 @@ If you have questions concerning this license or the applicable additional terms
 #define UI_SHOW_ANYTEAMGAME                 0x00000010
 #define UI_SHOW_NEWHIGHSCORE                0x00000020
 #define UI_SHOW_DEMOAVAILABLE               0x00000040
-#define UI_SHOW_NEWBESTTIME					0x00000080
+#define UI_SHOW_NEWBESTTIME                 0x00000080
 #define UI_SHOW_FFA                         0x00000100
 #define UI_SHOW_NOTFFA                      0x00000200
 #define UI_SHOW_NETANYNONTEAMGAME           0x00000400

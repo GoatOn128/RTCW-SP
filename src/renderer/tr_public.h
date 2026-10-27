@@ -172,7 +172,7 @@ typedef struct {
 
 	// cinematic stuff
 	void ( *CIN_UploadCinematic )( int handle );
-	int( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
+	int ( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
 	e_status ( *CIN_RunCinematic )( int handle );
 
 } refimport_t;
