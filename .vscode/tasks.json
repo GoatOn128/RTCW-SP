@@ -50,11 +50,40 @@
             ]
         },
         {
+            "label": "Build (x86 debug)",
+            "type": "shell",
+            "command": "scons",
+            "args": [
+                "arch=x86",
+                "config=debug",
+                "-j8"
+            ],
+            "problemMatcher": [
+                "$msCompile",
+                "$gcc"
+            ]
+        },
+        {
             "label": "Build (x64 release, renderer hard-linked)",
             "type": "shell",
             "command": "scons",
             "args": [
                 "arch=x64",
+                "config=release",
+                "hardlink=renderer",
+                "-j8"
+            ],
+            "problemMatcher": [
+                "$msCompile",
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build (x86 release, renderer hard-linked)",
+            "type": "shell",
+            "command": "scons",
+            "args": [
+                "arch=x86",
                 "config=release",
                 "hardlink=renderer",
                 "-j8"
