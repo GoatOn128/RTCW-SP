@@ -17,7 +17,7 @@ material and is never modified.
    fetched through the API), the SIMD processor, the parser and dict
    files.
 
-⬜ Phase 2 - renderer module skeleton
+🚧 Phase 2 - renderer module skeleton
    A new renderer module with its glad context, the surface and area
    structures, and the idRenderWorld API shape. RenderMatrix.cpp lands
    here.

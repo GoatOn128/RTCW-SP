@@ -368,6 +368,38 @@ else:
 # Linux, idlib.lib on Windows) and hand Default() the node the builder
 # returned; naming the file idlib.a left the Default() target without
 # a builder on Linux
-idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), module_objects(idlib_env, 'idlib', idlib_files))
+# the objects are built position independent on Linux: the library is
+# linked into the renderer_bfg shared library, which only accepts PIC
+# objects there
+idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), module_objects(idlib_env, 'idlib', idlib_files, shared=not IS_WINDOWS))
 
-Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0])
+# ------------------------------------------------------- renderer-bfg
+
+# the renderer-bfg module is the new Doom 3 BFG based renderer; this
+# phase holds the world structures, the render system interface and
+# the glad context, the later phases add the frontend and the backend
+renderer_bfg_files = ['src/renderer-bfg/' + f for f in [
+    'RenderWorld.cpp', 'RenderEntity.cpp', 'ScreenRect.cpp',
+    'RenderSystem.cpp', 'GLContext.cpp',
+]]
+
+renderer_bfg_env = env.Clone()
+renderer_bfg_env.Append(CPPPATH=['src/third-party/glad/include'])
+if IS_WINDOWS:
+    renderer_bfg_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/std:c++14', '/W0'])
+else:
+    renderer_bfg_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-std=c++14', '-w'])
+renderer_bfg_objs = module_objects(renderer_bfg_env, 'renderer-bfg', renderer_bfg_files, shared=not IS_WINDOWS)
+# glad is vendored third party code so its warnings are muted entirely
+renderer_bfg_glad_env = renderer_bfg_env.Clone()
+if IS_WINDOWS:
+    renderer_bfg_glad_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    renderer_bfg_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src/third-party/glad/src/gl.c'], shared=not IS_WINDOWS)
+renderer_bfg_target = os.path.join(BUILD_DIR, 'renderer_bfg' + DLL)
+# the idlib static library is passed as a source so SCons links it into
+# the shared library on both platforms
+renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_target)
+
+Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0], renderer_bfg_target)
