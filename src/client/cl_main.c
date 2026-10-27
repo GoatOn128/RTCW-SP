@@ -94,10 +94,18 @@ clientStatic_t cls;
 // the handle of the loaded module
 refimport_t ri;
 glconfig_t glConfig;               // written by the platform GL layer
+#ifndef RENDERER_HARD_LINKED
 static void *ref_library = NULL;
+#endif
 static cvar_t *cl_renderer = NULL;
 
+#ifdef RENDERER_HARD_LINKED
+// hard-linked build: the renderer compiles straight into the engine
+// binary, so its entry point is a plain extern instead of a module symbol
+extern refexport_t *GetRefAPI( int apiVersion, refimport_t *rimp );
+#else
 typedef refexport_t * ( *GetRefAPI_t )( int apiVersion, refimport_t *rimp );
+#endif
 
 ping_t cl_pinglist[MAX_PINGREQUESTS];
 
@@ -2278,10 +2286,12 @@ void CL_ShutdownRef( void ) {
 	re.Shutdown( qtrue );
 	memset( &re, 0, sizeof( re ) );
 
+#ifndef RENDERER_HARD_LINKED
 	if ( ref_library ) {
 		Sys_UnloadModule( ref_library );
 		ref_library = NULL;
 	}
+#endif
 }
 
 /*
@@ -2352,7 +2362,9 @@ CL_InitRef
 */
 void CL_InitRef( void ) {
 	refexport_t *ret;
+#ifndef RENDERER_HARD_LINKED
 	GetRefAPI_t GetRefAPI_fn;
+#endif
 
 	Com_Printf( "----- Initializing Renderer ----\n" );
 
@@ -2413,6 +2425,10 @@ void CL_InitRef( void ) {
 
 	// load the renderer module named by the cl_renderer cvar
 	cl_renderer = Cvar_Get( "cl_renderer", "gl", CVAR_ARCHIVE );
+#ifdef RENDERER_HARD_LINKED
+	// the renderer is hard-linked into the engine binary, no module to load
+	ret = GetRefAPI( REF_API_VERSION, &ri );
+#else
 	ref_library = Sys_LoadModule( va( "renderer_%s", cl_renderer->string ) );
 	if ( !ref_library ) {
 		Com_Error( ERR_FATAL, "Failed to load renderer_%s", cl_renderer->string );
@@ -2426,6 +2442,7 @@ void CL_InitRef( void ) {
 	}
 
 	ret = GetRefAPI_fn( REF_API_VERSION, &ri );
+#endif
 
 #if 0 // MrE defined __USEA3D && defined __A3D_GEOM
 	hA3Dg_ExportRenderGeom( ret );
@@ -2434,8 +2451,10 @@ void CL_InitRef( void ) {
 	Com_Printf( "-------------------------------\n" );
 
 	if ( !ret ) {
+#ifndef RENDERER_HARD_LINKED
 		Sys_UnloadModule( ref_library );
 		ref_library = NULL;
+#endif
 		Com_Error( ERR_FATAL, "Couldn't initialize refresh" );
 	}
 
@@ -3669,3 +3688,4 @@ qboolean CL_GetLimboString( int index, char *buf ) {
 	return qtrue;
 }
 // -NERVE - SMF
+
