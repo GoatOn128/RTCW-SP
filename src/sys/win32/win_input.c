@@ -222,7 +222,6 @@ HRESULT( WINAPI * pDirectInputCreate )( HINSTANCE hinst, DWORD dwVersion,
 
 #endif ///// (SA) DOOMSOUND
 
-static HINSTANCE hInstDI;
 
 typedef struct MYDATA {
 	LONG lX;                    // X axis goes here
@@ -234,29 +233,9 @@ typedef struct MYDATA {
 	BYTE bButtonD;              // Another button goes here
 } MYDATA;
 
-static DIOBJECTDATAFORMAT rgodf[] = {
-	{ &GUID_XAxis,    FIELD_OFFSET( MYDATA, lX ),       DIDFT_AXIS | DIDFT_ANYINSTANCE,   0,},
-	{ &GUID_YAxis,    FIELD_OFFSET( MYDATA, lY ),       DIDFT_AXIS | DIDFT_ANYINSTANCE,   0,},
-	{ &GUID_ZAxis,    FIELD_OFFSET( MYDATA, lZ ),       0x80000000 | DIDFT_AXIS | DIDFT_ANYINSTANCE,   0,},
-	{ 0,              FIELD_OFFSET( MYDATA, bButtonA ), DIDFT_BUTTON | DIDFT_ANYINSTANCE, 0,},
-	{ 0,              FIELD_OFFSET( MYDATA, bButtonB ), DIDFT_BUTTON | DIDFT_ANYINSTANCE, 0,},
-	{ 0,              FIELD_OFFSET( MYDATA, bButtonC ), 0x80000000 | DIDFT_BUTTON | DIDFT_ANYINSTANCE, 0,},
-	{ 0,              FIELD_OFFSET( MYDATA, bButtonD ), 0x80000000 | DIDFT_BUTTON | DIDFT_ANYINSTANCE, 0,},
-};
 
-#define NUM_OBJECTS ( sizeof( rgodf ) / sizeof( rgodf[0] ) )
 
-static DIDATAFORMAT df = {
-	sizeof( DIDATAFORMAT ),       // this structure
-	sizeof( DIOBJECTDATAFORMAT ), // size of object data format
-	DIDF_RELAXIS,               // absolute axis coordinates
-	sizeof( MYDATA ),             // device data size
-	NUM_OBJECTS,                // number of objects
-	rgodf,                      // and here they are
-};
 
-static LPDIRECTINPUT g_pdi;
-static LPDIRECTINPUTDEVICE g_pMouse;
 
 /*
 ============================================================

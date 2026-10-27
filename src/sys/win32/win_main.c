@@ -711,8 +711,6 @@ typedef struct {
 	streamsIO_t sIO[64];
 } streamState_t;
 
-static streamState_t stream;
-
 int FS_ReadDirect( void *buffer, int len, fileHandle_t f );
 
 void Sys_MusicThread( void ) {
@@ -756,6 +754,8 @@ void Sys_LeaveCriticalSection( void *ptr ) {
 }
 
 #else
+
+static streamState_t stream;
 
 void Sys_StreamFillBuffer( int i ) {
 	int count;
