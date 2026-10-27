@@ -30,6 +30,12 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "tr_local.h"
 
+// the Windows virtual memory code below needs windows.h directly;
+// qgl.h used to pull it in before the glad switch
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #define LL( x ) x = LittleLong( x )
 
 // Ridah
