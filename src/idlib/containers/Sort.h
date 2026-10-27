@@ -209,7 +209,7 @@ be used to sort scalars from small to large.
 ================================================
 */
 template< typename _type_ >
-class idSort_QuickDefault : public idSort_Quick< _type_, idSort_QuickDefault< _type_ > > {
+class idSort_QuickDefault : public idSort_Quick< _type_, idSort_QuickDefault< _type_ >> {
 public:
 int Compare( const _type_ & a, const _type_ & b ) const { return a - b; }
 };
@@ -221,7 +221,7 @@ conversion for every comparison.
 ================================================
 */
 template<>
-class idSort_QuickDefault< float > : public idSort_Quick< float, idSort_QuickDefault< float > > {
+class idSort_QuickDefault< float > : public idSort_Quick< float, idSort_QuickDefault< float >> {
 public:
 int Compare( const float & a, const float & b ) const {
 	if ( a < b ) {
@@ -301,7 +301,7 @@ be used to sort scalars from small to large.
 ================================================
 */
 template< typename _type_ >
-class idSort_HeapDefault : public idSort_Heap< _type_, idSort_HeapDefault< _type_ > > {
+class idSort_HeapDefault : public idSort_Heap< _type_, idSort_HeapDefault< _type_ >> {
 public:
 int Compare( const _type_ & a, const _type_ & b ) const { return a - b; }
 };
@@ -338,7 +338,7 @@ be used to sort scalars from small to large.
 ================================================
 */
 template< typename _type_ >
-class idSort_InsertionDefault : public idSort_Insertion< _type_, idSort_InsertionDefault< _type_ > > {
+class idSort_InsertionDefault : public idSort_Insertion< _type_, idSort_InsertionDefault< _type_ >> {
 public:
 int Compare( const _type_ & a, const _type_ & b ) const { return a - b; }
 };

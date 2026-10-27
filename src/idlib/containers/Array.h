@@ -108,7 +108,7 @@ template< class _type_ >
 struct idTupleSize;
 
 template< class _type_, int _num_ >
-struct idTupleSize< idArray< _type_, _num_ > > {
+struct idTupleSize< idArray< _type_, _num_ >> {
 	enum { value = _num_ };
 };
 
