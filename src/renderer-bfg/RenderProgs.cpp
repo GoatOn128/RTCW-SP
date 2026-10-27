@@ -2,9 +2,9 @@
 ===========================================================================
 
 Doom 3 BFG Edition GPL Source Code
-Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1993-2012 id Software LLC, a ZeniMax Media company.
 
-This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").  
+This file is part of the Doom 3 BFG Edition GPL Source Code ("Doom 3 BFG Edition Source Code").
 
 Doom 3 BFG Edition Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -216,7 +216,7 @@ int idRenderProgManager::FindVertexShader( const char * name ) {
 
 	// FIXME: we should really scan the program source code for using rpEnableSkinning but at this
 	// point we directly load a binary and the program source code is not available on the consoles
-	if (	idStr::Icmp( name, "heatHaze.vfp" ) == 0 ||
+	if (    idStr::Icmp( name, "heatHaze.vfp" ) == 0 ||
 			idStr::Icmp( name, "heatHazeWithMask.vfp" ) == 0 ||
 			idStr::Icmp( name, "heatHazeWithMaskAndVertex.vfp" ) == 0 ) {
 		vertexShaders[index].usesJoints = true;
@@ -314,7 +314,7 @@ idRenderProgManager::SetRenderParms
 */
 void idRenderProgManager::SetRenderParms( renderParm_t rp, const float * value, int num ) {
 	for ( int i = 0; i < num; i++ ) {
-		SetRenderParm( (renderParm_t)(rp + i), value + ( i * 4 ) );
+		SetRenderParm( (renderParm_t)( rp + i ), value + ( i * 4 ) );
 	}
 }
 
@@ -326,4 +326,3 @@ idRenderProgManager::SetRenderParm
 void idRenderProgManager::SetRenderParm( renderParm_t rp, const float * value ) {
 	SetUniformValue( rp, value );
 }
-
