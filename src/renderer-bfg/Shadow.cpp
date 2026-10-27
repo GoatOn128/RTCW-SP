@@ -28,6 +28,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "precompiled.h"
 #include "Shadow.h"
+#include "CVarSystem.h"
 #include "ImageManager.h"
 
 /*
@@ -71,7 +72,9 @@ shadowBackEndState_t backEnd;
 shadowGlState_t glState;
 glconfig_t glConfig;
 
-// the vector math of the engine's q_shared.h as inline functions
+// the vector math of the engine's q_shared.h as inline functions;
+// VectorMA is not redefined here because idlib's math/Vector.h
+// already carries the same macro, with the same math
 static ID_INLINE float DotProduct( const vec3_t x, const vec3_t y ) {
 	return x[0] * y[0] + x[1] * y[1] + x[2] * y[2];
 }
@@ -86,12 +89,6 @@ static ID_INLINE void VectorCopy( const vec3_t a, vec3_t b ) {
 	b[0] = a[0];
 	b[1] = a[1];
 	b[2] = a[2];
-}
-
-static ID_INLINE void VectorMA( const vec3_t v, float s, const vec3_t b, vec3_t o ) {
-	o[0] = v[0] + b[0] * s;
-	o[1] = v[1] + b[1] * s;
-	o[2] = v[2] + b[2] * s;
 }
 
 static ID_INLINE void CrossProduct( const vec3_t v1, const vec3_t v2, vec3_t cross ) {
