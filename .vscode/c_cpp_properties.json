@@ -1,0 +1,59 @@
+{
+    // The generated q_buildconfig.h (CPUSTRING/PATH_SEP/ARCH_STRING) lives in
+    // build/<platform>-<arch>-<config>/ and is force included by SCons; run a
+    // build once so IntelliSense can resolve it.
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang-cl.exe",
+            "intelliSenseMode": "msvc-x64",
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/games/game",
+                "${workspaceFolder}/src/client",
+                "${workspaceFolder}/src/qcommon",
+                "${workspaceFolder}/src/renderer",
+                "${workspaceFolder}/src/server",
+                "${workspaceFolder}/src/splines",
+                "${workspaceFolder}/src/sys/unix",
+                "${workspaceFolder}/src/sys/win32",
+                "${workspaceFolder}/src/games/botai",
+                "${workspaceFolder}/src/games/botlib",
+                "${workspaceFolder}/src/games/cgame",
+                "${workspaceFolder}/src/third-party/glad/include"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/build/windows-x64-debug/q_buildconfig.h"
+            ],
+            "defines": [
+                "WIN32",
+                "_CRT_SECURE_NO_WARNINGS"
+            ]
+        },
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/clang",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/games/game",
+                "${workspaceFolder}/src/client",
+                "${workspaceFolder}/src/qcommon",
+                "${workspaceFolder}/src/renderer",
+                "${workspaceFolder}/src/server",
+                "${workspaceFolder}/src/splines",
+                "${workspaceFolder}/src/sys/unix",
+                "${workspaceFolder}/src/sys/win32",
+                "${workspaceFolder}/src/games/botai",
+                "${workspaceFolder}/src/games/botlib",
+                "${workspaceFolder}/src/games/cgame",
+                "${workspaceFolder}/src/third-party/glad/include"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/build/linux-x64-debug/q_buildconfig.h"
+            ],
+            "defines": []
+        }
+    ]
+}
