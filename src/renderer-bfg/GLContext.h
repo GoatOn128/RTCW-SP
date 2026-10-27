@@ -14,17 +14,17 @@
 */
 class idGLContext {
 public:
-	idGLContext() : loaded( false ) {}
+idGLContext() : loaded( false ) {}
 
-	// Load the OpenGL functions with the given loader callback. The
-	// loader takes the function name and a user pointer and returns
-	// the function pointer or NULL.
-	bool		Init( void * ( *loaderProc )( const char *, void * ), void *userPtr );
+// Load the OpenGL functions with the given loader callback. The
+// loader takes the function name and a user pointer and returns
+// the function pointer or NULL.
+bool        Init( void * ( *loaderProc )( const char *, void * ), void *userPtr );
 
-	bool		IsLoaded() const { return loaded; }
+bool        IsLoaded() const { return loaded; }
 
 private:
-	bool		loaded;
+bool loaded;
 };
 
 #endif /* !__GLCONTEXT_H__ */

@@ -230,7 +230,7 @@ void idRenderWorldLocal::UpdateEntityDef( qhandle_t entityHandle, const renderEn
 		// with the model adapter phase
 	} else {
 		// creating a new one
-		def = new (TAG_RENDER_ENTITY) idRenderEntityLocal;
+		def = new ( TAG_RENDER_ENTITY ) idRenderEntityLocal;
 		entityDefs[entityHandle] = def;
 
 		def->world = this;
@@ -360,7 +360,7 @@ void idRenderWorldLocal::UpdateLightDef( qhandle_t lightHandle, const renderLigh
 		}
 	} else {
 		// create a new one
-		light = new (TAG_RENDER_LIGHT) idRenderLightLocal;
+		light = new ( TAG_RENDER_LIGHT ) idRenderLightLocal;
 		lightDefs[lightHandle] = light;
 
 		light->world = this;
@@ -534,9 +534,9 @@ idRenderWorldLocal::NumPortalsInArea
 ===================
 */
 int idRenderWorldLocal::NumPortalsInArea( int areaNum ) {
-	portalArea_t	*area;
-	int				count;
-	portal_t		*portal;
+	portalArea_t    *area;
+	int count;
+	portal_t        *portal;
 
 	if ( areaNum >= numPortalAreas || areaNum < 0 ) {
 		idLib::Error( "idRenderWorld::NumPortalsInArea: bad areanum %i", areaNum );
@@ -556,10 +556,10 @@ idRenderWorldLocal::GetPortal
 ===================
 */
 exitPortal_t idRenderWorldLocal::GetPortal( int areaNum, int portalNum ) {
-	portalArea_t	*area;
-	int				count;
-	portal_t		*portal;
-	exitPortal_t	ret;
+	portalArea_t    *area;
+	int count;
+	portal_t        *portal;
+	exitPortal_t ret;
 
 	if ( areaNum > numPortalAreas ) {
 		idLib::Error( "idRenderWorld::GetPortal: areaNum > numAreas" );
@@ -594,23 +594,23 @@ it will return 0 <= value < tr.world->numPortalAreas
 ===============
 */
 int idRenderWorldLocal::PointInArea( const idVec3 &point ) const {
-	areaNode_t	*node;
-	int			nodeNum;
-	float		d;
+	areaNode_t  *node;
+	int nodeNum;
+	float d;
 
 	node = areaNodes;
 	if ( !node ) {
 		return -1;
 	}
-	while( 1 ) {
+	while ( 1 ) {
 		d = point * node->plane.Normal() + node->plane[3];
-		if (d > 0) {
+		if ( d > 0 ) {
 			nodeNum = node->children[0];
 		} else {
 			nodeNum = node->children[1];
 		}
 		if ( nodeNum == 0 ) {
-			return -1;		// in solid
+			return -1;      // in solid
 		}
 		if ( nodeNum < 0 ) {
 			nodeNum = -1 - nodeNum;
@@ -638,13 +638,13 @@ void idRenderWorldLocal::BoundsInAreas_r( int nodeNum, const idBounds &bounds, i
 		if ( nodeNum < 0 ) {
 			nodeNum = -1 - nodeNum;
 
-			for ( i = 0; i < (*numAreas); i++ ) {
+			for ( i = 0; i < ( *numAreas ); i++ ) {
 				if ( areas[i] == nodeNum ) {
 					break;
 				}
 			}
-			if ( i >= (*numAreas) && (*numAreas) < maxAreas ) {
-				areas[(*numAreas)++] = nodeNum;
+			if ( i >= ( *numAreas ) && ( *numAreas ) < maxAreas ) {
+				areas[( *numAreas )++] = nodeNum;
 			}
 			return;
 		}
@@ -654,20 +654,18 @@ void idRenderWorldLocal::BoundsInAreas_r( int nodeNum, const idBounds &bounds, i
 		side = bounds.PlaneSide( node->plane );
 		if ( side == PLANESIDE_FRONT ) {
 			nodeNum = node->children[0];
-		}
-		else if ( side == PLANESIDE_BACK ) {
+		} else if ( side == PLANESIDE_BACK )   {
 			nodeNum = node->children[1];
-		}
-		else {
+		} else {
 			if ( node->children[1] != 0 ) {
 				BoundsInAreas_r( node->children[1], bounds, areas, numAreas, maxAreas );
-				if ( (*numAreas) >= maxAreas ) {
+				if ( ( *numAreas ) >= maxAreas ) {
 					return;
 				}
 			}
 			nodeNum = node->children[0];
 		}
-	} while( nodeNum != 0 );
+	} while ( nodeNum != 0 );
 
 	return;
 }
@@ -705,7 +703,7 @@ start / end are in global world coordinates.
 ================
 */
 guiPoint_t idRenderWorldLocal::GuiTrace( qhandle_t entityHandle, const idVec3 start, const idVec3 end ) const {
-	guiPoint_t	ret;
+	guiPoint_t ret;
 	memset( &ret, 0, sizeof( ret ) );
 	ret.x = -1.0f;
 	ret.y = -1.0f;
@@ -778,7 +776,7 @@ void idRenderWorldLocal::FloodConnectedAreas( portalArea_t *area, int portalAttr
 	area->connectedAreaNum[portalAttributeIndex] = connectedAreaNum;
 
 	for ( portal_t *p = area->portals; p != NULL; p = p->next ) {
-		if ( !(p->doublePortal->blockingBits & (1<<portalAttributeIndex) ) ) {
+		if ( !( p->doublePortal->blockingBits & ( 1 << portalAttributeIndex ) ) ) {
 			FloodConnectedAreas( &portalAreas[p->intoArea], portalAttributeIndex );
 		}
 	}
@@ -797,9 +795,9 @@ bool idRenderWorldLocal::AreasAreConnected( int areaNum1, int areaNum2, portalCo
 		idLib::Error( "idRenderWorldLocal::AreasAreConnected: bad parms: %i, %i", areaNum1, areaNum2 );
 	}
 
-	int	attribute = 0;
+	int attribute = 0;
 
-	int	intConnection = (int)connection;
+	int intConnection = (int)connection;
 
 	while ( intConnection > 1 ) {
 		attribute++;
@@ -827,18 +825,18 @@ void idRenderWorldLocal::SetPortalState( qhandle_t portal, int blockTypes ) {
 	if ( portal < 1 || portal > numInterAreaPortals ) {
 		idLib::Error( "SetPortalState: bad portal number %i", portal );
 	}
-	int	old = doublePortals[portal-1].blockingBits;
+	int old = doublePortals[portal - 1].blockingBits;
 	if ( old == blockTypes ) {
 		return;
 	}
-	doublePortals[portal-1].blockingBits = blockTypes;
+	doublePortals[portal - 1].blockingBits = blockTypes;
 
 	// leave the connectedAreaGroup the same on one side,
 	// then flood fill from the other side with a new number for each changed attribute
 	for ( int i = 0; i < NUM_PORTAL_ATTRIBUTES; i++ ) {
 		if ( ( old ^ blockTypes ) & ( 1 << i ) ) {
 			connectedAreaNum++;
-			FloodConnectedAreas( &portalAreas[doublePortals[portal-1].portals[1]->intoArea], i );
+			FloodConnectedAreas( &portalAreas[doublePortals[portal - 1].portals[1]->intoArea], i );
 		}
 	}
 
@@ -859,7 +857,7 @@ int idRenderWorldLocal::GetPortalState( qhandle_t portal ) {
 		idLib::Error( "GetPortalState: bad portal number %i", portal );
 	}
 
-	return doublePortals[portal-1].blockingBits;
+	return doublePortals[portal - 1].blockingBits;
 }
 
 /*
@@ -868,7 +866,7 @@ idRenderWorldLocal::AddEntityRefToArea
 ===================
 */
 void idRenderWorldLocal::AddEntityRefToArea( idRenderEntityLocal *def, portalArea_t *area ) {
-	areaReference_t	*ref;
+	areaReference_t *ref;
 
 	if ( def == NULL ) {
 		idLib::Error( "idRenderWorldLocal::AddEntityRefToArea: NULL def" );
@@ -883,7 +881,7 @@ void idRenderWorldLocal::AddEntityRefToArea( idRenderEntityLocal *def, portalAre
 
 	// the BFG code allocates the references through the block allocator
 	// of BoundsTrack.h, which is ported with the GLSL backend phase
-	ref = new (TAG_RENDER) areaReference_t;
+	ref = new ( TAG_RENDER ) areaReference_t;
 	memset( ref, 0, sizeof( *ref ) );
 
 	ref->entity = def;
@@ -906,7 +904,7 @@ idRenderWorldLocal::AddLightRefToArea
 ===================
 */
 void idRenderWorldLocal::AddLightRefToArea( idRenderLightLocal *light, portalArea_t *area ) {
-	areaReference_t	*lref;
+	areaReference_t *lref;
 
 	for ( lref = light->references; lref != NULL; lref = lref->ownerNext ) {
 		if ( lref->area == area ) {
@@ -915,7 +913,7 @@ void idRenderWorldLocal::AddLightRefToArea( idRenderLightLocal *light, portalAre
 	}
 
 	// add a lightref to this area
-	lref = new (TAG_RENDER) areaReference_t;
+	lref = new ( TAG_RENDER ) areaReference_t;
 	memset( lref, 0, sizeof( *lref ) );
 	lref->light = light;
 	lref->area = area;

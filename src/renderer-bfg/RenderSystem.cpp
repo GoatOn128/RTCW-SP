@@ -36,108 +36,108 @@ If you have questions concerning this license or the applicable additional terms
 // backend phases are ported.
 class idRenderSystemLocal : public idRenderSystem {
 public:
-	virtual ~idRenderSystemLocal() {}
+virtual ~idRenderSystemLocal() {}
 
-	virtual void			Init() {
-		frameCount = 0;
+virtual void            Init() {
+	frameCount = 0;
+}
+
+virtual void            Shutdown() {}
+
+virtual void            ResetGuiModels() {}
+
+virtual void            InitOpenGL() {}
+
+virtual void            ShutdownOpenGL() {}
+
+virtual bool            IsOpenGLRunning() const { return false; }
+
+virtual bool            IsFullScreen() const { return false; }
+virtual int             GetWidth() const { return 0; }
+virtual int             GetHeight() const { return 0; }
+
+virtual float           GetPixelAspect() const { return 1.0f; }
+
+virtual float           GetPhysicalScreenWidthInCentimeters() const { return 50.0f; }
+
+virtual stereo3DMode_t  GetStereo3DMode() const { return STEREO3D_OFF; }
+virtual bool            IsStereoScopicRenderingSupported() const { return false; }
+virtual stereo3DMode_t  GetStereoScopicRenderingMode() const { return STEREO3D_OFF; }
+virtual void            EnableStereoScopicRendering( const stereo3DMode_t mode ) const {}
+virtual bool            HasQuadBufferSupport() const { return false; }
+
+virtual idRenderWorld * AllocRenderWorld() {
+	return new idRenderWorldLocal;
+}
+virtual void            FreeRenderWorld( idRenderWorld * rw ) {
+	delete rw;
+}
+
+virtual void            BeginLevelLoad() {}
+virtual void            EndLevelLoad() {}
+virtual void            Preload( const idPreloadManifest &manifest, const char *mapName ) {}
+virtual void            LoadLevelImages() {}
+
+virtual void            BeginAutomaticBackgroundSwaps( autoRenderIconType_t icon ) {}
+virtual void            EndAutomaticBackgroundSwaps() {}
+virtual bool            AreAutomaticBackgroundSwapsRunning( autoRenderIconType_t * icon ) const {
+	if ( icon != NULL ) {
+		*icon = AUTORENDER_DEFAULTICON;
 	}
+	return false;
+}
 
-	virtual void			Shutdown() {}
+virtual class idFont *  RegisterFont( const char * fontName ) { return NULL; }
+virtual void            ResetFonts() {}
 
-	virtual void			ResetGuiModels() {}
+virtual void            SetColor( const idVec4 & rgba ) {}
 
-	virtual void			InitOpenGL() {}
+virtual uint32          GetColor() { return 0xFFFFFFFF; }
 
-	virtual void			ShutdownOpenGL() {}
+virtual void            SetGLState( const uint64 glState ) {}
 
-	virtual bool			IsOpenGLRunning() const { return false; }
+virtual void            DrawFilled( const idVec4 & color, float x, float y, float w, float h ) {}
+virtual void            DrawStretchPic( float x, float y, float w, float h, float s1, float t1, float s2, float t2, const idMaterial *material ) {}
+virtual void            DrawStretchPic( const idVec4 & topLeft, const idVec4 & topRight, const idVec4 & bottomRight, const idVec4 & bottomLeft, const idMaterial * material ) {}
+virtual void            DrawStretchTri( const idVec2 & p1, const idVec2 & p2, const idVec2 & p3, const idVec2 & t1, const idVec2 & t2, const idVec2 & t3, const idMaterial *material ) {}
+virtual idDrawVert *    AllocTris( int numVerts, const triIndex_t * indexes, int numIndexes, const idMaterial * material, const stereoDepthType_t stereoType ) { return NULL; }
 
-	virtual bool			IsFullScreen() const { return false; }
-	virtual int				GetWidth() const { return 0; }
-	virtual int				GetHeight() const { return 0; }
+virtual void            PrintMemInfo( MemInfo_t *mi ) {}
 
-	virtual float			GetPixelAspect() const { return 1.0f; }
+virtual void            DrawSmallChar( int x, int y, int ch ) {}
+virtual void            DrawSmallStringExt( int x, int y, const char *string, const idVec4 &setColor, bool forceColor ) {}
+virtual void            DrawBigChar( int x, int y, int ch ) {}
+virtual void            DrawBigStringExt( int x, int y, const char *string, const idVec4 &setColor, bool forceColor ) {}
 
-	virtual float			GetPhysicalScreenWidthInCentimeters() const { return 50.0f; }
+virtual void            WriteDemoPics() {}
+virtual void            DrawDemoPics() {}
 
-	virtual stereo3DMode_t	GetStereo3DMode() const { return STEREO3D_OFF; }
-	virtual bool			IsStereoScopicRenderingSupported() const { return false; }
-	virtual stereo3DMode_t	GetStereoScopicRenderingMode() const { return STEREO3D_OFF; }
-	virtual void			EnableStereoScopicRendering( const stereo3DMode_t mode ) const {}
-	virtual bool			HasQuadBufferSupport() const { return false; }
+virtual const emptyCommand_t *  SwapCommandBuffers( uint64 *frontEndMicroSec, uint64 *backEndMicroSec, uint64 *shadowMicroSec, uint64 *gpuMicroSec ) {
+	*frontEndMicroSec = *backEndMicroSec = *shadowMicroSec = *gpuMicroSec = 0;
+	return NULL;
+}
 
-	virtual idRenderWorld *	AllocRenderWorld() {
-		return new idRenderWorldLocal;
-	}
-	virtual	void			FreeRenderWorld( idRenderWorld * rw ) {
-		delete rw;
-	}
+virtual void            SwapCommandBuffers_FinishRendering( uint64 *frontEndMicroSec, uint64 *backEndMicroSec, uint64 *shadowMicroSec, uint64 *gpuMicroSec ) {
+	*frontEndMicroSec = *backEndMicroSec = *shadowMicroSec = *gpuMicroSec = 0;
+}
 
-	virtual void			BeginLevelLoad() {}
-	virtual void			EndLevelLoad() {}
-	virtual void			Preload( const idPreloadManifest &manifest, const char *mapName ) {}
-	virtual void			LoadLevelImages() {}
+virtual const emptyCommand_t *  SwapCommandBuffers_FinishCommandBuffers() { return NULL; }
 
-	virtual void			BeginAutomaticBackgroundSwaps( autoRenderIconType_t icon ) {}
-	virtual void			EndAutomaticBackgroundSwaps() {}
-	virtual bool			AreAutomaticBackgroundSwapsRunning( autoRenderIconType_t * icon ) const {
-		if ( icon != NULL ) {
-			*icon = AUTORENDER_DEFAULTICON;
-		}
-		return false;
-	}
+virtual void            RenderCommandBuffers( const emptyCommand_t * commandBuffers ) {}
 
-	virtual class idFont *	RegisterFont( const char * fontName ) { return NULL; }
-	virtual void			ResetFonts() {}
+virtual void            TakeScreenshot( int width, int height, const char *fileName, int samples, struct renderView_s *ref ) {}
 
-	virtual void			SetColor( const idVec4 & rgba ) {}
+virtual void            CropRenderSize( int width, int height ) {}
+virtual void            CaptureRenderToImage( const char *imageName, bool clearColorAfterCopy ) {}
+virtual void            CaptureRenderToFile( const char *fileName, bool fixAlpha ) {}
+virtual void            UnCrop() {}
 
-	virtual uint32			GetColor() { return 0xFFFFFFFF; }
+virtual bool            UploadImage( const char *imageName, const byte *data, int width, int height ) { return false; }
 
-	virtual void			SetGLState( const uint64 glState ) {}
-
-	virtual void			DrawFilled( const idVec4 & color, float x, float y, float w, float h ) {}
-	virtual void			DrawStretchPic( float x, float y, float w, float h, float s1, float t1, float s2, float t2, const idMaterial *material ) {}
-	virtual void			DrawStretchPic( const idVec4 & topLeft, const idVec4 & topRight, const idVec4 & bottomRight, const idVec4 & bottomLeft, const idMaterial * material ) {}
-	virtual void			DrawStretchTri ( const idVec2 & p1, const idVec2 & p2, const idVec2 & p3, const idVec2 & t1, const idVec2 & t2, const idVec2 & t3, const idMaterial *material ) {}
-	virtual idDrawVert *	AllocTris( int numVerts, const triIndex_t * indexes, int numIndexes, const idMaterial * material, const stereoDepthType_t stereoType ) { return NULL; }
-
-	virtual void			PrintMemInfo( MemInfo_t *mi ) {}
-
-	virtual void			DrawSmallChar( int x, int y, int ch ) {}
-	virtual void			DrawSmallStringExt( int x, int y, const char *string, const idVec4 &setColor, bool forceColor ) {}
-	virtual void			DrawBigChar( int x, int y, int ch ) {}
-	virtual void			DrawBigStringExt( int x, int y, const char *string, const idVec4 &setColor, bool forceColor ) {}
-
-	virtual void			WriteDemoPics() {}
-	virtual void			DrawDemoPics() {}
-
-	virtual const emptyCommand_t *	SwapCommandBuffers( uint64 *frontEndMicroSec, uint64 *backEndMicroSec, uint64 *shadowMicroSec, uint64 *gpuMicroSec ) {
-		*frontEndMicroSec = *backEndMicroSec = *shadowMicroSec = *gpuMicroSec = 0;
-		return NULL;
-	}
-
-	virtual void			SwapCommandBuffers_FinishRendering( uint64 *frontEndMicroSec, uint64 *backEndMicroSec, uint64 *shadowMicroSec, uint64 *gpuMicroSec ) {
-		*frontEndMicroSec = *backEndMicroSec = *shadowMicroSec = *gpuMicroSec = 0;
-	}
-
-	virtual const emptyCommand_t *	SwapCommandBuffers_FinishCommandBuffers() { return NULL; }
-
-	virtual void			RenderCommandBuffers( const emptyCommand_t * commandBuffers ) {}
-
-	virtual void			TakeScreenshot( int width, int height, const char *fileName, int samples, struct renderView_s *ref ) {}
-
-	virtual void			CropRenderSize( int width, int height ) {}
-	virtual void			CaptureRenderToImage( const char *imageName, bool clearColorAfterCopy ) {}
-	virtual void			CaptureRenderToFile( const char *fileName, bool fixAlpha ) {}
-	virtual void			UnCrop() {}
-
-	virtual bool			UploadImage( const char *imageName, const byte *data, int width, int height ) { return false; }
-
-	virtual int				GetFrameCount() const { return frameCount; }
+virtual int             GetFrameCount() const { return frameCount; }
 
 private:
-	int				frameCount;
+int frameCount;
 };
 
-idRenderSystem *	renderSystem = NULL;
+idRenderSystem *    renderSystem = NULL;
