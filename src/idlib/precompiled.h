@@ -54,6 +54,7 @@ If you have questions concerning this license or the applicable additional terms
 // text parsing
 #include "Token.h"
 #include "Lexer.h"
+#include "Parser.h"
 
 //-----------------------------------------------------
 

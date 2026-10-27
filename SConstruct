@@ -348,7 +348,7 @@ extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, '
 # into the renderer without pulling in another shared object
 idlib_files = ['src/idlib/' + f for f in [
     'Heap.cpp', 'Str.cpp', 'Lib.cpp',
-    'Token.cpp', 'Lexer.cpp',
+    'Token.cpp', 'Lexer.cpp', 'Parser.cpp',
     'sys/sys_assert.cpp',
     'containers/HashIndex.cpp',
     'math/Math.cpp', 'math/Vector.cpp', 'math/Matrix.cpp', 'math/Angles.cpp',
