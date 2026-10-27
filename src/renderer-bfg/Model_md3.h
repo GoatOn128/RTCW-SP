@@ -138,7 +138,7 @@ static_assert( sizeof( md3Shader_t ) == 68, "unexpected md3 shader size" );
 static_assert( sizeof( md3Triangle_t ) == 12, "unexpected md3 triangle size" );
 static_assert( sizeof( md3St_t ) == 8, "unexpected md3 st size" );
 static_assert( sizeof( md3XyzNormal_t ) == 8, "unexpected md3 xyz normal size" );
-static_assert( sizeof( md3Header_t ) == 112, "unexpected md3 header size" );
+static_assert( sizeof( md3Header_t ) == 108, "unexpected md3 header size" );
 
 /*
 
