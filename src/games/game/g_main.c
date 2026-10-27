@@ -2387,3 +2387,176 @@ void G_RunFrame( int levelTime ) {
 	// Ridah, check for loading a save game
 	if ( g_gametype.integer == GT_SINGLE_PLAYER ) {
 
+		extern void AICast_CheckLoadGame( void );
+		AICast_CheckLoadGame();
+	}
+	// done.
+
+	// get any cvar changes
+	G_UpdateCvars();
+
+	//
+	// go through all allocated objects
+	//
+	//start = trap_Milliseconds();
+	ent = &g_entities[0];
+	for ( i = 0 ; i < level.num_entities ; i++, ent++ ) {
+		if ( !ent->inuse ) {
+			continue;
+		}
+
+		// check EF_NODRAW status for non-clients
+		if ( i > level.maxclients ) {
+			if ( ent->flags & FL_NODRAW ) {
+				ent->s.eFlags |= EF_NODRAW;
+			} else {
+				ent->s.eFlags &= ~EF_NODRAW;
+			}
+		}
+
+		// RF, if this entity is attached to a parent, move it around with it, so the server thinks it's at least close to where the client will view it
+		if ( ent->tagParent ) {
+			vec3_t org;
+			BG_EvaluateTrajectory( &ent->tagParent->s.pos, level.time, org );
+			G_SetOrigin( ent, org );
+			VectorCopy( org, ent->s.origin );
+			if ( ent->r.linked ) {    // update position
+				trap_LinkEntity( ent );
+			}
+		}
+
+		// clear events that are too old
+		if ( ent->eventTime && level.time - ent->eventTime > EVENT_VALID_MSEC ) {
+			if ( ent->s.event ) {
+				ent->s.event = 0;   // &= EV_EVENT_BITS;
+			}
+			// RF, clear all listed events (fixes hearing lots of sounds and events after vid_restart)
+			memset( ent->s.events, 0, sizeof( ent->s.events ) );
+			memset( ent->s.eventParms, 0, sizeof( ent->s.eventParms ) );
+			ent->s.eventSequence = 0;
+			if ( ent->client ) {
+				memset( ent->client->ps.events, 0, sizeof( ent->client->ps.events ) );
+				memset( ent->client->ps.eventParms, 0, sizeof( ent->client->ps.eventParms ) );
+				ent->client->ps.eventSequence = 0;
+				ent->client->ps.oldEventSequence = 0;
+				ent->client->ps.entityEventSequence = 0;
+			}
+			if ( ent->freeAfterEvent ) {
+				// tempEntities or dropped items completely go away after their event
+				G_FreeEntity( ent );
+				continue;
+			} else if ( ent->unlinkAfterEvent ) {
+				// items that will respawn will hide themselves after their pickup event
+				ent->unlinkAfterEvent = qfalse;
+				trap_UnlinkEntity( ent );
+			}
+			ent->eventTime = 0;
+		}
+
+		// MrE: let the server know about bbox or capsule collision
+		if ( ent->s.eFlags & EF_CAPSULE ) {
+			ent->r.svFlags |= SVF_CAPSULE;
+		} else {
+			ent->r.svFlags &= ~SVF_CAPSULE;
+		}
+
+		// temporary entities don't think
+		if ( ent->freeAfterEvent ) {
+			continue;
+		}
+
+		if ( !ent->r.linked && ent->neverFree ) {
+			continue;
+		}
+
+		if ( ent->s.eType == ET_MISSILE
+			 || ent->s.eType == ET_FLAMEBARREL
+			 || ent->s.eType == ET_FP_PARTS
+			 || ent->s.eType == ET_FIRE_COLUMN
+			 || ent->s.eType == ET_FIRE_COLUMN_SMOKE
+			 || ent->s.eType == ET_EXPLO_PART
+			 || ent->s.eType == ET_RAMJET ) {
+			G_RunMissile( ent );
+			continue;
+		}
+
+		if ( ent->s.eType == ET_ZOMBIESPIT ) {
+			G_RunSpit( ent );
+			continue;
+		}
+
+		if ( ent->s.eType == ET_CROWBAR ) {
+			G_RunCrowbar( ent );
+			continue;
+		}
+
+		if ( ent->s.eType == ET_ITEM || ent->physicsObject ) {
+			G_RunItem( ent );
+			continue;
+		}
+
+		if ( ent->s.eType == ET_ALARMBOX ) {
+			if ( ent->flags & FL_TEAMSLAVE ) {
+				continue;
+			}
+			G_RunThink( ent );
+			continue;
+		}
+
+		if ( ent->s.eType == ET_MOVER || ent->s.eType == ET_PROP ) {
+			G_RunMover( ent );
+			continue;
+		}
+
+		if ( i < MAX_CLIENTS ) {
+			G_RunClient( ent );
+			continue;
+		}
+
+		G_RunThink( ent );
+	}
+//end = trap_Milliseconds();
+
+	// Ridah, move the AI
+	AICast_StartServerFrame( level.time );
+
+//start = trap_Milliseconds();
+	// perform final fixups on the players
+	ent = &g_entities[0];
+	for ( i = 0 ; i < level.maxclients ; i++, ent++ ) {
+		if ( ent->inuse ) {
+			ClientEndFrame( ent );
+		}
+	}
+//end = trap_Milliseconds();
+
+	// see if it is time to do a tournement restart
+//	CheckTournament();
+
+	// see if it is time to end the level
+	CheckExitRules();
+
+	// update to team status?
+	CheckTeamStatus();
+
+	// cancel vote if timed out
+	CheckVote();
+
+	// check team votes
+//	CheckTeamVote( TEAM_RED );
+//	CheckTeamVote( TEAM_BLUE );
+
+	// for tracking changes
+	CheckCvars();
+
+	if ( g_listEntity.integer ) {
+		for ( i = 0; i < MAX_GENTITIES; i++ ) {
+			G_Printf( "%4i: %s\n", i, g_entities[i].classname );
+		}
+		trap_Cvar_Set( "g_listEntity", "0" );
+	}
+
+	// Ridah, check if we are reloading, and times have expired
+	CheckReloadStatus();
+
+}
