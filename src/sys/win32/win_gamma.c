@@ -180,4 +180,3 @@ void WG_RestoreGamma( void ) {
 		ReleaseDC( GetDesktopWindow(), hDC );
 	}
 }
-

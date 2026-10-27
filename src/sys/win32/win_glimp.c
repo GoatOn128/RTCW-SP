@@ -1163,4 +1163,3 @@ void GLimp_WakeRenderer( void *data ) {
 
 	WaitForSingleObject( renderActiveEvent, INFINITE );
 }
-

@@ -1338,4 +1338,3 @@ void Sys_SendKeyEvents( void ) {
 void IN_StartupJoystick( void ) {}
 void IN_JoyMove( void ) {}
 #endif
-

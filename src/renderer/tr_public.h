@@ -207,4 +207,3 @@ typedef struct {
 refexport_t*GetRefAPI( int apiVersion, refimport_t *rimp );
 
 #endif  // TR_PUBLIC_H
-

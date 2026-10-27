@@ -159,6 +159,3 @@ void R_ModeList_f( void ) {
 	}
 	Com_Printf( "\n" );
 }
-
-
-
