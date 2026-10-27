@@ -859,31 +859,8 @@ static void GLW_InitExtensions( void ) {
 ** GLW_CheckOSVersion
 */
 static qboolean GLW_CheckOSVersion( void ) {
-#define OSR2_BUILD_NUMBER 1111
-
-	OSVERSIONINFO vinfo;
-
-	vinfo.dwOSVersionInfoSize = sizeof( vinfo );
-
-	glw_state.allowdisplaydepthchange = qfalse;
-
-	if ( GetVersionEx( &vinfo ) ) {
-		if ( vinfo.dwMajorVersion > 4 ) {
-			glw_state.allowdisplaydepthchange = qtrue;
-		} else if ( vinfo.dwMajorVersion == 4 ) {
-			if ( vinfo.dwPlatformId == VER_PLATFORM_WIN32_NT ) {
-				glw_state.allowdisplaydepthchange = qtrue;
-			} else if ( vinfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS ) {
-				if ( LOWORD( vinfo.dwBuildNumber ) >= OSR2_BUILD_NUMBER ) {
-					glw_state.allowdisplaydepthchange = qtrue;
-				}
-			}
-		}
-	} else
-	{
-		ri.Printf( PRINT_ALL, "GLW_CheckOSVersion() - GetVersionEx failed\n" );
-		return qfalse;
-	}
+	// modern Windows is always NT based, so display depth changes are allowed
+	glw_state.allowdisplaydepthchange = qtrue;
 
 	return qtrue;
 }
