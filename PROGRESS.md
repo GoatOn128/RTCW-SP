@@ -198,6 +198,31 @@ material and is never modified.
    documented at the call sites: the dlight block of
    R_SetupEntityLighting, R_TransformDlights and R_DlightBmodel.
 
+✅ Phase 11 - surface functions
+   The surface functions of this repo's own tr_surface.c: the
+   triangles path that fills the tesselator from the geometry, and
+   the procedural entity surfaces the reType dispatches to (splash,
+   sprite, beam, rail core, rail rings, lightning bolt and the axis
+   debug surface). All static geometry of the load adapters is the
+   srfTriangles_t of the model phase, so the engine's separate face,
+   grid and mesh paths collapse into the one triangles function. The
+   Q3 lightmap texture channel the BFG vertex does not carry rides
+   on the srfTriangles_t instead: the BSP loader fills the lightmap
+   coordinates and the lightmap number for the lightmapped world
+   surfaces, everything else draws without a lightmap, and the free
+   path releases the channel with the geometry. The q_math.c vector
+   helpers the procedural surfaces need (ProjectPointOnPlane,
+   PerpendicularVector, RotatePointAroundVector, MakeNormalVectors,
+   MatrixMultiply) are ported as local statics. The surface
+   functions stay dormant until the scene phase draws the draw
+   surfaces through them. Builds green on every CI config.
+   Deferred, documented at the call sites: the polychain of the
+   scene polys (scene phase), the dlight bits of the surfaces and
+   the vertices (dynamic light phase), the display list path of
+   the engine (dropped, this renderer has no GL display lists) and
+   the flare surface (the active variant of the engine draws
+   nothing, the flares go through the frontend flare pass).
+
 ## Notes
 
 - License: the ported idlib files are Doom 3 BFG code, which is GPLv3.
