@@ -612,13 +612,13 @@ Loads a native module by name and resolves its entry point export
 extern char     *FS_BuildOSPath( const char *base, const char *game, const char *qpath );
 
 void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
-	static int lastWarning = 0;
 	HINSTANCE libHandle;
 	char    *basepath;
 	char    *cdpath;
 	char    *gamedir;
 	char    *fn;
 #ifdef NDEBUG
+	static int lastWarning = 0;
 	int timestamp;
 	int ret;
 #endif

@@ -440,7 +440,7 @@ void idStr::snprintf
 	vsprintf( buffer,fmt,argptr );
 	va_end( argptr );
 
-	assert( strlen( buffer ) < size );
+	assert( (int)strlen( buffer ) < size );
 
 	strncpy( dst, buffer, size - 1 );
 }
