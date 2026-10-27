@@ -42,31 +42,31 @@ If you have questions concerning this license or the applicable additional terms
 
 class idRenderModelManagerLocal : public idRenderModelManager {
 public:
-	virtual void			Init();
-	virtual void			Shutdown();
-	virtual void			BeginLevelLoad();
-	virtual void			EndLevelLoad();
-	virtual idRenderModel *	AllocModel();
-	virtual void			FreeModel( idRenderModel *model );
-	virtual idRenderModel *	FindModel( const char *modelName );
-	virtual idRenderModel *	CheckModel( const char *modelName );
-	virtual idRenderModel *	DefaultModel();
-	virtual void			AddModel( idRenderModel *model );
-	virtual void			RemoveModel( idRenderModel *model );
-	virtual void			ReloadModels( bool forceAll = false );
-	virtual void			FreeModelVertexCaches();
+virtual void            Init();
+virtual void            Shutdown();
+virtual void            BeginLevelLoad();
+virtual void            EndLevelLoad();
+virtual idRenderModel * AllocModel();
+virtual void            FreeModel( idRenderModel *model );
+virtual idRenderModel * FindModel( const char *modelName );
+virtual idRenderModel * CheckModel( const char *modelName );
+virtual idRenderModel * DefaultModel();
+virtual void            AddModel( idRenderModel *model );
+virtual void            RemoveModel( idRenderModel *model );
+virtual void            ReloadModels( bool forceAll = false );
+virtual void            FreeModelVertexCaches();
 
 private:
-	idRenderModel *			GetModel( const char *_modelName, bool createIfNotFound );
+idRenderModel *         GetModel( const char *_modelName, bool createIfNotFound );
 
-	idList<idRenderModel *, TAG_MODEL>	models;
-	idHashIndex						hash;
-	idRenderModel *					defaultModel;
-	bool							insideLevelLoad;
+idList<idRenderModel *, TAG_MODEL>  models;
+idHashIndex hash;
+idRenderModel *                 defaultModel;
+bool insideLevelLoad;
 };
 
-static idRenderModelManagerLocal	staticModelManager;
-idRenderModelManager *			renderModelManager = &staticModelManager;
+static idRenderModelManagerLocal staticModelManager;
+idRenderModelManager *          renderModelManager = &staticModelManager;
 
 /*
 =================

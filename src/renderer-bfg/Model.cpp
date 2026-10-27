@@ -338,7 +338,7 @@ void idRenderModelStatic::InitEmpty( const char *fileName ) {
 	}
 
 	name = fileName;
-	reloadable = false;		// if it didn't come from a file, we can't reload it
+	reloadable = false;     // if it didn't come from a file, we can't reload it
 	timeStamp = 0;
 	PurgeModel();
 	purged = false;

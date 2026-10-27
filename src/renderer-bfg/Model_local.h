@@ -45,78 +45,78 @@ If you have questions concerning this license or the applicable additional terms
 
 class idRenderModelStatic : public idRenderModel {
 public:
-	// the inherited public interface
-	static idRenderModel *			Alloc();
+// the inherited public interface
+static idRenderModel *          Alloc();
 
-									idRenderModelStatic();
-	virtual							~idRenderModelStatic();
+idRenderModelStatic();
+virtual ~idRenderModelStatic();
 
-	virtual void					InitFromFile( const char *fileName );
-	virtual bool					LoadBinaryModel( idFile *file, const ID_TIME_T sourceTimeStamp );
-	virtual void					WriteBinaryModel( idFile *file, ID_TIME_T *_timeStamp = NULL ) const;
-	virtual bool					SupportsBinaryModel() { return false; }
+virtual void                    InitFromFile( const char *fileName );
+virtual bool                    LoadBinaryModel( idFile *file, const ID_TIME_T sourceTimeStamp );
+virtual void                    WriteBinaryModel( idFile *file, ID_TIME_T *_timeStamp = NULL ) const;
+virtual bool                    SupportsBinaryModel() { return false; }
 
-	virtual void					PartialInitFromFile( const char *fileName );
-	virtual void					PurgeModel();
-	virtual void					Reset() {};
-	virtual void					LoadModel();
-	virtual bool					IsLoaded();
-	virtual void					SetLevelLoadReferenced( bool referenced );
-	virtual bool					IsLevelLoadReferenced();
-	virtual void					TouchData();
-	virtual void					InitEmpty( const char *name );
-	virtual void					AddSurface( modelSurface_t surface );
-	virtual void					FinishSurfaces();
-	virtual void					FreeVertexCache();
-	virtual const char *			Name() const;
-	virtual void					Print() const;
-	virtual void					List() const;
-	virtual int						Memory() const;
-	virtual ID_TIME_T				Timestamp() const;
-	virtual int						NumSurfaces() const;
-	virtual int						NumBaseSurfaces() const;
-	virtual const modelSurface_t *	Surface( int surfaceNum ) const;
-	virtual srfTriangles_t *		AllocSurfaceTriangles( int numVerts, int numIndexes ) const;
-	virtual void					FreeSurfaceTriangles( srfTriangles_t *tris ) const;
-	virtual bool					IsStaticWorldModel() const;
-	virtual bool					IsReloadable() const;
-	virtual dynamicModel_t			IsDynamicModel() const;
-	virtual bool					IsDefaultModel() const;
-	virtual idRenderModel *			InstantiateDynamicModel( const struct renderEntity_s *ent, const viewDef_t *view, idRenderModel *cachedModel );
-	virtual int						NumJoints() const;
-	virtual const idMD5Joint *		GetJoints() const;
-	virtual jointHandle_t			GetJointHandle( const char *name ) const;
-	virtual const char *			GetJointName( jointHandle_t handle ) const;
-	virtual const idJointQuat *		GetDefaultPose() const;
-	virtual int						NearestJoint( int surfaceNum, int a, int b, int c ) const;
-	virtual idBounds				Bounds( const struct renderEntity_s *ent ) const;
-	virtual void					ReadFromDemoFile( class idDemoFile *f );
-	virtual void					WriteToDemoFile( class idDemoFile *f );
-	virtual float					DepthHack() const;
+virtual void                    PartialInitFromFile( const char *fileName );
+virtual void                    PurgeModel();
+virtual void                    Reset() {};
+virtual void                    LoadModel();
+virtual bool                    IsLoaded();
+virtual void                    SetLevelLoadReferenced( bool referenced );
+virtual bool                    IsLevelLoadReferenced();
+virtual void                    TouchData();
+virtual void                    InitEmpty( const char *name );
+virtual void                    AddSurface( modelSurface_t surface );
+virtual void                    FinishSurfaces();
+virtual void                    FreeVertexCache();
+virtual const char *            Name() const;
+virtual void                    Print() const;
+virtual void                    List() const;
+virtual int                     Memory() const;
+virtual ID_TIME_T               Timestamp() const;
+virtual int                     NumSurfaces() const;
+virtual int                     NumBaseSurfaces() const;
+virtual const modelSurface_t *  Surface( int surfaceNum ) const;
+virtual srfTriangles_t *        AllocSurfaceTriangles( int numVerts, int numIndexes ) const;
+virtual void                    FreeSurfaceTriangles( srfTriangles_t *tris ) const;
+virtual bool                    IsStaticWorldModel() const;
+virtual bool                    IsReloadable() const;
+virtual dynamicModel_t          IsDynamicModel() const;
+virtual bool                    IsDefaultModel() const;
+virtual idRenderModel *         InstantiateDynamicModel( const struct renderEntity_s *ent, const viewDef_t *view, idRenderModel *cachedModel );
+virtual int                     NumJoints() const;
+virtual const idMD5Joint *      GetJoints() const;
+virtual jointHandle_t           GetJointHandle( const char *name ) const;
+virtual const char *            GetJointName( jointHandle_t handle ) const;
+virtual const idJointQuat *     GetDefaultPose() const;
+virtual int                     NearestJoint( int surfaceNum, int a, int b, int c ) const;
+virtual idBounds                Bounds( const struct renderEntity_s *ent ) const;
+virtual void ReadFromDemoFile( class idDemoFile *f );
+virtual void WriteToDemoFile( class idDemoFile *f );
+virtual float                   DepthHack() const;
 
-	virtual bool					ModelHasDrawingSurfaces() const { return hasDrawingSurfaces; };
-	virtual bool					ModelHasInteractingSurfaces() const { return hasInteractingSurfaces; };
-	virtual bool					ModelHasShadowCastingSurfaces() const { return hasShadowCastingSurfaces; };
+virtual bool                    ModelHasDrawingSurfaces() const { return hasDrawingSurfaces; };
+virtual bool                    ModelHasInteractingSurfaces() const { return hasInteractingSurfaces; };
+virtual bool                    ModelHasShadowCastingSurfaces() const { return hasShadowCastingSurfaces; };
 
-	void							MakeDefaultModel();
+void                            MakeDefaultModel();
 
 public:
-	idList<modelSurface_t, TAG_MODEL>	surfaces;
-	idBounds						bounds;
-	int								overlaysAdded;
+idList<modelSurface_t, TAG_MODEL>   surfaces;
+idBounds bounds;
+int overlaysAdded;
 
 protected:
-	idStr							name;
-	bool							isStaticWorldModel;
-	bool							defaulted;
-	bool							purged;					// eventually we will have dynamic reloading
-	bool							fastLoad;				// don't generate tangents and shadow data
-	bool							reloadable;				// if not, reloadModels won't check timestamp
-	bool							levelLoadReferenced;	// for determining if it needs to be freed
-	bool							hasDrawingSurfaces;
-	bool							hasInteractingSurfaces;
-	bool							hasShadowCastingSurfaces;
-	ID_TIME_T						timeStamp;
+idStr name;
+bool isStaticWorldModel;
+bool defaulted;
+bool purged;                                                // eventually we will have dynamic reloading
+bool fastLoad;                                              // don't generate tangents and shadow data
+bool reloadable;                                            // if not, reloadModels won't check timestamp
+bool levelLoadReferenced;                                   // for determining if it needs to be freed
+bool hasDrawingSurfaces;
+bool hasInteractingSurfaces;
+bool hasShadowCastingSurfaces;
+ID_TIME_T timeStamp;
 };
 
 #endif /* !__MODEL_LOCAL_H__ */
