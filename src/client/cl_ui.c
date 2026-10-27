@@ -1048,4 +1048,3 @@ qboolean UI_GameCommand( void ) {
 
 	return uie->ConsoleCommand( cls.realtime );
 }
-

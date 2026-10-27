@@ -1180,4 +1180,3 @@ qboolean CL_GetTag( int clientNum, char *tagname, orientation_t *or ) {
 
 	return cge->GetTag( clientNum, tagname, or );
 }
-
