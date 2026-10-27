@@ -29,7 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "qfiles.h"
 
-#include "../cgame/tr_types.h"
+#include "../renderer/tr_types.h"
 
 void        CM_LoadMap( const char *name, qboolean clientload, int *checksum );
 clipHandle_t CM_InlineModel( int index );       // 0 = world, 1 + are bmodels
@@ -38,7 +38,8 @@ clipHandle_t CM_TempBoxModel( const vec3_t mins, const vec3_t maxs, int capsule 
 void        CM_ModelBounds( clipHandle_t model, vec3_t mins, vec3_t maxs );
 
 int         CM_NumClusters( void );
-int         CM_NumInlineModels( void );
+int         CM_NumInli
+neModels( void );
 char        *CM_EntityString( void );
 
 // returns an ORed contents mask

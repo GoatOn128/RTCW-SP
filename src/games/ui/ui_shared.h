@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 
 #include "../../qcommon/q_shared.h"
-#include "../cgame/tr_types.h"
+#include "../../renderer/tr_types.h"
 #include "keycodes.h"
 
 #include "../../main/ui/menudef.h"
@@ -46,7 +46,8 @@ If you have questions concerning this license or the applicable additional terms
 #define MAX_COLOR_RANGES 10
 #define MAX_OPEN_MENUS 16
 
-#define WINDOW_MOUSEOVER        0x00000001  // mouse is over it, non exclusive
+#define WINDOW_MOUSEOVER   
+     0x00000001  // mouse is over it, non exclusive
 #define WINDOW_HASFOCUS         0x00000002  // has cursor focus, exclusive
 #define WINDOW_VISIBLE          0x00000004  // is visible
 #define WINDOW_GREY             0x00000008  // is visible but grey ( non-active )
@@ -74,7 +75,8 @@ If you have questions concerning this license or the applicable additional terms
 
 // CGAME cursor type bits
 #define CURSOR_NONE             0x00000001
-#define CURSOR_ARROW            0x00000002
+#define CURSOR_ARROW            0x00000
+002
 #define CURSOR_SIZER            0x00000004
 
 #ifdef CGAME
@@ -134,7 +136,8 @@ typedef struct {
 	Rectangle rectClient;           // screen coord rectangle
 	const char *name;               //
 	const char *model;              //
-	const char *group;              // if it belongs to a group
+	const char *group;              // if i
+t belongs to a group
 	const char *cinematicName;      // cinematic name
 	int cinematic;                  // cinematic handle
 	int style;                      //
@@ -188,7 +191,8 @@ typedef struct listBoxDef_s {
 	int drawPadding;
 	int cursorPos;
 	float elementWidth;
-	float elementHeight;
+	float ele
+mentHeight;
 	int elementStyle;
 	int numColumns;
 	columnInfo_t columnInfo[MAX_LB_COLUMNS];
@@ -255,7 +259,8 @@ typedef struct itemDef_s {
 	float textaligny;               // ( optional ) text alignment x coord
 	float textscale;                // scale percentage from 72pts
 	int textStyle;                  // ( optional ) style, normal and shadowed are it for now
-	const char *text;               // display text
+	const char *text;  
+             // display text
 	qboolean textSavegameInfo;      //----(SA)	added
 	menuDef_t *parent;              // menu owner
 	qhandle_t asset;                // handle to asset
@@ -293,7 +298,8 @@ struct menuDef_s {
 	const char *onOpen;             // run when the menu is first opened
 	const char *onClose;            // run when the menu is closed
 	const char *onESC;              // run when the menu is closed
-	const char *onKey[255];         // NERVE - SMF - execs commands when a key is pressed
+	const char *onKey[255];         // NERVE - SMF - execs commands when a 
+key is pressed
 	const char *soundName;          // background loop sound for menu
 	const char *onROQDone;          //----(SA)	added.  callback for roqs played from menus
 
@@ -356,7 +362,8 @@ typedef struct {
 	void ( *drawText )( float x, float y, int font, float scale, vec4_t color, const char *text, float adjust, int limit, int style );
 	int ( *textWidth )( const char *text, int font, float scale, int limit );
 	int ( *textHeight )( const char *text, int font, float scale, int limit );
-	qhandle_t ( *registerModel )( const char *p );
+	qhandle_t ( *registerModel
+ )( const char *p );
 	void ( *modelBounds )( qhandle_t model, vec3_t min, vec3_t max );
 	void ( *fillRect )( float x, float y, float w, float h, const vec4_t color );
 	void ( *drawRect )( float x, float y, float w, float h, float size, const vec4_t color );
@@ -387,7 +394,8 @@ typedef struct {
 
 	qhandle_t ( *feederItemImage )( float feederID, int index );
 	void ( *feederSelection )( float feederID, int index );
-	void ( *feederAddItem )( float feederID, const char *name, int index );           // NERVE - SMF
+	void ( *feederAddI
+tem )( float feederID, const char *name, int index );           // NERVE - SMF
 
 	void ( *keynumToStringBuf )( int keynum, char *buf, int buflen );
 	void ( *getBindingBuf )( int keynum, char *buf, int buflen );
@@ -451,7 +459,8 @@ menuDef_t *Menu_GetFocused();
 void Menu_HandleKey( menuDef_t *menu, int key, qboolean down );
 void Menu_HandleMouseMove( menuDef_t *menu, float x, float y );
 void Menu_ScrollFeeder( menuDef_t *menu, int feeder, qboolean down );
-qboolean Float_Parse( char **p, float *f );
+q
+boolean Float_Parse( char **p, float *f );
 qboolean Color_Parse( char **p, vec4_t *c );
 qboolean Int_Parse( char **p, int *i );
 qboolean Rect_Parse( char **p, rectDef_t *r );
@@ -495,7 +504,8 @@ void        UI_RoQDone( void ); // ui callback.  roq is done, allow menu to hand
 
 void        Controls_GetConfig( void );
 void        Controls_SetConfig( qboolean restart );
-void        Controls_SetDefaults( void );
+void        Controls_SetDefaults( void 
+);
 
 int         trap_PC_AddGlobalDefine( char *define );
 int         trap_PC_LoadSource( const char *filename );

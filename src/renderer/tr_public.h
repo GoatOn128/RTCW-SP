@@ -29,7 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #ifndef __TR_PUBLIC_H
 #define __TR_PUBLIC_H
 
-#include "../cgame/tr_types.h"
+#include "tr_types.h"
 
 #define REF_API_VERSION     9
 
@@ -42,7 +42,8 @@ typedef struct {
 	// which will keep the screen from flashing to the desktop.
 	void ( *Shutdown )( qboolean destroyWindow );
 
-	// All data that will be used in a level should be
+	// All data that wil
+l be used in a level should be
 	// registered before rendering any frames to prevent disk hits,
 	// but they can still be registered at a later time
 	// if necessary.
@@ -80,7 +81,8 @@ typedef struct {
 	void ( *AddLightToScene )( const vec3_t org, float intensity, float r, float g, float b, int overdraw );
 //----(SA)
 	void ( *AddCoronaToScene )( const vec3_t org, float r, float g, float b, float scale, int id, int flags );
-	void ( *SetFog )( int fogvar, int var1, int var2, float r, float g, float b, float density );
+	void 
+( *SetFog )( int fogvar, int var1, int var2, float r, float g, float b, float density );
 //----(SA)
 	void ( *RenderScene )( const refdef_t *fd );
 
@@ -123,7 +125,8 @@ typedef struct {
 //
 typedef struct {
 	// print message on the local console
-	void( QDECL * Printf )( int printLevel, const char *fmt, ... );
+	void( QDECL * Printf )( i
+nt printLevel, const char *fmt, ... );
 
 	// abort the game
 	void( QDECL * Error )( int errorLevel, const char *fmt, ... );
@@ -172,7 +175,8 @@ typedef struct {
 
 	// cinematic stuff
 	void ( *CIN_UploadCinematic )( int handle );
-	int ( *CIN_PlayCinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
+	int ( *CIN_Play
+Cinematic )( const char *arg0, int xpos, int ypos, int width, int height, int bits );
 	e_status ( *CIN_RunCinematic )( int handle );
 
 } refimport_t;
