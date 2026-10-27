@@ -56,8 +56,8 @@ idCVar r_simpleMipMaps( "r_simpleMipMaps", "1", CVAR_RENDERER | CVAR_ARCHIVE, ""
 idCVar r_roundImagesDown( "r_roundImagesDown", "1", CVAR_RENDERER | CVAR_ARCHIVE, "" );
 
 static idCVar r_ext_compressed_textures( "r_ext_compressed_textures", "1", CVAR_RENDERER | CVAR_ARCHIVE, "" );
-static idCVar r_overBrightBits( "r_overBrightBits", "0", CVAR_RENDERER | CVAR_ARCHIVE, "" );
-static idCVar r_gamma( "r_gamma", "1", CVAR_RENDERER | CVAR_ARCHIVE, "changes gamma tables", 0.5f, 3.0f );
+static idCVar r_overBrightBits( "r_overBrightBits", "1", CVAR_RENDERER | CVAR_ARCHIVE, "" );
+static idCVar r_gamma( "r_gamma", "1.3", CVAR_RENDERER | CVAR_ARCHIVE, "changes gamma tables", 0.5f, 3.0f );
 static idCVar r_intensity( "r_intensity", "1", CVAR_RENDERER, "", 1.0f, 5.0f );
 
 static idImageManagerLocal staticImageManager;
