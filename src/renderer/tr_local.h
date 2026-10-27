@@ -35,7 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../qcommon/qfiles.h"
 #include "../qcommon/qcommon.h"
 #include "tr_public.h"
-#include "qgl.h"
+#include <glad/gl.h>
 
 #define GL_INDEX_TYPE       GL_UNSIGNED_INT
 typedef unsigned int glIndex_t;
