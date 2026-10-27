@@ -2386,3 +2386,4 @@ void G_RunFrame( int levelTime ) {
 
 	// Ridah, check for loading a save game
 	if ( g_gametype.integer == GT_SINGLE_PLAYER ) {
+
