@@ -47,7 +47,12 @@ static float s_flipMatrix[16] = {
 };
 
 
+#ifdef RENDERER_HARD_LINKED
+// the engine image owns and fills the import struct (cl_main.c)
+extern refimport_t ri;
+#else
 refimport_t ri;
+#endif
 
 // entities that will have procedurally generated surfaces will just
 // point at this for their sorting surface

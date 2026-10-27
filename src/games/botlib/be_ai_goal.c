@@ -192,10 +192,10 @@ maplocation_t *maplocations = NULL;
 //camp spots
 campspot_t *campspots = NULL;
 //the game type
-int g_gametype;
+static int g_gametype;
 
 // Rafael gameskill
-int g_gameskill;
+static int g_gameskill;
 // done
 
 //========================================================================
