@@ -296,7 +296,16 @@ def _diagnostic_spawn(sh, escape, cmd, args, child_env):
         # Pass cmd.exe a raw Windows command line instead, quoting only the
         # interpreter path if necessary. The command arguments produced by
         # SCons already contain the required quoting for paths and flags.
-        command = subprocess.list2cmdline([sh]) + ' /C ' + ' '.join(args)
+        # cmd.exe /C strips the first and last quote character of a command
+        # line that begins with a quoted path (rc.exe lives under Program
+        # Files), leaving 'C:\\Program' as the executable name. Wrap such a
+        # line in an outer quote pair and pass /S so cmd.exe removes only
+        # the outer quotes and keeps every quoted path inside intact.
+        joined_args = ' '.join(args)
+        if joined_args.startswith('"'):
+            command = subprocess.list2cmdline([sh]) + ' /S /C "' + joined_args + '"'
+        else:
+            command = subprocess.list2cmdline([sh]) + ' /C ' + joined_args
     else:
         if not sh:
             sh = '/bin/sh'
