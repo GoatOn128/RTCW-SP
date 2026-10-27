@@ -544,4 +544,3 @@ void BotShutdownWeaponAI( void ) {
 		} //end if
 	} //end for
 } //end of the function BotShutdownWeaponAI
-

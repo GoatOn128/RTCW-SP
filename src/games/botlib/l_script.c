@@ -1450,4 +1450,3 @@ void PS_SetBaseFolder( char *path ) {
 	Com_sprintf( basefolder, sizeof( basefolder ), path );
 #endif
 } //end of the function PS_SetBaseFolder
-

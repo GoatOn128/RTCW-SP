@@ -1628,4 +1628,3 @@ void BotShutdownGoalAI( void ) {
 		} //end if
 	} //end for
 } //end of the function BotShutdownGoalAI
-
