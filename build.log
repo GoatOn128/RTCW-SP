@@ -4259,6 +4259,15 @@ Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_co
 uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
 You can also use 'nl_var_def_blk_end' for additional functionality
 uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
+do_source_file: Parsing: src/renderer-bfg/GLContext.h as language C-Header
+uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
+Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
+Option<NUM>: at uncrustify.cfg:127: Expected number , for 'indent_bool_paren'; got 'false'
+uncrustify.cfg:380: unknown option 'align_number_left'
+Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_cont'; got 'false'
+uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
+You can also use 'nl_var_def_blk_end' for additional functionality
+uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
 do_source_file: Parsing: src/renderer-bfg/ScreenRect.h as language C-Header
 uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
 Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
@@ -4286,10 +4295,40 @@ Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_co
 uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
 You can also use 'nl_var_def_blk_end' for additional functionality
 uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
+do_source_file: Parsing: src/renderer-bfg/RenderSystem.h as language C-Header
+uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
+Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
+Option<NUM>: at uncrustify.cfg:127: Expected number , for 'indent_bool_paren'; got 'false'
+uncrustify.cfg:380: unknown option 'align_number_left'
+Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_cont'; got 'false'
+uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
+You can also use 'nl_var_def_blk_end' for additional functionality
+uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
+do_source_file: Parsing: src/renderer-bfg/RenderSystem.cpp as language CPP
+uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
+Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
+Option<NUM>: at uncrustify.cfg:127: Expected number , for 'indent_bool_paren'; got 'false'
+uncrustify.cfg:380: unknown option 'align_number_left'
+Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_cont'; got 'false'
+uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
+You can also use 'nl_var_def_blk_end' for additional functionality
+uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
+do_source_file: Parsing: src/renderer-bfg/GLContext.cpp as language CPP
+uncrustify.cfg:88: option 'indent_sing_line_comments' is deprecated; did you want to use 'indent_single_line_comments_before' instead?
+Option<NUM>: at uncrustify.cfg:124: Expected number , for 'indent_comma_paren'; got 'false'
+Option<NUM>: at uncrustify.cfg:127: Expected number , for 'indent_bool_paren'; got 'false'
+uncrustify.cfg:380: unknown option 'align_number_left'
+Option<UNUM>: at uncrustify.cfg:468: Expected unsigned number , for 'align_nl_cont'; got 'false'
+uncrustify.cfg:523: option 'nl_func_var_def_blk' is deprecated; it has been replaced by 'nl_var_def_blk_end_func_top'.
+You can also use 'nl_var_def_blk_end' for additional functionality
+uncrustify.cfg:896: option 'pp_space' is deprecated; it has been replaced by 'pp_space_after'.
 do_source_file: Parsing: src/renderer-bfg/RenderEntity.cpp as language CPP
 diag format: end
 diag commit-formatting: begin
  M build.log
+ M src/renderer-bfg/GLContext.h
+ M src/renderer-bfg/RenderSystem.cpp
+ M src/renderer-bfg/RenderSystem.h
  M src/renderer-bfg/RenderWorld.cpp
 diag commit-formatting: push attempts done, pushed=0
 diag digest: leg=uncrustify status=failure
