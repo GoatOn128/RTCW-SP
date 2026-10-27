@@ -390,15 +390,15 @@ static void SetViewportAndScissor( void ) {
 
 	// set the window clipping
 	glViewport(    backEnd.viewParms.viewportX,
-					backEnd.viewParms.viewportY,
-					backEnd.viewParms.viewportWidth,
-					backEnd.viewParms.viewportHeight );
+				   backEnd.viewParms.viewportY,
+				   backEnd.viewParms.viewportWidth,
+				   backEnd.viewParms.viewportHeight );
 
 // TODO: insert handling for widescreen?  (when looking through camera)
 	glScissor(     backEnd.viewParms.viewportX,
-					backEnd.viewParms.viewportY,
-					backEnd.viewParms.viewportWidth,
-					backEnd.viewParms.viewportHeight );
+				   backEnd.viewParms.viewportY,
+				   backEnd.viewParms.viewportWidth,
+				   backEnd.viewParms.viewportHeight );
 }
 
 /*
