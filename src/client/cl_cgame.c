@@ -401,11 +401,11 @@ void CL_CM_LoadMap( const char *mapname ) {
 
 
 // native cgame module interface (Doom3 style): the engine loads the
-// module with Sys_LoadModule and exchanges structs of function pointers
+// module with Sys_LoadDll and exchanges structs of function pointers
 
 static cgameImport_t cl_cgameImport;    // engine functions handed to the cgame module
 #ifndef CGAME_HARD_LINKED
-static void *cgame_library = NULL;      // handle from Sys_LoadModule
+static void *cgame_library = NULL;      // handle from Sys_LoadDll
 #endif
 
 cgameExport_t *cge = NULL;              // cgame module export
@@ -432,7 +432,7 @@ void CL_ShutdownCGame( void ) {
 	}
 	cge->Shutdown();
 #ifndef CGAME_HARD_LINKED
-	Sys_UnloadModule( cgame_library );
+	Sys_UnloadDll( cgame_library );
 	cgame_library = NULL;
 #endif
 	cge = NULL;
@@ -854,21 +854,14 @@ void CL_InitCGame( void ) {
 		Com_Error( ERR_DROP, "GetCgameAPI on cgame failed" );
 	}
 #else
-	cgame_library = Sys_LoadModule( "cgame" );
+	cgame_library = Sys_LoadDll( "cgame", "GetCgameAPI", ( void ** ) &GetCgameAPI );
 	if ( !cgame_library ) {
-		Com_Error( ERR_DROP, "Sys_LoadModule on cgame failed" );
-	}
-
-	GetCgameAPI = ( GetCgameAPI_t ) Sys_ModuleAddress( cgame_library, "GetCgameAPI" );
-	if ( !GetCgameAPI ) {
-		Sys_UnloadModule( cgame_library );
-		cgame_library = NULL;
-		Com_Error( ERR_DROP, "GetCgameAPI not found in cgame" );
+		Com_Error( ERR_DROP, "Sys_LoadDll on cgame failed" );
 	}
 
 	cge = GetCgameAPI( CGAME_IMPORT_API_VERSION, &cl_cgameImport );
 	if ( !cge || cge->apiVersion != CGAME_IMPORT_API_VERSION ) {
-		Sys_UnloadModule( cgame_library );
+		Sys_UnloadDll( cgame_library );
 		cgame_library = NULL;
 		cge = NULL;
 		Com_Error( ERR_DROP, "GetCgameAPI on cgame failed" );

@@ -433,7 +433,7 @@ void Sys_ConsoleInputInit() {
 				  characters  EOF,  EOL,  EOL2, ERASE, KILL, REPRINT,
 				  STATUS, and WERASE, and buffers by lines.
 		 ISIG: when any of the characters  INTR,  QUIT,  SUSP,  or
-				  DSUSP are received, generate the corresponding sig­
+				  DSUSP are received, generate the corresponding sig
 				  nal
 		*/
 		tc.c_lflag &= ~( ECHO | ICANON );
@@ -616,164 +616,59 @@ void Sys_UnloadDll( void *dllHandle ) {
 /*
 =================
 Sys_LoadDll
+
+Loads a native module by name and resolves its entry point export.
 =================
 */
 extern char   *FS_BuildOSPath( const char *base, const char *game, const char *qpath );
 
-// TTimo
-// show_bug.cgi?id=411
-// use DO_LOADDLL_WRAP to wrap a cl_noprint 1 around the call to Sys_LoadDll
-// this is a quick hack to avoid complicated messages on screen
-#ifdef NDEBUG
-#define DO_LOADDLL_WRAP
-#endif
-
-#if defined( DO_LOADDLL_WRAP )
-void *Sys_LoadDll_Wrapped( const char *name,
-						   int( **entryPoint ) ( int, ... ),
-						   int ( *systemcalls )( int, ... ) )
-#else
-void *Sys_LoadDll( const char *name,
-				   int( **entryPoint ) ( int, ... ),
-				   int ( *systemcalls )( int, ... ) )
-#endif
-{
+// arch suffix appended to the module file names (qagame_x86.so);
+// q_buildconfig.h defines ARCH_STRING as a quoted string ("x86"/"x64")
+void * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
 	void *libHandle;
-	void ( *dllEntry )( int ( *syscallptr )( int, ... ) );
-	char fname[MAX_OSPATH];
-	char  *homepath;
-	char  *basepath;
-	char  *pwdpath;
-	char  *gamedir;
-	char  *fn;
-	const char*  err = NULL; // bk001206 // rb0101023 - now const
+	char filename[MAX_QPATH];
+	char *fn;
+	char *basepath, *cdpath, *gamedir;
 
-	// bk001206 - let's have some paranoia
-	assert( name );
+	Com_sprintf( filename, sizeof( filename ), "%s_" ARCH_STRING ".so", name );
 
-// module names carry no architecture suffix: the SCons build
-	// produces plain <name>.so files on every architecture
-	snprintf( fname, sizeof( fname ), "%s.so", name );
+	// check the current working directory first
+	libHandle = dlopen( filename, RTLD_NOW );
+	if ( libHandle ) {
+		goto found_dll;
+	}
 
-// bk001129 - was RTLD_LAZY
-#define Q_RTLD    RTLD_NOW
-
-		homepath = Cvar_VariableString( "fs_homepath" );
 	basepath = Cvar_VariableString( "fs_basepath" );
+	cdpath = Cvar_VariableString( "fs_cdpath" );
 	gamedir = Cvar_VariableString( "fs_game" );
+	if ( !gamedir[0] ) {
+		gamedir = "base";
+	}
 
-	pwdpath = Sys_Cwd();
-	fn = FS_BuildOSPath( pwdpath, gamedir, fname );
-	// bk001206 - verbose
-	Com_Printf( "Sys_LoadDll(%s)... ", fn );
-
-	// bk001129 - from cvs1.17 (mkv), was fname not fn
-	libHandle = dlopen( fn, Q_RTLD );
+	fn = FS_BuildOSPath( basepath, gamedir, filename );
+	libHandle = dlopen( fn, RTLD_NOW );
 
 	if ( !libHandle ) {
-		Com_Printf( "failed (%s)\n", dlerror() );
-		// homepath
-		fn = FS_BuildOSPath( homepath, gamedir, fname );
-		Com_Printf( "Sys_LoadDll(%s)... ", fn );
-		libHandle = dlopen( fn, Q_RTLD );
+		if ( cdpath[0] ) {
+			fn = FS_BuildOSPath( cdpath, gamedir, filename );
+			libHandle = dlopen( fn, RTLD_NOW );
+		}
 
 		if ( !libHandle ) {
-			Com_Printf( "failed (%s)\n", dlerror() );
-			// basepath
-			fn = FS_BuildOSPath( basepath, gamedir, fname );
-			Com_Printf( "Sys_LoadDll(%s)... ", fn );
-			libHandle = dlopen( fn, Q_RTLD );
-
-			if ( !libHandle ) {
-				Com_Printf( "failed (%s)\n", dlerror() );
-
-				if ( strlen( gamedir ) && Q_stricmp( gamedir, BASEGAME ) ) { // begin BASEGAME != fs_game section
-
-					// media-only mods: no DLL whatsoever in the fs_game
-					// start the loop again using the hardcoded BASEDIRNAME
-					fn = FS_BuildOSPath( pwdpath, BASEGAME, fname );
-					Com_Printf( "Sys_LoadDll(%s)... ", fn );
-					libHandle = dlopen( fn, Q_RTLD );
-
-					if ( !libHandle ) {
-						Com_Printf( "failed (%s)\n", dlerror() );
-						// homepath
-						fn = FS_BuildOSPath( homepath, BASEGAME, fname );
-						Com_Printf( "Sys_LoadDll(%s)... ", fn );
-						libHandle = dlopen( fn, Q_RTLD );
-
-						if ( !libHandle ) {
-							Com_Printf( "failed (%s)\n", dlerror() );
-							// homepath
-							fn = FS_BuildOSPath( basepath, BASEGAME, fname );
-							Com_Printf( "Sys_LoadDll(%s)... ", fn );
-							libHandle = dlopen( fn, Q_RTLD );
-
-							if ( !libHandle ) {
-								// ok, this time things are really fucked
-								Com_Printf( "failed (%s)\n", dlerror() );
-							} else {
-								Com_Printf( "ok\n" );
-							}
-						} else {
-							Com_Printf( "ok\n" );
-						}
-					} else {
-						Com_Printf( "ok\n" );
-					}
-				} // end BASEGAME != fs_game section
-			} else {
-				Com_Printf( "ok\n" );
-			}
-		} else {
-			Com_Printf( "ok\n" );
+			return NULL;
 		}
-	} else {
-		Com_Printf( "ok\n" );
 	}
 
-	if ( !libHandle ) {
-#ifndef NDEBUG // in debug, abort on failure
-		Com_Error( ERR_FATAL, "Sys_LoadDll(%s) failed dlopen() completely!\n", name  );
-#else
-		Com_Printf( "Sys_LoadDll(%s) failed dlopen() completely!\n", name );
-#endif
-		return NULL;
-	}
+found_dll:
 
-	dllEntry = dlsym( libHandle, "dllEntry" );
-	*entryPoint = dlsym( libHandle, "vmMain" );
-	if ( !*entryPoint || !dllEntry ) {
-		err = dlerror();
-#ifndef NDEBUG // bk001206 - in debug abort on failure
-		Com_Error( ERR_FATAL, "Sys_LoadDll(%s) failed dlsym(vmMain):\n\"%s\" !\n", name, err );
-#else
-		Com_Printf( "Sys_LoadDll(%s) failed dlsym(vmMain):\n\"%s\" !\n", name, err );
-#endif
+	*entryPoint = dlsym( libHandle, entryPointName );
+	if ( !*entryPoint ) {
 		dlclose( libHandle );
-		err = dlerror();
-		if ( err != NULL ) {
-			Com_Printf( "Sys_LoadDll(%s) failed dlcose:\n\"%s\"\n", name, err );
-		}
 		return NULL;
 	}
-	Com_Printf( "Sys_LoadDll(%s) found **vmMain** at  %p  \n", name, *entryPoint ); // bk001212
-	dllEntry( systemcalls );
-	Com_Printf( "Sys_LoadDll(%s) succeeded!\n", name );
+
 	return libHandle;
 }
-
-#if defined( DO_LOADDLL_WRAP )
-void *Sys_LoadDll( const char *name,
-				   int( **entryPoint ) ( int, ... ),
-				   int ( *systemcalls )( int, ... ) ) {
-	void *ret;
-	Cvar_Set( "cl_noprint", "1" );
-	ret = Sys_LoadDll_Wrapped( name, entryPoint, systemcalls );
-	Cvar_Set( "cl_noprint", "0" );
-	return ret;
-};
-#endif
 
 /*
 ========================================================================

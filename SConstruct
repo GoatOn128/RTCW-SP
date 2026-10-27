@@ -604,7 +604,7 @@ if ARGUMENTS.get('verbose') != '1':
     env['RANLIBCOMSTR'] = _status_text('Indexing', '$TARGET')
     env['ASCOMSTR'] = _status_text('Assembling', '$SOURCE')
 
-# q_shared.h needs CPUSTRING and PATH_SEP everywhere, and Sys_LoadModule
+# q_shared.h needs CPUSTRING and PATH_SEP everywhere, and Sys_LoadDll
 # needs ARCH_STRING as a quoted module name suffix. Quoted values cannot go
 # through command line defines, so SCons writes them into a per build header
 # and force includes it in every file: /FI on clang-cl, -include on clang.

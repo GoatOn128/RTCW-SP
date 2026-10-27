@@ -296,11 +296,11 @@ void SV_GetUsercmd( int clientNum, usercmd_t *cmd ) {
 //==============================================
 
 // native game module interface (Doom3 style): the engine loads the
-// module with Sys_LoadModule and exchanges structs of function pointers
+// module with Sys_LoadDll and exchanges structs of function pointers
 
 static gameImport_t sv_gameImport;     // engine functions handed to the game module
 #ifndef GAME_HARD_LINKED
-static void *game_library = NULL;      // handle from Sys_LoadModule
+static void *game_library = NULL;      // handle from Sys_LoadDll
 #endif
 
 #ifdef GAME_HARD_LINKED
@@ -563,7 +563,7 @@ void SV_ShutdownGameProgs( void ) {
 	}
 	ge->Shutdown( qfalse );
 #ifndef GAME_HARD_LINKED
-	Sys_UnloadModule( game_library );
+	Sys_UnloadDll( game_library );
 	game_library = NULL;
 #endif
 	ge = NULL;
@@ -644,21 +644,14 @@ void SV_InitGameProgs( void ) {
 		Com_Error( ERR_FATAL, "GetGameAPI on game failed" );
 	}
 #else
-	game_library = Sys_LoadModule( "qagame" );
+	game_library = Sys_LoadDll( "qagame", "GetGameAPI", ( void ** ) &GetGameAPI );
 	if ( !game_library ) {
-		Com_Error( ERR_FATAL, "Sys_LoadModule on qagame failed" );
-	}
-
-	GetGameAPI = ( GetGameAPI_t ) Sys_ModuleAddress( game_library, "GetGameAPI" );
-	if ( !GetGameAPI ) {
-		Sys_UnloadModule( game_library );
-		game_library = NULL;
-		Com_Error( ERR_FATAL, "GetGameAPI not found in qagame" );
+		Com_Error( ERR_FATAL, "Sys_LoadDll on qagame failed" );
 	}
 
 	ge = GetGameAPI( GAME_API_VERSION, &sv_gameImport );
 	if ( !ge || ge->apiVersion != GAME_API_VERSION ) {
-		Sys_UnloadModule( game_library );
+		Sys_UnloadDll( game_library );
 		game_library = NULL;
 		ge = NULL;
 		Com_Error( ERR_FATAL, "GetGameAPI on game failed" );

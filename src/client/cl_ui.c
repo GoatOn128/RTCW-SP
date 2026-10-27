@@ -767,11 +767,11 @@ static int GetConfigString( int index, char *buf, int size ) {
 }
 
 // native ui module interface (Doom3 style): the engine loads the
-// module with Sys_LoadModule and exchanges structs of function pointers
+// module with Sys_LoadDll and exchanges structs of function pointers
 
 static uiImport_t cl_uiImport;      // engine functions handed to the ui module
 #ifndef UI_HARD_LINKED
-static void *ui_library = NULL;    // handle from Sys_LoadModule
+static void *ui_library = NULL;    // handle from Sys_LoadDll
 #endif
 
 #ifdef UI_HARD_LINKED
@@ -973,7 +973,7 @@ void CL_ShutdownUI( void ) {
 	}
 	uie->Shutdown();
 #ifndef UI_HARD_LINKED
-	Sys_UnloadModule( ui_library );
+	Sys_UnloadDll( ui_library );
 	ui_library = NULL;
 #endif
 	uie = NULL;
@@ -1000,21 +1000,14 @@ void CL_InitUI( void ) {
 		Com_Error( ERR_FATAL, "GetUIAPI on ui failed" );
 	}
 #else
-	ui_library = Sys_LoadModule( "ui" );
+	ui_library = Sys_LoadDll( "ui", "GetUIAPI", ( void ** ) &GetUIAPI );
 	if ( !ui_library ) {
-		Com_Error( ERR_FATAL, "Sys_LoadModule on ui failed" );
-	}
-
-	GetUIAPI = ( GetUIAPI_t ) Sys_ModuleAddress( ui_library, "GetUIAPI" );
-	if ( !GetUIAPI ) {
-		Sys_UnloadModule( ui_library );
-		ui_library = NULL;
-		Com_Error( ERR_FATAL, "GetUIAPI not found in ui" );
+		Com_Error( ERR_FATAL, "Sys_LoadDll on ui failed" );
 	}
 
 	uie = GetUIAPI( UI_API_VERSION, &cl_uiImport );
 	if ( !uie || uie->apiVersion != UI_API_VERSION ) {
-		Sys_UnloadModule( ui_library );
+		Sys_UnloadDll( ui_library );
 		ui_library = NULL;
 		uie = NULL;
 		Com_Error( ERR_FATAL, "GetUIAPI on ui failed" );

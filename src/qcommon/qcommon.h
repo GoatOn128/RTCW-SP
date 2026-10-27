@@ -294,20 +294,6 @@ enum clc_ops_e {
 /*
 ==============================================================
 
-VIRTUAL MACHINE
-
-==============================================================
-*/
-
-// native module loading (Doom3 style game/cgame/ui modules)
-void    *Sys_LoadModule( const char *name );                     // load a native module, returns a handle or NULL
-void    *Sys_ModuleAddress( void *module, const char *procName ); // find an exported function in a module
-void    Sys_UnloadModule( void *module );                       // free a module loaded with Sys_LoadModule
-
-
-/*
-==============================================================
-
 CMD
 
 Command text buffering and command execution
@@ -900,9 +886,8 @@ void *Sys_InitializeCriticalSection();
 void Sys_EnterCriticalSection( void *ptr );
 void Sys_LeaveCriticalSection( void *ptr );
 
-// general development dll loading for virtual machine testing
-void    * QDECL Sys_LoadDll( const char *name, int( QDECL * *entryPoint ) ( int, ... ),
-							 int( QDECL * systemcalls )( int, ... ) );
+// engine module loading: load a native module and resolve its entry point
+void    * QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint );
 void    Sys_UnloadDll( void *dllHandle );
 
 void    Sys_UnloadGame( void );
