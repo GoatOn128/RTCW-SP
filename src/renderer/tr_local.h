@@ -37,6 +37,16 @@ If you have questions concerning this license or the applicable additional terms
 #include "tr_public.h"
 #include <glad/gl.h>
 
+// qgl.h used to define APIENTRY; glad only defines GLAPIENTRY, and the
+// renderer uses APIENTRY in a few function pointer declarations
+#ifndef APIENTRY
+#ifdef _WIN32
+#define APIENTRY __stdcall
+#else
+#define APIENTRY
+#endif
+#endif
+
 #define GL_INDEX_TYPE       GL_UNSIGNED_INT
 typedef unsigned int glIndex_t;
 

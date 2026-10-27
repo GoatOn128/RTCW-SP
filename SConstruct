@@ -236,6 +236,8 @@ win_sys_files = ['src/sys/win32/' + f for f in [
 # ---------------------------------------------------------------- client
 
 client_env = env.Clone()
+# engine units include the renderer headers, so they see glad too
+client_env.Append(CPPPATH=['src/third-party/glad/include'])
 # botlib is always linked into the executable; each hard-linked module
 # adds its define so the engine calls it directly instead of loading it
 client_env.Append(CPPDEFINES=['BOTLIB_HARD_LINKED'] + [m.upper() + '_HARD_LINKED' for m in HARDLINK])
