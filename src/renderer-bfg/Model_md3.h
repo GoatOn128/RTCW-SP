@@ -43,91 +43,91 @@ loaded with its Model_md3.cpp, so the layouts match byte for byte.
 ========================================================================
 */
 
-const int MD3_VERSION		= 15;
-const int MD3_MAX_LODS		= 3;
-const int MD3_MAX_TRIANGLES	= 8192;		// per surface
-const int MD3_MAX_VERTS		= 4096;		// per surface
-const int MD3_MAX_FRAMES	= 1024;		// per model
-const int MD3_MAX_SURFACES	= 32;		// per model
-const int MD3_MAX_TAGS		= 16;		// per frame
-const int MD3_MAX_SHADERS	= 256;		// per surface
+const int MD3_VERSION       = 15;
+const int MD3_MAX_LODS      = 3;
+const int MD3_MAX_TRIANGLES = 8192;     // per surface
+const int MD3_MAX_VERTS     = 4096;     // per surface
+const int MD3_MAX_FRAMES    = 1024;     // per model
+const int MD3_MAX_SURFACES  = 32;       // per model
+const int MD3_MAX_TAGS      = 16;       // per frame
+const int MD3_MAX_SHADERS   = 256;      // per surface
 
 // vertex scale
-#define MD3_XYZ_SCALE		( 1.0f / 64.0f )
+#define MD3_XYZ_SCALE       ( 1.0f / 64.0f )
 
 // the on-disk structures assume little-endian data, like the engine
 // loaders they replace; all supported platforms are little-endian
 typedef struct {
-	float	bounds[2][3];
-	float	localOrigin[3];
-	float	radius;
-	char	name[16];
+	float bounds[2][3];
+	float localOrigin[3];
+	float radius;
+	char name[16];
 } md3Frame_t;
 
 typedef struct {
-	char	name[64];				// tag name
-	float	origin[3];
-	float	axis[3][3];
+	char name[64];                  // tag name
+	float origin[3];
+	float axis[3][3];
 } md3Tag_t;
 
 typedef struct {
-	int		ident;
+	int ident;
 
-	char	name[64];				// polyset name
+	char name[64];                  // polyset name
 
-	int		flags;
-	int		numFrames;				// all surfaces in a model should have the same
+	int flags;
+	int numFrames;                  // all surfaces in a model should have the same
 
-	int		numShaders;			// all surfaces in a model should have the same
-	int		numVerts;
+	int numShaders;             // all surfaces in a model should have the same
+	int numVerts;
 
-	int		numTriangles;
-	int		ofsTriangles;
+	int numTriangles;
+	int ofsTriangles;
 
-	int		ofsShaders;			// offset from start of md3Surface_t
-	int		ofsSt;					// texture coords are common for all frames
-	int		ofsXyzNormals;		// numVerts * numFrames
+	int ofsShaders;             // offset from start of md3Surface_t
+	int ofsSt;                      // texture coords are common for all frames
+	int ofsXyzNormals;          // numVerts * numFrames
 
-	int		ofsEnd;				// next surface follows
+	int ofsEnd;                 // next surface follows
 } md3Surface_t;
 
 typedef struct {
-	char	name[64];
-	int		shaderIndex;			// for in-game use
+	char name[64];
+	int shaderIndex;                // for in-game use
 } md3Shader_t;
 
 typedef struct {
-	int		indexes[3];
+	int indexes[3];
 } md3Triangle_t;
 
 typedef struct {
-	float	st[2];
+	float st[2];
 } md3St_t;
 
 typedef struct {
-	short	xyz[3];
-	short	normal;					// lat/long encoded
+	short xyz[3];
+	short normal;                   // lat/long encoded
 } md3XyzNormal_t;
 
 typedef struct {
-	int		ident;
-	int		version;
+	int ident;
+	int version;
 
-	char	name[64];				// model name
+	char name[64];                  // model name
 
-	int		flags;
+	int flags;
 
-	int		numFrames;
-	int		numTags;
-	int		numSurfaces;
+	int numFrames;
+	int numTags;
+	int numSurfaces;
 
-	int		numSkins;
+	int numSkins;
 
-	int		ofsFrames;				// offset for first frame
-	int		ofsTags;				// numFrames * numTags
-	int		ofsSurfaces;			// first surface, others follow
+	int ofsFrames;                  // offset for first frame
+	int ofsTags;                    // numFrames * numTags
+	int ofsSurfaces;                // first surface, others follow
 
-	int		ofsEnd;					// end of file
+	int ofsEnd;                     // end of file
 } md3Header_t;
 
 // the sizes must match the on-disk layout exactly or the whole file reads wrong
@@ -157,18 +157,18 @@ SHADERPARM_MD3_BACKLERP), like the BFG frontend does.
 
 class idRenderModelMD3 : public idRenderModelStatic {
 public:
-							idRenderModelMD3();
-	virtual					~idRenderModelMD3();
+idRenderModelMD3();
+virtual ~idRenderModelMD3();
 
-	virtual void			InitFromFile( const char *fileName );
-	virtual dynamicModel_t	IsDynamicModel() const;
-	virtual idRenderModel *	InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
-	virtual idBounds		Bounds( const struct renderEntity_s *ent ) const;
+virtual void            InitFromFile( const char *fileName );
+virtual dynamicModel_t  IsDynamicModel() const;
+virtual idRenderModel * InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
+virtual idBounds        Bounds( const struct renderEntity_s *ent ) const;
 
 private:
-	void					LerpMeshVertexes( srfTriangles_t *tri, const md3Surface_t *surf, const float backlerp, const int frame, const int oldframe ) const;
+void                    LerpMeshVertexes( srfTriangles_t *tri, const md3Surface_t *surf, const float backlerp, const int frame, const int oldframe ) const;
 
-	md3Header_t *			md3;
+md3Header_t *           md3;
 };
 
 #endif /* !__MODEL_MD3_H__ */

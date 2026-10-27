@@ -45,28 +45,28 @@ file around for the frame lerping.
 ========================================================================
 */
 
-const int MDC_VERSION		= 2;
+const int MDC_VERSION       = 2;
 
 // version history:
 // 1 - original
 // 2 - changed tag structure so it only lists the names once
 
-const int MDC_MAX_OFS		= 127;		// to be safe
-#define MDC_DIST_SCALE		0.05f		// lower for more accuracy, but less range
+const int MDC_MAX_OFS       = 127;      // to be safe
+#define MDC_DIST_SCALE      0.05f       // lower for more accuracy, but less range
 
 const int NUMMDCVERTEXNORMALS = 256;
 
 typedef struct {
-	unsigned int ofsVec;					// offset direction from the last base frame
+	unsigned int ofsVec;                    // offset direction from the last base frame
 } mdcXyzCompressed_t;
 
 typedef struct {
-	char	name[64];					// tag name
+	char name[64];                      // tag name
 } mdcTagName_t;
 
 typedef struct {
-	short	xyz[3];
-	short	angles[3];
+	short xyz[3];
+	short angles[3];
 } mdcTag_t;
 
 /*
@@ -83,51 +83,51 @@ typedef struct {
 ** frameCompFrames		sizeof( short ) * numFrames (-1 if frame is a baseFrame)
 */
 typedef struct {
-	int		ident;
+	int ident;
 
-	char	name[64];					// polyset name
+	char name[64];                      // polyset name
 
-	int		flags;
-	int		numCompFrames;			// all surfaces in a model should have the same
-	int		numBaseFrames;			// ditto
+	int flags;
+	int numCompFrames;              // all surfaces in a model should have the same
+	int numBaseFrames;              // ditto
 
-	int		numShaders;				// all surfaces in a model should have the same
-	int		numVerts;
+	int numShaders;                 // all surfaces in a model should have the same
+	int numVerts;
 
-	int		numTriangles;
-	int		ofsTriangles;
+	int numTriangles;
+	int ofsTriangles;
 
-	int		ofsShaders;				// offset from start of mdcSurface_t
-	int		ofsSt;						// texture coords are common for all frames
-	int		ofsXyzNormals;			// numVerts * numBaseFrames
-	int		ofsXyzCompressed;		// numVerts * numCompFrames
+	int ofsShaders;                 // offset from start of mdcSurface_t
+	int ofsSt;                          // texture coords are common for all frames
+	int ofsXyzNormals;              // numVerts * numBaseFrames
+	int ofsXyzCompressed;           // numVerts * numCompFrames
 
-	int		ofsFrameBaseFrames;		// numFrames
-	int		ofsFrameCompFrames;		// numFrames
+	int ofsFrameBaseFrames;         // numFrames
+	int ofsFrameCompFrames;         // numFrames
 
-	int		ofsEnd;					// next surface follows
+	int ofsEnd;                     // next surface follows
 } mdcSurface_t;
 
 typedef struct {
-	int		ident;
-	int		version;
+	int ident;
+	int version;
 
-	char	name[64];					// model name
+	char name[64];                      // model name
 
-	int		flags;
+	int flags;
 
-	int		numFrames;
-	int		numTags;
-	int		numSurfaces;
+	int numFrames;
+	int numTags;
+	int numSurfaces;
 
-	int		numSkins;
+	int numSkins;
 
-	int		ofsFrames;					// offset for first frame, stores the bounds and localOrigin
-	int		ofsTagNames;				// numTags
-	int		ofsTags;					// numFrames * numTags
-	int		ofsSurfaces;				// first surface, others follow
+	int ofsFrames;                      // offset for first frame, stores the bounds and localOrigin
+	int ofsTagNames;                    // numTags
+	int ofsTags;                        // numFrames * numTags
+	int ofsSurfaces;                    // first surface, others follow
 
-	int		ofsEnd;						// end of file
+	int ofsEnd;                         // end of file
 } mdcHeader_t;
 
 // the sizes must match the on-disk layout exactly or the whole file reads wrong
@@ -153,31 +153,31 @@ LerpCMeshVertexes in the src/renderer code of this code base.
 
 // the decompressed frames of one mdc surface
 struct mdcRuntimeSurface_t {
-	idStr			shaderName;			// resolved by the material phase
-	int				numVerts;
-	int				numTriangles;
-	triIndex_t *	indexes;
-	idVec2 *		texCoords;
-	int				numFrames;
-	float *			xyz;				// numFrames * numVerts * 3
-	float *			normals;			// numFrames * numVerts * 3
+	idStr shaderName;                   // resolved by the material phase
+	int numVerts;
+	int numTriangles;
+	triIndex_t *    indexes;
+	idVec2 *        texCoords;
+	int numFrames;
+	float *         xyz;                // numFrames * numVerts * 3
+	float *         normals;            // numFrames * numVerts * 3
 };
 
 class idRenderModelMDC : public idRenderModelStatic {
 public:
-							idRenderModelMDC();
-	virtual					~idRenderModelMDC();
+idRenderModelMDC();
+virtual ~idRenderModelMDC();
 
-	virtual void			InitFromFile( const char *fileName );
-	virtual dynamicModel_t	IsDynamicModel() const;
-	virtual idRenderModel *	InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
-	virtual idBounds		Bounds( const struct renderEntity_s *ent ) const;
+virtual void            InitFromFile( const char *fileName );
+virtual dynamicModel_t  IsDynamicModel() const;
+virtual idRenderModel * InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
+virtual idBounds        Bounds( const struct renderEntity_s *ent ) const;
 
 private:
-	void					FreeRuntimeSurfaces();
+void                    FreeRuntimeSurfaces();
 
-	mdcHeader_t *			mdc;				// the raw file copy, holds the frame bounds
-	idList<mdcRuntimeSurface_t, TAG_MODEL>	mdcSurfaces;
+mdcHeader_t *           mdc;                    // the raw file copy, holds the frame bounds
+idList<mdcRuntimeSurface_t, TAG_MODEL>  mdcSurfaces;
 };
 
 #endif /* !__MODEL_MDC_H__ */

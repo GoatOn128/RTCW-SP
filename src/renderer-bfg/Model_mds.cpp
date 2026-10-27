@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "Model_mds.h"
 
 // from src/qcommon/q_shared.h of this code base
-#define MDS_SHORT2ANGLE( x )	( ( x ) * ( 360.0f / 65536.0f ) )
+#define MDS_SHORT2ANGLE( x )    ( ( x ) * ( 360.0f / 65536.0f ) )
 
 /*
 ===================
@@ -319,8 +319,8 @@ void idRenderModelMDS::InitFromFile( const char *fileName ) {
 					idVec3 transformed;
 					for ( int r = 0; r < 3; r++ ) {
 						transformed[r] = bone->matrix[r][0] * offset[0]
-										  + bone->matrix[r][1] * offset[1]
-										  + bone->matrix[r][2] * offset[2];
+										 + bone->matrix[r][1] * offset[1]
+										 + bone->matrix[r][2] * offset[2];
 					}
 					transformed += bone->translation;
 					pos += transformed * w->boneWeight;

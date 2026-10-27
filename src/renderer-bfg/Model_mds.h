@@ -42,112 +42,112 @@ src/qcommon/qfiles.h, so the layouts match byte for byte.
 ========================================================================
 */
 
-const int MDS_VERSION		= 4;
-const int MDS_MAX_VERTS		= 6000;
-const int MDS_MAX_TRIANGLES	= 8192;
-const int MDS_MAX_BONES		= 128;
-const int MDS_MAX_SURFACES	= 32;
-const int MDS_MAX_TAGS		= 128;
+const int MDS_VERSION       = 4;
+const int MDS_MAX_VERTS     = 6000;
+const int MDS_MAX_TRIANGLES = 8192;
+const int MDS_MAX_BONES     = 128;
+const int MDS_MAX_SURFACES  = 32;
+const int MDS_MAX_TAGS      = 128;
 
 // the on-disk structures assume little-endian data, like the engine
 // loaders they replace; all supported platforms are little-endian
 typedef struct {
-	int		boneIndex;				// these are indexes into the boneReferences,
-	float	boneWeight;				// not the global per-frame bone list
-	float	offset[3];
+	int boneIndex;                  // these are indexes into the boneReferences,
+	float boneWeight;               // not the global per-frame bone list
+	float offset[3];
 } mdsWeight_t;
 
 typedef struct {
-	float	normal[3];
-	float	texCoords[2];
-	int		numWeights;
-	int		fixedParent;			// stay equi-distant from this parent
-	float	fixedDist;
-	mdsWeight_t weights[1];		// variable sized
+	float normal[3];
+	float texCoords[2];
+	int numWeights;
+	int fixedParent;                // stay equi-distant from this parent
+	float fixedDist;
+	mdsWeight_t weights[1];     // variable sized
 } mdsVertex_t;
 
 typedef struct {
-	int		indexes[3];
+	int indexes[3];
 } mdsTriangle_t;
 
 typedef struct {
-	int		ident;
+	int ident;
 
-	char	name[64];				// surface name
-	char	shader[64];				// shader name
-	int		shaderIndex;			// for in-game use
+	char name[64];                  // surface name
+	char shader[64];                // shader name
+	int shaderIndex;                // for in-game use
 
-	int		minLod;
+	int minLod;
 
-	int		ofsHeader;				// this will be a negative number
+	int ofsHeader;                  // this will be a negative number
 
-	int		numVerts;
-	int		ofsVerts;
+	int numVerts;
+	int ofsVerts;
 
-	int		numTriangles;
-	int		ofsTriangles;
+	int numTriangles;
+	int ofsTriangles;
 
-	int		ofsCollapseMap;			// numVerts * int
+	int ofsCollapseMap;             // numVerts * int
 
-	int		numBoneReferences;
-	int		ofsBoneReferences;
+	int numBoneReferences;
+	int ofsBoneReferences;
 
-	int		ofsEnd;					// next surface follows
+	int ofsEnd;                     // next surface follows
 } mdsSurface_t;
 
 typedef struct {
-	short	angles[4];				// to be converted to axis at run-time
-	short	ofsAngles[2];			// PITCH/YAW, head in this direction from parent to go to the offset position
+	short angles[4];                // to be converted to axis at run-time
+	short ofsAngles[2];             // PITCH/YAW, head in this direction from parent to go to the offset position
 } mdsBoneFrameCompressed_t;
 
 typedef struct {
-	float	bounds[2][3];			// bounds of all surfaces of all LOD's for this frame
-	float	localOrigin[3];			// midpoint of bounds, used for sphere cull
-	float	radius;					// dist from localOrigin to corner
-	float	parentOffset[3];		// one bone is an ascendant of all other bones, it starts the hierachy at this position
-	mdsBoneFrameCompressed_t bones[1];	// [numBones]
+	float bounds[2][3];             // bounds of all surfaces of all LOD's for this frame
+	float localOrigin[3];           // midpoint of bounds, used for sphere cull
+	float radius;                   // dist from localOrigin to corner
+	float parentOffset[3];          // one bone is an ascendant of all other bones, it starts the hierachy at this position
+	mdsBoneFrameCompressed_t bones[1];  // [numBones]
 } mdsFrame_t;
 
 typedef struct {
-	char	name[64];				// name of tag
-	float	torsoWeight;
-	int		boneIndex;				// our index in the bones
+	char name[64];                  // name of tag
+	float torsoWeight;
+	int boneIndex;                  // our index in the bones
 } mdsTag_t;
 
-#define BONEFLAG_TAG			1		// this bone is actually a tag
+#define BONEFLAG_TAG            1       // this bone is actually a tag
 
 typedef struct {
-	char	name[64];				// name of bone
-	int		parent;					// not sure if this is required, no harm throwing it in
-	float	torsoWeight;			// scale torso rotation about torsoParent by this
-	float	parentDist;
-	int		flags;
+	char name[64];                  // name of bone
+	int parent;                     // not sure if this is required, no harm throwing it in
+	float torsoWeight;              // scale torso rotation about torsoParent by this
+	float parentDist;
+	int flags;
 } mdsBoneInfo_t;
 
 typedef struct {
-	int		ident;
-	int		version;
+	int ident;
+	int version;
 
-	char	name[64];				// model name
+	char name[64];                  // model name
 
-	float	lodScale;
-	float	lodBias;
+	float lodScale;
+	float lodBias;
 
 	// frames and bones are shared by all levels of detail
-	int		numFrames;
-	int		numBones;
-	int		ofsFrames;				// mdsFrame_t[numFrames]
-	int		ofsBones;				// mdsBoneInfo_t[numBones]
-	int		torsoParent;			// index of bone that is the parent of the torso
+	int numFrames;
+	int numBones;
+	int ofsFrames;                  // mdsFrame_t[numFrames]
+	int ofsBones;                   // mdsBoneInfo_t[numBones]
+	int torsoParent;                // index of bone that is the parent of the torso
 
-	int		numSurfaces;
-	int		ofsSurfaces;
+	int numSurfaces;
+	int ofsSurfaces;
 
 	// tag data
-	int		numTags;
-	int		ofsTags;				// mdsTag_t[numTags]
+	int numTags;
+	int ofsTags;                    // mdsTag_t[numTags]
 
-	int		ofsEnd;					// end of file
+	int ofsEnd;                     // end of file
 } mdsHeader_t;
 
 // the sizes must match the on-disk layout exactly or the whole file reads wrong
@@ -179,21 +179,21 @@ resolves them.
 
 // the frame 0 pose of a single bone
 struct mdsBonePose_t {
-	idVec3	translation;
-	float	matrix[3][3];		// rotation
+	idVec3 translation;
+	float matrix[3][3];         // rotation
 };
 
 class idRenderModelMDS : public idRenderModelStatic {
 public:
-							idRenderModelMDS();
-	virtual					~idRenderModelMDS();
+idRenderModelMDS();
+virtual ~idRenderModelMDS();
 
-	virtual void			InitFromFile( const char *fileName );
-	virtual dynamicModel_t	IsDynamicModel() const;
-	virtual idRenderModel *	InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
+virtual void            InitFromFile( const char *fileName );
+virtual dynamicModel_t  IsDynamicModel() const;
+virtual idRenderModel * InstantiateDynamicModel( const struct renderEntity_s *ent, const struct viewDef_t *view, idRenderModel *cachedModel );
 
 private:
-	mdsHeader_t *			mds;
+mdsHeader_t *           mds;
 };
 
 #endif /* !__MODEL_MDS_H__ */

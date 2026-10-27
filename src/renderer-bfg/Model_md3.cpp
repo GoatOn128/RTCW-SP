@@ -234,7 +234,7 @@ decode added: the engine vertexes carry a normal the BFG code dropped.
 =================
 */
 void idRenderModelMD3::LerpMeshVertexes( srfTriangles_t *tri, const md3Surface_t *surf, const float backlerp,
-										const int frame, const int oldframe ) const {
+										 const int frame, const int oldframe ) const {
 	const short *newXyz = (const short *)( (const byte *)surf + surf->ofsXyzNormals ) + frame * surf->numVerts * 4;
 	const float newXyzScale = MD3_XYZ_SCALE * ( 1.0f - backlerp );
 	const int numVerts = surf->numVerts;
@@ -299,7 +299,7 @@ port clears the vertexes and sets a white color instead.
 =============
 */
 idRenderModel *idRenderModelMD3::InstantiateDynamicModel( const struct renderEntity_s *ent, const viewDef_t *view,
-														   idRenderModel *cachedModel ) {
+														  idRenderModel *cachedModel ) {
 	if ( cachedModel != NULL ) {
 		delete cachedModel;
 		cachedModel = NULL;
