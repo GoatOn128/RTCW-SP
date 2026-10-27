@@ -4,14 +4,20 @@
 #   scons arch=x86 config=debug -j4
 #   scons arch=x64 config=release -j4
 #
-# Targets (under build/<platform>-<arch>-<config>/):
-#   WolfSP   - client binary (.exe on Windows)
-#   qagame   - game module   (.dll on Windows, .so on Linux)
-#   cgame    - cgame module
-#   ui       - ui module
+# Outputs:
+#   bin/WolfSP(.exe)               - client binary
+#   bin/renderer_gl(.dll/.so)      - legacy renderer module
+#   bin/renderer_bfg(.dll/.so)     - new BFG renderer module
+#   bin/main/qagame, cgame, ui     - game modules (.dll on Windows,
+#                                    .so on Linux), laid out like a
+#                                    game install (Main/ beside the exe)
+# Objects, the idlib library and the host tools stay under
+# build/<platform>-<arch>-<config>/.
 
 import os
 import platform as pyplatform
+import shutil
+import subprocess
 
 EnsurePythonVersion(3, 6)
 
@@ -28,6 +34,11 @@ if CONFIG not in ('debug', 'release'):
 IS_WINDOWS = pyplatform.system() == 'Windows'
 PLATFORM_NAME = 'windows' if IS_WINDOWS else pyplatform.system().lower()
 BUILD_DIR = 'build/%s-%s-%s' % (PLATFORM_NAME, ARCH, CONFIG)
+# final binaries: bin/ holds the engine and renderer binaries like a
+# game install, the loadable game modules go into bin/main/
+BIN_DIR = 'bin'
+MODULES_DIR = os.path.join('bin', 'main')
+GAME_SOURCE_DIR = os.path.abspath('src/games/game')
 
 # Spell out the platform suffixes. When a target name has no suffix SCons
 # adds its own (.exe/.dll), and Default() would then point at a name that
@@ -38,6 +49,8 @@ OBJ = '.obj' if IS_WINDOWS else '.o'
 
 Help('''
 Usage: scons [ arch=x86|x64 ] [ config=debug|release ] [ -j N ]
+Outputs go to bin/ (engine and renderer binaries) and bin/main/ (game
+modules); objects stay under build/<platform>-<arch>-<config>/.
 ''')
 
 # Include paths. Most engine includes resolve file-relative, these cover
@@ -63,10 +76,14 @@ common_cpppath = [
 if IS_WINDOWS:
     # SCons names the 64 bit msvc target 'amd64'
     TARGET_ARCH = 'x86' if ARCH == 'x86' else 'amd64'
+    # the resource compiler: rc.exe from the MSVC environment when
+    # available, llvm-rc for a plain LLVM install
+    RC_BIN = shutil.which('rc') or shutil.which('llvm-rc') or 'rc'
     env = Environment(
-        tools=['default'],
+        tools=['default', 'rc'],
         CC='clang-cl',
         CXX='clang-cl',
+        RC=RC_BIN,
         TARGET_ARCH=TARGET_ARCH,
         CPPPATH=common_cpppath,
     )
@@ -132,6 +149,25 @@ else:
     env.Append(CXXFLAGS=[    '-Wno-unused-but-set-variable', '-Wno-missing-field-initializers',
     '-Wno-unused-value', '-Wno-unused-variable', '-Wno-unused-const-variable',
     '-Wno-pointer-sign', '-Wno-writable-strings', '-Wno-deprecated-copy', '-Wno-deprecated-copy-with-user-provided-copy'])
+
+# q_shared.h used to derive QDECL, MAC_STATIC, CPUSTRING and PATH_SEP
+# from compiler predefined macros, which broke silently whenever a
+# compiler did not predefine what the header expected. The build now
+# passes them on the command line so every module gets the same
+# values; q_shared.h only keeps its derivation as a fallback for
+# other build systems.
+if IS_WINDOWS:
+    cpustring = 'win-x86' if ARCH == 'x86' else 'win-x64'
+else:
+    cpustring = 'linux-x86' if ARCH == 'x86' else 'linux-x64'
+if CONFIG == 'debug':
+    cpustring += '-debug'
+env.Append(CPPDEFINES=[
+    ('QDECL', '__cdecl' if IS_WINDOWS else ''),
+    ('MAC_STATIC', ''),
+    ('CPUSTRING', '"%s"' % cpustring),
+    ('PATH_SEP', "'\\\\'" if IS_WINDOWS else "'/'"),
+])
 
 # Shared derived-object cache, big win on CI when restored
 env.CacheDir('.scons_cache')
@@ -229,8 +265,37 @@ botlib_env = client_env.Clone()
 botlib_env.Append(CPPDEFINES=['BOTLIB'])
 client_objs += module_objects(botlib_env, 'client', botlib_files)
 
-client_target = os.path.join(BUILD_DIR, 'WolfSP' + EXE)
-client_env.Program(client_target, client_objs)
+client_target = os.path.join(BIN_DIR, 'WolfSP' + EXE)
+if IS_WINDOWS:
+    # winquake.rc embeds the application icon, the console background
+    # bitmaps and the caption string; the .res file links straight
+    # into the executable
+    client_res = client_env.RES(os.path.join(BUILD_DIR, 'client', 'winquake.res'), 'src/sys/win32/winquake.rc')
+    client_env.Program(client_target, client_objs + client_res)
+else:
+    client_env.Program(client_target, client_objs)
+
+# ---------------------------------------------------------------- tools
+
+# extractfuncs scans game source files and rewrites the saveable
+# function table used by the savegame code; standalone host tool.
+# It is defined before the game module because the module build
+# runs it to regenerate its headers.
+extractfuncs_files = ['src/tools/extractfuncs/' + f for f in [
+    'extractfuncs.c', 'l_log.c', 'l_memory.c', 'l_precomp.c', 'l_script.c',
+]]
+
+extractfuncs_env = env.Clone()
+# l_script.c and l_precomp.c only include their standard headers
+# when SCREWUP is defined; the tool is legacy botlib-era code so
+# its warnings are muted entirely
+extractfuncs_env.Append(CPPDEFINES=['SCREWUP'])
+if IS_WINDOWS:
+    extractfuncs_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
+else:
+    extractfuncs_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
+extractfuncs_target = os.path.join(BUILD_DIR, 'extractfuncs' + EXE)
+extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs_tool', extractfuncs_files))
 
 # ---------------------------------------------------------------- modules
 
@@ -250,6 +315,29 @@ game_files = ['src/games/game/' + f for f in [
     'ai_chat.c', 'ai_cmd.c', 'ai_dmnet.c', 'ai_dmq3.c', 'ai_main.c', 'ai_team.c',
 ]] + ['src/qcommon/q_math.c', 'src/qcommon/q_shared.c']
 
+# extractfuncs regenerates the savegame function table headers the
+# game module compiles against, so it has to build and run before
+# qagame compiles (g_save.c includes both generated headers). A
+# header is only rewritten when its content actually changed.
+extractfuncs_headers = ['src/games/game/g_funcs.h', 'src/games/game/g_func_decs.h']
+game_scan_files = [f for f in game_files if f.startswith('src/games/game/')]
+
+def run_extractfuncs(target, source, env):
+    # mirrors the original extractfuncs.bat: run from src/games/game so
+    # the regenerated headers land next to the game sources. The
+    # Windows main() takes a FindFirstFile filter, the Linux main()
+    # takes the file names; sorted names keep the Linux discovery order
+    # identical to the alphabetical FindFirstFile order on Windows so
+    # both platforms regenerate the same table.
+    args = [source[0].abspath]
+    if IS_WINDOWS:
+        args.append('*.c')
+    else:
+        args += sorted(os.path.basename(str(s)) for s in source[1:])
+    return subprocess.call(args, cwd=GAME_SOURCE_DIR)
+
+env.Command(extractfuncs_headers, [extractfuncs_target] + game_scan_files, run_extractfuncs)
+
 game_env = env.Clone()
 game_env.Append(CPPDEFINES=['GAMEDLL'])
 if IS_WINDOWS:
@@ -257,8 +345,12 @@ if IS_WINDOWS:
 else:
     game_env.Append(LIBS=['dl', 'm'])
     game_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-game_target = os.path.join(BUILD_DIR, 'qagame' + DLL)
-game_env.SharedLibrary(game_target, module_objects(game_env, 'game', game_files, shared=not IS_WINDOWS))
+game_objs = module_objects(game_env, 'game', game_files, shared=not IS_WINDOWS)
+# the whole module waits for the generated headers so a changed
+# function table never ends up half-compiled into qagame
+env.Depends(game_objs, extractfuncs_headers)
+game_target = os.path.join(MODULES_DIR, 'qagame' + DLL)
+game_env.SharedLibrary(game_target, game_objs)
 
 cgame_files = ['src/games/game/' + f for f in [
     'bg_animation.c', 'bg_misc.c', 'bg_pmove.c', 'bg_slidemove.c',
@@ -278,7 +370,7 @@ if IS_WINDOWS:
 else:
     cgame_env.Append(LIBS=['dl', 'm'])
     cgame_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-cgame_target = os.path.join(BUILD_DIR, 'cgame' + DLL)
+cgame_target = os.path.join(MODULES_DIR, 'cgame' + DLL)
 cgame_env.SharedLibrary(cgame_target, module_objects(cgame_env, 'cgame', cgame_files, shared=not IS_WINDOWS))
 
 ui_files = ['src/games/game/' + f for f in [
@@ -294,7 +386,7 @@ if IS_WINDOWS:
 else:
     ui_env.Append(LIBS=['dl', 'm'])
     ui_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-ui_target = os.path.join(BUILD_DIR, 'ui' + DLL)
+ui_target = os.path.join(MODULES_DIR, 'ui' + DLL)
 ui_env.SharedLibrary(ui_target, module_objects(ui_env, 'ui', ui_files, shared=not IS_WINDOWS))
 
 # ---------------------------------------------------------------- renderer
@@ -308,7 +400,7 @@ if IS_WINDOWS:
 else:
     renderer_env.Append(LIBS=['dl', 'm'])
     renderer_env.Append(CCFLAGS=['-fPIC'], CXXFLAGS=['-fPIC'])
-renderer_target = os.path.join(BUILD_DIR, 'renderer_gl' + DLL)
+renderer_target = os.path.join(BIN_DIR, 'renderer_gl' + DLL)
 renderer_objs = module_objects(renderer_env, 'renderer', renderer_module_files, shared=not IS_WINDOWS)
 # stb is vendored third party code, so the build mutes its warnings
 # the same way the old jpeg-6 build did; stb_impl.c is the single
@@ -320,26 +412,6 @@ else:
     renderer_stb_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_objs += module_objects(renderer_stb_env, 'renderer', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
 renderer_env.SharedLibrary(renderer_target, renderer_objs)
-
-# ---------------------------------------------------------------- tools
-
-# extractfuncs scans game source files and rewrites the saveable
-# function table used by the savegame code; standalone host tool
-extractfuncs_files = ['src/tools/extractfuncs/' + f for f in [
-    'extractfuncs.c', 'l_log.c', 'l_memory.c', 'l_precomp.c', 'l_script.c',
-]]
-
-extractfuncs_env = env.Clone()
-# l_script.c and l_precomp.c only include their standard headers
-# when SCREWUP is defined; the tool is legacy botlib-era code so
-# its warnings are muted entirely
-extractfuncs_env.Append(CPPDEFINES=['SCREWUP'])
-if IS_WINDOWS:
-    extractfuncs_env.Append(CCFLAGS=['/W0'], CXXFLAGS=['/W0'])
-else:
-    extractfuncs_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
-extractfuncs_target = os.path.join(BUILD_DIR, 'extractfuncs' + EXE)
-extractfuncs_env.Program(extractfuncs_target, module_objects(extractfuncs_env, 'extractfuncs_tool', extractfuncs_files))
 
 # ---------------------------------------------------------------- idlib
 
@@ -412,9 +484,10 @@ renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src
 # all warnings; stb_impl.c is the single translation unit that pulls in
 # the implementations, the JPEG loader of the image phase uses it
 renderer_bfg_objs += module_objects(renderer_bfg_env, 'renderer-bfg', ['src/third-party/stb/stb_impl.c'], shared=not IS_WINDOWS)
-renderer_bfg_target = os.path.join(BUILD_DIR, 'renderer_bfg' + DLL)
+renderer_bfg_target = os.path.join(BIN_DIR, 'renderer_bfg' + DLL)
 # the idlib objects are linked straight into the shared library: SCons
 # rejects a static library node as a shared library source on Linux
 renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_objs)
 
 Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0], renderer_bfg_target)
+

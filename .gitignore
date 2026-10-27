@@ -1,5 +1,6 @@
 # build outputs
 build/
+bin/
 .scons_cache/
 .sconsign.dblite
 
@@ -13,6 +14,7 @@ build/
 *.lib
 *.a
 *.pdb
+*.res
 
 # python
 __pycache__/

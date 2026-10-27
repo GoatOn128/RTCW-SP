@@ -124,19 +124,31 @@ If you have questions concerning this license or the applicable additional terms
 #endif
 
 // for windows fastcall option
+// QDECL, MAC_STATIC, CPUSTRING and PATH_SEP are supplied by the SCons
+// build on the compiler command line (see SConstruct); the guards below
+// keep the derived fallbacks for other build systems
 
+#ifndef QDECL
 #define QDECL
+#endif
 
 //======================= WIN32 DEFINES =================================
 
 #ifdef WIN32
 
+#ifndef MAC_STATIC
 #define MAC_STATIC
+#endif
 
+// QDECL comes from the SCons command line; only fall back to __cdecl
+// when a build did not supply it
+#ifndef QDECL
 #undef QDECL
 #define QDECL   __cdecl
+#endif
 
 // buildstring will be incorporated into the version string
+#ifndef CPUSTRING
 #ifdef NDEBUG
 // clang-cl does not define _M_IX86, so test the compiler builtins too
 #if defined _M_IX86 || defined __i386__
@@ -152,9 +164,11 @@ If you have questions concerning this license or the applicable additional terms
 #define CPUSTRING   "win-x64-debug"
 #endif
 #endif
+#endif
 
-
+#ifndef PATH_SEP
 #define PATH_SEP '\\'
+#endif
 
 #endif
 
@@ -208,8 +222,11 @@ void Sys_PumpEvents( void );
 // just waste space and make big arrays static...
 #ifdef __linux__
 
+#ifndef MAC_STATIC
 #define MAC_STATIC
+#endif
 
+#ifndef CPUSTRING
 #ifdef __i386__
 #define CPUSTRING   "linux-i386"
 #elif defined __axp__
@@ -217,8 +234,11 @@ void Sys_PumpEvents( void );
 #else
 #define CPUSTRING   "linux-other"
 #endif
+#endif
 
+#ifndef PATH_SEP
 #define PATH_SEP '/'
+#endif
 
 #endif
 
@@ -1545,3 +1565,4 @@ typedef enum {
 } languages_t;
 
 #endif  // Q_SHARED_H
+
