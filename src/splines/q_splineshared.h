@@ -106,6 +106,9 @@ If you have questions concerning this license or the applicable additional terms
 #define QDECL   __cdecl
 
 // buildstring will be incorporated into the version string
+// CPUSTRING and PATH_SEP may already be set (q_shared.h is included
+// first by the engine code), only define them when missing
+#ifndef CPUSTRING
 #ifdef NDEBUG
 // clang-cl does not define _M_IX86, so test the compiler builtins too
 #if defined _M_IX86 || defined __i386__
@@ -121,9 +124,12 @@ If you have questions concerning this license or the applicable additional terms
 #define CPUSTRING   "win-x64-debug"
 #endif
 #endif
+#endif
 
 
+#ifndef PATH_SEP
 #define PATH_SEP '\\'
+#endif
 
 #endif
 
@@ -205,6 +211,8 @@ void Sys_PumpEvents( void );
 
 #define MAC_STATIC
 
+// q_shared.h is included first by the engine code and already set these
+#ifndef CPUSTRING
 #ifdef __i386__
 #define CPUSTRING   "linux-i386"
 #elif defined __axp__
@@ -212,8 +220,11 @@ void Sys_PumpEvents( void );
 #else
 #define CPUSTRING   "linux-other"
 #endif
+#endif
 
+#ifndef PATH_SEP
 #define PATH_SEP '/'
+#endif
 
 #endif
 
