@@ -141,15 +141,15 @@ typedef struct iteminfo_s
 
 fielddef_t iteminfo_fields[] =
 {
-	{"name", ITEMINFO_OFS( name ), FT_STRING, 0 },
-	{"model", ITEMINFO_OFS( model ), FT_STRING, 0 },
-	{"modelindex", ITEMINFO_OFS( modelindex ), FT_INT, 0 },
-	{"type", ITEMINFO_OFS( type ), FT_INT, 0 },
-	{"index", ITEMINFO_OFS( index ), FT_INT, 0 },
-	{"respawntime", ITEMINFO_OFS( respawntime ), FT_FLOAT, 0 },
-	{"mins", ITEMINFO_OFS( mins ), FT_FLOAT | FT_ARRAY, 3},
-	{"maxs", ITEMINFO_OFS( maxs ), FT_FLOAT | FT_ARRAY, 3},
-	{0, 0, 0, 0 },
+	{"name", ITEMINFO_OFS( name ), FT_STRING, 0, 0, 0, NULL},
+	{"model", ITEMINFO_OFS( model ), FT_STRING, 0, 0, 0, NULL},
+	{"modelindex", ITEMINFO_OFS( modelindex ), FT_INT, 0, 0, 0, NULL},
+	{"type", ITEMINFO_OFS( type ), FT_INT, 0, 0, 0, NULL},
+	{"index", ITEMINFO_OFS( index ), FT_INT, 0, 0, 0, NULL},
+	{"respawntime", ITEMINFO_OFS( respawntime ), FT_FLOAT, 0, 0, 0, NULL},
+	{"mins", ITEMINFO_OFS( mins ), FT_FLOAT | FT_ARRAY, 3, 0, 0, NULL},
+	{"maxs", ITEMINFO_OFS( maxs ), FT_FLOAT | FT_ARRAY, 3, 0, 0, NULL},
+	{0, 0, 0, 0, 0, 0, NULL},
 };
 
 structdef_t iteminfo_struct =
