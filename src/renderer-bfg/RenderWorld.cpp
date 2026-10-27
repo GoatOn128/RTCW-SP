@@ -654,7 +654,7 @@ void idRenderWorldLocal::BoundsInAreas_r( int nodeNum, const idBounds &bounds, i
 		side = bounds.PlaneSide( node->plane );
 		if ( side == PLANESIDE_FRONT ) {
 			nodeNum = node->children[0];
-		} else if ( side == PLANESIDE_BACK )   {
+		} else if ( side == PLANESIDE_BACK ) {
 			nodeNum = node->children[1];
 		} else {
 			if ( node->children[1] != 0 ) {
