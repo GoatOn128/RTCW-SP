@@ -178,6 +178,26 @@ material and is never modified.
    tesselation (dropped) and the videoMap playback (client
    integration).
 
+✅ Phase 10 - light grid and entity lighting
+   The entity lighting of this repo's own tr_light.c: the light grid
+   trilerp of R_SetupEntityLightingGrid, the minlight, hilight and sun
+   fallbacks of R_SetupEntityLighting, the R_LightForPoint query, and
+   the r_ambientScale, r_directedScale and r_debugLight cvars with the
+   engine defaults. The BSP adapter loads the light grid lump like the
+   engine's R_LoadLightGrid: the grid size defaults to 64x64x128, the
+   worldspawn gridsize key overrides it like R_LoadEntities, the grid
+   bounds come off the world model like the engine's neutralized
+   R_FindLightGridBounds, and every sample gets the overbright color
+   shift of the lightmap upload; a mismatched lump leaves the world
+   without a grid. The world global r_worldBsp stands in for the
+   engine's tr.world until the scene phase owns it, and the material
+   manager exposes the sun direction and the lightgrid multipliers the
+   engine keeps in its tr structure. Everything stays dormant until
+   the scene phase calls R_SetupEntityLighting per entity. Builds
+   green on every CI config. Deferred to the dynamic light phase,
+   documented at the call sites: the dlight block of
+   R_SetupEntityLighting, R_TransformDlights and R_DlightBmodel.
+
 ## Notes
 
 - License: the ported idlib files are Doom 3 BFG code, which is GPLv3.
