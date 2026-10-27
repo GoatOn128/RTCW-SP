@@ -35,7 +35,13 @@ If you have questions concerning this license or the applicable additional terms
 #include "../qcommon/qfiles.h"
 #include "../qcommon/qcommon.h"
 #include "tr_public.h"
+// the renderer module uses glad; the engine keeps the qgl function
+// pointer table, so engine units include qgl.h here
+#ifdef REFDLL
 #include <glad/gl.h>
+#else
+#include "qgl.h"
+#endif
 
 // qgl.h used to define APIENTRY; glad only defines GLAPIENTRY, and the
 // renderer uses APIENTRY in a few function pointer declarations
