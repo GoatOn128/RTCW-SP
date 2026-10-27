@@ -372,7 +372,8 @@ else:
 # the objects are built position independent on Linux: the library is
 # linked into the renderer_bfg shared library, which only accepts PIC
 # objects there
-idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), module_objects(idlib_env, 'idlib', idlib_files, shared=not IS_WINDOWS))
+idlib_objs = module_objects(idlib_env, 'idlib', idlib_files, shared=not IS_WINDOWS)
+idlib_target = idlib_env.StaticLibrary(os.path.join(BUILD_DIR, 'idlib'), idlib_objs)
 
 # ------------------------------------------------------- renderer-bfg
 
@@ -399,8 +400,8 @@ else:
     renderer_bfg_glad_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 renderer_bfg_objs += module_objects(renderer_bfg_glad_env, 'renderer-bfg', ['src/third-party/glad/src/gl.c'], shared=not IS_WINDOWS)
 renderer_bfg_target = os.path.join(BUILD_DIR, 'renderer_bfg' + DLL)
-# the idlib static library is passed as a source so SCons links it into
-# the shared library on both platforms
-renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_target)
+# the idlib objects are linked straight into the shared library: SCons
+# rejects a static library node as a shared library source on Linux
+renderer_bfg_env.SharedLibrary(renderer_bfg_target, renderer_bfg_objs + idlib_objs)
 
 Default(client_target, game_target, cgame_target, ui_target, renderer_target, extractfuncs_target, idlib_target[0], renderer_bfg_target)
