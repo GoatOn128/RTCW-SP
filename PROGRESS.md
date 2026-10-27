@@ -74,8 +74,31 @@ material and is never modified.
    names to materials (material phase) and replacing the direct stdio
    reads with the engine file system.
 
-⬜ Phase 6 - shader file translation
-   Translate the .shader script files to the BFG material system.
+✅ Phase 6 - shader file translation
+   The material data model and the material manager following the
+   module's model manager shape, and the .shader script translation
+   ported from this repo's own tr_shader.c: ParseShader and ParseStage
+   with the deform, waveform, texmod, sky, sort and surfaceparm
+   helpers keep the engine keyword behavior, so the existing scripts
+   parse with their original meaning. The script files are scanned
+   from a scripts directory next to the working directory and indexed
+   in one combined text block; a material is defined lazily from the
+   matching definition on the first lookup, the first definition wins,
+   and a failed parse becomes the not-drawn default material like the
+   engine does. One material per name serves all non-negative lightmap
+   indexes: this renderer binds the surface lightmap at draw time
+   instead of baking it into per-index shaders. The surfaces of the
+   BSP local models and the MD3, MDC and MDS adapters resolve their
+   stored shader names through the manager, with the surface lightmap
+   index clamped to vertex lighting beyond the world lightmaps. A name
+   without a definition gets the texture-only fallback of R_FindShader.
+   Builds green on every CI config. Deferred to later phases: the
+   images the stages name (image phase), a decl manager proper, the
+   fog, sun and lightgrid keywords (fog/light phases), the state
+   shader time clamping, the texture compression keywords, the
+   multitexture and vertex lighting collapse, the stage iterator,
+   the videoMap playback and the detail texture cvar filtering
+   (frontend).
 
 ⬜ Phase 7 - lighting decision
    Lightmaps first, shadow maps optional later.
