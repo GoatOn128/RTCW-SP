@@ -409,6 +409,10 @@ renderer_module_files = module_link_files('renderer', renderer_files + ['src/qco
 
 renderer_env = env.Clone()
 renderer_env.Append(CPPDEFINES=['REFDLL'])
+if 'renderer' in HARDLINK:
+    # in one image the engine owns the video cvars and the import
+    # struct, so the renderer keeps off those names
+    renderer_env.Append(CPPDEFINES=['RENDERER_HARD_LINKED'])
 # glad supplies the OpenGL 3.3 compatibility profile and its loader
 renderer_env.Append(CPPPATH=['src/third-party/glad/include'])
 if IS_WINDOWS:

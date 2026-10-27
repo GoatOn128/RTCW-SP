@@ -49,10 +49,17 @@ cvar_t  *r_railSegmentLength;
 
 cvar_t  *r_ignoreFastPath;
 
+// when the renderer is hard-linked into the engine image the engine owns
+// these video cvars (cl_qgl.c defines them); the externs in tr_local.h
+// declare them for the renderer
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_verbose;
+#endif
 cvar_t  *r_ignore;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_displayRefresh;
+#endif
 
 cvar_t  *r_detailTextures;
 
@@ -63,7 +70,9 @@ cvar_t  *r_smp;
 cvar_t  *r_showSmp;
 cvar_t  *r_skipBackEnd;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_ignorehwgamma;
+#endif
 cvar_t  *r_measureOverdraw;
 
 cvar_t  *r_inGameVideo;
@@ -91,21 +100,31 @@ cvar_t  *r_facePlaneCull;
 cvar_t  *r_showcluster;
 cvar_t  *r_nocurves;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_allowExtensions;
+#endif
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_ext_compressed_textures;
 cvar_t  *r_ext_gamma_control;
 cvar_t  *r_ext_multitexture;
 cvar_t  *r_ext_compiled_vertex_array;
 cvar_t  *r_ext_texture_env_add;
+#endif
 
 //----(SA)	added
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_ext_texture_filter_anisotropic;
+#endif
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_ext_NV_fog_dist;
+#endif
 cvar_t  *r_nv_fogdist_mode;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_ext_ATI_pntriangles;
+#endif
 cvar_t  *r_ati_truform_tess;        //
 cvar_t  *r_ati_truform_normalmode;  // linear/quadratic
 cvar_t  *r_ati_truform_pointmode;   // linear/cubic
@@ -114,25 +133,33 @@ cvar_t  *r_ati_truform_pointmode;   // linear/cubic
 cvar_t  *r_ati_fsaa_samples;        //DAJ valids are 1, 2, 4
 
 cvar_t  *r_ignoreGLErrors;
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_logFile;
+#endif
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_stencilbits;
 cvar_t  *r_depthbits;
 cvar_t  *r_colorbits;
 cvar_t  *r_stereo;
+#endif
 cvar_t  *r_primitives;
 cvar_t  *r_texturebits;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_drawBuffer;
 cvar_t  *r_glDriver;
 cvar_t  *r_glIgnoreWicked3D;
+#endif
 cvar_t  *r_lightmap;
 cvar_t  *r_vertexLight;
 cvar_t  *r_uiFullScreen;
 cvar_t  *r_shadows;
 cvar_t  *r_portalsky;   //----(SA)	added
 cvar_t  *r_flares;
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_mode;
+#endif
 cvar_t  *r_nobind;
 cvar_t  *r_singleShader;
 cvar_t  *r_roundImagesDown;
@@ -146,7 +173,9 @@ cvar_t  *r_showsky;
 cvar_t  *r_shownormals;
 cvar_t  *r_finish;
 cvar_t  *r_clear;
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_swapInterval;
+#endif
 cvar_t  *r_textureMode;
 cvar_t  *r_offsetFactor;
 cvar_t  *r_offsetUnits;
@@ -159,7 +188,9 @@ cvar_t  *r_portalOnly;
 cvar_t  *r_subdivisions;
 cvar_t  *r_lodCurveError;
 
+#ifndef RENDERER_HARD_LINKED
 cvar_t  *r_fullscreen;
+#endif
 
 
 cvar_t  *r_overBrightBits;
