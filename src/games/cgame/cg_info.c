@@ -186,7 +186,7 @@ static statsItem_t statsItems[] = {
 	{ "end_treasure",    28,     214,        ITEM_TEXTSTYLE_SHADOWEDMORE,    {0.62f, 0.56f,  0.0f,   1.0f},  "%i/%i",         348,    ITEM_TEXTSTYLE_SHADOWEDMORE,    {1.0f,  1.0f,   1.0f,   1.0f},  2 },
 	{ "end_attempts",    28,     214,        ITEM_TEXTSTYLE_SHADOWEDMORE,    {1.0f,  1.0f,   1.0f,   1.0f},  "%i",                348,    ITEM_TEXTSTYLE_SHADOWEDMORE,    {1.0f,  1.0f,   1.0f,   1.0f},  1 },
 
-	{ NULL }
+	{ NULL, 0, 0, 0, {0, 0, 0, 0}, NULL, 0, 0, {0, 0, 0, 0}, 0 }
 };
 
 //	int			numSecrets;
@@ -665,3 +665,4 @@ void CG_DrawInformation( void ) {
 
 	callCount--;
 }
+
