@@ -1140,7 +1140,7 @@ void idFixedPosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			const char *token = Com_Parse( text );
+			Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "pos" ) == 0 ) {
 				Com_UngetToken();
 				Com_Parse1DMatrix( text, 3, pos );
@@ -1185,7 +1185,7 @@ void idInterpolatedPosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			const char *token = Com_Parse( text );
+			Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "startPos" ) == 0 ) {
 				Com_UngetToken();
 				Com_Parse1DMatrix( text, 3, startPos );
@@ -1234,7 +1234,7 @@ void idSplinePosition::parse( const char *( *text )  ) {
 			Com_UngetToken();
 			idStr key = Com_ParseOnLine( text );
 
-			const char *token = Com_Parse( text );
+			Com_Parse( text );
 			if ( Q_stricmp( key.c_str(), "target" ) == 0 ) {
 				target.parse( text );
 			} else {

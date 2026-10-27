@@ -434,14 +434,13 @@ void idStr::snprintf
 	...
 ) {
 	char buffer[0x10000];
-	int len;
 	va_list argptr;
 
 	va_start( argptr,fmt );
-	len = vsprintf( buffer,fmt,argptr );
+	vsprintf( buffer,fmt,argptr );
 	va_end( argptr );
 
-	assert( len < size );
+	assert( strlen( buffer ) < size );
 
 	strncpy( dst, buffer, size - 1 );
 }
@@ -472,15 +471,12 @@ void TestStringClass
 	idStr d( c );                       // d.len == 4, d.data == "test\0"
 	idStr e( reinterpret_cast<const char *>( NULL ) );
 	// e.len == 0, e.data == "\0"					ASSERT!
-	int i;                              // i == ?
 
-	i = a.length();                 // i == 0
-	i = c.length();                 // i == 4
+	(void)a.length();                 // i == 0
+	(void)c.length();                 // i == 4
 
-	const char *s1 = a.c_str(); // s1 == "\0"
-	s1 = NULL;
-	const char *s2 = c.c_str(); // s2 == "test\0"
-	s2 = NULL;
+	(void)a.c_str(); // s1 == "\0"
+	(void)c.c_str(); // s2 == "test\0"
 
 	t = new idStr();                        // t->len == 0, t->data == "\0"
 	delete t;                           // t == ?
@@ -528,27 +524,27 @@ void TestStringClass
 	a = "test";                          // a.len == 4, a.data == "test\0"
 	b = "no";                            // b.len == 2, b.data == "no\0"
 
-	i = ( a == b );                 // i == 0
-	i = ( a == c );                 // i == 1
+	(void)( a == b );                 // i == 0
+	(void)( a == c );                 // i == 1
 
-	i = ( a == "blow" );             // i == 0
-	i = ( a == "test" );             // i == 1
-	i = ( a == NULL );              // i == 0											ASSERT!
+	(void)( a == "blow" );             // i == 0
+	(void)( a == "test" );             // i == 1
+	(void)( a == NULL );              // i == 0											ASSERT!
 
-	i = ( "test" == b );             // i == 0
-	i = ( "test" == a );             // i == 1
-	i = ( NULL == a );              // i == 0											ASSERT!
+	(void)( "test" == b );             // i == 0
+	(void)( "test" == a );             // i == 1
+	(void)( NULL == a );              // i == 0											ASSERT!
 
-	i = ( a != b );                 // i == 1
-	i = ( a != c );                 // i == 0
+	(void)( a != b );                 // i == 1
+	(void)( a != c );                 // i == 0
 
-	i = ( a != "blow" );             // i == 1
-	i = ( a != "test" );             // i == 0
-	i = ( a != NULL );              // i == 1											ASSERT!
+	(void)( a != "blow" );             // i == 1
+	(void)( a != "test" );             // i == 0
+	(void)( a != NULL );              // i == 1											ASSERT!
 
-	i = ( "test" != b );             // i == 1
-	i = ( "test" != a );             // i == 0
-	i = ( NULL != a );              // i == 1											ASSERT!
+	(void)( "test" != b );             // i == 1
+	(void)( "test" != a );             // i == 0
+	(void)( NULL != a );              // i == 1											ASSERT!
 
 	a = "test";                 // a.data == "test"
 	b = a;                       // b.data == "test"
