@@ -1,6 +1,6 @@
 # Build digest
 
-commit: ed7cd2ecc8f0
+commit: c66e2ef8f5e2
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
@@ -13,7 +13,7 @@ commit: ed7cd2ecc8f0
 - windows-latest-x64-release-cgame: failure
 - windows-latest-x64-release-game: failure
 - windows-latest-x64-release-ui: failure
-- windows-latest-x86-debug-: cancelled
+- windows-latest-x86-debug-: failure
 - windows-latest-x86-release-: failure
 
 ## ubuntu-latest-x64-debug-
@@ -26,10 +26,10 @@ warnings: 3565 in 6 kinds
 ### errors
 
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
@@ -37,11 +37,11 @@ scons: *** [build/linux-x64-debug/client/obj/client/cl_keys.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_main.cpp.o] Error 1
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/client/cl_scrn.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_ui.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/snd_mem.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/snd_mix.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/snd_wavelet.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/snd_mix.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/snd_dma.cpp.o] Error 1
 src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/qcommon/cm_load.cpp.o] Error 1
@@ -51,55 +51,55 @@ scons: *** [build/linux-x64-debug/client/obj/qcommon/cm_patch.cpp.o] Error 1
 src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/common.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/qcommon/cmd.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/qcommon/cm_trace.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/qcommon/cmd.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/qcommon/cvar.cpp.o] Error 1
 src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/qcommon/common.cpp.o] Error 1
 src/qcommon/huffman.cpp:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/qcommon/huffman.cpp.o] Error 1
-src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/qcommon/files.cpp.o] Error 1
+src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
+src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/qcommon/msg.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/qcommon/net_chan.cpp.o] Error 1
-src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/server/sv_ccmds.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/server/sv_bot.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/server/sv_client.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/qcommon/unzip.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/server/sv_init.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_bot.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_ccmds.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_client.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/server/sv_game.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_init.cpp.o] Error 1
 src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/server/sv_main.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/server/sv_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/server/sv_snapshot.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/server/sv_world.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_main.cpp.o] Error 1
 src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_bsp.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/server/sv_world.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_animation.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_backend.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_bsp.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_curve.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_flares.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_font.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_decals.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_image.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_light.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_marks.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_main.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_marks.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_mesh.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_noise.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_model.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_noise.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_scene.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_renderprog.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shade.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shadows.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_sky.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_surface.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-debug/client/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x64-debug/client/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-debug/client/obj/games/game/q_math.cpp.o'.
@@ -107,45 +107,45 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_world.cpp.o] Error 1
 src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_net.cpp.o] Error 1
 src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_shared.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_net.cpp.o] Error 1
 src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 src/sys/unix/linux_snd.cpp:45:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_snd.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 src/games/botlib/be_ai_char.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
+src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
-src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
+src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
 src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
 src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ea.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_interface.cpp.o] Error 1
 src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_libvar.cpp.o] Error 1
 src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_libvar.cpp.o] Error 1
 src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_crc.cpp.o] Error 1
-src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_log.cpp:42:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_memory.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_log.cpp.o] Error 1
+src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/l_script.cpp.o] Error 1
@@ -173,10 +173,10 @@ src/games/game/g_active.cpp:1164:42: error: expected expression
 src/games/game/g_active.cpp:1164:44: error: expected expression
 src/games/game/g_active.cpp:1164:15: error: expected expression
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_active.cpp.o] Error 1
 src/games/game/g_alarm.cpp:114:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_alarm.cpp:189:28: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_alarm.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_active.cpp.o] Error 1
 src/games/game/g_client.cpp:141:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_client.cpp:172:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_client.cpp:181:24: error: cast from pointer to smaller type 'int' loses information
@@ -192,47 +192,46 @@ src/games/game/g_combat.cpp:724:16: error: expected expression
 src/games/game/g_combat.cpp:724:18: error: expected expression
 src/games/game/g_combat.cpp:725:40: error: expected expression
 src/games/game/g_combat.cpp:725:42: error: expected expression
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_combat.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_items.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_combat.cpp.o] Error 1
 src/games/game/g_main.cpp:570:31: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_mem.cpp.o] Error 1
 src/games/game/g_main.cpp:1743:22: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_main.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_mem.cpp.o] Error 1
 src/games/game/g_misc.cpp:624:34: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:1093:25: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_missile.cpp.o] Error 1
 src/games/game/g_misc.cpp:2598:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:2651:27: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_misc.cpp.o] Error 1
+src/games/game/g_props.cpp:314:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:474:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2007:41: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2829:33: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:1720:35: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:1765:28: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2856:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2885:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:1940:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3242:23: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3447:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3475:25: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_mover.cpp:4253:25: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_mover.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_missile.cpp.o] Error 1
-src/games/game/g_props.cpp:314:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:474:25: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1720:35: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1765:28: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1940:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/../game/g_public.h:178:78: error: expected ')'
 src/games/game/g_props.cpp:2882:28: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_mover.cpp:4253:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:3019:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:3100:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/../game/g_public.h:178:78: error: expected ')'
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_mover.cpp.o] Error 1
 src/games/game/../game/g_local.h:1187:69: error: expected ')'
-src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
+src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/game/g_props.cpp:4053:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:4130:26: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_props.cpp.o] Error 1
-src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_script.cpp.o] Error 1
-src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_script_actions.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_props.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_session.cpp.o] Error 1
+src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/game/g_spawn.cpp:111:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:112:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:113:19: error: cast from pointer to smaller type 'int' loses information
@@ -251,24 +250,25 @@ src/games/game/g_spawn.cpp:125:15: error: cast from pointer to smaller type 'int
 src/games/game/g_spawn.cpp:126:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:127:19: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_spawn.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_script_actions.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_svcmds.cpp.o] Error 1
 src/games/game/g_syscalls.cpp:237:68: error: expected ')'
 src/games/game/g_syscalls.cpp:238:53: error: expected expression
 src/games/game/g_syscalls.cpp:238:56: error: expected expression
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_syscalls.cpp.o] Error 1
-src/games/game/g_team.cpp:218:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:57:27: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_team.cpp:218:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:323:31: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:219:28: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_target.cpp:365:23: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:683:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:701:24: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_target.cpp:365:23: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:557:33: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_team.cpp:1101:23: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:765:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:858:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_team.cpp:1101:23: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_target.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_team.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_target.cpp.o] Error 1
 src/games/game/g_tramcar.cpp:284:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_tramcar.cpp:1082:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_tramcar.cpp:1106:25: error: cast from pointer to smaller type 'int' loses information
@@ -278,40 +278,40 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_tramcar.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-debug/game/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x64-debug/game/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-debug/game/obj/games/game/q_shared.cpp.o'.
 src/games/game/g_trigger.cpp:699:24: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_trigger.cpp.o] Error 1
 src/games/game/g_utils.cpp:218:22: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_utils.cpp:266:27: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_trigger.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_utils.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
-src/games/cgame/cg_local.h:41:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/cgame/obj/games/game/bg_misc.cpp.o] Error 1
+src/games/cgame/cg_local.h:41:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_consolecmds.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_draw.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_drawtools.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_effects.cpp.o] Error 1
 src/games/cgame/cg_fx.cpp:1:10: fatal error: 'FxScheduler.h' file not found
 src/games/cgame/cg_fx_entities.cpp:31:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
 src/games/cgame/cg_fx_flame.cpp:37:10: fatal error: 'FxScheduler.h' file not found
 src/games/cgame/cg_fx_marks.cpp:30:10: fatal error: 'FxScheduler.h' file not found
-src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
+src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
 src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_predict.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_scoreboard.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_sound.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/FxPrimitives.cpp.o] Source `src/games/cgame/FxPrimitives.cpp' not found, needed by target `build/linux-x64-debug/cgame/obj/games/cgame/FxPrimitives.cpp.o'.
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/FxScheduler.cpp.o] Source `src/games/cgame/FxScheduler.cpp' not found, needed by target `build/linux-x64-debug/cgame/obj/games/cgame/FxScheduler.cpp.o'.
@@ -321,14 +321,14 @@ scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/FxUtil.cpp.o] Source `sr
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/genericparser2.cpp.o] Source `src/games/cgame/genericparser2.cpp' not found, needed by target `build/linux-x64-debug/cgame/obj/games/cgame/genericparser2.cpp.o'.
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_syscalls.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-debug/cgame/obj/games/game/q_math.cpp.o'.
-src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-debug/cgame/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-debug/cgame/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
+src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 src/games/ui/ui_local.h:36:10: fatal error: '../game/q_shared.h' file not found
 
 ### failure context
 
-- build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o
+- build/linux-x64-debug/client/obj/client/cl_input.cpp.o
 
 ```
 No user sessions are running outdated binaries.
@@ -341,6 +341,9 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
 In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -349,9 +352,6 @@ In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
@@ -361,84 +361,14 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/client/cl_input.cpp.o
-
-```
-
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_console.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cin.cpp:47:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/client/cl_console.cpp.o
-
-```
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_console.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cin.cpp:47:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/client/cl_cin.cpp.o
 
 ```
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
@@ -446,6 +376,9 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
 In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -454,9 +387,6 @@ In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
@@ -466,10 +396,80 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o
+
+```
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src/client/cl_cgame.cpp'
+Compiling 'src/client/cl_cin.cpp'
+Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cgame.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cin.cpp:47:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/client/cl_console.cpp.o
+
+```
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src/client/cl_cgame.cpp'
+Compiling 'src/client/cl_cin.cpp'
+Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cgame.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cin.cpp:47:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o
@@ -480,11 +480,11 @@ scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
@@ -514,12 +514,11 @@ scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
@@ -541,17 +540,18 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/client/cl_keys.cpp.o
 
 ```
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_input.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/client/cl_console.cpp.o] Error 1
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
@@ -573,8 +573,8 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_keys.cpp.o] Error 1
@@ -598,21 +598,21 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_keys.cpp.o] Error 1
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 Compiling 'src/client/snd_adpcm.cpp'
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_main.cpp.o] Error 1
 ```
 
@@ -627,65 +627,65 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_keys.cpp.o] Error 1
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 Compiling 'src/client/snd_adpcm.cpp'
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_main.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
-1 error generated.
 In file included from src/client/snd_adpcm.cpp:29:
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_scrn.cpp.o] Error 1
 ```
 
-- build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o
+- build/linux-x64-debug/client/obj/client/cl_ui.cpp.o
 
 ```
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-debug/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
 1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_keys.cpp.o] Error 1
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 Compiling 'src/client/snd_adpcm.cpp'
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_main.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
-1 error generated.
 In file included from src/client/snd_adpcm.cpp:29:
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 scons: *** [build/linux-x64-debug/client/obj/client/cl_scrn.cpp.o] Error 1
 Compiling 'src/client/snd_mem.cpp'
 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
+1 error generated.
+scons: *** [build/linux-x64-debug/client/obj/client/cl_ui.cpp.o] Error 1
 ```
 
 
@@ -828,6 +828,15 @@ scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/bg_animation.cpp:251:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_animation.cpp:252:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_animation.cpp:253:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:501:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:837:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1071:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1081:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1115:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1116:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1117:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1118:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/games/game/bg_animation.cpp:1119:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:179:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:180:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:181:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -989,7 +998,6 @@ scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/bg_misc.cpp:372:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:373:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:374:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_animation.cpp:501:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:375:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:376:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:378:2: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1084,14 +1092,6 @@ scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/bg_misc.cpp:646:4: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:647:4: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/games/game/bg_misc.cpp:649:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:651:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:657:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:658:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:676:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:677:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:678:7: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:679:4: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/games/game/bg_misc.cpp:680:4: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [21x] -unused-but-set-variable
   - src/splines/util_str.cpp:468:7: warning: variable 'ch' set but not used [-Wunused-but-set-variable]
   - src/splines/util_str.cpp:476:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
@@ -1104,10 +1104,10 @@ scons: *** [build/linux-x64-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/g_cmds.cpp:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_combat.cpp:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.cpp:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -1137,130 +1137,130 @@ warnings: 3567 in 7 kinds
 ### errors
 
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_mem.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_mix.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/snd_dma.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_wavelet.cpp.o] Error 1
 src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/client/snd_dma.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_load.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_patch.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_test.cpp.o] Error 1
-src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_trace.cpp.o] Error 1
+src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/common.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/cmd.cpp.o] Error 1
 src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/cvar.cpp.o] Error 1
 src/qcommon/huffman.cpp:34:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/qcommon/common.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/huffman.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/files.cpp.o] Error 1
-src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/qcommon/common.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/net_chan.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/msg.cpp.o] Error 1
 src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/qcommon/net_chan.cpp.o] Error 1
 src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/server/sv_bot.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/server/sv_ccmds.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_client.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/unzip.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_init.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_client.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/server/sv_game.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_init.cpp.o] Error 1
 src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/server/sv_main.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_net_chan.cpp.o] Error 1
-src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/server/sv_snapshot.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_main.cpp.o] Error 1
+src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/server/sv_world.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_bsp.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_animation.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_backend.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_curve.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_decals.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_font.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_flares.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_font.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_image.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_main.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_light.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_init.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_decals.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_light.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_main.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_marks.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_mesh.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_model.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_noise.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_scene.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shade.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_shadows.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shader.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_shadows.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_sky.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_surface.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-release/client/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x64-release/client/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-release/client/obj/games/game/q_math.cpp.o'.
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_surface.cpp.o] Error 1
-src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_world.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_net.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o] Error 1
+src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o] Error 1
 src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_shared.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_net.cpp.o] Error 1
+src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
 src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o] Error 1
 src/sys/unix/linux_snd.cpp:45:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_snd.cpp.o] Error 1
+src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 src/games/botlib/be_ai_char.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
 src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
 src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
-src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
-src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ea.cpp.o] Error 1
+src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ea.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_interface.cpp.o] Error 1
+src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/games/botlib/l_libvar.cpp.o] Error 1
 src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_crc.cpp.o] Error 1
-src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/l_libvar.cpp.o] Error 1
-src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_log.cpp:42:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_log.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/l_precomp.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_script.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/l_precomp.cpp.o] Error 1
 src/games/botlib/l_struct.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_struct.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_nav_interface.cpp.o] Error 1
@@ -1314,13 +1314,13 @@ src/games/game/g_misc.cpp:1093:25: error: cast from pointer to smaller type 'int
 src/games/game/g_misc.cpp:2598:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:2651:27: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_misc.cpp.o] Error 1
-scons: *** [build/linux-x64-release/game/obj/games/game/g_missile.cpp.o] Error 1
 src/games/game/g_mover.cpp:2007:41: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2829:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2856:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2885:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3242:23: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3447:33: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-release/game/obj/games/game/g_missile.cpp.o] Error 1
 src/games/game/g_mover.cpp:3475:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:4253:25: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_mover.cpp.o] Error 1
@@ -1329,20 +1329,21 @@ src/games/game/g_props.cpp:474:25: error: cast from pointer to smaller type 'int
 src/games/game/g_props.cpp:1720:35: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:1765:28: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:1940:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/../game/g_public.h:178:78: error: expected ')'
 src/games/game/g_props.cpp:2882:28: error: cast from pointer to smaller type 'int' loses information
-src/games/game/../game/g_local.h:1187:69: error: expected ')'
-src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
 src/games/game/g_props.cpp:3019:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:3100:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:4053:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:4130:26: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_props.cpp.o] Error 1
+src/games/game/../game/g_public.h:178:78: error: expected ')'
+src/games/game/../game/g_local.h:1187:69: error: expected ')'
 src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/game/obj/games/game/g_script.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_save.cpp.o] Error 1
 src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/game/obj/games/game/g_script_actions.cpp.o] Error 1
+scons: *** [build/linux-x64-release/game/obj/games/game/g_session.cpp.o] Error 1
 src/games/game/g_spawn.cpp:111:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:112:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:113:19: error: cast from pointer to smaller type 'int' loses information
@@ -1360,13 +1361,12 @@ src/games/game/g_spawn.cpp:124:15: error: cast from pointer to smaller type 'int
 src/games/game/g_spawn.cpp:125:15: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:126:19: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_spawn.cpp:127:19: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-release/game/obj/games/game/g_session.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_spawn.cpp.o] Error 1
-scons: *** [build/linux-x64-release/game/obj/games/game/g_svcmds.cpp.o] Error 1
 src/games/game/g_syscalls.cpp:237:68: error: expected ')'
 src/games/game/g_syscalls.cpp:238:53: error: expected expression
 src/games/game/g_syscalls.cpp:238:56: error: expected expression
 scons: *** [build/linux-x64-release/game/obj/games/game/g_syscalls.cpp.o] Error 1
+scons: *** [build/linux-x64-release/game/obj/games/game/g_svcmds.cpp.o] Error 1
 src/games/game/g_target.cpp:57:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:219:28: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:365:23: error: cast from pointer to smaller type 'int' loses information
@@ -1376,14 +1376,14 @@ src/games/game/g_target.cpp:858:26: error: cast from pointer to smaller type 'in
 scons: *** [build/linux-x64-release/game/obj/games/game/g_target.cpp.o] Error 1
 src/games/game/g_team.cpp:218:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:323:31: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_tramcar.cpp:284:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:683:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:701:24: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:1101:23: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-release/game/obj/games/game/g_team.cpp.o] Error 1
-src/games/game/g_tramcar.cpp:284:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_tramcar.cpp:1082:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_tramcar.cpp:1106:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_tramcar.cpp:1421:28: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-release/game/obj/games/game/g_team.cpp.o] Error 1
 src/games/game/g_tramcar.cpp:1479:26: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_tramcar.cpp.o] Error 1
 src/games/game/g_trigger.cpp:699:24: error: cast from pointer to smaller type 'int' loses information
@@ -1402,29 +1402,29 @@ scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_drawtools.cpp.o] Er
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_effects.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
 src/games/cgame/cg_fx.cpp:1:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 src/games/cgame/cg_fx_entities.cpp:31:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 src/games/cgame/cg_fx_flame.cpp:37:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 src/games/cgame/cg_fx_marks.cpp:30:10: fatal error: 'FxScheduler.h' file not found
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
+src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
-src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_predict.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_scoreboard.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_sound.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_syscalls.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_sound.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/FxPrimitives.cpp.o] Source `src/games/cgame/FxPrimitives.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/cgame/FxPrimitives.cpp.o'.
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/FxScheduler.cpp.o] Source `src/games/cgame/FxScheduler.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/cgame/FxScheduler.cpp.o'.
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/FxSystem.cpp.o] Source `src/games/cgame/FxSystem.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/cgame/FxSystem.cpp.o'.
@@ -1435,11 +1435,11 @@ scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x64-release/cgame/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/game/q_shared.cpp.o'.
 src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_weapons.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.cpp.o] Error 1
 
 ### failure context
 
-- build/linux-x64-release/client/obj/client/cl_console.cpp.o
+- build/linux-x64-release/client/obj/client/cl_input.cpp.o
 
 ```
 No user sessions are running outdated binaries.
@@ -1452,11 +1452,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_cin.cpp:47:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
+In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1464,7 +1464,7 @@ In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1472,7 +1472,7 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 ```
 
 - build/linux-x64-release/client/obj/client/cl_cin.cpp.o
@@ -1487,11 +1487,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_cin.cpp:47:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
+In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1499,7 +1499,7 @@ In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1507,11 +1507,11 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_input.cpp.o
+- build/linux-x64-release/client/obj/client/cl_console.cpp.o
 
 ```
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
@@ -1522,11 +1522,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_cin.cpp:47:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
+In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1534,7 +1534,7 @@ In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1542,9 +1542,9 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 ```
 
 - build/linux-x64-release/client/obj/client/cl_cgame.cpp.o
@@ -1557,11 +1557,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_cin.cpp:47:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
+In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1569,7 +1569,7 @@ In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -1577,9 +1577,9 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 ```
 
@@ -1592,9 +1592,9 @@ scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
 Compiling 'src/client/cl_main.cpp'
@@ -1608,12 +1608,12 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
@@ -1625,9 +1625,9 @@ scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
 Compiling 'src/client/cl_main.cpp'
@@ -1641,21 +1641,21 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
 1 error generated.
+Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_scrn.cpp.o
+- build/linux-x64-release/client/obj/client/cl_keys.cpp.o
 
 ```
 In file included from src/client/cl_keys.cpp:29:
@@ -1666,137 +1666,137 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
 1 error generated.
+Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_keys.cpp.o
+- build/linux-x64-release/client/obj/client/cl_ui.cpp.o
 
 ```
 In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/cl_main.cpp.o
-
-```
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+1 error generated.
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
+Compiling 'src/client/snd_adpcm.cpp'
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
+```
+
+- build/linux-x64-release/client/obj/client/cl_scrn.cpp.o
+
+```
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
 1 error generated.
+Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/cl_ui.cpp.o
-
-```
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
+Compiling 'src/client/snd_adpcm.cpp'
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+```
+
+- build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o
+
+```
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+1 error generated.
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
 Compiling 'src/client/snd_adpcm.cpp'
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_mem.cpp'
-1 error generated.
 In file included from src/client/snd_adpcm.cpp:29:
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o] Error 1
 ```
 
 
@@ -2216,8 +2216,8 @@ scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
   - src/games/game/g_cmds.cpp:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_combat.cpp:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
@@ -2251,129 +2251,129 @@ warnings: 3567 in 7 kinds
 ### errors
 
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_mem.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_mix.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
-src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/client/snd_wavelet.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/snd_dma.cpp.o] Error 1
+src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_load.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/cm_patch.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cm_test.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/cm_patch.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/cm_trace.cpp.o] Error 1
+src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/common.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/qcommon/cvar.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/cm_trace.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/qcommon/cmd.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/files.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/cvar.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/common.cpp.o] Error 1
+src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/huffman.cpp:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/huffman.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/files.cpp.o] Error 1
 src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/qcommon/net_chan.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/common.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/qcommon/msg.cpp.o] Error 1
-src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/server/sv_bot.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_ccmds.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_client.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/msg.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/qcommon/net_chan.cpp.o] Error 1
+src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/qcommon/unzip.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_init.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_ccmds.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_bot.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/server/sv_game.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_client.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_init.cpp.o] Error 1
 src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/server/sv_snapshot.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/server/sv_main.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/server/sv_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/server/sv_main.cpp.o] Error 1
 src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/server/sv_world.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_animation.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_backend.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_animation.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_bsp.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_curve.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_flares.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_curve.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_font.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_image.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_init.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_light.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_marks.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_main.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_marks.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_model.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_mesh.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_noise.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_scene.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_renderprog.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_scene.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shade.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shader.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_shadows.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_surface.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/renderer/tr_sky.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_world.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_surface.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-release/client/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x64-release/client/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-release/client/obj/games/game/q_math.cpp.o'.
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_world.cpp.o] Error 1
 src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o] Error 1
-src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
-src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_net.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_shared.cpp.o] Error 1
+src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o] Error 1
+src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/sys/unix/unix_shared.cpp.o] Error 1
 src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
 src/sys/unix/linux_snd.cpp:45:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_snd.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 src/games/botlib/be_ai_char.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
 src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
-src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
 src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ea.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
 src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/be_interface.cpp.o] Error 1
-src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x64-release/client/obj/games/botlib/l_libvar.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_crc.cpp.o] Error 1
+src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x64-release/client/obj/games/botlib/l_libvar.cpp.o] Error 1
 src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_log.cpp:42:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_log.cpp.o] Error 1
-src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_precomp.cpp.o] Error 1
+src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_script.cpp.o] Error 1
 src/games/botlib/l_struct.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/client/obj/games/botlib/l_struct.cpp.o] Error 1
@@ -2418,42 +2418,42 @@ src/games/game/g_combat.cpp:725:42: error: expected expression
 scons: *** [build/linux-x64-release/game/obj/games/game/g_combat.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_items.cpp.o] Error 1
 src/games/game/g_main.cpp:570:31: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-release/game/obj/games/game/g_mem.cpp.o] Error 1
 src/games/game/g_main.cpp:1743:22: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_main.cpp.o] Error 1
+scons: *** [build/linux-x64-release/game/obj/games/game/g_mem.cpp.o] Error 1
 src/games/game/g_misc.cpp:624:34: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:1093:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:2598:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_misc.cpp:2651:27: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_misc.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_missile.cpp.o] Error 1
-src/games/game/g_props.cpp:314:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:474:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2007:41: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1720:35: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1765:28: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:1940:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2829:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2856:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:2885:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:2882:28: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3242:23: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:3019:26: error: cast from pointer to smaller type 'int' loses information
-src/games/game/g_props.cpp:3100:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3447:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:3475:25: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_mover.cpp:4253:25: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-release/game/obj/games/game/g_mover.cpp.o] Error 1
+src/games/game/g_props.cpp:314:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:474:25: error: cast from pointer to smaller type 'int' loses information
+src/games/game/../game/g_public.h:178:78: error: expected ')'
+src/games/game/../game/g_local.h:1187:69: error: expected ')'
+src/games/game/g_props.cpp:1720:35: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:1765:28: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:1940:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
+src/games/game/g_props.cpp:2882:28: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:3019:26: error: cast from pointer to smaller type 'int' loses information
+src/games/game/g_props.cpp:3100:26: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:4053:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_props.cpp:4130:26: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_props.cpp.o] Error 1
-scons: *** [build/linux-x64-release/game/obj/games/game/g_mover.cpp.o] Error 1
-src/games/game/../game/g_public.h:178:78: error: expected ')'
-src/games/game/../game/g_local.h:1187:69: error: expected ')'
-src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/game/obj/games/game/g_save.cpp.o] Error 1
 src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/game/obj/games/game/g_script.cpp.o] Error 1
+src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/game/obj/games/game/g_script_actions.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_session.cpp.o] Error 1
 src/games/game/g_spawn.cpp:111:19: error: cast from pointer to smaller type 'int' loses information
@@ -2485,11 +2485,11 @@ src/games/game/g_target.cpp:365:23: error: cast from pointer to smaller type 'in
 src/games/game/g_target.cpp:557:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:765:27: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_target.cpp:858:26: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-release/game/obj/games/game/g_target.cpp.o] Error 1
 src/games/game/g_team.cpp:218:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:323:31: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:683:33: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_team.cpp:701:24: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-release/game/obj/games/game/g_target.cpp.o] Error 1
 src/games/game/g_team.cpp:1101:23: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_team.cpp.o] Error 1
 src/games/game/g_tramcar.cpp:284:26: error: cast from pointer to smaller type 'int' loses information
@@ -2499,9 +2499,9 @@ src/games/game/g_tramcar.cpp:1421:28: error: cast from pointer to smaller type '
 src/games/game/g_tramcar.cpp:1479:26: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-release/game/obj/games/game/g_tramcar.cpp.o] Error 1
 src/games/game/g_trigger.cpp:699:24: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-release/game/obj/games/game/g_trigger.cpp.o] Error 1
 src/games/game/g_utils.cpp:218:22: error: cast from pointer to smaller type 'int' loses information
 src/games/game/g_utils.cpp:266:27: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-release/game/obj/games/game/g_trigger.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_utils.cpp.o] Error 1
 scons: *** [build/linux-x64-release/game/obj/games/game/g_weapon.cpp.o] Error 1
 src/tools/extractfuncs/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
@@ -2517,21 +2517,21 @@ src/games/cgame/cg_fx.cpp:1:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 src/games/cgame/cg_fx_entities.cpp:31:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
 src/games/cgame/cg_fx_flame.cpp:37:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
 src/games/cgame/cg_fx_marks.cpp:30:10: fatal error: 'FxScheduler.h' file not found
-src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
+src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_predict.cpp.o] Error 1
+scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_scoreboard.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
@@ -2545,15 +2545,15 @@ scons: *** [build/linux-x64-release/cgame/obj/games/cgame/FxUtil.cpp.o] Source `
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/genericparser2.cpp.o] Source `src/games/cgame/genericparser2.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/cgame/genericparser2.cpp.o'.
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/game/q_math.cpp.o'.
-src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x64-release/cgame/obj/games/game/q_shared.cpp.o'.
+src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_weapons.cpp.o] Error 1
 scons: *** [build/linux-x64-release/cgame/obj/games/ui/ui_shared.cpp.o] Error 1
 src/games/ui/ui_local.h:36:10: fatal error: '../game/q_shared.h' file not found
 
 ### failure context
 
-- build/linux-x64-release/client/obj/client/cl_cgame.cpp.o
+- build/linux-x64-release/client/obj/client/cl_cin.cpp.o
 
 ```
 No user sessions are running outdated binaries.
@@ -2566,15 +2566,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2582,11 +2578,15 @@ In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 ```
 
 - build/linux-x64-release/client/obj/client/cl_input.cpp.o
@@ -2601,15 +2601,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2617,15 +2613,19 @@ In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_cin.cpp.o
+- build/linux-x64-release/client/obj/client/cl_console.cpp.o
 
 ```
 scons: Reading SConscript files ...
@@ -2635,15 +2635,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2651,17 +2647,21 @@ In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
 ```
 
-- build/linux-x64-release/client/obj/client/cl_console.cpp.o
+- build/linux-x64-release/client/obj/client/cl_cgame.cpp.o
 
 ```
 scons: done reading SConscript files.
@@ -2670,15 +2670,11 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2686,35 +2682,43 @@ In file included from src/client/cl_cin.cpp:47:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
-scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o
-
-```
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+```
+
+- build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o
+
+```
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 In file included from src/client/cl_keys.cpp:29:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2722,13 +2726,9 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 ```
@@ -2739,15 +2739,20 @@ scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_input.cpp.o] Error 1
 Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x64-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x64-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_cgame.cpp.o] Error 1
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 In file included from src/client/cl_keys.cpp:29:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2755,24 +2760,56 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
+```
+
+- build/linux-x64-release/client/obj/client/cl_keys.cpp.o
+
+```
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+In file included from src/client/cl_keys.cpp:29:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_main.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
 ```
 
 - build/linux-x64-release/client/obj/client/cl_scrn.cpp.o
 
 ```
-In file included from src/client/cl_keys.cpp:29:
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -2780,29 +2817,64 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
+Compiling 'src/client/snd_adpcm.cpp'
+1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+```
+
+- build/linux-x64-release/client/obj/client/cl_main.cpp.o
+
+```
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_main.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
+Compiling 'src/client/snd_adpcm.cpp'
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
 ```
 
 - build/linux-x64-release/client/obj/client/cl_ui.cpp.o
@@ -2813,104 +2885,32 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
 scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/cl_keys.cpp.o
-
-```
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
-1 error generated.
-Compiling 'src/client/snd_dma.cpp'
 scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-```
-
-- build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o
-
-```
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_scrn.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_parse.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
 Compiling 'src/client/snd_adpcm.cpp'
 1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
 1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_scrn.cpp.o] Error 1
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/client/cl_main.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
-scons: *** [build/linux-x64-release/client/obj/client/cl_keys.cpp.o] Error 1
-In file included from src/client/snd_adpcm.cpp:29:
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-Compiling 'src/client/snd_mem.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/client/cl_ui.cpp.o] Error 1
 ```
 
 
@@ -3332,8 +3332,8 @@ scons: *** [build/linux-x64-release/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.cpp:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -3365,17 +3365,17 @@ warnings: 3783 in 6 kinds
 ### errors
 
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_main.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_scrn.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_ui.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/snd_mem.cpp.o] Error 1
@@ -3384,112 +3384,112 @@ scons: *** [build/linux-x86-debug/client/obj/client/snd_dma.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/snd_wavelet.cpp.o] Error 1
 src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_load.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_test.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_patch.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_test.cpp.o] Error 1
 src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/common.cpp:31:10: fatal error: '../game/q_shared.h' file not found
+src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cmd.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cm_trace.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/cvar.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/common.cpp.o] Error 1
 src/qcommon/huffman.cpp:34:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
-src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/qcommon/huffman.cpp.o] Error 1
+src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/qcommon/files.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/msg.cpp.o] Error 1
 src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/qcommon/net_chan.cpp.o] Error 1
 src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/qcommon/net_chan.cpp.o] Error 1
 src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/server/sv_bot.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/server/sv_ccmds.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/qcommon/unzip.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/server/sv_client.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/server/sv_game.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/server/sv_init.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/server/sv_game.cpp.o] Error 1
 src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/server/sv_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/server/sv_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/server/sv_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/server/sv_snapshot.cpp.o] Error 1
-src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/server/sv_world.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_backend.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_animation.cpp.o] Error 1
+src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_bsp.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_animation.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_backend.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_curve.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_flares.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_font.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_image.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_light.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_main.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_light.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_marks.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_mesh.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_model.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_mesh.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_noise.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_scene.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shade.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shadows.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_md5.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_shadows.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_sky.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-debug/client/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x86-debug/client/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-debug/client/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-debug/client/obj/renderer/tr_surface.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o] Error 1
 src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/sys/unix/unix_net.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/sys/unix/unix_shared.cpp.o] Error 1
 src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
-src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
+src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/sys/unix/unix_shared.cpp.o] Error 1
 src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
+src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
 src/sys/unix/linux_snd.cpp:45:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_snd.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 src/games/botlib/be_ai_char.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
+src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
+src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
+src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
+src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_interface.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_ea.cpp.o] Error 1
 src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_interface.cpp.o] Error 1
-src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_crc.cpp.o] Error 1
 src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_libvar.cpp.o] Error 1
+src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_crc.cpp.o] Error 1
 src/games/botlib/l_log.cpp:42:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_log.cpp.o] Error 1
 src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_log.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_precomp.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_script.cpp.o] Error 1
 src/games/botlib/l_struct.cpp:39:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_precomp.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/l_struct.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/games/botlib/be_nav_interface.cpp.o] Error 1
 src/tools/extractfuncs/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
@@ -3515,7 +3515,6 @@ fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_active.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_alarm.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_client.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_cmds.cpp.o] Error 1
 src/games/game/g_combat.cpp:702:16: error: expected unqualified-id
 src/games/game/g_combat.cpp:723:86: error: expected expression
 src/games/game/g_combat.cpp:723:89: error: expected expression
@@ -3523,97 +3522,98 @@ src/games/game/g_combat.cpp:724:16: error: expected expression
 src/games/game/g_combat.cpp:724:18: error: expected expression
 src/games/game/g_combat.cpp:725:40: error: expected expression
 src/games/game/g_combat.cpp:725:42: error: expected expression
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_items.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_combat.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_cmds.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_items.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_mem.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_misc.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_missile.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_misc.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_props.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_mover.cpp.o] Error 1
 src/games/game/../game/g_public.h:178:78: error: expected ')'
 src/games/game/../game/g_local.h:1187:69: error: expected ')'
-src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
+src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_mover.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_script.cpp.o] Error 1
-src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_props.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_save.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_script_actions.cpp.o] Error 1
+src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_session.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_script_actions.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_spawn.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_svcmds.cpp.o] Error 1
 src/games/game/g_syscalls.cpp:237:68: error: expected ')'
 src/games/game/g_syscalls.cpp:238:53: error: expected expression
 src/games/game/g_syscalls.cpp:238:56: error: expected expression
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_spawn.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_syscalls.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_svcmds.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_target.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_trigger.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_team.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_tramcar.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-debug/game/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-debug/game/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-debug/game/obj/games/game/q_shared.cpp.o'.
-scons: *** [build/linux-x86-debug/game/obj/games/game/g_tramcar.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/game/obj/games/game/g_trigger.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_utils.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/game/bg_misc.cpp.o] Error 1
 src/games/cgame/cg_local.h:41:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_draw.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/game/bg_misc.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_consolecmds.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_drawtools.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_effects.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_draw.cpp.o] Error 1
 src/games/cgame/cg_fx.cpp:1:10: fatal error: 'FxScheduler.h' file not found
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_effects.cpp.o] Error 1
 src/games/cgame/cg_fx_entities.cpp:31:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 src/games/cgame/cg_fx_flame.cpp:37:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 src/games/cgame/cg_fx_marks.cpp:30:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
 src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
-src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
+src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_predict.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_scoreboard.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_snapshot.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_sound.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_syscalls.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/FxPrimitives.cpp.o] Source `src/games/cgame/FxPrimitives.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/FxPrimitives.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/FxScheduler.cpp.o] Source `src/games/cgame/FxScheduler.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/FxScheduler.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/FxSystem.cpp.o] Source `src/games/cgame/FxSystem.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/FxSystem.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/FxTemplate.cpp.o] Source `src/games/cgame/FxTemplate.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/FxTemplate.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/FxUtil.cpp.o] Source `src/games/cgame/FxUtil.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/FxUtil.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/genericparser2.cpp.o] Source `src/games/cgame/genericparser2.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/cgame/genericparser2.cpp.o'.
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_syscalls.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-debug/cgame/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-debug/cgame/obj/games/game/q_shared.cpp.o'.
+scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_weapons.cpp.o] Error 1
 src/games/ui/ui_local.h:36:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-debug/cgame/obj/games/ui/ui_shared.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_atoms.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/cgame/obj/games/ui/ui_shared.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_gameinfo.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_players.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_syscalls.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_shared.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-debug/ui/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-debug/ui/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-debug/ui/obj/games/game/q_shared.cpp.o'.
-scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_main.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/ui/obj/games/game/bg_misc.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/ui/obj/games/ui/ui_syscalls.cpp.o] Error 1
 
 ### failure context
 
-- build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o
+- build/linux-x86-debug/client/obj/client/cl_input.cpp.o
 
 ```
- runner @ user manager: (sd-pam)[1115]
+ runner @ user manager: (sd-pam)[1179]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3623,7 +3623,7 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -3631,7 +3631,7 @@ In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -3643,13 +3643,84 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+```
+
+- build/linux-x86-debug/client/obj/client/cl_cin.cpp.o
+
+```
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src/client/cl_cgame.cpp'
+Compiling 'src/client/cl_cin.cpp'
+Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cgame.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cin.cpp:47:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+```
+
+- build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o
+
+```
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src/client/cl_cgame.cpp'
+Compiling 'src/client/cl_cin.cpp'
+Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cgame.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cin.cpp:47:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
 ```
 
 - build/linux-x86-debug/client/obj/client/cl_console.cpp.o
 
 ```
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
@@ -3657,7 +3728,7 @@ Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
 Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
+In file included from src/client/cl_console.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -3665,7 +3736,7 @@ In file included from src/client/cl_cgame.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
+In file included from src/client/cl_input.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -3677,81 +3748,10 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-```
-
-- build/linux-x86-debug/client/obj/client/cl_cin.cpp.o
-
-```
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cin.cpp:47:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
-```
-
-- build/linux-x86-debug/client/obj/client/cl_input.cpp.o
-
-```
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cin.cpp:47:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
 ```
 
 - build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o
@@ -3762,17 +3762,14 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
 1 error generated.
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_keys.cpp:29:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -3780,6 +3777,9 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
@@ -3795,17 +3795,15 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
 ```
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_keys.cpp:29:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -3814,6 +3812,9 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -3821,7 +3822,6 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-1 error generated.
 Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
 ```
@@ -3829,17 +3829,14 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
 - build/linux-x86-debug/client/obj/client/cl_keys.cpp.o
 
 ```
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_console.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_keys.cpp:29:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -3848,25 +3845,8 @@ In file included from src/client/cl_main.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-1 error generated.
-Compiling 'src/client/cl_scrn.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
-scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
-```
-
-- build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o
-
-```
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
@@ -3875,33 +3855,19 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-1 error generated.
 Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
+1 error generated.
 Compiling 'src/client/cl_ui.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-In file included from src/client/snd_adpcm.cpp:29:
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 ```
 
 - build/linux-x86-debug/client/obj/client/cl_main.cpp.o
 
 ```
-   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
@@ -3910,28 +3876,62 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-1 error generated.
 Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
+1 error generated.
 Compiling 'src/client/cl_ui.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
 Compiling 'src/client/snd_adpcm.cpp'
-In file included from src/client/snd_adpcm.cpp:29:
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
+1 error generated.
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_scrn.cpp:31:
+In file included from src/client/snd_adpcm.cpp:29:
+src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x86-debug/client/obj/client/cl_main.cpp.o] Error 1
+```
+
+- build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o
+
+```
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
+scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
+1 error generated.
+Compiling 'src/client/cl_ui.cpp'
+scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
+Compiling 'src/client/snd_adpcm.cpp'
+1 error generated.
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/snd_adpcm.cpp:29:
+src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 scons: *** [build/linux-x86-debug/client/obj/client/cl_main.cpp.o] Error 1
+Compiling 'src/client/snd_dma.cpp'
+1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 ```
 
 - build/linux-x86-debug/client/obj/client/cl_scrn.cpp.o
@@ -3942,29 +3942,29 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_main.cpp.o] Error 1
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_net_chan.cpp.o] Error 1
-1 error generated.
 Compiling 'src/client/cl_scrn.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_parse.cpp.o] Error 1
+1 error generated.
 Compiling 'src/client/cl_ui.cpp'
 scons: *** [build/linux-x86-debug/client/obj/client/cl_keys.cpp.o] Error 1
 Compiling 'src/client/snd_adpcm.cpp'
-In file included from src/client/snd_adpcm.cpp:29:
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
+1 error generated.
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
+In file included from src/client/snd_adpcm.cpp:29:
+src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/client/cl_main.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
+1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/client/snd_adpcm.cpp.o] Error 1
 Compiling 'src/client/snd_mem.cpp'
 1 error generated.
 scons: *** [build/linux-x86-debug/client/obj/client/cl_scrn.cpp.o] Error 1
@@ -4388,9 +4388,9 @@ scons: *** [build/linux-x86-debug/client/obj/client/cl_scrn.cpp.o] Error 1
   - src/games/game/g_main.cpp:405:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.cpp:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -4421,129 +4421,129 @@ warnings: 3785 in 7 kinds
 
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
 src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/client/snd_adpcm.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/snd_mem.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/snd_dma.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/snd_mix.cpp.o] Error 1
-src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/client/snd_wavelet.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/qcommon/cm_load.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/qcommon/cm_polylib.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/qcommon/cm_patch.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_main.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/snd_wavelet.cpp.o] Error 1
+src/qcommon/cm_local.h:30:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/qcommon/cm_load.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/qcommon/cm_patch.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/cm_test.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 src/qcommon/cmd.cpp:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/qcommon/cm_trace.cpp.o] Error 1
 src/qcommon/common.cpp:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/qcommon/cm_trace.cpp.o] Error 1
 src/qcommon/cvar.cpp:31:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/qcommon/cmd.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/cvar.cpp.o] Error 1
 src/qcommon/files.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 src/qcommon/huffman.cpp:34:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/qcommon/huffman.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/files.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/common.cpp.o] Error 1
-src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/qcommon/net_chan.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/qcommon/huffman.cpp.o] Error 1
 src/qcommon/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+src/qcommon/msg.cpp:29:10: fatal error: '../game/q_shared.h' file not found
+src/qcommon/net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/qcommon/net_chan.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/msg.cpp.o] Error 1
 src/server/server.h:31:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/server/sv_ccmds.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/server/sv_bot.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/qcommon/unzip.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/server/sv_init.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/server/sv_bot.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/server/sv_ccmds.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/server/sv_client.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/server/sv_init.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/server/sv_game.cpp.o] Error 1
-src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/server/sv_snapshot.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/server/sv_net_chan.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/server/sv_main.cpp.o] Error 1
-src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
+src/server/sv_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/server/sv_net_chan.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/server/sv_snapshot.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/server/sv_world.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_bsp.cpp.o] Error 1
+src/renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_animation.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_backend.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_bsp.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_cmds.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_curve.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_flares.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_font.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_init.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_image.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_init.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_light.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_main.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_marks.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_decals.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_mesh.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_model.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_noise.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_scene.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_shade.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_renderprog.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_shade_calc.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_shader.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_shadows.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_shader.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_sky.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_surface.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_world.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-release/client/obj/games/game/q_shared.cpp.o'.
 scons: *** [build/linux-x86-release/client/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-release/client/obj/games/game/q_math.cpp.o'.
-scons: *** [build/linux-x86-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_world.cpp.o] Error 1
 src/sys/unix/unix_net.cpp:31:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/renderer/tr_vfx.cpp.o] Error 1
+src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/sys/unix/unix_shared.cpp.o] Error 1
 src/sys/unix/unix_main.cpp:59:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/sys/unix/unix_net.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/sys/unix/unix_main.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/renderer/tr_md5.cpp.o] Error 1
-src/sys/unix/unix_shared.cpp:39:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/sys/unix/unix_shared.cpp.o] Error 1
 src/client/../client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_joystick.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 src/sys/unix/linux_snd.cpp:45:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_snd.cpp.o] Error 1
+src/client/../renderer/tr_local.h:34:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 src/games/botlib/be_ai_char.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
 src/games/botlib/be_ai_chat.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_char.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
 src/games/botlib/be_ai_gen.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_gen.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_chat.cpp.o] Error 1
-src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/be_ai_move.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
-src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ai_goal.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_move.cpp.o] Error 1
+src/games/botlib/be_ai_weap.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 src/games/botlib/be_ai_weight.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ai_weight.cpp.o] Error 1
 src/games/botlib/be_interface.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/be_ea.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_ea.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_interface.cpp.o] Error 1
 src/games/botlib/be_nav_interface.cpp:25:10: fatal error: '../game/q_shared.h' file not found
 src/games/botlib/l_libvar.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/l_libvar.cpp.o] Error 1
+src/games/botlib/l_crc.cpp:42:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/l_crc.cpp.o] Error 1
-src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_log.cpp:42:10: fatal error: '../game/q_shared.h' file not found
+src/games/botlib/l_memory.cpp:38:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/l_log.cpp.o] Error 1
-src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/client/obj/games/botlib/l_memory.cpp.o] Error 1
 src/games/botlib/l_script.cpp:63:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/client/obj/games/botlib/l_precomp.cpp.o] Error 1
+src/games/botlib/l_precomp.cpp:68:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/l_script.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/games/botlib/l_precomp.cpp.o] Error 1
 src/games/botlib/l_struct.cpp:39:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/client/obj/games/botlib/l_struct.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/games/botlib/be_nav_interface.cpp.o] Error 1
@@ -4567,8 +4567,8 @@ src/games/game/g_active.cpp:1164:42: error: expected expression
 src/games/game/g_active.cpp:1164:44: error: expected expression
 src/games/game/g_active.cpp:1164:15: error: expected expression
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build/linux-x86-release/game/obj/games/game/g_active.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_alarm.cpp.o] Error 1
+scons: *** [build/linux-x86-release/game/obj/games/game/g_active.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_client.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_cmds.cpp.o] Error 1
 src/games/game/g_combat.cpp:702:16: error: expected unqualified-id
@@ -4578,11 +4578,11 @@ src/games/game/g_combat.cpp:724:16: error: expected expression
 src/games/game/g_combat.cpp:724:18: error: expected expression
 src/games/game/g_combat.cpp:725:40: error: expected expression
 src/games/game/g_combat.cpp:725:42: error: expected expression
-scons: *** [build/linux-x86-release/game/obj/games/game/g_combat.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_items.cpp.o] Error 1
+scons: *** [build/linux-x86-release/game/obj/games/game/g_combat.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_mem.cpp.o] Error 1
-scons: *** [build/linux-x86-release/game/obj/games/game/g_main.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_misc.cpp.o] Error 1
+scons: *** [build/linux-x86-release/game/obj/games/game/g_main.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_missile.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_mover.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_props.cpp.o] Error 1
@@ -4590,13 +4590,13 @@ src/games/game/../game/g_public.h:178:78: error: expected ')'
 src/games/game/../game/g_local.h:1187:69: error: expected ')'
 src/games/game/g_save.cpp:35:10: fatal error: '../game/q_shared.h' file not found
 src/games/game/g_script.cpp:38:10: fatal error: '../game/q_shared.h' file not found
-scons: *** [build/linux-x86-release/game/obj/games/game/g_script.cpp.o] Error 1
-scons: *** [build/linux-x86-release/game/obj/games/game/g_save.cpp.o] Error 1
 src/games/game/g_script_actions.cpp:38:10: fatal error: '../game/q_shared.h' file not found
+scons: *** [build/linux-x86-release/game/obj/games/game/g_script.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_script_actions.cpp.o] Error 1
+scons: *** [build/linux-x86-release/game/obj/games/game/g_save.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_session.cpp.o] Error 1
-scons: *** [build/linux-x86-release/game/obj/games/game/g_spawn.cpp.o] Error 1
 scons: *** [build/linux-x86-release/game/obj/games/game/g_svcmds.cpp.o] Error 1
+scons: *** [build/linux-x86-release/game/obj/games/game/g_spawn.cpp.o] Error 1
 src/games/game/g_syscalls.cpp:237:68: error: expected ')'
 src/games/game/g_syscalls.cpp:238:53: error: expected expression
 src/games/game/g_syscalls.cpp:238:56: error: expected expression
@@ -4619,21 +4619,21 @@ scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
 src/games/cgame/cg_fx.cpp:1:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 src/games/cgame/cg_fx_entities.cpp:31:10: fatal error: 'FxScheduler.h' file not found
+scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 src/games/cgame/cg_fx_flame.cpp:37:10: fatal error: 'FxScheduler.h' file not found
-scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
-scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 src/games/cgame/cg_fx_marks.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
+scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
+src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 src/games/cgame/cg_fx_particles.cpp:30:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
-src/games/cgame/cg_fx_trails.cpp:2:10: fatal error: 'FxScheduler.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
+scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_players.cpp.o] Error 1
-scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_playerstate.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_predict.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_scoreboard.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
@@ -4646,18 +4646,18 @@ scons: *** [build/linux-x86-release/cgame/obj/games/cgame/FxSystem.cpp.o] Source
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/FxTemplate.cpp.o] Source `src/games/cgame/FxTemplate.cpp' not found, needed by target `build/linux-x86-release/cgame/obj/games/cgame/FxTemplate.cpp.o'.
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/FxUtil.cpp.o] Source `src/games/cgame/FxUtil.cpp' not found, needed by target `build/linux-x86-release/cgame/obj/games/cgame/FxUtil.cpp.o'.
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/genericparser2.cpp.o] Source `src/games/cgame/genericparser2.cpp' not found, needed by target `build/linux-x86-release/cgame/obj/games/cgame/genericparser2.cpp.o'.
+src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-release/cgame/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-release/cgame/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-release/cgame/obj/games/game/q_shared.cpp.o'.
-src/games/ui/ui_shared.h:33:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_weapons.cpp.o] Error 1
 scons: *** [build/linux-x86-release/cgame/obj/games/ui/ui_shared.cpp.o] Error 1
 src/games/ui/ui_local.h:36:10: fatal error: '../game/q_shared.h' file not found
 scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_atoms.cpp.o] Error 1
 scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_gameinfo.cpp.o] Error 1
 scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_players.cpp.o] Error 1
-scons: *** [build/linux-x86-release/ui/obj/games/game/bg_misc.cpp.o] Error 1
 scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_main.cpp.o] Error 1
+scons: *** [build/linux-x86-release/ui/obj/games/game/bg_misc.cpp.o] Error 1
 scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_syscalls.cpp.o] Error 1
 scons: *** [build/linux-x86-release/ui/obj/games/game/q_math.cpp.o] Source `src/games/game/q_math.cpp' not found, needed by target `build/linux-x86-release/ui/obj/games/game/q_math.cpp.o'.
 scons: *** [build/linux-x86-release/ui/obj/games/game/q_shared.cpp.o] Source `src/games/game/q_shared.cpp' not found, needed by target `build/linux-x86-release/ui/obj/games/game/q_shared.cpp.o'.
@@ -4668,7 +4668,7 @@ scons: *** [build/linux-x86-release/ui/obj/games/ui/ui_shared.cpp.o] Error 1
 - build/linux-x86-release/client/obj/client/cl_console.cpp.o
 
 ```
-No user sessions are running outdated binaries.
+ runner @ user manager: (sd-pam)[1115]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -4699,12 +4699,47 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+```
+
+- build/linux-x86-release/client/obj/client/cl_input.cpp.o
+
+```
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src/client/cl_cgame.cpp'
+Compiling 'src/client/cl_cin.cpp'
+Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
+In file included from src/client/cl_cin.cpp:47:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_console.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_cgame.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_input.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
 ```
 
 - build/linux-x86-release/client/obj/client/cl_cin.cpp.o
 
 ```
-
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
@@ -4734,6 +4769,7 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
 ```
 
@@ -4768,151 +4804,151 @@ src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
-```
-
-- build/linux-x86-release/client/obj/client/cl_input.cpp.o
-
-```
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-In file included from src/client/cl_cin.cpp:47:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_console.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_cgame.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_input.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
-```
-
-- build/linux-x86-release/client/obj/client/cl_parse.cpp.o
-
-```
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
 scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
-Compiling 'src/client/cl_main.cpp'
-Compiling 'src/client/cl_net_chan.cpp'
-Compiling 'src/client/cl_parse.cpp'
-In file included from src/client/cl_keys.cpp:29:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_main.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
 ```
 
 - build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o
 
 ```
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
-Compiling 'src/client/cl_keys.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
-In file included from src/client/cl_keys.cpp:29:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
 In file included from src/client/cl_main.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_keys.cpp:29:
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+```
+
+- build/linux-x86-release/client/obj/client/cl_parse.cpp.o
+
+```
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+Compiling 'src/client/cl_main.cpp'
+Compiling 'src/client/cl_net_chan.cpp'
+Compiling 'src/client/cl_parse.cpp'
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+In file included from src/client/cl_main.cpp:31:
+In file included from src/client/cl_keys.cpp:29:
+In file included from src/client/cl_parse.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+```
+
+- build/linux-x86-release/client/obj/client/cl_keys.cpp.o
+
+```
+scons: *** [build/linux-x86-release/client/obj/client/cl_console.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_input.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cin.cpp.o] Error 1
+scons: *** [build/linux-x86-release/client/obj/client/cl_cgame.cpp.o] Error 1
+Compiling 'src/client/cl_keys.cpp'
+Compiling 'src/client/cl_main.cpp'
+Compiling 'src/client/cl_net_chan.cpp'
+Compiling 'src/client/cl_parse.cpp'
+src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
+In file included from src/client/cl_main.cpp:31:
+In file included from src/client/cl_keys.cpp:29:
+In file included from src/client/cl_parse.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
+Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
 ```
 
 - build/linux-x86-release/client/obj/client/cl_scrn.cpp.o
 
 ```
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_main.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_parse.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+Compiling 'src/client/snd_adpcm.cpp'
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
 ```
@@ -4921,106 +4957,70 @@ scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
 
 ```
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_main.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
 scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
 Compiling 'src/client/cl_scrn.cpp'
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
-```
-
-- build/linux-x86-release/client/obj/client/cl_keys.cpp.o
-
-```
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src/client/cl_parse.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src/client/cl_net_chan.cpp:30:10: fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
-scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
 Compiling 'src/client/cl_ui.cpp'
-Compiling 'src/client/cl_scrn.cpp'
-In file included from src/client/cl_ui.cpp:30:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-In file included from src/client/cl_scrn.cpp:31:
-src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
-Compiling 'src/client/snd_dma.cpp'
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
+In file included from src/client/cl_ui.cpp:30:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+Compiling 'src/client/snd_adpcm.cpp'
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src/client/cl_scrn.cpp:31:
+src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
+Compiling 'src/client/snd_dma.cpp'
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
 ```
 
 - build/linux-x86-release/client/obj/client/snd_adpcm.cpp.o
 
 ```
-scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_net_chan.cpp.o] Error 1
-Compiling 'src/client/cl_ui.cpp'
 Compiling 'src/client/cl_scrn.cpp'
+scons: *** [build/linux-x86-release/client/obj/client/cl_parse.cpp.o] Error 1
+Compiling 'src/client/cl_ui.cpp'
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
 In file included from src/client/cl_ui.cpp:30:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
+Compiling 'src/client/snd_adpcm.cpp'
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src/client/cl_scrn.cpp:31:
 src/client/client.h:31:10: fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/cl_scrn.cpp.o] Error 1
-Compiling 'src/client/snd_adpcm.cpp'
-scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
 Compiling 'src/client/snd_dma.cpp'
 1 error generated.
-scons: *** [build/linux-x86-release/client/obj/client/cl_keys.cpp.o] Error 1
-Compiling 'src/client/snd_mem.cpp'
-In file included from src/client/snd_dma.cpp:39:
-src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
+scons: *** [build/linux-x86-release/client/obj/client/cl_ui.cpp.o] Error 1
 In file included from src/client/snd_adpcm.cpp:29:
 src/client/snd_local.h:32:10: fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+Compiling 'src/client/snd_mem.cpp'
 1 error generated.
 scons: *** [build/linux-x86-release/client/obj/client/snd_adpcm.cpp.o] Error 1
 ```
@@ -5444,9 +5444,9 @@ scons: *** [build/linux-x86-release/client/obj/client/snd_adpcm.cpp.o] Error 1
   - src/games/game/g_main.cpp:405:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.cpp:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -5494,10 +5494,10 @@ warnings: 4015 in 9 kinds
 ### errors
 
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
@@ -5508,8 +5508,8 @@ scons: *** [build\windows-x64-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\snd_mem.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\snd_mix.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\snd_dma.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\snd_mix.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\snd_wavelet.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\qcommon\cm_load.cpp.obj] Error 1
@@ -5518,47 +5518,47 @@ scons: *** [build\windows-x64-debug\client\obj\qcommon\cm_polylib.cpp.obj] Error
 scons: *** [build\windows-x64-debug\client\obj\qcommon\cm_test.cpp.obj] Error 1
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\qcommon\cmd.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\qcommon\common.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\qcommon\cmd.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\qcommon\cvar.cpp.obj] Error 1
-src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\qcommon\common.cpp.obj] Error 1
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
+src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\qcommon\huffman.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\qcommon\msg.cpp.obj] Error 1
 src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\qcommon\net_chan.cpp.obj] Error 1
-src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\qcommon\msg.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\qcommon\unzip.cpp.obj] Error 1
+src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_ccmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_client.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_init.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\server\sv_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_game.cpp.obj] Error 1
 src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\server\sv_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_net_chan.cpp.obj] Error 1
-src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\server\sv_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\server\sv_world.cpp.obj] Error 1
+src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_cmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_backend.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_bsp.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_curve.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_font.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_decals.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_light.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_image.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_mesh.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_model.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_noise.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_renderprog.cpp.obj] Error 1
@@ -5567,8 +5567,8 @@ scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shade.cpp.obj] Error 
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shader.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shadows.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-debug\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-debug\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-debug\client\obj\games\game\q_math.cpp.obj'.
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
@@ -5576,14 +5576,14 @@ scons: *** [build\windows-x64-debug\client\obj\renderer\tr_surface.cpp.obj] Erro
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_world.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_vfx.cpp.obj] Error 1
-src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
+src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_main.cpp.obj] Error 1
 src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
@@ -5593,19 +5593,19 @@ src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file n
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
 src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_ea.cpp.obj] Error 1
+src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_crc.cpp.obj] Error 1
@@ -5615,12 +5615,12 @@ src\games\botlib\l_log.cpp(42,10): fatal error: '../game/q_shared.h' file not fo
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_log.cpp.obj] Error 1
 src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_memory.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_script.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_script.cpp.obj] Error 1
+src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\l_struct.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
@@ -5643,11 +5643,10 @@ src\games\game\g_active.cpp(1164,15): error: expected expression
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_active.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_alarm.cpp.obj] Error 1
-src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
-scons: *** [build\windows-x64-debug\game\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_client.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_items.cpp.obj] Error 1
+src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_cmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
 src\games\game\g_combat.cpp(723,89): error: expected expression
@@ -5655,19 +5654,20 @@ src\games\game\g_combat.cpp(724,16): error: expected expression
 src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_combat.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_mem.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_missile.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_main.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
-src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_mover.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_script.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_props.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
+src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_script.cpp.obj] Error 1
 src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_session.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_script_actions.cpp.obj] Error 1
@@ -5677,42 +5677,42 @@ src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_target.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_tramcar.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_trigger.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-debug\game\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x64-debug\game\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-debug\game\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_spawn.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_trigger.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_weapon.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
-src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
-src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
-src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
-src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
+src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
+src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
+src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_players.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_scoreboard.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_sound.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\FxPrimitives.cpp.obj] Source `src\games\cgame\FxPrimitives.cpp' not found, needed by target `build\windows-x64-debug\cgame\obj\games\cgame\FxPrimitives.cpp.obj'.
@@ -5730,21 +5730,22 @@ scons: *** [build\windows-x64-debug\cgame\obj\games\ui\ui_shared.cpp.obj] Error 
 src\games\ui\ui_local.h(36,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_players.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\ui\obj\games\game\bg_misc.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-debug\ui\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x64-debug\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-debug\ui\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 
 ### failure context
 
-- build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj
+- build\windows-x64-debug\client\obj\client\cl_console.cpp.obj
 
 ```
-   ---------------------------------------- 4.1/4.1 MB 30.3 MB/s  0:00:00
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 21.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -5754,18 +5755,18 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
+In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
@@ -5773,8 +5774,7 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\client\cl_input.cpp.obj
@@ -5789,18 +5789,18 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
+In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
@@ -5808,15 +5808,14 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 ```
 
-- build\windows-x64-debug\client\obj\client\cl_console.cpp.obj
+- build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj
 
 ```
-Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
@@ -5824,18 +5823,18 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
+In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
@@ -5843,13 +5842,14 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
 ```
 
-- build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj
+- build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj
 
 ```
 scons: done reading SConscript files.
@@ -5858,18 +5858,18 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
+In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
@@ -5877,26 +5877,27 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj
 
 ```
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -5915,7 +5916,6 @@ In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
@@ -5926,12 +5926,12 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -5952,20 +5952,20 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\client\cl_parse.cpp.obj
 
 ```
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-debug\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -5986,8 +5986,8 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.cpp.obj] Error 1
@@ -6005,8 +6005,8 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.cpp.obj] Error 1
@@ -6039,8 +6039,8 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.cpp.obj] Error 1
@@ -6061,7 +6061,7 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
-1 error generated.
+Compiling 'src\client\snd_dma.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
@@ -6072,8 +6072,8 @@ scons: *** [build\windows-x64-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-debug\client\obj\client\cl_parse.cpp.obj] Error 1
@@ -6094,10 +6094,10 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
-1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 Compiling 'src\client\snd_dma.cpp'
+scons: *** [build\windows-x64-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 Compiling 'src\client\snd_mem.cpp'
+1 error generated.
 scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
 
@@ -6140,35 +6140,14 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\splines\splines.cpp(1308,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(70,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(71,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(179,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(180,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(181,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(182,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(183,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(72,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(184,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(73,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(185,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(186,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(187,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(80,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(189,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(190,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(81,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(82,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(191,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(193,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(195,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(196,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(197,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(198,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(199,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(83,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(84,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(200,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(201,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(85,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(202,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(86,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(87,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(88,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6181,7 +6160,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(95,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(96,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(103,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(204,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(104,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(105,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(106,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6203,12 +6181,10 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(122,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(123,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(124,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(206,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(125,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(126,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(133,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(134,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(207,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(135,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(136,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(146,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6219,8 +6195,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(157,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(158,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(165,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(208,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(209,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(166,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(167,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(175,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6237,12 +6211,74 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(193,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(194,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(195,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(210,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(212,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(196,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(213,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(197,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(198,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(203,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(204,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(205,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(210,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(211,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(212,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(213,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(234,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(235,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(236,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(237,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(238,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(239,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(240,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(241,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(242,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(243,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(244,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(245,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(246,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(247,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(248,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(249,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(250,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(251,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(252,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(179,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(180,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(181,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(182,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(183,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(184,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(185,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(186,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(187,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(189,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(190,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(191,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(193,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(195,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(196,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(197,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(198,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(199,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(200,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(201,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(202,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(204,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(206,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(207,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(208,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(209,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(210,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(212,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(213,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(214,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(215,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(216,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6285,8 +6321,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(258,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(259,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(260,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(203,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(204,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(261,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(262,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(264,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6301,13 +6335,8 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(274,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(275,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(276,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(205,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(277,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(278,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(210,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(211,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(212,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(213,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(279,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(281,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(282,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6315,17 +6344,7 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(284,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(286,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(288,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(234,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(235,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(236,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(289,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(237,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(238,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(239,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(240,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(241,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(242,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(243,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(291,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(292,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(293,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6359,8 +6378,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(327,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(328,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(329,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(244,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(245,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(330,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(331,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(337,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6369,14 +6386,11 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(340,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(341,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(342,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(246,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(247,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(344,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(345,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(346,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(348,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(350,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(248,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(351,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(352,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(353,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6390,22 +6404,16 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(362,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(363,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(365,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(249,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(366,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(367,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(250,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(251,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(368,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(370,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(252,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(372,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(373,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(374,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(375,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(376,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(378,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(379,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(380,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(381,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6432,7 +6440,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(406,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(408,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(410,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(412,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(413,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(414,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6441,7 +6448,6 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(418,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(419,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(420,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(421,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(422,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(424,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6467,14 +6473,8 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(518,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(534,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(535,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(536,7): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(540,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(542,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(548,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(549,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -6635,21 +6635,21 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_misc.cpp(2598,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(2651,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_main.cpp(570,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_main.cpp(1743,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(1720,35): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(1765,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2007,41): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(1940,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(2882,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2829,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2856,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3242,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3447,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3475,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(1720,35): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(4253,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(1765,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(1940,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(2882,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(3019,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(3100,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(4053,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -6691,6 +6691,12 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_spawn.cpp(162,19): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(166,19): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(170,15): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(57,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(219,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(365,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(557,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(765,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_target.cpp(858,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(171,15): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(175,15): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(176,15): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
@@ -6700,23 +6706,17 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_spawn.cpp(188,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(190,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_spawn.cpp(192,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(57,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(219,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(365,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(557,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(765,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_target.cpp(858,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(323,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_tramcar.cpp(284,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(683,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(701,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(1101,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_tramcar.cpp(284,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1082,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1106,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_trigger.cpp(699,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1421,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1479,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_trigger.cpp(699,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_utils.cpp(218,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_utils.cpp(266,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
 - [22x] -unused-but-set-variable
@@ -6733,9 +6733,9 @@ scons: *** [build\windows-x64-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_target.cpp(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_tramcar.cpp(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -6769,67 +6769,67 @@ warnings: 4017 in 10 kinds
 ### errors
 
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mem.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mix.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_load.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_patch.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_test.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\cmd.cpp.obj] Error 1
 src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cmd.cpp.obj] Error 1
 src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\huffman.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\msg.cpp.obj] Error 1
+src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\net_chan.cpp.obj] Error 1
 src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\unzip.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_ccmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_client.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\server\sv_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_game.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\server\sv_init.cpp.obj] Error 1
 src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_snapshot.cpp.obj] Error 1
-src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_world.cpp.obj] Error 1
+src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_cmds.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_backend.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_bsp.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_font.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_decals.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_light.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_image.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_marks.cpp.obj] Error 1
@@ -6846,13 +6846,13 @@ scons: *** [build\windows-x64-release\client\obj\renderer\tr_shadows.cpp.obj] Er
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_math.cpp.obj'.
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_world.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
 src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
@@ -6862,15 +6862,15 @@ src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file 
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_snd.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
 src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
@@ -6878,9 +6878,9 @@ scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
+src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_crc.cpp.obj] Error 1
@@ -6891,15 +6891,17 @@ scons: *** [build\windows-x64-release\client\obj\games\botlib\l_log.cpp.obj] Err
 src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_memory.cpp.obj] Error 1
 src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
 src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
 src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_struct.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
+src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_public.h(178,78): error: expected ')'
 src\games\game\g_local.h(1187,69): error: expected ')'
 src\games\game\g_active.cpp(1111,22): error: expected unqualified-id
@@ -6918,9 +6920,7 @@ src\games\game\g_active.cpp(1164,15): error: expected expression
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build\windows-x64-release\game\obj\games\game\g_active.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_alarm.cpp.obj] Error 1
-src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x64-release\game\obj\games\game\g_client.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
@@ -6929,17 +6929,17 @@ src\games\game\g_combat.cpp(724,16): error: expected expression
 src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
-scons: *** [build\windows-x64-release\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_combat.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_mem.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_mem.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_missile.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
-scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
 src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\game\obj\games\game\g_script.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_save.cpp.obj] Error 1
@@ -6950,8 +6950,8 @@ scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Erro
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
-scons: *** [build\windows-x64-release\game\obj\games\game\g_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_target.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_tramcar.cpp.obj] Error 1
@@ -6968,23 +6968,23 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_drawtools.cpp.obj
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
 src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
 src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
+src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_scoreboard.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
@@ -7001,60 +7001,25 @@ scons: *** [build\windows-x64-release\cgame\obj\games\game\q_math.cpp.obj] Sourc
 scons: *** [build\windows-x64-release\cgame\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\cgame\obj\games\game\q_shared.cpp.obj'.
 src\games\ui\ui_shared.h(33,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_weapons.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.cpp.obj] Error 1
 src\games\ui\ui_local.h(36,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj'.
-scons: *** [build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj'.
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj'.
+scons: *** [build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj'.
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 
 ### failure context
-
-- build\windows-x64-release\client\obj\client\cl_console.cpp.obj
-
-```
-  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
-Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 10.3 MB/s  0:00:00
-Installing collected packages: scons
-Successfully installed scons-4.11.1
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-```
 
 - build\windows-x64-release\client\obj\client\cl_input.cpp.obj
 
 ```
+   ---------------------------------------- 4.1/4.1 MB 46.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -7064,100 +7029,135 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_cin.cpp.obj
-
-```
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
 In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj
 
 ```
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
 Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_console.cpp.obj
+
+```
+Successfully installed scons-4.11.1
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src\client\cl_cgame.cpp'
+Compiling 'src\client\cl_cin.cpp'
+Compiling 'src\client\cl_console.cpp'
+Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_cin.cpp.obj
+
+```
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src\client\cl_cgame.cpp'
+Compiling 'src\client\cl_cin.cpp'
+Compiling 'src\client\cl_console.cpp'
+Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_keys.cpp.obj
@@ -7166,13 +7166,13 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -7201,13 +7201,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -7229,6 +7227,8 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
+Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 ```
 
@@ -7237,9 +7237,10 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Err
 ```
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -7261,25 +7262,15 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
 1 error generated.
-Compiling 'src\client\cl_ui.cpp'
+Compiling 'src\client\cl_scrn.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj
 
 ```
-Compiling 'src\client\cl_parse.cpp'
-In file included from src\client\cl_keys.cpp:29:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -7290,16 +7281,25 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
 1 error generated.
-Compiling 'src\client\cl_ui.cpp'
+Compiling 'src\client\cl_scrn.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 ```
@@ -7315,19 +7315,16 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
 1 error generated.
-Compiling 'src\client\cl_ui.cpp'
+Compiling 'src\client\cl_scrn.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-Compiling 'src\client\snd_dma.cpp'
 In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -7336,6 +7333,9 @@ In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
@@ -7343,19 +7343,22 @@ scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error
 - build\windows-x64-release\client\obj\client\cl_ui.cpp.obj
 
 ```
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-Compiling 'src\client\cl_ui.cpp'
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+1 error generated.
+Compiling 'src\client\cl_scrn.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-Compiling 'src\client\snd_dma.cpp'
 In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -7365,14 +7368,11 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
-Compiling 'src\client\snd_mem.cpp'
-In file included from src\client\snd_dma.cpp:39:
-src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
+Compiling 'src\client\snd_dma.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
 
@@ -7979,14 +7979,14 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_target.cpp(219,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(365,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(557,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(765,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(858,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(323,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_tramcar.cpp(284,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(683,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(701,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(1101,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_tramcar.cpp(284,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1082,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1106,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1421,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -8056,15 +8056,15 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mem.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mix.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_load.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_patch.cpp.obj] Error 1
@@ -8072,23 +8072,23 @@ scons: *** [build\windows-x64-release\client\obj\qcommon\cm_test.cpp.obj] Error 
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cmd.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
+src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\huffman.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\msg.cpp.obj] Error 1
 src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\net_chan.cpp.obj] Error 1
-src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\msg.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\unzip.cpp.obj] Error 1
+src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_ccmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_client.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_game.cpp.obj] Error 1
@@ -8103,61 +8103,61 @@ scons: *** [build\windows-x64-release\client\obj\renderer\tr_animation.cpp.obj] 
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_backend.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_bsp.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_font.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_font.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_decals.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_light.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_image.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_mesh.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_marks.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_mesh.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_model.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_noise.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_renderprog.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_scene.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shader.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shadows.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_math.cpp.obj'.
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_world.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
 src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_snd.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
 src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
+src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
+src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
@@ -8170,32 +8170,32 @@ src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_memory.cpp.obj] Error 1
 src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_struct.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
-src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
-scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
+src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
-src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
+src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
@@ -8203,8 +8203,8 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.cpp.obj] 
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_scoreboard.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_sound.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
@@ -8214,19 +8214,19 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\FxSystem.cpp.obj] So
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\FxTemplate.cpp.obj] Source `src\games\cgame\FxTemplate.cpp' not found, needed by target `build\windows-x64-release\cgame\obj\games\cgame\FxTemplate.cpp.obj'.
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\FxUtil.cpp.obj] Source `src\games\cgame\FxUtil.cpp' not found, needed by target `build\windows-x64-release\cgame\obj\games\cgame\FxUtil.cpp.obj'.
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\genericparser2.cpp.obj] Source `src\games\cgame\genericparser2.cpp' not found, needed by target `build\windows-x64-release\cgame\obj\games\cgame\genericparser2.cpp.obj'.
-src\games\ui\ui_shared.h(33,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_weapons.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_weapons.cpp.obj] Error 1
+src\games\ui\ui_shared.h(33,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_public.h(178,78): error: expected ')'
 src\games\game\g_local.h(1187,69): error: expected ')'
 src\games\game\g_active.cpp(1111,22): error: expected unqualified-id
 src\games\game\g_active.cpp(1116,52): error: expected expression
 src\games\game\g_active.cpp(1116,55): error: expected expression
 src\games\game\g_active.cpp(1117,19): error: expected expression
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_active.cpp(1117,21): error: expected expression
 src\games\game\g_active.cpp(1154,17): error: expected unqualified-id
 src\games\game\g_active.cpp(1160,50): error: expected expression
@@ -8251,21 +8251,20 @@ src\games\game\g_combat.cpp(725,42): error: expected expression
 scons: *** [build\windows-x64-release\game\obj\games\game\g_combat.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_mem.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_missile.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_misc.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
 src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_save.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_script.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_save.cpp.obj] Error 1
 src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_session.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
@@ -8274,29 +8273,31 @@ scons: *** [build\windows-x64-release\game\obj\games\game\g_syscalls.cpp.obj] Er
 scons: *** [build\windows-x64-release\game\obj\games\game\g_target.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_tramcar.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\game\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x64-release\game\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\game\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\game\obj\games\game\g_trigger.cpp.obj] Error 1
 src\games\ui\ui_local.h(36,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_utils.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_weapon.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_weapon.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 
 ### failure context
 
 - build\windows-x64-release\client\obj\client\cl_input.cpp.obj
 
 ```
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 49.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 31.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -8306,23 +8307,22 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cin.cpp:47:
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
@@ -8340,26 +8340,26 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cin.cpp:47:
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 ```
@@ -8374,26 +8374,26 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cin.cpp:47:
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
@@ -8403,52 +8403,53 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 - build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj
 
 ```
-scons: done reading SConscript files.
 scons: Building targets ...
 Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cin.cpp:47:
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_keys.cpp.obj
 
 ```
-1 error generated.
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
 In file included from src\client\cl_keys.cpp:29:
@@ -8466,7 +8467,6 @@ In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
@@ -8479,11 +8479,12 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
 In file included from src\client\cl_keys.cpp:29:
@@ -8501,7 +8502,6 @@ In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
@@ -8511,13 +8511,12 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Err
 - build\windows-x64-release\client\obj\client\cl_parse.cpp.obj
 
 ```
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
 In file included from src\client\cl_keys.cpp:29:
@@ -8537,47 +8536,12 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
-
-```
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_parse.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
-Compiling 'src\client\snd_adpcm.cpp'
-In file included from src\client\cl_scrn.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\snd_adpcm.cpp:29:
-src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj
@@ -8591,14 +8555,18 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+1 error generated.
 Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -8606,31 +8574,69 @@ In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
+
+```
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+Compiling 'src\client\cl_scrn.cpp'
+1 error generated.
+Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\snd_adpcm.cpp'
+In file included from src\client\cl_scrn.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_ui.cpp.obj
 
 ```
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+1 error generated.
 Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -8638,17 +8644,11 @@ In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-Compiling 'src\client\snd_dma.cpp'
-Compiling 'src\client\snd_mem.cpp'
-1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
 
@@ -8791,13 +8791,14 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(250,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(251,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(252,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(179,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(180,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(181,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(182,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(183,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(184,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(185,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(186,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(187,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -8806,14 +8807,16 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(191,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(193,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(195,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(196,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(197,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(198,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(199,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(200,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(201,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(202,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(204,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(206,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(207,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -8822,6 +8825,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(210,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(212,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(213,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(214,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(215,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(216,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -8837,7 +8845,6 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(226,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(227,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(228,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(229,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(230,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(231,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -8885,13 +8892,11 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(281,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(282,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(283,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(284,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(286,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(288,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(289,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(291,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(292,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(293,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(294,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -8912,11 +8917,6 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(311,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(312,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(314,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(315,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(316,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(318,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -9181,24 +9181,24 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_client.cpp(236,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_client.cpp(579,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_cmds.cpp(1263,30): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_main.cpp(570,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_main.cpp(1743,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(624,34): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(1093,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(2598,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_main.cpp(570,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(2651,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_main.cpp(1743,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2007,41): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2829,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2856,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3242,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3447,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3475,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(4253,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1720,35): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1765,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(4253,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1940,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(2882,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(3019,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -9282,9 +9282,9 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_active.cpp(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_cmds.cpp(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
@@ -9323,57 +9323,57 @@ warnings: 4017 in 10 kinds
 ### errors
 
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mem.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mix.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_load.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_patch.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\qcommon\cm_test.cpp.obj] Error 1
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cm_test.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cmd.cpp.obj] Error 1
-src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
+src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\huffman.cpp.obj] Error 1
-src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\files.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\qcommon\msg.cpp.obj] Error 1
 src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\net_chan.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\qcommon\msg.cpp.obj] Error 1
 src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\unzip.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_ccmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_client.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\server\sv_game.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_init.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\server\sv_game.cpp.obj] Error 1
 src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_snapshot.cpp.obj] Error 1
-src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_world.cpp.obj] Error 1
+src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_cmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_backend.cpp.obj] Error 1
@@ -9382,9 +9382,9 @@ scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Err
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_font.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_decals.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_image.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_light.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_image.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_mesh.cpp.obj] Error 1
@@ -9393,64 +9393,64 @@ scons: *** [build\windows-x64-release\client\obj\renderer\tr_noise.cpp.obj] Erro
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_renderprog.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_scene.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shader.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shadows.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_sky.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_math.cpp.obj'.
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_world.cpp.obj] Error 1
+src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
-src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_snd.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
+src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
 src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_crc.cpp.obj] Error 1
 src\games\botlib\l_libvar.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_libvar.cpp.obj] Error 1
 src\games\botlib\l_log.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_log.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_memory.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
+src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
 src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_struct.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
@@ -9473,7 +9473,6 @@ fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build\windows-x64-release\game\obj\games\game\g_active.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_alarm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_client.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
 src\games\game\g_combat.cpp(723,89): error: expected expression
@@ -9481,38 +9480,38 @@ src\games\game\g_combat.cpp(724,16): error: expected expression
 src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
+scons: *** [build\windows-x64-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_combat.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_mem.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_missile.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
-src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_script.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_save.cpp.obj] Error 1
 src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
+src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\game\obj\games\game\g_session.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_script.cpp.obj] Error 1
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
-scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_target.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_team.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_tramcar.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_trigger.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_tramcar.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_weapon.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
@@ -9520,16 +9519,17 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_drawtools.cpp.obj
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
 src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
-src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
+src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
-src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
+src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
 src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
@@ -9538,8 +9538,8 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_players.cpp.obj] 
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_scoreboard.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_sound.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\FxPrimitives.cpp.obj] Source `src\games\cgame\FxPrimitives.cpp' not found, needed by target `build\windows-x64-release\cgame\obj\games\cgame\FxPrimitives.cpp.obj'.
@@ -9558,55 +9558,21 @@ scons: *** [build\windows-x64-release\cgame\obj\games\ui\ui_shared.cpp.obj] Erro
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\ui\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 
 ### failure context
-
-- build\windows-x64-release\client\obj\client\cl_input.cpp.obj
-
-```
-   ---------------------------------------- 4.1/4.1 MB 25.0 MB/s  0:00:00
-Installing collected packages: scons
-Successfully installed scons-4.11.1
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cgame.cpp:31:
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-```
 
 - build\windows-x64-release\client\obj\client\cl_console.cpp.obj
 
 ```
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 45.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -9616,34 +9582,67 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cgame.cpp:31:
 In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_input.cpp.obj
+
+```
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 'src\client\cl_cgame.cpp'
+Compiling 'src\client\cl_cin.cpp'
+Compiling 'src\client\cl_console.cpp'
+Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_cin.cpp.obj
 
 ```
-Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
@@ -9651,28 +9650,29 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cgame.cpp:31:
 In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 ```
 
@@ -9685,79 +9685,45 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cgame.cpp:31:
 In file included from src\client\cl_console.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj
-
-```
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-In file included from src\client\cl_keys.cpp:29:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_parse.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_keys.cpp.obj
 
 ```
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
@@ -9779,9 +9745,43 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj
+
+```
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
+Compiling 'src\client\cl_net_chan.cpp'
+Compiling 'src\client\cl_parse.cpp'
+In file included from src\client\cl_keys.cpp:29:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_main.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+Compiling 'src\client\cl_scrn.cpp'
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_parse.cpp.obj
@@ -9789,9 +9789,8 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
@@ -9813,14 +9812,15 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
+- build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj
 
 ```
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
@@ -9832,12 +9832,12 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -9853,10 +9853,10 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj
+- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
 
 ```
    30 | #include "../game/q_shared.h"
@@ -9867,12 +9867,12 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -9888,8 +9888,8 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_ui.cpp.obj
@@ -9899,12 +9899,12 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -9920,8 +9920,8 @@ src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 Compiling 'src\client\snd_dma.cpp'
 1 error generated.
 Compiling 'src\client\snd_mem.cpp'
@@ -10457,27 +10457,27 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_client.cpp(236,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_client.cpp(579,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_cmds.cpp(1263,30): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_main.cpp(570,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_main.cpp(1743,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(624,34): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(1093,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(2598,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_misc.cpp(2651,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(2007,41): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(2829,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(2856,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(3242,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(3447,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(3475,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(4253,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_main.cpp(570,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_main.cpp(1743,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1720,35): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1765,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(1940,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(2007,41): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(2829,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(2856,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(2882,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(3242,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(3447,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(3019,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(3475,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(4253,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(3100,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(4053,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(4130,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -10531,13 +10531,14 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_target.cpp(219,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(365,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(557,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(765,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(858,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(323,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(683,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(701,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(1101,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_trigger.cpp(699,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(284,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1082,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_tramcar.cpp(1106,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -10545,7 +10546,6 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_tramcar.cpp(1479,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_utils.cpp(218,22): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_utils.cpp(266,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_trigger.cpp(699,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
 - [23x] -unused-but-set-variable
   - src\splines\util_str.cpp(437,6): warning: variable 'len' set but not used [-Wunused-but-set-variable]
   - src\splines\util_str.cpp(468,7): warning: variable 'ch' set but not used [-Wunused-but-set-variable]
@@ -10558,12 +10558,12 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_active.cpp(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_cmds.cpp(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_target.cpp(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_tramcar.cpp(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -10599,37 +10599,37 @@ warnings: 4017 in 10 kinds
 ### errors
 
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_mem.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_mem.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_mix.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_dma.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_load.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_patch.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
-src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_test.cpp.obj] Error 1
-src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\cmd.cpp.obj] Error 1
+src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\qcommon\common.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\huffman.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
@@ -10644,8 +10644,8 @@ scons: *** [build\windows-x64-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_client.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_init.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_game.cpp.obj] Error 1
-src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_main.cpp.obj] Error 1
+src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\server\sv_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\server\sv_snapshot.cpp.obj] Error 1
 src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
@@ -10655,29 +10655,29 @@ scons: *** [build\windows-x64-release\client\obj\renderer\tr_animation.cpp.obj] 
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_backend.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_bsp.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_font.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_decals.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_init.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_light.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_image.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_light.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_mesh.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_model.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_noise.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_renderprog.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_scene.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_shader.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\renderer\tr_shadows.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\renderer\tr_shadows.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x64-release\client\obj\games\game\q_math.cpp.obj'.
-src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
+src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_world.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
@@ -10686,29 +10686,29 @@ src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not fou
 scons: *** [build\windows-x64-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
 src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_snd.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
+src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
@@ -10719,28 +10719,27 @@ scons: *** [build\windows-x64-release\client\obj\games\botlib\l_libvar.cpp.obj] 
 src\games\botlib\l_log.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_log.cpp.obj] Error 1
 src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_memory.cpp.obj] Error 1
 src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
+src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\client\obj\games\botlib\l_struct.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\games\ui\ui_local.h(36,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_main.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
 src\games\ui\ui_shared.h(33,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
 src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x64-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_public.h(178,78): error: expected ')'
 src\games\game\g_local.h(1187,69): error: expected ')'
 src\games\game\g_active.cpp(1111,22): error: expected unqualified-id
@@ -10760,6 +10759,7 @@ fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build\windows-x64-release\game\obj\games\game\g_active.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_alarm.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_client.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
 src\games\game\g_combat.cpp(723,89): error: expected expression
@@ -10767,28 +10767,28 @@ src\games\game\g_combat.cpp(724,16): error: expected expression
 src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
+scons: *** [build\windows-x64-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_combat.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_items.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_mem.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_missile.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_main.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
-src\games\game\../game/g_local.h(1187,69): error: expected ')'
 scons: *** [build\windows-x64-release\game\obj\games\game\g_mover.cpp.obj] Error 1
+src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\game\obj\games\game\g_props.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_save.cpp.obj] Error 1
 src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\game\obj\games\game\g_script.cpp.obj] Error 1
 src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_session.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
+scons: *** [build\windows-x64-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_target.cpp.obj] Error 1
@@ -10799,25 +10799,25 @@ scons: *** [build\windows-x64-release\game\obj\games\game\q_math.cpp.obj] Source
 scons: *** [build\windows-x64-release\game\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x64-release\game\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x64-release\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\game\obj\games\game\g_weapon.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
 src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
 src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
@@ -10844,10 +10844,11 @@ scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj
 
 ### failure context
 
-- build\windows-x64-release\client\obj\client\cl_console.cpp.obj
+- build\windows-x64-release\client\obj\client\cl_input.cpp.obj
 
 ```
-   ---------------------------------------- 4.1/4.1 MB 38.9 MB/s  0:00:00
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 44.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -10857,32 +10858,32 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\cl_input.cpp.obj
+- build\windows-x64-release\client\obj\client\cl_console.cpp.obj
 
 ```
+Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
@@ -10891,32 +10892,31 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj
+- build\windows-x64-release\client\obj\client\cl_cin.cpp.obj
 
 ```
 scons: Reading SConscript files ...
@@ -10926,33 +10926,33 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
 ```
 
-- build\windows-x64-release\client\obj\client\cl_cin.cpp.obj
+- build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj
 
 ```
 scons: done reading SConscript files.
@@ -10961,84 +10961,46 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_cgame.cpp:31:
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_keys.cpp.obj
-
-```
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-In file included from src\client\cl_keys.cpp:29:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj
 
 ```
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
@@ -11053,72 +11015,105 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\cl_parse.cpp.obj
-
-```
-scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-In file included from src\client\cl_keys.cpp:29:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_ui.cpp'
 In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_keys.cpp.obj
+
+```
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
+Compiling 'src\client\cl_net_chan.cpp'
+Compiling 'src\client\cl_parse.cpp'
+In file included from src\client\cl_keys.cpp:29:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_main.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\cl_parse.cpp.obj
+
+```
+scons: *** [build\windows-x64-release\client\obj\client\cl_input.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_console.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
+Compiling 'src\client\cl_net_chan.cpp'
+Compiling 'src\client\cl_parse.cpp'
+In file included from src\client\cl_keys.cpp:29:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_main.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj
 
 ```
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_ui.cpp'
 In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -11128,8 +11123,49 @@ In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+```
+
+- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
+
+```
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
+Compiling 'src\client\cl_scrn.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
+Compiling 'src\client\snd_adpcm.cpp'
+In file included from src\client\cl_scrn.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
 - build\windows-x64-release\client\obj\client\cl_ui.cpp.obj
@@ -11137,21 +11173,14 @@ scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 ```
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
 1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_ui.cpp'
-In file included from src\client\cl_parse.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
 scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
+Compiling 'src\client\cl_ui.cpp'
 Compiling 'src\client\snd_adpcm.cpp'
 In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -11161,47 +11190,18 @@ In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-1 error generated.
-Compiling 'src\client\snd_dma.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
-```
-
-- build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj
-
-```
-scons: *** [build\windows-x64-release\client\obj\client\cl_keys.cpp.obj] Error 1
-Compiling 'src\client\cl_scrn.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
-Compiling 'src\client\cl_ui.cpp'
-In file included from src\client\cl_parse.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_parse.cpp.obj] Error 1
-Compiling 'src\client\snd_adpcm.cpp'
-In file included from src\client\cl_scrn.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
-1 error generated.
-Compiling 'src\client\snd_dma.cpp'
-scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
-Compiling 'src\client\snd_mem.cpp'
 In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
+1 error generated.
+scons: *** [build\windows-x64-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+Compiling 'src\client\snd_dma.cpp'
+1 error generated.
+Compiling 'src\client\snd_mem.cpp'
+scons: *** [build\windows-x64-release\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
 
 
@@ -11742,8 +11742,8 @@ scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error
   - src\games\game\g_mover.cpp(2007,41): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2829,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(2856,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(314,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_mover.cpp(2885,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_props.cpp(474,25): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3242,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_mover.cpp(3447,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -11806,11 +11806,11 @@ scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error
   - src\games\game\g_target.cpp(57,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(219,28): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(365,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(557,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
+  - src\games\game\g_team.cpp(323,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(765,27): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_target.cpp(858,26): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_team.cpp(218,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
-  - src\games\game\g_team.cpp(323,31): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(683,33): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(701,24): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
   - src\games\game\g_team.cpp(1101,23): warning: cast to smaller integer type 'int' from 'char **' [-Wpointer-to-int-cast]
@@ -11832,10 +11832,10 @@ scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error
   - src\splines\splines.cpp(1171,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\splines\splines.cpp(1220,16): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_active.cpp(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_cmds.cpp(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
@@ -11867,7 +11867,7 @@ scons: *** [build\windows-x64-release\client\obj\client\snd_adpcm.cpp.obj] Error
 
 ## windows-latest-x86-debug-
 
-status: cancelled
+status: failure
 
 errors: 245
 warnings: 3918 in 8 kinds
@@ -11884,109 +11884,109 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_parse.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\snd_mem.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\client\snd_dma.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\snd_mix.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\client\snd_dma.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_patch.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_load.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_patch.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_test.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\qcommon\cm_trace.cpp.obj] Error 1
 src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\qcommon\cmd.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\cvar.cpp.obj] Error 1
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\qcommon\common.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\huffman.cpp.obj] Error 1
-src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
+src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\qcommon\net_chan.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\qcommon\msg.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\qcommon\net_chan.cpp.obj] Error 1
 src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\qcommon\unzip.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_ccmds.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_client.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_init.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\server\sv_game.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_main.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\server\sv_game.cpp.obj] Error 1
 src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\server\sv_net_chan.cpp.obj] Error 1
+src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\server\sv_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\server\sv_world.cpp.obj] Error 1
-src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_cmds.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_backend.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_bsp.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_curve.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_font.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_decals.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_image.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_light.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_init.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_image.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_main.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_mesh.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_marks.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_model.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_noise.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_renderprog.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_scene.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_shade.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_shade_calc.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_shade.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_shader.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_md5.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_shadows.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_sky.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-debug\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x86-debug\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-debug\client\obj\games\game\q_math.cpp.obj'.
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\renderer\tr_world.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_md5.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\renderer\tr_vfx.cpp.obj] Error 1
-src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
+src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_main.cpp.obj] Error 1
-src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_net.cpp.obj] Error 1
+src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\sys\win32\win_wndproc.cpp.obj] Error 1
 src\games\botlib\be_ai_char.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
 src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_char.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
+src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
 src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_ea.cpp.obj] Error 1
+src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\l_crc.cpp.obj] Error 1
@@ -12006,8 +12006,6 @@ scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_interface.cpp.obj
 scons: *** [build\windows-x86-debug\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
-src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
-scons: *** [build\windows-x86-debug\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_public.h(178,78): error: expected ')'
 src\games\game\g_local.h(1187,69): error: expected ')'
 src\games\game\g_active.cpp(1111,22): error: expected unqualified-id
@@ -12026,7 +12024,12 @@ src\games\game\g_active.cpp(1164,15): error: expected expression
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_active.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_alarm.cpp.obj] Error 1
+src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_client.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_cmds.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\bg_misc.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_items.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_mem.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
 src\games\game\g_combat.cpp(723,89): error: expected expression
@@ -12035,65 +12038,62 @@ src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_combat.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_cmds.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_items.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_mem.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_missile.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_mover.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
+src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_props.cpp.obj] Error 1
-src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_script.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_script_actions.cpp.obj] Error 1
+src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_save.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_script_actions.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_session.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_svcmds.cpp.obj] Error 1
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_svcmds.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_syscalls.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_target.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_spawn.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_tramcar.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-debug\game\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x86-debug\game\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-debug\game\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x86-debug\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_trigger.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\game\obj\games\game\g_weapon.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
-src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
-src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
+src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
 src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
-src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_playerstate.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_players.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_predict.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_scoreboard.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_sound.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\FxPrimitives.cpp.obj] Source `src\games\cgame\FxPrimitives.cpp' not found, needed by target `build\windows-x86-debug\cgame\obj\games\cgame\FxPrimitives.cpp.obj'.
@@ -12111,21 +12111,23 @@ scons: *** [build\windows-x86-debug\cgame\obj\games\ui\ui_shared.cpp.obj] Error 
 src\games\ui\ui_local.h(36,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\ui\obj\games\game\bg_misc.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-debug\ui\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x86-debug\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-debug\ui\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\ui\obj\games\game\bg_misc.cpp.obj] Error 1
 
 ### failure context
 
 - build\windows-x86-debug\client\obj\client\cl_console.cpp.obj
 
 ```
-   ---------------------------------------- 4.1/4.1 MB 38.4 MB/s  0:00:00
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 58.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -12135,10 +12137,13 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
 In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -12147,12 +12152,7 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
@@ -12161,7 +12161,6 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 
 - build\windows-x86-debug\client\obj\client\cl_input.cpp.obj
 
 ```
-Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
@@ -12170,10 +12169,13 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
 In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -12182,22 +12184,19 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 ```
 
 - build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj
 
 ```
-Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
@@ -12205,10 +12204,13 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
 In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -12217,15 +12219,13 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj] Error 1
 ```
@@ -12239,10 +12239,13 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_console.cpp:31:
 In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_console.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -12251,18 +12254,15 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 ```
 
@@ -12272,12 +12272,12 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-1 error generated.
-1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
@@ -12306,12 +12306,12 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_keys.cpp.obj] Error 1
 
 ```
 1 error generated.
-1 error generated.
-1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
@@ -12342,10 +12342,10 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_net_chan.cpp.obj] Error
 
 ```
 1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_input.cpp.obj] Error 1
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_cgame.cpp.obj] Error 1
 Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
@@ -12374,7 +12374,7 @@ Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
-- build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj
+- build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj
 
 ```
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -12398,21 +12398,22 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\snd_adpcm.cpp:29:
-src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
 ```
 
-- build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj
+- build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj
 
 ```
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
@@ -12430,20 +12431,19 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\snd_adpcm.cpp:29:
-src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
-1 error generated.
-Compiling 'src\client\snd_dma.cpp'
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
+1 error generated.
+Compiling 'src\client\snd_dma.cpp'
+scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
 - build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj
@@ -12464,20 +12464,20 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\snd_adpcm.cpp:29:
-src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-   32 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_ui.cpp:30:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
-1 error generated.
-Compiling 'src\client\snd_dma.cpp'
+In file included from src\client\snd_adpcm.cpp:29:
+src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+   32 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 scons: *** [build\windows-x86-debug\client\obj\client\cl_scrn.cpp.obj] Error 1
+1 error generated.
+Compiling 'src\client\snd_dma.cpp'
+scons: *** [build\windows-x86-debug\client\obj\client\snd_adpcm.cpp.obj] Error 1
+1 error generated.
 Compiling 'src\client\snd_mem.cpp'
 scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
@@ -12593,8 +12593,6 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(194,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(195,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(196,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(179,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(180,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(197,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(198,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(203,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12604,7 +12602,6 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(211,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(212,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(213,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_misc.cpp(181,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(234,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(235,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(236,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12615,20 +12612,15 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(241,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(242,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(243,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(179,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(244,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_animation.cpp(245,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(246,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(247,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(248,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(249,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(250,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(251,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(252,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(180,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_misc.cpp(181,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(182,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(183,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(246,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(184,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(185,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(186,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(187,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12644,19 +12636,27 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(200,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(201,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(202,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(247,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(204,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(248,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(249,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(206,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(207,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(208,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(209,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(210,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(250,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(251,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(252,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(253,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(501,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(212,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(213,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(214,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(215,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(216,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(217,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(837,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(218,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(219,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(220,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12664,6 +12664,8 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(222,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(223,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(224,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(225,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(226,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(227,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12687,14 +12689,7 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(249,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(250,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(251,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1071,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(252,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1081,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(253,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(254,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(256,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -12703,6 +12698,11 @@ scons: *** [build\windows-x86-debug\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\bg_misc.cpp(259,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(260,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(261,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\games\game\bg_animation.cpp(1119,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(262,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(264,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\games\game\bg_misc.cpp(265,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -13057,28 +13057,28 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 
 scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\cl_parse.cpp.obj] Error 1
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\cl_ui.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\cl_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\snd_mem.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\snd_dma.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\client\snd_mix.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 src\qcommon\cm_local.h(30,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\client\snd_wavelet.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\qcommon\cm_load.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\qcommon\cm_patch.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\qcommon\cm_polylib.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\qcommon\cm_test.cpp.obj] Error 1
 src\qcommon\cmd.cpp(31,10): fatal error: '../game/q_shared.h' file not found
-src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\qcommon\cm_trace.cpp.obj] Error 1
-src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+src\qcommon\common.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\qcommon\cmd.cpp.obj] Error 1
+src\qcommon\cvar.cpp(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\qcommon\cvar.cpp.obj] Error 1
 src\qcommon\files.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\huffman.cpp(34,10): fatal error: '../game/q_shared.h' file not found
@@ -13087,12 +13087,12 @@ scons: *** [build\windows-x86-release\client\obj\qcommon\huffman.cpp.obj] Error 
 scons: *** [build\windows-x86-release\client\obj\qcommon\files.cpp.obj] Error 1
 src\qcommon\msg.cpp(29,10): fatal error: '../game/q_shared.h' file not found
 src\qcommon\net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\qcommon\msg.cpp.obj] Error 1
 src\qcommon\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\qcommon\net_chan.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\qcommon\msg.cpp.obj] Error 1
 src\server\server.h(31,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\qcommon\unzip.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\server\sv_bot.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\server\sv_ccmds.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\server\sv_client.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\server\sv_init.cpp.obj] Error 1
@@ -13100,16 +13100,16 @@ scons: *** [build\windows-x86-release\client\obj\server\sv_game.cpp.obj] Error 1
 src\server\sv_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\server\sv_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\server\sv_net_chan.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\server\sv_snapshot.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\server\sv_world.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\server\sv_snapshot.cpp.obj] Error 1
 src\renderer\tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_cmds.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_animation.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_backend.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_bsp.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_font.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\renderer\tr_curve.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\renderer\tr_flares.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_decals.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_init.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_light.cpp.obj] Error 1
@@ -13129,19 +13129,19 @@ scons: *** [build\windows-x86-release\client\obj\renderer\tr_shadows.cpp.obj] Er
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_sky.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-release\client\obj\games\game\q_shared.cpp.obj'.
 scons: *** [build\windows-x86-release\client\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-release\client\obj\games\game\q_math.cpp.obj'.
-scons: *** [build\windows-x86-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 src\client\../renderer/tr_local.h(34,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\renderer\tr_surface.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\renderer\tr_world.cpp.obj] Error 1
 src\client\../client/client.h(31,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_gamma.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_glimp.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 src\sys\win32\win_net.cpp(31,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\renderer\tr_vfx.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_input.cpp.obj] Error 1
 src\sys\win32\win_shared.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_main.cpp.obj] Error 1
 src\client\../client/snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\sys\win32\win_net.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_qgl.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\sys\win32\win_snd.cpp.obj] Error 1
@@ -13152,18 +13152,18 @@ scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_char.cpp.obj
 src\games\botlib\be_ai_gen.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_chat.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_gen.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
 src\games\botlib\be_ai_goal.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_chat.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
 src\games\botlib\be_ai_move.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weap.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_goal.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
-src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\be_ai_weight.cpp(38,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
-src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_weap.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_move.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ai_weight.cpp.obj] Error 1
+src\games\botlib\be_ea.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+src\games\botlib\be_interface.cpp(38,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_ea.cpp.obj] Error 1
 src\games\botlib\be_nav_interface.cpp(25,10): fatal error: '../game/q_shared.h' file not found
 src\games\botlib\l_crc.cpp(42,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\games\botlib\l_crc.cpp.obj] Error 1
@@ -13174,17 +13174,15 @@ scons: *** [build\windows-x86-release\client\obj\games\botlib\l_log.cpp.obj] Err
 src\games\botlib\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\games\botlib\l_memory.cpp.obj] Error 1
 src\games\botlib\l_precomp.cpp(68,10): fatal error: '../game/q_shared.h' file not found
-scons: *** [build\windows-x86-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\games\botlib\l_precomp.cpp.obj] Error 1
 src\games\botlib\l_script.cpp(63,10): fatal error: '../game/q_shared.h' file not found
+scons: *** [build\windows-x86-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
 src\games\botlib\l_struct.cpp(39,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\client\obj\games\botlib\l_struct.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\client\obj\games\botlib\l_script.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\games\botlib\be_interface.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\client\obj\games\botlib\be_nav_interface.cpp.obj] Error 1
 src\tools\extractfuncs\l_memory.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.cpp.obj] Error 1
-src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
-scons: *** [build\windows-x86-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_public.h(178,78): error: expected ')'
 src\games\game\g_local.h(1187,69): error: expected ')'
 src\games\game\g_active.cpp(1111,22): error: expected unqualified-id
@@ -13205,6 +13203,8 @@ scons: *** [build\windows-x86-release\game\obj\games\game\g_active.cpp.obj] Erro
 scons: *** [build\windows-x86-release\game\obj\games\game\g_alarm.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_client.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_cmds.cpp.obj] Error 1
+src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
+scons: *** [build\windows-x86-release\game\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\game\g_combat.cpp(702,16): error: expected unqualified-id
 src\games\game\g_combat.cpp(723,86): error: expected expression
 src\games\game\g_combat.cpp(723,89): error: expected expression
@@ -13212,56 +13212,56 @@ src\games\game\g_combat.cpp(724,16): error: expected expression
 src\games\game\g_combat.cpp(724,18): error: expected expression
 src\games\game\g_combat.cpp(725,40): error: expected expression
 src\games\game\g_combat.cpp(725,42): error: expected expression
-scons: *** [build\windows-x86-release\game\obj\games\game\g_combat.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_items.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\game\obj\games\game\g_combat.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_mem.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_main.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\game\obj\games\game\g_misc.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_missile.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\games\game\g_mover.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_props.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\game\obj\games\game\g_mover.cpp.obj] Error 1
 src\games\game\../game\g_public.h(178,78): error: expected ')'
 src\games\game\../game/g_local.h(1187,69): error: expected ')'
 src\games\game\g_save.cpp(35,10): fatal error: '../game/q_shared.h' file not found
 src\games\game\g_script.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\game\obj\games\game\g_script.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\game\obj\games\game\g_save.cpp.obj] Error 1
 src\games\game\g_script_actions.cpp(38,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\game\obj\games\game\g_script_actions.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\games\game\g_save.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_session.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_svcmds.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 src\games\game\g_syscalls.cpp(237,68): error: expected ')'
 src\games\game\g_syscalls.cpp(238,53): error: expected expression
 src\games\game\g_syscalls.cpp(238,56): error: expected expression
+scons: *** [build\windows-x86-release\game\obj\games\game\g_spawn.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_syscalls.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_target.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_team.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_tramcar.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\games\game\g_trigger.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-release\game\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x86-release\game\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-release\game\obj\games\game\q_shared.cpp.obj'.
+scons: *** [build\windows-x86-release\game\obj\games\game\g_trigger.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_utils.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\game\obj\games\game\g_weapon.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 src\games\cgame\cg_local.h(41,10): fatal error: '../game/q_shared.h' file not found
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_drawtools.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_draw.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_effects.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
 src\games\cgame\cg_fx.cpp(1,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_entities.cpp(31,10): fatal error: 'FxScheduler.h' file not found
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
 src\games\cgame\cg_fx_flame.cpp(37,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_event.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_entities.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_flame.cpp.obj] Error 1
-src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx.cpp.obj] Error 1
+src\games\cgame\cg_fx_marks.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 src\games\cgame\cg_fx_particles.cpp(30,10): fatal error: 'FxScheduler.h' file not found
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_marks.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 src\games\cgame\cg_fx_trails.cpp(2,10): fatal error: 'FxScheduler.h' file not found
+scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_particles.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_info.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
@@ -13289,12 +13289,12 @@ scons: *** [build\windows-x86-release\cgame\obj\games\ui\ui_shared.cpp.obj] Erro
 scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_main.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_players.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\game\bg_misc.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\game\q_math.cpp.obj] Source `src\games\game\q_math.cpp' not found, needed by target `build\windows-x86-release\ui\obj\games\game\q_math.cpp.obj'.
 scons: *** [build\windows-x86-release\ui\obj\games\game\q_shared.cpp.obj] Source `src\games\game\q_shared.cpp' not found, needed by target `build\windows-x86-release\ui\obj\games\game\q_shared.cpp.obj'.
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_fx_trails.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
 scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
 
 ### failure context
@@ -13303,7 +13303,7 @@ scons: *** [build\windows-x86-release\ui\obj\games\ui\ui_syscalls.cpp.obj] Error
 
 ```
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 34.7 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 51.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -13313,20 +13313,20 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
@@ -13347,20 +13347,20 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
@@ -13381,20 +13381,20 @@ Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
-In file included from src\client\cl_cin.cpp:47:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
 In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_input.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cgame.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_cin.cpp:47:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_input.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
@@ -13410,27 +13410,28 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
 - build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj
 
 ```
+scons: done reading SConscript files.
 scons: Building targets ...
 Compiling 'src\client\cl_cgame.cpp'
 Compiling 'src\client\cl_cin.cpp'
 Compiling 'src\client\cl_console.cpp'
 Compiling 'src\client\cl_input.cpp'
+In file included from src\client\cl_console.cpp:31:
+In file included from src\client\cl_cgame.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_cin.cpp:47:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-In file included from src\client\cl_console.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_input.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_cgame.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
 1 error generated.
@@ -13439,49 +13440,14 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Erro
 scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-```
-
-- build\windows-x86-release\client\obj\client\cl_keys.cpp.obj
-
-```
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Error 1
-1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 1
-Compiling 'src\client\cl_keys.cpp'
-scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
-scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-In file included from src\client\cl_keys.cpp:29:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_main.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
-   30 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_parse.cpp:31:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
-1 error generated.
-1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 
 - build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj
 
 ```
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Error 1
@@ -13489,8 +13455,8 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Erro
 scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
 In file included from src\client\cl_keys.cpp:29:
@@ -13510,9 +13476,43 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+```
+
+- build\windows-x86-release\client\obj\client\cl_keys.cpp.obj
+
+```
+1 error generated.
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 1
+Compiling 'src\client\cl_keys.cpp'
+scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
+Compiling 'src\client\cl_net_chan.cpp'
+Compiling 'src\client\cl_parse.cpp'
+In file included from src\client\cl_keys.cpp:29:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_main.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
+   30 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+In file included from src\client\cl_parse.cpp:31:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+1 error generated.
 1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 ```
 
 - build\windows-x86-release\client\obj\client\cl_parse.cpp.obj
@@ -13523,8 +13523,8 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_console.cpp.obj] Erro
 scons: *** [build\windows-x86-release\client\obj\client\cl_input.cpp.obj] Error 1
 Compiling 'src\client\cl_keys.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cin.cpp.obj] Error 1
-Compiling 'src\client\cl_main.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_cgame.cpp.obj] Error 1
+Compiling 'src\client\cl_main.cpp'
 Compiling 'src\client\cl_net_chan.cpp'
 Compiling 'src\client\cl_parse.cpp'
 In file included from src\client\cl_keys.cpp:29:
@@ -13544,17 +13544,16 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_parse.cpp.obj] Error 1
 ```
 
-- build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj
+- build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj
 
 ```
-      |          ^~~~~~~~~~~~~~~~~~~~
 src\client\cl_net_chan.cpp(30,10): fatal error: '../game/q_shared.h' file not found
    30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
@@ -13564,9 +13563,9 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
@@ -13575,21 +13574,23 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
 ```
 
-- build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj
+- build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj
 
 ```
+   30 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\cl_parse.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
@@ -13597,9 +13598,9 @@ src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
@@ -13608,19 +13609,18 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 1 error generated.
-Compiling 'src\client\snd_dma.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
+scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 ```
 
 - build\windows-x86-release\client\obj\client\cl_ui.cpp.obj
@@ -13630,9 +13630,9 @@ scons: *** [build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj] Error
       |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
-1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_net_chan.cpp.obj] Error 1
+1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_keys.cpp.obj] Error 1
 Compiling 'src\client\cl_scrn.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\cl_parse.cpp.obj] Error 1
 Compiling 'src\client\cl_ui.cpp'
@@ -13641,21 +13641,21 @@ In file included from src\client\cl_scrn.cpp:31:
 src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    31 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
-In file included from src\client\cl_ui.cpp:30:
-src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
-   31 | #include "../game/q_shared.h"
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from src\client\snd_adpcm.cpp:29:
 src\client\snd_local.h(32,10): fatal error: '../game/q_shared.h' file not found
+In file included from src\client\cl_ui.cpp:30:
+src\client\client.h(31,10): fatal error: '../game/q_shared.h' file not found
    32 | #include "../game/q_shared.h"
       |          ^~~~~~~~~~~~~~~~~~~~
+   31 | #include "../game/q_shared.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
-scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
 1 error generated.
-Compiling 'src\client\snd_dma.cpp'
 scons: *** [build\windows-x86-release\client\obj\client\snd_adpcm.cpp.obj] Error 1
-1 error generated.
+scons: *** [build\windows-x86-release\client\obj\client\cl_scrn.cpp.obj] Error 1
+Compiling 'src\client\snd_dma.cpp'
 Compiling 'src\client\snd_mem.cpp'
+1 error generated.
 scons: *** [build\windows-x86-release\client\obj\client\cl_ui.cpp.obj] Error 1
 ```
 
@@ -14194,9 +14194,9 @@ scons: *** [build\windows-x86-release\client\obj\client\cl_ui.cpp.obj] Error 1
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_target.cpp(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_tramcar.cpp(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
