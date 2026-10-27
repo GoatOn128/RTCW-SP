@@ -390,79 +390,79 @@ typedef struct {
 
 class idMaterial {
 public:
-	idMaterial();
+idMaterial();
 
-	// clears everything back to an inactive material
-	void					Reset();
+// clears everything back to an inactive material
+void                    Reset();
 
-	// builds the not-drawn default material
-	void					InitDefault();
+// builds the not-drawn default material
+void                    InitDefault();
 
-	// builds the texture-only material for a name without an explicit
-	// shader definition, following the fallback flavors of R_FindShader
-	// in src/renderer/tr_shader.c of this code base
-	void					InitTextureOnly( const char *name, int lightmapIndex );
+// builds the texture-only material for a name without an explicit
+// shader definition, following the fallback flavors of R_FindShader
+// in src/renderer/tr_shader.c of this code base
+void                    InitTextureOnly( const char *name, int lightmapIndex );
 
-	// applies the stage defaulting and the sort order of FinishShader
-	// in src/renderer/tr_shader.c, and computes the coverage; must be
-	// called after the parser filled the stages
-	void					Finish();
+// applies the stage defaulting and the sort order of FinishShader
+// in src/renderer/tr_shader.c, and computes the coverage; must be
+// called after the parser filled the stages
+void                    Finish();
 
-	// accessors
-	const char *			GetName() const { return name.c_str(); }
-	int						Sort() const { return sort; }
-	cullType_t				GetCullType() const { return cullType; }
-	bool					ShouldCreateBackSides() const { return cullType == CT_BACK_SIDED; }
-	bool					EntityMergable() const { return entityMergable; }
-	bool					IsSky() const { return isSky; }
-	const skyParms_t &		GetSkyParms() const { return sky; }
-	const fogParms_t &		GetFogParms() const { return fogParms; }
-	int						GetContentFlags() const { return contentFlags; }
-	int						GetSurfaceFlags() const { return surfaceFlags; }
-	int						GetNumDeforms() const { return numDeforms; }
-	const deformStage_t *	GetDeform( int index ) const { return &deforms[index]; }
-	int						GetNumStages() const { return numStages; }
-	const shaderStage_t *	GetStage( int index ) const { return &stages[index]; }
+// accessors
+const char *            GetName() const { return name.c_str(); }
+int                     Sort() const { return sort; }
+cullType_t              GetCullType() const { return cullType; }
+bool                    ShouldCreateBackSides() const { return cullType == CT_BACK_SIDED; }
+bool                    EntityMergable() const { return entityMergable; }
+bool                    IsSky() const { return isSky; }
+const skyParms_t &      GetSkyParms() const { return sky; }
+const fogParms_t &      GetFogParms() const { return fogParms; }
+int                     GetContentFlags() const { return contentFlags; }
+int                     GetSurfaceFlags() const { return surfaceFlags; }
+int                     GetNumDeforms() const { return numDeforms; }
+const deformStage_t *   GetDeform( int index ) const { return &deforms[index]; }
+int                     GetNumStages() const { return numStages; }
+const shaderStage_t *   GetStage( int index ) const { return &stages[index]; }
 
-	// the coverage is computed in Finish
-	materialCoverage_t		Coverage() const { return coverage; }
-	bool					IsFullyOpaque() const { return coverage == MC_OPAQUE; }
+// the coverage is computed in Finish
+materialCoverage_t      Coverage() const { return coverage; }
+bool                    IsFullyOpaque() const { return coverage == MC_OPAQUE; }
 
-	// materials with no stages are never drawn, like the engine's
-	// default shader
-	bool					IsDrawn() const { return numStages > 0 || isSky; }
+// materials with no stages are never drawn, like the engine's
+// default shader
+bool                    IsDrawn() const { return numStages > 0 || isSky; }
 
 public:
-	// the script parser fills these directly, like the engine's parser
-	// fills the shader_t
-	idStr					name;
-	bool					defaulted;           // set when no valid shader definition or texture is behind it
-	bool					explicitlyDefined;   // set when a shader script defined it
+// the script parser fills these directly, like the engine's parser
+// fills the shader_t
+idStr name;
+bool defaulted;                                  // set when no valid shader definition or texture is behind it
+bool explicitlyDefined;                          // set when a shader script defined it
 
-	int						sort;                 // shaderSort_t values, the engine also accepts arbitrary numeric sorts
+int sort;                                         // shaderSort_t values, the engine also accepts arbitrary numeric sorts
 
-	int						surfaceFlags;
-	int						contentFlags;
-	bool					entityMergable;
-	bool					isSky;
-	skyParms_t				sky;
-	fogParms_t				fogParms;
-	float					portalRange;
+int surfaceFlags;
+int contentFlags;
+bool entityMergable;
+bool isSky;
+skyParms_t sky;
+fogParms_t fogParms;
+float portalRange;
 
-	cullType_t				cullType;
-	bool					polygonOffset;
-	bool					noMipMaps;
-	bool					noPicMip;
-	bool					noFog;
+cullType_t cullType;
+bool polygonOffset;
+bool noMipMaps;
+bool noPicMip;
+bool noFog;
 
-	int						numDeforms;
-	deformStage_t			deforms[MAX_SHADER_DEFORMS];
+int numDeforms;
+deformStage_t deforms[MAX_SHADER_DEFORMS];
 
-	int						numStages;
-	shaderStage_t			stages[MAX_SHADER_STAGES];
+int numStages;
+shaderStage_t stages[MAX_SHADER_STAGES];
 
-	int						lightmapIndex;
-	materialCoverage_t		coverage;
+int lightmapIndex;
+materialCoverage_t coverage;
 };
 
 #endif /* !__MATERIAL_H__ */
