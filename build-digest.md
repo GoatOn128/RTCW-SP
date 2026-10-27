@@ -1,24 +1,24 @@
 # Build digest
 
-commit: 074f4e5d33d7
+commit: 7814c8c86480
 
-- ubuntu-latest-x64-debug-: cancelled
+- ubuntu-latest-x64-debug-: success
 - ubuntu-latest-x64-release-: cancelled
 - ubuntu-latest-x64-release-game,renderer: failure
-- ubuntu-latest-x86-debug-: cancelled
+- ubuntu-latest-x86-debug-: success
 - ubuntu-latest-x86-release-: success
 - uncrustify: success
 - windows-latest-x64-debug-: cancelled
 - windows-latest-x64-release-: success
 - windows-latest-x64-release-cgame: cancelled
 - windows-latest-x64-release-game,renderer: failure
-- windows-latest-x64-release-ui: cancelled
+- windows-latest-x64-release-ui: failure
 - windows-latest-x86-debug-: cancelled
 - windows-latest-x86-release-: cancelled
 
 ## ubuntu-latest-x64-debug-
 
-status: cancelled
+status: success
 
 errors: 0
 warnings: 0 in 0 kinds
@@ -63,7 +63,7 @@ warnings: 0 in 0 kinds
 
 ## ubuntu-latest-x86-debug-
 
-status: cancelled
+status: success
 
 errors: 0
 warnings: 0 in 0 kinds
@@ -172,11 +172,11 @@ clang-cl /Fobuild\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l
 clang-cl /Fobuild\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_precomp.c.obj /c src\tools\extractfuncs\l_precomp.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-decl
 clang-cl /Fobuild\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_script.c.obj /c src\tools\extractfuncs\l_script.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declar
 clang-cl /Fobuild\windows-x64-release\idlib\obj\idlib\Heap.cpp.obj /c src\idlib\Heap.cpp /TP /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations -Wno-writable-strings -Wno-deprecated-c
-Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmpasyvsu83.lnk for command line:
-lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /SUBSYSTEM:WINDOWS /OUT:bin\WolfSP_x64.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib ole32.lib opengl32.lib shell32.lib build\windows-x64-release\client\obj\client\cl_cgame.c.obj build\windows-x64-release\client\obj\client\cl_cin.c.obj build\windows-x64-release\client\obj\client\cl_console.c.obj build\windows-x64-release\client\obj\client\
-lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmpasyvsu83.lnk
-lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /OUT:build\windows-x64-release\extractfuncs.exe build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\extractfuncs.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_log.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extrac
 clang-cl /Fobuild\windows-x64-release\idlib\obj\idlib\Str.cpp.obj /c src\idlib\Str.cpp /TP /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations -Wno-writable-strings -Wno-deprecated-cop
+lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /OUT:build\windows-x64-release\extractfuncs.exe build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\extractfuncs.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_log.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extrac
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmpd0cz2_46.lnk for command line:
+lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /SUBSYSTEM:WINDOWS /OUT:bin\WolfSP_x64.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib ole32.lib opengl32.lib shell32.lib build\windows-x64-release\client\obj\client\cl_cgame.c.obj build\windows-x64-release\client\obj\client\cl_cin.c.obj build\windows-x64-release\client\obj\client\cl_console.c.obj build\windows-x64-release\client\obj\client\
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmpd0cz2_46.lnk
 lld-link: error: duplicate symbol: Com_Error
 >>> defined at build\windows-x64-release\client\obj\qcommon\common.c.obj
 >>> defined at build\windows-x64-release\cgame\obj\games\cgame\cg_main.c.obj
@@ -207,7 +207,7 @@ warnings: 0 in 0 kinds
 
 ## windows-latest-x64-release-ui
 
-status: cancelled
+status: failure
 
 errors: 3
 warnings: 0 in 0 kinds
@@ -242,10 +242,10 @@ clang-cl /Fobuild\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l
 clang-cl /Fobuild\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_script.c.obj /c src\tools\extractfuncs\l_script.c /nologo /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declar
 clang-cl /Fobuild\windows-x64-release\idlib\obj\idlib\Heap.cpp.obj /c src\idlib\Heap.cpp /TP /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations -Wno-writable-strings -Wno-deprecated-c
 clang-cl /Fobuild\windows-x64-release\idlib\obj\idlib\Str.cpp.obj /c src\idlib\Str.cpp /TP /W4 -m64 -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-unused-but-set-variable -Wno-missing-field-initializers -Wno-unused-value -Wno-unused-variable -Wno-unused-const-variable -Wno-pointer-sign -Wno-deprecated-declarations -Wno-writable-strings -Wno-deprecated-cop
-lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /OUT:build\windows-x64-release\extractfuncs.exe build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\extractfuncs.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_log.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extrac
-Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmp0hs9gv05.lnk for command line:
+Using tempfile C:\Users\RUNNER~1\AppData\Local\Temp\tmpp8za3gf3.lnk for command line:
 lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /SUBSYSTEM:WINDOWS /OUT:bin\WolfSP_x64.exe user32.lib gdi32.lib winmm.lib wsock32.lib advapi32.lib ole32.lib opengl32.lib shell32.lib build\windows-x64-release\client\obj\client\cl_cgame.c.obj build\windows-x64-release\client\obj\client\cl_cin.c.obj build\windows-x64-release\client\obj\client\cl_console.c.obj build\windows-x64-release\client\obj\client\
-lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmp0hs9gv05.lnk
+lld-link @C:\Users\RUNNER~1\AppData\Local\Temp\tmpp8za3gf3.lnk
+lld-link /nologo /DYNAMICBASE /HIGHENTROPYVA /OUT:build\windows-x64-release\extractfuncs.exe build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\extractfuncs.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_log.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extractfuncs\l_memory.c.obj build\windows-x64-release\extractfuncs_tool\obj\tools\extrac
 lld-link: error: duplicate symbol: Com_Error
 >>> defined at build\windows-x64-release\client\obj\qcommon\common.c.obj
 >>> defined at build\windows-x64-release\ui\obj\games\ui\ui_atoms.c.obj
