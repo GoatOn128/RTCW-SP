@@ -17,10 +17,13 @@ material and is never modified.
    fetched through the API), the SIMD processor, the parser and dict
    files.
 
-🚧 Phase 2 - renderer module skeleton
+✅ Phase 2 - renderer module skeleton
    A new renderer module with its glad context, the surface and area
    structures, and the idRenderWorld API shape. RenderMatrix.cpp lands
-   here.
+   here. Builds as the renderer_bfg shared library on every CI config.
+   Deferred to later phases: the RenderScene backend, map loading,
+   tracing, decals and overlays, the demo code, FindPortal and the
+   winding code.
 
 ⬜ Phase 3 - GLSL backend
    Shader programs and material stages on top of the BFG GLSL paths.
