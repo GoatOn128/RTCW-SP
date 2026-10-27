@@ -534,9 +534,9 @@ int idParser::ReadDefineParms( define_t *define, idToken **parms, int maxparms )
 					lastcomma = 1;
 					break;
 				}
-			} else if ( token == "(" )   {
+			} else if ( token == "(" ) {
 				indent++;
-			} else if ( token == ")" )   {
+			} else if ( token == ")" ) {
 				indent--;
 				if ( indent <= 0 ) {
 					if ( !parms[define->numparms - 1] ) {
@@ -545,7 +545,7 @@ int idParser::ReadDefineParms( define_t *define, idToken **parms, int maxparms )
 					done = 1;
 					break;
 				}
-			} else if ( token.type == TT_NAME )   {
+			} else if ( token.type == TT_NAME ) {
 				newdefine = FindHashedDefine( idParser::definehash, token.c_str() );
 				if ( newdefine ) {
 					if ( !idParser::ExpandDefineIntoSource( &token, newdefine ) ) {
@@ -988,7 +988,7 @@ int idParser::Directive_include() {
 				}
 			}
 		}
-	} else if ( token.type == TT_PUNCTUATION && token == "<" )   {
+	} else if ( token.type == TT_PUNCTUATION && token == "<" ) {
 		path = idParser::includepath;
 		while ( idParser::ReadSourceToken( &token ) ) {
 			if ( token.linesCrossed > 0 ) {
@@ -1505,7 +1505,7 @@ int idParser::EvaluateTokens( idToken *tokens, signed long int *intvalue, double
 			if ( t->subtype == P_PARENTHESESOPEN ) {
 				parentheses++;
 				break;
-			} else if ( t->subtype == P_PARENTHESESCLOSE )     {
+			} else if ( t->subtype == P_PARENTHESESCLOSE ) {
 				parentheses--;
 				if ( parentheses < 0 ) {
 					idParser::Error( "too many ) in #if/#elsif" );
@@ -1619,7 +1619,7 @@ int idParser::EvaluateTokens( idToken *tokens, signed long int *intvalue, double
 		if ( !lastwasvalue ) {
 			idParser::Error( "trailing operator in #if/#elif" );
 			error = 1;
-		} else if ( parentheses )     {
+		} else if ( parentheses ) {
 			idParser::Error( "too many ( in #if/#elif" );
 			error = 1;
 		}
@@ -1856,7 +1856,7 @@ int idParser::Evaluate( signed long int *intvalue, double *floatvalue, int integ
 					lasttoken->next = t;
 				} else { firsttoken = t;}
 				lasttoken = t;
-			} else if ( token == "defined" )   {
+			} else if ( token == "defined" ) {
 				defined = true;
 				t = new ( TAG_IDLIB_PARSER ) idToken( token );
 				t->next = NULL;
@@ -1953,7 +1953,7 @@ int idParser::DollarEvaluate( signed long int *intvalue, double *floatvalue, int
 					lasttoken->next = t;
 				} else { firsttoken = t;}
 				lasttoken = t;
-			} else if ( token == "defined" )   {
+			} else if ( token == "defined" ) {
 				defined = true;
 				t = new ( TAG_IDLIB_PARSER ) idToken( token );
 				t->next = NULL;
@@ -2219,17 +2219,17 @@ int idParser::ReadDirective() {
 	if ( token.type == TT_NAME ) {
 		if ( token == "if" ) {
 			return idParser::Directive_if();
-		} else if ( token == "ifdef" )   {
+		} else if ( token == "ifdef" ) {
 			return idParser::Directive_ifdef();
-		} else if ( token == "ifndef" )   {
+		} else if ( token == "ifndef" ) {
 			return idParser::Directive_ifndef();
-		} else if ( token == "elif" )   {
+		} else if ( token == "elif" ) {
 			return idParser::Directive_elif();
-		} else if ( token == "else" )   {
+		} else if ( token == "else" ) {
 			return idParser::Directive_else();
-		} else if ( token == "endif" )   {
+		} else if ( token == "endif" ) {
 			return idParser::Directive_endif();
-		} else if ( idParser::skip > 0 )     {
+		} else if ( idParser::skip > 0 ) {
 			// skip the rest of the line
 			while ( idParser::ReadLine( &token ) ) {
 			}
@@ -2237,21 +2237,21 @@ int idParser::ReadDirective() {
 		} else {
 			if ( token == "include" ) {
 				return idParser::Directive_include();
-			} else if ( token == "define" )   {
+			} else if ( token == "define" ) {
 				return idParser::Directive_define();
-			} else if ( token == "undef" )   {
+			} else if ( token == "undef" ) {
 				return idParser::Directive_undef();
-			} else if ( token == "line" )   {
+			} else if ( token == "line" ) {
 				return idParser::Directive_line();
-			} else if ( token == "error" )   {
+			} else if ( token == "error" ) {
 				return idParser::Directive_error();
-			} else if ( token == "warning" )   {
+			} else if ( token == "warning" ) {
 				return idParser::Directive_warning();
-			} else if ( token == "pragma" )   {
+			} else if ( token == "pragma" ) {
 				return idParser::Directive_pragma();
-			} else if ( token == "eval" )   {
+			} else if ( token == "eval" ) {
 				return idParser::Directive_eval();
-			} else if ( token == "evalfloat" )   {
+			} else if ( token == "evalfloat" ) {
 				return idParser::Directive_evalfloat();
 			}
 		}
@@ -2347,7 +2347,7 @@ int idParser::ReadDollarDirective() {
 	if ( token.type == TT_NAME ) {
 		if ( token == "evalint" ) {
 			return idParser::DollarDirective_evalint();
-		} else if ( token == "evalfloat" )   {
+		} else if ( token == "evalfloat" ) {
 			return idParser::DollarDirective_evalfloat();
 		}
 	}
@@ -2494,7 +2494,7 @@ int idParser::ExpectTokenType( int type, int subtype, idToken *token ) {
 			idParser::Error( "expected %s but found '%s'", str.c_str(), token->c_str() );
 			return 0;
 		}
-	} else if ( token->type == TT_PUNCTUATION )   {
+	} else if ( token->type == TT_PUNCTUATION ) {
 		if ( subtype < 0 ) {
 			idParser::Error( "BUG: wrong punctuation subtype" );
 			return 0;
@@ -2820,7 +2820,7 @@ int idParser::ParseInt() {
 	if ( token.type == TT_PUNCTUATION && token == "-" ) {
 		idParser::ExpectTokenType( TT_NUMBER, TT_INTEGER, &token );
 		return -( (signed int) token.GetIntValue() );
-	} else if ( token.type != TT_NUMBER || token.subtype == TT_FLOAT )   {
+	} else if ( token.type != TT_NUMBER || token.subtype == TT_FLOAT ) {
 		idParser::Error( "expected integer value, found '%s'", token.c_str() );
 	}
 	return token.GetIntValue();
@@ -2856,7 +2856,7 @@ float idParser::ParseFloat() {
 	if ( token.type == TT_PUNCTUATION && token == "-" ) {
 		idParser::ExpectTokenType( TT_NUMBER, 0, &token );
 		return -token.GetFloatValue();
-	} else if ( token.type != TT_NUMBER )   {
+	} else if ( token.type != TT_NUMBER ) {
 		idParser::Error( "expected float value, found '%s'", token.c_str() );
 	}
 	return token.GetFloatValue();

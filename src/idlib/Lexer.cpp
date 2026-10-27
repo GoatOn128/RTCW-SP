@@ -318,7 +318,7 @@ int idLexer::ReadWhiteSpace() {
 					}
 					if ( *idLexer::script_p == '\n' ) {
 						idLexer::line++;
-					} else if ( *idLexer::script_p == '/' )   {
+					} else if ( *idLexer::script_p == '/' ) {
 						if ( *( idLexer::script_p - 1 ) == '*' ) {
 							break;
 						}
@@ -406,7 +406,7 @@ bool idLexer::SkipWhiteSpace( bool currentLine ) {
 					}
 					if ( *script_p == '\n' ) {
 						line++;
-					} else if ( *script_p == '/' )   {
+					} else if ( *script_p == '/' ) {
 						if ( *( script_p - 1 ) == '*' ) {
 							break;
 						}
@@ -704,7 +704,7 @@ int idLexer::ReadNumber( idToken *token ) {
 		dot = 0;
 		while ( 1 ) {
 			if ( c >= '0' && c <= '9' ) {
-			} else if ( c == '.' )   {
+			} else if ( c == '.' ) {
 				dot++;
 			} else {
 				break;
@@ -727,7 +727,7 @@ int idLexer::ReadNumber( idToken *token ) {
 				if ( c == '-' ) {
 					token->AppendDirty( c );
 					c = *( ++idLexer::script_p );
-				} else if ( c == '+' )   {
+				} else if ( c == '+' ) {
 					token->AppendDirty( c );
 					c = *( ++idLexer::script_p );
 				}
@@ -741,14 +741,14 @@ int idLexer::ReadNumber( idToken *token ) {
 				c2 = 4;
 				if ( CheckString( "INF" ) ) {
 					token->subtype |= TT_INFINITE;
-				} else if ( CheckString( "IND" ) )   {
+				} else if ( CheckString( "IND" ) ) {
 					token->subtype |= TT_INDEFINITE;
-				} else if ( CheckString( "NAN" ) )   {
+				} else if ( CheckString( "NAN" ) ) {
 					token->subtype |= TT_NAN;
-				} else if ( CheckString( "QNAN" ) )   {
+				} else if ( CheckString( "QNAN" ) ) {
 					token->subtype |= TT_NAN;
 					c2++;
-				} else if ( CheckString( "SNAN" ) )   {
+				} else if ( CheckString( "SNAN" ) ) {
 					token->subtype |= TT_NAN;
 					c2++;
 				}
@@ -765,7 +765,7 @@ int idLexer::ReadNumber( idToken *token ) {
 					idLexer::Error( "parsed %s", token->c_str() );
 				}
 			}
-		} else if ( dot > 1 )   {
+		} else if ( dot > 1 ) {
 			if ( !( idLexer::flags & LEXFL_ALLOWIPADDRESSES ) ) {
 				idLexer::Error( "more than one dot in number" );
 				return 0;
@@ -799,7 +799,7 @@ int idLexer::ReadNumber( idToken *token ) {
 		} else {
 			token->subtype |= TT_DOUBLE_PRECISION;
 		}
-	} else if ( token->subtype & TT_INTEGER )   {
+	} else if ( token->subtype & TT_INTEGER ) {
 		if ( c > ' ' ) {
 			// default: signed long
 			for ( i = 0; i < 2; i++ ) {
@@ -816,7 +816,7 @@ int idLexer::ReadNumber( idToken *token ) {
 				c = *( ++idLexer::script_p );
 			}
 		}
-	} else if ( token->subtype & TT_IPADDRESS )   {
+	} else if ( token->subtype & TT_IPADDRESS ) {
 		if ( c == ':' ) {
 			token->AppendDirty( c );
 			c = *( ++idLexer::script_p );
@@ -1054,7 +1054,7 @@ int idLexer::ExpectTokenType( int type, int subtype, idToken *token ) {
 			idLexer::Error( "expected %s but found '%s'", str.c_str(), token->c_str() );
 			return 0;
 		}
-	} else if ( token->type == TT_PUNCTUATION )   {
+	} else if ( token->type == TT_PUNCTUATION ) {
 		if ( subtype < 0 ) {
 			idLexer::Error( "BUG: wrong punctuation subtype" );
 			return 0;
@@ -1316,7 +1316,7 @@ int idLexer::ParseInt() {
 	if ( token.type == TT_PUNCTUATION && token == "-" ) {
 		idLexer::ExpectTokenType( TT_NUMBER, TT_INTEGER, &token );
 		return -( (signed int) token.GetIntValue() );
-	} else if ( token.type != TT_NUMBER || token.subtype == TT_FLOAT )   {
+	} else if ( token.type != TT_NUMBER || token.subtype == TT_FLOAT ) {
 		idLexer::Error( "expected integer value, found '%s'", token.c_str() );
 	}
 	return token.GetIntValue();
@@ -1361,7 +1361,7 @@ float idLexer::ParseFloat( bool *errorFlag ) {
 	if ( token.type == TT_PUNCTUATION && token == "-" ) {
 		idLexer::ExpectTokenType( TT_NUMBER, 0, &token );
 		return -token.GetFloatValue();
-	} else if ( token.type != TT_NUMBER )   {
+	} else if ( token.type != TT_NUMBER ) {
 		if ( errorFlag ) {
 			idLexer::Warning( "expected float value, found '%s'", token.c_str() );
 			*errorFlag = true;
@@ -1548,7 +1548,7 @@ const char *idLexer::ParseBracedSection( idStr &out ) {
 		if ( token.type == TT_PUNCTUATION ) {
 			if ( token[0] == '{' ) {
 				depth++;
-			} else if ( token[0] == '}' )   {
+			} else if ( token[0] == '}' ) {
 				depth--;
 			}
 		}

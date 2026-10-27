@@ -50,10 +50,10 @@ void idToken::NumberValue() {
 			if ( subtype & TT_INFINITE ) {          // 1.#INF
 				unsigned int inf = 0x7f800000;
 				floatvalue = (double) *(float*)&inf;
-			} else if ( subtype & TT_INDEFINITE )   { // 1.#IND
+			} else if ( subtype & TT_INDEFINITE ) {   // 1.#IND
 				unsigned int ind = 0xffc00000;
 				floatvalue = (double) *(float*)&ind;
-			} else if ( subtype & TT_NAN )   {        // 1.#QNAN
+			} else if ( subtype & TT_NAN ) {          // 1.#QNAN
 				unsigned int nan = 0x7fc00000;
 				floatvalue = (double) *(float*)&nan;
 			}
@@ -74,7 +74,7 @@ void idToken::NumberValue() {
 				if ( *p == '-' ) {
 					div = true;
 					p++;
-				} else if ( *p == '+' )   {
+				} else if ( *p == '+' ) {
 					div = false;
 					p++;
 				} else {
@@ -95,13 +95,13 @@ void idToken::NumberValue() {
 			}
 		}
 		intvalue = idMath::Ftoi( floatvalue );
-	} else if ( subtype & TT_DECIMAL )   {
+	} else if ( subtype & TT_DECIMAL ) {
 		while ( *p ) {
 			intvalue = intvalue * 10 + ( *p - '0' );
 			p++;
 		}
 		floatvalue = intvalue;
-	} else if ( subtype & TT_IPADDRESS )   {
+	} else if ( subtype & TT_IPADDRESS ) {
 		c = 0;
 		while ( *p && *p != ':' ) {
 			if ( *p == '.' ) {
@@ -121,7 +121,7 @@ void idToken::NumberValue() {
 			c++;
 		}
 		floatvalue = intvalue;
-	} else if ( subtype & TT_OCTAL )   {
+	} else if ( subtype & TT_OCTAL ) {
 		// step over the first zero
 		p += 1;
 		while ( *p ) {
@@ -129,7 +129,7 @@ void idToken::NumberValue() {
 			p++;
 		}
 		floatvalue = intvalue;
-	} else if ( subtype & TT_HEX )   {
+	} else if ( subtype & TT_HEX ) {
 		// step over the leading 0x or 0X
 		p += 2;
 		while ( *p ) {
@@ -144,7 +144,7 @@ void idToken::NumberValue() {
 			p++;
 		}
 		floatvalue = intvalue;
-	} else if ( subtype & TT_BINARY )   {
+	} else if ( subtype & TT_BINARY ) {
 		// step over the leading 0b or 0B
 		p += 2;
 		while ( *p ) {
