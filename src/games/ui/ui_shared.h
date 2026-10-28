@@ -1,5 +1,4 @@
-successfully downloaded text file (SHA: 1292bd031940dd58d05d7f7ab5d2c27d45bfad6c)
-successfully downloaded text file (SHA: e1e983bfe22450eaf75a7ac2e4d7539c05ccbbfe)
+successfully downloaded text file( SHA: e1e983bfe22450eaf75a7ac2e4d7539c05ccbbfe )
 /*
 ===========================================================================
 
@@ -390,7 +389,7 @@ typedef struct {
 
 	qhandle_t ( *feederItemImage )( float feederID, int index );
 	void ( *feederSelection )( float feederID, int index );
-	void( *feederAddItem )( float feederID, const char *name, int index ); // NERVE - SMF
+	void ( *feederAddItem )( float feederID, const char *name, int index ); // NERVE - SMF
 
 	void ( *keynumToStringBuf )( int keynum, char *buf, int buflen );
 	void ( *getBindingBuf )( int keynum, char *buf, int buflen );
