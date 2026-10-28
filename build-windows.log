@@ -1,11 +1,11 @@
-==== windows-latest-x64-debug- (failure) ====
+==== windows-latest-x64-release- (cancelled) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
 C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 51.2 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -91,509 +91,26 @@ Compiling 'src\sys\win32\win_wndproc.cpp'
 Compiling 'src\splines\math_angles.cpp'
 Compiling 'src\splines\math_matrix.cpp'
 Compiling 'src\splines\math_quaternion.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
 Compiling 'src\splines\math_vector.cpp'
 Compiling 'src\splines\q_parse.cpp'
 Compiling 'src\splines\q_shared.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
-Compiling 'src\splines\splines.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-Compiling 'src\splines\util_str.cpp'
-scons: *** [build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj] Error 1
-Compiling 'src\games\botlib\be_ai_char.cpp'
-scons: *** [build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj] Error 1
-Compiling 'src\games\botlib\be_ai_chat.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-Compiling 'src\games\botlib\be_ai_gen.cpp'
-Compiling 'src\games\botlib\be_ai_goal.cpp'
-Compiling 'src\games\botlib\be_ai_move.cpp'
-Compiling 'src\games\botlib\be_ai_weap.cpp'
-Compiling 'src\games\botlib\be_ai_weight.cpp'
-Compiling 'src\games\botlib\be_ea.cpp'
-Compiling 'src\games\botlib\be_interface.cpp'
-Compiling 'src\games\botlib\be_nav_interface.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-Compiling 'src\games\botlib\l_crc.cpp'
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-20 errors generated.
-scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
-Compiling 'src\games\botlib\l_libvar.cpp'
-Compiling 'src\games\botlib\l_log.cpp'
-Compiling 'src\games\botlib\l_memory.cpp'
-Compiling 'src\games\botlib\l_precomp.cpp'
-Compiling 'src\games\botlib\l_script.cpp'
-Compiling 'src\games\botlib\l_struct.cpp'
-Compiling 'src\third-party\stb\stb_impl.c'
-Compiling 'src\third-party\recast\Detour\Source\DetourAlloc.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourAssert.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourCommon.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMesh.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshBuilder.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshQuery.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNode.cpp'
-Compiling resource 'src\sys\win32\winquake.rc'
-Compiling 'src\tools\extractfuncs\extractfuncs.cpp'
-Compiling 'src\tools\extractfuncs\l_log.cpp'
-Compiling 'src\tools\extractfuncs\l_memory.cpp'
-Compiling 'src\tools\extractfuncs\l_precomp.cpp'
-Compiling 'src\tools\extractfuncs\l_script.cpp'
-Compiling 'src\games\game\bg_animation.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\game\bg_pmove.cpp'
-Compiling 'src\games\game\bg_slidemove.cpp'
-Compiling 'src\games\game\g_active.cpp'
-Compiling 'src\games\game\g_alarm.cpp'
-Compiling 'src\games\game\g_client.cpp'
-Compiling 'src\games\game\g_cmds.cpp'
-Compiling 'src\games\game\g_combat.cpp'
-Compiling 'src\games\game\g_items.cpp'
-Compiling 'src\games\game\g_main.cpp'
-Compiling 'src\games\game\g_mem.cpp'
-Compiling 'src\games\game\g_misc.cpp'
-Compiling 'src\games\game\g_missile.cpp'
-Compiling 'src\games\game\g_mover.cpp'
-Linking 'build\windows-x64-debug\extractfuncs.exe'
-Compiling 'src\games\game\g_props.cpp'
-Compiling 'src\games\game\g_save.cpp'
-Compiling 'src\games\game\g_script.cpp'
-Compiling 'src\games\game\g_script_actions.cpp'
-Compiling 'src\games\game\g_session.cpp'
-Compiling 'src\games\game\g_spawn.cpp'
-Compiling 'src\games\game\g_svcmds.cpp'
-Compiling 'src\games\game\g_syscalls.cpp'
-Compiling 'src\games\game\g_target.cpp'
-Compiling 'src\games\game\g_team.cpp'
-Compiling 'src\games\game\g_tramcar.cpp'
-Compiling 'src\games\game\g_trigger.cpp'
-Compiling 'src\games\game\g_utils.cpp'
-Compiling 'src\games\game\g_weapon.cpp'
-Compiling 'src\games\game\ai\ai_actor.cpp'
-Compiling 'src\games\game\ai\ai_awareness.cpp'
-Compiling 'src\games\game\ai\ai_characters.cpp'
-Compiling 'src\games\game\ai\ai_danger.cpp'
-Compiling 'src\games\game\ai\ai_debug.cpp'
-Compiling 'src\games\game\ai\ai_events.cpp'
-Compiling 'src\games\game\ai\ai_input.cpp'
-Compiling 'src\games\game\ai\ai_movement.cpp'
-Compiling 'src\games\game\ai\ai_navigation.cpp'
-Compiling 'src\games\game\ai\ai_perception.cpp'
-Compiling 'src\games\game\ai\ai_scheduler.cpp'
-Compiling 'src\games\game\ai\ai_script.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_animation.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_combat.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_mission.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_movement.cpp'
-Compiling 'src\games\game\ai\ai_script_entities.cpp'
-Compiling 'src\games\game\ai\ai_spawn.cpp'
-Compiling 'src\games\game\ai\ai_system.cpp'
-Compiling 'src\games\game\ai\ai_targeting.cpp'
-Compiling 'src\games\game\ai\ai_weapons.cpp'
-Compiling 'src\games\game\ai\fsm\ai_ability.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_cover.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_doors.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_evasion.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_grenades.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_idle.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_investigate.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_mounted.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_pursuit.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_heinrich.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_helga.cpp'
-Compiling 'src\games\game\ai\fsm\ai_combat.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_blackguard.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_loper.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_reject.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_stimsoldier.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_warzombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_zombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_legacy.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_machine.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\games\game\bg_animation.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\game\bg_pmove.cpp'
-Linking 'bin\main\qagame_x64.dll'
-Compiling 'src\games\game\bg_slidemove.cpp'
-Compiling 'src\games\cgame\cg_consolecmds.cpp'
-Compiling 'src\games\cgame\cg_draw.cpp'
-Compiling 'src\games\cgame\cg_drawtools.cpp'
-Compiling 'src\games\cgame\cg_effects.cpp'
-Compiling 'src\games\cgame\cg_ents.cpp'
-Compiling 'src\games\cgame\cg_event.cpp'
-Compiling 'src\games\cgame\cg_fx.cpp'
-Compiling 'src\games\cgame\cg_fx_entities.cpp'
-Compiling 'src\games\cgame\cg_fx_flame.cpp'
-Compiling 'src\games\cgame\cg_fx_marks.cpp'
-Compiling 'src\games\cgame\cg_fx_particles.cpp'
-Compiling 'src\games\cgame\cg_fx_trails.cpp'
-Compiling 'src\games\cgame\cg_info.cpp'
-Compiling 'src\games\cgame\cg_main.cpp'
-Compiling 'src\games\cgame\cg_newDraw.cpp'
-Compiling 'src\games\cgame\cg_players.cpp'
-Compiling 'src\games\cgame\cg_playerstate.cpp'
-Compiling 'src\games\cgame\cg_predict.cpp'
-Compiling 'src\games\cgame\cg_scoreboard.cpp'
-Compiling 'src\games\cgame\cg_servercmds.cpp'
-Compiling 'src\games\cgame\cg_snapshot.cpp'
-Compiling 'src\games\cgame\cg_sound.cpp'
-Compiling 'src\games\cgame\cg_syscalls.cpp'
-Compiling 'src\games\cgame\cg_view.cpp'
-Compiling 'src\games\cgame\cg_weapons.cpp'
-Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-Compiling 'src\games\cgame\fx\FxScheduler.cpp'
-scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
-Compiling 'src\games\cgame\fx\FxSystem.cpp'
-Compiling 'src\games\cgame\fx\FxTemplate.cpp'
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\ui\ui_atoms.cpp'
-Compiling 'src\games\ui\ui_gameinfo.cpp'
-Compiling 'src\games\ui\ui_main.cpp'
-Compiling 'src\games\ui\ui_players.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\games\ui\ui_syscalls.cpp'
-Compiling 'src\games\ui\ui_util.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Linking 'bin\main\ui_x64.dll'
-scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\client\obj\splines\splines.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-debug\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 0 warning(s), ❌ 30 error(s)
-
-
-==== windows-latest-x64-release- (cancelled) ====
-
-Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
-Collecting scons
-  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
-Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 37.4 MB/s  0:00:00
-Installing collected packages: scons
-Successfully installed scons-4.11.1
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-Compiling 'src\client\cl_keys.cpp'
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-Compiling 'src\client\cl_scrn.cpp'
-Compiling 'src\client\cl_ui.cpp'
-Compiling 'src\client\snd_adpcm.cpp'
-Compiling 'src\client\snd_dma.cpp'
-Compiling 'src\client\snd_mem.cpp'
-Compiling 'src\client\snd_mix.cpp'
-Compiling 'src\client\snd_wavelet.cpp'
-Compiling 'src\qcommon\cm_load.cpp'
-Compiling 'src\qcommon\cm_patch.cpp'
-Compiling 'src\qcommon\cm_polylib.cpp'
-Compiling 'src\qcommon\cm_test.cpp'
-Compiling 'src\qcommon\cm_trace.cpp'
-Compiling 'src\qcommon\cmd.cpp'
-Compiling 'src\qcommon\common.cpp'
-Compiling 'src\qcommon\cvar.cpp'
-Compiling 'src\qcommon\files.cpp'
-Compiling 'src\qcommon\huffman.cpp'
-Compiling 'src\qcommon\md4.cpp'
-Compiling 'src\qcommon\msg.cpp'
-Compiling 'src\qcommon\net_chan.cpp'
-Compiling 'src\qcommon\unzip.cpp'
-Compiling 'src\server\sv_bot.cpp'
-Compiling 'src\server\sv_ccmds.cpp'
-Compiling 'src\server\sv_client.cpp'
-Compiling 'src\server\sv_game.cpp'
-Compiling 'src\server\sv_init.cpp'
-Compiling 'src\server\sv_main.cpp'
-Compiling 'src\server\sv_net_chan.cpp'
-Compiling 'src\server\sv_snapshot.cpp'
-Compiling 'src\server\sv_world.cpp'
-Compiling 'src\renderer\tr_animation.cpp'
-Compiling 'src\renderer\tr_backend.cpp'
-Compiling 'src\renderer\tr_bsp.cpp'
-Compiling 'src\renderer\tr_cmds.cpp'
-Compiling 'src\renderer\tr_curve.cpp'
-Compiling 'src\renderer\tr_decals.cpp'
-Compiling 'src\renderer\tr_flares.cpp'
-Compiling 'src\renderer\tr_font.cpp'
-Compiling 'src\renderer\tr_image.cpp'
-Compiling 'src\renderer\tr_init.cpp'
-Compiling 'src\renderer\tr_light.cpp'
-Compiling 'src\renderer\tr_main.cpp'
-Compiling 'src\renderer\tr_marks.cpp'
-Compiling 'src\renderer\tr_mesh.cpp'
-Compiling 'src\renderer\tr_cmesh.cpp'
-Compiling 'src\renderer\tr_model.cpp'
-Compiling 'src\renderer\tr_noise.cpp'
-Compiling 'src\renderer\tr_renderprog.cpp'
-Compiling 'src\renderer\tr_scene.cpp'
-Compiling 'src\renderer\tr_shade.cpp'
-Compiling 'src\renderer\tr_shade_calc.cpp'
-Compiling 'src\renderer\tr_shader.cpp'
-Compiling 'src\renderer\tr_shadows.cpp'
-Compiling 'src\renderer\tr_sky.cpp'
-Compiling 'src\renderer\tr_surface.cpp'
-Compiling 'src\renderer\tr_vfx.cpp'
-Compiling 'src\renderer\tr_world.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\sys\win32\win_gamma.cpp'
-Compiling 'src\sys\win32\win_glimp.cpp'
-Compiling 'src\sys\win32\win_input.cpp'
-Compiling 'src\sys\win32\win_main.cpp'
-Compiling 'src\sys\win32\win_net.cpp'
-Compiling 'src\sys\win32\win_qgl.cpp'
-Compiling 'src\sys\win32\win_shared.cpp'
-Compiling 'src\sys\win32\win_snd.cpp'
-Compiling 'src\sys\win32\win_syscon.cpp'
-Compiling 'src\sys\win32\win_wndproc.cpp'
-Compiling 'src\splines\math_angles.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-Compiling 'src\splines\math_matrix.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\math_angles.cpp.obj] Error 1
-Compiling 'src\splines\math_quaternion.cpp'
-Compiling 'src\splines\math_vector.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-Compiling 'src\splines\q_parse.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj] Error 1
-Compiling 'src\splines\q_shared.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\q_parse.cpp.obj] Error 1
 Compiling 'src\splines\splines.cpp'
 Compiling 'src\splines\util_str.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\q_shared.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_ai_char.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\games\botlib\be_ai_chat.cpp'
 Compiling 'src\games\botlib\be_ai_gen.cpp'
 Compiling 'src\games\botlib\be_ai_goal.cpp'
 Compiling 'src\games\botlib\be_ai_move.cpp'
 Compiling 'src\games\botlib\be_ai_weap.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
 Compiling 'src\games\botlib\be_ai_weight.cpp'
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-Compiling 'src\games\botlib\be_ea.cpp'
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
+Compiling 'src\games\botlib\be_ea.cpp'
 Compiling 'src\games\botlib\be_interface.cpp'
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_nav_interface.cpp'
 Compiling 'src\games\botlib\l_crc.cpp'
+1 warning generated.
 Compiling 'src\games\botlib\l_libvar.cpp'
 Compiling 'src\games\botlib\l_log.cpp'
 Compiling 'src\games\botlib\l_memory.cpp'
@@ -618,8 +135,8 @@ Compiling 'src\games\game\bg_animation.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
 Compiling 'src\games\game\bg_pmove.cpp'
 Compiling 'src\games\game\bg_slidemove.cpp'
-Linking 'build\windows-x64-release\extractfuncs.exe'
 Compiling 'src\games\game\g_active.cpp'
+Linking 'build\windows-x64-release\extractfuncs.exe'
 Compiling 'src\games\game\g_alarm.cpp'
 Compiling 'src\games\game\g_client.cpp'
 Compiling 'src\games\game\g_cmds.cpp'
@@ -631,6 +148,7 @@ Compiling 'src\games\game\g_misc.cpp'
 Compiling 'src\games\game\g_missile.cpp'
 Compiling 'src\games\game\g_mover.cpp'
 Compiling 'src\games\game\g_props.cpp'
+Linking 'bin\WolfSP_x64.exe'
 Compiling 'src\games\game\g_save.cpp'
 Compiling 'src\games\game\g_script.cpp'
 Compiling 'src\games\game\g_script_actions.cpp'
@@ -718,14 +236,6 @@ Compiling 'src\games\cgame\cg_syscalls.cpp'
 Compiling 'src\games\cgame\cg_view.cpp'
 Compiling 'src\games\cgame\cg_weapons.cpp'
 Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
 Compiling 'src\games\cgame\fx\FxScheduler.cpp'
 Compiling 'src\games\cgame\fx\FxSystem.cpp'
 Compiling 'src\games\cgame\fx\FxTemplate.cpp'
@@ -740,29 +250,24 @@ Compiling 'src\games\ui\ui_gameinfo.cpp'
 Compiling 'src\games\ui\ui_main.cpp'
 Compiling 'src\games\ui\ui_players.cpp'
 Compiling 'src\games\ui\ui_shared.cpp'
+Linking 'bin\main\cgame_x64.dll'
 Compiling 'src\games\ui\ui_syscalls.cpp'
 Compiling 'src\games\ui\ui_util.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
 Linking 'bin\main\ui_x64.dll'
-scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\splines.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 30 error(s)
+scons: done building targets.
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 0 error(s)
 
 
 ==== windows-latest-x64-release-cgame (cancelled) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   32G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 31.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 13.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -849,131 +354,25 @@ Compiling 'src\splines\math_angles.cpp'
 Compiling 'src\splines\math_matrix.cpp'
 Compiling 'src\splines\math_quaternion.cpp'
 Compiling 'src\splines\math_vector.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\splines\math_angles.cpp.obj] Error 1
 Compiling 'src\splines\q_parse.cpp'
 Compiling 'src\splines\q_shared.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\splines\splines.cpp'
-2 errors generated.
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\q_parse.cpp.obj] Error 1
-scons: *** [build\windows-x64-release\client\obj\splines\q_shared.cpp.obj] Error 1
 Compiling 'src\splines\util_str.cpp'
 Compiling 'src\games\botlib\be_ai_char.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\games\botlib\be_ai_chat.cpp'
 Compiling 'src\games\botlib\be_ai_gen.cpp'
 Compiling 'src\games\botlib\be_ai_goal.cpp'
 Compiling 'src\games\botlib\be_ai_move.cpp'
 Compiling 'src\games\botlib\be_ai_weap.cpp'
 Compiling 'src\games\botlib\be_ai_weight.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
 Compiling 'src\games\botlib\be_ea.cpp'
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
 Compiling 'src\games\botlib\be_interface.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_nav_interface.cpp'
 Compiling 'src\games\botlib\l_crc.cpp'
+1 warning generated.
 Compiling 'src\games\botlib\l_libvar.cpp'
 Compiling 'src\games\botlib\l_log.cpp'
 Compiling 'src\games\botlib\l_memory.cpp'
@@ -1018,14 +417,6 @@ Compiling 'src\games\cgame\cg_syscalls.cpp'
 Compiling 'src\games\cgame\cg_view.cpp'
 Compiling 'src\games\cgame\cg_weapons.cpp'
 Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
 Compiling 'src\games\cgame\fx\FxScheduler.cpp'
 Compiling 'src\games\cgame\fx\FxSystem.cpp'
 Compiling 'src\games\cgame\fx\FxTemplate.cpp'
@@ -1038,314 +429,10 @@ Compiling 'src\tools\extractfuncs\l_log.cpp'
 Compiling 'src\tools\extractfuncs\l_memory.cpp'
 Compiling 'src\tools\extractfuncs\l_precomp.cpp'
 Compiling 'src\tools\extractfuncs\l_script.cpp'
+Linking 'bin\WolfSP_x64.exe'
 Compiling 'src\games\game\bg_animation.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\game\bg_pmove.cpp'
-Compiling 'src\games\game\bg_slidemove.cpp'
-Compiling 'src\games\game\g_active.cpp'
-Compiling 'src\games\game\g_alarm.cpp'
-Compiling 'src\games\game\g_client.cpp'
-Compiling 'src\games\game\g_cmds.cpp'
-Compiling 'src\games\game\g_combat.cpp'
 Linking 'build\windows-x64-release\extractfuncs.exe'
-Compiling 'src\games\game\g_items.cpp'
-Compiling 'src\games\game\g_main.cpp'
-Compiling 'src\games\game\g_mem.cpp'
-Compiling 'src\games\game\g_misc.cpp'
-Compiling 'src\games\game\g_missile.cpp'
-Compiling 'src\games\game\g_mover.cpp'
-Compiling 'src\games\game\g_props.cpp'
-Compiling 'src\games\game\g_save.cpp'
-Compiling 'src\games\game\g_script.cpp'
-Compiling 'src\games\game\g_script_actions.cpp'
-Compiling 'src\games\game\g_session.cpp'
-Compiling 'src\games\game\g_spawn.cpp'
-Compiling 'src\games\game\g_svcmds.cpp'
-Compiling 'src\games\game\g_syscalls.cpp'
-Compiling 'src\games\game\g_target.cpp'
-Compiling 'src\games\game\g_team.cpp'
-Compiling 'src\games\game\g_tramcar.cpp'
-Compiling 'src\games\game\g_trigger.cpp'
-Compiling 'src\games\game\g_utils.cpp'
-Compiling 'src\games\game\g_weapon.cpp'
-Compiling 'src\games\game\ai\ai_actor.cpp'
-Compiling 'src\games\game\ai\ai_awareness.cpp'
-Compiling 'src\games\game\ai\ai_characters.cpp'
-Compiling 'src\games\game\ai\ai_danger.cpp'
-Compiling 'src\games\game\ai\ai_debug.cpp'
-Compiling 'src\games\game\ai\ai_events.cpp'
-Compiling 'src\games\game\ai\ai_input.cpp'
-Compiling 'src\games\game\ai\ai_movement.cpp'
-Compiling 'src\games\game\ai\ai_navigation.cpp'
-Compiling 'src\games\game\ai\ai_perception.cpp'
-Compiling 'src\games\game\ai\ai_scheduler.cpp'
-Compiling 'src\games\game\ai\ai_script.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_animation.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_combat.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_mission.cpp'
-Compiling 'src\games\game\ai\ai_script_actions_movement.cpp'
-Compiling 'src\games\game\ai\ai_script_entities.cpp'
-Compiling 'src\games\game\ai\ai_spawn.cpp'
-Compiling 'src\games\game\ai\ai_system.cpp'
-Compiling 'src\games\game\ai\ai_targeting.cpp'
-Compiling 'src\games\game\ai\ai_weapons.cpp'
-Compiling 'src\games\game\ai\fsm\ai_ability.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_cover.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_doors.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_evasion.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_grenades.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_idle.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_investigate.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_mounted.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_pursuit.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_heinrich.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_helga.cpp'
-Compiling 'src\games\game\ai\fsm\ai_combat.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_blackguard.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_loper.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_reject.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_stimsoldier.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_warzombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_zombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_legacy.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_machine.cpp'
-
-
-==== windows-latest-x64-release-game (cancelled) ====
-
-Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
-Collecting scons
-  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
-Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 22.3 MB/s  0:00:00
-Installing collected packages: scons
-Successfully installed scons-4.11.1
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-Compiling 'src\client\cl_keys.cpp'
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-Compiling 'src\client\cl_scrn.cpp'
-Compiling 'src\client\cl_ui.cpp'
-Compiling 'src\client\snd_adpcm.cpp'
-Compiling 'src\client\snd_dma.cpp'
-Compiling 'src\client\snd_mem.cpp'
-Compiling 'src\client\snd_mix.cpp'
-Compiling 'src\client\snd_wavelet.cpp'
-Compiling 'src\qcommon\cm_load.cpp'
-Compiling 'src\qcommon\cm_patch.cpp'
-Compiling 'src\qcommon\cm_polylib.cpp'
-Compiling 'src\qcommon\cm_test.cpp'
-Compiling 'src\qcommon\cm_trace.cpp'
-Compiling 'src\qcommon\cmd.cpp'
-Compiling 'src\qcommon\common.cpp'
-Compiling 'src\qcommon\cvar.cpp'
-Compiling 'src\qcommon\files.cpp'
-Compiling 'src\qcommon\huffman.cpp'
-Compiling 'src\qcommon\md4.cpp'
-Compiling 'src\qcommon\msg.cpp'
-Compiling 'src\qcommon\net_chan.cpp'
-Compiling 'src\qcommon\unzip.cpp'
-Compiling 'src\server\sv_bot.cpp'
-Compiling 'src\server\sv_ccmds.cpp'
-Compiling 'src\server\sv_client.cpp'
-Compiling 'src\server\sv_game.cpp'
-Compiling 'src\server\sv_init.cpp'
-Compiling 'src\server\sv_main.cpp'
-Compiling 'src\server\sv_net_chan.cpp'
-Compiling 'src\server\sv_snapshot.cpp'
-Compiling 'src\server\sv_world.cpp'
-Compiling 'src\renderer\tr_animation.cpp'
-Compiling 'src\renderer\tr_backend.cpp'
-Compiling 'src\renderer\tr_bsp.cpp'
-Compiling 'src\renderer\tr_cmds.cpp'
-Compiling 'src\renderer\tr_curve.cpp'
-Compiling 'src\renderer\tr_decals.cpp'
-Compiling 'src\renderer\tr_flares.cpp'
-Compiling 'src\renderer\tr_font.cpp'
-Compiling 'src\renderer\tr_image.cpp'
-Compiling 'src\renderer\tr_init.cpp'
-Compiling 'src\renderer\tr_light.cpp'
-Compiling 'src\renderer\tr_main.cpp'
-Compiling 'src\renderer\tr_marks.cpp'
-Compiling 'src\renderer\tr_mesh.cpp'
-Compiling 'src\renderer\tr_cmesh.cpp'
-Compiling 'src\renderer\tr_model.cpp'
-Compiling 'src\renderer\tr_noise.cpp'
-Compiling 'src\renderer\tr_renderprog.cpp'
-Compiling 'src\renderer\tr_scene.cpp'
-Compiling 'src\renderer\tr_shade.cpp'
-Compiling 'src\renderer\tr_shade_calc.cpp'
-Compiling 'src\renderer\tr_shader.cpp'
-Compiling 'src\renderer\tr_shadows.cpp'
-Compiling 'src\renderer\tr_sky.cpp'
-Compiling 'src\renderer\tr_surface.cpp'
-Compiling 'src\renderer\tr_vfx.cpp'
-Compiling 'src\renderer\tr_world.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\sys\win32\win_gamma.cpp'
-Compiling 'src\sys\win32\win_glimp.cpp'
-Compiling 'src\sys\win32\win_input.cpp'
-Compiling 'src\sys\win32\win_main.cpp'
-Compiling 'src\sys\win32\win_net.cpp'
-Compiling 'src\sys\win32\win_qgl.cpp'
-Compiling 'src\sys\win32\win_shared.cpp'
-Compiling 'src\sys\win32\win_snd.cpp'
-Compiling 'src\sys\win32\win_syscon.cpp'
-Compiling 'src\sys\win32\win_wndproc.cpp'
-Compiling 'src\splines\math_angles.cpp'
-Compiling 'src\splines\math_matrix.cpp'
-Compiling 'src\splines\math_quaternion.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\math_angles.cpp.obj] Error 1
-Compiling 'src\splines\math_vector.cpp'
-Compiling 'src\splines\q_parse.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj] Error 1
-Compiling 'src\splines\q_shared.cpp'
-Compiling 'src\splines\splines.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\q_parse.cpp.obj] Error 1
-Compiling 'src\splines\util_str.cpp'
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\q_shared.cpp.obj] Error 1
-Compiling 'src\games\botlib\be_ai_char.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-Compiling 'src\games\botlib\be_ai_chat.cpp'
-Compiling 'src\games\botlib\be_ai_gen.cpp'
-Compiling 'src\games\botlib\be_ai_goal.cpp'
-Compiling 'src\games\botlib\be_ai_move.cpp'
-Compiling 'src\games\botlib\be_ai_weap.cpp'
-Compiling 'src\games\botlib\be_ai_weight.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
-src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
-  580 |         CHECK_NAN_VEC( origin );
-      |                        ^~~~~~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-Compiling 'src\games\botlib\be_ea.cpp'
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
-Compiling 'src\games\botlib\be_interface.cpp'
-Compiling 'src\games\botlib\be_nav_interface.cpp'
-Compiling 'src\games\botlib\l_crc.cpp'
-Compiling 'src\games\botlib\l_libvar.cpp'
-Compiling 'src\games\botlib\l_log.cpp'
-Compiling 'src\games\botlib\l_memory.cpp'
-Compiling 'src\games\botlib\l_precomp.cpp'
-Compiling 'src\games\botlib\l_script.cpp'
-Compiling 'src\games\botlib\l_struct.cpp'
-Compiling 'src\third-party\stb\stb_impl.c'
-Compiling 'src\third-party\recast\Detour\Source\DetourAlloc.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourAssert.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourCommon.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMesh.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshBuilder.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshQuery.cpp'
-Compiling 'src\third-party\recast\Detour\Source\DetourNode.cpp'
-Compiling 'src\games\game\bg_animation.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
 Compiling 'src\games\game\bg_pmove.cpp'
 Compiling 'src\games\game\bg_slidemove.cpp'
 Compiling 'src\games\game\g_active.cpp'
@@ -1414,57 +501,6 @@ Compiling 'src\games\game\ai\fsm\ai_monster_warzombie.cpp'
 Compiling 'src\games\game\ai\fsm\ai_monster_zombie.cpp'
 Compiling 'src\games\game\ai\fsm\ai_state_legacy.cpp'
 Compiling 'src\games\game\ai\fsm\ai_state_machine.cpp'
-Compiling resource 'src\sys\win32\winquake.rc'
-Compiling 'src\tools\extractfuncs\extractfuncs.cpp'
-Compiling 'src\tools\extractfuncs\l_log.cpp'
-Compiling 'src\tools\extractfuncs\l_memory.cpp'
-Compiling 'src\tools\extractfuncs\l_precomp.cpp'
-Compiling 'src\tools\extractfuncs\l_script.cpp'
-Compiling 'src\games\game\bg_animation.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\game\bg_pmove.cpp'
-Compiling 'src\games\game\bg_slidemove.cpp'
-Compiling 'src\games\cgame\cg_consolecmds.cpp'
-Compiling 'src\games\cgame\cg_draw.cpp'
-Compiling 'src\games\cgame\cg_drawtools.cpp'
-Compiling 'src\games\cgame\cg_effects.cpp'
-Compiling 'src\games\cgame\cg_ents.cpp'
-Compiling 'src\games\cgame\cg_event.cpp'
-Linking 'build\windows-x64-release\extractfuncs.exe'
-Compiling 'src\games\cgame\cg_fx.cpp'
-Compiling 'src\games\cgame\cg_fx_entities.cpp'
-Compiling 'src\games\cgame\cg_fx_flame.cpp'
-Compiling 'src\games\cgame\cg_fx_marks.cpp'
-Compiling 'src\games\cgame\cg_fx_particles.cpp'
-Compiling 'src\games\cgame\cg_fx_trails.cpp'
-Compiling 'src\games\cgame\cg_info.cpp'
-Compiling 'src\games\cgame\cg_main.cpp'
-Compiling 'src\games\cgame\cg_newDraw.cpp'
-Compiling 'src\games\cgame\cg_players.cpp'
-Compiling 'src\games\cgame\cg_playerstate.cpp'
-Compiling 'src\games\cgame\cg_predict.cpp'
-Compiling 'src\games\cgame\cg_scoreboard.cpp'
-Compiling 'src\games\cgame\cg_servercmds.cpp'
-Compiling 'src\games\cgame\cg_snapshot.cpp'
-Compiling 'src\games\cgame\cg_sound.cpp'
-Compiling 'src\games\cgame\cg_syscalls.cpp'
-Compiling 'src\games\cgame\cg_view.cpp'
-Compiling 'src\games\cgame\cg_weapons.cpp'
-Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-Compiling 'src\games\cgame\fx\FxScheduler.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
-Compiling 'src\games\cgame\fx\FxSystem.cpp'
-Compiling 'src\games\cgame\fx\FxTemplate.cpp'
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
@@ -1472,20 +508,15 @@ Compiling 'src\games\ui\ui_atoms.cpp'
 Compiling 'src\games\ui\ui_gameinfo.cpp'
 Compiling 'src\games\ui\ui_main.cpp'
 Compiling 'src\games\ui\ui_players.cpp'
+Linking 'bin\main\qagame_x64.dll'
 Compiling 'src\games\ui\ui_shared.cpp'
 Compiling 'src\games\ui\ui_syscalls.cpp'
 Compiling 'src\games\ui\ui_util.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
 Linking 'bin\main\ui_x64.dll'
-scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\splines.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 30 error(s)
+scons: done building targets.
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 0 error(s)
 
 
 ==== windows-latest-x64-release-ui (cancelled) ====
@@ -1495,7 +526,7 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 49.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 9.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -1581,132 +612,26 @@ Compiling 'src\sys\win32\win_wndproc.cpp'
 Compiling 'src\splines\math_angles.cpp'
 Compiling 'src\splines\math_matrix.cpp'
 Compiling 'src\splines\math_quaternion.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\splines\math_vector.cpp'
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\math_angles.cpp.obj] Error 1
 Compiling 'src\splines\q_parse.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj] Error 1
 Compiling 'src\splines\q_shared.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
 Compiling 'src\splines\splines.cpp'
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-scons: *** [build\windows-x64-release\client\obj\splines\q_parse.cpp.obj] Error 1
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\splines\util_str.cpp'
-2 errors generated.
-scons: *** [build\windows-x64-release\client\obj\splines\q_shared.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_ai_char.cpp'
 Compiling 'src\games\botlib\be_ai_chat.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\games\botlib\be_ai_gen.cpp'
 Compiling 'src\games\botlib\be_ai_goal.cpp'
 Compiling 'src\games\botlib\be_ai_move.cpp'
 Compiling 'src\games\botlib\be_ai_weap.cpp'
 Compiling 'src\games\botlib\be_ai_weight.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
 Compiling 'src\games\botlib\be_ea.cpp'
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
 Compiling 'src\games\botlib\be_interface.cpp'
-scons: *** [build\windows-x64-release\client\obj\splines\splines.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_nav_interface.cpp'
 Compiling 'src\games\botlib\l_crc.cpp'
+1 warning generated.
 Compiling 'src\games\botlib\l_libvar.cpp'
 Compiling 'src\games\botlib\l_log.cpp'
 Compiling 'src\games\botlib\l_memory.cpp'
@@ -1743,6 +668,7 @@ Compiling 'src\games\game\g_active.cpp'
 Linking 'build\windows-x64-release\extractfuncs.exe'
 Compiling 'src\games\game\g_alarm.cpp'
 Compiling 'src\games\game\g_client.cpp'
+Linking 'bin\WolfSP_x64.exe'
 Compiling 'src\games\game\g_cmds.cpp'
 Compiling 'src\games\game\g_combat.cpp'
 Compiling 'src\games\game\g_items.cpp'
@@ -1839,14 +765,6 @@ Compiling 'src\games\cgame\cg_syscalls.cpp'
 Compiling 'src\games\cgame\cg_view.cpp'
 Compiling 'src\games\cgame\cg_weapons.cpp'
 Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
 Compiling 'src\games\cgame\fx\FxScheduler.cpp'
 Compiling 'src\games\cgame\fx\FxSystem.cpp'
 Compiling 'src\games\cgame\fx\FxTemplate.cpp'
@@ -1855,24 +773,19 @@ Compiling 'src\games\cgame\fx\genericparser2.cpp'
 Compiling 'src\games\ui\ui_shared.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
-scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\client\obj\splines\splines.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x64-release\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 30 error(s)
+Linking 'bin\main\cgame_x64.dll'
+scons: done building targets.
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 0 error(s)
 
 
 ==== windows-latest-x86-debug- (failure) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  120G   31G  80% /c
+C:              150G  119G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 32.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 53.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -1967,10 +880,10 @@ scons: *** [build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj] Error 1
 Compiling 'src\sys\win32\win_gamma.cpp'
 Compiling 'src\sys\win32\win_glimp.cpp'
 Compiling 'src\sys\win32\win_input.cpp'
-Compiling 'src\sys\win32\win_main.cpp'
 src\sys\win32\win_glimp.cpp(1541,3): warning: cast between incompatible calling conventions 'cdecl' and 'stdcall'; calls through this pointer may abort at runtime [-Wcast-calling-convention]
  1541 |                 (LPTHREAD_START_ROUTINE)GLimp_RenderThreadWrapper,  // LPTHREAD_START_ROUTINE lpStartAddr,
       |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compiling 'src\sys\win32\win_main.cpp'
 src\sys\win32\win_glimp.cpp(1516,6): note: consider defining 'GLimp_RenderThreadWrapper' with the 'stdcall' calling convention
  1516 | void GLimp_RenderThreadWrapper( void ) {
       |      ^
@@ -1984,66 +897,13 @@ Compiling 'src\sys\win32\win_syscon.cpp'
 Compiling 'src\sys\win32\win_wndproc.cpp'
 Compiling 'src\splines\math_angles.cpp'
 Compiling 'src\splines\math_matrix.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\splines\math_angles.cpp.obj] Error 1
 Compiling 'src\splines\math_quaternion.cpp'
 Compiling 'src\splines\math_vector.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
 Compiling 'src\splines\q_parse.cpp'
 Compiling 'src\splines\q_shared.cpp'
 Compiling 'src\splines\splines.cpp'
 Compiling 'src\splines\util_str.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\splines\q_parse.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_ai_char.cpp'
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-scons: *** [build\windows-x86-debug\client\obj\splines\q_shared.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_ai_chat.cpp'
 Compiling 'src\games\botlib\be_ai_gen.cpp'
 Compiling 'src\games\botlib\be_ai_goal.cpp'
@@ -2053,61 +913,7 @@ Compiling 'src\games\botlib\be_ai_weight.cpp'
 Compiling 'src\games\botlib\be_ea.cpp'
 Compiling 'src\games\botlib\be_interface.cpp'
 Compiling 'src\games\botlib\be_nav_interface.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
 Compiling 'src\games\botlib\l_crc.cpp'
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-20 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\splines\splines.cpp.obj] Error 1
 Compiling 'src\games\botlib\l_libvar.cpp'
 Compiling 'src\games\botlib\l_log.cpp'
 Compiling 'src\games\botlib\l_memory.cpp'
@@ -2143,9 +949,9 @@ Compiling 'src\games\game\g_mem.cpp'
 Compiling 'src\games\game\g_misc.cpp'
 Compiling 'src\games\game\g_missile.cpp'
 Compiling 'src\games\game\g_mover.cpp'
+Linking 'build\windows-x86-debug\extractfuncs.exe'
 Compiling 'src\games\game\g_props.cpp'
 Compiling 'src\games\game\g_save.cpp'
-Linking 'build\windows-x86-debug\extractfuncs.exe'
 Compiling 'src\games\game\g_script.cpp'
 Compiling 'src\games\game\g_script_actions.cpp'
 Compiling 'src\games\game\g_session.cpp'
@@ -2239,14 +1045,6 @@ Compiling 'src\games\cgame\cg_syscalls.cpp'
 Compiling 'src\games\cgame\cg_view.cpp'
 Compiling 'src\games\cgame\cg_weapons.cpp'
 Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x86-debug\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
 Compiling 'src\games\cgame\fx\FxScheduler.cpp'
 Compiling 'src\games\cgame\fx\FxSystem.cpp'
 Compiling 'src\games\cgame\fx\FxTemplate.cpp'
@@ -2261,8 +1059,8 @@ src\qcommon\q_math.cpp(744,13): note: attribute is here
   744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
       |             ^
 1 error generated.
-Compiling 'src\qcommon\q_shared.cpp'
 scons: *** [build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj] Error 1
+Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
 Compiling 'src\games\ui\ui_atoms.cpp'
 Compiling 'src\games\ui\ui_gameinfo.cpp'
@@ -2284,16 +1082,10 @@ scons: *** [build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj] Error 1
 scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\client\snd_mix.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\client\obj\splines\splines.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-debug\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 37 error(s)
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 7 error(s)
 
 
 ==== windows-latest-x86-release- (failure) ====
@@ -2303,7 +1095,7 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 54.7 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 10.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
@@ -2387,7 +1179,6 @@ Compiling 'src\renderer\tr_vfx.cpp'
 Compiling 'src\renderer\tr_world.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\sys\win32\win_gamma.cpp'
 src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
   745 |         static int bops_initialized;
       |         ^
@@ -2396,6 +1187,7 @@ src\qcommon\q_math.cpp(744,13): note: attribute is here
       |             ^
 1 error generated.
 scons: *** [build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj] Error 1
+Compiling 'src\sys\win32\win_gamma.cpp'
 Compiling 'src\sys\win32\win_glimp.cpp'
 Compiling 'src\sys\win32\win_input.cpp'
 src\sys\win32\win_glimp.cpp(1541,3): warning: cast between incompatible calling conventions 'cdecl' and 'stdcall'; calls through this pointer may abort at runtime [-Wcast-calling-convention]
@@ -2415,130 +1207,24 @@ Compiling 'src\sys\win32\win_syscon.cpp'
 Compiling 'src\sys\win32\win_wndproc.cpp'
 Compiling 'src\splines\math_angles.cpp'
 Compiling 'src\splines\math_matrix.cpp'
-In file included from src\splines\math_angles.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-release\client\obj\splines\math_angles.cpp.obj] Error 1
 Compiling 'src\splines\math_quaternion.cpp'
-In file included from src\splines\math_matrix.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-release\client\obj\splines\math_matrix.cpp.obj] Error 1
 Compiling 'src\splines\math_vector.cpp'
 Compiling 'src\splines\q_parse.cpp'
 Compiling 'src\splines\q_shared.cpp'
 Compiling 'src\splines\splines.cpp'
-In file included from src\splines\q_parse.cpp:31:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build\windows-x86-release\client\obj\splines\q_parse.cpp.obj] Error 1
-In file included from src\splines\q_shared.cpp:30:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\splines\util_str.cpp'
-2 errors generated.
-scons: *** [build\windows-x86-release\client\obj\splines\q_shared.cpp.obj] Error 1
 Compiling 'src\games\botlib\be_ai_char.cpp'
-In file included from src\splines\splines.cpp:29:
-src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src\games\botlib\be_ai_chat.cpp'
 Compiling 'src\games\botlib\be_ai_gen.cpp'
 Compiling 'src\games\botlib\be_ai_goal.cpp'
 Compiling 'src\games\botlib\be_ai_move.cpp'
-src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-Compiling 'src\games\botlib\be_ai_weap.cpp'
-src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build\windows-x86-release\client\obj\splines\splines.cpp.obj] Error 1
+Compiling 'src\games\botlib\be_ai_weap.cpp'
 Compiling 'src\games\botlib\be_ai_weight.cpp'
 Compiling 'src\games\botlib\be_ea.cpp'
+1 warning generated.
 Compiling 'src\games\botlib\be_interface.cpp'
 Compiling 'src\games\botlib\be_nav_interface.cpp'
 Compiling 'src\games\botlib\l_crc.cpp'
@@ -2565,8 +1251,8 @@ Compiling 'src\tools\extractfuncs\l_script.cpp'
 Compiling 'src\games\game\bg_animation.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
 Compiling 'src\games\game\bg_pmove.cpp'
-Compiling 'src\games\game\bg_slidemove.cpp'
 Linking 'build\windows-x86-release\extractfuncs.exe'
+Compiling 'src\games\game\bg_slidemove.cpp'
 Compiling 'src\games\game\g_active.cpp'
 Compiling 'src\games\game\g_alarm.cpp'
 Compiling 'src\games\game\g_client.cpp'
@@ -2674,14 +1360,6 @@ Compiling 'src\games\cgame\cg_view.cpp'
 Compiling 'src\games\cgame\cg_weapons.cpp'
 Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
 Compiling 'src\games\cgame\fx\FxScheduler.cpp'
-src\games\cgame\cg_view.cpp(874,5): error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src\games\cgame\cg_view.cpp(1387,6): error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build\windows-x86-release\cgame\obj\games\cgame\cg_view.cpp.obj] Error 1
 Compiling 'src\games\cgame\fx\FxSystem.cpp'
 Compiling 'src\games\cgame\fx\FxTemplate.cpp'
 Compiling 'src\games\cgame\fx\FxUtil.cpp'
@@ -2689,6 +1367,7 @@ Compiling 'src\games\cgame\fx\genericparser2.cpp'
 Compiling 'src\games\ui\ui_shared.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
+Compiling 'src\games\game\bg_misc.cpp'
 src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
   745 |         static int bops_initialized;
       |         ^
@@ -2697,7 +1376,6 @@ src\qcommon\q_math.cpp(744,13): note: attribute is here
       |             ^
 1 error generated.
 scons: *** [build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj] Error 1
-Compiling 'src\games\game\bg_misc.cpp'
 Compiling 'src\games\ui\ui_atoms.cpp'
 Compiling 'src\games\ui\ui_gameinfo.cpp'
 Compiling 'src\games\ui\ui_main.cpp'
@@ -2718,15 +1396,9 @@ scons: *** [build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj] Error 1
 scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\client\snd_mix.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\splines\math_angles.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\splines\math_matrix.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\splines\q_parse.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\splines\q_shared.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\client\obj\splines\splines.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj' — Error 1
-❌ 🛠️ Compilation failed: 'build\windows-x86-release\cgame\obj\games\cgame\cg_view.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj' — Error 1
 ❌ 🛠️ Compilation failed: 'build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj' — Error 1
-📊 Diagnostics: ⚠️ 2 warning(s), ❌ 37 error(s)
+📊 Diagnostics: ⚠️ 2 warning(s), ❌ 7 error(s)
 
 

@@ -3,12 +3,9 @@
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 23.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 2.6 MB/s  0:00:01
 Installing collected packages: scons
 Successfully installed scons-4.11.1
-
-[notice] A new release of pip is available: 26.2.1 -> 26.2.2
-[notice] To update, run: pip install --upgrade pip
 Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 
 (Reading database ... 5%
@@ -31,7 +28,7 @@ Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 211065 files and directories currently installed.)
+(Reading database ... 212715 files and directories currently installed.)
 Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
 Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
 Selecting previously unselected package libc6-x32.
@@ -168,7 +165,7 @@ Selecting previously unselected package xorg-sgml-doctools.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 211703 files and directories currently installed.)
+(Reading database ... 213353 files and directories currently installed.)
 Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
 Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
 Selecting previously unselected package x11proto-dev.
@@ -242,7 +239,7 @@ Selecting previously unselected package libxext-dev:amd64.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 212015 files and directories currently installed.)
+(Reading database ... 213665 files and directories currently installed.)
 Preparing to unpack .../libxext-dev_2%3a1.3.4-1build3_amd64v3.deb ...
 Unpacking libxext-dev:amd64 (2:1.3.4-1build3) ...
 Selecting previously unselected package libxxf86dga1:amd64.
@@ -353,131 +350,21 @@ Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
+src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
+   77 | #include <X11/extensions/Xxf86vmode.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_matrix.cpp'
-In file included from src/sys/unix/linux_glimp.cpp:76:
-/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
-    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
-      |  ^
-/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
-   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
-      |  ^
-2 warnings generated.
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
 Compiling 'src/splines/q_parse.cpp'
-In file included from src/splines/math_angles.cpp:29:
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-2 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
-In file included from src/splines/q_parse.cpp:31:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
 Compiling 'src/splines/util_str.cpp'
-scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
 Compiling 'src/games/botlib/be_ai_char.cpp'
-scons: *** [build/linux-x64-debug/client/obj/splines/q_shared.cpp.o] Error 1
-In file included from src/splines/splines.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src/games/botlib/be_ai_chat.cpp'
 Compiling 'src/games/botlib/be_ai_gen.cpp'
-src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
-src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-20 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/splines/splines.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
@@ -507,8 +394,8 @@ Compiling 'src/tools/extractfuncs/l_precomp.cpp'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
 Compiling 'src/games/game/bg_animation.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
-Compiling 'src/games/game/bg_pmove.cpp'
 Linking 'build/linux-x64-debug/extractfuncs'
+Compiling 'src/games/game/bg_pmove.cpp'
 Compiling 'src/games/game/bg_slidemove.cpp'
 Compiling 'src/games/game/g_active.cpp'
 Compiling 'src/games/game/g_alarm.cpp'
@@ -610,14 +497,6 @@ Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
-src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
@@ -628,6 +507,7 @@ Compiling 'src/qcommon/q_shared.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
 Compiling 'src/games/ui/ui_atoms.cpp'
 Compiling 'src/games/ui/ui_gameinfo.cpp'
+Linking 'bin/main/cgame_x64.so'
 Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
@@ -637,13 +517,8 @@ Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/math_angles.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/q_parse.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/q_shared.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/splines.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 2 warning(s), ❌ 30 error(s)
+❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
 ==== ubuntu-latest-x64-release- (failure) ====
@@ -651,7 +526,7 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 61.1 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 10.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -1000,139 +875,30 @@ Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
+src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
+   77 | #include <X11/extensions/Xxf86vmode.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_angles.cpp'
 Compiling 'src/splines/math_matrix.cpp'
-In file included from src/sys/unix/linux_glimp.cpp:76:
-/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
-    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
-      |  ^
-/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
-   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
-      |  ^
-In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
 Compiling 'src/splines/math_quaternion.cpp'
-scons: *** [build/linux-x64-release/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/math_vector.cpp'
-2 warnings generated.
 Compiling 'src/splines/q_parse.cpp'
 Compiling 'src/splines/q_shared.cpp'
-In file included from src/splines/q_parse.cpp:31:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/q_parse.cpp.o] Error 1
 Compiling 'src/splines/splines.cpp'
 Compiling 'src/splines/util_str.cpp'
 Compiling 'src/games/botlib/be_ai_char.cpp'
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_chat.cpp'
-In file included from src/splines/splines.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src/games/botlib/be_ai_gen.cpp'
-src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
 Compiling 'src/games/botlib/be_ai_weight.cpp'
+1 warning generated.
 Compiling 'src/games/botlib/be_ea.cpp'
 Compiling 'src/games/botlib/be_interface.cpp'
 Compiling 'src/games/botlib/be_nav_interface.cpp'
@@ -1158,8 +924,8 @@ Compiling 'src/tools/extractfuncs/l_precomp.cpp'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
 Compiling 'src/games/game/bg_animation.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
-Compiling 'src/games/game/bg_pmove.cpp'
 Linking 'build/linux-x64-release/extractfuncs'
+Compiling 'src/games/game/bg_pmove.cpp'
 Compiling 'src/games/game/bg_slidemove.cpp'
 Compiling 'src/games/game/g_active.cpp'
 Compiling 'src/games/game/g_alarm.cpp'
@@ -1260,14 +1026,6 @@ Compiling 'src/games/cgame/cg_syscalls.cpp'
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
@@ -1283,18 +1041,14 @@ Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
+Linking 'bin/main/cgame_x64.so'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_angles.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_parse.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_shared.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/splines.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
+❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
 
 
 ==== ubuntu-latest-x64-release-game (failure) ====
@@ -1302,12 +1056,9 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 65.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 41.2 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
-
-[notice] A new release of pip is available: 26.2.1 -> 26.2.2
-[notice] To update, run: pip install --upgrade pip
 Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 
 (Reading database ... 5%
@@ -1330,7 +1081,7 @@ Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 211065 files and directories currently installed.)
+(Reading database ... 212715 files and directories currently installed.)
 Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
 Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
 Selecting previously unselected package libc6-x32.
@@ -1467,7 +1218,7 @@ Selecting previously unselected package xorg-sgml-doctools.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 211703 files and directories currently installed.)
+(Reading database ... 213353 files and directories currently installed.)
 Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
 Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
 Selecting previously unselected package x11proto-dev.
@@ -1541,7 +1292,7 @@ Selecting previously unselected package libxext-dev:amd64.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 212015 files and directories currently installed.)
+(Reading database ... 213665 files and directories currently installed.)
 Preparing to unpack .../libxext-dev_2%3a1.3.4-1build3_amd64v3.deb ...
 Unpacking libxext-dev:amd64 (2:1.3.4-1build3) ...
 Selecting previously unselected package libxxf86dga1:amd64.
@@ -1650,139 +1401,30 @@ Compiling 'src/sys/unix/linux_common.cpp'
 Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
-In file included from src/sys/unix/linux_glimp.cpp:76:
-/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
-    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
-      |  ^
-/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
-   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
-      |  ^
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
-2 warnings generated.
+src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
+   77 | #include <X11/extensions/Xxf86vmode.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Compiling 'src/splines/math_matrix.cpp'
+1 error generated.
+scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
-In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/q_parse.cpp'
-scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/splines/util_str.cpp'
-In file included from src/splines/q_parse.cpp:31:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-In file included from src/splines/splines.cpp:29:
-scons: *** [build/linux-x64-release/client/obj/splines/q_parse.cpp.o] Error 1
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src/games/botlib/be_ai_char.cpp'
-src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
+Compiling 'src/games/botlib/be_ai_chat.cpp'
 src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
-Compiling 'src/games/botlib/be_ai_chat.cpp'
 Compiling 'src/games/botlib/be_ai_gen.cpp'
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
+1 warning generated.
 Compiling 'src/games/botlib/be_ai_weight.cpp'
 Compiling 'src/games/botlib/be_ea.cpp'
 Compiling 'src/games/botlib/be_interface.cpp'
@@ -1881,8 +1523,8 @@ Compiling 'src/games/game/bg_animation.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
 Compiling 'src/games/game/bg_pmove.cpp'
 Compiling 'src/games/game/bg_slidemove.cpp'
-Compiling 'src/games/cgame/cg_consolecmds.cpp'
 Linking 'build/linux-x64-release/extractfuncs'
+Compiling 'src/games/cgame/cg_consolecmds.cpp'
 Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
@@ -1907,14 +1549,6 @@ Compiling 'src/games/cgame/cg_sound.cpp'
 Compiling 'src/games/cgame/cg_syscalls.cpp'
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
-src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
@@ -1931,18 +1565,14 @@ Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
+Linking 'bin/main/cgame_x64.so'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_angles.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_shared.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_parse.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/splines.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
+❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
 
 
 ==== ubuntu-latest-x86-debug- (failure) ====
@@ -1950,7 +1580,7 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 47.0 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 63.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -2505,7 +2135,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1161]
+ runner @ user manager: (sd-pam)[1141]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2513,8 +2143,8 @@ scons: done reading SConscript files.
 scons: Building targets ...
 Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_input.cpp'
 Compiling 'src/client/cl_console.cpp'
+Compiling 'src/client/cl_input.cpp'
 Compiling 'src/client/cl_keys.cpp'
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
@@ -2584,134 +2214,24 @@ Compiling 'src/sys/unix/unix_shared.cpp'
 Compiling 'src/sys/unix/linux_common.cpp'
 Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
+src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
+   77 | #include <X11/extensions/Xxf86vmode.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
-In file included from src/sys/unix/linux_glimp.cpp:76:
-/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
-    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
-      |  ^
-/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
-   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
-      |  ^
-2 warnings generated.
+1 error generated.
+scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_angles.cpp'
 Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
 Compiling 'src/splines/q_parse.cpp'
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-2 errors generated.
-scons: *** [build/linux-x86-debug/client/obj/splines/math_matrix.cpp.o] Error 1
-scons: *** [build/linux-x86-debug/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
 Compiling 'src/splines/util_str.cpp'
-In file included from src/splines/q_parse.cpp:31:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-debug/client/obj/splines/q_parse.cpp.o] Error 1
-In file included from src/splines/splines.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src/games/botlib/be_ai_char.cpp'
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-debug/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_chat.cpp'
 Compiling 'src/games/botlib/be_ai_gen.cpp'
-src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
-src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-20 errors generated.
-scons: *** [build/linux-x86-debug/client/obj/splines/splines.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
@@ -2844,14 +2364,6 @@ Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
-src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
@@ -2862,6 +2374,7 @@ Compiling 'src/qcommon/q_shared.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
 Compiling 'src/games/ui/ui_atoms.cpp'
 Compiling 'src/games/ui/ui_gameinfo.cpp'
+Linking 'bin/main/cgame_x86.so'
 Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
@@ -2871,21 +2384,16 @@ Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x86.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/math_angles.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/q_parse.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/q_shared.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/splines.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 2 warning(s), ❌ 30 error(s)
+❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
-==== ubuntu-latest-x86-release- (cancelled) ====
+==== ubuntu-latest-x86-release- (failure) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 23.3 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 94.8 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -3440,7 +2948,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1350]
+ runner @ user manager: (sd-pam)[1329]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3522,137 +3030,28 @@ Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
-In file included from src/sys/unix/linux_glimp.cpp:76:
-/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
-    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
-      |  ^
-/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
-   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
-      |  ^
+src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
+   77 | #include <X11/extensions/Xxf86vmode.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_matrix.cpp'
-In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-release/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/math_quaternion.cpp'
-2 warnings generated.
 Compiling 'src/splines/math_vector.cpp'
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-release/client/obj/splines/math_matrix.cpp.o] Error 1
 Compiling 'src/splines/q_parse.cpp'
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
-In file included from src/splines/q_parse.cpp:31:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-release/client/obj/splines/q_parse.cpp.o] Error 1
 Compiling 'src/splines/util_str.cpp'
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-scons: *** [build/linux-x86-release/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_char.cpp'
 Compiling 'src/games/botlib/be_ai_chat.cpp'
-In file included from src/splines/splines.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-Compiling 'src/games/botlib/be_ai_gen.cpp'
-src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
-  471 |         idStr s = va( "\t\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
-  475 |         s = va( "\t\t\tgranularity %f\n", granularity );
-      |             ^~
-src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
-  479 |                 s = va( "\t\t\t( %f %f %f )\n", controlPoints[i]->x, controlPoints[i]->y, controlPoints[i]->z );
-      |                     ^~
-src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
-  552 |                                 Cbuf_AddText( va( "fade 0 0 0 0 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
-  556 |                                 Cbuf_AddText( va( "fade 0 0 0 255 %f", time ) );
-      |                                               ^~
-src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
-  565 |                                         loadCamera( atoi( param1 ), va( "cameras/%s.camera", param2 ) );
-      |                                                                     ^~
-src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
-  568 |                                         loadCamera( 0, va( "cameras/%s.camera", events[i]->getParam() ) );
-      |                                                        ^~
 src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
   580 |         CHECK_NAN_VEC( origin );
       |                        ^~~~~~
-src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
-  853 |                 s = va( "\ttime %f\n", baseTime );
-      |                     ^~
-src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
-  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
-      |                                              ^~
-src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
-  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
-      |                                                          ^~
-src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
-  960 |         idStr s = va( "\t%s {\n", name );
-      |                   ^~
-src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
-  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
-      |             ^~
-src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
-  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
-      |             ^~
-src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
-  966 |         s = va( "\t\ttime %d\n", time );
-      |             ^~
-src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
- 1247 |         idStr s = va( "\t%s {\n", p );
-      |                   ^~
-src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
- 1250 |         s = va( "\t\tfov %f\n", fov );
-      |             ^~
-src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
- 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
-      |             ^~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-1 warning and 20 errors generated.
-scons: *** [build/linux-x86-release/client/obj/splines/splines.cpp.o] Error 1
+Compiling 'src/games/botlib/be_ai_gen.cpp'
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
+1 warning generated.
 Compiling 'src/games/botlib/be_ai_weight.cpp'
 Compiling 'src/games/botlib/be_ea.cpp'
 Compiling 'src/games/botlib/be_interface.cpp'
@@ -3781,14 +3180,6 @@ Compiling 'src/games/cgame/cg_syscalls.cpp'
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
-  874 |                                 $ 1// fully zoomed out; keep the current fov_x
-      |                                 ^
-src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
- 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
-      |                                         ^
-2 errors generated.
-scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
@@ -3805,16 +3196,12 @@ Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
 Compiling 'src/games/ui/ui_util.cpp'
+Linking 'bin/main/cgame_x86.so'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x86.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/math_angles.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/q_parse.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/q_shared.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/splines.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
+❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
 
 
