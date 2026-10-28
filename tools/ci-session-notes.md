@@ -306,3 +306,10 @@ Result: all four ubuntu legs and all four windows legs build with 0 errors and 0
 - Pointed ENGINE_OUTPUT_DIRECTORY at ../bin and derived the module directory from it, so wolf, wolfded, bspc and extractfuncs build into bin and the modules stay in bin/main
 
 Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
+
+## 2026-10-28: show the solution folders, headers and source groups in Visual Studio
+
+- The FOLDER target property is ignored unless the USE_FOLDERS global property is on, and it only defaults to on since CMake 3.26 (CMP0143). The project pins CMake 3.25, so every earlier FOLDER assignment was silently dropped. Utils.cmake now sets USE_FOLDERS to on at the top, which makes the dll, libs, exes and misc solution folders appear in the IDE.
+- The engine headers were never listed as sources of any target, so none of them showed up in Visual Studio. attach_headers_to_targets in Utils.cmake now globs the tree for .h/.hpp/.inl files, skips the ones a target already owns and the third-party ones, and attaches each remaining header to the target whose source directory contains it (deepest directory wins). The third-party headers stay in the loose_headers misc utility project.
+- group_target_sources in Utils.cmake runs at the end of configure_target and sorts each target's files into Source Files and Header Files filters that mirror the source tree via source_group(TREE).
+- The first attempt failed the configure step on all legs with "Cannot specify sources for target ">wolf"" because the directory-pair parsing read the target name one character too early. The fix skips the whole arrow separator. Digest 1d0d9b3: all nine legs and uncrustify green, 0 errors, 0 warnings.
