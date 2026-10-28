@@ -38,8 +38,11 @@ If you have questions concerning this license or the applicable additional terms
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 #define MAX_QPATH 64
+
+extern int verbose;
 
 #define MAX_LOGFILENAMESIZE     1024
 
@@ -110,7 +113,8 @@ void Log_Shutdown( void ) {
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
-void Log_Print( char *fmt, ... ) {
+void Log_Print
+( char *fmt, ... ) {
 	va_list ap;
 #ifdef WINBSPC
 	char buf[2048];
@@ -187,7 +191,8 @@ FILE *Log_FileStruct( void ) {
 } //end of the function Log_FileStruct
 //===========================================================================
 //
-// Parameter:				-
+// 
+Parameter:				-
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
