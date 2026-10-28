@@ -42,12 +42,11 @@ jobs:
           sudo apt-get update -qq 2>&1 | tee -a build.log
           sudo apt-get install -y -qq gcc-multilib g++-multilib 2>&1 | tee -a build.log
           sudo apt-get install -y -qq ninja-build 2>&1 | tee -a build.log
-          # GL headers are arch independent, one install covers both legs
-          sudo apt-get install -y -qq libgl-dev libglx-dev 2>&1 | tee -a build.log
           if [ "${{ matrix.arch }}" = "x86" ]; then
-            sudo apt-get install -y -qq libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
+            # the linker needs the 32-bit libGL to go with the 32-bit X libs
+            sudo apt-get install -y -qq libgl-dev:i386 libglx-dev:i386 libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
           else
-            sudo apt-get install -y -qq libx11-dev libxext-dev libxxf86dga-dev libxxf86vm-dev 2>&1 | tee -a build.log
+            sudo apt-get install -y -qq libgl-dev libglx-dev libx11-dev libxext-dev libxxf86dga-dev libxxf86vm-dev 2>&1 | tee -a build.log
           fi
       - name: configure
         shell: bash
