@@ -3232,4 +3232,3 @@ void PC_CheckOpenSourceHandles( void ) {
 		} //end if
 	} //end for
 } //end of the function PC_CheckOpenSourceHandles
-
