@@ -253,3 +253,28 @@ All 9 jobs success with 0 errors and 0 warnings: ubuntu x64/x86
 debug/release, windows x64/x86 debug/release, uncrustify. The full
 logs at the digest commit contain only "all ubuntu legs succeeded" /
 "all windows legs succeeded". Task complete.
+
+## 2026-10-28: split the CMake projects and add the dedicated server
+- 24f067f: cmake/WolfUtils.cmake now owns the shared helpers
+  (WOLF_ARCH, output directories, wolf_configure_target,
+  wolf_set_output_directory, wolf_configure_engine); every project
+  includes them through the top-level CMakeLists.
+- Per-project CMakeLists: games/game, games/cgame, games/ui (the
+  runtime modules), renderer, splines, games/botlib, third-party
+  (recast/detour) and tools/extractfuncs; tools/bspc keeps its own
+  file and the wolf/wolfded engine targets stay in src/CMakeLists.txt.
+- The /wd4244 /wd4267 /wd4723 /wd4996 /wd5033 MSVC disables stay in the
+  shared wolf_configure_target so every target mutes them.
+- WolfDED_<arch> dedicated server: same engine sources with the
+  DEDICATED define the tree carries (common.cpp locks the dedicated
+  cvar to 1 with CVAR_ROM and skips the client/renderer/sound
+  startup).
+- The game modules now output to bin/main (SHARED_LIBRARY targets);
+  executables, tools and .map files stay at the repository root. Run
+  the exe with bin/ as the base path so the loader finds bin/main.
+
+## RESULT: CI fully green (digest b98d1af, build of 24f067f)
+All 9 jobs success with 0 errors and 0 warnings on the split build:
+ubuntu x64/x86 debug/release, windows x64/x86 debug/release,
+uncrustify. WolfDED and the restructured modules compiled and linked
+clean everywhere. Task complete.
