@@ -189,6 +189,7 @@ void DumpReplaceFunctions( void ) {
 	fclose( f );
 
 	strcpy( path, func_filename );
+	newbuf = NULL;
 	if ( f = fopen( path, "rb" ) ) {
 		fseek( f, 0, SEEK_END );
 		newlen = ftell( f );
@@ -248,6 +249,7 @@ void DumpReplaceFunctions( void ) {
 	fclose( f );
 
 	strcpy( path, func_filedesc );
+	newbuf = NULL;
 	if ( f = fopen( path, "rb" ) ) {
 		fseek( f, 0, SEEK_END );
 		newlen = ftell( f );
