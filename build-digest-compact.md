@@ -1,6 +1,6 @@
 # Compact build digest
 
-commit: 16347eeb4c34
+commit: 0c203a50a84c
 
 - ubuntu-latest-x64-debug: success
 - ubuntu-latest-x64-release: success
