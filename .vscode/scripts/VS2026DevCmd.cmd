@@ -7,8 +7,8 @@ rem
 rem Usage:
 rem   call .\.vscode\scripts\VS2026DevCmd.cmd
 rem       Loads the x64 developer environment into the current terminal.
-rem   call .\.vscode\scripts\VS2026DevCmd.cmd x86 debug 8
-rem       Loads the matching environment and runs SCons.
+rem   call .\.vscode\scripts\VS2026DevCmd.cmd x86 debug
+rem       Loads the matching environment and builds with CMake.
 
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 set "VSINSTALL_FILE=%TEMP%\VSDevCmd_%RANDOM%_%RANDOM%.txt"
@@ -41,12 +41,10 @@ if "%~1"=="" goto interactive
 
 set "BUILD_ARCH=%~1"
 set "BUILD_CONFIG=%~2"
-set "BUILD_JOBS=%~3"
-set "BUILD_HARDLINK=%~4"
 
 if /i not "%BUILD_ARCH%"=="x86" if /i not "%BUILD_ARCH%"=="x64" goto bad_arch
 if /i not "%BUILD_CONFIG%"=="debug" if /i not "%BUILD_CONFIG%"=="release" if /i not "%BUILD_CONFIG%"=="clean" goto bad_config
-if not defined BUILD_JOBS set "BUILD_JOBS=8"
+if not defined BUILD_CONFIG set "BUILD_CONFIG=release"
 
 call "%VSDEVCMD%" -arch=%BUILD_ARCH% -host_arch=x64
 if not errorlevel 1 goto developer_environment_ready
@@ -58,23 +56,27 @@ exit /b %VSDEV_ERROR%
 cd /d "%~dp0..\.."
 if errorlevel 1 goto cd_failed
 
+set "BUILD_DIR=build\msvc-%BUILD_ARCH%"
+set "CMAKE_ARCH=Win32"
+if /i "%BUILD_ARCH%"=="x64" set "CMAKE_ARCH=x64"
+
+rem Configure once per build tree; the Visual Studio generator supports
+rem Debug and Release from the same tree.
+if exist "%BUILD_DIR%\CMakeCache.txt" goto build
+echo [VSDevCmd] Configuring arch=%BUILD_ARCH% in %BUILD_DIR%
+cmake -S src -B "%BUILD_DIR%" -A %CMAKE_ARCH%
+if errorlevel 1 set "BUILD_RESULT=%ERRORLEVEL%" & goto build_finished
+
+:build
 if /i "%BUILD_CONFIG%"=="clean" goto clean
-if defined BUILD_HARDLINK goto build_hardlink
-
-echo [VSDevCmd] Building arch=%BUILD_ARCH% config=%BUILD_CONFIG% jobs=%BUILD_JOBS%
-scons arch=%BUILD_ARCH% config=%BUILD_CONFIG% -j%BUILD_JOBS%
-set "BUILD_RESULT=%ERRORLEVEL%"
-goto build_finished
-
-:build_hardlink
-echo [VSDevCmd] Building arch=%BUILD_ARCH% config=%BUILD_CONFIG% hardlink=%BUILD_HARDLINK% jobs=%BUILD_JOBS%
-scons arch=%BUILD_ARCH% config=%BUILD_CONFIG% hardlink=%BUILD_HARDLINK% -j%BUILD_JOBS%
+echo [VSDevCmd] Building arch=%BUILD_ARCH% config=%BUILD_CONFIG%
+cmake --build "%BUILD_DIR%" --config %BUILD_CONFIG% --parallel
 set "BUILD_RESULT=%ERRORLEVEL%"
 goto build_finished
 
 :clean
 echo [VSDevCmd] Cleaning build outputs.
-scons -c
+cmake --build "%BUILD_DIR%" --config Release --target clean
 set "BUILD_RESULT=%ERRORLEVEL%"
 
 :build_finished
@@ -84,8 +86,8 @@ set "VSINSTALL="
 set "VSDEVCMD="
 set "BUILD_ARCH="
 set "BUILD_CONFIG="
-set "BUILD_JOBS="
-set "BUILD_HARDLINK="
+set "BUILD_DIR="
+set "CMAKE_ARCH="
 exit /b %BUILD_RESULT%
 
 :interactive

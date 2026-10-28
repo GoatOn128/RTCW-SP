@@ -4,15 +4,15 @@ setlocal EnableExtensions
 set "SCRIPT_DIR=%~dp0"
 set "PROJECT_ROOT="
 
-if exist "%SCRIPT_DIR%SConstruct" if exist "%SCRIPT_DIR%.vscode\settings.json" set "PROJECT_ROOT=%SCRIPT_DIR%"
+if exist "%SCRIPT_DIR%src\CMakeLists.txt" if exist "%SCRIPT_DIR%.vscode\settings.json" set "PROJECT_ROOT=%SCRIPT_DIR%"
 
-if not defined PROJECT_ROOT if exist "%SCRIPT_DIR%..\SConstruct" if exist "%SCRIPT_DIR%..\.vscode\settings.json" for %%I in ("%SCRIPT_DIR%..") do set "PROJECT_ROOT=%%~fI"
+if not defined PROJECT_ROOT if exist "%SCRIPT_DIR%..\src\CMakeLists.txt" if exist "%SCRIPT_DIR%..\.vscode\settings.json" for %%I in ("%SCRIPT_DIR%..") do set "PROJECT_ROOT=%%~fI"
 
-if not defined PROJECT_ROOT if exist "%SCRIPT_DIR%..\..\SConstruct" if exist "%SCRIPT_DIR%..\..\.vscode\settings.json" for %%I in ("%SCRIPT_DIR%..\..") do set "PROJECT_ROOT=%%~fI"
+if not defined PROJECT_ROOT if exist "%SCRIPT_DIR%..\..\src\CMakeLists.txt" if exist "%SCRIPT_DIR%..\..\.vscode\settings.json" for %%I in ("%SCRIPT_DIR%..\..") do set "PROJECT_ROOT=%%~fI"
 
 if not defined PROJECT_ROOT (
     echo [RTCW-SP] ERROR: Could not locate the project root.
-    echo Put this launcher beside SConstruct in D:\Github\RTCW-SP,
+    echo Put this launcher beside src\CMakeLists.txt in D:\Github\RTCW-SP,
     echo with the .vscode folder beside it.
     pause
     exit /b 1

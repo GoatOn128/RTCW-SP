@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    name: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
+    name: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
     runs-on: ${{ matrix.os }}
     strategy:
       # one failing leg cancels the remaining legs of this OS, the other
@@ -26,78 +26,58 @@ jobs:
         os: [ubuntu-latest]
         arch: [x86, x64]
         config: [debug, release]
-        # the hardlink dimension must exist in the base matrix (empty
-        # string) or the include entries below would merge into the
-        # existing legs instead of adding new ones
-        hardlink: ['']
-        cachekey: ['']
-        include:
-          # hard-link coverage: the game module in one image; the
-          # renderer is always built into the executable now
-          - os: ubuntu-latest
-            arch: x64
-            config: release
-            hardlink: 'game'
-            cachekey: 'game'
     steps:
       - uses: actions/checkout@v4
       - name: clean stale log
         shell: bash
         run: rm -f build.log
-      - name: free disk space
-        if: runner.os == 'Windows'
-        shell: bash
-        run: |
-          # the Windows runners run out of disk during full builds
-          rm -rf /c/Android /c/Miniconda3 /c/vcpkg || true
-          df -h /c 2>&1 | tee -a build.log
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: install scons
-        shell: bash
-        run: |
-          set -o pipefail
-          pip install scons 2>&1 | tee -a build.log
       - name: install linux deps
-        if: runner.os == 'Linux'
         shell: bash
         run: |
           set -o pipefail
           sudo dpkg --add-architecture i386 || true
           sudo apt-get update -qq 2>&1 | tee -a build.log
           sudo apt-get install -y -qq gcc-multilib g++-multilib 2>&1 | tee -a build.log
+          sudo apt-get install -y -qq ninja-build 2>&1 | tee -a build.log
           # GL headers are arch independent, one install covers both legs
           sudo apt-get install -y -qq libgl-dev libglx-dev 2>&1 | tee -a build.log
           if [ "${{ matrix.arch }}" = "x86" ]; then
-            sudo apt-get install -y -qq libgl-dev:i386 libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
+            sudo apt-get install -y -qq libx11-dev:i386 libxext-dev:i386 libxxf86dga-dev:i386 libxxf86vm-dev:i386 2>&1 | tee -a build.log
           else
             sudo apt-get install -y -qq libx11-dev libxext-dev libxxf86dga-dev libxxf86vm-dev 2>&1 | tee -a build.log
           fi
-      - name: setup msvc environment
-        if: runner.os == 'Windows'
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{ matrix.arch }}
-      - name: cache scons objects
-        uses: actions/cache@v4
-        with:
-          path: .scons_cache
-          # no restore-keys: falling back to a cache from an older
-          # SConstruct fills the disk with stale objects and slows
-          # the restore down
-          key: scons-${{ runner.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.cachekey }}-${{ hashFiles('SConstruct') }}
+      - name: configure
+        shell: bash
+        run: |
+          set -o pipefail
+          case "${{ matrix.config }}" in
+            debug)   config="Debug" ;;
+            release) config="Release" ;;
+          esac
+          if [ "${{ matrix.arch }}" = "x86" ]; then
+            # -m32 keeps CMake's pointer-size probe at 4 so the modules get
+            # the x86 names the engine loads at runtime
+            cmake -S src -B build -G Ninja -DCMAKE_BUILD_TYPE="$config" \
+              -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 \
+              -DCMAKE_EXE_LINKER_FLAGS=-m32 -DCMAKE_SHARED_LINKER_FLAGS=-m32 \
+              2>&1 | tee -a build.log
+          else
+            cmake -S src -B build -G Ninja -DCMAKE_BUILD_TYPE="$config" 2>&1 | tee -a build.log
+          fi
       - name: build
         shell: bash
         run: |
           set -o pipefail
-          # -k keeps going so the digest lists every failing file in one run
-          scons arch=${{ matrix.arch }} config=${{ matrix.config }} hardlink=${{ matrix.hardlink }} -j4 -k 2>&1 | tee -a build.log
+          # -k 0 keeps going so the digest lists every failing file in one run
+          cmake --build build --parallel 4 -- -k 0 2>&1 | tee -a build.log
       - name: digest
         if: always()
         shell: bash
         env:
-          LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
+          LEG: ${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
           STATUS: ${{ job.status }}
         run: |
           cp build.log "log-$LEG.log" 2>/dev/null || true
@@ -106,10 +86,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
+          name: logs-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
           path: |
-            log-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}.log
-            digest-fragment-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}.md
-            status-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}-${{ matrix.hardlink }}
+            log-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.log
+            digest-fragment-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}.md
+            status-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.config }}
           if-no-files-found: ignore
-

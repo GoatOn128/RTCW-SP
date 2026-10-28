@@ -2,94 +2,111 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build (x64 release)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x64", "config=release", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x64 release 8"]
-            },
-            "group": { "kind": "build", "isDefault": true },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "label": "Configure (x86)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--preset", "visual-studio"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": [],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
-            "label": "Build (x64 debug)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x64", "config=debug", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x64 debug 8"]
-            },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "label": "Configure (x64)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--preset", "visual-studio-x64"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": [],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
             "label": "Build (x86 release)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x86", "config=release", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x86 release 8"]
-            },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-release"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$msCompile"],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
             "label": "Build (x86 debug)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x86", "config=debug", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x86 debug 8"]
-            },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-debug"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$msCompile"],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
-            "label": "Build (x64 release, renderer hard-linked)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x64", "config=release", "hardlink=renderer", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x64 release 8 renderer"]
-            },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "label": "Build (x64 release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-x64-release"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$msCompile"],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
-            "label": "Build (x86 release, renderer hard-linked)",
-            "type": "process",
-            "command": "scons",
-            "args": ["arch=x86", "config=release", "hardlink=renderer", "-j8"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x86 release 8 renderer"]
-            },
-            "problemMatcher": ["$msCompile", "$gcc"],
+            "label": "Build (x64 debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-x64-debug"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$msCompile"],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         },
         {
-            "label": "Clean",
-            "type": "process",
-            "command": "scons",
-            "args": ["-c"],
-            "options": { "cwd": "${workspaceFolder}" },
-            "windows": {
-                "command": "cmd.exe",
-                "args": ["/d", "/s", "/c", "call .\\.vscode\\scripts\\VS2026DevCmd.cmd x64 clean 1"]
-            },
+            "label": "Build (Linux x64 release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "linux-release"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$gcc"],
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
+        },
+        {
+            "label": "Build (Linux x64 debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "linux-debug"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$gcc"],
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
+        },
+        {
+            "label": "Build (Linux x86 release)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "linux-x86-release"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$gcc"],
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
+        },
+        {
+            "label": "Build (Linux x86 debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "linux-x86-debug"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": ["$gcc"],
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
+        },
+        {
+            "label": "Clean (x86)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-release", "--target", "clean"],
+            "options": { "cwd": "${workspaceFolder}/src" },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
+        },
+        {
+            "label": "Clean (x64)",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "--preset", "visual-studio-x64-release", "--target", "clean"],
+            "options": { "cwd": "${workspaceFolder}/src" },
             "problemMatcher": [],
             "presentation": { "reveal": "always", "panel": "dedicated", "clear": false, "showReuseMessage": false }
         }

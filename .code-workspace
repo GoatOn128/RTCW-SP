@@ -16,8 +16,9 @@
             }
         },
         "terminal.integrated.cwd": "${workspaceFolder}",
-    "terminal.integrated.defaultProfile.windows": "VS 2026 Developer Command Prompt (x64)",
+        "terminal.integrated.defaultProfile.windows": "VS 2026 Developer Command Prompt (x64)",
         "terminal.integrated.scrollback": 10000,
+        "cmake.sourceDirectory": "${workspaceFolder}/src",
         "C_Cpp.default.cStandard": "c11",
         "C_Cpp.default.cppStandard": "c++17",
         "editor.formatOnSave": false,
@@ -29,13 +30,14 @@
         "[cpp]": {
             "editor.defaultFormatter": "zachflower.uncrustify"
         },
-        "uncrustify.configPath.windows": "${workspaceFolder}/uncrustify-0.83.0.cfg",
-        "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify-0.83.0.cfg"
+        "uncrustify.configPath.windows": "${workspaceFolder}/uncrustify.cfg",
+        "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify.cfg"
     },
     "extensions": {
         "recommendations": [
             "vadimcn.vscode-lldb",
             "ms-vscode.cpptools",
+            "ms-vscode.cmake-tools",
             "ms-vscode.powershell",
             "zachflower.uncrustify",
             "editorconfig.editorconfig",

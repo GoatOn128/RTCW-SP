@@ -13,6 +13,7 @@
     "terminal.integrated.defaultProfile.windows": "VS 2026 Developer Command Prompt (x64)",
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.enablePersistentSessions": true,
+    "cmake.sourceDirectory": "${workspaceFolder}/src",
     "C_Cpp.default.cStandard": "c11",
     "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.errorSquiggles": "enabled",

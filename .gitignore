@@ -1,8 +1,8 @@
 # build outputs
 build/
+build-*/
+out/
 bin/
-.scons_cache/
-.sconsign.dblite
 
 # compiler artifacts
 *.o
@@ -15,6 +15,11 @@ bin/
 *.a
 *.pdb
 *.res
+*.map
+
+# generated game function table temp files
+g_funcs.tmp
+g_func_decs.tmp
 
 # python
 __pycache__/
