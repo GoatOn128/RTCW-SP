@@ -97,6 +97,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <time.h>
 #include <ctype.h>
 #include <limits.h>
+#include <stdint.h>
 
 // this is the define for determining if we have an asm version of a C function
 #if ( defined _M_IX86 || defined __i386__ ) && !defined __sun__  && !defined __LCC__
@@ -663,7 +664,7 @@ float   BigFloat( float l );
 float   LittleFloat( float l );
 
 void    Swap_Init( void );
-char    * QDECL va( char *format, ... );
+char    * QDECL va( const char *format, ... );
 float   *tv( float x, float y, float z );
 
 //=============================================

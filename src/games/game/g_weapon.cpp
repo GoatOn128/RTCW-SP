@@ -1146,8 +1146,8 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	VectorNormalize( forward );         //	make sure forward is normalized
 
 	upangle = -( ent->s.apos.trBase[0] ); //	this will give between	-90 / 90
-	upangle = min( upangle, 50 );
-	upangle = max( upangle, -50 );        //	now clamped to			-50 / 50	(don't allow firing straight up/down)
+	upangle = min( upangle, 50.0f );
+	upangle = max( upangle, -50.0f );        //	now clamped to			-50 / 50	(don't allow firing straight up/down)
 	upangle = upangle / 100.0f;           //						   -0.5 / 0.5
 	upangle += 0.5f;                    //						    0.0 / 1.0
 
