@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: e1e983bfe22450eaf75a7ac2e4d7539c05ccbbfe)
 /*
 ===========================================================================
 
@@ -46,8 +47,7 @@ If you have questions concerning this license or the applicable additional terms
 #define MAX_COLOR_RANGES 10
 #define MAX_OPEN_MENUS 16
 
-#define WINDOW_MOUSEOVER
-0x00000001       // mouse is over it, non exclusive
+#define WINDOW_MOUSEOVER 0x00000001       // mouse is over it, non exclusive
 #define WINDOW_HASFOCUS         0x00000002  // has cursor focus, exclusive
 #define WINDOW_VISIBLE          0x00000004  // is visible
 #define WINDOW_GREY             0x00000008  // is visible but grey ( non-active )
@@ -136,8 +136,7 @@ typedef struct {
 	Rectangle rectClient;           // screen coord rectangle
 	const char *name;               //
 	const char *model;              //
-	const char *group;              // if i
-	t belongs to a group
+	const char *group;              // if it belongs to a group
 	const char *cinematicName;      // cinematic name
 	int cinematic;                  // cinematic handle
 	int style;                      //
@@ -191,8 +190,7 @@ typedef struct listBoxDef_s {
 	int drawPadding;
 	int cursorPos;
 	float elementWidth;
-	float ele
-		mentHeight;
+	float elementHeight;
 	int elementStyle;
 	int numColumns;
 	columnInfo_t columnInfo[MAX_LB_COLUMNS];
@@ -298,8 +296,7 @@ struct menuDef_s {
 	const char *onOpen;             // run when the menu is first opened
 	const char *onClose;            // run when the menu is closed
 	const char *onESC;              // run when the menu is closed
-	const char *onKey[255];         // NERVE - SMF - execs commands when a
-	key is pressed
+	const char *onKey[255];         // NERVE - SMF - execs commands when a key is pressed
 	const char *soundName;          // background loop sound for menu
 	const char *onROQDone;          //----(SA)	added.  callback for roqs played from menus
 
@@ -394,8 +391,7 @@ typedef struct {
 
 	qhandle_t ( *feederItemImage )( float feederID, int index );
 	void ( *feederSelection )( float feederID, int index );
-	void( *feederAddI
-		  tem )( float feederID, const char *name, int index ); // NERVE - SMF
+	void( *feederAddItem )( float feederID, const char *name, int index ); // NERVE - SMF
 
 	void ( *keynumToStringBuf )( int keynum, char *buf, int buflen );
 	void ( *getBindingBuf )( int keynum, char *buf, int buflen );
@@ -459,8 +455,7 @@ menuDef_t *Menu_GetFocused();
 void Menu_HandleKey( menuDef_t *menu, int key, qboolean down );
 void Menu_HandleMouseMove( menuDef_t *menu, float x, float y );
 void Menu_ScrollFeeder( menuDef_t *menu, int feeder, qboolean down );
-q
-boolean Float_Parse( char **p, float *f );
+qboolean Float_Parse( char **p, float *f );
 qboolean Color_Parse( char **p, vec4_t *c );
 qboolean Int_Parse( char **p, int *i );
 qboolean Rect_Parse( char **p, rectDef_t *r );
