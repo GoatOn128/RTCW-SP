@@ -326,7 +326,7 @@ void WriteField1( saveField_t *field, byte *base ) {
 	{
 	case F_STRING:
 		if ( *(char **)p ) {
-			len = strlen( *(char **)p ) + 1;
+			len = (int)strlen( *(char **)p ) + 1;
 		} else {
 			len = 0;
 		}
@@ -374,7 +374,7 @@ void WriteField1( saveField_t *field, byte *base ) {
 			if ( !func ) {
 				G_Error( "WriteField1: unknown function, cannot save game" );
 			}
-			len = strlen( func->funcStr ) + 1;
+			len = (int)strlen( func->funcStr ) + 1;
 		}
 		*(int *)p = len;
 		break;
@@ -395,7 +395,7 @@ void WriteField2( fileHandle_t f, saveField_t *field, byte *base ) {
 	{
 	case F_STRING:
 		if ( *(char **)p ) {
-			len = strlen( *(char **)p ) + 1;
+			len = (int)strlen( *(char **)p ) + 1;
 			if ( !G_SaveWrite( *(char **)p, len, f ) ) {
 				G_SaveWriteError();
 			}
@@ -407,7 +407,7 @@ void WriteField2( fileHandle_t f, saveField_t *field, byte *base ) {
 			if ( !func ) {
 				G_Error( "WriteField1: unknown function, cannot save game" );
 			}
-			len = strlen( func->funcStr ) + 1;
+			len = (int)strlen( func->funcStr ) + 1;
 			if ( !G_SaveWrite( func->funcStr, len, f ) ) {
 				G_SaveWriteError();
 			}
@@ -1230,12 +1230,12 @@ qboolean G_SaveGame( char *username ) {
 				 g_entities[0].health );
 	// write it out
 	// length
-	i = strlen( infoString );
+	i = (int)strlen( infoString );
 	if ( !G_SaveWrite( &i, sizeof( i ), f ) ) {
 		G_SaveWriteError();
 	}
 	// string
-	if ( !G_SaveWrite( infoString, strlen( infoString ), f ) ) {
+	if ( !G_SaveWrite( infoString, (int)strlen( infoString ), f ) ) {
 		G_SaveWriteError();
 	}
 
@@ -1257,7 +1257,7 @@ qboolean G_SaveGame( char *username ) {
 //	trap_Cvar_VariableStringBuffer( "sg_fog", infoString, sizeof(infoString) );
 	trap_GetConfigstring( CS_FOGVARS, infoString, sizeof( infoString ) );
 
-	i = strlen( infoString );
+	i = (int)strlen( infoString );
 	if ( !G_SaveWrite( &i, sizeof( i ), f ) ) {
 		G_SaveWriteError();
 	}
@@ -1266,7 +1266,7 @@ qboolean G_SaveGame( char *username ) {
 		Q_strncpyz( &infoString[0], "none", sizeof( infoString ) );
 	}
 
-	if ( !G_SaveWrite( infoString, strlen( infoString ), f ) ) {
+	if ( !G_SaveWrite( infoString, (int)strlen( infoString ), f ) ) {
 		G_SaveWriteError();
 	}
 //----(SA)	end

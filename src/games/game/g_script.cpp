@@ -382,8 +382,8 @@ void G_Script_ScriptParse( gentity_t *ent ) {
 			}
 
 			if ( strlen( params ) ) { // copy the params into the event
-				curEvent->params = (char *) G_Alloc( strlen( params ) + 1 );
-				Q_strncpyz( curEvent->params, params, strlen( params ) + 1 );
+				curEvent->params = (char *) G_Alloc( (int)strlen( params ) + 1 );
+				Q_strncpyz( curEvent->params, params, (int)strlen( params ) + 1 );
 			}
 
 			// parse the actions for this event
@@ -443,8 +443,8 @@ void G_Script_ScriptParse( gentity_t *ent ) {
 				}
 
 				if ( strlen( params ) ) { // copy the params into the event
-					curEvent->stack.items[curEvent->stack.numItems].params = (char *) G_Alloc( strlen( params ) + 1 );
-					Q_strncpyz( curEvent->stack.items[curEvent->stack.numItems].params, params, strlen( params ) + 1 );
+					curEvent->stack.items[curEvent->stack.numItems].params = (char *) G_Alloc( (int)strlen( params ) + 1 );
+					Q_strncpyz( curEvent->stack.items[curEvent->stack.numItems].params, params, (int)strlen( params ) + 1 );
 				}
 
 				curEvent->stack.numItems++;

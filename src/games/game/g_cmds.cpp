@@ -68,7 +68,7 @@ void DeathmatchScoreboardMessage( gentity_t *ent ) {
 					 " %i %i %i %i %i %i", level.sortedClients[i],
 					 cl->ps.persistant[PERS_SCORE], ping, ( level.time - cl->pers.enterTime ) / 60000,
 					 scoreFlags, g_entities[level.sortedClients[i]].s.powerups );
-		j = strlen( entry );
+		j = (int)strlen( entry );
 		if ( stringlength + j > 1024 ) {
 			break;
 		}
@@ -127,7 +127,7 @@ char    *ConcatArgs( int start ) {
 	c = trap_Argc();
 	for ( i = start ; i < c ; i++ ) {
 		trap_Argv( i, arg, sizeof( arg ) );
-		tlen = strlen( arg );
+		tlen = (int)strlen( arg );
 		if ( len + tlen >= MAX_STRING_CHARS - 1 ) {
 			break;
 		}

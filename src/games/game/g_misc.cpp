@@ -1324,7 +1324,7 @@ void use_dlight( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 
 		if ( ent->spawnflags & 4 ) {   // ONETIME
 			ent->think = shutoff_dlight;
-			ent->nextthink = level.time + (  strlen( ent->dl_stylestring )  * 100 ) - 100;
+			ent->nextthink = level.time + (  (int)strlen( ent->dl_stylestring )  * 100 ) - 100;
 		}
 	}
 }
@@ -1363,7 +1363,7 @@ void SP_dlight( gentity_t *ent ) {
 		ent->dl_stylestring = "mmmaaa";                          // default to a strobe to call attention to this not being set
 	}
 
-	ent->count      = strlen( ent->dl_stylestring );
+	ent->count      = (int)strlen( ent->dl_stylestring );
 
 	ent->dl_atten = atten;
 
@@ -2628,11 +2628,11 @@ void SP_misc_tagemitter( gentity_t *ent ) {
 	}
 
 	ent->target_ent = G_Spawn();    // spawn the emitter
-	ent->target_ent->tagName = (char *) G_Alloc( strlen( tagName ) + 1 );
-	Q_strncpyz( ent->target_ent->tagName, tagName, strlen( tagName ) + 1 );
+	ent->target_ent->tagName = (char *) G_Alloc( (int)strlen( tagName ) + 1 );
+	Q_strncpyz( ent->target_ent->tagName, tagName, (int)strlen( tagName ) + 1 );
 
-	ent->tagName = (char *) G_Alloc( strlen( tagName ) + 1 );
-	Q_strncpyz( ent->tagName, tagName, strlen( tagName ) + 1 );
+	ent->tagName = (char *) G_Alloc( (int)strlen( tagName ) + 1 );
+	Q_strncpyz( ent->tagName, tagName, (int)strlen( tagName ) + 1 );
 
 }
 

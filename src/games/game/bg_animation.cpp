@@ -467,7 +467,7 @@ char *BG_CopyStringIntoBuffer( char *string, char *buffer, int bufSize, int *off
 	strcpy( pch, string );
 
 	// move the offset along
-	*offset += strlen( string ) + 1;
+	*offset += (int)strlen( string ) + 1;
 
 	return pch;
 }
@@ -1295,7 +1295,7 @@ void BG_AnimParseAnimScript( animModelInfo_t *modelInfo, animScriptData_t *scrip
 				// move the text_p backwards so we can read in the last token again
 				text_p -= strlen( token );
 				// sanity check that
-				if ( Q_strncmp( text_p, token, strlen( token ) ) ) {
+				if ( Q_strncmp( text_p, token, (int)strlen( token ) ) ) {
 					// this should never happen, just here to check that this operation is correct before code goes live
 					BG_AnimParseError( "BG_AnimParseAnimScript: internal error" );
 				}
@@ -1323,7 +1323,7 @@ void BG_AnimParseAnimScript( animModelInfo_t *modelInfo, animScriptData_t *scrip
 				// move the text_p backwards so we can read in the last token again
 				text_p -= strlen( token );
 				// sanity check that
-				if ( Q_strncmp( text_p, token, strlen( token ) ) ) {
+				if ( Q_strncmp( text_p, token, (int)strlen( token ) ) ) {
 					// this should never happen, just here to check that this operation is correct before code goes live
 					BG_AnimParseError( "BG_AnimParseAnimScript: internal error" );
 				}
@@ -1417,7 +1417,7 @@ void BG_AnimParseAnimScript( animModelInfo_t *modelInfo, animScriptData_t *scrip
 				// move the text_p backwards so we can read in the last token again
 				text_p -= strlen( token );
 				// sanity check that
-				if ( Q_strncmp( text_p, token, strlen( token ) ) ) {
+				if ( Q_strncmp( text_p, token, (int)strlen( token ) ) ) {
 					// this should never happen, just here to check that this operation is correct before code goes live
 					BG_AnimParseError( "BG_AnimParseAnimScript: internal error" );
 				}
@@ -1445,7 +1445,7 @@ void BG_AnimParseAnimScript( animModelInfo_t *modelInfo, animScriptData_t *scrip
 				// move the text_p backwards so we can read in the last token again
 				text_p -= strlen( token );
 				// sanity check that
-				if ( Q_strncmp( text_p, token, strlen( token ) ) ) {
+				if ( Q_strncmp( text_p, token, (int)strlen( token ) ) ) {
 					// this should never happen, just here to check that this operation is correct before code goes live
 					BG_AnimParseError( "BG_AnimParseAnimScript: internal error" );
 				}

@@ -1000,8 +1000,8 @@ qboolean G_ScriptAction_TagConnect( gentity_t *ent, char *params ) {
 	}
 
 	ent->tagParent = parent;
-	ent->tagName = (char *) G_Alloc( strlen( token ) + 1 );
-	Q_strncpyz( ent->tagName, token, strlen( token ) + 1 );
+	ent->tagName = (char *) G_Alloc( (int)strlen( token ) + 1 );
+	Q_strncpyz( ent->tagName, token, (int)strlen( token ) + 1 );
 
 	G_ProcessTagConnect( ent, qtrue );
 
