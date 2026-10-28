@@ -313,3 +313,9 @@ Result: all four ubuntu legs and all four windows legs build with 0 errors and 0
 - The engine headers were never listed as sources of any target, so none of them showed up in Visual Studio. attach_headers_to_targets in Utils.cmake now globs the tree for .h/.hpp/.inl files, skips the ones a target already owns and the third-party ones, and attaches each remaining header to the target whose source directory contains it (deepest directory wins). The third-party headers stay in the loose_headers misc utility project.
 - group_target_sources in Utils.cmake runs at the end of configure_target and sorts each target's files into Source Files and Header Files filters that mirror the source tree via source_group(TREE).
 - The first attempt failed the configure step on all legs with "Cannot specify sources for target ">wolf"" because the directory-pair parsing read the target name one character too early. The fix skips the whole arrow separator. Digest 1d0d9b3: all nine legs and uncrustify green, 0 errors, 0 warnings.
+
+## 2026-10-28: drop the loose headers utility project
+
+- Removed gather_loose_headers and its add_custom_target container. attach_headers_to_targets no longer skips the third-party tree, so headers under src/third-party now attach to the target whose directory contains them (recast and detour).
+- Headers that no target directory contains (stb, dr_libs, OpenalSoft, SDL3) are attached to every real project so they stay visible; utility targets like extractFunctionTables are skipped because target_sources has nothing useful to do there.
+- Digest 5392045: all nine legs and uncrustify green, 0 errors, 0 warnings.
