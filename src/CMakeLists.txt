@@ -106,5 +106,9 @@ configure_engine(wolfded)
 
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT wolf)
 
-# gather the headers that no project lists into a utility project so they show up in the IDE
+# attach the loose headers to the projects that own their directories and
+# collect the remaining third-party headers in a utility project
+attach_headers_to_targets()
+group_target_sources(wolf)
+group_target_sources(wolfded)
 gather_loose_headers(loose_headers)
