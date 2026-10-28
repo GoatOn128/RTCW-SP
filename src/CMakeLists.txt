@@ -33,16 +33,26 @@ endfunction()
 function(wolf_configure_target target)
     target_compile_definitions(${target} PRIVATE
         ARCH_STRING="${WOLF_ARCH}"
+        MAC_STATIC=
         $<$<CONFIG:Debug>:_DEBUG;DEBUG>
         $<$<NOT:$<CONFIG:Debug>>:NDEBUG>
     )
     if(WIN32)
-        target_compile_definitions(${target} PRIVATE WIN32 _WINDOWS _CRT_SECURE_NO_WARNINGS)
+        target_compile_definitions(${target} PRIVATE
+            WIN32 _WINDOWS _CRT_SECURE_NO_WARNINGS
+            PATH_SEP='\\\\'
+        )
+    else()
+        target_compile_definitions(${target} PRIVATE PATH_SEP='/')
     endif()
     if(MSVC)
         target_compile_options(${target} PRIVATE
-            $<$<CONFIG:Debug>:/W3>
-            $<$<NOT:$<CONFIG:Debug>>:/W4>
+            /W3 /wd4244 /wd4267 /wd4996 /wd5033
+        )
+    endif()
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${target} PRIVATE
+            $<$<COMPILE_LANGUAGE:CXX>:-fno-operator-names;-Wno-write-strings;-Wno-register>
         )
     endif()
     target_include_directories(${target} PRIVATE
@@ -365,6 +375,11 @@ endif()
 add_library(cgame SHARED ${CGAME_SOURCES})
 set_target_properties(cgame PROPERTIES OUTPUT_NAME "cgame_${WOLF_ARCH}")
 target_compile_definitions(cgame PRIVATE CGAMEDLL)
+target_include_directories(cgame PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/cgame"
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/cgame/fx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/renderer"
+)
 if(WIN32)
     target_link_libraries(cgame PRIVATE odbc32 odbccp32)
     target_link_options(cgame PRIVATE /BASE:0x30000000 /MAP:${WOLF_OUTPUT_DIRECTORY}/cgame_${WOLF_ARCH}.map)
@@ -456,7 +471,6 @@ else()
         sys/unix/unix_main.cpp
         sys/unix/unix_shared.cpp
         sys/unix/unix_net.cpp
-        sys/unix/linux_common.cpp
         sys/unix/linux_glimp.cpp
         sys/unix/linux_joystick.cpp
         sys/unix/linux_snd.cpp

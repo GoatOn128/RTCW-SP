@@ -1084,7 +1084,7 @@ int PC_Directive_include( source_t *source ) {
 			if ( token.type == TT_PUNCTUATION && *token.string == '>' ) {
 				break;
 			}
-			strncat( path, token.string, _MAX_PATH );
+			strncat( path, token.string, _MAX_PATH - 1 );
 		} //end while
 		if ( *token.string != '>' ) {
 			SourceWarning( source, "#include missing trailing >" );
@@ -2514,7 +2514,7 @@ int PC_Directive_eval( source_t *source ) {
 	token.whitespace_p = source->scriptstack->script_p;
 	token.endwhitespace_p = source->scriptstack->script_p;
 	token.linescrossed = 0;
-	sprintf( token.string, "%d", abs( value ) );
+	sprintf( token.string, "%ld", abs( value ) );
 	token.type = TT_NUMBER;
 	token.subtype = TT_INTEGER | TT_LONG | TT_DECIMAL;
 	PC_UnreadSourceToken( source, &token );
@@ -2620,7 +2620,7 @@ int PC_DollarDirective_evalint( source_t *source ) {
 	token.whitespace_p = source->scriptstack->script_p;
 	token.endwhitespace_p = source->scriptstack->script_p;
 	token.linescrossed = 0;
-	sprintf( token.string, "%d", abs( value ) );
+	sprintf( token.string, "%ld", abs( value ) );
 	token.type = TT_NUMBER;
 	token.subtype = TT_INTEGER | TT_LONG | TT_DECIMAL;
 #ifdef NUMBERVALUE
@@ -3170,3 +3170,4 @@ void FreeSource( source_t *source ) {
 	//free the source itself
 	FreeMemory( source );
 } //end of the function FreeSource
+

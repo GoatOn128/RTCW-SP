@@ -80,9 +80,8 @@ void doLog( const rcLogCategory category, const char *message, int ) override {
 std::string ReadText( const std::filesystem::path &path ) {
 	std::ifstream stream( path );
 	if ( !stream ) {
-		return {}
+		return {};
 	}
-	;
 	return { std::istreambuf_iterator<char>( stream ), std::istreambuf_iterator<char>() };
 }
 
