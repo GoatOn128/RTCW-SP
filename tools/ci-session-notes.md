@@ -319,3 +319,12 @@ Result: all four ubuntu legs and all four windows legs build with 0 errors and 0
 - Removed gather_loose_headers and its add_custom_target container. attach_headers_to_targets no longer skips the third-party tree, so headers under src/third-party now attach to the target whose directory contains them (recast and detour).
 - Headers that no target directory contains (stb, dr_libs, OpenalSoft, SDL3) are attached to every real project so they stay visible; utility targets like extractFunctionTables are skipped because target_sources has nothing useful to do there.
 - Digest 5392045: all nine legs and uncrustify green, 0 errors, 0 warnings.
+
+## 2026-10-28: fix the header attachment and flatten the source groups
+
+- The headers still did not show up in the IDE projects. A temporary configure failure printed the attachment numbers into the CI logs and revealed the cause: ENGINE_SOURCE_DIR was normalized with cmake_path(NORMAL_PATH), which collapsed the trailing cmake/.. but left a trailing slash, so every globbed header path contained a double slash (src//client/...). The deepest-directory prefix match then failed for every target directory except the src root, and all 265 headers ended up attached to wolf only.
+- Utils.cmake now uses the cmake_path(SET ... NORMALIZE ...) form for ENGINE_SOURCE_DIR and ENGINE_OUTPUT_DIRECTORY, which produces a fully clean path.
+- attach_target_headers runs inside configure_target in the target's own directory scope: it takes the directories of the target's own source files and attaches the headers that sit next to them. Doing it there means the grouping also happens in the right scope, since source_group filters are directory-scoped and cannot be defined from the root for subdirectory targets.
+- attach_headers_to_targets shrank to one job: find the headers no target owns (the third-party trees such as stb, dr_libs, OpenalSoft and SDL3) and put them into every non-utility project, as requested. The directory-pair matching with its arrow parsing was deleted.
+- group_target_sources no longer uses the Source Files and Header Files prefixes; the filters now mirror the source tree straight from the project root, so the botlib project shows games/botlib with the cpp and header files side by side.
+- Digest b6e54d6: all nine legs and uncrustify green, 0 errors, 0 warnings.
