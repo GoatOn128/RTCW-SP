@@ -399,7 +399,7 @@ void CG_AddLightstyle( centity_t *cent ) {
 	}
 
 	otime = cg.time - cent->dl_time;
-	stringlength = strlen( cent->dl_stylestring );
+	stringlength = (int)strlen( cent->dl_stylestring );
 
 	// it's been a long time since you were updated, lets assume a reset
 	if ( otime > 2 * LS_FRAMETIME ) {

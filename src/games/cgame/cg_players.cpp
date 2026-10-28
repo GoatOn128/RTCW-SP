@@ -3543,7 +3543,15 @@ void CG_AddZombieFlameEffect( centity_t *cent ) {
 	if ( cent->pe.cueZombieSpirit ) {
 		alpha = fadeRatio;
 	} else {
-		alpha = ( (float)( cent->pe.zombieSpiritEndTime - cg.time ) / (float)fadeOutTime );
+		// fadeOutTime is always zero, so compare the remaining time directly
+		// instead of dividing by it (same outcome as the old ratio math)
+		if ( cent->pe.zombieSpiritEndTime < cg.time ) {
+			alpha = -1.0;
+		} else if ( cent->pe.zombieSpiritEndTime > cg.time ) {
+			alpha = 1.0;
+		} else {
+			alpha = 0.0;
+		}
 		fadeRatio = alpha;
 		if ( alpha < 0.0 ) {
 			cent->pe.zombieSpiritEndTime = CG_FxInt( "wolf/controller_addzombieflameeffect", "cent_pe_zombieSpiritEndTime" );   // stop the effect

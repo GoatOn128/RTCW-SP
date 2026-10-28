@@ -78,7 +78,7 @@ int CG_Text_Width( const char *text, int font, float scale, int limit ) {
 	useScale = scale * fnt->glyphScale;
 	out = 0;
 	if ( text ) {
-		len = strlen( text );
+		len = (int)strlen( text );
 		if ( limit > 0 && len > limit ) {
 			len = limit;
 		}
@@ -123,7 +123,7 @@ int CG_Text_Height( const char *text, int font, float scale, int limit ) {
 	useScale = scale * fnt->glyphScale;
 	max = 0;
 	if ( text ) {
-		len = strlen( text );
+		len = (int)strlen( text );
 		if ( limit > 0 && len > limit ) {
 			len = limit;
 		}
@@ -182,7 +182,7 @@ void CG_Text_Paint( float x, float y, int font, float scale, vec4_t color, const
 		const char *s = text;
 		trap_R_SetColor( color );
 		memcpy( &newColor[0], &color[0], sizeof( vec4_t ) );
-		len = strlen( text );
+		len = (int)strlen( text );
 		if ( limit > 0 && len > limit ) {
 			len = limit;
 		}

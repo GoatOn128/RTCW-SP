@@ -628,13 +628,13 @@ void CG_SetupDlightstyles( void ) {
 		cent = &cg_entities[entnum];
 
 		token = COM_Parse( &str );   // stylestring
-		Q_strncpyz( cent->dl_stylestring, token, strlen( token ) );
+		Q_strncpyz( cent->dl_stylestring, token, (int)strlen( token ) );
 
 		token = COM_Parse( &str );   // offset
 		cent->dl_frame      = atoi( token );
 		cent->dl_oldframe   = cent->dl_frame - 1;
 		if ( cent->dl_oldframe < 0 ) {
-			cent->dl_oldframe = strlen( cent->dl_stylestring );
+			cent->dl_oldframe = (int)strlen( cent->dl_stylestring );
 		}
 
 		token = COM_Parse( &str );   // sound id

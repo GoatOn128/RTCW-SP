@@ -150,7 +150,7 @@ CTextPool::~CTextPool( void ) {
 }
 
 char *CTextPool::AllocText( char *text, bool addNULL, CTextPool **poolPtr ) {
-	int length = strlen( text ) + ( addNULL ? 1 : 0 );
+	int length = (int)strlen( text ) + ( addNULL ? 1 : 0 );
 
 	if ( mUsed + length + 1 > mSize ) { // extra 1 to put a null on the end
 		if ( poolPtr ) {
