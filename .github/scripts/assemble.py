@@ -43,6 +43,26 @@ def main():
     with open("build-digest.md", "w") as f:
         f.write("".join(digest))
 
+    # compact digest: the full digest concatenates every leg fragment and
+    # grows past 1MB once warnings appear, too big for API reads. Keep one
+    # representative fragment per platform next to the per-leg statuses so
+    # the tree state stays readable without the full file
+    compact = ["# Compact build digest\n\n"]
+    compact.append("commit: %s\n\n" % commit[:12])
+    for leg in sorted(statuses):
+        compact.append("- %s: %s\n" % (leg, statuses[leg]))
+    compact.append("\n")
+    seen = set()
+    for ff in frag_files:
+        leg = os.path.basename(ff)[len("digest-fragment-"):-len(".md")]
+        platform = leg.split("-")[0]
+        if platform in seen:
+            continue
+        seen.add(platform)
+        compact.append(read(ff).strip() + "\n\n")
+    with open("build-digest-compact.md", "w") as f:
+        f.write("".join(compact))
+
     # group the failed leg logs by runner platform; legs with another
     # prefix (uncrustify) carry no build log and stay in the artifacts
     by_platform = {name: [] for name in PLATFORMS}
