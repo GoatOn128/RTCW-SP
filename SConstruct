@@ -594,6 +594,30 @@ if USE_COLOR:
     else:
         env.Append(CCFLAGS=['-fcolor-diagnostics'], CXXFLAGS=['-fcolor-diagnostics'])
 
+# The engine was ported from C to C++. Several warning classes come from
+# idioms that are legal C but invalid or noisy in C++ (assigning string
+# literals to char*, partial struct initializers, and similar). They are
+# suppressed as a class so real regressions stay visible in the build
+# log. Remove entries one at a time as the code is modernized.
+common_nowarn = [
+    '-Wno-writable-strings',
+    '-Wno-missing-field-initializers',
+    '-Wno-unused-but-set-variable',
+    '-Wno-unused-variable',
+    '-Wno-unused-function',
+    '-Wno-unused-const-variable',
+    '-Wno-macro-redefined',
+    '-Wno-invalid-source-encoding',
+    '-Wno-deprecated-register',
+    '-Wno-deprecated-declarations',
+    '-Wno-pointer-to-int-cast',
+    '-Wno-deprecated-copy-with-user-provided-copy',
+    '-Wno-unknown-pragmas',
+    '-Wno-c++17-extensions',
+    '-Wno-cast-function-type-mismatch',
+    '-Wno-inconsistent-missing-override',
+]
+env.Append(CCFLAGS=common_nowarn, CXXFLAGS=common_nowarn)
 # Capture diagnostics from compiler/linker subprocesses for the footer counters.
 # Cloned environments inherit this spawn function.
 env['SPAWN'] = _diagnostic_spawn
@@ -777,16 +801,6 @@ if IS_WINDOWS:
 else:
     detour_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 client_objs += module_objects(detour_env, 'client', detour_files)
-
-# tr_md5.cpp parses MD5 text with std::from_chars and uses try/catch, so
-# it needs C++17 and exception unwinding; the rest of the engine stays
-# on C++14 without them
-md5_env = client_env.Clone()
-if IS_WINDOWS:
-    md5_env.Append(CXXFLAGS=['/std:c++17', '/EHsc'])
-else:
-    md5_env.Append(CXXFLAGS=['-std=gnu++17'])
-client_objs += module_objects(md5_env, 'client', ['src/renderer/tr_md5.cpp'])
 
 client_target = os.path.join(BIN_DIR, 'WolfSP' + ARCH_SUFFIX + EXE)
 client_res = []
