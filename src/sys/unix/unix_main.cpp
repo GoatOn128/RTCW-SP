@@ -1,8 +1,3 @@
-Title :
-
-URL Source: https://cdn.jsdelivr.net/gh/GoatOn128/RTCW-SP@master/src/sys/unix/unix_main.cpp
-
-Markdown Content:
 /*
 ===========================================================================
 
