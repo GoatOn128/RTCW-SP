@@ -1,157 +1,236 @@
 # Compact build digest
 
-commit: f8bf472d596d
+commit: cf545e369d21
 
-- ubuntu-latest-x64-debug-: failure
+- ubuntu-latest-x64-debug-: cancelled
 - ubuntu-latest-x64-release-: failure
 - ubuntu-latest-x64-release-game: failure
 - ubuntu-latest-x86-debug-: failure
-- ubuntu-latest-x86-release-: cancelled
+- ubuntu-latest-x86-release-: failure
 - uncrustify: success
 - windows-latest-x64-debug-: failure
 - windows-latest-x64-release-: cancelled
 - windows-latest-x64-release-cgame: cancelled
 - windows-latest-x64-release-game: failure
-- windows-latest-x64-release-ui: failure
+- windows-latest-x64-release-ui: cancelled
 - windows-latest-x86-debug-: failure
 - windows-latest-x86-release-: cancelled
 
 ## ubuntu-latest-x64-debug-
 
-status: failure
+status: cancelled
 
-errors: 18
-warnings: 38 in 14 kinds
+errors: 25
+warnings: 40 in 16 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-src/games/botlib/be_ai_weap.cpp:91:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:93:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:94:14: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:95:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:96:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:97:16: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:98:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:99:16: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:100:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:101:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:102:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:103:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:104:17: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
-src/games/game/g_funcs.h:349:16: error: address of overloaded function 'va' does not match required type 'unsigned char'
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/splines/q_shared.cpp.o] Error 1
+src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:475:6: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:479:7: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:552:19: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:556:19: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:565:34: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:568:21: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:853:7: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
+src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+scons: *** [build/linux-x64-debug/client/obj/splines/splines.cpp.o] Error 1
 
 ### failure context
 
-- build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o
+- build/linux-x64-debug/client/obj/splines/math_angles.cpp.o
 
 ```
-src/renderer/tr_shade_calc.cpp:669:2: note: array 'invModulate' declared here
-  669 |         unsigned char invModulate[3];
-      |         ^
-1 warning generated.
-src/renderer/tr_shader.cpp:986:23: warning: comparison of different enumeration types ('alphaGen_t' and 'colorGen_t') [-Wenum-compare]
-  986 |         if ( stage->alphaGen == CGEN_IDENTITY ) {
-      |              ~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-src/renderer/tr_shader.cpp:1898:26: warning: comparison of different enumeration types ('alphaGen_t' and 'colorGen_t') [-Wenum-compare]
- 1898 |         if ( stages[0].alphaGen == CGEN_WAVEFORM ) {
-      |              ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~
-2 warnings generated.
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Compiling 'src/splines/math_matrix.cpp'
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o
-
-```
-      |                  ^~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:58:29: note: expanded from macro 'PROJECTILE_OFS'
-   58 | #define PROJECTILE_OFS( x ) (int)&( ( (projectileinfo_t *)0 )->x )
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Compiling 'src/games/botlib/be_ea.cpp'
-src/games/botlib/be_ai_weap.cpp:101:17: error: cast from pointer to smaller type 'int' loses information
-  101 |         {"detonation", PROJECTILE_OFS( detonation ), FT_FLOAT}, //time before projectile explodes after fire pressed
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:58:29: note: expanded from macro 'PROJECTILE_OFS'
-   58 | #define PROJECTILE_OFS( x ) (int)&( ( (projectileinfo_t *)0 )->x )
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:102:13: error: cast from pointer to smaller type 'int' loses information
-  102 |         {"bounce", PROJECTILE_OFS( bounce ), FT_FLOAT},         //amount the projectile bounces
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:58:29: note: expanded from macro 'PROJECTILE_OFS'
-   58 | #define PROJECTILE_OFS( x ) (int)&( ( (projectileinfo_t *)0 )->x )
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:103:17: error: cast from pointer to smaller type 'int' loses information
-  103 |         {"bouncefric", PROJECTILE_OFS( bouncefric ), FT_FLOAT}, //amount the bounce decreases per bounce
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:58:29: note: expanded from macro 'PROJECTILE_OFS'
-   58 | #define PROJECTILE_OFS( x ) (int)&( ( (projectileinfo_t *)0 )->x )
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:104:17: error: cast from pointer to smaller type 'int' loses information
-  104 |         {"bouncestop", PROJECTILE_OFS( bouncestop ), FT_FLOAT}, //minimum bounce value before bouncing stops
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/games/botlib/be_ai_weap.cpp:58:29: note: expanded from macro 'PROJECTILE_OFS'
-   58 | #define PROJECTILE_OFS( x ) (int)&( ( (projectileinfo_t *)0 )->x )
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-13 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/game/obj/games/game/g_save.cpp.o
-
-```
- 1608 |                         if ( !ent->r.svFlags & SVF_CASTAI ) {
-      |                              ^
-      |                               (                          )
-src/games/game/g_client.cpp:1608:9: note: add parentheses around left hand side expression to silence this warning
- 1608 |                         if ( !ent->r.svFlags & SVF_CASTAI ) {
-      |                              ^
-      |                              (              )
+In file included from src/sys/unix/linux_glimp.cpp:76:
+/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
+    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
+      |  ^
+/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
+   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
+      |  ^
 2 warnings generated.
-Compiling 'src/games/game/g_main.cpp'
-Compiling 'src/games/game/g_mem.cpp'
-Compiling 'src/games/game/g_misc.cpp'
-Compiling 'src/games/game/g_missile.cpp'
-Compiling 'src/games/game/g_mover.cpp'
-Compiling 'src/games/game/g_props.cpp'
-Compiling 'src/games/game/g_save.cpp'
-Compiling 'src/games/game/g_script.cpp'
-In file included from src/games/game/g_save.cpp:252:
-src/games/game/g_funcs.h:349:16: error: address of overloaded function 'va' does not match required type 'unsigned char'
-  349 | {"va", (byte *)va},
-      |                ^~
-src/games/game/g_func_decs.h:349:21: note: candidate function
-  349 | extern char * QDECL va( char * format, ... ) ;
-      |                     ^
-src/qcommon/q_shared.h:667:17: note: candidate function
-  667 | char    * QDECL va( const char *format, ... );
-      |                 ^
-Compiling 'src/games/game/g_script_actions.cpp'
-Compiling 'src/games/game/g_session.cpp'
-1 error generated.
-Compiling 'src/games/game/g_spawn.cpp'
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
+Compiling 'src/splines/math_quaternion.cpp'
+In file included from src/splines/math_matrix.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+In file included from src/splines/math_angles.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o
+
+```
+/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
+    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
+      |  ^
+/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
+   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
+      |  ^
+2 warnings generated.
+Compiling 'src/splines/math_quaternion.cpp'
+In file included from src/splines/math_matrix.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+In file included from src/splines/math_angles.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
+Compiling 'src/splines/math_vector.cpp'
+scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/splines/q_parse.cpp.o
+
+```
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
+Compiling 'src/splines/math_vector.cpp'
+scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
+Compiling 'src/splines/q_parse.cpp'
+Compiling 'src/splines/q_shared.cpp'
+Compiling 'src/splines/splines.cpp'
+In file included from src/splines/q_parse.cpp:31:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/splines/q_shared.cpp.o
+
+```
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
+Compiling 'src/splines/util_str.cpp'
+Compiling 'src/games/botlib/be_ai_char.cpp'
+In file included from src/splines/q_shared.cpp:30:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+In file included from src/splines/splines.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+scons: *** [build/linux-x64-debug/client/obj/splines/q_shared.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/splines/splines.cpp.o
+
+```
+      |                     ^~
+src/splines/splines.cpp:856:32: error: use of undeclared identifier 'va'
+  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
+      |                                              ^~
+src/splines/splines.cpp:859:37: error: use of undeclared identifier 'va'
+  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
+      |                                                          ^~
+src/splines/splines.cpp:960:12: error: use of undeclared identifier 'va'
+  960 |         idStr s = va( "\t%s {\n", name );
+      |                   ^~
+src/splines/splines.cpp:962:6: error: use of undeclared identifier 'va'
+  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
+      |             ^~
+src/splines/splines.cpp:964:6: error: use of undeclared identifier 'va'
+  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
+      |             ^~
+src/splines/splines.cpp:966:6: error: use of undeclared identifier 'va'
+  966 |         s = va( "\t\ttime %d\n", time );
+      |             ^~
+src/splines/splines.cpp:1247:12: error: use of undeclared identifier 'va'
+ 1247 |         idStr s = va( "\t%s {\n", p );
+      |                   ^~
+src/splines/splines.cpp:1250:6: error: use of undeclared identifier 'va'
+ 1250 |         s = va( "\t\tfov %f\n", fov );
+      |             ^~
+src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
+ 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
+      |             ^~
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/splines.cpp.o] Error 1
 ```
 
 
@@ -202,6 +281,10 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
   - src/qcommon/common.cpp:1799:2: warning: indirection of non-volatile null pointer will be deleted, not trap [-Wnull-dereference]
 - [1x] -parentheses-equality
   - src/qcommon/unzip.cpp:2066:45: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+- [1x] "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
+  - /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
+- [1x] "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
+  - /usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
 - [1x] -char-subscripts
   - src/games/cgame/cg_newDraw.cpp:1830:24: warning: array subscript is of type 'char' [-Wchar-subscripts]
 - [1x] -nontrivial-memcall
@@ -211,12 +294,11 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
 
 status: success
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-UNCRUSTIFY_FAILED: src/games/game/bg_pmove.cpp
 
 ### failure context
 
@@ -227,97 +309,217 @@ UNCRUSTIFY_FAILED: src/games/game/bg_pmove.cpp
 
 status: failure
 
-errors: 13
+errors: 25
 warnings: 38 in 14 kinds
 
 ### errors
 
-src\games\game\g_funcs.h(349,16): error: address of overloaded function 'va' does not match required type 'unsigned char'
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
-lld-link: error: undefined symbol: Com_Allocate
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:47
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:75
-lld-link: error: undefined symbol: Com_Dealloc
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:83
-lld-link: error: undefined symbol: char * __cdecl va(char *, ...)
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:552
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:556
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:565
->>> referenced 27 more times
-scons: *** [bin\WolfSP_x64.exe] Error 1
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj] Error 1
+src\splines\splines.cpp(471,12): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(475,6): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(479,7): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(552,19): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(556,19): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(565,34): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(568,21): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(853,7): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
+src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
 
 ### failure context
 
-- build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj
+- build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj
 
 ```
- 1608 |                         if ( !ent->r.svFlags & SVF_CASTAI ) {
-      |                              ^
-      |                               (                          )
-src\games\game\g_client.cpp(1608,9): note: add parentheses around left hand side expression to silence this warning
- 1608 |                         if ( !ent->r.svFlags & SVF_CASTAI ) {
-      |                              ^
-      |                              (              )
-2 warnings generated.
-Compiling 'src\games\game\g_combat.cpp'
-Compiling 'src\games\game\g_items.cpp'
-Compiling 'src\games\game\g_main.cpp'
-Compiling 'src\games\game\g_mem.cpp'
-Compiling 'src\games\game\g_misc.cpp'
-Compiling 'src\games\game\g_missile.cpp'
-Compiling 'src\games\game\g_mover.cpp'
-Compiling 'src\games\game\g_props.cpp'
-Compiling 'src\games\game\g_save.cpp'
-Compiling 'src\games\game\g_script.cpp'
-In file included from src\games\game\g_save.cpp:252:
-src\games\game\g_funcs.h(349,16): error: address of overloaded function 'va' does not match required type 'unsigned char'
-  349 | {"va", (byte *)va},
-      |                ^~
-src\games\game\g_func_decs.h(349,21): note: candidate function
-  349 | extern char * QDECL va( char * format, ... ) ;
-      |                     ^
-src\qcommon\q_shared.h(667,17): note: candidate function
-  667 | char    * QDECL va( const char *format, ... );
-      |                 ^
-Compiling 'src\games\game\g_script_actions.cpp'
-1 error generated.
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
+Compiling 'src\sys\win32\win_input.cpp'
+Compiling 'src\sys\win32\win_main.cpp'
+Compiling 'src\sys\win32\win_net.cpp'
+Compiling 'src\sys\win32\win_qgl.cpp'
+Compiling 'src\sys\win32\win_shared.cpp'
+Compiling 'src\sys\win32\win_snd.cpp'
+Compiling 'src\sys\win32\win_syscon.cpp'
+Compiling 'src\sys\win32\win_wndproc.cpp'
+Compiling 'src\splines\math_angles.cpp'
+Compiling 'src\splines\math_matrix.cpp'
+Compiling 'src\splines\math_quaternion.cpp'
+In file included from src\splines\math_angles.cpp:29:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+In file included from src\splines\math_matrix.cpp:29:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
 ```
 
-- bin\WolfSP_x64.exe
+- build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj
 
 ```
-Compiling 'src\games\cgame\cg_effects.cpp'
-1 warning generated.
-Compiling 'src\games\cgame\cg_ents.cpp'
-src\games\cgame\cg_ents.cpp(397,14): warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
-Compiling 'src\games\cgame\cg_event.cpp'
-1 warning generated.
-Compiling 'src\games\cgame\cg_fx.cpp'
-Compiling 'src\games\cgame\cg_fx_entities.cpp'
-Compiling 'src\games\cgame\cg_fx_flame.cpp'
-Compiling 'src\games\cgame\cg_fx_marks.cpp'
-lld-link: error: undefined symbol: Com_Allocate
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:47
->>>               build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj:(void __cdecl Com_InitGrowList(struct growList_t *, int))
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:75
->>>               build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj:(int __cdecl Com_AddToGrowList(struct growList_t *, void *))
+Compiling 'src\sys\win32\win_qgl.cpp'
+Compiling 'src\sys\win32\win_shared.cpp'
+Compiling 'src\sys\win32\win_snd.cpp'
+Compiling 'src\sys\win32\win_syscon.cpp'
+Compiling 'src\sys\win32\win_wndproc.cpp'
+Compiling 'src\splines\math_angles.cpp'
+Compiling 'src\splines\math_matrix.cpp'
+Compiling 'src\splines\math_quaternion.cpp'
+In file included from src\splines\math_angles.cpp:29:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+In file included from src\splines\math_matrix.cpp:29:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
+2 errors generated.
+Compiling 'src\splines\math_vector.cpp'
+scons: *** [build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
+```
 
-lld-link: error: undefined symbol: Com_Dealloc
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\q_shared.cpp:83
->>>               build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj:(int __cdecl Com_AddToGrowList(struct growList_t *, void *))
+- build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj
 
-lld-link: error: undefined symbol: char * __cdecl va(char *, ...)
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:552
->>>               build\windows-x64-debug\client\obj\splines\splines.cpp.obj:(public: bool __cdecl idCameraDef::getCameraInfo(long, class idVec3 &, class idVec3 &, float *))
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:556
->>>               build\windows-x64-debug\client\obj\splines\splines.cpp.obj:(public: bool __cdecl idCameraDef::getCameraInfo(long, class idVec3 &, class idVec3 &, float *))
->>> referenced by D:\a\RTCW-SP\RTCW-SP\src\splines\splines.cpp:565
->>>               build\windows-x64-debug\client\obj\splines\splines.cpp.obj:(public: bool __cdecl idCameraDef::getCameraInfo(long, class idVec3 &, class idVec3 &, float *))
->>> referenced 27 more times
-scons: *** [bin\WolfSP_x64.exe] Error 1
+```
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+In file included from src\splines\math_matrix.cpp:29:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
+2 errors generated.
+Compiling 'src\splines\math_vector.cpp'
+scons: *** [build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
+Compiling 'src\splines\q_parse.cpp'
+Compiling 'src\splines\q_shared.cpp'
+In file included from src\splines\q_parse.cpp:31:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+Compiling 'src\splines\splines.cpp'
+scons: *** [build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj] Error 1
+```
+
+- build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj
+
+```
+      |               ;
+scons: *** [build\windows-x64-debug\client\obj\splines\math_angles.cpp.obj] Error 1
+2 errors generated.
+Compiling 'src\splines\math_vector.cpp'
+scons: *** [build\windows-x64-debug\client\obj\splines\math_matrix.cpp.obj] Error 1
+Compiling 'src\splines\q_parse.cpp'
+Compiling 'src\splines\q_shared.cpp'
+In file included from src\splines\q_parse.cpp:31:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+Compiling 'src\splines\splines.cpp'
+scons: *** [build\windows-x64-debug\client\obj\splines\q_parse.cpp.obj] Error 1
+Compiling 'src\splines\util_str.cpp'
+In file included from src\splines\q_shared.cpp:30:
+src\splines\q_splineshared.h(533,1): error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src\splines\q_splineshared.h(533,15): error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+scons: *** [build\windows-x64-debug\client\obj\splines\q_shared.cpp.obj] Error 1
+```
+
+- build\windows-x64-debug\client\obj\splines\splines.cpp.obj
+
+```
+src\splines\splines.cpp(856,32): error: use of undeclared identifier 'va'
+  856 |                 cameraPosition->write( file, va( "camera_%s",cameraPosition->typeStr() ) );
+      |                                              ^~
+src\splines\splines.cpp(859,37): error: use of undeclared identifier 'va'
+  859 |                         targetPositions[i]->write( file, va( "target_%s", targetPositions[i]->typeStr() ) );
+      |                                                          ^~
+Compiling 'src\games\botlib\l_libvar.cpp'
+src\splines\splines.cpp(960,12): error: use of undeclared identifier 'va'
+  960 |         idStr s = va( "\t%s {\n", name );
+      |                   ^~
+src\splines\splines.cpp(962,6): error: use of undeclared identifier 'va'
+  962 |         s = va( "\t\ttype %d\n", static_cast<int>( type ) );
+      |             ^~
+src\splines\splines.cpp(964,6): error: use of undeclared identifier 'va'
+  964 |         s = va( "\t\tparam \"%s\"\n", paramStr.c_str() );
+      |             ^~
+src\splines\splines.cpp(966,6): error: use of undeclared identifier 'va'
+  966 |         s = va( "\t\ttime %d\n", time );
+      |             ^~
+src\splines\splines.cpp(1247,12): error: use of undeclared identifier 'va'
+ 1247 |         idStr s = va( "\t%s {\n", p );
+      |                   ^~
+src\splines\splines.cpp(1250,6): error: use of undeclared identifier 'va'
+ 1250 |         s = va( "\t\tfov %f\n", fov );
+      |             ^~
+src\splines\splines.cpp(1253,6): error: use of undeclared identifier 'va'
+ 1253 |         s = va( "\t\tstartFOV %f\n", startFOV );
+      |             ^~
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+scons: *** [build\windows-x64-debug\client\obj\splines\splines.cpp.obj] Error 1
 ```
 
 
