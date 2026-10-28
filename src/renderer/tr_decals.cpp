@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ plane uses the viewport; the shader still clips every pixel to the volume.
 ====================
 */
 static qboolean RB_ScreenDecalBounds( const refEntity_t *entity, const vec3_t right,
-									  const vec3_t up, const vec3_t normal, float aspect, float depth, float *bounds ) {
+		const vec3_t up, const vec3_t normal, float aspect, float depth, float *bounds ) {
 	bounds[0] = bounds[1] = 1;
 	bounds[2] = bounds[3] = -1;
 	for ( int corner = 0; corner < 8; corner++ ) {
@@ -57,24 +57,14 @@ static qboolean RB_ScreenDecalBounds( const refEntity_t *entity, const vec3_t ri
 		}
 		for ( int j = 0; j < 2; j++ ) {
 			float value = clip[j] / clip[3];
-			if ( value < bounds[j] ) {
-				bounds[j] = value;
-			}
-			if ( value > bounds[j + 2] ) {
-				bounds[j + 2] = value;
-			}
+			if ( value < bounds[j] ) { bounds[j] = value; }
+			if ( value > bounds[j + 2] ) { bounds[j + 2] = value; }
 		}
 	}
 	for ( int j = 0; j < 2; j++ ) {
-		if ( bounds[j] > 1 || bounds[j + 2] < -1 ) {
-			return qfalse;
-		}
-		if ( bounds[j] < -1 ) {
-			bounds[j] = -1;
-		}
-		if ( bounds[j + 2] > 1 ) {
-			bounds[j + 2] = 1;
-		}
+		if ( bounds[j] > 1 || bounds[j + 2] < -1 ) { return qfalse; }
+		if ( bounds[j] < -1 ) { bounds[j] = -1; }
+		if ( bounds[j + 2] > 1 ) { bounds[j + 2] = 1; }
 	}
 	return qtrue;
 }
@@ -91,31 +81,21 @@ void RB_DrawScreenDecals( void ) {
 	qboolean started = qfalse;
 	for ( int i = 0; i < backEnd.refdef.num_entities; i++ ) {
 		const refEntity_t *entity = &backEnd.refdef.entities[i].e;
-		if ( entity->reType != RT_SCREEN_DECAL || !RB_ScreenEntityVisible( entity ) ) {
-			continue;
-		}
+		if ( entity->reType != RT_SCREEN_DECAL || !RB_ScreenEntityVisible( entity ) ) { continue; }
 		float depth = entity->shaderTexCoord[1], aspect = entity->scale[0];
-		if ( !std::isfinite( depth ) || depth <= 0 || !std::isfinite( aspect ) || aspect <= 0 || !std::isfinite( entity->rotation ) ) {
-			continue;
-		}
+		if ( !std::isfinite( depth ) || depth <= 0 || !std::isfinite( aspect ) || aspect <= 0 || !std::isfinite( entity->rotation ) ) { continue; }
 		vec3_t normal, right, up, rotated;
 		VectorCopy( entity->axis[0], normal );
 		float length = VectorNormalize( normal );
-		if ( !std::isfinite( length ) || length <= 0 ) {
-			continue;
-		}
+		if ( !std::isfinite( length ) || length <= 0 ) { continue; }
 		PerpendicularVector( right, normal );
 		RotatePointAroundVector( rotated, normal, right, entity->rotation );
 		VectorCopy( rotated, right );
 		CrossProduct( normal, right, up );
 		float bounds[4];
-		if ( !RB_ScreenDecalBounds( entity, right, up, normal, aspect, depth, bounds ) ) {
-			continue;
-		}
+		if ( !RB_ScreenDecalBounds( entity, right, up, normal, aspect, depth, bounds ) ) { continue; }
 		if ( !started ) {
-			if ( !RB_BeginScreenPass( SCREEN_DECAL_PROGRAM ) ) {
-				return;
-			}
+			if ( !RB_BeginScreenPass( SCREEN_DECAL_PROGRAM ) ) { return; }
 			started = qtrue;
 		}
 		VectorScale( right, 1.0f / entity->radius, right );
@@ -130,7 +110,5 @@ void RB_DrawScreenDecals( void ) {
 		qglVertex2f( bounds[0], bounds[3] );
 		qglEnd();
 	}
-	if ( started ) {
-		RB_EndScreenPass();
-	}
+	if ( started ) { RB_EndScreenPass(); }
 }

@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -509,7 +509,7 @@ static void ParseTriSurf( dsurface_t *ds, drawVert_t *verts, msurface_t *surf, i
 	//tri = ri.Hunk_Alloc( sizeof( *tri ) + numVerts * sizeof( tri->verts[0] )
 	//	+ numIndexes * sizeof( tri->indexes[0] ) );
 	tri = (srfTriangles_t *) R_GetSurfMemory( sizeof( *tri ) + numVerts * sizeof( tri->verts[0] )
-											  + numIndexes * sizeof( tri->indexes[0] ) );
+						   + numIndexes * sizeof( tri->indexes[0] ) );
 
 	tri->surfaceType = SF_TRIANGLES;
 	tri->numVerts = numVerts;
@@ -2257,3 +2257,4 @@ void RE_LoadWorldMap( const char *name ) {
 //----(SA)	end
 	ri.FS_FreeFile( buffer );
 }
+

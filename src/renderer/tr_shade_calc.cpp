@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "tr_local.h"
 
 
-#define WAVEVALUE( table, base, amplitude, phase, freq )  ( ( base ) + table[ myftol( ( ( ( phase ) + tess.shaderTime * ( freq ) ) * FUNCTABLE_SIZE ) ) &FUNCTABLE_MASK ] * ( amplitude ) )
+#define WAVEVALUE( table, base, amplitude, phase, freq )  ( ( base ) + table[ myftol( ( ( ( phase ) + tess.shaderTime * ( freq ) ) * FUNCTABLE_SIZE ) ) & FUNCTABLE_MASK ] * ( amplitude ) )
 
 static float *TableForFunc( genFunc_t func ) {
 	switch ( func )
@@ -741,7 +741,7 @@ void RB_CalcWaveColor( const waveForm_t *wf, unsigned char *dstColors ) {
 
 	if ( glow < 0 ) {
 		glow = 0;
-	} else if ( glow > 1 ) {
+	} else if ( glow > 1 )   {
 		glow = 1;
 	}
 
@@ -1229,3 +1229,4 @@ void RB_CalcDiffuseColor( unsigned char *colors ) {
 		colors[i * 4 + 3] = 255;
 	}
 }
+

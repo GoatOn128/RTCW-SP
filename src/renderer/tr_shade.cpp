@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ R_DrawStripElements
 */
 static int c_vertexes;          // for seeing how long our average strips are
 static int c_begins;
-static void R_DrawStripElements( int numIndexes, const glIndex_t *indexes, void( APIENTRY *element )( GLint ) ) {
+static void R_DrawStripElements( int numIndexes, const glIndex_t *indexes, void ( APIENTRY *element )( GLint ) ) {
 	int i;
 	int last[3] = { -1, -1, -1 };
 	qboolean even;
@@ -852,7 +852,7 @@ static void ComputeColors( shaderStage_t *pStage ) {
 	case AGEN_ONE_MINUS_ENTITY:
 		RB_CalcAlphaFromOneMinusEntity( ( unsigned char * ) tess.svars.colors );
 		break;
-	// Ridah
+		// Ridah
 	case AGEN_NORMALZFADE:
 	{
 		float alpha, range, lowest, highest, dot;
@@ -924,7 +924,7 @@ static void ComputeColors( shaderStage_t *pStage ) {
 		}
 	}
 	break;
-	// done.
+		// done.
 	case AGEN_VERTEX:
 		if ( pStage->rgbGen != CGEN_VERTEX ) {
 			for ( i = 0; i < tess.numVertexes; i++ ) {
@@ -954,7 +954,7 @@ static void ComputeColors( shaderStage_t *pStage ) {
 
 			if ( len < 0 ) {
 				alpha = 0;
-			} else if ( len > 1 ) {
+			} else if ( len > 1 )   {
 				alpha = 0xff;
 			} else
 			{
@@ -1687,3 +1687,4 @@ void RB_EndSurface( void ) {
 
 	GLimp_LogComment( "----------\n" );
 }
+

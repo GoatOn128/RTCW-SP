@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "tr_types.h"
 
-#define REF_API_VERSION     9
+#define REF_API_VERSION     8
 
 //
 // these are the functions exported by the refresh module
@@ -123,10 +123,10 @@ typedef struct {
 //
 typedef struct {
 	// print message on the local console
-	void( QDECL * Printf )( int printLevel, const char *fmt, ... );
+	void ( QDECL * Printf )( int printLevel, const char *fmt, ... );
 
 	// abort the game
-	void( QDECL * Error )( int errorLevel, const char *fmt, ... );
+	void ( QDECL * Error )( int errorLevel, const char *fmt, ... );
 
 	// milliseconds should only be used for profiling, never
 	// for anything game related.  Get time from the refdef
@@ -136,34 +136,31 @@ typedef struct {
 	// won't be freed
 	void ( *Hunk_Clear )( void );
 #ifdef HUNK_DEBUG
-	void *( *Hunk_AllocDebug )( int size, ha_pref pref, char *label, char *file, int line );
+	void    *( *Hunk_AllocDebug )( int size, ha_pref pref, char *label, char *file, int line );
 #else
-	void *( *Hunk_Alloc )( int size, ha_pref pref );
+	void    *( *Hunk_Alloc )( int size, ha_pref pref );
 #endif
-	void *( *Hunk_AllocateTempMemory )( int size );
+	void    *( *Hunk_AllocateTempMemory )( int size );
 	void ( *Hunk_FreeTempMemory )( void *block );
 
 	cvar_t  *( *Cvar_Get )( const char *name, const char *value, int flags );
 	void ( *Cvar_Set )( const char *name, const char *value );
 
-	void ( *Cmd_AddCommand )( const char *name, void ( *cmd ) ( void ) );
+	void ( *Cmd_AddCommand )( const char *name, void( *cmd ) ( void ) );
 	void ( *Cmd_RemoveCommand )( const char *name );
 
 	int ( *Cmd_Argc )( void );
-	char *( *Cmd_Argv )( int i );
+	char    *( *Cmd_Argv )( int i );
 
 	void ( *Cmd_ExecuteText )( int exec_when, const char *text );
 
 	// visualization for debugging collision detection
-	void ( *CM_DrawDebugSurface )( void ( *drawPoly ) ( int color, int numPoints, float *points ) );
+	void ( *CM_DrawDebugSurface )( void( *drawPoly ) ( int color, int numPoints, float *points ) );
 
 	// a -1 return means the file does not exist
 	// NULL can be passed for buf to just determine existance
 	int ( *FS_FileIsInPAK )( const char *name, int *pChecksum );
 	int ( *FS_ReadFile )( const char *name, void **buf );
-	int ( *FS_FOpenFileRead )( const char *name, fileHandle_t *file, qboolean uniqueFile );
-	int ( *FS_Read )( void *buffer, int len, fileHandle_t file );
-	void ( *FS_FCloseFile )( fileHandle_t file );
 	void ( *FS_FreeFile )( void *buf );
 	char ** ( *FS_ListFiles )( const char *name, const char *extension, int *numfilesfound );
 	void ( *FS_FreeFileList )( char **filelist );

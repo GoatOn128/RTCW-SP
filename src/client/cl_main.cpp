@@ -2363,9 +2363,6 @@ void CL_InitRef( void ) {
 	ri.Hunk_FreeTempMemory = Hunk_FreeTempMemory;
 	ri.CM_DrawDebugSurface = CM_DrawDebugSurface;
 	ri.FS_ReadFile = FS_ReadFile;
-	ri.FS_FOpenFileRead = FS_FOpenFileRead;
-	ri.FS_Read = FS_Read;
-	ri.FS_FCloseFile = FS_FCloseFile;
 	ri.FS_FreeFile = FS_FreeFile;
 	ri.FS_WriteFile = FS_WriteFile;
 	ri.FS_FreeFileList = FS_FreeFileList;

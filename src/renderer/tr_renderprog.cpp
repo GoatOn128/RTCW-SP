@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // OpenGL 2.0 entry points are private to this module; the existing renderer
 // continues to use its fixed-function dispatch table.
-#define RP_PROC( result, name, args ) static result( APIENTRY * rp ## name ) args
+#define RP_PROC( result, name, args ) static result ( APIENTRY * rp##name ) args
 RP_PROC( GLuint, CreateShader, ( GLenum ) );
 RP_PROC( void, ShaderSource, ( GLuint, GLsizei, const char *const *, const GLint * ) );
 RP_PROC( void, CompileShader, ( GLuint ) );
@@ -93,7 +93,7 @@ static void *R_RenderProcAddress( const char *name ) {
 // Optional driver diagnostics identify the offending GL call without consuming
 // errors or weakening r_ignoreGLErrors. Install only on contexts advertising it.
 static void APIENTRY R_RenderProgramDebugMessage( GLenum, GLenum type, GLuint id,
-												  GLenum, GLsizei, const char *message, const void * ) {
+		GLenum, GLsizei, const char *message, const void * ) {
 	if ( type == 0x824C ) { // GL_DEBUG_TYPE_ERROR
 		ri.Printf( PRINT_WARNING, "OpenGL driver error %u: %s\n", id, message );
 	}
@@ -101,18 +101,12 @@ static void APIENTRY R_RenderProgramDebugMessage( GLenum, GLenum type, GLuint id
 
 void R_InitRenderProgramDiagnostics( void ) {
 	cvar_t *debug = ri.Cvar_Get( "r_glDebug", "0", 0 );
-	if ( !debug->integer ) {
-		return;
-	}
+	if ( !debug->integer ) { return; }
 	const char *extensions = reinterpret_cast<const char *>( qglGetString( GL_EXTENSIONS ) );
-	if ( !extensions || !strstr( extensions, "GL_ARB_debug_output" ) ) {
-		return;
-	}
+	if ( !extensions || !strstr( extensions, "GL_ARB_debug_output" ) ) { return; }
 	typedef void ( APIENTRY *debugCallback_t )( decltype( &R_RenderProgramDebugMessage ), const void * );
 	debugCallback_t callback = reinterpret_cast<debugCallback_t>( R_RenderProcAddress( "glDebugMessageCallbackARB" ) );
-	if ( !callback ) {
-		return;
-	}
+	if ( !callback ) { return; }
 	callback( R_RenderProgramDebugMessage, NULL );
 	qglEnable( 0x8242 ); // GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB
 }
@@ -126,9 +120,7 @@ static GLuint R_CompileScreenShader( GLenum type, const char *path ) {
 	void *source = NULL;
 	int length = ri.FS_ReadFile( path, &source );
 	if ( length <= 0 || !source ) {
-		if ( source ) {
-			ri.FS_FreeFile( source );
-		}
+		if ( source ) { ri.FS_FreeFile( source ); }
 		ri.Printf( PRINT_WARNING, "Screen FX: could not read %s\n", path );
 		return 0;
 	}
@@ -150,13 +142,9 @@ static GLuint R_CompileScreenShader( GLenum type, const char *path ) {
 }
 
 static qboolean R_LoadScreenPrograms( void ) {
-	if ( atoi( reinterpret_cast<const char *>( qglGetString( GL_VERSION ) ) ) < 2 ) {
-		return qfalse;
-	}
-	if ( !qglActiveTextureARB || glConfig.maxActiveTextures < 2 ) {
-		return qfalse;
-	}
-#define RP_LOAD( name ) rp ## name = reinterpret_cast<decltype( rp ## name )>( R_RenderProcAddress( "gl" #name ) ); if ( !rp ## name ) { return qfalse; }
+	if ( atoi( reinterpret_cast<const char *>( qglGetString( GL_VERSION ) ) ) < 2 ) { return qfalse; }
+	if ( !qglActiveTextureARB || glConfig.maxActiveTextures < 2 ) { return qfalse; }
+#define RP_LOAD( name ) rp##name = reinterpret_cast<decltype( rp##name )>( R_RenderProcAddress( "gl" #name ) ); if ( !rp##name ) { return qfalse; }
 	RP_LOAD( CreateShader ); RP_LOAD( ShaderSource ); RP_LOAD( CompileShader );
 	RP_LOAD( GetShaderiv ); RP_LOAD( GetShaderInfoLog ); RP_LOAD( DeleteShader );
 	RP_LOAD( CreateProgram ); RP_LOAD( AttachShader ); RP_LOAD( LinkProgram );
@@ -170,12 +158,8 @@ static qboolean R_LoadScreenPrograms( void ) {
 		GLuint vertex = R_CompileScreenShader( RP_VERTEX_SHADER, va( "renderprogs/%s.vert", names[i] ) );
 		GLuint fragment = R_CompileScreenShader( RP_FRAGMENT_SHADER, va( "renderprogs/%s.frag", names[i] ) );
 		if ( !vertex || !fragment ) {
-			if ( vertex ) {
-				rpDeleteShader( vertex );
-			}
-			if ( fragment ) {
-				rpDeleteShader( fragment );
-			}
+			if ( vertex ) { rpDeleteShader( vertex ); }
+			if ( fragment ) { rpDeleteShader( fragment ); }
 			return qfalse;
 		}
 		screenProgramData_t *program = &screenPrograms[i];
@@ -210,16 +194,12 @@ static qboolean R_LoadScreenPrograms( void ) {
 }
 
 static qboolean R_InitScreenPrograms( void ) {
-	if ( screenProgramsTried ) {
-		return screenProgramsReady;
-	}
+	if ( screenProgramsTried ) { return screenProgramsReady; }
 	screenProgramsTried = qtrue;
 	screenProgramsReady = R_LoadScreenPrograms();
 	if ( !screenProgramsReady ) {
 		for ( int i = 0; i < SCREEN_PROGRAM_COUNT; i++ ) {
-			if ( screenPrograms[i].handle ) {
-				rpDeleteProgram( screenPrograms[i].handle ); screenPrograms[i].handle = 0;
-			}
+			if ( screenPrograms[i].handle ) { rpDeleteProgram( screenPrograms[i].handle ); screenPrograms[i].handle = 0; }
 		}
 		ri.Printf( PRINT_WARNING, "Screen FX disabled: OpenGL 2.0, multitexture and valid renderprogs are required.\n" );
 	}
@@ -228,36 +208,22 @@ static qboolean R_InitScreenPrograms( void ) {
 
 void R_ShutdownRenderPrograms( void ) {
 	for ( int i = 0; i < SCREEN_PROGRAM_COUNT; i++ ) {
-		if ( screenPrograms[i].handle ) {
-			rpDeleteProgram( screenPrograms[i].handle );
-		}
+		if ( screenPrograms[i].handle ) { rpDeleteProgram( screenPrograms[i].handle ); }
 	}
 	memset( screenPrograms, 0, sizeof( screenPrograms ) );
-	if ( screenDepthTexture ) {
-		qglDeleteTextures( 1, &screenDepthTexture );
-	}
+	if ( screenDepthTexture ) { qglDeleteTextures( 1, &screenDepthTexture ); }
 	screenDepthTexture = 0;
 	screenDepthWidth = screenDepthHeight = 0;
 	screenProgramsTried = screenProgramsReady = screenDepthReady = qfalse;
 }
 
 qboolean RB_ScreenEntityVisible( const refEntity_t *entity ) {
-	if ( !r_drawentities->integer || ( backEnd.refdef.rdflags & RDF_NOWORLDMODEL ) ) {
-		return qfalse;
-	}
-	if ( ( entity->renderfx & RF_FIRST_PERSON ) && backEnd.viewParms.isPortal ) {
-		return qfalse;
-	}
-	if ( ( entity->renderfx & RF_THIRD_PERSON ) && !backEnd.viewParms.isPortal ) {
-		return qfalse;
-	}
-	if ( !std::isfinite( entity->radius ) || entity->radius <= 0 || !entity->shaderRGBA[3] ) {
-		return qfalse;
-	}
+	if ( !r_drawentities->integer || ( backEnd.refdef.rdflags & RDF_NOWORLDMODEL ) ) { return qfalse; }
+	if ( ( entity->renderfx & RF_FIRST_PERSON ) && backEnd.viewParms.isPortal ) { return qfalse; }
+	if ( ( entity->renderfx & RF_THIRD_PERSON ) && !backEnd.viewParms.isPortal ) { return qfalse; }
+	if ( !std::isfinite( entity->radius ) || entity->radius <= 0 || !entity->shaderRGBA[3] ) { return qfalse; }
 	for ( int i = 0; i < 3; i++ ) {
-		if ( !std::isfinite( entity->origin[i] ) ) {
-			return qfalse;
-		}
+		if ( !std::isfinite( entity->origin[i] ) ) { return qfalse; }
 	}
 	return qtrue;
 }
@@ -275,20 +241,13 @@ static qboolean R_InverseScreenMatrix( float *inverse ) {
 	}
 	for ( int c = 0; c < 4; c++ ) {
 		int pivot = c;
-		for ( int r = c + 1; r < 4; r++ ) { if ( fabs( rows[r][c] ) > fabs( rows[pivot][c] ) ) {
-												pivot = r;
-											}
-		}
-		if ( fabs( rows[pivot][c] ) < 1e-12 ) {
-			return qfalse;
-		}
+		for ( int r = c + 1; r < 4; r++ ) { if ( fabs( rows[r][c] ) > fabs( rows[pivot][c] ) ) { pivot = r; } }
+		if ( fabs( rows[pivot][c] ) < 1e-12 ) { return qfalse; }
 		for ( int k = 0; k < 8; k++ ) { double swap = rows[c][k]; rows[c][k] = rows[pivot][k]; rows[pivot][k] = swap; }
 		double scale = rows[c][c];
 		for ( int k = 0; k < 8; k++ ) { rows[c][k] /= scale; }
 		for ( int r = 0; r < 4; r++ ) {
-			if ( r == c ) {
-				continue;
-			}
+			if ( r == c ) { continue; }
 			double factor = rows[r][c];
 			for ( int k = 0; k < 8; k++ ) { rows[r][k] -= factor * rows[c][k]; }
 		}
@@ -304,29 +263,19 @@ void RB_CaptureScreenDepth( void ) {
 	qboolean needed = qfalse;
 	for ( int i = 0; i < backEnd.refdef.num_entities; i++ ) {
 		const refEntity_t *entity = &backEnd.refdef.entities[i].e;
-		if ( ( entity->reType == RT_SCREEN_PARTICLE || entity->reType == RT_SCREEN_DECAL ) && RB_ScreenEntityVisible( entity ) ) {
-			needed = qtrue; break;
-		}
+		if ( ( entity->reType == RT_SCREEN_PARTICLE || entity->reType == RT_SCREEN_DECAL ) && RB_ScreenEntityVisible( entity ) ) { needed = qtrue; break; }
 	}
-	if ( !needed || !R_InitScreenPrograms() ) {
-		return;
-	}
+	if ( !needed || !R_InitScreenPrograms() ) { return; }
 	const viewParms_t *view = &backEnd.viewParms;
-	if ( view->viewportWidth <= 0 || view->viewportHeight <= 0 ) {
-		return;
-	}
+	if ( view->viewportWidth <= 0 || view->viewportHeight <= 0 ) { return; }
 	int width = 1, height = 1;
 	while ( width < view->viewportWidth ) { width *= 2; }
 	while ( height < view->viewportHeight ) { height *= 2; }
-	if ( width > glConfig.maxTextureSize || height > glConfig.maxTextureSize ) {
-		return;
-	}
+	if ( width > glConfig.maxTextureSize || height > glConfig.maxTextureSize ) { return; }
 	glstate_t saved = glState;
 	qglPushAttrib( GL_TEXTURE_BIT );
 	GL_SelectTexture( 1 );
-	if ( !screenDepthTexture ) {
-		qglGenTextures( 1, &screenDepthTexture );
-	}
+	if ( !screenDepthTexture ) { qglGenTextures( 1, &screenDepthTexture ); }
 	qglBindTexture( GL_TEXTURE_2D, screenDepthTexture );
 	if ( width != screenDepthWidth || height != screenDepthHeight ) {
 		qglTexImage2D( GL_TEXTURE_2D, 0, RP_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL );
@@ -344,13 +293,9 @@ void RB_CaptureScreenDepth( void ) {
 }
 
 qboolean RB_BeginScreenPass( screenProgram_t kind ) {
-	if ( !screenDepthReady ) {
-		return qfalse;
-	}
+	if ( !screenDepthReady ) { return qfalse; }
 	float inverse[16];
-	if ( !R_InverseScreenMatrix( inverse ) ) {
-		return qfalse;
-	}
+	if ( !R_InverseScreenMatrix( inverse ) ) { return qfalse; }
 	savedScreenState = glState;
 	qglGetIntegerv( RP_CURRENT_PROGRAM, &savedScreenProgram );
 	qglGetIntegerv( GL_MATRIX_MODE, &savedMatrixMode );
@@ -360,9 +305,7 @@ qboolean RB_BeginScreenPass( screenProgram_t kind ) {
 	qglDepthRange( 0, 1 );
 	qglDisable( GL_FOG ); qglDisable( GL_ALPHA_TEST ); qglDisable( GL_CULL_FACE );
 	qglDisable( GL_STENCIL_TEST );
-	if ( kind == SCREEN_DECAL_PROGRAM ) {
-		qglDisable( GL_CLIP_PLANE0 );
-	}
+	if ( kind == SCREEN_DECAL_PROGRAM ) { qglDisable( GL_CLIP_PLANE0 ); }
 	qglPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	qglDepthMask( GL_FALSE );
 	qglDisable( GL_DEPTH_TEST );
@@ -406,9 +349,7 @@ void RB_ScreenDecalProjection( const vec3_t origin, const vec3_t right, const ve
 
 void RB_BindScreenMaterial( const refEntity_t *entity ) {
 	shader_t *shader = R_GetShaderByHandle( entity->customShader );
-	if ( shader->remappedShader ) {
-		shader = shader->remappedShader;
-	}
+	if ( shader->remappedShader ) { shader = shader->remappedShader; }
 	shaderStage_t *stage = shader->stages[0];
 	image_t *image = tr.defaultImage;
 	if ( stage && stage->bundle[0].image[0] ) {

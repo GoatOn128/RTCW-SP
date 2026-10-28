@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -186,6 +186,8 @@ cvar_t  *r_saveFontData;
 cvar_t  *r_cache;
 cvar_t  *r_cacheShaders;
 cvar_t  *r_cacheModels;
+cvar_t  *r_compressModels;
+cvar_t  *r_exportCompressedModels;
 
 cvar_t  *r_cacheGathering;
 
@@ -206,16 +208,16 @@ int max_polys;
 cvar_t  *r_maxpolyverts;
 int max_polyverts;
 
-void( APIENTRY * qglMultiTexCoord2fARB )( GLenum texture, GLfloat s, GLfloat t );
-void( APIENTRY * qglActiveTextureARB )( GLenum texture );
-void( APIENTRY * qglClientActiveTextureARB )( GLenum texture );
+void ( APIENTRY * qglMultiTexCoord2fARB )( GLenum texture, GLfloat s, GLfloat t );
+void ( APIENTRY * qglActiveTextureARB )( GLenum texture );
+void ( APIENTRY * qglClientActiveTextureARB )( GLenum texture );
 
-void( APIENTRY * qglLockArraysEXT )( GLint, GLint );
-void( APIENTRY * qglUnlockArraysEXT )( void );
+void ( APIENTRY * qglLockArraysEXT )( GLint, GLint );
+void ( APIENTRY * qglUnlockArraysEXT )( void );
 
 //----(SA)	added
-void( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param );
-void( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param );
+void ( APIENTRY * qglPNTrianglesiATI )( GLenum pname, GLint param );
+void ( APIENTRY * qglPNTrianglesfATI )( GLenum pname, GLfloat param );
 /*
 The tessellation level and normal generation mode are specified with:
 
@@ -265,7 +267,7 @@ static void AssertCvarRange( cvar_t *cv, float minVal, float maxVal, qboolean sh
 	if ( cv->value < minVal ) {
 		ri.Printf( PRINT_WARNING, "WARNING: cvar '%s' out of range (%f < %f)\n", cv->name, cv->value, minVal );
 		ri.Cvar_Set( cv->name, va( "%f", minVal ) );
-	} else if ( cv->value > maxVal ) {
+	} else if ( cv->value > maxVal )   {
 		ri.Printf( PRINT_WARNING, "WARNING: cvar '%s' out of range (%f > %f)\n", cv->name, cv->value, maxVal );
 		ri.Cvar_Set( cv->name, va( "%f", maxVal ) );
 	}
@@ -1087,6 +1089,8 @@ void R_Register( void ) {
 //----(SA)	end
 
 	r_cacheModels = ri.Cvar_Get( "r_cacheModels", "1", CVAR_LATCH );
+	r_compressModels = ri.Cvar_Get( "r_compressModels", "0", 0 );     // converts MD3 -> MDC at run-time
+	r_exportCompressedModels = ri.Cvar_Get( "r_exportCompressedModels", "0", 0 ); // saves compressed models
 	r_cacheGathering = ri.Cvar_Get( "cl_cacheGathering", "0", 0 );
 	r_buildScript = ri.Cvar_Get( "com_buildscript", "0", 0 );
 	r_bonesDebug = ri.Cvar_Get( "r_bonesDebug", "0", CVAR_CHEAT );
@@ -1413,3 +1417,4 @@ refexport_t *GetRefAPI( int apiVersion, refimport_t *rimp ) {
 
 	return &re;
 }
+

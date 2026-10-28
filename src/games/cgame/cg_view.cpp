@@ -2,9 +2,9 @@
 ===========================================================================
 
 Return to Castle Wolfenstein single player GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
 
-This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).
+This file is part of the Return to Castle Wolfenstein single player GPL Source Code (RTCW SP Source Code).  
 
 RTCW SP Source Code is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -82,7 +82,6 @@ void CG_TestModel_f( void ) {
 	vec3_t angles;
 
 	memset( &cg.testModelEntity, 0, sizeof( cg.testModelEntity ) );
-	AxisClear( cg.testModelEntity.torsoAxis );
 	if ( trap_Argc() < 2 ) {
 		return;
 	}
@@ -738,11 +737,11 @@ void CG_AdjustZoomVal( float val, int type ) {
 void CG_ZoomIn_f( void ) {
 	if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNIPERRIFLE ) {
 		CG_AdjustZoomVal( -( cg_zoomStepSniper.value ), ZOOM_SNIPER );
-	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNOOPERSCOPE ) {
+	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNOOPERSCOPE )      {
 		CG_AdjustZoomVal( -( cg_zoomStepSnooper.value ), ZOOM_SNOOPER );
-	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_FG42SCOPE ) {
+	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_FG42SCOPE )      {
 		CG_AdjustZoomVal( -( cg_zoomStepSnooper.value ), ZOOM_FG42SCOPE );
-	} else if ( cg.zoomedBinoc ) {
+	} else if ( cg.zoomedBinoc )      {
 		CG_AdjustZoomVal( -( cg_zoomStepBinoc.value ), ZOOM_BINOC );
 	}
 }
@@ -750,11 +749,11 @@ void CG_ZoomIn_f( void ) {
 void CG_ZoomOut_f( void ) {
 	if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNIPERRIFLE ) {
 		CG_AdjustZoomVal( cg_zoomStepSniper.value, ZOOM_SNIPER );
-	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNOOPERSCOPE ) {
+	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_SNOOPERSCOPE )      {
 		CG_AdjustZoomVal( cg_zoomStepSnooper.value, ZOOM_SNOOPER );
-	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_FG42SCOPE ) {
+	} else if ( cg_entities[cg.snap->ps.clientNum].currentState.weapon == WP_FG42SCOPE )      {
 		CG_AdjustZoomVal( cg_zoomStepSnooper.value, ZOOM_FG42SCOPE );
-	} else if ( cg.zoomedBinoc ) {
+	} else if ( cg.zoomedBinoc )      {
 		CG_AdjustZoomVal( cg_zoomStepBinoc.value, ZOOM_BINOC );
 	}
 }
@@ -1171,7 +1170,7 @@ static int CG_CalcViewValues( void ) {
 			vec3_t fwd;
 			AngleVectors( cg.refdefViewAngles, fwd, NULL, NULL );
 			VectorMA( cg_entities[ps->viewlocked_entNum].currentState.pos.trBase, 16, fwd, cg.refdef.vieworg );
-		} else if ( ps->viewlocked ) {
+		} else if ( ps->viewlocked )     {
 			vec3_t fwd;
 			float oldZ;
 			// set our position to be behind it
@@ -1496,12 +1495,12 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	DEBUGTIME
 
 	// clear all the render lists
-		trap_R_ClearScene();
+	trap_R_ClearScene();
 
 	DEBUGTIME
 
 	// set up cg.snap and possibly cg.nextSnap
-		CG_ProcessSnapshots();
+	CG_ProcessSnapshots();
 
 	DEBUGTIME
 
@@ -1563,7 +1562,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	DEBUGTIME
 
 	// RF, draw the skyboxportal
-		CG_DrawSkyBoxPortal();
+	CG_DrawSkyBoxPortal();
 
 	DEBUGTIME
 
@@ -1580,7 +1579,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 
 	DEBUGTIME
 
-		CG_FxBeginFrame();
+	CG_FxBeginFrame();
 
 	// build the render lists
 	if ( !cg.hyperspace ) {
@@ -1596,7 +1595,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 
 		// Local effects are advanced by the shared FX runtime.
 
-			DEBUGTIME
+		DEBUGTIME
 	}
 
 
@@ -1623,7 +1622,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	DEBUGTIME
 
 	// warning sounds when powerup is wearing off
-		CG_PowerupTimerSounds();
+	CG_PowerupTimerSounds();
 
 	// make sure the lagometerSample and frame timing isn't done twice when in stereo
 	if ( stereoView != STEREO_RIGHT ) {
@@ -1638,7 +1637,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	DEBUGTIME
 
 	// let the client system know what our weapon, holdable item and zoom settings are
-		trap_SetUserCmdValue( cg.weaponSelect, cg.holdableSelect, cg.zoomSensitivity, cg.cld );
+	trap_SetUserCmdValue( cg.weaponSelect, cg.holdableSelect, cg.zoomSensitivity, cg.cld );
 
 	// actually issue the rendering calls
 	CG_DrawActive( stereoView );
@@ -1646,7 +1645,7 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	DEBUGTIME
 
 	// update audio positions
-		trap_S_Respatialize( cg.snap->ps.clientNum, cg.refdef.vieworg, cg.refdef.viewaxis, inwater );
+	trap_S_Respatialize( cg.snap->ps.clientNum, cg.refdef.vieworg, cg.refdef.viewaxis, inwater );
 
 	if ( cg_stats.integer ) {
 		CG_Printf( "cg.clientFrame:%i\n", cg.clientFrame );
@@ -1654,3 +1653,4 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 
 	DEBUGTIME
 }
+
