@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 1292bd031940dd58d05d7f7ab5d2c27d45bfad6c)
 successfully downloaded text file (SHA: e1e983bfe22450eaf75a7ac2e4d7539c05ccbbfe)
 /*
 ===========================================================================
@@ -75,8 +76,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // CGAME cursor type bits
 #define CURSOR_NONE             0x00000001
-#define CURSOR_ARROW            0x00000
-002
+#define CURSOR_ARROW            0x00000002
 #define CURSOR_SIZER            0x00000004
 
 #ifdef CGAME
@@ -359,8 +359,7 @@ typedef struct {
 	void ( *drawText )( float x, float y, int font, float scale, vec4_t color, const char *text, float adjust, int limit, int style );
 	int ( *textWidth )( const char *text, int font, float scale, int limit );
 	int ( *textHeight )( const char *text, int font, float scale, int limit );
-	qhandle_t ( *registerModel
-	)( const char *p );
+	qhandle_t ( *registerModel )( const char *p );
 	void ( *modelBounds )( qhandle_t model, vec3_t min, vec3_t max );
 	void ( *fillRect )( float x, float y, float w, float h, const vec4_t color );
 	void ( *drawRect )( float x, float y, float w, float h, float size, const vec4_t color );
@@ -499,8 +498,7 @@ void        UI_RoQDone( void ); // ui callback.  roq is done, allow menu to hand
 
 void        Controls_GetConfig( void );
 void        Controls_SetConfig( qboolean restart );
-void        Controls_SetDefaults( void
-								  );
+void        Controls_SetDefaults( void );
 
 int         trap_PC_AddGlobalDefine( char *define );
 int         trap_PC_LoadSource( const char *filename );
