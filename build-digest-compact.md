@@ -1,40 +1,32 @@
 # Compact build digest
 
-commit: 705164c409c3
+commit: 5f984ed0316e
 
-- ubuntu-latest-x64-debug: cancelled
+- ubuntu-latest-x64-debug: failure
 - ubuntu-latest-x64-release: cancelled
-- ubuntu-latest-x86-debug: failure
-- ubuntu-latest-x86-release: cancelled
+- ubuntu-latest-x86-debug: cancelled
+- ubuntu-latest-x86-release: failure
 - uncrustify: success
-- windows-latest-x64-debug: failure
-- windows-latest-x64-release: failure
-- windows-latest-x86-debug: failure
-- windows-latest-x86-release: cancelled
+- windows-latest-x64-debug: success
+- windows-latest-x64-release: success
+- windows-latest-x86-debug: success
+- windows-latest-x86-release: success
 
 ## ubuntu-latest-x64-debug
 
-status: cancelled
+status: failure
 
-errors: 6
-warnings: 31 in 1 kinds
+errors: 1
+warnings: 0 in 0 kinds
 
 ### errors
 
 /home/runner/work/RTCW-SP/RTCW-SP/src/qcommon/../client/client.h:34:10: fatal error: ../ui/ui_public.h: No such file or directory
-/usr/include/c++/15/cstdlib:167:11: error: ‘qsort’ has not been declared in ‘::’
-/usr/include/c++/15/stdlib.h:74:12: error: ‘qsort’ has not been declared in ‘std’
-/home/runner/work/RTCW-SP/RTCW-SP/src/client/client.h:34:10: fatal error: ../ui/ui_public.h: No such file or directory
-/home/runner/work/RTCW-SP/RTCW-SP/src/qcommon/common.cpp:1960:47: error: ‘CPUSTRING’ was not declared in this scope; did you mean ‘TT_STRING’?
-/home/runner/work/RTCW-SP/RTCW-SP/src/server/server.h:33:10: fatal error: ../game/g_public.h: No such file or directory
 
 ### failure context
 
 
 ### warning kinds
-
-- [31x] ‘CHAR_WIDTH’ redefined
-  - /home/runner/work/RTCW-SP/RTCW-SP/src/games/cgame/cg_local.h:79:9: warning: ‘CHAR_WIDTH’ redefined
 
 ## uncrustify
 
@@ -53,10 +45,10 @@ warnings: 0 in 0 kinds
 
 ## windows-latest-x64-debug
 
-status: failure
+status: success
 
 errors: 0
-warnings: 4 in 2 kinds
+warnings: 6 in 2 kinds
 
 ### errors
 
@@ -66,10 +58,12 @@ warnings: 4 in 2 kinds
 
 ### warning kinds
 
-- [3x] C4101
-  - D:\a\RTCW-SP\RTCW-SP\src\games\cgame\fx\FxScheduler.cpp(1010,9): warning C4101: 'origin': unreferenced local variable [D:\a\RTCW-SP\RTCW-SP\build\cgame.vcxproj]
-  - D:\a\RTCW-SP\RTCW-SP\src\games\cgame\fx\FxScheduler.cpp(1011,9): warning C4101: 'axis': unreferenced local variable [D:\a\RTCW-SP\RTCW-SP\build\cgame.vcxproj]
-  - D:\a\RTCW-SP\RTCW-SP\src\games\cgame\cg_effects.cpp(166,57): warning C4101: 'ndir': unreferenced local variable [D:\a\RTCW-SP\RTCW-SP\build\cgame.vcxproj]
-- [1x] C4723
-  - D:\a\RTCW-SP\RTCW-SP\src\games\cgame\cg_players.cpp(3546,1): warning C4723: potential divide by 0 [D:\a\RTCW-SP\RTCW-SP\build\cgame.vcxproj]
+- [3x] C4311
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_input.cpp(859,7): warning C4311: 'type cast': pointer truncation from 'void (__cdecl *)(HMIDIIN,UINT,DWORD,DWORD,DWORD)' to 'unsigned long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_syscon.cpp(141,11): warning C4311: 'type cast': pointer truncation from 'HBRUSH' to 'long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_syscon.cpp(151,11): warning C4311: 'type cast': pointer truncation from 'HBRUSH' to 'long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
+- [3x] C4302
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_input.cpp(859,7): warning C4302: 'type cast': truncation from 'void (__cdecl *)(HMIDIIN,UINT,DWORD,DWORD,DWORD)' to 'unsigned long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_syscon.cpp(141,11): warning C4302: 'type cast': truncation from 'HBRUSH' to 'long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
+  - D:\a\RTCW-SP\RTCW-SP\src\sys\win32\win_syscon.cpp(151,11): warning C4302: 'type cast': truncation from 'HBRUSH' to 'long' [D:\a\RTCW-SP\RTCW-SP\build\wolf.vcxproj]
 
