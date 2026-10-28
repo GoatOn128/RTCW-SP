@@ -299,3 +299,10 @@ Result: all four ubuntu legs and all four windows legs build with 0 errors and 0
 - Fixed the extractfuncs crash on fresh checkouts: with the committed g_funcs.h/g_func_decs.h gone, DumpReplaceFunctions freed an uninitialized newbuf on the first-generation path, which corrupted the heap on the release legs
 
 Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
+
+## 2026-10-28: put the built binaries in the bin folder
+
+- The CMake rework had pointed ENGINE_OUTPUT_DIRECTORY at the repo root, so the executables, their map and PDB files landed next to the sources while only the game modules reached bin/main
+- Pointed ENGINE_OUTPUT_DIRECTORY at ../bin and derived the module directory from it, so wolf, wolfded, bspc and extractfuncs build into bin and the modules stay in bin/main
+
+Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
