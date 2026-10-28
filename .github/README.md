@@ -4,6 +4,7 @@ Return to Castle Wolfenstein single player GPL source release
 This file contains the following sections:
 
 GENERAL NOTES
+
 LICENSE
 
 GENERAL NOTES
@@ -23,48 +24,52 @@ http://store.steampowered.com/app/9010/
 Linux note: due to the game CD containing only a Windows version of the game,
 you must install and update the game using WINE to get the game data.
 
-Compiling on win32:
--------------------
-
-A Visual C++ 2008 project is provided in src\wolf.sln.
-The solution file is compatible with the Express release of Visual C++.
-
-You will need to execute src\extractfuncs\extractfuncs.bat to generate src\game\g_save.c
-
-You can test your binaries by replacing WolfSP.exe, qagamex86.dll, cgamex86.dll, uix86.dll at the top of the RTCW install
-
-Compiling on GNU/Linux x86:
----------------------------
-
-Go to the src/unix directory, and run the cons script
-(cons is a perl based precursor to scons, this is what we were using at the time)
-
-Run ./cons -h to review build options. Use ./cons -- release to compile in release mode.
-
-If problems occur, consult the internet.
-
-Compiling with SCons (modern build, all platforms):
+Compiling with CMake (all platforms):
 ---------------------------------------------------
 
-The restructured source tree builds with SCons from the repository root.
-Use this instead of the old cons build.
+The source tree builds with CMake; src/CMakeLists.txt is the entry point and
+src/CMakePresets.json ships ready-made presets for the common configurations.
 
 Requirements:
-- Python 3 and SCons (pip install scons)
-- Windows: the Microsoft Visual Studio C++ toolchain (the x86 target
-  also needs the 32-bit build tools installed)
-- Linux: gcc and g++ with multilib support for the x86 target, plus
-  the X11 development headers
+- CMake 3.25 or newer
+- Windows: the Microsoft Visual Studio C++ toolchain (the x86 target also
+  needs the 32-bit build tools installed)
+- Linux: gcc or clang with multilib support for the x86 target, plus the
+  X11 and OpenGL development headers
 
-Build from the repository root:
+Windows, from the repository root:
 
-  scons arch=x64 config=release
+  cmake --preset visual-studio
+  cmake --build --preset visual-studio-release
 
-Options:
-- arch: x86 or x64
-- config: debug or release
-- -j N: build with N parallel jobs
-- -k: keep going after errors to see every failing file
+x64 builds use the visual-studio-x64 preset instead. cmake_msvc.cmd in the
+repository root configures the same Visual Studio build tree and .vscode
+holds matching editor tasks. To use the developer command prompt directly:
+
+  .vscode\scripts\VS2026DevCmd.cmd x64 release
+
+Linux, from the repository root:
+
+  cmake --preset linux-release      (run in the src directory)
+  cmake --build --preset linux-release
+
+or with the helper script, which configures a Ninja build tree under
+build/<compiler>/<config> for the chosen compiler:
+
+  ./cmake_linux.sh gcc release
+  cmake --build build/gcc/release
+
+Outputs:
+- The engine executable WolfSP_<arch> (.exe on Windows) is written to the
+  repository root.
+- The game modules qagame_<arch>, cgame_<arch> and ui_<arch> (.dll on
+  Windows, .so on Linux) are also written to the repository root; the
+  engine loads them from there at startup.
+- Tools (bspc, extractfuncs) are built from the same tree.
+
+You can test your binaries by replacing WolfSP.exe, qagame_x86.dll,
+cgame_x86.dll, ui_x86.dll (or the matching x64 variants) at the top of the
+RTCW install.
 
 Other platforms, updated source code, security issues:
 ------------------------------------------------------
@@ -97,7 +102,7 @@ zlib is Copyright (C) 1995-1998 Jean-loup Gailly and Mark Adler
   arising from the use of this software.
 
   Permission is granted to anyone to use this software for any purpose,
-  including commercial applications, and to alter it and redistribute it
+  including commercial applications, and to alter and redistribute it
   freely, subject to the following restrictions:
 
   1. The origin of this software must not be misrepresented; you must not
@@ -121,8 +126,8 @@ License is also granted to make and use derivative works provided that such work
 s are identified as <93>derived from the RSA Data Security, Inc. MD4 Message-Dig
 est Algorithm<94> in all material mentioning or referencing the derived work.
 RSA Data Security, Inc. makes no representations concerning either the merchanta
-bility of this software or the suitability of this software for any particular p
-urpose. It is provided <93>as is<94> without express or implied warranty of any
+bility of this software or the suitability of this software for any particular
+purpose. It is provided <93>as is<94> without express or implied warranty of any
 kind.
 
 JPEG library
@@ -150,7 +155,7 @@ acknowledge us.
 
 NOTE: unfortunately the README that came with our copy of the library has
 been lost, so the one from release 6b is included instead. There are a few
-'glue type' modifications to the library to make it easier to use from
-the engine, but otherwise the dependency can be easily cleaned up to a
+'glue type' modifications to the library to make it easier to use from the
+engine, but otherwise the dependency can be easily cleaned up to a
 better release of the library.
 

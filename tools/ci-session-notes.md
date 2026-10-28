@@ -177,3 +177,43 @@ release-ui, windows x86 debug/release, uncrustify. stb_image (BMP),
 dr_pcx (PCX) and the drpcx implementation compiled inside the muted
 stb_impl.c unit all built clean on every compiler (msvc clang-cl x86/x64,
 gcc/clang linux x86/x64). Task complete.
+
+## 2026-10-28: replace the SCons build with CMake
+- src/CMakeLists.txt rewritten: real source paths (the committed draft
+  still referenced jpeg-6, ft2, external/, src/tools/nav), adds the
+  missing files (cgame fx/*, splines/q_shared.cpp, stb_impl.c, qcommon
+  q_math.cpp/q_shared.cpp, game ai/*), removes the Win32-only
+  FATAL_ERROR "cmaketest" guards, and builds cross-platform
+  (Linux sys/unix set + X11/GL/dl/m/pthread, Windows sys/win32 set +
+  winmm/wsock32 and the .def files guarded to WIN32).
+- ARCH_STRING is now a compile definition (x86/x64 from the pointer
+  size) instead of the generated q_buildconfig.h; module outputs are
+  qagame_<arch>, cgame_<arch>, ui_<arch> and the engine stays
+  WolfSP_<arch>; all runnable products land in the repository root.
+  No debug _d postfix needed: the loader falls back from *_d to the
+  plain name.
+- extractfuncs runs as a game_function_table custom target before the
+  game module; it gets an explicit file list (file(GLOB) at configure
+  time) because the Windows main() takes FindFirstFile filters while
+  the Linux main() takes literal paths.
+- bspc: dropped the broken ../nav source and bin_nt leftovers from its
+  CMakeLists; navmesh_builder.cpp includes fixed to
+  ../../qcommon/wolf_nav.h and ../../qcommon/q_shared.h; bspc links the
+  recast/detour static libs defined in the top-level CMakeLists.
+- src/CMakePresets.json: visual-studio (Win32), visual-studio-x64,
+  command-line, linux-debug/release (Ninja) and linux-x86-*
+  (-m32); build presets for all of them.
+- CI: ci-windows.yml and ci-ubuntu.yml now configure and build with
+  CMake (VS generator -A Win32/x64 on Windows, Ninja + -m32 on Linux
+  x86); the hardlink matrix dimension and the scons cache are gone;
+  LEG names are os-arch-config; digest/upload steps unchanged so
+  ci-publish.yml keeps working without edits.
+- VS Code: tasks/launch/c_cpp_properties point at the presets and the
+  repository-root outputs; VS2026DevCmd.cmd drives cmake configure/
+  build/clean; .code-workspace and settings add cmake.sourceDirectory
+  and the cmake-tools recommendation; Open-Workspace.cmd detects
+  src/CMakeLists.txt as the root marker.
+- Docs: .github/README.md compiling sections rewritten for CMake
+  (LICENSE sections untouched); CLAUDE.md and COPILOT.md build/CI
+  sections updated to CMake; .gitignore drops the scons entries.
+- Awaiting the first CMake CI digest.

@@ -4,19 +4,18 @@ Guidance for Claude Code working in this repository.
 
 ## What this repository is
 
-Return to Castle Wolfenstein single-player engine (id Tech 3 era, GPL). It is being modernized on several axes at once: a SCons/LLVM build, a SDL3 platform layer, a C++ port to idlib, a new native module system, and a glad-based renderer DLL.
+Return to Castle Wolfenstein single-player engine (id Tech 3 era, GPL). It is being modernized on several axes at once: a CMake build, a SDL3 platform layer, a C++ port to idlib, a new native module system, and a glad-based renderer DLL.
 
 The owner is away. Work autonomously, commit directly, do not wait for answers. Only stop when a decision is irreversible and genuinely requires the owner.
 
 ## Repository layout
 
-- `src/` - engine code: `client`, `server`, `qcommon`, `renderer`, `splines`, `sys`, `games/` (botai, botlib, cgame, game, ui), `tools`, `third-party`.
-- `src/third-party/` - vendored third-party code (currently ft2, jpeg-6). All NEW third-party code goes here and only here. Never scatter dependencies elsewhere.
+- `src/` - engine code: `client`, `server`, `qcommon`, `renderer`, `splines`, `sys`, `games/` (botlib, cgame, game, ui), `tools`, `third-party`.
+- `src/third-party/` - vendored third-party code (currently SDL3, glad, recast/detour, stb, dr_pcx, OpenalSoft). All NEW third-party code goes here and only here. Never scatter dependencies elsewhere.
 - `src/sys/` - platform layer. Cross-platform ported code lives directly in `src/sys/` with the `sys_` name prefix (sys_main, sys_events, ...). Platform-specific code that cannot be expressed through SDL3 goes in `src/sys/win32/`, `src/sys/unix/`, `src/sys/macosx/`.
 - `references/doom3gpl/` - Doom 3 (2004) GPL source. Reference for the game.dll module loading system. Read-only.
 - `references/doom3bfg/` - Doom 3 BFG edition source. Reference for idlib. Read-only.
 - `uncrustify.cfg` - authoritative code style, enforced by CI.
-- Legacy build files that SCons replaces: `src/Makefile`, `src/wolf.sln` (VS2008), `src/wolf.vcproj`, the cons script under `src/sys/unix/`.
 
 ## Hard rules
 
@@ -29,11 +28,11 @@ The owner is away. Work autonomously, commit directly, do not wait for answers. 
 
 ## Build system
 
-- Replace cons (`src/sys/unix`), `src/Makefile` and the VS2008 solution with a complete SCons build. A root `SConstruct` drives everything.
+- `src/CMakeLists.txt` is the CMake entry point and `src/CMakePresets.json` ships configure/build presets for the common configurations. CMake 3.25 or newer is required.
 - Toolchain: LLVM/Clang on both platforms - clang-cl on Windows, clang on Linux (and macOS once ported). Do not use MSVC- or GCC-only language extensions.
-- Build outputs: the main binary (WolfSP), the renderer DLL, the game modules (game, cgame, ui), botlib, and tools.
-- Configurations: debug and release, x86 and x64, for every platform in the matrix.
-- Full Visual Studio integration: SCons must generate a `wolf.sln` + `.vcxproj` set using the LLVM clang-cl toolset, so developers get the VS debugger, compiler settings and IntelliSense. Debugger launch settings (working directory, command arguments, environment, PDB paths) must be generated and kept working. Document the required VS components and extension settings (LLVM/clang toolchain) in the README.
+- Build outputs: the main binary (WolfSP_<arch>), the game modules (qagame_<arch>, cgame_<arch>, ui_<arch>), botlib, and tools, all written to the repository root.
+- Configurations: debug and release, x86 and x64, for every platform in the matrix. The engine loads the game modules by name at runtime, so the arch suffix must follow the pointer size of the configured build (ARCH_STRING).
+- Visual Studio integration: the Visual Studio presets generate a .sln + .vcxproj set developers can open, debug and browse with the VS debugger and IntelliSense.
 
 ## Platform layer (SDL3)
 
@@ -65,7 +64,7 @@ The owner is away. Work autonomously, commit directly, do not wait for answers. 
 
 1. A formatting job that runs uncrustify with `uncrustify.cfg` over the whole tree, before any compile job. If files are unformatted, the job formats them, commits the formatted files back to the branch with `[skip ci]` in the message, and fails the run so the change is visible.
 2. A build matrix that compiles the project fully for every platform: windows-latest (x86 + x64, clang-cl), ubuntu-latest (x86 + x64, clang), and macOS as the port lands.
-3. Caching everywhere it saves time: actions/cache for SCons build directories, pip (scons), and ccache/sccache for clang. Cache keys hash the SConstruct files plus platform and compiler version.
+3. Caching everywhere it saves time: actions/cache for the CMake build trees and ccache/sccache for clang. Cache keys hash the CMakeLists files plus platform and compiler version.
 4. Concurrency with cancel-in-progress so a new commit cancels superseded in-progress runs.
 5. Build log publication: every run, success or failure, commits to the repo root a full `build.log` and a `build-digest.md` - a machine-digestible summary: overall status, failing step, per-platform status, and every error and warning with file:line. Agents read the digest first, the full log as fallback. The publishing commit carries `[skip ci]` to avoid loops.
 
@@ -87,7 +86,7 @@ When a task is large, split it into parallel subagents and keep integration in t
 
 ## Roadmap order
 
-1. SCons + clang build, uncrustify CI job, build.log/digest publication. Do this first: every later phase depends on CI feedback.
+1. CMake + clang build, uncrustify CI job, build.log/digest publication - DONE.
 2. Renderer DLL + glad, removal of qgl and dead OpenGL extensions.
 3. SDL3 port of src/sys.
 4. VM removal + Doom 3 game.dll module system.
