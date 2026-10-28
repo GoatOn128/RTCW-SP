@@ -24,3 +24,7 @@ g_func_decs.tmp
 # python
 __pycache__/
 *.pyc
+
+# Pre-generate files
+g_funcs.h
+g_func_decs.h

@@ -1,16 +1,15 @@
-# Host tool that regenerates the game function table (g_funcs.h /
-# g_func_decs.h) that g_save.cpp compiles in.
+project(extractfuncs)
 
-add_executable(extractfuncs
-    extractfuncs.cpp
-    l_log.cpp
-    l_memory.cpp
-    l_precomp.cpp
-    l_script.cpp
-)
-target_compile_definitions(extractfuncs PRIVATE _CONSOLE SCREWUP)
+set(EXTRACTFUNCS_SOURCES
+	extractfuncs.cpp
+	l_log.cpp
+	l_memory.cpp
+	l_precomp.cpp
+	l_script.cpp)
+
+add_executable(${PROJECT_NAME} ${EXTRACTFUNCS_SOURCES})
+target_compile_definitions(${PROJECT_NAME} PRIVATE _CONSOLE SCREWUP)
 if(MSVC)
-    # The optimizer in current MSVC releases crashes on this legacy parser.
-    target_compile_options(extractfuncs PRIVATE /Od)
+	target_compile_options(${PROJECT_NAME} PRIVATE /Od)
 endif()
-wolf_configure_target(extractfuncs)
+configure_target(${PROJECT_NAME})
