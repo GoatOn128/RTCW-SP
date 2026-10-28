@@ -97,6 +97,7 @@ add_custom_target(extractFunctionTables
 	COMMENT "Building the game function table"
 	VERBATIM
 )
+set_solution_folder(extractFunctionTables misc)
 
 add_library(${PROJECT_NAME} SHARED ${GAME_SOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "qagame_${CPU_ARCH}")

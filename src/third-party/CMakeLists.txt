@@ -25,7 +25,9 @@ set(DETOUR_SOURCES
 add_library(recast STATIC ${RECAST_SOURCES})
 target_include_directories(recast PUBLIC "${RECAST_ROOT}/Recast/Include")
 configure_target(recast)
+set_solution_folder(recast third-party)
 
 add_library(detour STATIC ${DETOUR_SOURCES})
 target_include_directories(detour PUBLIC "${RECAST_ROOT}/Detour/Include")
 configure_target(detour)
+set_solution_folder(detour third-party)

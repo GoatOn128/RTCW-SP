@@ -70,6 +70,7 @@ function(configure_target target)
 		"${ENGINE_SOURCE_DIR}/qcommon"
 	)
 	set_output_directory(${target})
+	set_type_solution_folder(${target})
 endfunction()
 
 # configures the engine target
@@ -88,4 +89,24 @@ function(configure_engine target)
 		target_link_libraries(${target} PRIVATE X11 GL Xxf86dga Xxf86vm dl m pthread)
 	endif()
 	configure_target(${target})
+endfunction()
+
+# puts a target in a Visual Studio solution folder
+function(set_solution_folder target folder)
+	set_target_properties(${target} PROPERTIES FOLDER ${folder})
+endfunction()
+
+# puts a target in the solution folder that matches its type
+function(set_type_solution_folder target)
+	get_target_property(target_type ${target} TYPE)
+	if(target_type STREQUAL "SHARED_LIBRARY")
+		set(folder dll)
+	elseif(target_type STREQUAL "STATIC_LIBRARY")
+		set(folder libs)
+	elseif(target_type STREQUAL "EXECUTABLE")
+		set(folder exes)
+	else()
+		set(folder misc)
+	endif()
+	set_solution_folder(${target} ${folder})
 endfunction()
