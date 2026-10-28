@@ -1,276 +1,64 @@
 # Compact build digest
 
-commit: 79b1c24af736
+commit: d32d40e9b4bc
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
 - ubuntu-latest-x64-release-game: failure
 - ubuntu-latest-x86-debug-: cancelled
-- ubuntu-latest-x86-release-: failure
+- ubuntu-latest-x86-release-: cancelled
 - uncrustify: success
 - windows-latest-x64-debug-: failure
-- windows-latest-x64-release-: cancelled
-- windows-latest-x64-release-cgame: failure
+- windows-latest-x64-release-: failure
+- windows-latest-x64-release-cgame: cancelled
 - windows-latest-x64-release-game: failure
 - windows-latest-x64-release-ui: failure
 - windows-latest-x86-debug-: failure
-- windows-latest-x86-release-: failure
+- windows-latest-x86-release-: cancelled
 
 ## ubuntu-latest-x64-debug-
 
 status: failure
 
-errors: 92
-warnings: 9283 in 26 kinds
+errors: 24
+warnings: 7432 in 27 kinds
 
 ### errors
 
-src/client/cl_cin.cpp:1105:54: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
-src/client/cl_cin.cpp:1105:94: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
-src/client/cl_cin.cpp:1106:56: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
-src/client/cl_cin.cpp:1106:136: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
-src/qcommon/common.cpp:1098:30: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-scons: *** [build/linux-x64-debug/client/obj/qcommon/common.cpp.o] Error 1
-src/qcommon/msg.cpp:948:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:949:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:950:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:951:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:952:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:953:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:954:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:955:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:956:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:957:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:958:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:959:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:960:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:961:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:962:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:963:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:964:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:965:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/qcommon/msg.cpp:966:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-scons: *** [build/linux-x64-debug/client/obj/qcommon/msg.cpp.o] Error 1
-src/sys/unix/unix_main.cpp:663:2: error: Unknown arch
-src/sys/unix/unix_main.cpp:752:13: error: assigning to 'void (*)(int (*)(int, ...))' from 'void *' converts between void pointer and function pointer
-src/sys/unix/unix_main.cpp:753:16: error: assigning to 'int (*)(int, ...)' from 'void *' converts between void pointer and function pointer
-src/sys/unix/unix_main.cpp:1066:7: error: assigning to 'char *' from incompatible type 'void *'
-src/sys/unix/unix_main.cpp:1082:9: error: assigning to 'netadr_t *' from incompatible type 'void *'
-src/sys/unix/unix_main.cpp:1305:12: error: assigning to 'char *' from incompatible type 'void *'
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
 src/sys/unix/linux_glimp.cpp:1:1: error: unknown type name 'successfully'
 src/sys/unix/linux_glimp.cpp:1:24: error: expected ';' after top level declarator
 /usr/include/x86_64-linux-gnu/sys/types.h:33:9: error: unknown type name '__u_char'
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-src/sys/unix/linux_qgl.cpp:3071:34: error: assigning to 'XVisualInfo *(*)(Display *, int, int *)' (aka 'XVisualInfo *(*)(_XDisplay *, int, int *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:3072:34: error: assigning to 'GLXContext (*)(Display *, XVisualInfo *, GLXContext, int)' (aka '__GLXcontextRec *(*)(_XDisplay *, XVisualInfo *, __GLXcontextRec *, int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:3073:34: error: assigning to 'void (*)(Display *, GLXContext)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:3074:34: error: assigning to 'int (*)(Display *, GLXDrawable, GLXContext)' (aka 'int (*)(_XDisplay *, unsigned long, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:3075:34: error: assigning to 'void (*)(Display *, GLXContext, GLXContext, GLuint)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *, __GLXcontextRec *, unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:3076:34: error: assigning to 'void (*)(Display *, GLXDrawable)' (aka 'void (*)(_XDisplay *, unsigned long)') from 'void *' converts between void pointer and function pointer
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
-src/games/botlib/be_ai_goal.cpp:144:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:145:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:146:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:147:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:148:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:149:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:150:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_goal.cpp:151:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
-src/games/botlib/be_ai_weap.cpp:63:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:64:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:65:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:66:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:67:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:68:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:69:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:70:21: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:71:14: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:72:14: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:73:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:74:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:75:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:76:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:77:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:78:21: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:79:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:80:16: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/botlib/be_ai_weap.cpp:81:15: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:91:11: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:93:12: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:94:14: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:95:13: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:96:13: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:97:16: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:98:17: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:99:16: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:100:11: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:101:17: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:102:13: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:103:17: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:104:17: error: cast from pointer to smaller type 'int' loses information
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o] Source `src/renderer/tr_md5.cpp' not found, needed by target `build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o'.
-src/games/game/g_weapon.cpp:1149:12: error: no matching function for call to 'min'
-src/games/game/g_weapon.cpp:1150:12: error: no matching function for call to 'max'
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
+src/games/game/g_funcs.h:349:16: error: address of overloaded function 'va' does not match required type 'unsigned char'
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
 src/games/cgame/cg_ents.cpp:1:1: error: unknown type name 'successfully'
 src/games/cgame/cg_ents.cpp:1:24: error: expected ';' after top level declarator
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
-src/games/cgame/cg_event.cpp:561:16: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:562:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:563:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:564:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:565:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:566:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-src/games/cgame/cg_event.cpp:567:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
-src/games/ui/ui_main.cpp:3056:16: error: no matching function for call to 'va'
-scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_main.cpp.o] Error 1
 
 ### failure context
-
-- build/linux-x64-debug/client/obj/client/cl_cin.cpp.o
-
-```
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/client/cl_cin.cpp:1105:94: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
- 1105 |         cinTable[currentHandle].t[0] = ( 0 - (unsigned int)(uintptr_t)cin.linbuf ) + (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta;
-      |                                                                                                     ^~~~~~~~~
-      |                                                                                                     __intptr_t
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/client/cl_cin.cpp:1106:56: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
- 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)(uintptr_t)cin.linbuf;
-      |                                                               ^~~~~~~~~
-      |                                                               __intptr_t
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/client/cl_cin.cpp:1106:136: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
- 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)(uintptr_t)cin.linbuf;
-      |                                                                                                                                               ^~~~~~~~~
-      |                                                                                                                                               __intptr_t
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/client/cl_cin.cpp:1436:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1436 |                         Cbuf_ExecuteText( EXEC_APPEND, va( "%s\n", s ) );
-      |                                                            ^
-src/client/cl_cin.cpp:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
- 1796 |         qboolean holdatend;
-      |                  ^
-2 warnings and 4 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/qcommon/common.cpp.o
-
-```
- 1079 |                 pMsg = "Minimum com_hunkMegs for a dedicated server is %i, allocating %i megs.\n";
-      |                        ^
-src/qcommon/common.cpp:1082:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1082 |                 pMsg = "Minimum com_hunkMegs is %i, allocating %i megs.\n";
-      |                        ^
-Compiling 'src/qcommon/huffman.cpp'
-src/qcommon/common.cpp:1098:30: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
- 1098 |         s_hunkData = ( byte * )( ( (intptr_t)s_hunkData + 31 ) & ~31 );
-      |                                     ^~~~~~~~
-      |                                     __intptr_t
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/qcommon/common.cpp:1192:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1192 |         Cvar_Set( "com_hunkused", va( "%i", hunk_low.permanent + hunk_high.permanent ) );
-      |                                       ^
-src/qcommon/common.cpp:1280:33: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1280 |                 Cvar_Set( "com_hunkused", va( "%i", hunk_low.permanent + hunk_high.permanent ) );
-      |                                               ^
-src/qcommon/common.cpp:1799:2: warning: indirection of non-volatile null pointer will be deleted, not trap [-Wnull-dereference]
- 1799 |         *( int * ) 0 = 0x12345678;
-      |         ^~~~~~~~~~~~
-src/qcommon/common.cpp:1799:2: note: consider using __builtin_trap() or qualifying pointer with 'volatile'
-src/qcommon/common.cpp:2073:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 2073 |         s = va( "%s %s %s", Q3_VERSION, CPUSTRING, __DATE__ );
-      |                 ^
-src/qcommon/common.cpp:2270:6: warning: variable 'key' set but not used [-Wunused-but-set-variable]
- 2270 |         int key;
-      |             ^
-16 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/qcommon/common.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/qcommon/msg.cpp.o
-
-```
-src/qcommon/msg.cpp:964:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-  964 |         { NETF( apos.trBase[2] ), 0 },
-      |           ^
-src/qcommon/msg.cpp:944:29: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)(intptr_t)&( (entityState_t*)0 )->x
-      |                             ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/qcommon/msg.cpp:965:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-  965 |         { NETF( apos.trDelta[0] ), 0 },
-      |           ^
-src/qcommon/msg.cpp:944:29: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)(intptr_t)&( (entityState_t*)0 )->x
-      |                             ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/qcommon/msg.cpp:966:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-  966 |         { NETF( apos.trDelta[1] ), 0 },
-      |           ^
-src/qcommon/msg.cpp:944:29: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)(intptr_t)&( (entityState_t*)0 )->x
-      |                             ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-Compiling 'src/server/sv_ccmds.cpp'
-20 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/qcommon/msg.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o
-
-```
-src/sys/unix/unix_main.cpp:753:16: error: assigning to 'int (*)(int, ...)' from 'void *' converts between void pointer and function pointer
-  753 |         *entryPoint = dlsym( libHandle, "vmMain" );
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/unix_main.cpp:1066:7: error: assigning to 'char *' from incompatible type 'void *'
- 1066 |                 b = Z_Malloc( len );
-      |                     ^~~~~~~~~~~~~~~
-src/sys/unix/unix_main.cpp:1082:9: error: assigning to 'netadr_t *' from incompatible type 'void *'
- 1082 |                 buf = Z_Malloc( len );
-      |                       ^~~~~~~~~~~~~~~
-src/sys/unix/unix_main.cpp:1152:15: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1152 |         char* date = __DATE__;
-      |                      ^
-<scratch space>:131:1: note: expanded from here
-  131 | "Oct 28 2026"
-      | ^
-src/sys/unix/unix_main.cpp:1153:15: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-Compiling 'src/sys/unix/linux_common.cpp'
- 1153 |         char* time = __TIME__;
-      |                      ^
-<scratch space>:132:1: note: expanded from here
-  132 | "01:14:15"
-      | ^
-src/sys/unix/unix_main.cpp:1154:14: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1154 |         char* sep = "==============================================================";
-      |                     ^
-src/sys/unix/unix_main.cpp:1305:12: error: assigning to 'char *' from incompatible type 'void *'
- 1305 |         cmdline = malloc( len );
-      |                   ^~~~~~~~~~~~~
-3 warnings and 6 errors generated.
-Compiling 'src/sys/unix/linux_glimp.cpp'
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
-```
 
 - build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o
 
 ```
+/usr/include/x86_64-linux-gnu/sys/types.h:33:9: error: unknown type name '__u_char'
+   33 | typedef __u_char u_char;
       |         ^
 Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-Compiling 'src/splines/math_matrix.cpp'
 In file included from src/sys/unix/linux_glimp.cpp:77:
 /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
     9 | #warning "xf86dga.h is obsolete and may be removed in the future."
@@ -300,192 +88,155 @@ src/sys/unix/linux_glimp.cpp:1329:11: warning: variable 'attempted3Dfx' set but 
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 ```
 
-- build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o
-
-```
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:3073:34: error: assigning to 'void (*)(Display *, GLXContext)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
- 3073 |         qglXDestroyContext           =  GPA( "glXDestroyContext" );
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
- 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:3074:34: error: assigning to 'int (*)(Display *, GLXDrawable, GLXContext)' (aka 'int (*)(_XDisplay *, unsigned long, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
- 3074 |         qglXMakeCurrent              =  GPA( "glXMakeCurrent" );
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
- 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:3075:34: error: assigning to 'void (*)(Display *, GLXContext, GLXContext, GLuint)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *, __GLXcontextRec *, unsigned int)') from 'void *' converts between void pointer and function pointer
- 3075 |         qglXCopyContext              =  GPA( "glXCopyContext" );
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
- 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:3076:34: error: assigning to 'void (*)(Display *, GLXDrawable)' (aka 'void (*)(_XDisplay *, unsigned long)') from 'void *' converts between void pointer and function pointer
- 3076 |         qglXSwapBuffers              =  GPA( "glXSwapBuffers" );
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
- 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/sys/unix/linux_qgl.cpp:3100:33: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 3100 |                 ri.Cvar_Set( "r_logFile", va( "%d", r_logFile->integer - 1 ) );
-      |                                               ^
-Compiling 'src/splines/math_vector.cpp'
-1 warning and 6 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o
-
-```
- 1005 |                 Log_Write( "%d: %s", i, name );
-      |                            ^
-src/games/botlib/be_ai_goal.cpp:1022:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1022 |                 botimport.Print( PRT_ERROR, "goal heap overflow\n" );
-      |                                             ^
-src/games/botlib/be_ai_goal.cpp:1509:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1509 |                 botimport.Print( PRT_FATAL, "couldn't load weights\n" );
-      |                                             ^
-src/games/botlib/be_ai_goal.cpp:1568:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1568 |                 botimport.Print( PRT_FATAL, "goal state handle %d out of range\n", handle );
-      |                                             ^
-src/games/botlib/be_ai_goal.cpp:1572:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1572 |                 botimport.Print( PRT_FATAL, "invalid goal state handle %d\n", handle );
-      |                                             ^
-src/games/botlib/be_ai_goal.cpp:1589:28: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1589 |         g_gametype = LibVarValue( "g_gametype", "0" );
-      |                                   ^
-src/games/botlib/be_ai_goal.cpp:1589:42: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1589 |         g_gametype = LibVarValue( "g_gametype", "0" );
-      |                                                 ^
-src/games/botlib/be_ai_goal.cpp:1591:27: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1591 |         filename = LibVarString( "itemconfig", "items.c" );
-      |                                  ^
-src/games/botlib/be_ai_goal.cpp:1591:41: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1591 |         filename = LibVarString( "itemconfig", "items.c" );
-      |                                                ^
-src/games/botlib/be_ai_goal.cpp:1595:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1595 |                 botimport.Print( PRT_FATAL, "couldn't load item config\n" );
-      |                                             ^
-59 warnings and 8 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
-```
-
 - build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o
 
 ```
-src/games/botlib/be_ai_weap.cpp:79:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-   79 |         {"ammoamount", WEAPON_OFS( ammoamount ), FT_INT},       //ammo amount used per shot
-      |                        ^
-src/games/botlib/be_ai_weap.cpp:57:31: note: expanded from macro 'WEAPON_OFS'
-   57 | #define WEAPON_OFS( x ) (int)(intptr_t)&( ( (weaponinfo_t *)0 )->x )
-      |                               ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/games/botlib/be_ai_weap.cpp:80:16: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-   80 |         {"ammoindex", WEAPON_OFS( ammoindex ), FT_INT},         //index of ammo in inventory
-      |                       ^
-src/games/botlib/be_ai_weap.cpp:57:31: note: expanded from macro 'WEAPON_OFS'
-   57 | #define WEAPON_OFS( x ) (int)(intptr_t)&( ( (weaponinfo_t *)0 )->x )
-      |                               ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-src/games/botlib/be_ai_weap.cpp:81:15: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
-   81 |         {"activate", WEAPON_OFS( activate ), FT_FLOAT},         //time it takes to select the weapon
-      |                      ^
-src/games/botlib/be_ai_weap.cpp:57:31: note: expanded from macro 'WEAPON_OFS'
-   57 | #define WEAPON_OFS( x ) (int)(intptr_t)&( ( (weaponinfo_t *)0 )->x )
-      |                               ^
-/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
-  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
-      |                         ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-Compiling 'src/games/botlib/be_interface.cpp'
-20 errors generated.
+  310 |                 botimport.Print( PRT_WARNING, "no weapon info loaded\n" );
+      |                                               ^
+src/games/botlib/be_ai_weap.cpp:312:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  312 |         botimport.Print( PRT_MESSAGE, "loaded %s\n", path );
+      |                                       ^
+src/games/botlib/be_ai_weap.cpp:370:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  370 |                 botimport.Print( PRT_FATAL, "couldn't load weapon config %s\n", filename );
+      |                                             ^
+src/games/botlib/be_ai_weap.cpp:493:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  493 |                 botimport.Print( PRT_FATAL, "move state handle %d out of range\n", handle );
+      |                                             ^
+src/games/botlib/be_ai_weap.cpp:497:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  497 |                 botimport.Print( PRT_FATAL, "invalid move state %d\n", handle );
+      |                                             ^
+src/games/botlib/be_ai_weap.cpp:513:23: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  513 |         file = LibVarString( "weaponconfig", "weapons.c" );
+      |                              ^
+src/games/botlib/be_ai_weap.cpp:513:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  513 |         file = LibVarString( "weaponconfig", "weapons.c" );
+      |                                              ^
+src/games/botlib/be_ai_weap.cpp:516:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  516 |                 botimport.Print( PRT_FATAL, "couldn't load the weapon config\n" );
+      |                                             ^
+50 warnings and 13 errors generated.
+src/games/botlib/be_ai_weight.cpp:72:26: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+   72 |                 SourceWarning( source, "negative value set to zero\n" );
+      |                                        ^
+src/games/botlib/be_ai_weight.cpp:78:24: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+   78 |                 SourceError( source, "invalid return value %s\n", token.string );
+      |                                      ^
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o
 
 ```
- 2868 |                 SourceError( source, "couldn't read expected token" );
-      |                                      ^
+  259 |                         SourceError( source, "unknown structure field %s", token.string );
+      |                                              ^
+src/games/botlib/l_struct.cpp:264:40: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  264 |                         if ( !PC_ExpectTokenString( source, "{" ) ) {
+      |                                                             ^
+src/games/botlib/l_struct.cpp:276:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  276 |                                 if ( PC_CheckTokenString( source, "}" ) ) {
+      |                                                                   ^
+src/games/botlib/l_struct.cpp:317:27: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   317 |                                         SourceError( source, "BUG: no sub structure defined" );
       |                                                              ^
 src/games/botlib/l_struct.cpp:333:27: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   333 |                                         SourceError( source, "expected a comma, found %s", token.string );
       |                                                              ^
+Compiling 'src/third-party/stb/stb_impl.c'
 80 warnings generated.
-src/games/botlib/l_precomp.cpp:3132:20: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 3132 |         PS_SetBaseFolder( "" );
-      |                           ^
-src/games/botlib/l_precomp.cpp:3230:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 3230 |                         botimport.Print( PRT_ERROR, "file %s still open in precompiler\n", sourceFiles[i]->scriptstack->filename );
-      |                                                     ^
 13 warnings generated.
 Compiling 'src/third-party/recast/Detour/Source/DetourAlloc.cpp'
-Compiling 'src/third-party/stb/stb_impl.c'
-120 warnings generated.
 Compiling 'src/third-party/recast/Detour/Source/DetourAssert.cpp'
 Compiling 'src/third-party/recast/Detour/Source/DetourCommon.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMesh.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshBuilder.cpp'
 src/games/botlib/be_nav_interface.cpp:407:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   407 |                 botimport.Print( PRT_ERROR, "No navmesh found for maps/%s_b[01].nav\n", const_cast<char *>( base.c_str() ) );
       |                                             ^
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMesh.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshQuery.cpp'
 src/games/botlib/be_nav_interface.cpp:914:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   914 |         botimport.Print( PRT_MESSAGE, "nav travel type %d\n", traveltype );
       |                                       ^
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshBuilder.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshQuery.cpp'
 Compiling 'src/third-party/recast/Detour/Source/DetourNode.cpp'
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o] Source `src/renderer/tr_md5.cpp' not found, needed by target `build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o'.
 ```
 
-- build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o
+- build/linux-x64-debug/game/obj/games/game/g_save.cpp.o
 
 ```
-5 warnings generated.
-src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
-  160 |         gentity_t *ent2;
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                   ^
+src/games/game/g_save.cpp:1059:51: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                          ^
+src/games/game/g_save.cpp:1059:58: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                 ^
+src/games/game/g_save.cpp:1059:65: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                        ^
+src/games/game/g_save.cpp:1059:72: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                               ^
+src/games/game/g_save.cpp:1059:79: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                                      ^
+src/games/game/g_save.cpp:1129:14: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1129 |                 username = "current";
+      |                            ^
+src/games/game/g_save.cpp:1409:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1409 |         filename = "save\\current.svg";
       |                    ^
-src/games/game/g_weapon.cpp:402:33: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  402 |                 bomb->classname             = "air strike";
-      |                                               ^
-Compiling 'src/games/game/ai/ai_characters.cpp'
-src/games/game/g_weapon.cpp:867:13: warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
-  867 |         gentity_t *sniperEnt;
+src/games/game/g_save.cpp:1569:20: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1569 |                 ent->classname = "freed";
+      |                                  ^
+src/games/game/g_save.cpp:1869:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1869 |         filename = "save\\current.psw";
       |                    ^
-src/games/game/g_weapon.cpp:1078:8: warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
- 1078 |                         int oldHealth;
-      |                             ^
-src/games/game/g_weapon.cpp:1149:12: error: no matching function for call to 'min'
- 1149 |         upangle = min( upangle, 50 );
-      |                   ^~~
-src/qcommon/q_shared.h:157:29: note: candidate template ignored: deduced conflicting types for parameter 'T' ('float' vs. 'int')
-  157 | template <class T> inline T min( T x, T y ) { return ( x < y ) ? x : y; }
-      |                             ^
-src/games/game/g_weapon.cpp:1150:12: error: no matching function for call to 'max'
- 1150 |         upangle = max( upangle, -50 );        //        now clamped to                  -50 / 50        (don't allow firing straight up/down)
-      |                   ^~~
-src/qcommon/q_shared.h:156:29: note: candidate template ignored: deduced conflicting types for parameter 'T' ('float' vs. 'int')
-  156 | template <class T> inline T max( T x, T y ) { return ( x > y ) ? x : y; }
-      |                             ^
-src/games/game/g_weapon.cpp:1337:6: warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
- 1337 |         int oldScore;
-      |             ^
-5 warnings and 2 errors generated.
-scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
+16 warnings and 1 error generated.
+scons: *** [build/linux-x64-debug/game/obj/games/game/g_save.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.cpp.o
+
+```
+      |                 ^
+src/games/cgame/cg_effects.cpp:505:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  505 |                 "tag_torso",
+      |                 ^
+src/games/cgame/cg_effects.cpp:508:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  508 |                 "tag_chest",
+      |                 ^
+src/games/cgame/cg_effects.cpp:509:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  509 |                 "tag_armright",
+      |                 ^
+src/games/cgame/cg_effects.cpp:510:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  510 |                 "tag_armleft",
+      |                 ^
+src/games/cgame/cg_effects.cpp:511:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  511 |                 "tag_head",
+      |                 ^
+src/games/cgame/cg_ents.cpp:1801:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+ 1801 |         lerpFrame_t         *traplf;
+      |                              ^
+src/games/cgame/cg_ents.cpp:1973:52: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1973 |                 CG_PositionRotatedEntityOnTag( &propeller, &ent, "tag_prop" );
+      |                                                                  ^
+src/games/cgame/cg_ents.cpp:1990:49: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1990 |                         CG_PositionRotatedEntityOnTag( &flash, &ent, "tag_gun1" );
+      |                                                                      ^
+src/games/cgame/cg_ents.cpp:2001:49: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 2001 |                         CG_PositionRotatedEntityOnTag( &flash, &ent, "tag_gun02" );
+      |                                                                      ^
+1 warning generated.
+58 warnings and 2 errors generated.
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
 ```
 
 
 ### warning kinds
 
-- [8965x] -writable-strings
+- [7109x] -writable-strings
   - src/client/cl_cgame.cpp:904:22: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src/client/cl_cin.cpp:1436:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:67:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:68:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:69:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -766,6 +517,7 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/client/cl_keys.cpp:386:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:387:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:388:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src/client/cl_main.cpp:1043:16: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:389:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:390:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:391:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -886,16 +638,16 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/client/cl_keys.cpp:524:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [173x] -unused-but-set-variable
   - src/client/cl_input.cpp:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_cin.cpp:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src/client/cl_input.cpp:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
   - src/client/cl_cgame.cpp:1106:6: warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
-  - src/client/cl_cin.cpp:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:186:6: warning: variable 'r' set but not used [-Wunused-but-set-variable]
-  - src/client/cl_scrn.cpp:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:2746:10: warning: variable 'str' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:2850:18: warning: variable 'serverStatus' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:3549:12: warning: variable 'ls' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:3550:6: warning: variable 'lastcolor' set but not used [-Wunused-but-set-variable]
   - src/client/cl_main.cpp:3551:6: warning: variable 'chatHeight' set but not used [-Wunused-but-set-variable]
+  - src/client/cl_scrn.cpp:386:6: warning: variable 'color' set but not used [-Wunused-but-set-variable]
   - src/client/snd_dma.cpp:558:8: warning: variable 'dist_mult' set but not used [-Wunused-but-set-variable]
   - src/client/snd_mix.cpp:793:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
   - src/qcommon/cm_trace.cpp:738:8: warning: variable 'a' set but not used [-Wunused-but-set-variable]
@@ -909,8 +661,8 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/qcommon/unzip.cpp:2139:16: warning: variable 'bufBefore' set but not used [-Wunused-but-set-variable]
   - src/server/sv_game.cpp:195:6: warning: variable 'area1' set but not used [-Wunused-but-set-variable]
   - src/server/sv_game.cpp:195:13: warning: variable 'area2' set but not used [-Wunused-but-set-variable]
-  - src/server/sv_snapshot.cpp:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
   - src/server/sv_world.cpp:406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/server/sv_snapshot.cpp:303:6: warning: variable 'c_fullsend' set but not used [-Wunused-but-set-variable]
   - src/server/sv_world.cpp:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_bsp.cpp:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_flares.cpp:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
@@ -922,9 +674,9 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/renderer/tr_marks.cpp:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_model.cpp:1883:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shade.cpp:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade_calc.cpp:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shadows.cpp:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shadows.cpp:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
-  - src/renderer/tr_shade_calc.cpp:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
   - src/qcommon/q_shared.cpp:434:9: warning: variable 'pc' set but not used [-Wunused-but-set-variable]
   - src/sys/unix/unix_shared.cpp:183:6: warning: variable 'extLen' set but not used [-Wunused-but-set-variable]
   - src/sys/unix/linux_glimp.cpp:1329:11: warning: variable 'attempted3Dfx' set but not used [-Wunused-but-set-variable]
@@ -933,8 +685,8 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/botlib/be_ai_goal.cpp:241:19: warning: variable 'gs' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_move.cpp:1553:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_move.cpp:3013:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src/games/botlib/l_script.cpp:389:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/l_precomp.cpp:1661:6: warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_script.cpp:389:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_active.cpp:577:8: warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_active.cpp:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_cmds.cpp:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
@@ -942,9 +694,9 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/game/g_main.cpp:405:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:1698:8: warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_mover.cpp:2150:6: warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_props.cpp:888:11: warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_target.cpp:990:17: warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_tramcar.cpp:212:8: warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_weapon.cpp:160:13: warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -955,14 +707,14 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/game/ai/ai_events.cpp:480:28: warning: variable 'activator' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_events.cpp:481:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_input.cpp:104:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_input.cpp:378:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_input.cpp:378:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:290:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:296:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:300:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_input.cpp:378:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_input.cpp:378:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_perception.cpp:472:21: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_navigation.cpp:291:8: warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_navigation.cpp:291:22: warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_perception.cpp:472:21: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_perception.cpp:827:17: warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_script_actions_animation.cpp:75:29: warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_script_actions_mission.cpp:1309:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
@@ -984,10 +736,10 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/game/ai/fsm/ai_behavior_pursuit.cpp:439:16: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_pursuit.cpp:440:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:194:16: warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/fsm/ai_boss_helga.cpp:42:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:627:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:702:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:764:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/fsm/ai_boss_helga.cpp:42:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:34:6: warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:438:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:513:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
@@ -998,8 +750,8 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/cgame/cg_ents.cpp:175:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:183:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:394:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_effects.cpp:313:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:947:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_effects.cpp:313:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:1801:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.cpp:739:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.cpp:1073:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
@@ -1036,14 +788,14 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/ui/ui_shared.cpp:3712:14: warning: variable 'value' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.cpp:4173:13: warning: variable 'parent' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.cpp:4820:14: warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:2481:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:2481:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:2481:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:2481:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_main.cpp:5098:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_main.cpp:5101:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_main.cpp:5411:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
@@ -1104,6 +856,11 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
   - src/games/game/bg_animation.cpp:807:29: warning: 'memset' call operates on objects of type 'int' while the size is based on a different type 'int *' [-Wsizeof-pointer-memaccess]
   - src/games/game/bg_animation.cpp:999:32: warning: 'memset' call operates on objects of type 'animScriptCommand_t' while the size is based on a different type 'animScriptCommand_t *' [-Wsizeof-pointer-memaccess]
   - src/games/game/ai/ai_system.cpp:458:33: warning: 'memset' call operates on objects of type 'cast_state_t' (aka 'cast_state_s') while the size is based on a different type 'cast_state_t *' (aka 'cast_state_s *') [-Wsizeof-pointer-memaccess]
+- [4x] -unused-const-variable
+  - src/qcommon/unzip.cpp:3045:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+  - src/games/ui/ui_main.cpp:70:18: warning: unused variable 'numNetSources' [-Wunused-const-variable]
+  - src/games/ui/ui_main.cpp:107:18: warning: unused variable 'numTeamArenaGameNames' [-Wunused-const-variable]
+  - src/games/ui/ui_main.cpp:119:18: warning: unused variable 'numSortKeys' [-Wunused-const-variable]
 - [4x] -unused-variable
   - src/games/cgame/cg_effects.cpp:166:57: warning: unused variable 'ndir' [-Wunused-variable]
   - src/games/cgame/cg_fx_entities.cpp:67:16: warning: unused variable 'col' [-Wunused-variable]
@@ -1130,14 +887,15 @@ scons: *** [build/linux-x64-debug/game/obj/games/game/g_weapon.cpp.o] Error 1
 - [2x] -self-assign
   - src/games/cgame/cg_view.cpp:874:11: warning: explicitly assigning value of variable of type 'float' to itself [-Wself-assign]
   - src/games/cgame/cg_view.cpp:1386:12: warning: explicitly assigning value of variable of type 'float' to itself [-Wself-assign]
+- [2x] -unneeded-internal-declaration
+  - src/games/ui/ui_main.cpp:95:20: warning: variable 'teamArenaGameNames' is not needed and will not be emitted [-Wunneeded-internal-declaration]
+  - src/games/ui/ui_main.cpp:112:20: warning: variable 'sortKeys' is not needed and will not be emitted [-Wunneeded-internal-declaration]
 - [1x] -strncat-size
   - src/client/cl_main.cpp:2838:25: warning: the value of the size argument in 'strncat' is too large, might lead to a buffer overflow [-Wstrncat-size]
 - [1x] -null-dereference
   - src/qcommon/common.cpp:1799:2: warning: indirection of non-volatile null pointer will be deleted, not trap [-Wnull-dereference]
 - [1x] -parentheses-equality
   - src/qcommon/unzip.cpp:2066:45: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
-- [1x] -unused-const-variable
-  - src/qcommon/unzip.cpp:3045:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
 - [1x] "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
   - /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
 - [1x] "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
@@ -1169,27 +927,23 @@ UNCRUSTIFY_FAILED: src/games/game/bg_pmove.cpp
 
 status: failure
 
-errors: 9
-warnings: 10037 in 29 kinds
+errors: 6
+warnings: 7983 in 29 kinds
 
 ### errors
 
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj] Source `src\renderer\tr_md5.cpp' not found, needed by target `build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj'.
-src\games\game\g_weapon.cpp(1149,12): error: no matching function for call to 'min'
-src\games\game\g_weapon.cpp(1150,12): error: no matching function for call to 'max'
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_weapon.cpp.obj] Error 1
+src\games\game\g_funcs.h(349,16): error: address of overloaded function 'va' does not match required type 'unsigned char'
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
 src\games\cgame\cg_ents.cpp(1,1): error: unknown type name 'successfully'
 src\games\cgame\cg_ents.cpp(1,24): error: expected ';' after top level declarator
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
-src\games\ui\ui_main.cpp(3056,16): error: no matching function for call to 'va'
-scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
 
 ### failure context
 
 - build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj
 
 ```
-src\games\botlib\l_struct.cpp(244,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   244 |         if ( !PC_ExpectTokenString( source, "{" ) ) {
       |                                             ^
 src\games\botlib\l_struct.cpp(259,25): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1208,133 +962,97 @@ src\games\botlib\l_struct.cpp(333,27): warning: ISO C++11 does not allow convers
   333 |                                         SourceError( source, "expected a comma, found %s", token.string );
       |                                                              ^
 13 warnings generated.
+Compiling 'src\third-party\recast\Detour\Source\DetourAssert.cpp'
 Compiling 'src\third-party\recast\Detour\Source\DetourCommon.cpp'
 Compiling 'src\third-party\recast\Detour\Source\DetourNavMesh.cpp'
 src\games\botlib\be_nav_interface.cpp(407,31): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   407 |                 botimport.Print( PRT_ERROR, "No navmesh found for maps/%s_b[01].nav\n", const_cast<char *>( base.c_str() ) );
       |                                             ^
+Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshBuilder.cpp'
 src\games\botlib\be_nav_interface.cpp(914,32): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   914 |         botimport.Print( PRT_MESSAGE, "nav travel type %d\n", traveltype );
       |                                       ^
-Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshBuilder.cpp'
 Compiling 'src\third-party\recast\Detour\Source\DetourNavMeshQuery.cpp'
 Compiling 'src\third-party\recast\Detour\Source\DetourNode.cpp'
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj] Source `src\renderer\tr_md5.cpp' not found, needed by target `build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj'.
 ```
 
-- build\windows-x64-debug\game\obj\games\game\g_weapon.cpp.obj
+- build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj
 
 ```
-Compiling 'src\games\game\ai\ai_actor.cpp'
-Compiling 'src\games\game\ai\ai_awareness.cpp'
-src\games\game\g_weapon.cpp(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
-  160 |         gentity_t *ent2;
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                          ^
+src\games\game\g_save.cpp(1059,58): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                 ^
+src\games\game\g_save.cpp(1059,65): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+src\games\game\g_props.cpp(3990,37): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 3990 |         self->s.modelindex = G_ModelIndex( "models/mapobjects/furniture/footlocker.md3" );
+      |                                            ^
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                        ^
+src\games\game\g_save.cpp(1059,72): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                               ^
+src\games\game\g_save.cpp(1059,79): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1059 |         "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+      |                                                                                      ^
+src\games\game\g_save.cpp(1129,14): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1129 |                 username = "current";
+      |                            ^
+src\games\game\g_save.cpp(1409,13): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1409 |         filename = "save\\current.svg";
       |                    ^
-src\games\game\g_weapon.cpp(402,33): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  402 |                 bomb->classname             = "air strike";
-      |                                               ^
-src\games\game\g_weapon.cpp(867,13): warning: variable 'sniperEnt' set but not used [-Wunused-but-set-variable]
-  867 |         gentity_t *sniperEnt;
+src\games\game\g_save.cpp(1569,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1569 |                 ent->classname = "freed";
+      |                                  ^
+src\games\game\g_save.cpp(1869,13): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1869 |         filename = "save\\current.psw";
       |                    ^
-src\games\game\g_weapon.cpp(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
- 1078 |                         int oldHealth;
-      |                             ^
-src\games\game\g_weapon.cpp(1149,12): error: no matching function for call to 'min'
- 1149 |         upangle = min( upangle, 50 );
-      |                   ^~~
-src\qcommon\q_shared.h(157,29): note: candidate template ignored: deduced conflicting types for parameter 'T' ('float' vs. 'int')
-  157 | template <class T> inline T min( T x, T y ) { return ( x < y ) ? x : y; }
-      |                             ^
-src\games\game\g_weapon.cpp(1150,12): error: no matching function for call to 'max'
- 1150 |         upangle = max( upangle, -50 );        //        now clamped to                  -50 / 50        (don't allow firing straight up/down)
-      |                   ^~~
-src\qcommon\q_shared.h(156,29): note: candidate template ignored: deduced conflicting types for parameter 'T' ('float' vs. 'int')
-  156 | template <class T> inline T max( T x, T y ) { return ( x > y ) ? x : y; }
-      |                             ^
-src\games\game\g_weapon.cpp(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
- 1337 |         int oldScore;
-      |             ^
-5 warnings and 2 errors generated.
-scons: *** [build\windows-x64-debug\game\obj\games\game\g_weapon.cpp.obj] Error 1
+16 warnings and 1 error generated.
+scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\cgame\obj\games\cgame\cg_ents.cpp.obj
 
 ```
- 1427 |         {"", 490,    15,     0,      1000 / 15,    1000 / 15 },  // (american flag rising)
-      |                                                              ^
-src\games\cgame\cg_ents.cpp(1428,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
- 1428 |         {"", 20,     211,    211,    1000 / 15,    1000 / 15 },  // (nazi flag raised)
-      |                                                              ^
-src\games\cgame\cg_ents.cpp(1429,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
- 1429 |         {"", 255,    211,    211,    1000 / 15,    1000 / 15 },  // (american flag raised)
-      |                                                              ^
-src\games\cgame\cg_ents.cpp(1430,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
- 1430 |         {"", 235,    15,     0,      1000 / 15,    1000 / 15 },  // (nazi switching to american)
-      |                                                              ^
-src\games\cgame\cg_ents.cpp(1431,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
- 1431 |         {"", 470,    15,     0,      1000 / 15,    1000 / 15 }   // (american switching to nazi)
-      |                                                              ^
-src\games\cgame\cg_ents.cpp(1741,59): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1741 |                         cent->overheatTime = splinetarget = CG_LoadCamera( va( "cameras/%s.camera", cs ) );
-      |                                                                                ^
-src\games\cgame\cg_ents.cpp(1801,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
- 1801 |         lerpFrame_t         *traplf;
-      |                              ^
-src\games\cgame\cg_ents.cpp(1973,52): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1973 |                 CG_PositionRotatedEntityOnTag( &propeller, &ent, "tag_prop" );
-      |                                                                  ^
-src\games\cgame\cg_ents.cpp(1990,49): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1990 |                         CG_PositionRotatedEntityOnTag( &flash, &ent, "tag_gun1" );
-      |                                                                      ^
-src\games\cgame\cg_ents.cpp(2001,49): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 2001 |                         CG_PositionRotatedEntityOnTag( &flash, &ent, "tag_gun02" );
-      |                                                                      ^
-73 warnings and 2 errors generated.
+ 4316 |         "EV_DUST",
+      |         ^
+src\games\game\bg_misc.cpp(4317,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4317 |         "EV_RUMBLE_EFX",
+      |         ^
+src\games\game\bg_misc.cpp(4318,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4318 |         "EV_GUNSPARKS",
+      |         ^
+src\games\game\bg_misc.cpp(4319,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4319 |         "EV_FLAMETHROWER_EFFECT",
+      |         ^
+src\games\game\bg_misc.cpp(4320,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4320 |         "EV_SNIPER_SOUND",
+      |         ^
+src\games\game\bg_misc.cpp(4321,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4321 |         "EV_POPUP",
+      |         ^
+src\games\game\bg_misc.cpp(4322,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4322 |         "EV_POPUPBOOK",
+      |         ^
+src\games\game\bg_misc.cpp(4323,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4323 |         "EV_GIVEPAGE",
+      |         ^
+src\games\game\bg_misc.cpp(4324,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4324 |         "EV_CLOSEMENU",
+      |         ^
+src\games\game\bg_misc.cpp(4326,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4326 |         "EV_MAX_EVENTS"
+      |         ^
+908 warnings generated.
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_ents.cpp.obj] Error 1
-```
-
-- build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj
-
-```
- 6050 |         {"rect", MenuParse_rect, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6051,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6051 |         {"style", MenuParse_style, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6052,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6052 |         {"visible", MenuParse_visible, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6053,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6053 |         {"onOpen", MenuParse_onOpen, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6054,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6054 |         {"onClose", MenuParse_onClose, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6055,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6055 |         {"onESC", MenuParse_onESC, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6056,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6056 |         {"onROQDone", MenuParse_onROQDone, NULL},    //----(SA) added
-      |          ^
-src\games\ui\ui_shared.cpp(6057,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6057 |         {"border", MenuParse_border, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6058,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6058 |         {"borderSize", MenuParse_borderSize, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6059,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 6059 |         {"backcolor", MenuParse_backcolor, NULL},
-      |          ^
-src\games\ui\ui_shared.cpp(6060,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
 ```
 
 
 ### warning kinds
 
-- [9220x] -writable-strings
-  - src\client\cl_cin.cpp(1436,39): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+- [7162x] -writable-strings
   - src\client\cl_cgame.cpp(904,22): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(67,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(68,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1350,17 +1068,14 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(79,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(81,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(84,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(923,58): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(85,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(86,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(87,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(88,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(89,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(90,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1013,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(91,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(92,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1043,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(93,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(94,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(95,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1376,12 +1091,10 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(107,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(108,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(110,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1172,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(111,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(113,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(114,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(115,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1409,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(116,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(117,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(118,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1409,7 +1122,6 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(140,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(141,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(142,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1529,46): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(143,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(144,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(146,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1427,8 +1139,6 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(158,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(159,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(160,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1530,43): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1531,47): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(161,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(163,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(164,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1519,7 +1229,6 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(265,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(266,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(267,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1969,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(268,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(269,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(271,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1580,17 +1289,12 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(337,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(338,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(339,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2411,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(340,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(341,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(342,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(344,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(345,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(346,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2776,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2782,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2787,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2791,61): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(347,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(348,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(349,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1650,7 +1354,6 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(407,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(408,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(410,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(3022,9): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(411,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(412,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(413,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1670,7 +1373,6 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(427,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(429,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(431,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(3064,12): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(438,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(439,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(440,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1719,6 +1421,7 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(490,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(491,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(492,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1043,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(493,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(494,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(495,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1734,6 +1437,22 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\client\cl_keys.cpp(505,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(506,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(507,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(508,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(509,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(510,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(511,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(512,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(513,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(514,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(516,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(517,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(518,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(519,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(520,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(521,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(522,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(523,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_keys.cpp(524,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
 - [495x] -missing-field-initializers
   - src\client\cl_main.cpp(2083,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
   - src\client\cl_main.cpp(2084,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
@@ -2118,8 +1837,8 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\sys\win32\win_net.cpp(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
   - src\sys\win32\win_net.cpp(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_gen.cpp(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.cpp(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_goal.cpp(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.cpp(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.cpp(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.cpp(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\l_script.cpp(389,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
@@ -2129,11 +1848,11 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\games\game\g_cmds.cpp(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(1698,8): warning: variable 'distance' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_mover.cpp(2150,6): warning: variable 'soundrange' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_props.cpp(888,11): warning: variable 'prop_hits' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_target.cpp(990,17): warning: variable 'dayaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_tramcar.cpp(212,8): warning: variable 'dot' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(160,13): warning: variable 'ent2' set but not used [-Wunused-but-set-variable]
@@ -2141,11 +1860,11 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\games\game\g_weapon.cpp(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_danger.cpp(97,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai\ai_events.cpp(480,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai\ai_events.cpp(481,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(104,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(378,18): warning: variable 'count' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(378,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai\ai_events.cpp(480,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai\ai_events.cpp(481,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(290,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(296,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(300,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
@@ -2189,8 +1908,8 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\games\cgame\cg_ents.cpp(183,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(394,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(947,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_ents.cpp(1801,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_event.cpp(739,15): warning: variable 'total' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_ents.cpp(1801,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_event.cpp(1073,6): warning: variable 'mass' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_event.cpp(1364,6): warning: variable 'type' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_fx_entities.cpp(370,7): warning: variable 't' set but not used [-Wunused-but-set-variable]
@@ -2225,14 +1944,14 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\games\ui\ui_shared.cpp(3712,14): warning: variable 'value' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_shared.cpp(4173,13): warning: variable 'parent' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_shared.cpp(4820,14): warning: variable 'modelPtr' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(2481,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(2481,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_players.cpp(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.cpp(2481,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
-  - src\games\ui\ui_main.cpp(2481,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.cpp(5098,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.cpp(5101,13): warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
   - src\games\ui\ui_main.cpp(5411,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
@@ -2322,6 +2041,11 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
   - src\games\game\bg_animation.cpp(807,29): warning: 'memset' call operates on objects of type 'int' while the size is based on a different type 'int *' [-Wsizeof-pointer-memaccess]
   - src\games\game\bg_animation.cpp(999,32): warning: 'memset' call operates on objects of type 'animScriptCommand_t' while the size is based on a different type 'animScriptCommand_t *' [-Wsizeof-pointer-memaccess]
   - src\games\game\ai\ai_system.cpp(458,33): warning: 'memset' call operates on objects of type 'cast_state_t' (aka 'struct cast_state_s') while the size is based on a different type 'cast_state_t *' (aka 'struct cast_state_s *') [-Wsizeof-pointer-memaccess]
+- [4x] -unused-const-variable
+  - src\qcommon\unzip.cpp(3045,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+  - src\games\ui\ui_main.cpp(70,18): warning: unused variable 'numNetSources' [-Wunused-const-variable]
+  - src\games\ui\ui_main.cpp(107,18): warning: unused variable 'numTeamArenaGameNames' [-Wunused-const-variable]
+  - src\games\ui\ui_main.cpp(119,18): warning: unused variable 'numSortKeys' [-Wunused-const-variable]
 - [4x] -unused-function
   - src\sys\win32\win_shared.cpp(132,12): warning: unused function 'IsPentium' [-Wunused-function]
   - src\sys\win32\win_shared.cpp(166,12): warning: unused function 'Is3DNOW' [-Wunused-function]
@@ -2352,16 +2076,15 @@ scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
 - [2x] -self-assign
   - src\games\cgame\cg_view.cpp(874,11): warning: explicitly assigning value of variable of type 'float' to itself [-Wself-assign]
   - src\games\cgame\cg_view.cpp(1386,12): warning: explicitly assigning value of variable of type 'float' to itself [-Wself-assign]
+- [2x] -unneeded-internal-declaration
+  - src\games\ui\ui_main.cpp(95,20): warning: variable 'teamArenaGameNames' is not needed and will not be emitted [-Wunneeded-internal-declaration]
+  - src\games\ui\ui_main.cpp(112,20): warning: variable 'sortKeys' is not needed and will not be emitted [-Wunneeded-internal-declaration]
 - [1x] -strncat-size
   - src\client\cl_main.cpp(2838,25): warning: the value of the size argument in 'strncat' is too large, might lead to a buffer overflow [-Wstrncat-size]
 - [1x] -null-dereference
   - src\qcommon\common.cpp(1799,2): warning: indirection of non-volatile null pointer will be deleted, not trap [-Wnull-dereference]
-- [1x] need to modify cg_event.c at "// check the sequencial list" if you change this
-  - 995 |         { NETF( eventSequence ), 8 }, // warning: need to modify cg_event.c at "// check the sequencial list" if you change this
 - [1x] -parentheses-equality
   - src\qcommon\unzip.cpp(2066,45): warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
-- [1x] -unused-const-variable
-  - src\qcommon\unzip.cpp(3045,19): warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
 - [1x] -cast-function-type-mismatch
   - src\sys\win32\win_syscon.cpp(283,21): warning: cast from 'LONG (*)(HWND, UINT, WPARAM, LPARAM) __attribute__((stdcall))' (aka 'long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') to 'WNDPROC' (aka 'long long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') converts to incompatible function type [-Wcast-function-type-mismatch]
 - [1x] nested namespace definition is a C++17 extension; define each namespace separately [-Wc++17-extensio
