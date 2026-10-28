@@ -70,12 +70,8 @@ function(wolf_configure_target target)
         )
     endif()
     if(MSVC)
-        # Muted globally across the legacy tree: /wd4244 and /wd4267
-        # conversion warnings, /wd4723 potential divide by zero, /wd4996
-        # deprecated CRT names, /wd5033 register is no longer a storage
-        # class keyword.
         target_compile_options(${target} PRIVATE
-            /W3 /wd4244 /wd4267 /wd4723 /wd4996 /wd5033
+            /W3
         )
     endif()
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
