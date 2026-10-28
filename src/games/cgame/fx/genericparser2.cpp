@@ -1,4 +1,4 @@
-successfully downloaded text file (SHA: ce8b4e2ef251413938dff094996c898f8a6a81c8)
+successfully downloaded text file( SHA:ce8b4e2ef251413938dff094996c898f8a6a81c8 )
 #include "FxWolf.h"
 #define MAX_TOKEN_SIZE  1024
 static char token[MAX_TOKEN_SIZE];

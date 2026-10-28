@@ -1,4 +1,4 @@
-successfully downloaded text file (SHA: 8db6afdbae354d581900a62851da7c429b4ae5aa)
+successfully downloaded text file( SHA: 8db6afdbae354d581900a62851da7c429b4ae5aa )
 
 // this include must remain at the top of every CPP file
 #include "FxWolf.h"
