@@ -1,16 +1,16 @@
 # Build digest
 
-commit: 9cf6a35fa544
+commit: 33e0568afbd0
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
 - ubuntu-latest-x64-release-game: failure
 - ubuntu-latest-x86-debug-: failure
-- ubuntu-latest-x86-release-: failure
+- ubuntu-latest-x86-release-: cancelled
 - uncrustify: success
 - windows-latest-x64-debug-: success
-- windows-latest-x64-release-: cancelled
-- windows-latest-x64-release-cgame: cancelled
+- windows-latest-x64-release-: success
+- windows-latest-x64-release-cgame: success
 - windows-latest-x64-release-game: success
 - windows-latest-x64-release-ui: cancelled
 - windows-latest-x86-debug-: failure
@@ -20,50 +20,52 @@ commit: 9cf6a35fa544
 
 status: failure
 
-errors: 2
+errors: 4
 warnings: 0 in 0 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x53b5): undefined reference to `Sys_SnapVector(float*)'
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x46c5): undefined reference to `Sys_SnapVector(float*)'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 
 ### failure context
 
-- build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o
+- bin/WolfSP_x64
 
 ```
-Compiling 'src/renderer/tr_marks.cpp'
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+Compiling 'src/games/botlib/l_script.cpp'
+Compiling 'src/games/botlib/l_struct.cpp'
+Compiling 'src/third-party/stb/stb_impl.c'
+Compiling 'src/third-party/recast/Detour/Source/DetourAlloc.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourAssert.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourCommon.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMesh.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshBuilder.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshQuery.cpp'
+Compiling 'src/third-party/recast/Detour/Source/DetourNode.cpp'
+Compiling 'src/tools/extractfuncs/extractfuncs.cpp'
+Compiling 'src/tools/extractfuncs/l_log.cpp'
+Compiling 'src/tools/extractfuncs/l_memory.cpp'
+Compiling 'src/tools/extractfuncs/l_precomp.cpp'
+Linking 'bin/WolfSP_x64'
+Compiling 'src/tools/extractfuncs/l_script.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-debug/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
+Compiling 'src/games/game/bg_animation.cpp'
+Compiling 'src/games/game/bg_misc.cpp'
+Linking 'build/linux-x64-debug/extractfuncs'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x53b5): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x46c5): undefined reference to `Sys_SnapVector(float*)'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 ```
 
 
@@ -73,162 +75,170 @@ scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 
 status: failure
 
-errors: 2
-warnings: 1 in 1 kinds
+errors: 4
+warnings: 0 in 0 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 
 ### failure context
 
-- build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o
+- bin/WolfSP_x64
 
 ```
-Compiling 'src/renderer/tr_main.cpp'
-Compiling 'src/renderer/tr_marks.cpp'
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+Compiling 'src/games/game/g_misc.cpp'
+Compiling 'src/games/game/g_missile.cpp'
+Compiling 'src/games/game/g_mover.cpp'
+Compiling 'src/games/game/g_props.cpp'
+Compiling 'src/games/game/g_save.cpp'
+Compiling 'src/games/game/g_script.cpp'
+Compiling 'src/games/game/g_script_actions.cpp'
+Compiling 'src/games/game/g_session.cpp'
+Compiling 'src/games/game/g_spawn.cpp'
+Compiling 'src/games/game/g_svcmds.cpp'
+Compiling 'src/games/game/g_syscalls.cpp'
+Compiling 'src/games/game/g_target.cpp'
+Compiling 'src/games/game/g_team.cpp'
+Compiling 'src/games/game/g_tramcar.cpp'
+Compiling 'src/games/game/g_trigger.cpp'
+Compiling 'src/games/game/g_utils.cpp'
+Linking 'bin/WolfSP_x64'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-release/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::__invoke(float*)':
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::__invoke(float*)':
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
+Compiling 'src/games/game/g_weapon.cpp'
+Compiling 'src/games/game/ai/ai_actor.cpp'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 ```
 
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
 
 ## ubuntu-latest-x64-release-game
 
 status: failure
 
-errors: 2
-warnings: 1 in 1 kinds
+errors: 4
+warnings: 0 in 0 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 
 ### failure context
 
-- build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o
+- bin/WolfSP_x64
 
 ```
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Compiling 'src/splines/math_matrix.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+Compiling 'src/games/game/ai/fsm/ai_combat.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_blackguard.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_loper.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_reject.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_stimsoldier.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_warzombie.cpp'
+Compiling 'src/games/game/ai/fsm/ai_monster_zombie.cpp'
+Compiling 'src/games/game/ai/fsm/ai_state_legacy.cpp'
+Compiling 'src/games/game/ai/fsm/ai_state_machine.cpp'
+Compiling 'src/tools/extractfuncs/extractfuncs.cpp'
+Compiling 'src/tools/extractfuncs/l_log.cpp'
+Compiling 'src/tools/extractfuncs/l_memory.cpp'
+Compiling 'src/tools/extractfuncs/l_precomp.cpp'
+Linking 'bin/WolfSP_x64'
+Compiling 'src/tools/extractfuncs/l_script.cpp'
+Compiling 'src/games/game/bg_animation.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-release/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/game/obj/games/game/g_main.cpp.o:(.bss+0x1e5788): multiple definition of `g_gametype'; build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o:(.bss+0x440): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/game/obj/games/game/g_main.cpp.o:(.bss+0x1e5898): multiple definition of `g_gameskill'; build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o:(.bss+0x444): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::__invoke(float*)':
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::__invoke(float*)':
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
+Compiling 'src/games/game/bg_misc.cpp'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 ```
 
 
 ### warning kinds
 
-- [1x] -unused-value
-  - src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
-
 ## ubuntu-latest-x86-debug-
 
 status: failure
 
-errors: 2
+errors: 12
 warnings: 0 in 0 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x6a4e): undefined reference to `Sys_SnapVector(float*)'
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/snd_mix.cpp:163:(.text+0xc0): undefined reference to `S_WriteLinearBlastStereo16()'
+/home/runner/work/RTCW-SP/RTCW-SP/src/qcommon/cm_test.cpp:162:(.text+0x3bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x565e): undefined reference to `Sys_SnapVector(float*)'
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:157:(.text+0x77): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:191:(.text+0x1ad): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:427:(.text+0x803): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:437:(.text+0x85f): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:447:(.text+0x8bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o:/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:457: more undefined references to `BoxOnPlaneSide(float*, float*, cplane_s*)' follow
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x86] Error 1
 
 ### failure context
 
-- build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o
+- bin/WolfSP_x86
 
 ```
-Compiling 'src/renderer/tr_main.cpp'
-Compiling 'src/renderer/tr_marks.cpp'
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+Compiling 'src/tools/extractfuncs/l_precomp.cpp'
+Compiling 'src/tools/extractfuncs/l_script.cpp'
+Linking 'bin/WolfSP_x86'
+Compiling 'src/games/game/bg_animation.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x86-debug/client/obj/client/cl_main.cpp.o:(.bss+0x1dbcc8): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x564): multiple definition of `qglLockArraysEXT'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e80): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x568): multiple definition of `qglUnlockArraysEXT'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e84): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x55c): multiple definition of `qglActiveTextureARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e78): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x560): multiple definition of `qglClientActiveTextureARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e7c): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x558): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e74): first defined here
+Compiling 'src/games/game/bg_misc.cpp'
+Linking 'build/linux-x86-debug/extractfuncs'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x6a4e): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/snd_mix.cpp.o: in function `S_TransferStereo16(unsigned long*, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/snd_mix.cpp:163:(.text+0xc0): undefined reference to `S_WriteLinearBlastStereo16()'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/qcommon/cm_test.cpp.o: in function `CM_BoxLeafnums_r(leafList_s*, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/qcommon/cm_test.cpp:162:(.text+0x3bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x565e): undefined reference to `Sys_SnapVector(float*)'
+Compiling 'src/games/game/bg_pmove.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_marks.cpp.o: in function `R_BoxSurfaces_r(mnode_s*, float*, float*, surfaceType_t**, int, int*, float*)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:157:(.text+0x77): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:191:(.text+0x1ad): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o: in function `R_RecursiveWorldNode(mnode_s*, int, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:427:(.text+0x803): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:437:(.text+0x85f): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:447:(.text+0x8bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o:/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:457: more undefined references to `BoxOnPlaneSide(float*, float*, cplane_s*)' follow
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x86] Error 1
 ```
 
 
@@ -236,59 +246,18 @@ scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 
 ## ubuntu-latest-x86-release-
 
-status: failure
+status: cancelled
 
-errors: 2
-warnings: 1 in 1 kinds
+errors: 0
+warnings: 0 in 0 kinds
 
 ### errors
 
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 
 ### failure context
 
-- build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o
-
-```
-Compiling 'src/renderer/tr_marks.cpp'
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-```
-
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
 
 ## uncrustify
 
@@ -322,10 +291,10 @@ warnings: 0 in 0 kinds
 
 ## windows-latest-x64-release-
 
-status: cancelled
+status: success
 
 errors: 0
-warnings: 1 in 1 kinds
+warnings: 0 in 0 kinds
 
 ### errors
 
@@ -334,16 +303,13 @@ warnings: 1 in 1 kinds
 
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
 
 ## windows-latest-x64-release-cgame
 
-status: cancelled
+status: success
 
 errors: 0
-warnings: 1 in 1 kinds
+warnings: 0 in 0 kinds
 
 ### errors
 
@@ -352,16 +318,13 @@ warnings: 1 in 1 kinds
 
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
 
 ## windows-latest-x64-release-game
 
 status: success
 
 errors: 0
-warnings: 1 in 1 kinds
+warnings: 0 in 0 kinds
 
 ### errors
 
@@ -370,16 +333,13 @@ warnings: 1 in 1 kinds
 
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
 
 ## windows-latest-x64-release-ui
 
 status: cancelled
 
 errors: 0
-warnings: 1 in 1 kinds
+warnings: 0 in 0 kinds
 
 ### errors
 
@@ -388,423 +348,351 @@ warnings: 1 in 1 kinds
 
 
 ### warning kinds
-
-- [1x] -unused-value
-  - src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
 
 ## windows-latest-x86-debug-
 
 status: failure
 
-errors: 9
-warnings: 1 in 1 kinds
+errors: 13
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\snd_mix.cpp(89,23): error: unknown token in expression
-src\client\snd_mix.cpp(89,14): error: use of undeclared label 'dword'
-src\client\snd_mix.cpp(89,20): error: use of undeclared label 'ptr'
-scons: *** [build\windows-x86-debug\client\obj\client\snd_mix.cpp.obj] Error 1
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-scons: *** [build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj] Error 1
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+scons: *** [bin\WolfSP_x86.exe] Error 1
+scons: *** [bin\main\qagame_x86.dll] Error 1
+scons: *** [bin\main\cgame_x86.dll] Error 1
+scons: *** [bin\main\ui_x86.dll] Error 1
 
 ### failure context
 
-- build\windows-x86-debug\client\obj\client\snd_mix.cpp.obj
+- bin\WolfSP_x86.exe
 
 ```
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-Compiling 'src\client\cl_keys.cpp'
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-Compiling 'src\client\cl_scrn.cpp'
-Compiling 'src\client\cl_ui.cpp'
-Compiling 'src\client\snd_adpcm.cpp'
-Compiling 'src\client\snd_dma.cpp'
-Compiling 'src\client\snd_mem.cpp'
-Compiling 'src\client\snd_mix.cpp'
-Compiling 'src\client\snd_wavelet.cpp'
-Compiling 'src\qcommon\cm_load.cpp'
-Compiling 'src\qcommon\cm_patch.cpp'
-src\client\snd_mix.cpp(89,23): error: unknown token in expression
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                                     ^
-src\client\snd_mix.cpp(89,14): error: use of undeclared label 'dword'
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                            ^
-src\client\snd_mix.cpp(89,20): error: use of undeclared label 'ptr'
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                                  ^
-3 errors generated.
-scons: *** [build\windows-x86-debug\client\obj\client\snd_mix.cpp.obj] Error 1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\WolfSP_x86.exe] Error 1
 ```
 
-- build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj
+- bin\main\qagame_x86.dll
 
 ```
-Compiling 'src\renderer\tr_flares.cpp'
-Compiling 'src\renderer\tr_font.cpp'
-Compiling 'src\renderer\tr_image.cpp'
-Compiling 'src\renderer\tr_init.cpp'
-Compiling 'src\renderer\tr_light.cpp'
-Compiling 'src\renderer\tr_main.cpp'
-Compiling 'src\renderer\tr_marks.cpp'
-Compiling 'src\renderer\tr_mesh.cpp'
-Compiling 'src\renderer\tr_cmesh.cpp'
-Compiling 'src\renderer\tr_model.cpp'
-Compiling 'src\renderer\tr_noise.cpp'
-Compiling 'src\renderer\tr_renderprog.cpp'
-Compiling 'src\renderer\tr_scene.cpp'
-Compiling 'src\renderer\tr_shade.cpp'
-Compiling 'src\renderer\tr_shade_calc.cpp'
-Compiling 'src\renderer\tr_shader.cpp'
-Compiling 'src\renderer\tr_shadows.cpp'
-Compiling 'src\renderer\tr_sky.cpp'
-Compiling 'src\renderer\tr_surface.cpp'
-Compiling 'src\renderer\tr_vfx.cpp'
-Compiling 'src\renderer\tr_world.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-debug\client\obj\qcommon\q_math.cpp.obj] Error 1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\qagame_x86.dll] Error 1
 ```
 
-- build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj
+- bin\main\cgame_x86.dll
 
 ```
-Compiling 'src\games\game\ai\fsm\ai_ability.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_cover.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_doors.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_evasion.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_grenades.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_idle.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_investigate.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_mounted.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_pursuit.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_heinrich.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_helga.cpp'
-Compiling 'src\games\game\ai\fsm\ai_combat.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_blackguard.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_loper.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_reject.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_stimsoldier.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_warzombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_zombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_legacy.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_machine.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\games\game\bg_animation.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-debug\game\obj\qcommon\q_math.cpp.obj] Error 1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\cgame_x86.dll] Error 1
 ```
 
-- build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj
+- bin\main\ui_x86.dll
 
 ```
-Compiling 'src\games\cgame\cg_fx_particles.cpp'
-Compiling 'src\games\cgame\cg_fx_trails.cpp'
-Compiling 'src\games\cgame\cg_info.cpp'
-Compiling 'src\games\cgame\cg_main.cpp'
-Compiling 'src\games\cgame\cg_newDraw.cpp'
-Compiling 'src\games\cgame\cg_players.cpp'
-Compiling 'src\games\cgame\cg_playerstate.cpp'
-Compiling 'src\games\cgame\cg_predict.cpp'
-Compiling 'src\games\cgame\cg_scoreboard.cpp'
-Compiling 'src\games\cgame\cg_servercmds.cpp'
-Compiling 'src\games\cgame\cg_snapshot.cpp'
-Compiling 'src\games\cgame\cg_sound.cpp'
-Compiling 'src\games\cgame\cg_syscalls.cpp'
-Compiling 'src\games\cgame\cg_view.cpp'
-Compiling 'src\games\cgame\cg_weapons.cpp'
-Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-Compiling 'src\games\cgame\fx\FxScheduler.cpp'
-Compiling 'src\games\cgame\fx\FxSystem.cpp'
-Compiling 'src\games\cgame\fx\FxTemplate.cpp'
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj] Error 1
-```
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
 
-- build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
 
-```
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-debug\cgame\obj\qcommon\q_math.cpp.obj] Error 1
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\games\game\bg_misc.cpp'
-Compiling 'src\games\ui\ui_atoms.cpp'
-Compiling 'src\games\ui\ui_gameinfo.cpp'
-Compiling 'src\games\ui\ui_main.cpp'
-Compiling 'src\games\ui\ui_players.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\games\ui\ui_syscalls.cpp'
-Compiling 'src\games\ui\ui_util.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj] Error 1
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by D:\a\RTCW-SP\RTCW-SP\src\qcommon\q_math.cpp:748
+>>>               build\windows-x86-debug\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\ui_x86.dll] Error 1
 ```
 
 
 ### warning kinds
-
-- [1x] -cast-calling-convention
-  - src\sys\win32\win_glimp.cpp(1541,3): warning: cast between incompatible calling conventions 'cdecl' and 'stdcall'; calls through this pointer may abort at runtime [-Wcast-calling-convention]
 
 ## windows-latest-x86-release-
 
 status: failure
 
-errors: 9
-warnings: 2 in 2 kinds
+errors: 16
+warnings: 0 in 0 kinds
 
 ### errors
 
-src\client\snd_mix.cpp(89,23): error: unknown token in expression
-src\client\snd_mix.cpp(89,14): error: use of undeclared label 'dword'
-src\client\snd_mix.cpp(89,20): error: use of undeclared label 'ptr'
-scons: *** [build\windows-x86-release\client\obj\client\snd_mix.cpp.obj] Error 1
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-scons: *** [build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj] Error 1
-scons: *** [build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj] Error 1
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+scons: *** [bin\WolfSP_x86.exe] Error 1
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\qagame_x86.dll] Error 1
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\cgame_x86.dll] Error 1
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\ui_x86.dll] Error 1
 
 ### failure context
 
-- build\windows-x86-release\client\obj\client\snd_mix.cpp.obj
+- bin\WolfSP_x86.exe
 
 ```
-Installing collected packages: scons
-Successfully installed scons-4.11.1
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src\client\cl_cgame.cpp'
-Compiling 'src\client\cl_cin.cpp'
-Compiling 'src\client\cl_console.cpp'
-Compiling 'src\client\cl_input.cpp'
-Compiling 'src\client\cl_keys.cpp'
-Compiling 'src\client\cl_main.cpp'
-Compiling 'src\client\cl_net_chan.cpp'
-Compiling 'src\client\cl_parse.cpp'
-Compiling 'src\client\cl_scrn.cpp'
-Compiling 'src\client\cl_ui.cpp'
-Compiling 'src\client\snd_adpcm.cpp'
-Compiling 'src\client\snd_dma.cpp'
-Compiling 'src\client\snd_mem.cpp'
-Compiling 'src\client\snd_mix.cpp'
-Compiling 'src\client\snd_wavelet.cpp'
-src\client\snd_mix.cpp(89,23): error: unknown token in expression
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                                     ^
-src\client\snd_mix.cpp(89,14): error: use of undeclared label 'dword'
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                            ^
-src\client\snd_mix.cpp(89,20): error: use of undeclared label 'ptr'
-   89 |                 mov ecx,ds:dword ptr[snd_linear_count]
-      |                                  ^
-3 errors generated.
-scons: *** [build\windows-x86-release\client\obj\client\snd_mix.cpp.obj] Error 1
+Compiling 'src\games\game\g_missile.cpp'
+Compiling 'src\games\game\g_mover.cpp'
+Compiling 'src\games\game\g_props.cpp'
+Linking 'bin\WolfSP_x86.exe'
+Compiling 'src\games\game\g_save.cpp'
+Compiling 'src\games\game\g_script.cpp'
+Compiling 'src\games\game\g_script_actions.cpp'
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\WolfSP_x86.exe] Error 1
 ```
 
-- build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj
+- bin\main\qagame_x86.dll
 
 ```
-Compiling 'src\renderer\tr_flares.cpp'
-Compiling 'src\renderer\tr_font.cpp'
-Compiling 'src\renderer\tr_image.cpp'
-Compiling 'src\renderer\tr_init.cpp'
-Compiling 'src\renderer\tr_light.cpp'
-Compiling 'src\renderer\tr_main.cpp'
-Compiling 'src\renderer\tr_marks.cpp'
-Compiling 'src\renderer\tr_mesh.cpp'
-Compiling 'src\renderer\tr_cmesh.cpp'
-Compiling 'src\renderer\tr_model.cpp'
-Compiling 'src\renderer\tr_noise.cpp'
-Compiling 'src\renderer\tr_renderprog.cpp'
-Compiling 'src\renderer\tr_scene.cpp'
-Compiling 'src\renderer\tr_shade.cpp'
-Compiling 'src\renderer\tr_shade_calc.cpp'
-Compiling 'src\renderer\tr_shader.cpp'
-Compiling 'src\renderer\tr_shadows.cpp'
-Compiling 'src\renderer\tr_sky.cpp'
-Compiling 'src\renderer\tr_surface.cpp'
-Compiling 'src\renderer\tr_vfx.cpp'
-Compiling 'src\renderer\tr_world.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-release\client\obj\qcommon\q_math.cpp.obj] Error 1
-```
-
-- build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj
-
-```
-Compiling 'src\games\game\ai\fsm\ai_ability.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_cover.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_doors.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_evasion.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_grenades.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_idle.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_investigate.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_mounted.cpp'
-Compiling 'src\games\game\ai\fsm\ai_behavior_pursuit.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_heinrich.cpp'
-Compiling 'src\games\game\ai\fsm\ai_boss_helga.cpp'
-Compiling 'src\games\game\ai\fsm\ai_combat.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_blackguard.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_loper.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_reject.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_stimsoldier.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_warzombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_monster_zombie.cpp'
-Compiling 'src\games\game\ai\fsm\ai_state_legacy.cpp'
 Compiling 'src\games\game\ai\fsm\ai_state_machine.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\games\game\bg_animation.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj] Error 1
-```
-
-- build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj
-
-```
-Compiling 'src\games\cgame\cg_info.cpp'
-Compiling 'src\games\cgame\cg_main.cpp'
-Compiling 'src\games\cgame\cg_newDraw.cpp'
-Compiling 'src\games\cgame\cg_players.cpp'
-Compiling 'src\games\cgame\cg_playerstate.cpp'
-Compiling 'src\games\cgame\cg_predict.cpp'
-Compiling 'src\games\cgame\cg_scoreboard.cpp'
-Compiling 'src\games\cgame\cg_servercmds.cpp'
-Compiling 'src\games\cgame\cg_snapshot.cpp'
-Compiling 'src\games\cgame\cg_sound.cpp'
-Compiling 'src\games\cgame\cg_syscalls.cpp'
-Compiling 'src\games\cgame\cg_view.cpp'
-Compiling 'src\games\cgame\cg_weapons.cpp'
-Compiling 'src\games\cgame\fx\FxPrimitives.cpp'
-Compiling 'src\games\cgame\fx\FxScheduler.cpp'
-Compiling 'src\games\cgame\fx\FxSystem.cpp'
-Compiling 'src\games\cgame\fx\FxTemplate.cpp'
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj] Error 1
+Compiling 'src\games\game\bg_pmove.cpp'
+Linking 'bin\main\qagame_x86.dll'
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by build\windows-x86-release\game\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\qagame_x86.dll] Error 1
 ```
 
-- build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj
+- bin\main\cgame_x86.dll
 
 ```
-Compiling 'src\games\cgame\fx\FxUtil.cpp'
-Compiling 'src\games\cgame\fx\genericparser2.cpp'
-Compiling 'src\games\ui\ui_shared.cpp'
-Compiling 'src\qcommon\q_math.cpp'
-Compiling 'src\qcommon\q_shared.cpp'
 Compiling 'src\games\game\bg_misc.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj] Error 1
 Compiling 'src\games\ui\ui_atoms.cpp'
 Compiling 'src\games\ui\ui_gameinfo.cpp'
 Compiling 'src\games\ui\ui_main.cpp'
 Compiling 'src\games\ui\ui_players.cpp'
 Compiling 'src\games\ui\ui_shared.cpp'
+Linking 'bin\main\cgame_x86.dll'
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\cgame_x86.dll] Error 1
+```
+
+- bin\main\ui_x86.dll
+
+```
+>>> referenced by build\windows-x86-release\cgame\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\cgame_x86.dll] Error 1
 Compiling 'src\games\ui\ui_syscalls.cpp'
 Compiling 'src\games\ui\ui_util.cpp'
 Compiling 'src\qcommon\q_math.cpp'
 Compiling 'src\qcommon\q_shared.cpp'
-src\qcommon\q_math.cpp(745,2): error: non-ASM statement in naked function is not supported
-  745 |         static int bops_initialized;
-      |         ^
-src\qcommon\q_math.cpp(744,13): note: attribute is here
-  744 | __declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-      |             ^
-1 error generated.
-scons: *** [build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj] Error 1
+Linking 'bin\main\ui_x86.dll'
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase0
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase1
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase2
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase3
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase4
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase5
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase6
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+
+lld-link: error: undefined symbol: __MSASMLABEL_.0__Lcase7
+>>> referenced by build\windows-x86-release\ui\obj\qcommon\q_math.cpp.obj:(int __cdecl BoxOnPlaneSide(float *const, float *const, struct cplane_s *))
+scons: *** [bin\main\ui_x86.dll] Error 1
 ```
 
 
 ### warning kinds
-
-- [1x] -cast-calling-convention
-  - src\sys\win32\win_glimp.cpp(1541,3): warning: cast between incompatible calling conventions 'cdecl' and 'stdcall'; calls through this pointer may abort at runtime [-Wcast-calling-convention]
-- [1x] -unused-value
-  - src\splines\splines.cpp(580,17): warning: expression result unused [-Wunused-value]
 

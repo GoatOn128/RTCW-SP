@@ -3,7 +3,7 @@
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 2.6 MB/s  0:00:01
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 15.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 Selecting previously unselected package libc6-dev-i386.
@@ -350,11 +350,6 @@ Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
@@ -391,10 +386,23 @@ Compiling 'src/tools/extractfuncs/extractfuncs.cpp'
 Compiling 'src/tools/extractfuncs/l_log.cpp'
 Compiling 'src/tools/extractfuncs/l_memory.cpp'
 Compiling 'src/tools/extractfuncs/l_precomp.cpp'
+Linking 'bin/WolfSP_x64'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-debug/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
 Compiling 'src/games/game/bg_animation.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
 Linking 'build/linux-x64-debug/extractfuncs'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x53b5): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-debug/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x46c5): undefined reference to `Sys_SnapVector(float*)'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 Compiling 'src/games/game/bg_pmove.cpp'
 Compiling 'src/games/game/bg_slidemove.cpp'
 Compiling 'src/games/game/g_active.cpp'
@@ -517,7 +525,7 @@ Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+❌ ⚙️ Build step failed: 'bin/WolfSP_x64' — Error 1
 📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
@@ -526,7 +534,7 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 10.1 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 51.6 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -875,11 +883,6 @@ Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_angles.cpp'
 Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
@@ -891,14 +894,10 @@ Compiling 'src/splines/util_str.cpp'
 Compiling 'src/games/botlib/be_ai_char.cpp'
 Compiling 'src/games/botlib/be_ai_chat.cpp'
 Compiling 'src/games/botlib/be_ai_gen.cpp'
-src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
-  580 |         CHECK_NAN_VEC( origin );
-      |                        ^~~~~~
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
 Compiling 'src/games/botlib/be_ai_weight.cpp'
-1 warning generated.
 Compiling 'src/games/botlib/be_ea.cpp'
 Compiling 'src/games/botlib/be_interface.cpp'
 Compiling 'src/games/botlib/be_nav_interface.cpp'
@@ -951,8 +950,21 @@ Compiling 'src/games/game/g_team.cpp'
 Compiling 'src/games/game/g_tramcar.cpp'
 Compiling 'src/games/game/g_trigger.cpp'
 Compiling 'src/games/game/g_utils.cpp'
+Linking 'bin/WolfSP_x64'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-release/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::__invoke(float*)':
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::__invoke(float*)':
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
 Compiling 'src/games/game/g_weapon.cpp'
 Compiling 'src/games/game/ai/ai_actor.cpp'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 Compiling 'src/games/game/ai/ai_awareness.cpp'
 Compiling 'src/games/game/ai/ai_characters.cpp'
 Compiling 'src/games/game/ai/ai_danger.cpp'
@@ -1047,8 +1059,8 @@ Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
+❌ ⚙️ Build step failed: 'bin/WolfSP_x64' — Error 1
+📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
 ==== ubuntu-latest-x64-release-game (failure) ====
@@ -1056,9 +1068,12 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 41.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 56.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
 Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 
 (Reading database ... 5%
@@ -1081,7 +1096,7 @@ Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 212715 files and directories currently installed.)
+(Reading database ... 211065 files and directories currently installed.)
 Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
 Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
 Selecting previously unselected package libc6-x32.
@@ -1218,7 +1233,7 @@ Selecting previously unselected package xorg-sgml-doctools.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 213353 files and directories currently installed.)
+(Reading database ... 211703 files and directories currently installed.)
 Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
 Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
 Selecting previously unselected package x11proto-dev.
@@ -1292,7 +1307,7 @@ Selecting previously unselected package libxext-dev:amd64.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 213665 files and directories currently installed.)
+(Reading database ... 212015 files and directories currently installed.)
 Preparing to unpack .../libxext-dev_2%3a1.3.4-1build3_amd64v3.deb ...
 Unpacking libxext-dev:amd64 (2:1.3.4-1build3) ...
 Selecting previously unselected package libxxf86dga1:amd64.
@@ -1403,12 +1418,7 @@ Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Compiling 'src/splines/math_matrix.cpp'
-1 error generated.
-scons: *** [build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
 Compiling 'src/splines/q_parse.cpp'
@@ -1417,14 +1427,10 @@ Compiling 'src/splines/splines.cpp'
 Compiling 'src/splines/util_str.cpp'
 Compiling 'src/games/botlib/be_ai_char.cpp'
 Compiling 'src/games/botlib/be_ai_chat.cpp'
-src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
-  580 |         CHECK_NAN_VEC( origin );
-      |                        ^~~~~~
 Compiling 'src/games/botlib/be_ai_gen.cpp'
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
-1 warning generated.
 Compiling 'src/games/botlib/be_ai_weight.cpp'
 Compiling 'src/games/botlib/be_ea.cpp'
 Compiling 'src/games/botlib/be_interface.cpp'
@@ -1518,9 +1524,24 @@ Compiling 'src/tools/extractfuncs/extractfuncs.cpp'
 Compiling 'src/tools/extractfuncs/l_log.cpp'
 Compiling 'src/tools/extractfuncs/l_memory.cpp'
 Compiling 'src/tools/extractfuncs/l_precomp.cpp'
+Linking 'bin/WolfSP_x64'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
 Compiling 'src/games/game/bg_animation.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x64-release/client/obj/client/cl_main.cpp.o:(.bss+0x1dbd68): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac8): multiple definition of `qglLockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2088): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xad0): multiple definition of `qglUnlockArraysEXT'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2090): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab8): multiple definition of `qglActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2078): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xac0): multiple definition of `qglClientActiveTextureARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2080): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0xab0): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x64-release/client/obj/renderer/tr_init.cpp.o:(.bss+0x2070): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/game/obj/games/game/g_main.cpp.o:(.bss+0x1e5788): multiple definition of `g_gametype'; build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o:(.bss+0x440): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/game/obj/games/game/g_main.cpp.o:(.bss+0x1e5898): multiple definition of `g_gameskill'; build/linux-x64-release/client/obj/games/botlib/be_ai_goal.cpp.o:(.bss+0x444): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::__invoke(float*)':
+cl_cgame.cpp:(.text+0x2111): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x64-release/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::__invoke(float*)':
+sv_game.cpp:(.text+0x18c1): undefined reference to `Sys_SnapVector(float*)'
 Compiling 'src/games/game/bg_misc.cpp'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x64] Error 1
 Compiling 'src/games/game/bg_pmove.cpp'
 Compiling 'src/games/game/bg_slidemove.cpp'
 Linking 'build/linux-x64-release/extractfuncs'
@@ -1565,14 +1586,14 @@ Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
-Linking 'bin/main/cgame_x64.so'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
+Linking 'bin/main/cgame_x64.so'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
+❌ ⚙️ Build step failed: 'bin/WolfSP_x64' — Error 1
+📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
 ==== ubuntu-latest-x86-debug- (failure) ====
@@ -1580,7 +1601,7 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 63.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 26.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -2135,7 +2156,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1141]
+ runner @ user manager: (sd-pam)[1354]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2214,13 +2235,8 @@ Compiling 'src/sys/unix/unix_shared.cpp'
 Compiling 'src/sys/unix/linux_common.cpp'
 Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
-1 error generated.
-scons: *** [build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
 Compiling 'src/splines/math_angles.cpp'
 Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
@@ -2259,10 +2275,35 @@ Compiling 'src/tools/extractfuncs/l_log.cpp'
 Compiling 'src/tools/extractfuncs/l_memory.cpp'
 Compiling 'src/tools/extractfuncs/l_precomp.cpp'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
+Linking 'bin/WolfSP_x86'
 Compiling 'src/games/game/bg_animation.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/unix_main.cpp.o:(.bss+0x0): multiple definition of `re'; build/linux-x86-debug/client/obj/client/cl_main.cpp.o:(.bss+0x1dbcc8): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x564): multiple definition of `qglLockArraysEXT'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e80): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x568): multiple definition of `qglUnlockArraysEXT'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e84): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x55c): multiple definition of `qglActiveTextureARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e78): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x560): multiple definition of `qglClientActiveTextureARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e7c): first defined here
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/sys/unix/linux_qgl.cpp.o:(.bss+0x558): multiple definition of `qglMultiTexCoord2fARB'; build/linux-x86-debug/client/obj/renderer/tr_init.cpp.o:(.bss+0x1e74): first defined here
 Compiling 'src/games/game/bg_misc.cpp'
-Compiling 'src/games/game/bg_pmove.cpp'
 Linking 'build/linux-x86-debug/extractfuncs'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/cl_cgame.cpp.o: in function `CL_CreateCGameImports()::$_94::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/cl_cgame.cpp:802:(.text+0x6a4e): undefined reference to `Sys_SnapVector(float*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/client/snd_mix.cpp.o: in function `S_TransferStereo16(unsigned long*, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/client/snd_mix.cpp:163:(.text+0xc0): undefined reference to `S_WriteLinearBlastStereo16()'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/qcommon/cm_test.cpp.o: in function `CM_BoxLeafnums_r(leafList_s*, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/qcommon/cm_test.cpp:162:(.text+0x3bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/server/sv_game.cpp.o: in function `SV_CreateGameImports()::$_47::operator()(float*) const':
+/home/runner/work/RTCW-SP/RTCW-SP/src/server/sv_game.cpp:489:(.text+0x565e): undefined reference to `Sys_SnapVector(float*)'
+Compiling 'src/games/game/bg_pmove.cpp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_marks.cpp.o: in function `R_BoxSurfaces_r(mnode_s*, float*, float*, surfaceType_t**, int, int*, float*)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:157:(.text+0x77): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_marks.cpp:191:(.text+0x1ad): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o: in function `R_RecursiveWorldNode(mnode_s*, int, int)':
+/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:427:(.text+0x803): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:437:(.text+0x85f): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: /home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:447:(.text+0x8bb): undefined reference to `BoxOnPlaneSide(float*, float*, cplane_s*)'
+/usr/bin/x86_64-linux-gnu-ld.bfd: build/linux-x86-debug/client/obj/renderer/tr_world.cpp.o:/home/runner/work/RTCW-SP/RTCW-SP/src/renderer/tr_world.cpp:457: more undefined references to `BoxOnPlaneSide(float*, float*, cplane_s*)' follow
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+scons: *** [bin/WolfSP_x86] Error 1
 Compiling 'src/games/game/bg_slidemove.cpp'
 Compiling 'src/games/game/g_active.cpp'
 Compiling 'src/games/game/g_alarm.cpp'
@@ -2384,16 +2425,16 @@ Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
 Linking 'bin/main/ui_x86.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
+❌ ⚙️ Build step failed: 'bin/WolfSP_x86' — Error 1
 📊 Diagnostics: ⚠️ 0 warning(s), ❌ 1 error(s)
 
 
-==== ubuntu-latest-x86-release- (failure) ====
+==== ubuntu-latest-x86-release- (cancelled) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 94.8 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 48.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -2610,598 +2651,5 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-Preconfiguring packages ...
-Selecting previously unselected package gcc-16-base:i386.
-(Reading database ... 
-(Reading database ... 5%
-(Reading database ... 10%
-(Reading database ... 15%
-(Reading database ... 20%
-(Reading database ... 25%
-(Reading database ... 30%
-(Reading database ... 35%
-(Reading database ... 40%
-(Reading database ... 45%
-(Reading database ... 50%
-(Reading database ... 55%
-(Reading database ... 60%
-(Reading database ... 65%
-(Reading database ... 70%
-(Reading database ... 75%
-(Reading database ... 80%
-(Reading database ... 85%
-(Reading database ... 90%
-(Reading database ... 95%
-(Reading database ... 100%
-(Reading database ... 212015 files and directories currently installed.)
-Preparing to unpack .../gcc-16-base_16-20260322-1ubuntu1_i386.deb ...
-Unpacking gcc-16-base:i386 (16-20260322-1ubuntu1) ...
-Selecting previously unselected package libgcc-s1:i386.
-Preparing to unpack .../libgcc-s1_16-20260322-1ubuntu1_i386.deb ...
-Unpacking libgcc-s1:i386 (16-20260322-1ubuntu1) ...
-Selecting previously unselected package libc-gconv-modules-extra:i386.
-Preparing to unpack .../libc-gconv-modules-extra_2.43-2ubuntu2.4_i386.deb ...
-Unpacking libc-gconv-modules-extra:i386 (2.43-2ubuntu2.4) ...
-Selecting previously unselected package libc6:i386.
-Preparing to unpack .../libc6_2.43-2ubuntu2.4_i386.deb ...
-Unpacking libc6:i386 (2.43-2ubuntu2.4) ...
-Setting up gcc-16-base:i386 (16-20260322-1ubuntu1) ...
-Setting up libc-gconv-modules-extra:i386 (2.43-2ubuntu2.4) ...
-Setting up libgcc-s1:i386 (16-20260322-1ubuntu1) ...
-Setting up libc6:i386 (2.43-2ubuntu2.4) ...
-Selecting previously unselected package libexpat1:i386.
-(Reading database ... 
-(Reading database ... 5%
-(Reading database ... 10%
-(Reading database ... 15%
-(Reading database ... 20%
-(Reading database ... 25%
-(Reading database ... 30%
-(Reading database ... 35%
-(Reading database ... 40%
-(Reading database ... 45%
-(Reading database ... 50%
-(Reading database ... 55%
-(Reading database ... 60%
-(Reading database ... 65%
-(Reading database ... 70%
-(Reading database ... 75%
-(Reading database ... 80%
-(Reading database ... 85%
-(Reading database ... 90%
-(Reading database ... 95%
-(Reading database ... 100%
-(Reading database ... 212298 files and directories currently installed.)
-Preparing to unpack .../libexpat1_2.7.4-1ubuntu0.2_i386.deb ...
-Unpacking libexpat1:i386 (2.7.4-1ubuntu0.2) ...
-Preparing to unpack .../zlib1g-dev_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_amd64v3.deb ...
-Unpacking zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) over (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
-Preparing to unpack .../zlib1g_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_amd64v3.deb ...
-Unpacking zlib1g:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) over (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
-Selecting previously unselected package zlib1g:i386.
-Preparing to unpack .../zlib1g_1%3a1.3.dfsg+really1.3.1-1ubuntu3.2_i386.deb ...
-Unpacking zlib1g:i386 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
-Setting up zlib1g:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
-Selecting previously unselected package libmd0:i386.
-(Reading database ... 
-(Reading database ... 5%
-(Reading database ... 10%
-(Reading database ... 15%
-(Reading database ... 20%
-(Reading database ... 25%
-(Reading database ... 30%
-(Reading database ... 35%
-(Reading database ... 40%
-(Reading database ... 45%
-(Reading database ... 50%
-(Reading database ... 55%
-(Reading database ... 60%
-(Reading database ... 65%
-(Reading database ... 70%
-(Reading database ... 75%
-(Reading database ... 80%
-(Reading database ... 85%
-(Reading database ... 90%
-(Reading database ... 95%
-(Reading database ... 100%
-(Reading database ... 212304 files and directories currently installed.)
-Preparing to unpack .../00-libmd0_1.1.0-2build4_i386.deb ...
-Unpacking libmd0:i386 (1.1.0-2build4) ...
-Selecting previously unselected package libbsd0:i386.
-Preparing to unpack .../01-libbsd0_0.12.2-2build2_i386.deb ...
-Unpacking libbsd0:i386 (0.12.2-2build2) ...
-Selecting previously unselected package libtinfo6:i386.
-Preparing to unpack .../02-libtinfo6_6.6+20251231-1_i386.deb ...
-Unpacking libtinfo6:i386 (6.6+20251231-1) ...
-Selecting previously unselected package libzstd1:i386.
-Preparing to unpack .../03-libzstd1_1.5.7+dfsg-3_i386.deb ...
-Unpacking libzstd1:i386 (1.5.7+dfsg-3) ...
-Selecting previously unselected package libatomic1:i386.
-Preparing to unpack .../04-libatomic1_16-20260322-1ubuntu1_i386.deb ...
-Unpacking libatomic1:i386 (16-20260322-1ubuntu1) ...
-Selecting previously unselected package libedit2:i386.
-Preparing to unpack .../05-libedit2_3.1-20251016-1_i386.deb ...
-Unpacking libedit2:i386 (3.1-20251016-1) ...
-Selecting previously unselected package libelf1t64:i386.
-Preparing to unpack .../06-libelf1t64_0.194-4_i386.deb ...
-Unpacking libelf1t64:i386 (0.194-4) ...
-Selecting previously unselected package libffi8:i386.
-Preparing to unpack .../07-libffi8_3.5.2-4_i386.deb ...
-Unpacking libffi8:i386 (3.5.2-4) ...
-Selecting previously unselected package libunistring5:i386.
-Preparing to unpack .../08-libunistring5_1.3-2build1_i386.deb ...
-Unpacking libunistring5:i386 (1.3-2build1) ...
-Selecting previously unselected package libidn2-0:i386.
-Preparing to unpack .../09-libidn2-0_2.3.8-4build1_i386.deb ...
-Unpacking libidn2-0:i386 (2.3.8-4build1) ...
-Selecting previously unselected package libstdc++6:i386.
-Preparing to unpack .../10-libstdc++6_16-20260322-1ubuntu1_i386.deb ...
-Unpacking libstdc++6:i386 (16-20260322-1ubuntu1) ...
-Selecting previously unselected package libxml2-16:i386.
-Preparing to unpack .../11-libxml2-16_2.15.2+dfsg-0.1ubuntu0.3_i386.deb ...
-Unpacking libxml2-16:i386 (2.15.2+dfsg-0.1ubuntu0.3) ...
-Selecting previously unselected package libpng16-16t64:i386.
-Preparing to unpack .../12-libpng16-16t64_1.6.57-1ubuntu0.1_i386.deb ...
-Unpacking libpng16-16t64:i386 (1.6.57-1ubuntu0.1) ...
-Selecting previously unselected package libsensors5:i386.
-Preparing to unpack .../13-libsensors5_1%3a3.6.2-2build1_i386.deb ...
-Unpacking libsensors5:i386 (1:3.6.2-2build1) ...
-Selecting previously unselected package libxau6:i386.
-Preparing to unpack .../14-libxau6_1%3a1.0.11-1build2_i386.deb ...
-Unpacking libxau6:i386 (1:1.0.11-1build2) ...
-Selecting previously unselected package libxdmcp6:i386.
-Preparing to unpack .../15-libxdmcp6_1%3a1.1.5-2_i386.deb ...
-Unpacking libxdmcp6:i386 (1:1.1.5-2) ...
-Selecting previously unselected package libxcb1:i386.
-Preparing to unpack .../16-libxcb1_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb1:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libx11-6:i386.
-Preparing to unpack .../17-libx11-6_2%3a1.8.13-1ubuntu0.1_i386.deb ...
-Unpacking libx11-6:i386 (2:1.8.13-1ubuntu0.1) ...
-Selecting previously unselected package libxext6:i386.
-Preparing to unpack .../18-libxext6_2%3a1.3.4-1build3_i386.deb ...
-Unpacking libxext6:i386 (2:1.3.4-1build3) ...
-Selecting previously unselected package libdisplay-info3:i386.
-Preparing to unpack .../19-libdisplay-info3_0.3.0-1_i386.deb ...
-Unpacking libdisplay-info3:i386 (0.3.0-1) ...
-Selecting previously unselected package libdrm2:i386.
-Preparing to unpack .../20-libdrm2_2.4.131-1_i386.deb ...
-Unpacking libdrm2:i386 (2.4.131-1) ...
-Selecting previously unselected package libdrm-amdgpu1:i386.
-Preparing to unpack .../21-libdrm-amdgpu1_2.4.131-1_i386.deb ...
-Unpacking libdrm-amdgpu1:i386 (2.4.131-1) ...
-Selecting previously unselected package libpciaccess0:i386.
-Preparing to unpack .../22-libpciaccess0_0.18.1-1ubuntu4.1_i386.deb ...
-Unpacking libpciaccess0:i386 (0.18.1-1ubuntu4.1) ...
-Selecting previously unselected package libdrm-intel1:i386.
-Preparing to unpack .../23-libdrm-intel1_2.4.131-1_i386.deb ...
-Unpacking libdrm-intel1:i386 (2.4.131-1) ...
-Selecting previously unselected package libllvm21:i386.
-Preparing to unpack .../24-libllvm21_1%3a21.1.8-6ubuntu1_i386.deb ...
-Unpacking libllvm21:i386 (1:21.1.8-6ubuntu1) ...
-Selecting previously unselected package libx11-xcb1:i386.
-Preparing to unpack .../25-libx11-xcb1_2%3a1.8.13-1ubuntu0.1_i386.deb ...
-Unpacking libx11-xcb1:i386 (2:1.8.13-1ubuntu0.1) ...
-Selecting previously unselected package libxcb-dri3-0:i386.
-Preparing to unpack .../26-libxcb-dri3-0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-dri3-0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxcb-present0:i386.
-Preparing to unpack .../27-libxcb-present0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-present0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxcb-randr0:i386.
-Preparing to unpack .../28-libxcb-randr0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-randr0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxcb-sync1:i386.
-Preparing to unpack .../29-libxcb-sync1_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-sync1:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxcb-xfixes0:i386.
-Preparing to unpack .../30-libxcb-xfixes0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-xfixes0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxshmfence1:i386.
-Preparing to unpack .../31-libxshmfence1_1.3.3-1build1_i386.deb ...
-Unpacking libxshmfence1:i386 (1.3.3-1build1) ...
-Selecting previously unselected package mesa-libgallium:i386.
-Preparing to unpack .../32-mesa-libgallium_26.0.8-1ubuntu0.3_i386.deb ...
-Unpacking mesa-libgallium:i386 (26.0.8-1ubuntu0.3) ...
-Selecting previously unselected package libgbm1:i386.
-Preparing to unpack .../33-libgbm1_26.0.8-1ubuntu0.3_i386.deb ...
-Unpacking libgbm1:i386 (26.0.8-1ubuntu0.3) ...
-Selecting previously unselected package libglvnd0:i386.
-Preparing to unpack .../34-libglvnd0_1.7.0-3_i386.deb ...
-Unpacking libglvnd0:i386 (1.7.0-3) ...
-Selecting previously unselected package libvulkan1:i386.
-Preparing to unpack .../35-libvulkan1_1.4.341.0-1_i386.deb ...
-Unpacking libvulkan1:i386 (1.4.341.0-1) ...
-Selecting previously unselected package libgl1-mesa-dri:i386.
-Preparing to unpack .../36-libgl1-mesa-dri_26.0.8-1ubuntu0.3_i386.deb ...
-Unpacking libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
-Selecting previously unselected package libxcb-glx0:i386.
-Preparing to unpack .../37-libxcb-glx0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-glx0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxcb-shm0:i386.
-Preparing to unpack .../38-libxcb-shm0_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb-shm0:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libxxf86vm1:i386.
-Preparing to unpack .../39-libxxf86vm1_1%3a1.1.4-2_i386.deb ...
-Unpacking libxxf86vm1:i386 (1:1.1.4-2) ...
-Selecting previously unselected package libglx-mesa0:i386.
-Preparing to unpack .../40-libglx-mesa0_26.0.8-1ubuntu0.3_i386.deb ...
-Unpacking libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Selecting previously unselected package libglx0:i386.
-Preparing to unpack .../41-libglx0_1.7.0-3_i386.deb ...
-Unpacking libglx0:i386 (1.7.0-3) ...
-Selecting previously unselected package libgl1:i386.
-Preparing to unpack .../42-libgl1_1.7.0-3_i386.deb ...
-Unpacking libgl1:i386 (1.7.0-3) ...
-Selecting previously unselected package libxau-dev:i386.
-Preparing to unpack .../43-libxau-dev_1%3a1.0.11-1build2_i386.deb ...
-Unpacking libxau-dev:i386 (1:1.0.11-1build2) ...
-Selecting previously unselected package libxdmcp-dev:i386.
-Preparing to unpack .../44-libxdmcp-dev_1%3a1.1.5-2_i386.deb ...
-Unpacking libxdmcp-dev:i386 (1:1.1.5-2) ...
-Selecting previously unselected package libxcb1-dev:i386.
-Preparing to unpack .../45-libxcb1-dev_1.17.0-2ubuntu1_i386.deb ...
-Unpacking libxcb1-dev:i386 (1.17.0-2ubuntu1) ...
-Selecting previously unselected package libx11-dev:i386.
-Preparing to unpack .../46-libx11-dev_2%3a1.8.13-1ubuntu0.1_i386.deb ...
-Unpacking libx11-dev:i386 (2:1.8.13-1ubuntu0.1) ...
-Selecting previously unselected package libglx-dev:i386.
-Preparing to unpack .../47-libglx-dev_1.7.0-3_i386.deb ...
-Unpacking libglx-dev:i386 (1.7.0-3) ...
-Selecting previously unselected package libgl-dev:i386.
-Preparing to unpack .../48-libgl-dev_1.7.0-3_i386.deb ...
-Unpacking libgl-dev:i386 (1.7.0-3) ...
-Selecting previously unselected package libwayland-client0:i386.
-Preparing to unpack .../49-libwayland-client0_1.24.0-2_i386.deb ...
-Unpacking libwayland-client0:i386 (1.24.0-2) ...
-Selecting previously unselected package libxext-dev:i386.
-Preparing to unpack .../50-libxext-dev_2%3a1.3.4-1build3_i386.deb ...
-Unpacking libxext-dev:i386 (2:1.3.4-1build3) ...
-Selecting previously unselected package libxxf86dga1:i386.
-Preparing to unpack .../51-libxxf86dga1_2%3a1.1.5-1build2_i386.deb ...
-Unpacking libxxf86dga1:i386 (2:1.1.5-1build2) ...
-Selecting previously unselected package libxxf86dga-dev:i386.
-Preparing to unpack .../52-libxxf86dga-dev_2%3a1.1.5-1build2_i386.deb ...
-Unpacking libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Selecting previously unselected package libxxf86vm-dev:i386.
-Preparing to unpack .../53-libxxf86vm-dev_1%3a1.1.4-2_i386.deb ...
-Unpacking libxxf86vm-dev:i386 (1:1.1.4-2) ...
-Selecting previously unselected package mesa-vulkan-drivers:i386.
-Preparing to unpack .../54-mesa-vulkan-drivers_26.0.8-1ubuntu0.3_i386.deb ...
-Unpacking mesa-vulkan-drivers:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libexpat1:i386 (2.7.4-1ubuntu0.2) ...
-Setting up libzstd1:i386 (1.5.7+dfsg-3) ...
-Setting up libxau6:i386 (1:1.0.11-1build2) ...
-Setting up libxdmcp6:i386 (1:1.1.5-2) ...
-Setting up libxcb1:i386 (1.17.0-2ubuntu1) ...
-Setting up libxcb-xfixes0:i386 (1.17.0-2ubuntu1) ...
-Setting up libxau-dev:i386 (1:1.0.11-1build2) ...
-Setting up libglvnd0:i386 (1.7.0-3) ...
-Setting up libdisplay-info3:i386 (0.3.0-1) ...
-Setting up libxcb-glx0:i386 (1.17.0-2ubuntu1) ...
-Setting up zlib1g:i386 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
-Setting up libxcb-shm0:i386 (1.17.0-2ubuntu1) ...
-Setting up libelf1t64:i386 (0.194-4) ...
-Setting up libxcb-present0:i386 (1.17.0-2ubuntu1) ...
-Setting up libxdmcp-dev:i386 (1:1.1.5-2) ...
-Setting up libxcb-sync1:i386 (1.17.0-2ubuntu1) ...
-Setting up libunistring5:i386 (1.3-2build1) ...
-Setting up libpng16-16t64:i386 (1.6.57-1ubuntu0.1) ...
-Setting up libatomic1:i386 (16-20260322-1ubuntu1) ...
-Setting up libsensors5:i386 (1:3.6.2-2build1) ...
-Setting up libvulkan1:i386 (1.4.341.0-1) ...
-Setting up zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.2) ...
-Setting up libffi8:i386 (3.5.2-4) ...
-Setting up libdrm2:i386 (2.4.131-1) ...
-Setting up libmd0:i386 (1.1.0-2build4) ...
-Setting up libxshmfence1:i386 (1.3.3-1build1) ...
-Setting up libxcb-randr0:i386 (1.17.0-2ubuntu1) ...
-Setting up libx11-6:i386 (2:1.8.13-1ubuntu0.1) ...
-Setting up libbsd0:i386 (0.12.2-2build2) ...
-Setting up libstdc++6:i386 (16-20260322-1ubuntu1) ...
-Setting up libtinfo6:i386 (6.6+20251231-1) ...
-Setting up libdrm-amdgpu1:i386 (2.4.131-1) ...
-Setting up libwayland-client0:i386 (1.24.0-2) ...
-Setting up libxcb-dri3-0:i386 (1.17.0-2ubuntu1) ...
-Setting up libx11-xcb1:i386 (2:1.8.13-1ubuntu0.1) ...
-Setting up libpciaccess0:i386 (0.18.1-1ubuntu4.1) ...
-Setting up libxcb1-dev:i386 (1.17.0-2ubuntu1) ...
-Setting up libxml2-16:i386 (2.15.2+dfsg-0.1ubuntu0.3) ...
-Setting up libedit2:i386 (3.1-20251016-1) ...
-Setting up libdrm-intel1:i386 (2.4.131-1) ...
-Setting up libx11-dev:i386 (2:1.8.13-1ubuntu0.1) ...
-Setting up libxext6:i386 (2:1.3.4-1build3) ...
-Setting up libidn2-0:i386 (2.3.8-4build1) ...
-Setting up libxxf86vm1:i386 (1:1.1.4-2) ...
-Setting up libllvm21:i386 (1:21.1.8-6ubuntu1) ...
-Setting up libxext-dev:i386 (2:1.3.4-1build3) ...
-Setting up mesa-vulkan-drivers:i386 (26.0.8-1ubuntu0.3) ...
-Setting up mesa-libgallium:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libgbm1:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libxxf86vm-dev:i386 (1:1.1.4-2) ...
-Setting up libgl1-mesa-dri:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libxxf86dga1:i386 (2:1.1.5-1build2) ...
-Setting up libglx-mesa0:i386 (26.0.8-1ubuntu0.3) ...
-Setting up libglx0:i386 (1.7.0-3) ...
-Setting up libxxf86dga-dev:i386 (2:1.1.5-1build2) ...
-Setting up libgl1:i386 (1.7.0-3) ...
-Setting up libglx-dev:i386 (1.7.0-3) ...
-Setting up libgl-dev:i386 (1.7.0-3) ...
-Processing triggers for systemd (259.5-0ubuntu3.4) ...
-Processing triggers for man-db (2.13.1-1build1) ...
-Not building database; man-db/auto-update is not 'true'.
-Processing triggers for libc6-i386 (2.43-2ubuntu2.4) ...
-Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
-
-Running kernel seems to be up-to-date.
-
-Restarting services...
- systemctl restart packagekit.service php8.5-fpm.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service udisks2.service
-
-Service restarts being deferred:
- systemctl restart ModemManager.service
- systemctl restart hosted-compute-agent.service
- systemctl restart networkd-dispatcher.service
- systemctl restart systemd-logind.service
- systemctl restart walinuxagent.service
-
-No containers need to be restarted.
-
-User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1329]
-
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-Compiling 'src/client/cl_keys.cpp'
-Compiling 'src/client/cl_main.cpp'
-Compiling 'src/client/cl_net_chan.cpp'
-Compiling 'src/client/cl_parse.cpp'
-Compiling 'src/client/cl_scrn.cpp'
-Compiling 'src/client/cl_ui.cpp'
-Compiling 'src/client/snd_adpcm.cpp'
-Compiling 'src/client/snd_dma.cpp'
-Compiling 'src/client/snd_mem.cpp'
-Compiling 'src/client/snd_mix.cpp'
-Compiling 'src/client/snd_wavelet.cpp'
-Compiling 'src/qcommon/cm_load.cpp'
-Compiling 'src/qcommon/cm_patch.cpp'
-Compiling 'src/qcommon/cm_polylib.cpp'
-Compiling 'src/qcommon/cm_test.cpp'
-Compiling 'src/qcommon/cm_trace.cpp'
-Compiling 'src/qcommon/cmd.cpp'
-Compiling 'src/qcommon/common.cpp'
-Compiling 'src/qcommon/cvar.cpp'
-Compiling 'src/qcommon/files.cpp'
-Compiling 'src/qcommon/huffman.cpp'
-Compiling 'src/qcommon/md4.cpp'
-Compiling 'src/qcommon/msg.cpp'
-Compiling 'src/qcommon/net_chan.cpp'
-Compiling 'src/qcommon/unzip.cpp'
-Compiling 'src/server/sv_bot.cpp'
-Compiling 'src/server/sv_ccmds.cpp'
-Compiling 'src/server/sv_client.cpp'
-Compiling 'src/server/sv_game.cpp'
-Compiling 'src/server/sv_init.cpp'
-Compiling 'src/server/sv_main.cpp'
-Compiling 'src/server/sv_net_chan.cpp'
-Compiling 'src/server/sv_snapshot.cpp'
-Compiling 'src/server/sv_world.cpp'
-Compiling 'src/renderer/tr_animation.cpp'
-Compiling 'src/renderer/tr_backend.cpp'
-Compiling 'src/renderer/tr_bsp.cpp'
-Compiling 'src/renderer/tr_cmds.cpp'
-Compiling 'src/renderer/tr_curve.cpp'
-Compiling 'src/renderer/tr_decals.cpp'
-Compiling 'src/renderer/tr_flares.cpp'
-Compiling 'src/renderer/tr_font.cpp'
-Compiling 'src/renderer/tr_image.cpp'
-Compiling 'src/renderer/tr_init.cpp'
-Compiling 'src/renderer/tr_light.cpp'
-Compiling 'src/renderer/tr_main.cpp'
-Compiling 'src/renderer/tr_marks.cpp'
-Compiling 'src/renderer/tr_mesh.cpp'
-Compiling 'src/renderer/tr_cmesh.cpp'
-Compiling 'src/renderer/tr_model.cpp'
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-Compiling 'src/renderer/tr_scene.cpp'
-Compiling 'src/renderer/tr_shade.cpp'
-Compiling 'src/renderer/tr_shade_calc.cpp'
-Compiling 'src/renderer/tr_shader.cpp'
-Compiling 'src/renderer/tr_shadows.cpp'
-Compiling 'src/renderer/tr_sky.cpp'
-Compiling 'src/renderer/tr_surface.cpp'
-Compiling 'src/renderer/tr_vfx.cpp'
-Compiling 'src/renderer/tr_world.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/sys/unix/unix_main.cpp'
-Compiling 'src/sys/unix/unix_net.cpp'
-Compiling 'src/sys/unix/unix_shared.cpp'
-Compiling 'src/sys/unix/linux_common.cpp'
-Compiling 'src/sys/unix/linux_glimp.cpp'
-Compiling 'src/sys/unix/linux_joystick.cpp'
-Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-src/sys/unix/linux_glimp.cpp:77:10: fatal error: 'X11/extensions/Xxf86vmode.h' file not found
-   77 | #include <X11/extensions/Xxf86vmode.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-scons: *** [build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-Compiling 'src/splines/math_matrix.cpp'
-Compiling 'src/splines/math_quaternion.cpp'
-Compiling 'src/splines/math_vector.cpp'
-Compiling 'src/splines/q_parse.cpp'
-Compiling 'src/splines/q_shared.cpp'
-Compiling 'src/splines/splines.cpp'
-Compiling 'src/splines/util_str.cpp'
-Compiling 'src/games/botlib/be_ai_char.cpp'
-Compiling 'src/games/botlib/be_ai_chat.cpp'
-src/splines/splines.cpp:580:17: warning: expression result unused [-Wunused-value]
-  580 |         CHECK_NAN_VEC( origin );
-      |                        ^~~~~~
-Compiling 'src/games/botlib/be_ai_gen.cpp'
-Compiling 'src/games/botlib/be_ai_goal.cpp'
-Compiling 'src/games/botlib/be_ai_move.cpp'
-Compiling 'src/games/botlib/be_ai_weap.cpp'
-1 warning generated.
-Compiling 'src/games/botlib/be_ai_weight.cpp'
-Compiling 'src/games/botlib/be_ea.cpp'
-Compiling 'src/games/botlib/be_interface.cpp'
-Compiling 'src/games/botlib/be_nav_interface.cpp'
-Compiling 'src/games/botlib/l_crc.cpp'
-Compiling 'src/games/botlib/l_libvar.cpp'
-Compiling 'src/games/botlib/l_log.cpp'
-Compiling 'src/games/botlib/l_memory.cpp'
-Compiling 'src/games/botlib/l_precomp.cpp'
-Compiling 'src/games/botlib/l_script.cpp'
-Compiling 'src/games/botlib/l_struct.cpp'
-Compiling 'src/third-party/stb/stb_impl.c'
-Compiling 'src/third-party/recast/Detour/Source/DetourAlloc.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourAssert.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourCommon.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMesh.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshBuilder.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourNavMeshQuery.cpp'
-Compiling 'src/third-party/recast/Detour/Source/DetourNode.cpp'
-Compiling 'src/tools/extractfuncs/extractfuncs.cpp'
-Compiling 'src/tools/extractfuncs/l_log.cpp'
-Compiling 'src/tools/extractfuncs/l_memory.cpp'
-Compiling 'src/tools/extractfuncs/l_precomp.cpp'
-Compiling 'src/tools/extractfuncs/l_script.cpp'
-Compiling 'src/games/game/bg_animation.cpp'
-Compiling 'src/games/game/bg_misc.cpp'
-Linking 'build/linux-x86-release/extractfuncs'
-Compiling 'src/games/game/bg_pmove.cpp'
-Compiling 'src/games/game/bg_slidemove.cpp'
-Compiling 'src/games/game/g_active.cpp'
-Compiling 'src/games/game/g_alarm.cpp'
-Compiling 'src/games/game/g_client.cpp'
-Compiling 'src/games/game/g_cmds.cpp'
-Compiling 'src/games/game/g_combat.cpp'
-Compiling 'src/games/game/g_items.cpp'
-Compiling 'src/games/game/g_main.cpp'
-Compiling 'src/games/game/g_mem.cpp'
-Compiling 'src/games/game/g_misc.cpp'
-Compiling 'src/games/game/g_missile.cpp'
-Compiling 'src/games/game/g_mover.cpp'
-Compiling 'src/games/game/g_props.cpp'
-Compiling 'src/games/game/g_save.cpp'
-Compiling 'src/games/game/g_script.cpp'
-Compiling 'src/games/game/g_script_actions.cpp'
-Compiling 'src/games/game/g_session.cpp'
-Compiling 'src/games/game/g_spawn.cpp'
-Compiling 'src/games/game/g_svcmds.cpp'
-Compiling 'src/games/game/g_syscalls.cpp'
-Compiling 'src/games/game/g_target.cpp'
-Compiling 'src/games/game/g_team.cpp'
-Compiling 'src/games/game/g_tramcar.cpp'
-Compiling 'src/games/game/g_trigger.cpp'
-Compiling 'src/games/game/g_utils.cpp'
-Compiling 'src/games/game/g_weapon.cpp'
-Compiling 'src/games/game/ai/ai_actor.cpp'
-Compiling 'src/games/game/ai/ai_awareness.cpp'
-Compiling 'src/games/game/ai/ai_characters.cpp'
-Compiling 'src/games/game/ai/ai_danger.cpp'
-Compiling 'src/games/game/ai/ai_debug.cpp'
-Compiling 'src/games/game/ai/ai_events.cpp'
-Compiling 'src/games/game/ai/ai_input.cpp'
-Compiling 'src/games/game/ai/ai_movement.cpp'
-Compiling 'src/games/game/ai/ai_navigation.cpp'
-Compiling 'src/games/game/ai/ai_perception.cpp'
-Compiling 'src/games/game/ai/ai_scheduler.cpp'
-Compiling 'src/games/game/ai/ai_script.cpp'
-Compiling 'src/games/game/ai/ai_script_actions_animation.cpp'
-Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
-Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
-Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
-Compiling 'src/games/game/ai/ai_script_entities.cpp'
-Compiling 'src/games/game/ai/ai_spawn.cpp'
-Compiling 'src/games/game/ai/ai_system.cpp'
-Compiling 'src/games/game/ai/ai_targeting.cpp'
-Compiling 'src/games/game/ai/ai_weapons.cpp'
-Compiling 'src/games/game/ai/fsm/ai_ability.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_cover.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_doors.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_evasion.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_grenades.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_idle.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_investigate.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_mounted.cpp'
-Compiling 'src/games/game/ai/fsm/ai_behavior_pursuit.cpp'
-Compiling 'src/games/game/ai/fsm/ai_boss_heinrich.cpp'
-Compiling 'src/games/game/ai/fsm/ai_boss_helga.cpp'
-Compiling 'src/games/game/ai/fsm/ai_combat.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_blackguard.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_loper.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_reject.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_stimsoldier.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_warzombie.cpp'
-Compiling 'src/games/game/ai/fsm/ai_monster_zombie.cpp'
-Compiling 'src/games/game/ai/fsm/ai_state_legacy.cpp'
-Compiling 'src/games/game/ai/fsm/ai_state_machine.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/games/game/bg_animation.cpp'
-Compiling 'src/games/game/bg_misc.cpp'
-Compiling 'src/games/game/bg_pmove.cpp'
-Linking 'bin/main/qagame_x86.so'
-Compiling 'src/games/game/bg_slidemove.cpp'
-Compiling 'src/games/cgame/cg_consolecmds.cpp'
-Compiling 'src/games/cgame/cg_draw.cpp'
-Compiling 'src/games/cgame/cg_drawtools.cpp'
-Compiling 'src/games/cgame/cg_effects.cpp'
-Compiling 'src/games/cgame/cg_ents.cpp'
-Compiling 'src/games/cgame/cg_event.cpp'
-Compiling 'src/games/cgame/cg_fx.cpp'
-Compiling 'src/games/cgame/cg_fx_entities.cpp'
-Compiling 'src/games/cgame/cg_fx_flame.cpp'
-Compiling 'src/games/cgame/cg_fx_marks.cpp'
-Compiling 'src/games/cgame/cg_fx_particles.cpp'
-Compiling 'src/games/cgame/cg_fx_trails.cpp'
-Compiling 'src/games/cgame/cg_info.cpp'
-Compiling 'src/games/cgame/cg_main.cpp'
-Compiling 'src/games/cgame/cg_newDraw.cpp'
-Compiling 'src/games/cgame/cg_players.cpp'
-Compiling 'src/games/cgame/cg_playerstate.cpp'
-Compiling 'src/games/cgame/cg_predict.cpp'
-Compiling 'src/games/cgame/cg_scoreboard.cpp'
-Compiling 'src/games/cgame/cg_servercmds.cpp'
-Compiling 'src/games/cgame/cg_snapshot.cpp'
-Compiling 'src/games/cgame/cg_sound.cpp'
-Compiling 'src/games/cgame/cg_syscalls.cpp'
-Compiling 'src/games/cgame/cg_view.cpp'
-Compiling 'src/games/cgame/cg_weapons.cpp'
-Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-Compiling 'src/games/cgame/fx/FxScheduler.cpp'
-Compiling 'src/games/cgame/fx/FxSystem.cpp'
-Compiling 'src/games/cgame/fx/FxTemplate.cpp'
-Compiling 'src/games/cgame/fx/FxUtil.cpp'
-Compiling 'src/games/cgame/fx/genericparser2.cpp'
-Compiling 'src/games/ui/ui_shared.cpp'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Compiling 'src/games/game/bg_misc.cpp'
-Compiling 'src/games/ui/ui_atoms.cpp'
-Compiling 'src/games/ui/ui_gameinfo.cpp'
-Compiling 'src/games/ui/ui_main.cpp'
-Compiling 'src/games/ui/ui_players.cpp'
-Compiling 'src/games/ui/ui_shared.cpp'
-Compiling 'src/games/ui/ui_syscalls.cpp'
-Compiling 'src/games/ui/ui_util.cpp'
-Linking 'bin/main/cgame_x86.so'
-Compiling 'src/qcommon/q_math.cpp'
-Compiling 'src/qcommon/q_shared.cpp'
-Linking 'bin/main/ui_x86.so'
-scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/sys/unix/linux_glimp.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 1 warning(s), ❌ 1 error(s)
 
 
