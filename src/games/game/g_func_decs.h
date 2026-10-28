@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 672b12965d1d69239a08b08d2cdb4fe4e3822637)
 extern void AICast_ProcessAIFunctions( cast_state_t * cs, float thinktime ) ;
 extern void AI_CommitState( cast_state_t * cs ) ;
 extern char * AI_RequestState( cast_state_t * cs, AIStateId state, AITransitionReason reason ) ;
@@ -521,7 +522,7 @@ extern char * vtosf( const vec3_t v ) ;
 extern char * vtos( const vec3_t v ) ;
 extern void G_UseTargets( gentity_t * ent, gentity_t * activator ) ;
 extern gentity_t * G_PickTarget( char * targetname ) ;
-extern gentity_t * G_Find( gentity_t * from, int fieldofs, const char * match ) ;
+extern gentity_t * G_Find( gentity_t * from, size_t fieldofs, const char * match ) ;
 extern void G_TeamCommand( team_t team, char * cmd ) ;
 extern int G_SoundIndex( const char * name ) ;
 extern int G_ModelIndex( char * name ) ;
