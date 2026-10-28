@@ -32,6 +32,9 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "cm_local.h"
 
+// intptr_t for the winding size offset cast
+#include <stdint.h>
+
 
 // counters are only bumped when running single threaded,
 // because they are an awefull coherence problem
