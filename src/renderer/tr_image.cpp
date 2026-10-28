@@ -1581,7 +1581,7 @@ void SaveJPG( char *filename, int quality, int image_width, int image_height, un
 
 	out.capacity = 64 * 1024;
 	out.size = 0;
-	out.buffer = ( byte * )malloc( out->capacity );
+	out.buffer = ( byte * )malloc( out.capacity );
 
 	if ( stbi_write_jpg_to_func( JpgWriteCallback, &out, image_width, image_height, 3, flipped, quality ) ) {
 		ri.FS_WriteFile( filename, out.buffer, out.size );
