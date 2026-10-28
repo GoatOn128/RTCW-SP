@@ -346,7 +346,7 @@ extern void Info_RemoveKey( char * s, const char * key ) ;
 extern void Info_NextPair( const char * * head, char * key, char * value ) ;
 extern char * Info_ValueForKey( const char * s, const char * key ) ;
 extern float * tv( float x, float y, float z ) ;
-extern char * QDECL va( char * format, ... ) ;
+extern char * QDECL va( const char * format, ... ) ;
 extern int Q_strcasecmp( char * s1, char * s2 ) ;
 extern int Q_strncasecmp( char * s1, char * s2, int n ) ;
 extern void QDECL Com_sprintf( char * dest, int size, const char * fmt, ... ) ;

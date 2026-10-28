@@ -35,7 +35,7 @@ jobs:
         run: |
           # run per file: a crash on one file must not abort the whole tree
           echo "diag format: begin, uncrustify=$( command -v uncrustify || echo missing )" >> build.log
-          find src -regextype posix-extended -path src/third-party -prune -o -type f ! -name qasm.h ! -name bg_pmove.c -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
+          find src -regextype posix-extended -path src/third-party -prune -o -type f ! -name qasm.h ! -name bg_pmove.c ! -name bg_pmove.cpp -regex '.*\.(c|h|cpp|hpp)$' -print > files.txt
           while read -r f; do
             uncrustify -c uncrustify.cfg --replace --no-backup "$f" >> build.log 2>&1 || echo "UNCRUSTIFY_FAILED: $f" >> build.log
           done < files.txt
