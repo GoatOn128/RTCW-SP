@@ -1,4 +1,4 @@
-successfully downloaded text file (SHA: 91c8c98e8c0ce11952a1898401080477149ca46b)
+successfully downloaded text file( SHA : 91c8c98e8c0ce11952a1898401080477149ca46b )
 /*
 ===========================================================================
 
