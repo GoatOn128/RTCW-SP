@@ -1,68 +1,62 @@
 # Compact build digest
 
-commit: 0e47993600b9
+commit: 2220687ead90
 
 - ubuntu-latest-x64-debug-: failure
-- ubuntu-latest-x64-release-: failure
+- ubuntu-latest-x64-release-: cancelled
 - ubuntu-latest-x64-release-game: failure
 - ubuntu-latest-x86-debug-: failure
-- ubuntu-latest-x86-release-: failure
+- ubuntu-latest-x86-release-: cancelled
 - uncrustify: success
-- windows-latest-x64-debug-: cancelled
-- windows-latest-x64-release-: cancelled
+- windows-latest-x64-debug-: failure
+- windows-latest-x64-release-: failure
 - windows-latest-x64-release-cgame: failure
-- windows-latest-x64-release-game: cancelled
+- windows-latest-x64-release-game: failure
 - windows-latest-x64-release-ui: failure
 - windows-latest-x86-debug-: failure
-- windows-latest-x86-release-: cancelled
+- windows-latest-x86-release-: failure
 
 ## ubuntu-latest-x64-debug-
 
 status: failure
 
-errors: 290
-warnings: 7271 in 25 kinds
+errors: 264
+warnings: 7288 in 25 kinds
 
 ### errors
 
-src/client/cl_cin.cpp:1105:39: error: cast from pointer to smaller type 'unsigned int' loses information
-src/client/cl_cin.cpp:1105:68: error: cast from pointer to smaller type 'unsigned int' loses information
-src/client/cl_cin.cpp:1106:41: error: cast from pointer to smaller type 'unsigned int' loses information
-src/client/cl_cin.cpp:1106:110: error: cast from pointer to smaller type 'unsigned int' loses information
+src/client/cl_cin.cpp:1105:54: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+src/client/cl_cin.cpp:1105:94: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+src/client/cl_cin.cpp:1106:56: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+src/client/cl_cin.cpp:1106:136: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 src/qcommon/cm_polylib.cpp:280:15: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/client/obj/qcommon/cm_polylib.cpp.o] Error 1
-src/qcommon/common.cpp:1098:29: error: cast from pointer to smaller type 'int' loses information
+src/qcommon/common.cpp:1098:30: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/client/obj/qcommon/common.cpp.o] Error 1
-src/qcommon/msg.cpp:578:38: error: constant expression evaluates to 4294967295 which cannot be narrowed to type 'int' [-Wc++11-narrowing]
-src/qcommon/msg.cpp:948:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:949:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:950:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:951:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:952:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:953:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:954:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:955:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:956:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:957:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:958:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:959:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:960:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:961:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:962:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:963:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:964:4: error: cast from pointer to smaller type 'int' loses information
-src/qcommon/msg.cpp:965:4: error: cast from pointer to smaller type 'int' loses information
+src/qcommon/msg.cpp:948:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:949:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:950:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:951:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:952:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:953:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:954:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:955:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:956:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:957:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:958:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:959:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:960:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:961:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:962:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:963:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:964:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:965:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/qcommon/msg.cpp:966:4: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 scons: *** [build/linux-x64-debug/client/obj/qcommon/msg.cpp.o] Error 1
-src/renderer/tr_bsp.cpp:379:14: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_bsp.cpp.o] Error 1
 src/renderer/tr_image.cpp:1584:36: error: member reference type 'jpgOutputBuffer_t' is not a pointer; did you mean to use '.'?
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_image.cpp.o] Error 1
-src/renderer/tr_init.cpp:1175:7: error: cast from pointer to smaller type 'int' loses information
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o] Error 1
-src/renderer/tr_model.cpp:764:13: error: assigning to 'byte *' (aka 'unsigned char *') from incompatible type 'void *'
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_model.cpp.o] Error 1
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_algobase.h:234:9: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_algobase.h:234:9: error: expected ')'
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_algobase.h:234:5: error: expected ')'
@@ -81,8 +75,6 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_model.cpp.o] Error 1
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/basic_string.h:3465:31: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/basic_string.h:3561:31: error: expected unqualified-id
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o] Error 1
-src/renderer/tr_shader.cpp:1278:27: error: constant expression evaluates to 2147483648 which cannot be narrowed to type 'int' [-Wc++11-narrowing]
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:414:9: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:414:9: error: expected ')'
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:414:5: error: expected ')'
@@ -110,60 +102,42 @@ src/sys/unix/unix_main.cpp:1:7: error: expected unqualified-id
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
 src/sys/unix/linux_glimp.cpp:814:8: error: assigning to 'rserr_t' from incompatible type 'int'
-src/sys/unix/linux_glimp.cpp:1104:13: error: assigning to 'const char *' from 'const GLubyte *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not
-src/sys/unix/linux_glimp.cpp:1397:2: error: no matching function for call to 'Q_strncpyz'
-src/sys/unix/linux_glimp.cpp:1398:2: error: no matching function for call to 'Q_strncpyz'
-src/sys/unix/linux_glimp.cpp:1402:2: error: no matching function for call to 'Q_strncpyz'
-src/sys/unix/linux_glimp.cpp:1403:2: error: no matching function for call to 'Q_strncpyz'
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
-src/sys/unix/linux_qgl.cpp:2726:44: error: assigning to 'void (*)(GLenum, GLfloat)' (aka 'void (*)(unsigned int, float)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2727:48: error: assigning to 'void (*)(GLenum, GLclampf)' (aka 'void (*)(unsigned int, float)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2728:58: error: assigning to 'GLboolean (*)(GLsizei, const GLuint *, GLboolean *)' (aka 'unsigned char (*)(int, const unsigned int *, unsigned char *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2729:51: error: assigning to 'void (*)(GLint)' (aka 'void (*)(int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2730:44: error: assigning to 'void (*)(GLenum)' (aka 'void (*)(unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2731:50: error: assigning to 'void (*)(GLenum, GLuint)' (aka 'void (*)(unsigned int, unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2732:45: error: assigning to 'void (*)(GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat, const GLubyte *)' (aka 'void (*)(int, int, float, float, float, float, const unsigned char *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2733:48: error: assigning to 'void (*)(GLenum, GLenum)' (aka 'void (*)(unsigned int, unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2734:47: error: assigning to 'void (*)(GLuint)' (aka 'void (*)(unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2735:48: error: assigning to 'void (*)(GLsizei, GLenum, const GLvoid *)' (aka 'void (*)(int, unsigned int, const void *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2736:44: error: assigning to 'void (*)(GLbitfield)' (aka 'void (*)(unsigned int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2737:49: error: assigning to 'void (*)(GLfloat, GLfloat, GLfloat, GLfloat)' (aka 'void (*)(float, float, float, float)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2738:49: error: assigning to 'void (*)(GLclampf, GLclampf, GLclampf, GLclampf)' (aka 'void (*)(float, float, float, float)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2739:49: error: assigning to 'void (*)(GLclampd)' (aka 'void (*)(double)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2740:49: error: assigning to 'void (*)(GLfloat)' (aka 'void (*)(float)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2741:51: error: assigning to 'void (*)(GLint)' (aka 'void (*)(int)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2742:48: error: assigning to 'void (*)(GLenum, const GLdouble *)' (aka 'void (*)(unsigned int, const double *)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2743:46: error: assigning to 'void (*)(GLbyte, GLbyte, GLbyte)' (aka 'void (*)(signed char, signed char, signed char)') from 'void *' converts between void pointer and function pointer
-src/sys/unix/linux_qgl.cpp:2744:47: error: assigning to 'void (*)(const GLbyte *)' (aka 'void (*)(const signed char *)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3071:34: error: assigning to 'XVisualInfo *(*)(Display *, int, int *)' (aka 'XVisualInfo *(*)(_XDisplay *, int, int *)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3072:34: error: assigning to 'GLXContext (*)(Display *, XVisualInfo *, GLXContext, int)' (aka '__GLXcontextRec *(*)(_XDisplay *, XVisualInfo *, __GLXcontextRec *, int)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3073:34: error: assigning to 'void (*)(Display *, GLXContext)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3074:34: error: assigning to 'int (*)(Display *, GLXDrawable, GLXContext)' (aka 'int (*)(_XDisplay *, unsigned long, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3075:34: error: assigning to 'void (*)(Display *, GLXContext, GLXContext, GLuint)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *, __GLXcontextRec *, unsigned int)') from 'void *' converts between void pointer and function pointer
+src/sys/unix/linux_qgl.cpp:3076:34: error: assigning to 'void (*)(Display *, GLXDrawable)' (aka 'void (*)(_XDisplay *, unsigned long)') from 'void *' converts between void pointer and function pointer
 scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
-src/games/botlib/be_ai_goal.cpp:144:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:145:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:146:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:147:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:148:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:149:18: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:150:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_goal.cpp:151:11: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_goal.cpp:144:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:145:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:146:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:147:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:148:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:149:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:150:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_goal.cpp:151:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_goal.cpp.o] Error 1
-src/games/botlib/be_ai_weap.cpp:63:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:64:11: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:65:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:66:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:67:18: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:68:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:69:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:70:21: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:71:14: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:72:14: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:73:12: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:74:19: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:75:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:76:13: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:77:18: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:78:21: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:79:17: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:80:16: error: cast from pointer to smaller type 'int' loses information
-src/games/botlib/be_ai_weap.cpp:81:15: error: cast from pointer to smaller type 'int' loses information
+src/games/botlib/be_ai_weap.cpp:63:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:64:11: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:65:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:66:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:67:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:68:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:69:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:70:21: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:71:14: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:72:14: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:73:12: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:74:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:75:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:76:13: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:77:18: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:78:21: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:79:17: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:80:16: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/botlib/be_ai_weap.cpp:81:15: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_ai_weap.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/client/obj/games/botlib/be_nav_interface.cpp.o] Error 1
 src/games/game/bg_misc.cpp:3520:21: error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'gitem_s *') from 'weapon_t'
@@ -195,20 +169,20 @@ src/games/cgame/../ui/ui_shared.h:302:8: error: expected ';' at end of declarati
 src/games/cgame/../ui/ui_shared.h:398:5: error: expected ')'
 src/games/cgame/../ui/ui_shared.h:462:1: error: unknown type name 'q'
 src/games/cgame/../ui/ui_shared.h:463:8: error: expected ';' after top level declarator
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_consolecmds.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_draw.cpp.o] Error 1
-src/games/cgame/cg_event.cpp:561:16: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:562:20: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:563:20: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:564:19: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:565:20: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:566:19: error: cast from pointer to smaller type 'int' loses information
-src/games/cgame/cg_event.cpp:567:20: error: cast from pointer to smaller type 'int' loses information
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_consolecmds.cpp.o] Error 1
+src/games/cgame/cg_event.cpp:561:16: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/cgame/cg_event.cpp:562:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/cgame/cg_event.cpp:563:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/cgame/cg_event.cpp:564:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+src/games/cgame/cg_event.cpp:565:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 src/games/cgame/cg_ents.cpp:1708:19: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
+src/games/cgame/cg_event.cpp:566:19: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 src/games/cgame/cg_ents.cpp:1708:63: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
 src/games/cgame/cg_ents.cpp:1708:109: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
+src/games/cgame/cg_event.cpp:567:20: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_ents.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_event.cpp.o] Error 1
 src/games/cgame/fx/FxScheduler.h:420:11: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/cg_fx_entities.cpp:467:31: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
 src/games/cgame/cg_fx_entities.cpp:467:82: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
@@ -217,12 +191,12 @@ src/games/cgame/cg_fx_entities.cpp:467:198: error: non-constant-expression canno
 src/games/cgame/cg_fx_entities.cpp:467:250: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
 src/games/cgame/cg_fx_entities.cpp:467:302: error: non-constant-expression cannot be narrowed from type 'int' to 'vec_t' (aka 'float') in initializer list [-Wc++11-narrowing]
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_marks.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_entities.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_flame.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_info.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_main.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_deque.h:647:40: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/deque.tcc:1126:17: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/deque.tcc:1233:13: error: expected unqualified-id
@@ -234,9 +208,10 @@ scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_particles.cpp.o] E
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:427:9: error: expected unqualified-id
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:427:9: error: expected ')'
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/algorithmfwd.h:427:5: error: expected ')'
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_newDraw.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_particles.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_fx_trails.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_servercmds.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxPrimitives.cpp.o] Error 1
 src/games/cgame/fx/FxScheduler.cpp:272:9: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/fx/FxScheduler.cpp:274:15: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/fx/FxScheduler.cpp:276:17: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
@@ -255,9 +230,8 @@ src/games/cgame/fx/FxScheduler.cpp:296:15: error: use of undeclared identifier '
 src/games/cgame/fx/FxScheduler.cpp:298:15: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/fx/FxScheduler.cpp:300:15: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/fx/FxScheduler.cpp:322:10: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxPrimitives.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxScheduler.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxSystem.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxScheduler.cpp.o] Error 1
 src/games/ui/ui_shared.h:50:1: error: expected unqualified-id
 src/games/ui/ui_shared.h:121:3: error: a type specifier is required for all declarations
 src/games/ui/ui_shared.h:140:2: error: unknown type name 't'
@@ -297,6 +271,7 @@ src/games/cgame/fx/FxTemplate.cpp:666:15: error: use of undeclared identifier 's
 src/games/cgame/fx/FxTemplate.cpp:701:9: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 src/games/cgame/fx/FxTemplate.cpp:703:15: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxTemplate.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxUtil.cpp.o] Error 1
 src/games/cgame/fx/genericparser2.cpp:312:14: error: use of undeclared identifier 'strcmpi'; did you mean 'strcmp'?
 src/games/cgame/fx/genericparser2.cpp:508:9: error: use of undeclared identifier 'strcmpi'; did you mean 'strcmp'?
 src/games/cgame/fx/genericparser2.cpp:579:9: error: use of undeclared identifier 'stricmp'; did you mean 'strcmp'?
@@ -305,45 +280,44 @@ src/games/cgame/fx/genericparser2.cpp:612:8: error: use of undeclared identifier
 src/games/cgame/fx/genericparser2.cpp:618:14: error: use of undeclared identifier 'strcmpi'; did you mean 'strcmp'?
 src/games/cgame/fx/genericparser2.cpp:680:8: error: use of undeclared identifier 'strcmpi'; did you mean 'strcmp'?
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/genericparser2.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/fx/FxUtil.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_atoms.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_gameinfo.cpp.o] Error 1
 scons: *** [build/linux-x64-debug/ui/obj/games/game/bg_misc.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_gameinfo.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_syscalls.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_players.cpp.o] Error 1
 src/games/ui/ui_main.cpp:3056:16: error: no matching function for call to 'va'
+scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_shared.cpp.o] Error 1
 src/games/ui/ui_main.cpp:6569:14: error: no member named 'feederAddItem' in 'displayContextDef_t'
 scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_main.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_shared.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_players.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/ui/obj/games/ui/ui_syscalls.cpp.o] Error 1
 
 ### failure context
 
 - build/linux-x64-debug/client/obj/client/cl_cin.cpp.o
 
 ```
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-Compiling 'src/client/cl_cgame.cpp'
-Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
-Compiling 'src/client/cl_input.cpp'
-src/client/cl_cin.cpp:1105:39: error: cast from pointer to smaller type 'unsigned int' loses information
- 1105 |         cinTable[currentHandle].t[0] = ( 0 - (unsigned int)cin.linbuf ) + (unsigned int)cin.linbuf + cinTable[currentHandle].screenDelta;
-      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_cin.cpp:1105:68: error: cast from pointer to smaller type 'unsigned int' loses information
- 1105 |         cinTable[currentHandle].t[0] = ( 0 - (unsigned int)cin.linbuf ) + (unsigned int)cin.linbuf + cinTable[currentHandle].screenDelta;
-      |                                                                           ^~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_cin.cpp:1106:41: error: cast from pointer to smaller type 'unsigned int' loses information
- 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)cin.linbuf;
-      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_cin.cpp:1106:110: error: cast from pointer to smaller type 'unsigned int' loses information
- 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)cin.linbuf;
-      |                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~
-src/client/cl_input.cpp:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
-  442 |         int movespeed;
-      |             ^
+  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
+      |                         ^
+src/client/cl_cin.cpp:1105:94: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+ 1105 |         cinTable[currentHandle].t[0] = ( 0 - (unsigned int)(uintptr_t)cin.linbuf ) + (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta;
+      |                                                                                                     ^~~~~~~~~
+      |                                                                                                     __intptr_t
+/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
+  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
+      |                         ^
+src/client/cl_cin.cpp:1106:56: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+ 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)(uintptr_t)cin.linbuf;
+      |                                                               ^~~~~~~~~
+      |                                                               __intptr_t
+/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
+  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
+      |                         ^
+src/client/cl_cin.cpp:1106:136: error: unknown type name 'uintptr_t'; did you mean '__intptr_t'?
+ 1106 |         cinTable[currentHandle].t[1] = ( 0 - ( (unsigned int)(uintptr_t)cin.linbuf + cinTable[currentHandle].screenDelta ) ) + (unsigned int)(uintptr_t)cin.linbuf;
+      |                                                                                                                                               ^~~~~~~~~
+      |                                                                                                                                               __intptr_t
+/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
+  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
+      |                         ^
 src/client/cl_cin.cpp:1436:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  1436 |                         Cbuf_ExecuteText( EXEC_APPEND, va( "%s\n", s ) );
       |                                                            ^
@@ -357,19 +331,19 @@ scons: *** [build/linux-x64-debug/client/obj/client/cl_cin.cpp.o] Error 1
 - build/linux-x64-debug/client/obj/qcommon/cm_polylib.cpp.o
 
 ```
-  224 |         FindChunk( "RIFF" );
-      |                    ^
-src/client/snd_mem.cpp:234:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  234 |         FindChunk( "fmt " );
       |                    ^
 src/client/snd_mem.cpp:253:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   253 |         FindChunk( "data" );
       |                    ^
+src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
+ 2171 |         if ( ss->loop && loop ) {
+      |              ~~~~^~~~ ~~
+src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
+ 2487 |                                         if ( ss->loop && ss->loop[0] ) {
+      |                                              ~~~~^~~~ ~~
 3 warnings generated.
-6 warnings generated.
-Compiling 'src/client/snd_wavelet.cpp'
-8 warnings generated.
 Compiling 'src/qcommon/cm_load.cpp'
+6 warnings generated.
 Compiling 'src/qcommon/cm_patch.cpp'
 src/client/snd_mix.cpp:793:10: warning: variable 'talkcnt' set but not used [-Wunused-but-set-variable]
   793 |                                         int talkcnt, talktime;
@@ -393,20 +367,19 @@ scons: *** [build/linux-x64-debug/client/obj/qcommon/cm_polylib.cpp.o] Error 1
 - build/linux-x64-debug/client/obj/qcommon/common.cpp.o
 
 ```
-      |             ^
-src/qcommon/common.cpp:1014:12: warning: variable 'locsize' set but not used [-Wunused-but-set-variable]
- 1014 |         int size, locsize, numBlocks;
-      |                   ^
-src/qcommon/common.cpp:1079:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1079 |                 pMsg = "Minimum com_hunkMegs for a dedicated server is %i, allocating %i megs.\n";
       |                        ^
 src/qcommon/common.cpp:1082:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  1082 |                 pMsg = "Minimum com_hunkMegs is %i, allocating %i megs.\n";
       |                        ^
-src/qcommon/common.cpp:1098:29: error: cast from pointer to smaller type 'int' loses information
- 1098 |         s_hunkData = ( byte * )( ( (int)s_hunkData + 31 ) & ~31 );
-      |                                    ^~~~~~~~~~~~~~~
+src/qcommon/common.cpp:1098:30: error: unknown type name 'intptr_t'; did you mean '__intptr_t'?
+ 1098 |         s_hunkData = ( byte * )( ( (intptr_t)s_hunkData + 31 ) & ~31 );
+      |                                     ^~~~~~~~
+      |                                     __intptr_t
+/usr/include/x86_64-linux-gnu/bits/types.h:207:25: note: '__intptr_t' declared here
+  207 | __STD_TYPE __SWORD_TYPE __intptr_t;
+      |                         ^
 src/qcommon/common.cpp:1192:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+3 warnings generated.
  1192 |         Cvar_Set( "com_hunkused", va( "%i", hunk_low.permanent + hunk_high.permanent ) );
       |                                       ^
 src/qcommon/common.cpp:1280:33: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -423,90 +396,49 @@ src/qcommon/common.cpp:2270:6: warning: variable 'key' set but not used [-Wunuse
  2270 |         int key;
       |             ^
 16 warnings and 1 error generated.
+Compiling 'src/qcommon/md4.cpp'
 scons: *** [build/linux-x64-debug/client/obj/qcommon/common.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/qcommon/msg.cpp.o
 
 ```
-src/qcommon/msg.cpp:944:23: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)&( (entityState_t*)0 )->x
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:962:4: error: cast from pointer to smaller type 'int' loses information
-  962 |         { NETF( apos.trBase[0] ), 0 },
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:944:23: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)&( (entityState_t*)0 )->x
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:963:4: error: cast from pointer to smaller type 'int' loses information
-  963 |         { NETF( apos.trBase[1] ), 0 },
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:944:23: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)&( (entityState_t*)0 )->x
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:964:4: error: cast from pointer to smaller type 'int' loses information
-  964 |         { NETF( apos.trBase[2] ), 0 },
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:944:23: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)&( (entityState_t*)0 )->x
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:965:4: error: cast from pointer to smaller type 'int' loses information
-  965 |         { NETF( apos.trDelta[0] ), 0 },
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-src/qcommon/msg.cpp:944:23: note: expanded from macro 'NETF'
-  944 | #define NETF( x ) # x,(int)&( (entityState_t*)0 )->x
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-4 warnings generated.
+ 2139 |                         const Byte *bufBefore;
+      |                                     ^
+src/qcommon/unzip.cpp:3146:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+ 3146 |         register uInt i;            /* counter, current code */
+      |         ^~~~~~~~
+src/qcommon/unzip.cpp:3147:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+ 3147 |         register uInt j;            /* counter */
+      |         ^~~~~~~~
+src/qcommon/unzip.cpp:3148:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+ 3148 |         register int k;             /* number of bits in current code */
+      |         ^~~~~~~~
+src/qcommon/unzip.cpp:3151:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+ 3151 |         register uInt *p;          /* pointer into c[], b[], or v[] */
+      |         ^~~~~~~~
+src/qcommon/unzip.cpp:3155:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+ 3155 |         register int w;             /* bits before this table == (l * h) */
+      |         ^~~~~~~~
+src/qcommon/unzip.cpp:3045:19: warning: unused variable 'inflate_copyright' [-Wunused-const-variable]
+ 3045 | static const char inflate_copyright[] =
+      |                   ^~~~~~~~~~~~~~~~~
+src/server/sv_bot.cpp:153:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  153 |                 botlib_export->BotLibVarSet( "bot_highlightarea", bot_highlightarea->string );
+      |                                              ^
+src/server/sv_bot.cpp:154:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  154 |                 botlib_export->BotLibVarSet( "bot_testhidepos", bot_testhidepos->string );
+      |                                              ^
+src/server/sv_bot.cpp:155:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  155 |                 botlib_export->BotLibVarSet( "bot_testroutevispos", bot_testroutevispos->string );
+      |                                              ^
 20 errors generated.
 scons: *** [build/linux-x64-debug/client/obj/qcommon/msg.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/renderer/tr_bsp.cpp.o
-
-```
-  586 | static char *zombieFxFleshHitSurfaceNames[2] = {"u_body","l_legs"};
-      |                                                 ^
-src/renderer/tr_backend.cpp:586:58: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  586 | static char *zombieFxFleshHitSurfaceNames[2] = {"u_body","l_legs"};
-      |                                                          ^
-src/renderer/tr_backend.cpp:1577:20: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1577 |         GLimp_LogComment( "***************** RB_SwapBuffers *****************\n\n\n" );
-      |                           ^
-7 warnings generated.
-Compiling 'src/renderer/tr_decals.cpp'
-src/renderer/tr_bsp.cpp:211:40: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  211 |                 tr.lightmaps[i] = R_CreateImage( va( "*lightmap%d",i ), image,
-      |                                                      ^
-src/renderer/tr_bsp.cpp:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
-  147 |         double sumIntensity = 0;
-      |                ^
-src/renderer/tr_bsp.cpp:379:14: error: cast from pointer to smaller type 'int' loses information
-  379 |         sfaceSize = ( int ) &( (srfSurfaceFace_t *)0 )->points[numPoints];
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src/renderer/tr_cmds.cpp:410:44: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  410 |                                 ri.Cvar_Set( "r_ati_truform_tess", va( "%d",glConfig.ATIMaxTruformTess ) );
-      |                                                                        ^
-1 warning generated.
-src/renderer/tr_bsp.cpp:2089:7: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 2089 |                 s = "vertexremapshader";
-      |                     ^
-src/renderer/tr_bsp.cpp:2103:7: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 2103 |                 s = "remapshader";
-      |                     ^
-4 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_bsp.cpp.o] Error 1
 ```
 
 - build/linux-x64-debug/client/obj/renderer/tr_image.cpp.o
 
 ```
-      |          ^
-src/renderer/tr_image.cpp:128:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  128 |         {"GL_LINEAR_MIPMAP_LINEAR", GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR}
-      |          ^
-src/renderer/tr_image.cpp:1584:36: error: member reference type 'jpgOutputBuffer_t' is not a pointer; did you mean to use '.'?
- 1584 |         out.buffer = ( byte * )malloc( out->capacity );
       |                                        ~~~^~
       |                                           .
 src/renderer/tr_image.cpp:1662:37: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -518,6 +450,12 @@ src/renderer/tr_image.cpp:1837:8: warning: variable 'g' set but not used [-Wunus
 src/renderer/tr_image.cpp:2144:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  2144 |                 return "";
       |                        ^
+src/renderer/tr_init.cpp:1136:46: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1136 |         r_maxpolys = ri.Cvar_Get( "r_maxpolys", va( "%d", MAX_POLYS ), 0 );
+      |                                                     ^
+src/renderer/tr_init.cpp:1137:54: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1137 |         r_maxpolyverts = ri.Cvar_Get( "r_maxpolyverts", va( "%d", MAX_POLYVERTS ), 0 );
+      |                                                             ^
 src/renderer/tr_image.cpp:3079:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
  3079 |         char *name;
       |               ^
@@ -534,154 +472,190 @@ src/renderer/tr_image.cpp:3324:2: note: array 'parms' declared here
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_image.cpp.o] Error 1
 ```
 
-- build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o
-
-```
- 3346 |                 R_FindImageFileExt( name, parms[0], parms[1], parms[2], parms[3] );
-      |                                                                         ^     ~
-src/renderer/tr_image.cpp:3324:2: note: array 'parms' declared here
- 3324 |         int parms[3], i;
-      |         ^
-12 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_image.cpp.o] Error 1
-Compiling 'src/renderer/tr_marks.cpp'
-src/renderer/tr_init.cpp:261:31: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  261 |                         ri.Cvar_Set( cv->name, va( "%d", cv->integer ) );
-      |                                                    ^
-src/renderer/tr_init.cpp:267:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  267 |                 ri.Cvar_Set( cv->name, va( "%f", minVal ) );
-      |                                            ^
-src/renderer/tr_init.cpp:270:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  270 |                 ri.Cvar_Set( cv->name, va( "%f", maxVal ) );
-      |                                            ^
-src/renderer/tr_init.cpp:805:43: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  805 |                         ri.Cvar_Set( "r_ati_truform_tess", va( "%d", maxtess ) );
-      |                                                                ^
-src/renderer/tr_init.cpp:1136:46: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1136 |         r_maxpolys = ri.Cvar_Get( "r_maxpolys", va( "%d", MAX_POLYS ), 0 );
-      |                                                     ^
-src/renderer/tr_init.cpp:1137:54: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1137 |         r_maxpolyverts = ri.Cvar_Get( "r_maxpolyverts", va( "%d", MAX_POLYVERTS ), 0 );
-      |                                                             ^
-src/renderer/tr_init.cpp:1175:7: error: cast from pointer to smaller type 'int' loses information
- 1175 |         if ( (int)tess.xyz & 15 ) {
-      |              ^~~~~~~~~~~~~
-6 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o] Error 1
-```
-
-- build/linux-x64-debug/client/obj/renderer/tr_model.cpp.o
-
-```
- 1137 |         r_maxpolyverts = ri.Cvar_Get( "r_maxpolyverts", va( "%d", MAX_POLYVERTS ), 0 );
-      |                                                             ^
-src/renderer/tr_init.cpp:1175:7: error: cast from pointer to smaller type 'int' loses information
- 1175 |         if ( (int)tess.xyz & 15 ) {
-      |              ^~~~~~~~~~~~~
-6 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_init.cpp.o] Error 1
-Compiling 'src/renderer/tr_md5.cpp'
-src/renderer/tr_main.cpp:1181:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
- 1181 |         unsigned int pointOr = 0;
-      |                      ^
-Compiling 'src/renderer/tr_mesh.cpp'
-1 warning generated.
-Compiling 'src/renderer/tr_model.cpp'
-src/renderer/tr_marks.cpp:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
-  500 |         float texCoordScale;
-      |               ^
-1 warning generated.
-Compiling 'src/renderer/tr_noise.cpp'
-Compiling 'src/renderer/tr_renderprog.cpp'
-src/renderer/tr_model.cpp:113:37: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  113 |                 ri.Cmd_ExecuteText( EXEC_NOW, va( "cache_usedfile model %s\n", name ) );
-      |                                                   ^
-src/renderer/tr_model.cpp:764:13: error: assigning to 'byte *' (aka 'unsigned char *') from incompatible type 'void *'
-  764 |                 membase = malloc( maxsize );
-      |                           ^~~~~~~~~~~~~~~~~
-src/renderer/tr_model.cpp:911:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
-  911 |         static int lastPurged = 0;
-      |                    ^
-2 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_model.cpp.o] Error 1
-```
-
 - build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o
 
 ```
-src/renderer/tr_shade_calc.cpp:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
-  670 |         int c;
-      |             ^
-src/renderer/tr_shade_calc.cpp:679:2: warning: array index 3 is past the end of the array (that has type 'unsigned char[3]') [-Warray-bounds]
-  679 |         invModulate[3] = 255 - backEnd.currentEntity->e.shaderRGBA[3];  // this trashes alpha, but the AGEN block fixes it
-      |         ^           ~
-src/renderer/tr_shade_calc.cpp:669:2: note: array 'invModulate' declared here
-  669 |         unsigned char invModulate[3];
-      |         ^
+      |                                   ^
+Compiling 'src/renderer/tr_shader.cpp'
+In file included from src/renderer/tr_md5.cpp:5:
+In file included from /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/string:56:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/basic_string.h:3465:31: error: expected unqualified-id
+ 3465 |         const size_type __len = std::min(__size, __osize);
+      |                                      ^
+src/renderer/../qcommon/q_shared.h:156:21: note: expanded from macro 'min'
+  156 | #define min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
+      |                     ^
+In file included from src/renderer/tr_md5.cpp:5:
+In file included from /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/string:56:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/basic_string.h:3561:31: error: expected unqualified-id
+ 3561 |         const size_type __len = std::min(__n, __osize);
+      |                                      ^
+src/renderer/../qcommon/q_shared.h:156:21: note: expanded from macro 'min'
+  156 | #define min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
+      |                     ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+src/renderer/tr_shade.cpp:1603:21: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1603 |                 GLimp_LogComment( "glUnlockArraysEXT\n" );
+      |                                   ^
+src/renderer/tr_shade.cpp:1688:20: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1688 |         GLimp_LogComment( "----------\n" );
+      |                           ^
 2 warnings generated.
+Compiling 'src/renderer/tr_shadows.cpp'
+13 warnings generated.
 Compiling 'src/renderer/tr_sky.cpp'
-src/renderer/tr_shader.cpp:551:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  551 |                                 token = "map";   // use this map
-      |                                         ^
-src/renderer/tr_shader.cpp:558:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  558 |                                 token = "map";   // use this map
-      |                                         ^
-src/renderer/tr_shader.cpp:565:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  565 |                                 token = "map";   // use this map
-      |                                         ^
-src/renderer/tr_shader.cpp:572:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  572 |                                 token = "map";   // use this map
-      |                                         ^
-src/renderer/tr_shader.cpp:579:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  579 |                                 token = "animmap";   // use this map
-      |                                         ^
-src/renderer/tr_shader.cpp:587:13: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  587 |                                 token = "animmap";   // use this map
-      |                                         ^
 20 errors generated.
 scons: *** [build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o] Error 1
 ```
 
-- build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o
+- build/linux-x64-debug/client/obj/renderer/tr_vfx.cpp.o
 
 ```
-src/renderer/tr_shader.cpp:1329:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1329 |         {"nodlight", 0,  SURF_NODLIGHT, 0 },     // don't ever add dynamic lights
-      |          ^
-src/renderer/tr_shader.cpp:1331:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1331 |         {"monsterslicknorth",    0, SURF_MONSLICK_N,0},
-      |          ^
-src/renderer/tr_shader.cpp:1332:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1332 |         {"monsterslickeast", 0, SURF_MONSLICK_E,0},
-      |          ^
-src/renderer/tr_shader.cpp:1333:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1333 |         {"monsterslicksouth",    0, SURF_MONSLICK_S,0},
-      |          ^
-src/renderer/tr_shader.cpp:1334:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1334 |         {"monsterslickwest", 0, SURF_MONSLICK_W,0}
-      |          ^
-src/renderer/tr_shader.cpp:1640:38: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1640 |                         ri.Cvar_Set( "r_mapFogColor", va( "0 %d %f %f %f %f 0", fogFar, fogDensity, fogColor[0], fogColor[1], fogColor[2] ) );
-      |                                                           ^
-src/renderer/tr_shader.cpp:1898:26: warning: comparison of different enumeration types ('alphaGen_t' and 'colorGen_t') [-Wenum-compare]
- 1898 |         if ( stages[0].alphaGen == CGEN_WAVEFORM ) {
-      |              ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~
-src/renderer/tr_shadows.cpp:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
-  103 |         int c_edges, c_rejected;
+   24 | # define __SI_CLOCK_T           __clock_t
+      |                                 ^
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:85:6: error: unknown type name '__clock_t'
+   85 |             __SI_CLOCK_T si_stime;
       |             ^
-src/renderer/tr_shadows.cpp:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
-  103 |         int c_edges, c_rejected;
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:24:24: note: expanded from macro '__SI_CLOCK_T'
+   24 | # define __SI_CLOCK_T           __clock_t
+      |                                 ^
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:103:3: error: unknown type name '__uint32_t'; did you mean '__uint128_t'?
+  103 |                 __uint32_t _pkey;
+      |                 ^
+note: '__uint128_t' declared here
+In file included from src/sys/unix/unix_main.cpp:35:
+In file included from /usr/include/signal.h:66:
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:34:2: error: unknown type name '__pid_t'
+   34 |         __pid_t _tid;
+      |         ^
+In file included from src/sys/unix/unix_main.cpp:35:
+/usr/include/signal.h:112:18: error: unknown type name '__pid_t'
+  112 | extern int kill (__pid_t __pid, int __sig) __THROW;
+      |                  ^
+/usr/include/signal.h:119:20: error: unknown type name '__pid_t'
+  119 | extern int killpg (__pid_t __pgrp, int __sig) __THROW;
+      |                    ^
+/usr/include/signal.h:292:22: error: unknown type name '__pid_t'
+  292 | extern int sigqueue (__pid_t __pid, int __sig, const union sigval __val)
       |                      ^
-2 warnings generated.
-Compiling 'src/renderer/tr_vfx.cpp'
-64 warnings and 1 error generated.
-scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+Compiling 'src/sys/unix/unix_shared.cpp'
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o
+
+```
+      |                  ^
+/usr/include/signal.h:119:20: error: unknown type name '__pid_t'
+  119 | extern int killpg (__pid_t __pgrp, int __sig) __THROW;
+      |                    ^
+/usr/include/signal.h:292:22: error: unknown type name '__pid_t'
+  292 | extern int sigqueue (__pid_t __pid, int __sig, const union sigval __val)
+      |                      ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+Compiling 'src/sys/unix/unix_shared.cpp'
+scons: *** [build/linux-x64-debug/client/obj/renderer/tr_vfx.cpp.o] Error 1
+Compiling 'src/sys/unix/linux_common.cpp'
+Compiling 'src/sys/unix/linux_glimp.cpp'
+src/sys/unix/unix_net.cpp:472:35: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  472 |         port = Cvar_Get( "net_port", va( "%i", PORT_SERVER ), 0 )->value;
+      |                                          ^
+src/sys/unix/unix_shared.cpp:188:37: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  188 |                 Sys_ListFilteredFiles( directory, "", filter, list, &nfiles );
+      |                                                   ^
+src/sys/unix/unix_shared.cpp:183:6: warning: variable 'extLen' set but not used [-Wunused-but-set-variable]
+  183 |         int extLen;
+      |             ^
+src/sys/unix/unix_shared.cpp:358:9: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  358 |         return ""; // assume current dir
+      |                ^
+src/sys/unix/unix_shared.cpp:381:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  381 |                 return "player";
+      |                        ^
+1 warning generated.
+20 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/unix_main.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o
+
+```
+Compiling 'src/sys/unix/linux_snd.cpp'
+In file included from src/sys/unix/linux_glimp.cpp:76:
+/usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
+    9 | #warning "xf86dga.h is obsolete and may be removed in the future."
+      |  ^
+/usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
+   10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
+      |  ^
+src/sys/unix/linux_glimp.cpp:150:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+  150 |         register char c, sc;
+      |         ^~~~~~~~
+src/sys/unix/linux_glimp.cpp:150:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+  150 |         register char c, sc;
+      |         ^~~~~~~~
+src/sys/unix/linux_glimp.cpp:151:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+  151 |         register size_t len;
+      |         ^~~~~~~~
+src/sys/unix/linux_glimp.cpp:814:8: error: assigning to 'rserr_t' from incompatible type 'int'
+  814 |         err = GLW_SetMode( drivername, mode, fullscreen );
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_glimp.cpp:1271:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1271 |         putenv( "FX_GLIDE_NO_SPLASH=0" );
+      |                 ^
+src/sys/unix/linux_glimp.cpp:1274:10: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1274 |         putenv( "MESA_GLX_FX=fullscreen\n" );
+      |                 ^
+src/sys/unix/linux_glimp.cpp:1328:11: warning: variable 'attempted3Dfx' set but not used [-Wunused-but-set-variable]
+ 1328 |         qboolean attempted3Dfx = qfalse;
+      |                  ^
+8 warnings and 1 error generated.
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_glimp.cpp.o] Error 1
+```
+
+- build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o
+
+```
+ 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:3073:34: error: assigning to 'void (*)(Display *, GLXContext)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
+ 3073 |         qglXDestroyContext           =  GPA( "glXDestroyContext" );
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
+ 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:3074:34: error: assigning to 'int (*)(Display *, GLXDrawable, GLXContext)' (aka 'int (*)(_XDisplay *, unsigned long, __GLXcontextRec *)') from 'void *' converts between void pointer and function pointer
+ 3074 |         qglXMakeCurrent              =  GPA( "glXMakeCurrent" );
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
+ 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:3075:34: error: assigning to 'void (*)(Display *, GLXContext, GLXContext, GLuint)' (aka 'void (*)(_XDisplay *, __GLXcontextRec *, __GLXcontextRec *, unsigned int)') from 'void *' converts between void pointer and function pointer
+ 3075 |         qglXCopyContext              =  GPA( "glXCopyContext" );
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
+ 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:3076:34: error: assigning to 'void (*)(Display *, GLXDrawable)' (aka 'void (*)(_XDisplay *, unsigned long)') from 'void *' converts between void pointer and function pointer
+ 3076 |         qglXSwapBuffers              =  GPA( "glXSwapBuffers" );
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:2684:18: note: expanded from macro 'GPA'
+ 2684 | #define GPA( a ) dlsym( glw_state.OpenGLLib, a )
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/sys/unix/linux_qgl.cpp:3100:33: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 3100 |                 ri.Cvar_Set( "r_logFile", va( "%d", r_logFile->integer - 1 ) );
+      |                                               ^
+1 warning and 6 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/sys/unix/linux_qgl.cpp.o] Error 1
 ```
 
 
 ### warning kinds
 
-- [6968x] -writable-strings
+- [6984x] -writable-strings
   - src/client/cl_cin.cpp:1436:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:67:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:68:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1082,7 +1056,7 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/client/cl_keys.cpp:523:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:524:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src/client/cl_keys.cpp:525:3: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-- [165x] -unused-but-set-variable
+- [166x] -unused-but-set-variable
   - src/client/cl_input.cpp:442:6: warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src/client/cl_cin.cpp:1796:11: warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
   - src/client/cl_input.cpp:681:15: warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
@@ -1111,31 +1085,32 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/server/sv_world.cpp:406:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
   - src/server/sv_world.cpp:701:15: warning: variable 'angles' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_bsp.cpp:147:9: warning: variable 'sumIntensity' set but not used [-Wunused-but-set-variable]
-  - src/renderer/tr_font.cpp:351:8: warning: variable 'glyphScale' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_flares.cpp:128:23: warning: variable 'oldest' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_font.cpp:351:8: warning: variable 'glyphScale' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_image.cpp:1837:8: warning: variable 'g' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_image.cpp:3079:8: warning: variable 'name' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_image.cpp:3237:20: warning: variable 'bImagePrev' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_main.cpp:1181:15: warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_marks.cpp:500:8: warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_model.cpp:911:13: warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
-  - src/renderer/tr_shade.cpp:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shade_calc.cpp:670:6: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  - src/renderer/tr_shade.cpp:1391:19: warning: variable 'shader' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shadows.cpp:103:6: warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
   - src/renderer/tr_shadows.cpp:103:15: warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
   - src/qcommon/q_shared.cpp:434:9: warning: variable 'pc' set but not used [-Wunused-but-set-variable]
   - src/sys/unix/unix_shared.cpp:183:6: warning: variable 'extLen' set but not used [-Wunused-but-set-variable]
+  - src/sys/unix/linux_glimp.cpp:1328:11: warning: variable 'attempted3Dfx' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_gen.cpp:59:13: warning: variable 'select' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_chat.cpp:2782:19: warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_goal.cpp:241:19: warning: variable 'gs' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_move.cpp:1553:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/be_ai_move.cpp:3013:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
-  - src/games/botlib/l_script.cpp:389:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/botlib/l_precomp.cpp:1661:6: warning: variable 'lastoperatortype' set but not used [-Wunused-but-set-variable]
+  - src/games/botlib/l_script.cpp:389:14: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_active.cpp:577:8: warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_active.cpp:1568:23: warning: variable 'pers' set but not used [-Wunused-but-set-variable]
-  - src/games/game/g_cmds.cpp:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_combat.cpp:898:6: warning: variable 'save' set but not used [-Wunused-but-set-variable]
+  - src/games/game/g_cmds.cpp:2019:6: warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:405:35: warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_main.cpp:2371:6: warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src/games/game/g_missile.cpp:432:6: warning: variable 'etype' set but not used [-Wunused-but-set-variable]
@@ -1151,14 +1126,14 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/games/game/ai/ai_danger.cpp:97:21: warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_events.cpp:480:28: warning: variable 'activator' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_events.cpp:481:13: warning: variable 'client' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_navigation.cpp:291:8: warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_navigation.cpp:291:22: warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_input.cpp:104:13: warning: variable 'ent' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_input.cpp:378:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/ai_input.cpp:378:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:290:43: warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:296:27: warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_movement.cpp:300:16: warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_input.cpp:378:18: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_input.cpp:378:25: warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_navigation.cpp:291:8: warning: variable 'attack_skill' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/ai_navigation.cpp:291:22: warning: variable 'croucher' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_perception.cpp:472:21: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_perception.cpp:827:17: warning: variable 'destcount' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_script_actions_animation.cpp:75:29: warning: variable 'setAngles' set but not used [-Wunused-but-set-variable]
@@ -1166,10 +1141,10 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/games/game/ai/ai_targeting.cpp:40:16: warning: variable 'oldPauseTime' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_weapons.cpp:404:13: warning: variable 'oldweap' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/ai_weapons.cpp:472:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/fsm/ai_behavior_doors.cpp:35:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_cover.cpp:36:14: warning: variable 'moveDist' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_cover.cpp:40:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_cover.cpp:361:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/fsm/ai_behavior_doors.cpp:35:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_grenades.cpp:267:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_grenades.cpp:606:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_grenades.cpp:612:6: warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
@@ -1180,36 +1155,36 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/games/game/ai/fsm/ai_behavior_pursuit.cpp:433:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_pursuit.cpp:439:16: warning: variable 'ocs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_behavior_pursuit.cpp:440:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
+  - src/games/game/ai/fsm/ai_boss_helga.cpp:42:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:194:16: warning: variable 'ecs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:627:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:702:20: warning: variable 'spirits' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_boss_heinrich.cpp:764:8: warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:34:6: warning: variable 'tfl' set but not used [-Wunused-but-set-variable]
-  - src/games/game/ai/fsm/ai_boss_helga.cpp:42:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:438:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:513:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:536:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_combat.cpp:613:7: warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_monster_zombie.cpp:46:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src/games/game/ai/fsm/ai_monster_zombie.cpp:165:21: warning: variable 'bs' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_effects.cpp:313:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:174:16: warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:182:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_effects.cpp:313:6: warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:393:6: warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_event.cpp:739:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_ents.cpp:946:8: warning: variable 'scale' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_ents.cpp:1800:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_event.cpp:739:15: warning: variable 'total' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.cpp:1073:6: warning: variable 'mass' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_event.cpp:1364:6: warning: variable 'type' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_ents.cpp:1800:23: warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_fx_entities.cpp:370:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_fx_entities.cpp:397:7: warning: variable 't' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_fx_flame.cpp:672:6: warning: variable 'jiggleCount' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_fx_flame.cpp:1054:26: warning: variable 'firing' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_fx_flame.cpp:1400:13: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_info.cpp:210:8: warning: variable 'formatStr' set but not used [-Wunused-but-set-variable]
-  - src/games/cgame/cg_players.cpp:190:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_newDraw.cpp:202:15: warning: variable 'cent' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_newDraw.cpp:391:19: warning: variable 'ps' set but not used [-Wunused-but-set-variable]
+  - src/games/cgame/cg_players.cpp:190:6: warning: variable 'lastLow' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_players.cpp:1780:26: warning: variable 'oldAnimTime' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_players.cpp:2444:15: warning: variable 'torsoSet' set but not used [-Wunused-but-set-variable]
   - src/games/cgame/cg_players.cpp:2601:6: warning: variable 'anim' set but not used [-Wunused-but-set-variable]
@@ -1230,18 +1205,18 @@ scons: *** [build/linux-x64-debug/client/obj/renderer/tr_shader.cpp.o] Error 1
   - src/games/ui/ui_shared.cpp:1289:8: warning: variable 'dec' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.cpp:1790:16: warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_shared.cpp:1792:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:2481:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:2481:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:5098:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:5101:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:5411:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
-  - src/games/ui/ui_main.cpp:5724:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1275:15: warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1275:24: warning: variable 'prev' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1277:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1278:15: warning: variable 'token' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1279:8: warning: variable 'fps' set but not used [-Wunused-but-set-variable]
   - src/games/ui/ui_players.cpp:1280:6: warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:2481:14: warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:2481:17: warning: variable 'h' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:5098:43: warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:5101:13: warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:5411:23: warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src/games/ui/ui_main.cpp:5724:33: warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
 - [31x] -macro-redefined
   - src/games/cgame/cg_local.h:79:9: warning: 'CHAR_WIDTH' macro redefined [-Wmacro-redefined]
 - [22x] -inconsistent-missing-override
@@ -1355,19 +1330,15 @@ UNCRUSTIFY_FAILED: src/games/game/bg_pmove.cpp
 
 ## windows-latest-x64-debug-
 
-status: cancelled
+status: failure
 
-errors: 91
-warnings: 6541 in 28 kinds
+errors: 117
+warnings: 8009 in 28 kinds
 
 ### errors
 
-src\qcommon\msg.cpp(578,38): error: constant expression evaluates to 4294967295 which cannot be narrowed to type 'int' [-Wc++11-narrowing]
-scons: *** [build\windows-x64-debug\client\obj\qcommon\msg.cpp.obj] Error 1
 src\renderer\tr_image.cpp(1584,36): error: member reference type 'jpgOutputBuffer_t' is not a pointer; did you mean to use '.'?
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_image.cpp.obj] Error 1
-src\renderer\tr_shader.cpp(1278,27): error: constant expression evaluates to 2147483648 which cannot be narrowed to type 'int' [-Wc++11-narrowing]
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shader.cpp.obj] Error 1
 src\renderer\tr_md5.cpp(16,3): error: cannot use 'throw' with exceptions disabled
 src\renderer\tr_md5.cpp(102,22): error: no member named 'from_chars' in namespace 'std'
 src\renderer\tr_md5.cpp(102,58): error: no member named 'chars_format' in namespace 'std'
@@ -1381,6 +1352,9 @@ src\renderer\tr_md5.cpp(541,5): error: cannot use 'throw' with exceptions disabl
 src\renderer\tr_md5.cpp(462,4): error: cannot use 'try' with exceptions disabled
 src\renderer\tr_md5.cpp(316,2): error: cannot use 'try' with exceptions disabled
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj] Error 1
+src\sys\win32\win_shared.cpp(154,7): error: use of undeclared label 'good'
+src\sys\win32\win_shared.cpp(155,7): error: use of undeclared label 'err'
+scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 src\sys\win32\win_snd.cpp(76,9): error: no member named 'lpVtbl' in 'IDirectSound'
 src\sys\win32\win_snd.cpp(81,12): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(82,12): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
@@ -1396,14 +1370,11 @@ src\sys\win32\win_snd.cpp(292,10): error: no member named 'lpVtbl' in 'IDirectSo
 src\sys\win32\win_snd.cpp(322,15): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(327,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(331,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
-src\sys\win32\win_shared.cpp(154,7): error: use of undeclared label 'good'
-src\sys\win32\win_shared.cpp(155,7): error: use of undeclared label 'err'
 src\sys\win32\win_snd.cpp(339,30): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(348,12): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(369,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
 src\sys\win32\win_snd.cpp(386,21): error: no member named 'lpVtbl' in 'IDirectSound'
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 src\sys\win32\win_syscon.cpp(394,78): error: use of undeclared identifier 'GWL_WNDPROC'
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
 src\games\game\bg_misc.cpp(3520,21): error: incompatible integer to pointer conversion assigning to 'gitem_t *' (aka 'struct gitem_s *') from 'weapon_t'
@@ -1453,51 +1424,44 @@ scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_info.cpp.obj] Error
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_main.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_newDraw.cpp.obj] Error 1
 scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_servercmds.cpp.obj] Error 1
+src\games\ui\ui_shared.h(50,1): error: expected unqualified-id
+src\games\ui\ui_shared.h(121,3): error: a type specifier is required for all declarations
+src\games\ui\ui_shared.h(140,2): error: unknown type name 't'
+src\games\ui\ui_shared.h(140,11): error: expected ';' at end of declaration list
+src\games\ui\ui_shared.h(194,11): error: expected ';' at end of declaration list
+src\games\ui\ui_shared.h(302,2): error: unknown type name 'key'
+src\games\ui\ui_shared.h(302,8): error: expected ';' at end of declaration list
+src\games\ui\ui_shared.h(398,5): error: expected ')'
+src\games\ui\ui_shared.h(462,1): error: unknown type name 'q'
+src\games\ui\ui_shared.h(463,8): error: expected ';' after top level declarator
+src\games\ui\ui_shared.cpp(760,41): error: no member named 'cinematicName' in '(unnamed struct at src/games/ui/ui_shared.h:134:9)'
+src\games\ui\ui_shared.cpp(1494,8): error: no member named 'feederAddItem' in 'displayContextDef_t'
+src\games\ui\ui_shared.cpp(1681,50): error: no member named 'elementHeight' in 'listBoxDef_s'
+src\games\ui\ui_shared.cpp(1887,60): error: no member named 'elementHeight' in 'listBoxDef_s'
+src\games\ui\ui_shared.cpp(1916,50): error: expected expression
+src\games\ui\ui_shared.cpp(1918,43): error: expected expression
+src\games\ui\ui_shared.cpp(1928,50): error: expected expression
+src\games\ui\ui_shared.cpp(1930,43): error: expected expression
+src\games\ui\ui_shared.cpp(1964,42): error: expected expression
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+scons: *** [build\windows-x64-debug\cgame\obj\games\ui\ui_shared.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\game\bg_misc.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_atoms.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_gameinfo.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_players.cpp.obj] Error 1
+src\games\ui\ui_main.cpp(3056,16): error: no matching function for call to 'va'
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_shared.cpp.obj] Error 1
+src\games\ui\ui_main.cpp(6569,14): error: no member named 'feederAddItem' in 'displayContextDef_t'
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_syscalls.cpp.obj] Error 1
+scons: *** [build\windows-x64-debug\ui\obj\games\ui\ui_main.cpp.obj] Error 1
 
 ### failure context
-
-- build\windows-x64-debug\client\obj\qcommon\msg.cpp.obj
-
-```
-src\server\sv_ccmds.cpp(902,15): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  902 |         SV_Shutdown( "killserver" );
-      |                      ^
- 1452 |         { PSF( serverCursorHint ), 8}, //----(SA)       added
-      |           ^
-src\qcommon\msg.cpp(1375,18): note: expanded from macro 'PSF'
- 1375 | #define PSF( x ) # x,(int)&( (playerState_t*)0 )->x
-      |                  ^
-<scratch space>(79,1): note: expanded from here
-   79 | "serverCursorHint"
-      | ^
-src\qcommon\msg.cpp(1453,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1453 |         { PSF( serverCursorHintVal ), 8}, //----(SA)    added
-      |           ^
-src\qcommon\msg.cpp(1375,18): note: expanded from macro 'PSF'
- 1375 | #define PSF( x ) # x,(int)&( (playerState_t*)0 )->x
-      |                  ^
-<scratch space>(80,1): note: expanded from here
-   80 | "serverCursorHintVal"
-      | ^
-src\qcommon\msg.cpp(1456,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1456 |         { PSF( footstepCount ), 0},
-      |           ^
-src\qcommon\msg.cpp(1375,18): note: expanded from macro 'PSF'
- 1375 | #define PSF( x ) # x,(int)&( (playerState_t*)0 )->x
-      |                  ^
-<scratch space>(81,1): note: expanded from here
-   81 | "footstepCount"
-      | ^
-294 warnings and 1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\qcommon\msg.cpp.obj] Error 1
-```
 
 - build\windows-x64-debug\client\obj\renderer\tr_image.cpp.obj
 
 ```
-src\renderer\tr_init.cpp(1175,7): warning: cast to smaller integer type 'int' from 'float (*)[4]' [-Wpointer-to-int-cast]
- 1175 |         if ( (int)tess.xyz & 15 ) {
-      |              ^~~~~~~~~~~~~
+  128 |         {"GL_LINEAR_MIPMAP_LINEAR", GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR}
+      |          ^
 src\renderer\tr_image.cpp(1584,36): error: member reference type 'jpgOutputBuffer_t' is not a pointer; did you mean to use '.'?
  1584 |         out.buffer = ( byte * )malloc( out->capacity );
       |                                        ~~~^~
@@ -1505,13 +1469,13 @@ src\renderer\tr_image.cpp(1584,36): error: member reference type 'jpgOutputBuffe
 src\renderer\tr_image.cpp(1662,37): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  1662 |                 ri.Cmd_ExecuteText( EXEC_NOW, va( "cache_usedfile image %s %i %i %i %i\n", name, mipmap, allowPicmip, characterMIP, glWrapClampMode ) );
       |                                                   ^
+6 warnings generated.
 src\renderer\tr_image.cpp(1837,8): warning: variable 'g' set but not used [-Wunused-but-set-variable]
  1837 |         float g;
       |               ^
 src\renderer\tr_image.cpp(2144,10): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  2144 |                 return "";
       |                        ^
-7 warnings generated.
 src\renderer\tr_image.cpp(3079,8): warning: variable 'name' set but not used [-Wunused-but-set-variable]
  3079 |         char *name;
       |               ^
@@ -1525,121 +1489,92 @@ src\renderer\tr_image.cpp(3324,2): note: array 'parms' declared here
  3324 |         int parms[3], i;
       |         ^
 12 warnings and 1 error generated.
+Compiling 'src\renderer\tr_marks.cpp'
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_image.cpp.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\renderer\tr_shader.cpp.obj
-
-```
- 1327 |         {"pointlight",   0,  SURF_POINTLIGHT, 0 },   // sample lighting at vertexes
-      |          ^
-src\renderer\tr_shader.cpp(1328,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1328 |         {"nolightmap",   0,  SURF_NOLIGHTMAP,0 },        // don't generate a lightmap
-      |          ^
-src\renderer\tr_shader.cpp(1329,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1329 |         {"nodlight", 0,  SURF_NODLIGHT, 0 },     // don't ever add dynamic lights
-      |          ^
-src\renderer\tr_shader.cpp(1331,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1331 |         {"monsterslicknorth",    0, SURF_MONSLICK_N,0},
-      |          ^
-src\renderer\tr_shader.cpp(1332,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1332 |         {"monsterslickeast", 0, SURF_MONSLICK_E,0},
-      |          ^
-src\renderer\tr_shader.cpp(1333,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1333 |         {"monsterslicksouth",    0, SURF_MONSLICK_S,0},
-      |          ^
-src\renderer\tr_shader.cpp(1334,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1334 |         {"monsterslickwest", 0, SURF_MONSLICK_W,0}
-      |          ^
-src\renderer\tr_shader.cpp(1640,38): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
- 1640 |                         ri.Cvar_Set( "r_mapFogColor", va( "0 %d %f %f %f %f 0", fogFar, fogDensity, fogColor[0], fogColor[1], fogColor[2] ) );
-      |                                                           ^
-src\renderer\tr_shader.cpp(1817,7): warning: missing field 'blendB' initializer [-Wmissing-field-initializers]
- 1817 |         { -1 }
-      |              ^
-src\renderer\tr_shader.cpp(1898,26): warning: comparison of different enumeration types ('alphaGen_t' and 'colorGen_t') [-Wenum-compare]
- 1898 |         if ( stages[0].alphaGen == CGEN_WAVEFORM ) {
-      |              ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~
-65 warnings and 1 error generated.
-scons: *** [build\windows-x64-debug\client\obj\renderer\tr_shader.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj
 
 ```
-      |         ^
-src\sys\win32\win_gamma.cpp(153,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
-  153 |         GetVersionEx( &vinfo );
-      |         ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
+      |                                        ^~~~
+      |                                        erfc
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include\cmath(1004,25): note: 'erfc' declared here
+ 1004 | _EXPORT_STD using _CSTD erfc;
+      |                         ^
+src\renderer\tr_md5.cpp(103,31): error: too few arguments to function call, single argument '_X' was not specified
+  103 |                 if ( result.ec != std::errc() || result.ptr != end || !std::isfinite( value ) || fabs( value ) >= 1e20 ) {
+      |                                   ~~~~~~~~~ ^
+src\renderer\tr_md5.cpp(104,4): error: cannot use 'throw' with exceptions disabled
+  104 |                         throw std::runtime_error( "invalid MD5 float: " + token );
+      |                         ^
+src\renderer\tr_md5.cpp(469,6): error: cannot use 'throw' with exceptions disabled
+  469 |                                         throw std::runtime_error( "metadata references unknown joint: " + name );
+      |                                         ^
+src\renderer\tr_md5.cpp(496,9): error: cannot use 'throw' with exceptions disabled
+  496 |                                                                 throw std::runtime_error( "unknown torso setting: " + field );
+      |                                                                 ^
+src\renderer\tr_md5.cpp(530,7): error: cannot use 'throw' with exceptions disabled
+  530 |                                                 throw std::runtime_error( "unknown metadata setting: " + directive );
       |                                                 ^
-src\sys\win32\win_glimp.cpp(1111,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
- 1111 |         if ( GetVersionEx( &vinfo ) ) {
-      |              ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(414,23): note: expanded from macro 'GetVersionEx'
-  414 | #define GetVersionEx  GetVersionExA
-      |                       ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(393,1): note: 'GetVersionExA' has been explicitly marked deprecated here
-  393 | NOT_BUILD_WINDOWS_DEPRECATE
-      | ^
-C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\sysinfoapi.h(37,49): note: expanded from macro 'NOT_BUILD_WINDOWS_DEPRECATE'
-   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
-      |                                                 ^
-1 warning generated.
-Compiling 'src\sys\win32\win_input.cpp'
-1 warning generated.
+src\renderer\tr_md5.cpp(541,5): error: cannot use 'throw' with exceptions disabled
+  541 |                                 throw std::runtime_error( base + ".md5meta:" + std::to_string( line ) + ": " + error.what() );
+      |                                 ^
+src\renderer\tr_md5.cpp(462,4): error: cannot use 'try' with exceptions disabled
+  462 |                         try {
+      |                         ^
+src\renderer\tr_md5.cpp(316,2): error: cannot use 'try' with exceptions disabled
+  316 |         try {
+      |         ^
 12 errors generated.
-Compiling 'src\sys\win32\win_main.cpp'
 scons: *** [build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj] Error 1
-```
-
-- build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj
-
-```
-  155 |                 jmp err
-      |                     ^
-  331 |                 pDSBuf->lpVtbl->Play( pDSBuf, 0, 0, DSBPLAY_LOOPING );
-      |                 ~~~~~~  ^
-src\sys\win32\win_snd.cpp(339,30): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
-  339 |         while ( ( hresult = pDSBuf->lpVtbl->Lock( pDSBuf, 0, gSndBufSize, &pbuf, &locksize,
-      |                             ~~~~~~  ^
-src\sys\win32\win_snd.cpp(348,12): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
-  348 |                         pDSBuf->lpVtbl->Restore( pDSBuf );
-      |                         ~~~~~~  ^
-2 errors generated.
-src\sys\win32\win_snd.cpp(369,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
-  369 |                 pDSBuf->lpVtbl->Unlock( pDSBuf, dma.buffer, locksize, NULL, 0 );
-      |                 ~~~~~~  ^
-src\sys\win32\win_snd.cpp(386,21): error: no member named 'lpVtbl' in 'IDirectSound'
-  386 |         if ( DS_OK != pDS->lpVtbl->SetCooperativeLevel( pDS, g_wv.hWnd, DSSCL_PRIORITY ) ) {
-      |                       ~~~  ^
-19 errors generated.
-src\sys\win32\win_syscon.cpp(141,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  141 |                         return ( long ) s_wcd.hbrEditBackground;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\sys\win32\win_syscon.cpp(151,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  151 |                         return ( long ) s_wcd.hbrErrorBackground;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\sys\win32\win_syscon.cpp(259,19): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  259 |                         Sys_Print( va( "]%s\n", inputBuffer ) );
-      |                                        ^
-src\sys\win32\win_syscon.cpp(283,21): warning: cast from 'LONG (*)(HWND, UINT, WPARAM, LPARAM) __attribute__((stdcall))' (aka 'long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') to 'WNDPROC' (aka 'long long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') converts to incompatible function type [-Wcast-function-type-mismatch]
-  283 |         wc.lpfnWndProc   = (WNDPROC) ConWndProc;
-      |                            ^~~~~~~~~~~~~~~~~~~~
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj
 
 ```
+   37 | # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
+      |                                                 ^
+src\sys\win32\win_main.cpp(1194,39): warning: cast to smaller integer type 'int' from 'HINSTANCE__ *' [-Wpointer-to-int-cast]
+ 1194 |         Cvar_Get( "win_hinstance", va( "%i", (int)g_wv.hInstance ), CVAR_ROM );
+      |                                              ^~~~~~~~~~~~~~~~~~~
+src\sys\win32\win_main.cpp(1194,33): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1194 |         Cvar_Get( "win_hinstance", va( "%i", (int)g_wv.hInstance ), CVAR_ROM );
+      |                                        ^
+src\sys\win32\win_main.cpp(1195,37): warning: cast to smaller integer type 'int' from 'long (*)(HWND__ *, unsigned int, unsigned long long, long long)' [-Wpointer-to-int-cast]
+ 1195 |         Cvar_Get( "win_wndproc", va( "%i", (int)MainWndProc ), CVAR_ROM );
+      |                                            ^~~~~~~~~~~~~~~~
+src\sys\win32\win_main.cpp(1195,31): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 1195 |         Cvar_Get( "win_wndproc", va( "%i", (int)MainWndProc ), CVAR_ROM );
+      |                                      ^
+src\sys\win32\win_main.cpp(704,22): warning: unused variable 'stream' [-Wunused-variable]
+  704 | static streamState_t stream;
+      |                      ^~~~~~
+Compiling 'src\sys\win32\win_snd.cpp'
+10 warnings generated.
+Compiling 'src\sys\win32\win_syscon.cpp'
+src\sys\win32\win_qgl.cpp(3322,33): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 3322 |                 ri.Cvar_Set( "r_logFile", va( "%d", r_logFile->integer - 1 ) );
+      |                                               ^
+src\sys\win32\win_shared.cpp(154,7): error: use of undeclared label 'good'
+  154 |                 jnz good
       |                     ^
+src\sys\win32\win_shared.cpp(155,7): error: use of undeclared label 'err'
+  155 |                 jmp err
+      |                     ^
+2 errors generated.
+scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
+```
+
+- build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj
+
+```
+src\sys\win32\win_snd.cpp(322,15): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
+  322 |         if ( pDSBuf->lpVtbl->GetStatus( pDSBuf, &dwStatus ) != DS_OK ) {
+      |              ~~~~~~  ^
+src\sys\win32\win_snd.cpp(327,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
+  327 |                 pDSBuf->lpVtbl->Restore( pDSBuf );
+      |                 ~~~~~~  ^
+src\sys\win32\win_snd.cpp(331,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
   331 |                 pDSBuf->lpVtbl->Play( pDSBuf, 0, 0, DSBPLAY_LOOPING );
       |                 ~~~~~~  ^
 src\sys\win32\win_snd.cpp(339,30): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
@@ -1648,7 +1583,6 @@ src\sys\win32\win_snd.cpp(339,30): error: no member named 'lpVtbl' in 'IDirectSo
 src\sys\win32\win_snd.cpp(348,12): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
   348 |                         pDSBuf->lpVtbl->Restore( pDSBuf );
       |                         ~~~~~~  ^
-2 errors generated.
 src\sys\win32\win_snd.cpp(369,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
   369 |                 pDSBuf->lpVtbl->Unlock( pDSBuf, dma.buffer, locksize, NULL, 0 );
       |                 ~~~~~~  ^
@@ -1656,32 +1590,23 @@ src\sys\win32\win_snd.cpp(386,21): error: no member named 'lpVtbl' in 'IDirectSo
   386 |         if ( DS_OK != pDS->lpVtbl->SetCooperativeLevel( pDS, g_wv.hWnd, DSSCL_PRIORITY ) ) {
       |                       ~~~  ^
 19 errors generated.
-src\sys\win32\win_syscon.cpp(141,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  141 |                         return ( long ) s_wcd.hbrEditBackground;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\sys\win32\win_syscon.cpp(151,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  151 |                         return ( long ) s_wcd.hbrErrorBackground;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-src\sys\win32\win_syscon.cpp(259,19): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  259 |                         Sys_Print( va( "]%s\n", inputBuffer ) );
-      |                                        ^
-src\sys\win32\win_syscon.cpp(283,21): warning: cast from 'LONG (*)(HWND, UINT, WPARAM, LPARAM) __attribute__((stdcall))' (aka 'long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') to 'WNDPROC' (aka 'long long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') converts to incompatible function type [-Wcast-function-type-mismatch]
-  283 |         wc.lpfnWndProc   = (WNDPROC) ConWndProc;
-      |                            ^~~~~~~~~~~~~~~~~~~~
+In file included from src\splines\math_quaternion.cpp:30:
+In file included from src\splines\math_matrix.h:33:
+src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  160 | idVec3          &operator=( const idVec3 &a );
+      |                  ^
+src\splines\math_vector.h(218,9): note: in implicit copy constructor for 'idVec3' first required here
+  218 |         return idVec3( -x, -y, -z );
+      |                ^
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\client\obj\sys\win32\win_syscon.cpp.obj
 
 ```
-src\sys\win32\win_snd.cpp(369,11): error: no member named 'lpVtbl' in 'IDirectSoundBuffer'
-  369 |                 pDSBuf->lpVtbl->Unlock( pDSBuf, dma.buffer, locksize, NULL, 0 );
-      |                 ~~~~~~  ^
-src\sys\win32\win_snd.cpp(386,21): error: no member named 'lpVtbl' in 'IDirectSound'
-  386 |         if ( DS_OK != pDS->lpVtbl->SetCooperativeLevel( pDS, g_wv.hWnd, DSSCL_PRIORITY ) ) {
-      |                       ~~~  ^
-19 errors generated.
+scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
+Compiling 'src\splines\math_vector.cpp'
+2 warnings generated.
 src\sys\win32\win_syscon.cpp(141,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
   141 |                         return ( long ) s_wcd.hbrEditBackground;
       |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1694,10 +1619,7 @@ src\sys\win32\win_syscon.cpp(259,19): warning: ISO C++11 does not allow conversi
 src\sys\win32\win_syscon.cpp(283,21): warning: cast from 'LONG (*)(HWND, UINT, WPARAM, LPARAM) __attribute__((stdcall))' (aka 'long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') to 'WNDPROC' (aka 'long long (*)(struct HWND__ *, unsigned int, unsigned long long, long long)') converts to incompatible function type [-Wcast-function-type-mismatch]
   283 |         wc.lpfnWndProc   = (WNDPROC) ConWndProc;
       |                            ^~~~~~~~~~~~~~~~~~~~
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_snd.cpp.obj] Error 1
-scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_shared.cpp.obj] Error 1
-Compiling 'src\splines\math_angles.cpp'
-Compiling 'src\splines\math_matrix.cpp'
+Compiling 'src\splines\q_parse.cpp'
 src\sys\win32\win_syscon.cpp(394,78): error: use of undeclared identifier 'GWL_WNDPROC'
   394 |         s_wcd.SysInputLineWndProc = ( WNDPROC ) SetWindowLong( s_wcd.hwndInputLine, GWL_WNDPROC, ( long ) InputLineWndProc );
       |                                                                                     ^~~~~~~~~~~
@@ -1705,12 +1627,20 @@ src\sys\win32\win_syscon.cpp(394,91): warning: cast to smaller integer type 'lon
   394 |         s_wcd.SysInputLineWndProc = ( WNDPROC ) SetWindowLong( s_wcd.hwndInputLine, GWL_WNDPROC, ( long ) InputLineWndProc );
       |                                                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
 5 warnings and 1 error generated.
+In file included from src\splines\math_vector.cpp:30:
+src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  160 | idVec3          &operator=( const idVec3 &a );
+      |                  ^
+src\splines\math_vector.h(218,9): note: in implicit copy constructor for 'idVec3' first required here
+  218 |         return idVec3( -x, -y, -z );
+      |                ^
 scons: *** [build\windows-x64-debug\client\obj\sys\win32\win_syscon.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\game\obj\games\game\bg_misc.cpp.obj
 
 ```
+ 4316 |         "EV_DUST",
       |         ^
 src\games\game\bg_misc.cpp(4317,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  4317 |         "EV_RUMBLE_EFX",
@@ -1740,14 +1670,12 @@ src\games\game\bg_misc.cpp(4326,2): warning: ISO C++11 does not allow conversion
  4326 |         "EV_MAX_EVENTS"
       |         ^
 908 warnings and 1 error generated.
-Compiling 'src\games\game\g_alarm.cpp'
 scons: *** [build\windows-x64-debug\game\obj\games\game\bg_misc.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj
 
 ```
- 1409 |         filename = "save\\current.svg";
       |                    ^
 src\games\game\g_save.cpp(1443,41): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  1443 |                 trap_Cvar_Set( "g_totalPlayTime", va( "%i", i ) );
@@ -1777,18 +1705,19 @@ src\games\game\g_save.cpp(1869,13): warning: ISO C++11 does not allow conversion
  1869 |         filename = "save\\current.psw";
       |                    ^
 43 warnings and 13 errors generated.
+38 warnings generated.
 scons: *** [build\windows-x64-debug\game\obj\games\game\g_save.cpp.obj] Error 1
 ```
 
 - build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj
 
 ```
-  116 |         AICast_ScriptEvent( cs, "pain", va( "%d %d", targ->health, targ->health + damage ) );
-      |                                 ^
-src\games\game\ai\ai_events.cpp(370,3): error: no matching function for call to 'AICast_ScriptEvent'
-  370 |                 AICast_ScriptEvent( cs, "death", attacker->aiName ? attacker->aiName : "" );
-      |                 ^~~~~~~~~~~~~~~~~~
-src\games\game\ai\ai_script.h(36,6): note: candidate function not viable: 3rd argument ('const char *') would lose const qualifier
+src\games\game\ai\ai_input.cpp(378,18): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  378 |         int i, elapsed, count, clCount, activeCount;
+      |                         ^
+src\games\game\ai\ai_input.cpp(378,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  378 |         int i, elapsed, count, clCount, activeCount;
+      |                                ^
    36 | void AICast_ScriptEvent( struct cast_state_s *cs, char *eventStr, char *params );
       |      ^                                                            ~~~~~~~~~~~~
 src\games\game\ai\ai_events.cpp(377,27): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1816,10 +1745,82 @@ src\games\game\ai\ai_events.cpp(481,13): warning: variable 'client' set but not 
 scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Error 1
 ```
 
+- build\windows-x64-debug\cgame\obj\games\game\bg_misc.cpp.obj
+
+```
+ 4316 |         "EV_DUST",
+      |         ^
+src\games\game\bg_misc.cpp(4317,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4317 |         "EV_RUMBLE_EFX",
+      |         ^
+src\games\game\bg_misc.cpp(4318,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4318 |         "EV_GUNSPARKS",
+      |         ^
+src\games\game\bg_misc.cpp(4319,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4319 |         "EV_FLAMETHROWER_EFFECT",
+      |         ^
+src\games\game\bg_misc.cpp(4320,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4320 |         "EV_SNIPER_SOUND",
+      |         ^
+src\games\game\bg_misc.cpp(4321,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4321 |         "EV_POPUP",
+      |         ^
+src\games\game\bg_misc.cpp(4322,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4322 |         "EV_POPUPBOOK",
+      |         ^
+src\games\game\bg_misc.cpp(4323,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4323 |         "EV_GIVEPAGE",
+      |         ^
+src\games\game\bg_misc.cpp(4324,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4324 |         "EV_CLOSEMENU",
+      |         ^
+src\games\game\bg_misc.cpp(4326,2): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ 4326 |         "EV_MAX_EVENTS"
+      |         ^
+908 warnings and 1 error generated.
+scons: *** [build\windows-x64-debug\cgame\obj\games\game\bg_misc.cpp.obj] Error 1
+```
+
+- build\windows-x64-debug\cgame\obj\games\cgame\cg_consolecmds.cpp.obj
+
+```
+src\games\cgame\cg_consolecmds.cpp(456,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  456 |         { "loaddeferred", CG_LoadDeferredPlayers },  // spelling fixed (SA)
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(457,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  457 |         { "camera", CG_Camera_f },   // duffy
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(458,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  458 |         { "fade", CG_Fade_f },   // duffy
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(461,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  461 |         { "mp_QuickMessage", CG_QuickMessage_f },
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(462,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  462 |         { "OpenLimboMenu", CG_OpenLimbo_f },
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(463,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  463 |         { "CloseLimboMenu", CG_CloseLimbo_f },
+      |           ^
+src\games\cgame\cg_consolecmds.cpp(464,4): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  464 |         { "LimboMessage", CG_LimboMessage_f }
+      |           ^
+43 warnings and 10 errors generated.
+In file included from src\games\cgame\cg_draw.cpp:33:
+src\games\cgame\../ui/ui_shared.h(50,1): error: expected unqualified-id
+   50 | 0x00000001       // mouse is over it, non exclusive
+      | ^
+src\games\cgame\../ui/ui_shared.h(121,3): error: a type specifier is required for all declarations
+  121 | } scriptDef_t;
+      |   ^
+src\games\cgame\../ui/ui_shared.h(140,2): error: unknown type name 't'
+scons: *** [build\windows-x64-debug\cgame\obj\games\cgame\cg_consolecmds.cpp.obj] Error 1
+```
+
 
 ### warning kinds
 
-- [5822x] -writable-strings
+- [7245x] -writable-strings
   - src\client\cl_cin.cpp(1436,39): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_cgame.cpp(904,22): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(67,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1898,6 +1899,7 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(149,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(150,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(151,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(923,58): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(152,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(153,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(154,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1925,9 +1927,11 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(177,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(178,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(179,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1013,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(180,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(182,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(184,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1043,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(186,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(193,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(194,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1941,6 +1945,7 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(203,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(204,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(205,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1172,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(207,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(209,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(210,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1964,6 +1969,7 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(230,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(231,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(232,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1409,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(233,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(235,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(236,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -1992,13 +1998,10 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(260,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(261,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(262,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(923,58): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(263,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(264,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(265,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1013,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(266,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1043,16): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(267,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(268,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(269,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2021,15 +2024,17 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(288,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(289,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(290,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1529,46): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(291,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1530,43): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(292,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(293,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(294,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(295,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(296,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(297,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1172,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(298,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1531,47): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(299,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(300,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(301,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2047,8 +2052,8 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(320,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(321,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(322,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(1969,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(323,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1409,29): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(325,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(326,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(327,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2114,9 +2119,9 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(394,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(395,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(396,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(2414,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(397,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(398,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1529,46): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(399,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(400,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(401,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2128,7 +2133,6 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(407,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(408,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(410,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1530,43): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(411,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(412,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(413,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2136,7 +2140,6 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(415,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(416,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(417,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1531,47): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(418,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(419,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(420,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2183,7 +2186,6 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(474,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(475,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(476,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(1969,30): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(477,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(478,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(480,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2204,10 +2206,13 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(496,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(497,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(498,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_main.cpp(2414,20): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(499,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(500,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(501,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(2779,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(2785,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(2790,11): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+  - src\client\cl_main.cpp(2794,61): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(502,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(503,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(504,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
@@ -2216,235 +2221,7 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(507,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(508,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
   - src\client\cl_keys.cpp(509,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_keys.cpp(510,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_keys.cpp(511,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_keys.cpp(512,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-  - src\client\cl_keys.cpp(513,3): warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-- [223x] -pointer-to-int-cast
-  - src\client\cl_cin.cpp(1105,39): warning: cast to smaller integer type 'unsigned int' from 'unsigned char *' [-Wpointer-to-int-cast]
-  - src\client\cl_cin.cpp(1105,68): warning: cast to smaller integer type 'unsigned int' from 'unsigned char *' [-Wpointer-to-int-cast]
-  - src\client\cl_cin.cpp(1106,41): warning: cast to smaller integer type 'unsigned int' from 'unsigned char *' [-Wpointer-to-int-cast]
-  - src\client\cl_cin.cpp(1106,110): warning: cast to smaller integer type 'unsigned int' from 'unsigned char *' [-Wpointer-to-int-cast]
-  - src\qcommon\common.cpp(1098,29): warning: cast to smaller integer type 'int' from 'unsigned char *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(948,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(949,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(950,4): warning: cast to smaller integer type 'int' from 'trType_t *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(951,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(952,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(953,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(954,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(955,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(956,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(957,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(958,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(959,4): warning: cast to smaller integer type 'int' from 'trType_t *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(960,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(961,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(962,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(963,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(964,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(965,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(966,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(967,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(968,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(969,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(970,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(971,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(972,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(973,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(974,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(975,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(976,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(977,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(978,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(979,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(980,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(981,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(982,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(983,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(984,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(985,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(986,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(987,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(988,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(989,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(990,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(991,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(992,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(993,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(994,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(995,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(996,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(997,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(998,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(999,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1000,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1001,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1002,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1003,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1004,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1005,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1006,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1007,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1008,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1009,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1010,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1011,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1012,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1013,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1014,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1015,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1016,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1017,4): warning: cast to smaller integer type 'int' from 'aistateEnum_t *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1018,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1379,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1380,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1381,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1382,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1383,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1384,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1385,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1386,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1387,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1388,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1389,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1390,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1391,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1392,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1393,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1394,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1395,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1396,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1397,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1398,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1399,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1400,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1401,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1402,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1403,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1404,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1405,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1406,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1407,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1408,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1409,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1410,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1411,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1412,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1413,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1414,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1415,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1416,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1417,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1418,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1419,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1420,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1421,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1422,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1423,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1424,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1425,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1426,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1427,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1428,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1429,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1430,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1431,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1432,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1433,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1434,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1435,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1436,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1437,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1438,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1439,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1440,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1441,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1442,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1443,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1444,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1445,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1446,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1447,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1448,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1449,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1450,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1451,4): warning: cast to smaller integer type 'int' from 'aistateEnum_t *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1452,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1453,4): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\qcommon\msg.cpp(1456,4): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\renderer\tr_bsp.cpp(379,14): warning: cast to smaller integer type 'int' from 'float (*)[8]' [-Wpointer-to-int-cast]
-  - src\renderer\tr_init.cpp(1175,7): warning: cast to smaller integer type 'int' from 'float (*)[4]' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_input.cpp(859,7): warning: cast to smaller integer type 'unsigned long' from 'void (*)(HMIDIIN__ *, unsigned int, unsigned long, unsigned long, unsigned long)' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_main.cpp(1194,39): warning: cast to smaller integer type 'int' from 'HINSTANCE__ *' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_main.cpp(1195,37): warning: cast to smaller integer type 'int' from 'long (*)(HWND__ *, unsigned int, unsigned long long, long long)' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_syscon.cpp(141,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_syscon.cpp(151,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
-  - src\sys\win32\win_syscon.cpp(394,91): warning: cast to smaller integer type 'long' from 'long (*)(HWND__ *, unsigned int, unsigned long long, long long)' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(144,11): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(145,12): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(146,17): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(147,11): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(148,12): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(149,18): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(150,11): warning: cast to smaller integer type 'int' from 'float (*)[3]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_goal.cpp(151,11): warning: cast to smaller integer type 'int' from 'float (*)[3]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(63,13): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(64,11): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(65,12): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(66,12): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(67,18): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(68,12): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(69,17): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(70,21): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(71,14): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(72,14): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(73,12): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(74,19): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(75,13): warning: cast to smaller integer type 'int' from 'float (*)[3]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(76,13): warning: cast to smaller integer type 'int' from 'float (*)[3]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(77,18): warning: cast to smaller integer type 'int' from 'float (*)[3]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(78,21): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(79,17): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(80,16): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(81,15): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(82,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(83,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(84,15): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(91,11): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(92,12): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(93,12): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(94,14): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(95,13): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(96,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(97,16): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(98,17): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(99,16): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(100,11): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(101,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(102,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(103,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\botlib\be_ai_weap.cpp(104,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(147,3): warning: cast to smaller integer type 'int' from 'char *(**)(cast_state_s *)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(148,3): warning: cast to smaller integer type 'int' from 'char *(**)(cast_state_s *)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(149,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int, float *)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(150,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int, int)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(151,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(152,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(153,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(154,3): warning: cast to smaller integer type 'int' from 'void (**)(int, int)' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(189,3): warning: cast to smaller integer type 'int' from 'ai_client_state_t **' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(190,3): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(191,3): warning: cast to smaller integer type 'int' from 'cast_script_event_t **' [-Wpointer-to-int-cast]
-  - src\games\game\g_save.cpp(192,3): warning: cast to smaller integer type 'int' from 'cast_weapon_info_t **' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(561,16): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(562,20): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(563,20): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(564,19): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(565,20): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(566,19): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-  - src\games\cgame\cg_event.cpp(567,20): warning: cast to smaller integer type 'int' from 'refEntity_t *' [-Wpointer-to-int-cast]
-- [184x] -missing-field-initializers
+- [283x] -missing-field-initializers
   - src\client\cl_main.cpp(2083,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
   - src\client\cl_main.cpp(2084,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
   - src\client\cl_main.cpp(2085,40): warning: missing field 'lastSetIndex' initializer [-Wmissing-field-initializers]
@@ -2628,11 +2405,60 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\cg_ents.cpp(1430,55): warning: missing field 'moveSpeed' initializer [-Wmissing-field-initializers]
   - src\games\cgame\cg_info.cpp(189,9): warning: missing field 'YOfs' initializer [-Wmissing-field-initializers]
   - src\games\cgame\cg_players.cpp(2911,11): warning: missing field 'maxdist' initializer [-Wmissing-field-initializers]
-- [146x] -unused-but-set-variable
+  - src\games\ui\ui_shared.cpp(96,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(97,19): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(98,16): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(99,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(100,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(102,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(103,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(104,26): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(105,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(106,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(107,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(109,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(110,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(111,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(112,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(113,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(114,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(115,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(116,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(117,17): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(118,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(119,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(120,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(121,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(122,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(123,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(124,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(125,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(126,13): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(127,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(129,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(130,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(131,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(132,14): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(133,15): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(134,18): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(135,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(136,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(137,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(138,12): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(139,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(140,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(141,8): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(142,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(143,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(144,11): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(145,9): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(146,10): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+  - src\games\ui\ui_shared.cpp(147,7): warning: missing field 'localname' initializer [-Wmissing-field-initializers]
+- [166x] -unused-but-set-variable
   - src\client\cl_input.cpp(442,6): warning: variable 'movespeed' set but not used [-Wunused-but-set-variable]
   - src\client\cl_input.cpp(681,15): warning: variable 'cmd' set but not used [-Wunused-but-set-variable]
-  - src\client\cl_cgame.cpp(1106,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
   - src\client\cl_cin.cpp(1796,11): warning: variable 'holdatend' set but not used [-Wunused-but-set-variable]
+  - src\client\cl_cgame.cpp(1106,6): warning: variable 'resetTime' set but not used [-Wunused-but-set-variable]
   - src\client\cl_main.cpp(186,6): warning: variable 'r' set but not used [-Wunused-but-set-variable]
   - src\client\cl_main.cpp(2749,10): warning: variable 'str' set but not used [-Wunused-but-set-variable]
   - src\client\cl_main.cpp(2853,18): warning: variable 'serverStatus' set but not used [-Wunused-but-set-variable]
@@ -2665,15 +2491,15 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\renderer\tr_main.cpp(1181,15): warning: variable 'pointOr' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_marks.cpp(500,8): warning: variable 'texCoordScale' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_model.cpp(911,13): warning: variable 'lastPurged' set but not used [-Wunused-but-set-variable]
-  - src\renderer\tr_shade.cpp(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_shade_calc.cpp(670,6): warning: variable 'c' set but not used [-Wunused-but-set-variable]
+  - src\renderer\tr_shade.cpp(1391,19): warning: variable 'shader' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_shadows.cpp(103,6): warning: variable 'c_edges' set but not used [-Wunused-but-set-variable]
   - src\renderer\tr_shadows.cpp(103,15): warning: variable 'c_rejected' set but not used [-Wunused-but-set-variable]
   - src\qcommon\q_shared.cpp(434,9): warning: variable 'pc' set but not used [-Wunused-but-set-variable]
   - src\sys\win32\win_net.cpp(527,6): warning: variable 'err' set but not used [-Wunused-but-set-variable]
   - src\sys\win32\win_net.cpp(703,6): warning: variable 'error' set but not used [-Wunused-but-set-variable]
-  - src\games\botlib\be_ai_chat.cpp(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_gen.cpp(59,13): warning: variable 'select' set but not used [-Wunused-but-set-variable]
+  - src\games\botlib\be_ai_chat.cpp(2782,19): warning: variable 'cs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_goal.cpp(241,19): warning: variable 'gs' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.cpp(1553,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
   - src\games\botlib\be_ai_move.cpp(3013,8): warning: variable 'dist' set but not used [-Wunused-but-set-variable]
@@ -2681,8 +2507,8 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\botlib\l_script.cpp(389,14): warning: variable 'i' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_active.cpp(577,8): warning: variable 'fallSoundMul' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_active.cpp(1568,23): warning: variable 'pers' set but not used [-Wunused-but-set-variable]
-  - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_cmds.cpp(2019,6): warning: variable 'spawnIndex' set but not used [-Wunused-but-set-variable]
+  - src\games\game\g_combat.cpp(898,6): warning: variable 'save' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(405,35): warning: variable 'oldHintType' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_main.cpp(2371,6): warning: variable 'msec' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_missile.cpp(432,6): warning: variable 'etype' set but not used [-Wunused-but-set-variable]
@@ -2696,11 +2522,11 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\game\g_weapon.cpp(1078,8): warning: variable 'oldHealth' set but not used [-Wunused-but-set-variable]
   - src\games\game\g_weapon.cpp(1337,6): warning: variable 'oldScore' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_danger.cpp(97,21): warning: variable 'dcs' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai\ai_events.cpp(480,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
-  - src\games\game\ai\ai_events.cpp(481,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(104,13): warning: variable 'ent' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(378,18): warning: variable 'count' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_input.cpp(378,25): warning: variable 'clCount' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai\ai_events.cpp(480,28): warning: variable 'activator' set but not used [-Wunused-but-set-variable]
+  - src\games\game\ai\ai_events.cpp(481,13): warning: variable 'client' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(290,43): warning: variable 'bestyaw' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(296,27): warning: variable 'besttraveltime' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\ai_movement.cpp(300,16): warning: variable 'simTime' set but not used [-Wunused-but-set-variable]
@@ -2739,9 +2565,9 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\game\ai\fsm\ai_combat.cpp(613,7): warning: variable 'ammo' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\fsm\ai_monster_zombie.cpp(46,21): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
   - src\games\game\ai\fsm\ai_monster_zombie.cpp(165,21): warning: variable 'bs' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_effects.cpp(313,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(174,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(182,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_effects.cpp(313,6): warning: variable 'tagIndex' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(393,6): warning: variable 'offsetwhole' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(946,8): warning: variable 'scale' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_ents.cpp(1800,23): warning: variable 'traplf' set but not used [-Wunused-but-set-variable]
@@ -2763,8 +2589,8 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\cg_players.cpp(4526,16): warning: variable 'ci' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_sound.cpp(238,6): warning: variable 's' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_view.cpp(198,18): warning: variable 'lbdiff' set but not used [-Wunused-but-set-variable]
-  - src\games\cgame\cg_weapons.cpp(402,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_view.cpp(976,8): warning: variable 'redFlash' set but not used [-Wunused-but-set-variable]
+  - src\games\cgame\cg_weapons.cpp(402,6): warning: variable 'contents' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.cpp(403,6): warning: variable 'lastContents' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.cpp(1876,8): warning: variable 'ramp' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.cpp(2795,19): warning: variable 'weapon' set but not used [-Wunused-but-set-variable]
@@ -2774,7 +2600,22 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\cg_weapons.cpp(4933,6): warning: variable 'markDuration' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.cpp(5857,6): warning: variable 'anim' set but not used [-Wunused-but-set-variable]
   - src\games\cgame\cg_weapons.cpp(5904,13): warning: variable 'cent' set but not used [-Wunused-but-set-variable]
-- [52x] -deprecated-declarations
+  - src\games\ui\ui_shared.cpp(1289,8): warning: variable 'dec' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.cpp(1790,16): warning: variable 'listPtr' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_shared.cpp(1792,6): warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1275,15): warning: variable 'text_p' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1275,24): warning: variable 'prev' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1277,6): warning: variable 'i' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1278,15): warning: variable 'token' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1279,8): warning: variable 'fps' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_players.cpp(1280,6): warning: variable 'skip' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(2481,14): warning: variable 'w' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(2481,17): warning: variable 'h' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(5098,43): warning: variable 'game' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(5101,13): warning: variable 'numinvisible' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(5411,23): warning: variable 'numTimeOuts' set but not used [-Wunused-but-set-variable]
+  - src\games\ui\ui_main.cpp(5724,33): warning: variable 'lastSaveTime' set but not used [-Wunused-but-set-variable]
+- [164x] -deprecated-declarations
   - src\sys\win32\win_gamma.cpp(153,2): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
   - src\sys\win32\win_glimp.cpp(1111,7): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
   - src\sys\win32\win_main.cpp(1166,8): warning: 'GetVersionExA' is deprecated [-Wdeprecated-declarations]
@@ -2818,9 +2659,157 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\fx\FxTemplate.cpp(701,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
   - src\games\cgame\fx\FxTemplate.cpp(703,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
   - src\games\cgame\fx\FxTemplate.cpp(705,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
-- [20x] -inconsistent-missing-override
+  - src\games\cgame\fx\FxTemplate.cpp(707,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(709,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(711,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(713,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(715,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(717,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(719,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(721,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(723,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(725,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(727,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1673,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1675,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1677,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1677,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1679,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1679,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1718,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1720,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1722,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1722,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1724,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1724,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1763,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1765,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1767,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1767,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1769,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1769,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1808,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1810,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1812,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1812,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1814,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1814,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1853,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1855,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1857,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1857,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1859,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1859,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1892,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1894,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1894,45): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1896,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1896,44): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1898,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1898,44): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1900,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1902,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1904,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1906,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1908,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1910,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1914,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1918,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1920,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1920,55): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1922,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1923,17): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1925,23): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1928,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1928,46): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1935,10): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1938,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1940,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1942,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1944,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1952,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1954,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1957,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1959,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1959,44): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1961,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1963,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1965,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1965,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1967,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1969,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1969,46): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1971,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1971,50): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1973,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1975,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1977,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1979,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1981,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1983,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1985,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1987,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1991,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1991,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1993,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1993,48): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(1995,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2015,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2019,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2021,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2023,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2023,42): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2025,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2025,43): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2027,15): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\FxTemplate.cpp(2027,44): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(312,14): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(508,9): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(579,9): warning: 'stricmp' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(604,14): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(612,8): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(618,14): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+  - src\games\cgame\fx\genericparser2.cpp(680,8): warning: 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details. [-Wdeprecated-declarations]
+- [31x] -pointer-to-int-cast
+  - src\sys\win32\win_input.cpp(859,7): warning: cast to smaller integer type 'unsigned long' from 'void (*)(HMIDIIN__ *, unsigned int, unsigned long, unsigned long, unsigned long)' [-Wpointer-to-int-cast]
+  - src\sys\win32\win_main.cpp(1194,39): warning: cast to smaller integer type 'int' from 'HINSTANCE__ *' [-Wpointer-to-int-cast]
+  - src\sys\win32\win_main.cpp(1195,37): warning: cast to smaller integer type 'int' from 'long (*)(HWND__ *, unsigned int, unsigned long long, long long)' [-Wpointer-to-int-cast]
+  - src\sys\win32\win_syscon.cpp(141,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
+  - src\sys\win32\win_syscon.cpp(151,11): warning: cast to smaller integer type 'long' from 'HBRUSH__ *' [-Wpointer-to-int-cast]
+  - src\sys\win32\win_syscon.cpp(394,91): warning: cast to smaller integer type 'long' from 'long (*)(HWND__ *, unsigned int, unsigned long long, long long)' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(91,11): warning: cast to smaller integer type 'int' from 'char (*)[80]' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(93,12): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(94,14): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(95,13): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(96,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(97,16): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(98,17): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(99,16): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(100,11): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(101,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(102,13): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(103,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\botlib\be_ai_weap.cpp(104,17): warning: cast to smaller integer type 'int' from 'float *' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(147,3): warning: cast to smaller integer type 'int' from 'char *(**)(cast_state_s *)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(148,3): warning: cast to smaller integer type 'int' from 'char *(**)(cast_state_s *)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(149,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int, float *)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(150,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int, int)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(151,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *, int)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(152,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(153,3): warning: cast to smaller integer type 'int' from 'void (**)(gentity_s *, gentity_s *)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(154,3): warning: cast to smaller integer type 'int' from 'void (**)(int, int)' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(189,3): warning: cast to smaller integer type 'int' from 'ai_client_state_t **' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(190,3): warning: cast to smaller integer type 'int' from 'int *' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(191,3): warning: cast to smaller integer type 'int' from 'cast_script_event_t **' [-Wpointer-to-int-cast]
+  - src\games\game\g_save.cpp(192,3): warning: cast to smaller integer type 'int' from 'cast_weapon_info_t **' [-Wpointer-to-int-cast]
+- [22x] -inconsistent-missing-override
   - src\games\cgame\fx\FxPrimitives.h(273,14): warning: 'Die' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
   - src\games\cgame\fx\FxPrimitives.h(274,14): warning: 'Update' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+- [19x] -deprecated-copy-with-user-provided-copy
+  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+  - src\games\cgame\fx\FxScheduler.h(144,6): warning: definition of implicit copy constructor for 'CFxRange' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
 - [18x] -invalid-source-encoding
   - src\client\cl_keys.cpp(197,5): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
   - src\client\cl_keys.cpp(450,7): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
@@ -2840,11 +2829,7 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\client\cl_keys.cpp(666,16): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
   - src\client\cl_keys.cpp(667,12): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
   - src\client\cl_keys.cpp(680,4): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
-- [18x] -deprecated-copy-with-user-provided-copy
-  - src\splines\math_quaternion.h(60,6): warning: definition of implicit copy constructor for 'quat_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-  - src\splines\math_vector.h(160,18): warning: definition of implicit copy constructor for 'idVec3' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-  - src\splines\math_angles.h(63,6): warning: definition of implicit copy constructor for 'angles_t' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
-- [10x] -pointer-bool-conversion
+- [12x] -pointer-bool-conversion
   - src\client\snd_dma.cpp(1857,19): warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
   - src\client\snd_dma.cpp(2171,11): warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
   - src\client\snd_dma.cpp(2487,15): warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
@@ -2855,6 +2840,8 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\cg_servercmds.cpp(960,8): warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
   - src\games\cgame\cg_servercmds.cpp(972,8): warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
   - src\games\cgame\cg_weapons.cpp(1005,10): warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
+  - src\games\ui\ui_main.cpp(1449,7): warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
+  - src\games\ui\ui_main.cpp(1507,8): warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
 - [10x] -unused-variable
   - src\sys\win32\win_input.cpp(225,18): warning: unused variable 'hInstDI' [-Wunused-variable]
   - src\sys\win32\win_input.cpp(249,21): warning: unused variable 'df' [-Wunused-variable]
@@ -2879,8 +2866,10 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\game\bg_animation.cpp(807,29): warning: 'memset' call operates on objects of type 'int' while the size is based on a different type 'int *' [-Wsizeof-pointer-memaccess]
   - src\games\game\bg_animation.cpp(999,32): warning: 'memset' call operates on objects of type 'animScriptCommand_t' while the size is based on a different type 'animScriptCommand_t *' [-Wsizeof-pointer-memaccess]
   - src\games\game\ai\ai_system.cpp(458,33): warning: 'memset' call operates on objects of type 'cast_state_t' (aka 'struct cast_state_s') while the size is based on a different type 'cast_state_t *' (aka 'struct cast_state_s *') [-Wsizeof-pointer-memaccess]
-- [2x] need to modify cg_event.c at "// check the sequencial list" if you change this
-  - 995 |         { NETF( eventSequence ), 8 }, // warning: need to modify cg_event.c at "// check the sequencial list" if you change this
+- [3x] -tautological-constant-out-of-range-compare
+  - src\games\ui\ui_players.cpp(773,25): warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
+  - src\games\ui\ui_players.cpp(1615,21): warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
+  - src\games\ui\ui_players.cpp(1628,20): warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
 - [2x] -array-bounds
   - src\renderer\tr_image.cpp(3346,59): warning: array index 3 is past the end of the array (that has type 'int[3]') [-Warray-bounds]
   - src\renderer\tr_shade_calc.cpp(679,2): warning: array index 3 is past the end of the array (that has type 'unsigned char[3]') [-Warray-bounds]
@@ -2900,10 +2889,10 @@ scons: *** [build\windows-x64-debug\game\obj\games\game\ai\ai_events.cpp.obj] Er
   - src\games\cgame\cg_view.cpp(1387,12): warning: explicitly assigning value of variable of type 'float' to itself [-Wself-assign]
 - [1x] -strncat-size
   - src\client\cl_main.cpp(2841,25): warning: the value of the size argument in 'strncat' is too large, might lead to a buffer overflow [-Wstrncat-size]
-- [1x] -int-to-pointer-cast
-  - src\qcommon\common.cpp(1098,15): warning: cast to 'unsigned char *' from smaller integer type 'int' [-Wint-to-pointer-cast]
 - [1x] -null-dereference
   - src\qcommon\common.cpp(1799,2): warning: indirection of non-volatile null pointer will be deleted, not trap [-Wnull-dereference]
+- [1x] need to modify cg_event.c at "// check the sequencial list" if you change this
+  - 995 |         { NETF( eventSequence ), 8 }, // warning: need to modify cg_event.c at "// check the sequencial list" if you change this
 - [1x] -parentheses-equality
   - src\qcommon\unzip.cpp(2066,45): warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
 - [1x] -unused-const-variable
