@@ -41,18 +41,22 @@ function(wolf_configure_target target)
         target_compile_definitions(${target} PRIVATE
             WIN32 _WINDOWS _CRT_SECURE_NO_WARNINGS
             PATH_SEP='\\\\'
+            CPUSTRING="win-${WOLF_ARCH}"
         )
     else()
-        target_compile_definitions(${target} PRIVATE PATH_SEP='/')
+        target_compile_definitions(${target} PRIVATE
+            PATH_SEP='/'
+            CPUSTRING="linux-${WOLF_ARCH}"
+        )
     endif()
     if(MSVC)
         target_compile_options(${target} PRIVATE
-            /W3 /wd4244 /wd4267 /wd4996 /wd5033
+            /W3 /wd4244 /wd4267 /wd4723 /wd4996 /wd5033
         )
     endif()
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         target_compile_options(${target} PRIVATE
-            $<$<COMPILE_LANGUAGE:CXX>:-fno-operator-names;-Wno-write-strings;-Wno-register>
+            $<$<COMPILE_LANGUAGE:CXX>:-fno-operator-names;-Wno-write-strings;-Wno-register;-Wno-unused-result>
         )
     endif()
     target_include_directories(${target} PRIVATE
@@ -480,7 +484,15 @@ else()
 endif()
 
 set_target_properties(wolf PROPERTIES OUTPUT_NAME "WolfSP_${WOLF_ARCH}")
-target_compile_definitions(wolf PRIVATE __USEA3D __A3D_GEOM CINTERFACE)
+target_compile_definitions(wolf PRIVATE __USEA3D __A3D_GEOM)
+# The engine headers still reference the module public headers through their
+# original ../game, ../cgame and ../ui relative paths; resolve them now that
+# the module code lives under games/.
+target_include_directories(wolf PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/game"
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/cgame"
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/ui"
+)
 target_link_libraries(wolf PRIVATE renderer botlib Splines)
 if(WIN32)
     target_link_libraries(wolf PRIVATE winmm wsock32)

@@ -76,6 +76,8 @@ If you have questions concerning this license or the applicable additional terms
 #define STAT_MINUS          10  // num frame for '-' stats digit
 
 #define ICON_SIZE           48
+// limits.h on GCC 15 already defines CHAR_WIDTH, clear it first
+#undef CHAR_WIDTH
 #define CHAR_WIDTH          32
 #define CHAR_HEIGHT         48
 #define TEXT_ICON_SPACE     4

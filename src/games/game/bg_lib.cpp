@@ -30,18 +30,29 @@ If you have questions concerning this license or the applicable additional terms
 // compiled for the virtual machine
 
 // Keep the native CRT declarations from colliding with the VM replacements
-// implemented by this translation unit when it is compiled as C++.
+// implemented by this translation unit when it is compiled as C++.  Pull in
+// the C library headers first so the real CRT declarations exist under their
+// real names, then rename every CRT routine this file implements so the
+// definitions below land on private names instead of clashing with the
+// standard ones.
 #ifdef __cplusplus
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 #define qsort bg_lib_crt_qsort
 #define strchr bg_lib_crt_strchr
 #define strstr bg_lib_crt_strstr
+#define strlen bg_lib_crt_strlen
+#define strcat bg_lib_crt_strcat
+#define strcpy bg_lib_crt_strcpy
+#define strcmp bg_lib_crt_strcmp
+#define memmove bg_lib_crt_memmove
+#define tan bg_lib_crt_tan
+#define srand bg_lib_crt_srand
+#define rand bg_lib_crt_rand
+#define atof bg_lib_crt_atof
 #endif
 #include "q_shared.h"
-#ifdef __cplusplus
-#undef qsort
-#undef strchr
-#undef strstr
-#endif
 
 /*-
  * Copyright (c) 1992, 1993

@@ -163,7 +163,7 @@ void CG_Bleed( vec3_t origin, int entityNum ) {
 
 	// Ridah, blood spurts
 	if ( entityNum != cg.snap->ps.clientNum ) {
-		vec3_t vhead, vlegs, vtorso, bOrigin, dir, vec, pvec, ndir;
+		vec3_t vhead, vlegs, vtorso, bOrigin, dir, vec, pvec;
 
 		CG_GetBleedOrigin( vhead, vtorso, vlegs, entityNum );
 

@@ -65,13 +65,18 @@ Sys_SnapVector
 ================
 */
 long fastftol( float f ) {
+#if defined( _M_IX86 )
 	static int tmp;
 	__asm fld f
 	__asm fistp tmp
 	__asm mov eax, tmp
+#else
+	return ( long )f;
+#endif
 }
 
 void Sys_SnapVector( float *v ) {
+#if defined( _M_IX86 )
 	int i;
 	float f;
 
@@ -96,6 +101,12 @@ void Sys_SnapVector( float *v ) {
 	v++;
 	*v = fastftol(*v);
 	*/
+#else
+	// MSVC has no inline assembler on x64, so round by hand
+	for ( int i = 0; i < 3; i++ ) {
+		v[i] = ( float )( long )( v[i] + ( v[i] >= 0 ? 0.5f : -0.5f ) );
+	}
+#endif
 }
 
 /*
@@ -112,6 +123,7 @@ void Sys_SnapVector( float *v ) {
 **
 ** --------------------------------------------------------------------------------
 */
+#if defined( _M_IX86 )
 static void CPUID( int func, unsigned regs[4] ) {
 	unsigned regEAX, regEBX, regECX, regEDX;
 
@@ -361,6 +373,16 @@ int Sys_GetProcessorId( void ) {
 int Sys_GetHighQualityCPU() {
 	return ( !IsP3() && !IsAthlon() ) ? 0 : 1;
 }
+#else
+// No inline assembler on x64, report a generic processor
+int Sys_GetProcessorId( void ) {
+	return CPUID_GENERIC;
+}
+
+int Sys_GetHighQualityCPU() {
+	return 1;
+}
+#endif
 
 /*
 **
