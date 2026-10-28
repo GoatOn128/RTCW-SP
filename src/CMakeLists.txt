@@ -107,8 +107,7 @@ configure_engine(wolfded)
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT wolf)
 
 # attach the loose headers to the projects that own their directories and
-# collect the remaining third-party headers in a utility project
+# put the ones that no target owns into every project
 attach_headers_to_targets()
 group_target_sources(wolf)
 group_target_sources(wolfded)
-gather_loose_headers(loose_headers)

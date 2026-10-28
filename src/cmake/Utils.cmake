@@ -127,54 +127,6 @@ function(collect_targets result dir)
 	set(${result} ${${result}} ${sub_targets} PARENT_SCOPE)
 endfunction()
 
-# gathers the header files that no target lists as a source into a utility target so they show up in the IDE
-function(gather_loose_headers target)
-	file(GLOB_RECURSE all_headers
-		"${ENGINE_SOURCE_DIR}/*.h"
-		"${ENGINE_SOURCE_DIR}/*.hpp"
-		"${ENGINE_SOURCE_DIR}/*.inl"
-	)
-	list(SORT all_headers)
-	list(REMOVE_DUPLICATES all_headers)
-
-	# collect the full path of every source file the targets own
-	set(owned_sources "")
-	collect_targets(all_targets "${CMAKE_SOURCE_DIR}")
-	foreach(t IN LISTS all_targets)
-		get_target_property(target_sources ${t} SOURCES)
-		if(NOT target_sources)
-			continue()
-		endif()
-		get_target_property(target_dir ${t} SOURCE_DIR)
-		if(NOT target_dir)
-			set(target_dir "${CMAKE_SOURCE_DIR}")
-		endif()
-		foreach(s IN LISTS target_sources)
-			if(NOT IS_ABSOLUTE "${s}")
-				set(s "${target_dir}/${s}")
-			endif()
-			cmake_path(SET s NORMALIZE "${s}")
-			list(APPEND owned_sources "${s}")
-		endforeach()
-	endforeach()
-	list(REMOVE_DUPLICATES owned_sources)
-
-	# keep the headers that no target owns
-	set(loose_headers "")
-	foreach(h IN LISTS all_headers)
-		if(NOT "${h}" IN_LIST owned_sources)
-			list(APPEND loose_headers "${h}")
-		endif()
-	endforeach()
-
-	if(NOT loose_headers)
-		return()
-	endif()
-	add_custom_target(${target} SOURCES ${loose_headers})
-	set_solution_folder(${target} misc)
-	source_group(TREE "${ENGINE_SOURCE_DIR}" PREFIX "Header Files" FILES ${loose_headers})
-endfunction()
-
 # groups the target sources in the IDE into Source Files and Header Files filters that mirror the source tree
 function(group_target_sources target)
 	get_target_property(target_sources ${target} SOURCES)
@@ -210,7 +162,7 @@ function(group_target_sources target)
 	endif()
 endfunction()
 
-# attaches the loose engine, game and tool headers to the target whose source directory contains them
+# attaches every header that no target lists as a source to the target whose source directory contains it, and the rest to every target
 function(attach_headers_to_targets)
 	file(GLOB_RECURSE all_headers
 		"${ENGINE_SOURCE_DIR}/*.h"
@@ -243,18 +195,13 @@ function(attach_headers_to_targets)
 	endforeach()
 	list(REMOVE_DUPLICATES owned_sources)
 
-	# keep the headers no target owns; third-party code stays in the utility project
+	# keep the headers no target owns
 	set(loose_headers "")
-	set(third_party_prefix "${ENGINE_SOURCE_DIR}/third-party/")
+	set(unclaimed_headers "")
 	foreach(h IN LISTS all_headers)
-		if("${h}" IN_LIST owned_sources)
-			continue()
+		if(NOT "${h}" IN_LIST owned_sources)
+			list(APPEND loose_headers "${h}")
 		endif()
-		string(FIND "${h}" "${third_party_prefix}" third_pos)
-		if(third_pos EQUAL 0)
-			continue()
-		endif()
-		list(APPEND loose_headers "${h}")
 	endforeach()
 
 	# find the target with the deepest source directory that contains each header
@@ -279,6 +226,8 @@ function(attach_headers_to_targets)
 		endforeach()
 		if(best_target)
 			list(APPEND assignments "${h}=>${best_target}")
+		else()
+			list(APPEND unclaimed_headers "${h}")
 		endif()
 	endforeach()
 
@@ -298,4 +247,14 @@ function(attach_headers_to_targets)
 			target_sources(${t} PRIVATE ${t_headers})
 		endif()
 	endforeach()
+
+	# headers that no target directory contains go into every project so they stay visible in the IDE
+	if(unclaimed_headers)
+		foreach(t IN LISTS all_targets)
+			get_target_property(target_type ${t} TYPE)
+			if(NOT target_type STREQUAL "UTILITY")
+				target_sources(${t} PRIVATE ${unclaimed_headers})
+			endif()
+		endforeach()
+	endif()
 endfunction()
