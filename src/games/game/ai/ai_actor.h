@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 065a872cf48e159efd8f90da01b3aba31be68f04)
 /*
 ===========================================================================
 
@@ -513,7 +514,7 @@ typedef struct cast_state_s {
 
 } cast_state_t;
 //
-#define CSFOFS( x ) ( (int)&( ( (cast_state_t *)0 )->x ) )
+#define CSFOFS( x ) ( (size_t)&( ( (cast_state_t *)0 )->x ) )
 //
 typedef struct aicast_predictmove_s {
 	vec3_t endpos; //position at the end of movement prediction
