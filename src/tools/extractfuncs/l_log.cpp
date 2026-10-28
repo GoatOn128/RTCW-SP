@@ -114,7 +114,7 @@ void Log_Shutdown( void ) {
 // Changes Globals:		-
 //===========================================================================
 void Log_Print
-( char *fmt, ... ) {
+	( char *fmt, ... ) {
 	va_list ap;
 #ifdef WINBSPC
 	char buf[2048];
@@ -191,8 +191,8 @@ FILE *Log_FileStruct( void ) {
 } //end of the function Log_FileStruct
 //===========================================================================
 //
-// 
-Parameter:				-
+//
+Parameter:              -
 // Returns:					-
 // Changes Globals:		-
 //===========================================================================
