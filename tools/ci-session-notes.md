@@ -278,3 +278,15 @@ All 9 jobs success with 0 errors and 0 warnings on the split build:
 ubuntu x64/x86 debug/release, windows x64/x86 debug/release,
 uncrustify. WolfDED and the restructured modules compiled and linked
 clean everywhere. Task complete.
+
+## 2026-10-28: fix the MSVC warnings in code instead of suppressing them
+
+Removed the /wd4244 /wd4267 /wd4723 /wd4996 /wd5033 suppressions and fixed all the warning sites in the source:
+
+- Cast strlen, size(), fread and fwrite results to the integer types the callers expect across client, qcommon, renderer, server, splines, system, bot, cgame, game and ui code
+- Removed the register storage class from the botlib precompiler and qsort code
+- Replaced the zombie spirit fade-time divide by a constant zero with a direct three-way time comparison
+- Replaced the deprecated GetVersionEx calls with a Sys_GetVersion helper built on RtlGetVersion from ntdll
+- Cast the SOCKS username and password lengths and the console event string length to int in the Windows system code
+
+Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
