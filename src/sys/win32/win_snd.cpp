@@ -1,5 +1,4 @@
-successfully downloaded text file (SHA: 9fc2237da970455872d633bfc968453d70cbafbd)
-successfully downloaded text file (SHA: 3c6f27f4f7671cf6013ab80dd3b683fe58045c82)
+successfully downloaded text file( SHA : 3c6f27f4f7671cf6013ab80dd3b683fe58045c82 )
 /*
 ===========================================================================
 
@@ -339,7 +338,7 @@ void SNDDMA_BeginPainting( void ) {
 	dma.buffer = NULL;
 
 	while ( ( hresult = pDSBuf->Lock( 0, gSndBufSize, &pbuf, &locksize,
-											  &pbuf2, &dwSize2, 0 ) ) != DS_OK )
+									  &pbuf2, &dwSize2, 0 ) ) != DS_OK )
 	{
 		if ( hresult != DSERR_BUFFERLOST ) {
 			Com_Printf( "SNDDMA_BeginPainting: Lock failed with error '%s'\n", DSoundError( hresult ) );
