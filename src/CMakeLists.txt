@@ -106,8 +106,8 @@ configure_engine(wolfded)
 
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT wolf)
 
-# attach the loose headers to the projects that own their directories and
-# put the ones that no target owns into every project
+# put the headers no target owns into every project and
+# regroup the engine projects so those headers join their tree filters
 attach_headers_to_targets()
 group_target_sources(wolf)
 group_target_sources(wolfded)
