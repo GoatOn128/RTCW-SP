@@ -1191,8 +1191,8 @@ void Sys_Init( void ) {
 	}
 
 	// save out a couple things in rom cvars for the renderer to access
-	Cvar_Get( "win_hinstance", va( "%i", (int)g_wv.hInstance ), CVAR_ROM );
-	Cvar_Get( "win_wndproc", va( "%i", (int)MainWndProc ), CVAR_ROM );
+	Cvar_Get( "win_hinstance", va( "%lld", ( long long )( intptr_t )g_wv.hInstance ), CVAR_ROM );
+	Cvar_Get( "win_wndproc", va( "%lld", ( long long )( intptr_t )MainWndProc ), CVAR_ROM );
 
 	//
 	// figure out our CPU
