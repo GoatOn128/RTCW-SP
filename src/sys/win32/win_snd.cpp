@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 9fc2237da970455872d633bfc968453d70cbafbd)
 successfully downloaded text file (SHA: 3c6f27f4f7671cf6013ab80dd3b683fe58045c82)
 /*
 ===========================================================================
@@ -79,14 +80,14 @@ void SNDDMA_Shutdown( void ) {
 
 		if ( pDSBuf ) {
 			Com_DPrintf( "...stopping and releasing sound buffer\n" );
-			pDSBuf->lpVtbl->Stop( pDSBuf );
-			pDSBuf->lpVtbl->Release( pDSBuf );
+			pDSBuf->Stop();
+			pDSBuf->Release();
 		}
 
 		// only release primary buffer if it's not also the mixing buffer we just released
 		if ( pDSPBuf && ( pDSBuf != pDSPBuf ) ) {
 			Com_DPrintf( "...releasing primary buffer\n" );
-			pDSPBuf->lpVtbl->Release( pDSPBuf );
+			pDSPBuf->Release();
 		}
 		pDSBuf = NULL;
 		pDSPBuf = NULL;
@@ -94,7 +95,7 @@ void SNDDMA_Shutdown( void ) {
 		dma.buffer = NULL;
 
 		Com_DPrintf( "...releasing DS object\n" );
-		pDS->lpVtbl->Release( pDS );
+		pDS->Release();
 	}
 
 	if ( hInstDS ) {
@@ -325,7 +326,7 @@ void SNDDMA_BeginPainting( void ) {
 	}
 
 	if ( dwStatus & DSBSTATUS_BUFFERLOST ) {
-		pDSBuf->lpVtbl->Restore( pDSBuf );
+		pDSBuf->Restore();
 	}
 
 	if ( !( dwStatus & DSBSTATUS_PLAYING ) ) {
@@ -346,7 +347,7 @@ void SNDDMA_BeginPainting( void ) {
 			return;
 		} else
 		{
-			pDSBuf->lpVtbl->Restore( pDSBuf );
+			pDSBuf->Restore();
 		}
 
 		if ( ++reps > 2 ) {
