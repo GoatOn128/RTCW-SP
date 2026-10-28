@@ -530,7 +530,7 @@ float   BigFloat( float l );
 float   LittleFloat( float l );
 
 void    Swap_Init( void );
-char$1*$2QDECL va( const char *format, ... );
+char *QDECL va( const char *format, ... );
 
 
 //=============================================

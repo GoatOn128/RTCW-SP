@@ -77,3 +77,60 @@ on content, not line numbers.
 - Never read or write repo files through raw.githubusercontent.com
   proxies: they truncate around 32KB, and a bad proxied read is how
   cg_ents.cpp and linux_glimp.cpp got their stray first line.
+
+## 2026-10-28 session 2 commits
+
+- cf545e3 "Fix the remaining cross-platform build errors":
+  - g_func_decs.h: the va() forward declaration now matches the
+    const char* definition.
+  - splines/q_shared.cpp: Com_Allocate/Com_Dealloc are now defined
+    here (malloc/free); they were only declared extern "C" before,
+    which left undefined symbols at link time.
+  - be_ai_weap.cpp: PROJECTILE_OFS cast goes through
+    (int)(intptr_t).
+  - ci-format.yml: uncrustify excludes bg_pmove.cpp as well as
+    bg_pmove.c (the file was renamed in the C++ port).
+- e560ddc "Fix real-bug warnings flagged by the compilers":
+  sizeof-pointer-memaccess, strncat-size, array-bounds,
+  self-assign, logical-not-parentheses, format-string, the
+  volatile null-dereference trap, char-subscripts,
+  nontrivial-memcall and the tr_shader color-gen mixups across 14
+  files. Two of these edits wrote literal "$1"/"$2" replacement
+  tokens into the tree (q_splineshared.h va declaration, cg_view.cpp
+  zoom-out comments) and broke the next build; repaired in the
+  follow-up commit below. Lesson: "$1" is literal text in a
+  split/join replacement; only String.replace understands
+  replacement tokens.
+- 88de932 "Fix the always-true array checks and enum compares":
+  all -Wpointer-bool-conversion sites (snd_dma.cpp ss->loop x3,
+  ai_script_actions_combat.cpp ps.weapons, cg_drawtools.cpp and
+  ui_main.cpp backgroundcolor, cg_servercmds.cpp text x3,
+  cg_weapons.cpp comppath, ui_main.cpp levelname, cg_ents.cpp
+  dl_stylestring) and the ui_players.cpp weapon_t vs -1 compares
+  (cast to int). MAX_WEAPONS is 64, so ps.weapons is int[2] and
+  both elements are checked. comppath in cg_weapons.cpp is also
+  zero-initialized now; it was read uninitialized when an item had
+  no world models.
+- Follow-up commit (this one):
+  - q_splineshared.h: va declaration restored to
+    "char *QDECL va( const char *format, ... );".
+  - cg_view.cpp: removed the leftover "$ 1" prefix from the two
+    "fully zoomed out" comments (hard compile error).
+  - linux_glimp.cpp: back to Xxf86dga.h / Xxf86vmode.h from
+    libxxf86dga-dev / libxxf86vm-dev, which ci-ubuntu.yml installs.
+    The lowercase xf86dga.h / xf86vmode.h are obsolete stubs from
+    libxext-dev that emit #warning.
+
+## Remaining status after these commits
+
+- The last digest (build of e560ddc) showed 17 warnings in the
+  ubuntu debug job: 12 pointer-bool, 3 tautological compare, and 2
+  X11 obsolete-header #warnings. 88de932 fixed the first two kinds;
+  the header switch removes the last two.
+- Release jobs appear to fail on warnings that debug jobs merely
+  print (release-game failed on the ai weapons check,
+  release-ui on the ui_main checks), so they should clear with the
+  same fixes.
+- Release x86 jobs show "cancelled" (fail-fast), not real failures.
+- Next: fetch the new digest and verify zero errors and zero
+  warnings everywhere.
