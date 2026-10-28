@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 72cc951fd96365a8bdb3cca508c5c190320f7fad)
 /*
 ===========================================================================
 
@@ -796,7 +797,7 @@ void GLimp_LogComment( char *comment ) {
 ** GLW_StartDriverAndSetMode
 */
 // bk001204 - prototype needed
-int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen );
+rserr_t GLW_SetMode( const char *drivername, int mode, qboolean fullscreen );
 static qboolean GLW_StartDriverAndSetMode( const char *drivername,
 										   int mode,
 										   qboolean fullscreen ) {
@@ -830,7 +831,7 @@ static qboolean GLW_StartDriverAndSetMode( const char *drivername,
 /*
 ** GLW_SetMode
 */
-int GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
+rserr_t GLW_SetMode( const char *drivername, int mode, qboolean fullscreen ) {
 	int attrib[] = {
 		GLX_RGBA,     // 0
 		GLX_RED_SIZE, 4,  // 1, 2
