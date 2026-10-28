@@ -152,3 +152,12 @@ HEAD before push: 7609bcd | CI: publish build logs and digest [skip ci]
 - linux all legs: added portable Sys_SnapVector to unix_main.cpp (declared in qcommon.h, win32 x87 version lives in win_shared.cpp; round half away from zero per component).
 - linux release-game hardlink leg: botlib be_ai_goal.cpp defined int g_gametype / int g_gameskill which collided with the game module's vmCvar_t in g_main.cpp when both are linked into one exe. g_gametype is static now, the unused g_gameskill copy is removed (no botlib header externs them).
 Files pushed: src/qcommon/q_math.cpp, src/client/snd_mix.cpp, src/sys/unix/unix_main.cpp, src/sys/unix/linux_qgl.cpp, src/games/botlib/be_ai_goal.cpp, tools/ci-session-notes.md
+
+## RESULT: CI fully green (digest 1ff8d2d, build of 89ac614)
+All 13 jobs success with 0 errors and 0 warnings:
+ubuntu x64 debug/release/release-game, ubuntu x86 debug/release,
+windows x64 debug/release/release-cgame/release-game/release-ui,
+windows x86 debug/release, uncrustify.
+The g_gametype/g_gameskill, re, qgl* extern, Sys_SnapVector and
+portable BoxOnPlaneSide/S_WriteLinearBlastStereo16 fixes from the
+previous entry all linked cleanly. Task complete.
