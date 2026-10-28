@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 6db1bef0fef5fb2cd2ede5ee7c73d8308ddbca56)
 /*
 ===========================================================================
 
@@ -130,6 +131,8 @@ static void CPUID( int func, unsigned regs[4] ) {
 }
 
 static int IsPentium( void ) {
+	int hasCPUID = 0;
+
 	__asm
 	{
 		pushfd                      // save eflags
@@ -143,7 +146,7 @@ static int IsPentium( void ) {
 		pop eax
 		test eax, 0x00200000        // check ID bit
 		jz good
-		jmp err                     // cpuid not supported
+		jmp done                    // cpuid not supported
 set21:
 		or      eax, 0x00200000     // set ID bit
 		push eax                    // store new value
@@ -152,13 +155,13 @@ set21:
 		pop eax
 		test eax, 0x00200000        // if bit 21 is on
 		jnz good
-		jmp err
+		jmp done
+good:
+		mov hasCPUID, 1             // cpuid supported
+done:
 	}
 
-err:
-	return qfalse;
-good:
-	return qtrue;
+	return hasCPUID;
 }
 
 static int Is3DNOW( void ) {
