@@ -2446,8 +2446,10 @@ void Com_Shutdown( void ) {
 
 }
 
-#if !( defined __linux__ || defined __FreeBSD__ )  // r010123 - include FreeBSD
-#if ( ( !id386 ) && ( !defined __i386__ ) ) // rcg010212 - for PPC
+// rcg010212 - for PPC
+// plain C versions also build on Linux and FreeBSD, where the optimized
+// versions below cannot be used because they are MSVC inline asm
+#if ( ( !id386 ) && ( !defined __i386__ ) ) || defined( __linux__ ) || defined( __FreeBSD__ )
 
 void Com_Memcpy( void* dest, const void* src, const size_t count ) {
 	memcpy( dest, src, count );
@@ -2752,7 +2754,6 @@ skip:
 	}
 }
 
-#endif
 #endif // bk001208 - memset/memcpy assembly, Q_acos needed (RC4)
 //------------------------------------------------------------------------
 

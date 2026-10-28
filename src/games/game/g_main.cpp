@@ -1572,7 +1572,8 @@ void CalculateRanks( void ) {
 	level.numNonSpectatorClients = 0;
 	level.numPlayingClients = 0;
 	level.numVotingClients = 0;     // don't count bots
-	for ( i = 0; i < TEAM_NUM_TEAMS; i++ ) {
+	// the array only holds counters for the red and blue teams
+	for ( i = 0; i < 2; i++ ) {
 		level.numteamVotingClients[i] = 0;
 	}
 	for ( i = 0 ; i < level.maxclients ; i++ ) {
