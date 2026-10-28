@@ -3,7 +3,7 @@
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 55.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 23.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -293,16 +293,6 @@ Compiling 'src/client/snd_mem.cpp'
 Compiling 'src/client/snd_mix.cpp'
 Compiling 'src/client/snd_wavelet.cpp'
 Compiling 'src/qcommon/cm_load.cpp'
-src/client/snd_dma.cpp:1857:19: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1857 |                         if ( ss && ss->loop ) {
-      |                                 ~~ ~~~~^~~~
-src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2171 |         if ( ss->loop && loop ) {
-      |              ~~~~^~~~ ~~
-src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2487 |                                         if ( ss->loop && ss->loop[0] ) {
-      |                                              ~~~~^~~~ ~~
-3 warnings generated.
 Compiling 'src/qcommon/cm_patch.cpp'
 Compiling 'src/qcommon/cm_polylib.cpp'
 Compiling 'src/qcommon/cm_test.cpp'
@@ -363,6 +353,7 @@ Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
+Compiling 'src/splines/math_matrix.cpp'
 In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
     9 | #warning "xf86dga.h is obsolete and may be removed in the future."
@@ -371,42 +362,47 @@ In file included from src/sys/unix/linux_glimp.cpp:76:
    10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
       |  ^
 2 warnings generated.
-Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
 Compiling 'src/splines/math_vector.cpp'
-In file included from src/splines/math_matrix.cpp:29:
-In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
-2 errors generated.
-2 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
-scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
 Compiling 'src/splines/q_parse.cpp'
+In file included from src/splines/math_angles.cpp:29:
+In file included from src/splines/math_matrix.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+2 errors generated.
+scons: *** [build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o] Error 1
+scons: *** [build/linux-x64-debug/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
-Compiling 'src/splines/util_str.cpp'
-In file included from src/splines/q_shared.cpp:30:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
 In file included from src/splines/q_parse.cpp:31:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
       | ^~~~~~
       | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+2 errors generated.
+Compiling 'src/splines/util_str.cpp'
+scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
+In file included from src/splines/q_shared.cpp:30:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
       | ^~~~~~
       | char
@@ -414,16 +410,9 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 2 errors generated.
-2 errors generated.
-scons: *** [build/linux-x64-debug/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_char.cpp'
-scons: *** [build/linux-x64-debug/client/obj/splines/q_parse.cpp.o] Error 1
-Compiling 'src/games/botlib/be_ai_chat.cpp'
+scons: *** [build/linux-x64-debug/client/obj/splines/q_shared.cpp.o] Error 1
 In file included from src/splines/splines.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
@@ -433,6 +422,7 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
+Compiling 'src/games/botlib/be_ai_chat.cpp'
 Compiling 'src/games/botlib/be_ai_gen.cpp'
 src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
   471 |         idStr s = va( "\t\t%s {\n", p );
@@ -487,8 +477,8 @@ src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
       |             ^~
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 20 errors generated.
-Compiling 'src/games/botlib/be_ai_goal.cpp'
 scons: *** [build/linux-x64-debug/client/obj/splines/splines.cpp.o] Error 1
+Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
 Compiling 'src/games/botlib/be_ai_weight.cpp'
@@ -562,10 +552,6 @@ Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
 Compiling 'src/games/game/ai/ai_script_entities.cpp'
-src/games/game/ai/ai_script_actions_combat.cpp:533:45: warning: address of array 'g_entities[cs->entityNum].client->ps.weapons' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  533 |         if ( !g_entities[cs->entityNum].client->ps.weapons ) {
-      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-1 warning generated.
 Compiling 'src/games/game/ai/ai_spawn.cpp'
 Compiling 'src/games/game/ai/ai_system.cpp'
 Compiling 'src/games/game/ai/ai_targeting.cpp'
@@ -602,17 +588,9 @@ Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
 Compiling 'src/games/cgame/cg_ents.cpp'
-src/games/cgame/cg_drawtools.cpp:148:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  148 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_event.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx.cpp'
-src/games/cgame/cg_ents.cpp:397:14: warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_fx_entities.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx_flame.cpp'
 Compiling 'src/games/cgame/cg_fx_marks.cpp'
 Compiling 'src/games/cgame/cg_fx_particles.cpp'
@@ -628,33 +606,19 @@ Compiling 'src/games/cgame/cg_servercmds.cpp'
 Compiling 'src/games/cgame/cg_snapshot.cpp'
 Compiling 'src/games/cgame/cg_sound.cpp'
 Compiling 'src/games/cgame/cg_syscalls.cpp'
-src/games/cgame/cg_servercmds.cpp:948:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  948 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:960:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  960 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:972:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  972 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
 Compiling 'src/games/cgame/cg_view.cpp'
-3 warnings generated.
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:1: error: use of undeclared identifier '$1'
-  874 | $1// fully zoomed out; keep the current fov_x
-      | ^~
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
-src/games/cgame/cg_view.cpp:1386:1: error: use of undeclared identifier '$1'
- 1386 | $1// fully zoomed out; keep the current fov_x
-      | ^~
+src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
+  874 |                                 $ 1// fully zoomed out; keep the current fov_x
+      |                                 ^
+src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
+ 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
+      |                                         ^
 2 errors generated.
 scons: *** [build/linux-x64-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
-src/games/cgame/cg_weapons.cpp:1005:10: warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1005 |         if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
-      |                ~^~~~~~~~
-1 warning generated.
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
 Compiling 'src/games/cgame/fx/genericparser2.cpp'
@@ -668,43 +632,26 @@ Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
-src/games/ui/ui_main.cpp:1449:7: warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1449 |         if ( levelname && levelname[0] != 0 ) {
-      |              ^~~~~~~~~ ~~
-src/games/ui/ui_main.cpp:1507:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1507 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
-src/games/ui/ui_players.cpp:773:25: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
-  773 |         if ( pi->pendingWeapon != -1 && dp_realtime > pi->weaponTimer ) {
-      |              ~~~~~~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1615:21: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
- 1615 |                 if ( weaponNumber != -1 ) {
-      |                      ~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1628:20: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
- 1628 |         if ( weaponNumber == -1 ) {
-      |              ~~~~~~~~~~~~ ^  ~~
-3 warnings generated.
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
-2 warnings generated.
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/math_angles.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/q_shared.cpp.o' — Error 1
+❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/math_angles.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/q_parse.cpp.o' — Error 1
+❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/q_shared.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-debug/client/obj/splines/splines.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-debug/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 17 warning(s), ❌ 30 error(s)
+📊 Diagnostics: ⚠️ 2 warning(s), ❌ 30 error(s)
 
 
-==== ubuntu-latest-x64-release- (cancelled) ====
+==== ubuntu-latest-x64-release- (failure) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 30.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 61.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -991,19 +938,9 @@ Compiling 'src/client/cl_ui.cpp'
 Compiling 'src/client/snd_adpcm.cpp'
 Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_mem.cpp'
-src/client/snd_dma.cpp:1857:19: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1857 |                         if ( ss && ss->loop ) {
-      |                                 ~~ ~~~~^~~~
-src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2171 |         if ( ss->loop && loop ) {
-      |              ~~~~^~~~ ~~
-src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2487 |                                         if ( ss->loop && ss->loop[0] ) {
-      |                                              ~~~~^~~~ ~~
 Compiling 'src/client/snd_mix.cpp'
 Compiling 'src/client/snd_wavelet.cpp'
 Compiling 'src/qcommon/cm_load.cpp'
-3 warnings generated.
 Compiling 'src/qcommon/cm_patch.cpp'
 Compiling 'src/qcommon/cm_polylib.cpp'
 Compiling 'src/qcommon/cm_test.cpp'
@@ -1072,31 +1009,31 @@ In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
    10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
       |  ^
-2 warnings generated.
-Compiling 'src/splines/math_quaternion.cpp'
 In file included from src/splines/math_angles.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 In file included from src/splines/math_matrix.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
       | ^~~~~~
       | char
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
 src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
 2 errors generated.
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
 2 errors generated.
+scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
+Compiling 'src/splines/math_quaternion.cpp'
 scons: *** [build/linux-x64-release/client/obj/splines/math_angles.cpp.o] Error 1
 Compiling 'src/splines/math_vector.cpp'
-scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
+2 warnings generated.
 Compiling 'src/splines/q_parse.cpp'
 Compiling 'src/splines/q_shared.cpp'
 In file included from src/splines/q_parse.cpp:31:
@@ -1108,9 +1045,9 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
-Compiling 'src/splines/splines.cpp'
 2 errors generated.
 scons: *** [build/linux-x64-release/client/obj/splines/q_parse.cpp.o] Error 1
+Compiling 'src/splines/splines.cpp'
 Compiling 'src/splines/util_str.cpp'
 Compiling 'src/games/botlib/be_ai_char.cpp'
 In file included from src/splines/q_shared.cpp:30:
@@ -1221,8 +1158,8 @@ Compiling 'src/tools/extractfuncs/l_precomp.cpp'
 Compiling 'src/tools/extractfuncs/l_script.cpp'
 Compiling 'src/games/game/bg_animation.cpp'
 Compiling 'src/games/game/bg_misc.cpp'
-Linking 'build/linux-x64-release/extractfuncs'
 Compiling 'src/games/game/bg_pmove.cpp'
+Linking 'build/linux-x64-release/extractfuncs'
 Compiling 'src/games/game/bg_slidemove.cpp'
 Compiling 'src/games/game/g_active.cpp'
 Compiling 'src/games/game/g_alarm.cpp'
@@ -1266,10 +1203,6 @@ Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
 Compiling 'src/games/game/ai/ai_script_entities.cpp'
-src/games/game/ai/ai_script_actions_combat.cpp:533:45: warning: address of array 'g_entities[cs->entityNum].client->ps.weapons' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  533 |         if ( !g_entities[cs->entityNum].client->ps.weapons ) {
-      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-1 warning generated.
 Compiling 'src/games/game/ai/ai_spawn.cpp'
 Compiling 'src/games/game/ai/ai_system.cpp'
 Compiling 'src/games/game/ai/ai_targeting.cpp'
@@ -1305,18 +1238,10 @@ Compiling 'src/games/cgame/cg_consolecmds.cpp'
 Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
-src/games/cgame/cg_drawtools.cpp:148:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  148 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_ents.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_event.cpp'
 Compiling 'src/games/cgame/cg_fx.cpp'
-src/games/cgame/cg_ents.cpp:397:14: warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_fx_entities.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx_flame.cpp'
 Compiling 'src/games/cgame/cg_fx_marks.cpp'
 Compiling 'src/games/cgame/cg_fx_particles.cpp'
@@ -1330,37 +1255,23 @@ Compiling 'src/games/cgame/cg_predict.cpp'
 Compiling 'src/games/cgame/cg_scoreboard.cpp'
 Compiling 'src/games/cgame/cg_servercmds.cpp'
 Compiling 'src/games/cgame/cg_snapshot.cpp'
-src/games/cgame/cg_servercmds.cpp:948:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  948 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:960:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  960 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:972:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  972 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
 Compiling 'src/games/cgame/cg_sound.cpp'
 Compiling 'src/games/cgame/cg_syscalls.cpp'
-3 warnings generated.
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:1: error: use of undeclared identifier '$1'
-  874 | $1// fully zoomed out; keep the current fov_x
-      | ^~
-src/games/cgame/cg_view.cpp:1386:1: error: use of undeclared identifier '$1'
- 1386 | $1// fully zoomed out; keep the current fov_x
-      | ^~
+src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
+  874 |                                 $ 1// fully zoomed out; keep the current fov_x
+      |                                 ^
+src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
+ 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
+      |                                         ^
 2 errors generated.
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
-src/games/cgame/cg_weapons.cpp:1005:10: warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1005 |         if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
-      |                ~^~~~~~~~
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/fx/genericparser2.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/qcommon/q_math.cpp'
@@ -1371,36 +1282,19 @@ Compiling 'src/games/ui/ui_gameinfo.cpp'
 Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
-src/games/ui/ui_main.cpp:1449:7: warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1449 |         if ( levelname && levelname[0] != 0 ) {
-      |              ^~~~~~~~~ ~~
-src/games/ui/ui_main.cpp:1507:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1507 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
-src/games/ui/ui_players.cpp:773:25: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
-  773 |         if ( pi->pendingWeapon != -1 && dp_realtime > pi->weaponTimer ) {
-      |              ~~~~~~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1615:21: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
- 1615 |                 if ( weaponNumber != -1 ) {
-      |                      ~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1628:20: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
- 1628 |         if ( weaponNumber == -1 ) {
-      |              ~~~~~~~~~~~~ ^  ~~
-3 warnings generated.
 Compiling 'src/games/ui/ui_syscalls.cpp'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
-2 warnings generated.
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_angles.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_matrix.cpp.o' — Error 1
+❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_angles.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_parse.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_shared.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/splines.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 18 warning(s), ❌ 30 error(s)
+📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
 
 
 ==== ubuntu-latest-x64-release-game (failure) ====
@@ -1408,9 +1302,12 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 69.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 65.9 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
 Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 
 (Reading database ... 5%
@@ -1433,7 +1330,7 @@ Selecting previously unselected package libc6-dev-i386.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 212715 files and directories currently installed.)
+(Reading database ... 211065 files and directories currently installed.)
 Preparing to unpack .../00-libc6-dev-i386_2.43-2ubuntu2.4_amd64v3.deb ...
 Unpacking libc6-dev-i386 (2.43-2ubuntu2.4) ...
 Selecting previously unselected package libc6-x32.
@@ -1570,7 +1467,7 @@ Selecting previously unselected package xorg-sgml-doctools.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 213353 files and directories currently installed.)
+(Reading database ... 211703 files and directories currently installed.)
 Preparing to unpack .../0-xorg-sgml-doctools_1%3a1.11-1.1build1_all.deb ...
 Unpacking xorg-sgml-doctools (1:1.11-1.1build1) ...
 Selecting previously unselected package x11proto-dev.
@@ -1644,7 +1541,7 @@ Selecting previously unselected package libxext-dev:amd64.
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%
-(Reading database ... 213665 files and directories currently installed.)
+(Reading database ... 212015 files and directories currently installed.)
 Preparing to unpack .../libxext-dev_2%3a1.3.4-1build3_amd64v3.deb ...
 Unpacking libxext-dev:amd64 (2:1.3.4-1build3) ...
 Selecting previously unselected package libxxf86dga1:amd64.
@@ -1689,22 +1586,12 @@ Compiling 'src/client/cl_net_chan.cpp'
 Compiling 'src/client/cl_parse.cpp'
 Compiling 'src/client/cl_scrn.cpp'
 Compiling 'src/client/cl_ui.cpp'
-Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_adpcm.cpp'
+Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_mem.cpp'
-src/client/snd_dma.cpp:1857:19: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1857 |                         if ( ss && ss->loop ) {
-      |                                 ~~ ~~~~^~~~
-src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2171 |         if ( ss->loop && loop ) {
-      |              ~~~~^~~~ ~~
-src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2487 |                                         if ( ss->loop && ss->loop[0] ) {
-      |                                              ~~~~^~~~ ~~
 Compiling 'src/client/snd_mix.cpp'
 Compiling 'src/client/snd_wavelet.cpp'
 Compiling 'src/qcommon/cm_load.cpp'
-3 warnings generated.
 Compiling 'src/qcommon/cm_patch.cpp'
 Compiling 'src/qcommon/cm_polylib.cpp'
 Compiling 'src/qcommon/cm_test.cpp'
@@ -1763,7 +1650,6 @@ Compiling 'src/sys/unix/linux_common.cpp'
 Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
-Compiling 'src/sys/unix/linux_snd.cpp'
 In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
     9 | #warning "xf86dga.h is obsolete and may be removed in the future."
@@ -1771,19 +1657,12 @@ In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
    10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
       |  ^
+Compiling 'src/sys/unix/linux_snd.cpp'
 Compiling 'src/splines/math_angles.cpp'
-Compiling 'src/splines/math_matrix.cpp'
 2 warnings generated.
+Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
-In file included from src/splines/math_matrix.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
+Compiling 'src/splines/math_vector.cpp'
 In file included from src/splines/math_angles.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
@@ -1794,13 +1673,7 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ^
       |               ;
 2 errors generated.
-2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/math_angles.cpp.o] Error 1
-Compiling 'src/splines/math_vector.cpp'
-scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
-Compiling 'src/splines/q_parse.cpp'
-Compiling 'src/splines/q_shared.cpp'
-In file included from src/splines/q_parse.cpp:31:
+In file included from src/splines/math_matrix.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
       | ^~~~~~
@@ -1810,7 +1683,10 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ^
       |               ;
 2 errors generated.
-scons: *** [build/linux-x64-release/client/obj/splines/q_parse.cpp.o] Error 1
+scons: *** [build/linux-x64-release/client/obj/splines/math_angles.cpp.o] Error 1
+Compiling 'src/splines/q_parse.cpp'
+scons: *** [build/linux-x64-release/client/obj/splines/math_matrix.cpp.o] Error 1
+Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
 In file included from src/splines/q_shared.cpp:30:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
@@ -1822,11 +1698,9 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ^
       |               ;
 2 errors generated.
-Compiling 'src/splines/util_str.cpp'
-Compiling 'src/games/botlib/be_ai_char.cpp'
 scons: *** [build/linux-x64-release/client/obj/splines/q_shared.cpp.o] Error 1
-Compiling 'src/games/botlib/be_ai_chat.cpp'
-In file included from src/splines/splines.cpp:29:
+Compiling 'src/splines/util_str.cpp'
+In file included from src/splines/q_parse.cpp:31:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
       | ^~~~~~
@@ -1835,7 +1709,18 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
-Compiling 'src/games/botlib/be_ai_gen.cpp'
+2 errors generated.
+In file included from src/splines/splines.cpp:29:
+scons: *** [build/linux-x64-release/client/obj/splines/q_parse.cpp.o] Error 1
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
+Compiling 'src/games/botlib/be_ai_char.cpp'
 src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
   471 |         idStr s = va( "\t\t%s {\n", p );
       |                   ^~
@@ -1893,6 +1778,8 @@ src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 1 warning and 20 errors generated.
 scons: *** [build/linux-x64-release/client/obj/splines/splines.cpp.o] Error 1
+Compiling 'src/games/botlib/be_ai_chat.cpp'
+Compiling 'src/games/botlib/be_ai_gen.cpp'
 Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
@@ -1961,10 +1848,6 @@ Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
 Compiling 'src/games/game/ai/ai_script_entities.cpp'
-src/games/game/ai/ai_script_actions_combat.cpp:533:45: warning: address of array 'g_entities[cs->entityNum].client->ps.weapons' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  533 |         if ( !g_entities[cs->entityNum].client->ps.weapons ) {
-      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-1 warning generated.
 Compiling 'src/games/game/ai/ai_spawn.cpp'
 Compiling 'src/games/game/ai/ai_system.cpp'
 Compiling 'src/games/game/ai/ai_targeting.cpp'
@@ -2003,18 +1886,10 @@ Linking 'build/linux-x64-release/extractfuncs'
 Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
-src/games/cgame/cg_drawtools.cpp:148:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  148 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_ents.cpp'
-src/games/cgame/cg_ents.cpp:397:14: warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
-1 warning generated.
 Compiling 'src/games/cgame/cg_event.cpp'
 Compiling 'src/games/cgame/cg_fx.cpp'
 Compiling 'src/games/cgame/cg_fx_entities.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx_flame.cpp'
 Compiling 'src/games/cgame/cg_fx_marks.cpp'
 Compiling 'src/games/cgame/cg_fx_particles.cpp'
@@ -2028,37 +1903,23 @@ Compiling 'src/games/cgame/cg_predict.cpp'
 Compiling 'src/games/cgame/cg_scoreboard.cpp'
 Compiling 'src/games/cgame/cg_servercmds.cpp'
 Compiling 'src/games/cgame/cg_snapshot.cpp'
-src/games/cgame/cg_servercmds.cpp:948:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  948 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:960:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  960 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:972:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  972 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
 Compiling 'src/games/cgame/cg_sound.cpp'
-3 warnings generated.
 Compiling 'src/games/cgame/cg_syscalls.cpp'
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
-Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:1: error: use of undeclared identifier '$1'
-  874 | $1// fully zoomed out; keep the current fov_x
-      | ^~
-src/games/cgame/cg_view.cpp:1386:1: error: use of undeclared identifier '$1'
- 1386 | $1// fully zoomed out; keep the current fov_x
-      | ^~
+src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
+  874 |                                 $ 1// fully zoomed out; keep the current fov_x
+      |                                 ^
+src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
+ 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
+      |                                         ^
 2 errors generated.
 scons: *** [build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
+Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
-src/games/cgame/cg_weapons.cpp:1005:10: warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1005 |         if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
-      |                ~^~~~~~~~
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/fx/genericparser2.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/qcommon/q_math.cpp'
@@ -2069,36 +1930,19 @@ Compiling 'src/games/ui/ui_gameinfo.cpp'
 Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
-src/games/ui/ui_main.cpp:1449:7: warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1449 |         if ( levelname && levelname[0] != 0 ) {
-      |              ^~~~~~~~~ ~~
-src/games/ui/ui_players.cpp:773:25: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
-  773 |         if ( pi->pendingWeapon != -1 && dp_realtime > pi->weaponTimer ) {
-      |              ~~~~~~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_main.cpp:1507:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1507 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
-src/games/ui/ui_players.cpp:1615:21: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
- 1615 |                 if ( weaponNumber != -1 ) {
-      |                      ~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1628:20: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
- 1628 |         if ( weaponNumber == -1 ) {
-      |              ~~~~~~~~~~~~ ^  ~~
-3 warnings generated.
 Compiling 'src/games/ui/ui_syscalls.cpp'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
-2 warnings generated.
 Linking 'bin/main/ui_x64.so'
 scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_angles.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/math_matrix.cpp.o' — Error 1
-❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_parse.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_shared.cpp.o' — Error 1
+❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/q_parse.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/client/obj/splines/splines.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x64-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 18 warning(s), ❌ 30 error(s)
+📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
 
 
 ==== ubuntu-latest-x86-debug- (failure) ====
@@ -2106,7 +1950,7 @@ scons: done building targets (errors occurred during build).
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 40.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 47.0 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -2661,7 +2505,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1367]
+ runner @ user manager: (sd-pam)[1161]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -2669,8 +2513,8 @@ scons: done reading SConscript files.
 scons: Building targets ...
 Compiling 'src/client/cl_cgame.cpp'
 Compiling 'src/client/cl_cin.cpp'
-Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_input.cpp'
+Compiling 'src/client/cl_console.cpp'
 Compiling 'src/client/cl_keys.cpp'
 Compiling 'src/client/cl_main.cpp'
 Compiling 'src/client/cl_net_chan.cpp'
@@ -2682,16 +2526,6 @@ Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_mem.cpp'
 Compiling 'src/client/snd_mix.cpp'
 Compiling 'src/client/snd_wavelet.cpp'
-src/client/snd_dma.cpp:1857:19: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1857 |                         if ( ss && ss->loop ) {
-      |                                 ~~ ~~~~^~~~
-src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2171 |         if ( ss->loop && loop ) {
-      |              ~~~~^~~~ ~~
-src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2487 |                                         if ( ss->loop && ss->loop[0] ) {
-      |                                              ~~~~^~~~ ~~
-3 warnings generated.
 Compiling 'src/qcommon/cm_load.cpp'
 Compiling 'src/qcommon/cm_patch.cpp'
 Compiling 'src/qcommon/cm_polylib.cpp'
@@ -2752,8 +2586,6 @@ Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
-Compiling 'src/splines/math_angles.cpp'
-Compiling 'src/splines/math_matrix.cpp'
 In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
     9 | #warning "xf86dga.h is obsolete and may be removed in the future."
@@ -2762,21 +2594,25 @@ In file included from src/sys/unix/linux_glimp.cpp:76:
    10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
       |  ^
 2 warnings generated.
+Compiling 'src/splines/math_angles.cpp'
+Compiling 'src/splines/math_matrix.cpp'
 Compiling 'src/splines/math_quaternion.cpp'
+Compiling 'src/splines/math_vector.cpp'
+Compiling 'src/splines/q_parse.cpp'
 In file included from src/splines/math_matrix.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
 In file included from src/splines/math_angles.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
 src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
       |               ;
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
 src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
   533 | char$1*$2QDECL va( const char *format, ... );
       |               ^
@@ -2785,10 +2621,9 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
 2 errors generated.
 scons: *** [build/linux-x86-debug/client/obj/splines/math_matrix.cpp.o] Error 1
 scons: *** [build/linux-x86-debug/client/obj/splines/math_angles.cpp.o] Error 1
-Compiling 'src/splines/math_vector.cpp'
-Compiling 'src/splines/q_parse.cpp'
 Compiling 'src/splines/q_shared.cpp'
 Compiling 'src/splines/splines.cpp'
+Compiling 'src/splines/util_str.cpp'
 In file included from src/splines/q_parse.cpp:31:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
@@ -2799,8 +2634,16 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ^
       |               ;
 2 errors generated.
-Compiling 'src/splines/util_str.cpp'
 scons: *** [build/linux-x86-debug/client/obj/splines/q_parse.cpp.o] Error 1
+In file included from src/splines/splines.cpp:29:
+src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
+  533 | char$1*$2QDECL va( const char *format, ... );
+      | ^~~~~~
+      | char
+src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
+  533 | char$1*$2QDECL va( const char *format, ... );
+      |               ^
+      |               ;
 Compiling 'src/games/botlib/be_ai_char.cpp'
 In file included from src/splines/q_shared.cpp:30:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
@@ -2814,17 +2657,7 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
 2 errors generated.
 scons: *** [build/linux-x86-debug/client/obj/splines/q_shared.cpp.o] Error 1
 Compiling 'src/games/botlib/be_ai_chat.cpp'
-In file included from src/splines/splines.cpp:29:
-src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
-  533 | char$1*$2QDECL va( const char *format, ... );
-      | ^~~~~~
-      | char
-src/splines/q_splineshared.h:533:15: error: expected ';' after top level declarator
-  533 | char$1*$2QDECL va( const char *format, ... );
-      |               ^
-      |               ;
 Compiling 'src/games/botlib/be_ai_gen.cpp'
-Compiling 'src/games/botlib/be_ai_goal.cpp'
 src/splines/splines.cpp:471:12: error: use of undeclared identifier 'va'
   471 |         idStr s = va( "\t\t%s {\n", p );
       |                   ^~
@@ -2879,6 +2712,7 @@ src/splines/splines.cpp:1253:6: error: use of undeclared identifier 'va'
 fatal error: too many errors emitted, stopping now [-ferror-limit=]
 20 errors generated.
 scons: *** [build/linux-x86-debug/client/obj/splines/splines.cpp.o] Error 1
+Compiling 'src/games/botlib/be_ai_goal.cpp'
 Compiling 'src/games/botlib/be_ai_move.cpp'
 Compiling 'src/games/botlib/be_ai_weap.cpp'
 Compiling 'src/games/botlib/be_ai_weight.cpp'
@@ -2951,11 +2785,7 @@ Compiling 'src/games/game/ai/ai_script_actions_animation.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
-src/games/game/ai/ai_script_actions_combat.cpp:533:45: warning: address of array 'g_entities[cs->entityNum].client->ps.weapons' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  533 |         if ( !g_entities[cs->entityNum].client->ps.weapons ) {
-      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
 Compiling 'src/games/game/ai/ai_script_entities.cpp'
-1 warning generated.
 Compiling 'src/games/game/ai/ai_spawn.cpp'
 Compiling 'src/games/game/ai/ai_system.cpp'
 Compiling 'src/games/game/ai/ai_targeting.cpp'
@@ -2992,16 +2822,8 @@ Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
 Compiling 'src/games/cgame/cg_ents.cpp'
-src/games/cgame/cg_drawtools.cpp:148:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  148 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
-1 warning generated.
 Compiling 'src/games/cgame/cg_event.cpp'
-src/games/cgame/cg_ents.cpp:397:14: warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_fx.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx_entities.cpp'
 Compiling 'src/games/cgame/cg_fx_flame.cpp'
 Compiling 'src/games/cgame/cg_fx_marks.cpp'
@@ -3017,34 +2839,20 @@ Compiling 'src/games/cgame/cg_scoreboard.cpp'
 Compiling 'src/games/cgame/cg_servercmds.cpp'
 Compiling 'src/games/cgame/cg_snapshot.cpp'
 Compiling 'src/games/cgame/cg_sound.cpp'
-src/games/cgame/cg_servercmds.cpp:948:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  948 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:960:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  960 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:972:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  972 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
 Compiling 'src/games/cgame/cg_syscalls.cpp'
-3 warnings generated.
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:1: error: use of undeclared identifier '$1'
-  874 | $1// fully zoomed out; keep the current fov_x
-      | ^~
-src/games/cgame/cg_view.cpp:1386:1: error: use of undeclared identifier '$1'
- 1386 | $1// fully zoomed out; keep the current fov_x
-      | ^~
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
+src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
+  874 |                                 $ 1// fully zoomed out; keep the current fov_x
+      |                                 ^
+src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
+ 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
+      |                                         ^
 2 errors generated.
 scons: *** [build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
-src/games/cgame/cg_weapons.cpp:1005:10: warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1005 |         if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
-      |                ~^~~~~~~~
-1 warning generated.
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
 Compiling 'src/games/cgame/fx/genericparser2.cpp'
@@ -3058,26 +2866,9 @@ Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/games/ui/ui_syscalls.cpp'
-src/games/ui/ui_main.cpp:1449:7: warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1449 |         if ( levelname && levelname[0] != 0 ) {
-      |              ^~~~~~~~~ ~~
-src/games/ui/ui_main.cpp:1507:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1507 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
-src/games/ui/ui_players.cpp:773:25: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
-  773 |         if ( pi->pendingWeapon != -1 && dp_realtime > pi->weaponTimer ) {
-      |              ~~~~~~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1615:21: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
- 1615 |                 if ( weaponNumber != -1 ) {
-      |                      ~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1628:20: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
- 1628 |         if ( weaponNumber == -1 ) {
-      |              ~~~~~~~~~~~~ ^  ~~
-3 warnings generated.
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
-2 warnings generated.
 Linking 'bin/main/ui_x86.so'
 scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/math_matrix.cpp.o' — Error 1
@@ -3086,15 +2877,15 @@ scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/q_shared.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x86-debug/client/obj/splines/splines.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x86-debug/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 17 warning(s), ❌ 30 error(s)
+📊 Diagnostics: ⚠️ 2 warning(s), ❌ 30 error(s)
 
 
-==== ubuntu-latest-x86-release- (failure) ====
+==== ubuntu-latest-x86-release- (cancelled) ====
 
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 104.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 23.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 
@@ -3649,7 +3440,7 @@ Service restarts being deferred:
 No containers need to be restarted.
 
 User sessions running outdated binaries:
- runner @ user manager: (sd-pam)[1372]
+ runner @ user manager: (sd-pam)[1350]
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 scons: Reading SConscript files ...
@@ -3668,20 +3459,10 @@ Compiling 'src/client/cl_ui.cpp'
 Compiling 'src/client/snd_adpcm.cpp'
 Compiling 'src/client/snd_dma.cpp'
 Compiling 'src/client/snd_mem.cpp'
-src/client/snd_dma.cpp:1857:19: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1857 |                         if ( ss && ss->loop ) {
-      |                                 ~~ ~~~~^~~~
-src/client/snd_dma.cpp:2171:11: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2171 |         if ( ss->loop && loop ) {
-      |              ~~~~^~~~ ~~
-src/client/snd_dma.cpp:2487:15: warning: address of array 'ss->loop' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 2487 |                                         if ( ss->loop && ss->loop[0] ) {
-      |                                              ~~~~^~~~ ~~
 Compiling 'src/client/snd_mix.cpp'
 Compiling 'src/client/snd_wavelet.cpp'
 Compiling 'src/qcommon/cm_load.cpp'
 Compiling 'src/qcommon/cm_patch.cpp'
-3 warnings generated.
 Compiling 'src/qcommon/cm_polylib.cpp'
 Compiling 'src/qcommon/cm_test.cpp'
 Compiling 'src/qcommon/cm_trace.cpp'
@@ -3740,6 +3521,7 @@ Compiling 'src/sys/unix/linux_glimp.cpp'
 Compiling 'src/sys/unix/linux_joystick.cpp'
 Compiling 'src/sys/unix/linux_qgl.cpp'
 Compiling 'src/sys/unix/linux_snd.cpp'
+Compiling 'src/splines/math_angles.cpp'
 In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:9:2: warning: "xf86dga.h is obsolete and may be removed in the future." [-W#warnings]
     9 | #warning "xf86dga.h is obsolete and may be removed in the future."
@@ -3747,10 +3529,7 @@ In file included from src/sys/unix/linux_glimp.cpp:76:
 /usr/include/X11/extensions/xf86dga.h:10:2: warning: "include <X11/extensions/Xxf86dga.h> instead." [-W#warnings]
    10 | #warning "include <X11/extensions/Xxf86dga.h> instead."
       |  ^
-Compiling 'src/splines/math_angles.cpp'
 Compiling 'src/splines/math_matrix.cpp'
-2 warnings generated.
-Compiling 'src/splines/math_quaternion.cpp'
 In file included from src/splines/math_angles.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
@@ -3762,6 +3541,8 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ;
 2 errors generated.
 scons: *** [build/linux-x86-release/client/obj/splines/math_angles.cpp.o] Error 1
+Compiling 'src/splines/math_quaternion.cpp'
+2 warnings generated.
 Compiling 'src/splines/math_vector.cpp'
 In file included from src/splines/math_matrix.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
@@ -3789,7 +3570,6 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
 2 errors generated.
 scons: *** [build/linux-x86-release/client/obj/splines/q_parse.cpp.o] Error 1
 Compiling 'src/splines/util_str.cpp'
-Compiling 'src/games/botlib/be_ai_char.cpp'
 In file included from src/splines/q_shared.cpp:30:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
   533 | char$1*$2QDECL va( const char *format, ... );
@@ -3801,6 +3581,7 @@ src/splines/q_splineshared.h:533:15: error: expected ';' after top level declara
       |               ;
 2 errors generated.
 scons: *** [build/linux-x86-release/client/obj/splines/q_shared.cpp.o] Error 1
+Compiling 'src/games/botlib/be_ai_char.cpp'
 Compiling 'src/games/botlib/be_ai_chat.cpp'
 In file included from src/splines/splines.cpp:29:
 src/splines/q_splineshared.h:533:1: error: unknown type name 'char$1'; did you mean 'char'?
@@ -3943,10 +3724,6 @@ Compiling 'src/games/game/ai/ai_script_actions_combat.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_mission.cpp'
 Compiling 'src/games/game/ai/ai_script_actions_movement.cpp'
 Compiling 'src/games/game/ai/ai_script_entities.cpp'
-src/games/game/ai/ai_script_actions_combat.cpp:533:45: warning: address of array 'g_entities[cs->entityNum].client->ps.weapons' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  533 |         if ( !g_entities[cs->entityNum].client->ps.weapons ) {
-      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-1 warning generated.
 Compiling 'src/games/game/ai/ai_spawn.cpp'
 Compiling 'src/games/game/ai/ai_system.cpp'
 Compiling 'src/games/game/ai/ai_targeting.cpp'
@@ -3982,18 +3759,10 @@ Compiling 'src/games/cgame/cg_consolecmds.cpp'
 Compiling 'src/games/cgame/cg_draw.cpp'
 Compiling 'src/games/cgame/cg_drawtools.cpp'
 Compiling 'src/games/cgame/cg_effects.cpp'
-src/games/cgame/cg_drawtools.cpp:148:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  148 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_ents.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_event.cpp'
 Compiling 'src/games/cgame/cg_fx.cpp'
-src/games/cgame/cg_ents.cpp:397:14: warning: address of array 'cent->dl_stylestring' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  397 |         if ( !cent->dl_stylestring ) {
-      |              ~~~~~~~^~~~~~~~~~~~~~
 Compiling 'src/games/cgame/cg_fx_entities.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/cg_fx_flame.cpp'
 Compiling 'src/games/cgame/cg_fx_marks.cpp'
 Compiling 'src/games/cgame/cg_fx_particles.cpp'
@@ -4008,36 +3777,22 @@ Compiling 'src/games/cgame/cg_scoreboard.cpp'
 Compiling 'src/games/cgame/cg_servercmds.cpp'
 Compiling 'src/games/cgame/cg_snapshot.cpp'
 Compiling 'src/games/cgame/cg_sound.cpp'
-src/games/cgame/cg_servercmds.cpp:948:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  948 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:960:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  960 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
-src/games/cgame/cg_servercmds.cpp:972:8: warning: address of array 'text' will always evaluate to 'true' [-Wpointer-bool-conversion]
-  972 |                 if ( text && strlen( text ) ) {
-      |                      ^~~~ ~~
 Compiling 'src/games/cgame/cg_syscalls.cpp'
-3 warnings generated.
 Compiling 'src/games/cgame/cg_view.cpp'
 Compiling 'src/games/cgame/cg_weapons.cpp'
 Compiling 'src/games/cgame/fx/FxPrimitives.cpp'
-src/games/cgame/cg_view.cpp:874:1: error: use of undeclared identifier '$1'
-  874 | $1// fully zoomed out; keep the current fov_x
-      | ^~
-src/games/cgame/cg_view.cpp:1386:1: error: use of undeclared identifier '$1'
- 1386 | $1// fully zoomed out; keep the current fov_x
-      | ^~
+src/games/cgame/cg_view.cpp:874:5: error: use of undeclared identifier '$'
+  874 |                                 $ 1// fully zoomed out; keep the current fov_x
+      |                                 ^
+src/games/cgame/cg_view.cpp:1387:6: error: use of undeclared identifier '$'
+ 1387 |                                         $ 1// fully zoomed out; keep the current fov_x
+      |                                         ^
 2 errors generated.
 scons: *** [build/linux-x86-release/cgame/obj/games/cgame/cg_view.cpp.o] Error 1
 Compiling 'src/games/cgame/fx/FxScheduler.cpp'
-src/games/cgame/cg_weapons.cpp:1005:10: warning: address of array 'comppath' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1005 |         if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
-      |                ~^~~~~~~~
 Compiling 'src/games/cgame/fx/FxSystem.cpp'
 Compiling 'src/games/cgame/fx/FxTemplate.cpp'
 Compiling 'src/games/cgame/fx/FxUtil.cpp'
-1 warning generated.
 Compiling 'src/games/cgame/fx/genericparser2.cpp'
 Compiling 'src/games/ui/ui_shared.cpp'
 Compiling 'src/qcommon/q_math.cpp'
@@ -4047,28 +3802,11 @@ Compiling 'src/games/ui/ui_atoms.cpp'
 Compiling 'src/games/ui/ui_gameinfo.cpp'
 Compiling 'src/games/ui/ui_main.cpp'
 Compiling 'src/games/ui/ui_players.cpp'
-src/games/ui/ui_main.cpp:1449:7: warning: address of array 'levelname' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1449 |         if ( levelname && levelname[0] != 0 ) {
-      |              ^~~~~~~~~ ~~
-src/games/ui/ui_main.cpp:1507:8: warning: address of array 'backgroundcolor' will always evaluate to 'true' [-Wpointer-bool-conversion]
- 1507 |                 if ( backgroundcolor ) {
-      |                 ~~   ^~~~~~~~~~~~~~~
 Compiling 'src/games/ui/ui_shared.cpp'
-src/games/ui/ui_players.cpp:773:25: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
-  773 |         if ( pi->pendingWeapon != -1 && dp_realtime > pi->weaponTimer ) {
-      |              ~~~~~~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1615:21: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always true [-Wtautological-constant-out-of-range-compare]
- 1615 |                 if ( weaponNumber != -1 ) {
-      |                      ~~~~~~~~~~~~ ^  ~~
-src/games/ui/ui_players.cpp:1628:20: warning: result of comparison of constant -1 with expression of type 'weapon_t' is always false [-Wtautological-constant-out-of-range-compare]
- 1628 |         if ( weaponNumber == -1 ) {
-      |              ~~~~~~~~~~~~ ^  ~~
-3 warnings generated.
 Compiling 'src/games/ui/ui_syscalls.cpp'
 Compiling 'src/games/ui/ui_util.cpp'
 Compiling 'src/qcommon/q_math.cpp'
 Compiling 'src/qcommon/q_shared.cpp'
-2 warnings generated.
 Linking 'bin/main/ui_x86.so'
 scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/math_angles.cpp.o' — Error 1
@@ -4077,6 +3815,6 @@ scons: done building targets (errors occurred during build).
 ❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/q_shared.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x86-release/client/obj/splines/splines.cpp.o' — Error 1
 ❌ 🛠️ Compilation failed: 'build/linux-x86-release/cgame/obj/games/cgame/cg_view.cpp.o' — Error 1
-📊 Diagnostics: ⚠️ 18 warning(s), ❌ 30 error(s)
+📊 Diagnostics: ⚠️ 3 warning(s), ❌ 30 error(s)
 
 
