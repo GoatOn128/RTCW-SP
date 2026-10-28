@@ -184,11 +184,21 @@ else()
     )
 endif()
 
+# The engine headers still reference the module public headers through their
+# original ../game, ../cgame and ../ui relative paths; resolve them now that
+# the module code lives under games/.
+set(WOLF_MODULE_PUBLIC_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/game"
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/cgame"
+    "${CMAKE_CURRENT_SOURCE_DIR}/games/ui"
+)
+
 add_library(renderer STATIC ${RENDERER_SOURCES})
 target_compile_definitions(renderer PRIVATE _LIB __USEA3D __A3D_GEOM)
 target_include_directories(renderer PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/third-party/stb"
     "${CMAKE_CURRENT_SOURCE_DIR}/third-party/drlibs"
+    ${WOLF_MODULE_PUBLIC_INCLUDE_DIRS}
 )
 wolf_configure_target(renderer)
 
@@ -485,14 +495,7 @@ endif()
 
 set_target_properties(wolf PROPERTIES OUTPUT_NAME "WolfSP_${WOLF_ARCH}")
 target_compile_definitions(wolf PRIVATE __USEA3D __A3D_GEOM)
-# The engine headers still reference the module public headers through their
-# original ../game, ../cgame and ../ui relative paths; resolve them now that
-# the module code lives under games/.
-target_include_directories(wolf PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/games/game"
-    "${CMAKE_CURRENT_SOURCE_DIR}/games/cgame"
-    "${CMAKE_CURRENT_SOURCE_DIR}/games/ui"
-)
+target_include_directories(wolf PRIVATE ${WOLF_MODULE_PUBLIC_INCLUDE_DIRS})
 target_link_libraries(wolf PRIVATE renderer botlib Splines)
 if(WIN32)
     target_link_libraries(wolf PRIVATE winmm wsock32)
