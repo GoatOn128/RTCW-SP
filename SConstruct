@@ -545,9 +545,12 @@ if IS_WINDOWS:
     # /W4 instead of -Wall: clang-cl maps -Wall onto every warning it
     # knows and floods the log. The engine is C++ now, so pick the
     # language standard for it.
+    # The engine declares members and parameters named 'or' (the
+    # renderer orientation, for example tr.or), so the C++ alternative
+    # operator keywords must stay disabled.
     env.Append(
         CCFLAGS=['/W4', arch_flag, '/nologo'],
-        CXXFLAGS=['/W4', arch_flag, '/nologo', '/std:c++14']
+        CXXFLAGS=['/W4', arch_flag, '/nologo', '/std:c++14', '/clang:-fno-operator-names']
     )
 
     # ASLR
@@ -573,7 +576,7 @@ else:
     # modernized units need at least C++14
     env.Append(CCFLAGS=['-Wall', '-fsigned-char', arch_flag])
     env.Append(CFLAGS=['-std=gnu89'])
-    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++14', arch_flag])
+    env.Append(CXXFLAGS=['-Wall', '-fsigned-char', '-std=gnu++14', arch_flag, '-fno-operator-names'])
     env.Append(LINKFLAGS=[arch_flag])
 
     if CONFIG == 'debug':
