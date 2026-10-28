@@ -63,7 +63,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "linux_local.h" // bk001204
 
 // Structure containing functions exported from refresh DLL
-refexport_t re;
+// cl_main.cpp owns the definition; C++ has no tentative definitions so extern it
+extern refexport_t re;
 
 unsigned sys_frame_time;
 
@@ -119,6 +120,22 @@ qboolean Sys_LowPhysicalMemory() {
 }
 
 void Sys_BeginProfiling( void ) {
+}
+
+/*
+=================
+Sys_SnapVector
+
+Round a vector to integer values, portable version of the win32 x87 code
+=================
+*/
+void Sys_SnapVector( float *v ) {
+	int i;
+
+	for ( i = 0; i < 3; i++ )
+	{
+		v[i] = (float)(int)( v[i] < 0 ? v[i] - 0.5f : v[i] + 0.5f );
+	}
 }
 
 /*

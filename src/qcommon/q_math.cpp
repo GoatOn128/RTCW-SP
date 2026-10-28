@@ -670,8 +670,8 @@ int BoxOnPlaneSide2 (vec3_t emins, vec3_t emaxs, struct cplane_s *p)
 
 ==================
 */
-#if !( defined __linux__ && defined __i386__ && !defined C_ONLY )
-#if defined __LCC__ || defined C_ONLY || !id386
+#if 1 // math.s was removed: keep the C version everywhere except 32-bit MSVC inline asm
+#if defined __LCC__ || defined C_ONLY || !id386 || !defined( _MSC_VER ) || defined( __clang__ )
 
 int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
 	float dist1, dist2;

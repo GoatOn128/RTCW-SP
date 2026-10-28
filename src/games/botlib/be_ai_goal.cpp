@@ -192,10 +192,9 @@ maplocation_t *maplocations = NULL;
 //camp spots
 campspot_t *campspots = NULL;
 //the game type
-int g_gametype;
-
-// Rafael gameskill
-int g_gameskill;
+// botlib-local copy; static so it does not collide with the game module's
+// vmCvar_t g_gametype when both are linked into one binary
+static int g_gametype;
 // done
 
 //========================================================================

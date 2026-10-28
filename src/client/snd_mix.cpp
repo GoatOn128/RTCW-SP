@@ -45,8 +45,8 @@ int     *snd_p;
 int snd_linear_count;
 short   *snd_out;
 
-#if !( defined __linux__ && defined __i386__ )
-#if !id386
+#if 1 // snd_mixa.s was removed: C version everywhere except 32-bit MSVC inline asm
+#if !id386 || !defined( _MSC_VER )
 
 /*
 ===================
@@ -124,14 +124,8 @@ LClampDone2:
 	}
 }
 
-#endif // !id386
-
-#else // !(defined __linux__ && defined __i386__)
-
-// snd_mixa.s
-void S_WriteLinearBlastStereo16( void );
-
-#endif
+#endif // !id386 || !defined( _MSC_VER )
+#endif // snd_mixa.s removed
 
 /*
 ===================

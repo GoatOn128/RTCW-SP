@@ -142,3 +142,13 @@ on content, not line numbers.
 - splines.cpp:580 -Wunused-value only in release legs: NDEBUG branch defined CHECK_NAN_VEC as object-like macro so CHECK_NAN_VEC(origin) expanded to (origin)
 - fixes pushed: linux_glimp.cpp vmode include lowercased; snd_mix.cpp ds: dropped (6x); q_math.cpp statics moved to file scope; win_glimp.cpp static DWORD WINAPI GLimp_RenderThreadStart(LPVOID) trampoline passed to CreateThread; q_splineshared.h release CHECK_NAN/CHECK_NAN_VEC made function-like empty macros
 - awaiting next digest
+
+## Iteration - 2026-10-28 (fixes for digest 7609bcd, build of 33e0568)
+HEAD before push: 7609bcd | CI: publish build logs and digest [skip ci]
+- windows x86 link failure (__MSASMLABEL_ undefined): clang-cl cannot resolve MSVC asm-block label addresses taken with offset in q_math.cpp BoxOnPlaneSide. The C version now compiles for __clang__ and non-MSVC; real MSVC x86 keeps the asm.
+- linux x86 missing symbols: removed the dead snd_mixa.s/math.s prototype branches. C fallbacks of S_WriteLinearBlastStereo16 (snd_mix.cpp) and BoxOnPlaneSide (q_math.cpp) now apply on linux-i386 and all non-MSVC builds. clang-cl x86 keeps the working snd_mix asm.
+- linux all legs: unix_main.cpp had its own refexport_t re definition; C tentative definitions do not merge in C++, so it is extern now (cl_main.cpp owns it). Same reason the original C build linked.
+- linux all legs: the five extension qgl pointers (LockArraysEXT, UnlockArraysEXT, ActiveTextureARB, ClientActiveTextureARB, MultiTexCoord2fARB) were defined in both linux_qgl.cpp and tr_init.cpp; linux_qgl.cpp declares them extern now.
+- linux all legs: added portable Sys_SnapVector to unix_main.cpp (declared in qcommon.h, win32 x87 version lives in win_shared.cpp; round half away from zero per component).
+- linux release-game hardlink leg: botlib be_ai_goal.cpp defined int g_gametype / int g_gameskill which collided with the game module's vmCvar_t in g_main.cpp when both are linked into one exe. g_gametype is static now, the unused g_gameskill copy is removed (no botlib header externs them).
+Files pushed: src/qcommon/q_math.cpp, src/client/snd_mix.cpp, src/sys/unix/unix_main.cpp, src/sys/unix/linux_qgl.cpp, src/games/botlib/be_ai_goal.cpp, tools/ci-session-notes.md
