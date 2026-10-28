@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
 # RTCW-SP SCons build
 #
 # Usage:
@@ -675,7 +676,7 @@ def module_link_files(module, files):
 renderer_files = ['src/renderer/' + f for f in [
     'tr_animation.cpp', 'tr_backend.cpp', 'tr_bsp.cpp', 'tr_cmds.cpp', 'tr_curve.cpp',
     'tr_decals.cpp', 'tr_flares.cpp', 'tr_font.cpp', 'tr_image.cpp', 'tr_init.cpp',
-    'tr_light.cpp', 'tr_main.cpp', 'tr_marks.cpp', 'tr_md5.cpp', 'tr_mesh.cpp',
+    'tr_light.cpp', 'tr_main.cpp', 'tr_marks.cpp', 'tr_mesh.cpp',
     'tr_model.cpp', 'tr_noise.cpp', 'tr_renderprog.cpp', 'tr_scene.cpp',
     'tr_shade.cpp', 'tr_shade_calc.cpp', 'tr_shader.cpp', 'tr_shadows.cpp',
     'tr_sky.cpp', 'tr_surface.cpp', 'tr_vfx.cpp', 'tr_world.cpp',
@@ -786,7 +787,6 @@ if IS_WINDOWS:
     md5_env.Append(CXXFLAGS=['/std:c++17', '/EHsc'])
 else:
     md5_env.Append(CXXFLAGS=['-std=gnu++17'])
-renderer_files.remove('src/renderer/tr_md5.cpp')
 client_objs += module_objects(md5_env, 'client', ['src/renderer/tr_md5.cpp'])
 
 client_target = os.path.join(BIN_DIR, 'WolfSP' + ARCH_SUFFIX + EXE)
