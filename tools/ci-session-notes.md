@@ -328,3 +328,10 @@ Result: all four ubuntu legs and all four windows legs build with 0 errors and 0
 - attach_headers_to_targets shrank to one job: find the headers no target owns (the third-party trees such as stb, dr_libs, OpenalSoft and SDL3) and put them into every non-utility project, as requested. The directory-pair matching with its arrow parsing was deleted.
 - group_target_sources no longer uses the Source Files and Header Files prefixes; the filters now mirror the source tree straight from the project root, so the botlib project shows games/botlib with the cpp and header files side by side.
 - Digest b6e54d6: all nine legs and uncrustify green, 0 errors, 0 warnings.
+
+## 2026-10-28: bound the print formatting to stop the stack corruption
+
+- The game crashed at startup in the Visual Studio debug build with Run-Time Check Failure #2, stack around the variable 'msg' in CL_RefPrintf. The renderer calls ri.Printf with "GL_EXTENSIONS: %s" through GfxInfo_f, and CL_RefPrintf formatted with unbounded vsprintf into a 4096 byte stack buffer, which the modern GL extension list overflows.
+- Fixed the same crash class everywhere it existed: CL_RefPrintf in cl_main.cpp, BotImport_Print in sv_bot.cpp (2048 byte stack buffer), SV_SendServerCommand in sv_main.cpp and the error message in Com_Error in common.cpp. All four now use vsnprintf with the buffer size, matching the bounded Com_Printf that was already in place.
+- The GL_EXTENSIONS console output now truncates at the buffer size instead of corrupting memory. Release builds were silently corrupting memory because the /RTC stack checks only run in debug builds.
+- Digest da80b6a: all nine legs and uncrustify green, 0 errors, 0 warnings.
