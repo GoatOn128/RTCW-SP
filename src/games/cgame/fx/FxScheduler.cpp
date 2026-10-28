@@ -12,6 +12,7 @@
 
 #if !defined( __Q_SHARED_H )
 	#include "../../../qcommon/q_shared.h"
+#include <new>
 #endif
 
 
@@ -383,7 +384,7 @@ SEffectTemplate *CFxScheduler::GetNewEffectTemplate( int *id, const char *file )
 
 		if ( !effect->mInUse ) {
 			*id = i;
-			memset( effect, 0, sizeof( SEffectTemplate ) );
+			new ( effect ) SEffectTemplate();
 
 			// If we are a copy, we really won't have a name that we care about saving for later
 			if ( file ) {

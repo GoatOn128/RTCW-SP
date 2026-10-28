@@ -455,7 +455,7 @@ void AICast_Init( void ) {
 	aicast_skillscale = (float)trap_Cvar_VariableIntegerValue( "g_gameSkill" ) / (float)GSKILL_MAX;
 
 	caststates = (cast_state_t *)G_Alloc( aicast_maxclients * sizeof( cast_state_t ) );
-	memset( caststates, 0, sizeof( caststates ) );
+	memset( caststates, 0, aicast_maxclients * sizeof( cast_state_t ) );
 	for ( i = 0; i < aicast_maxclients; i++ ) {
 		caststates[i].entityNum = i;
 	}
