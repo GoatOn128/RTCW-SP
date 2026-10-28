@@ -1,19 +1,22 @@
 ==== windows-latest-x64-debug- (failure) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 22.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 54.1 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /Z7 /Od /nologo /W4 -m64 /nologo /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /Z7 /Od /std:c++17 /EHsc /nologo /W4 -m64 /nologo /Z7 /Od /FI build/windows-x64-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x64-release- (failure) ====
@@ -23,33 +26,39 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 23.4 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 22.4 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /std:c++17 /EHsc /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x64-release-cgame (failure) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   28G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 28.9 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 68.4 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /std:c++17 /EHsc /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DCGAME_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x64-release-game (failure) ====
@@ -59,33 +68,39 @@ C:              150G  122G   29G  82% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 69.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 50.3 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /std:c++17 /EHsc /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DGAME_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x64-release-ui (failure) ====
 
 Filesystem      Size  Used Avail Use% Mounted on
-C:              150G  122G   29G  82% /c
+C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 14.5 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 37.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m64 /nologo /std:c++14 /clang:-fno-operator-names /O2 /std:c++17 /EHsc /nologo /W4 -m64 /nologo /O2 /FI build/windows-x64-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED /DUI_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x86-debug- (failure) ====
@@ -95,15 +110,18 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 51.8 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 35.7 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x86-debug\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m32 /nologo /std:c++14 /clang:-fno-operator-names /Z7 /Od /nologo /W4 -m32 /nologo /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m32 /nologo /std:c++14 /clang:-fno-operator-names /Z7 /Od /std:c++17 /EHsc /nologo /W4 -m32 /nologo /Z7 /Od /FI build/windows-x86-debug\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 
 ==== windows-latest-x86-release- (failure) ====
@@ -113,14 +131,17 @@ C:              150G  120G   31G  80% /c
 Collecting scons
   Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
 Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
-   ---------------------------------------- 4.1/4.1 MB 39.1 MB/s  0:00:00
+   ---------------------------------------- 4.1/4.1 MB 41.5 MB/s  0:00:00
 Installing collected packages: scons
 Successfully installed scons-4.11.1
 scons: Reading SConscript files ...
+  File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 1
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x86-release\client\obj\renderer\tr_md5.cpp.obj
-(action 1: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m32 /nologo /std:c++14 /clang:-fno-operator-names /O2 /nologo /W4 -m32 /nologo /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-(action 2: clang-cl /Fotr_md5.cpp.obj /c tr_md5.cpp /W4 -m32 /nologo /std:c++14 /clang:-fno-operator-names /O2 /std:c++17 /EHsc /nologo /W4 -m32 /nologo /O2 /FI build/windows-x86-release\q_buildconfig.h /DWIN32 /D_WINDOWS /D_CRT_SECURE_NO_WARNINGS /DNDEBUG /DQDECL=__cdecl /DMAC_STATIC= /DBOTLIB_HARD_LINKED)
-File "D:\a\RTCW-SP\RTCW-SP\SConstruct", line 659, in module_objects
+    successfully downloaded text file (SHA: f235d1f528ef782b1f8da3c81047f973d48381b2)
+
+                 ^^^^^^^^^^
+
+SyntaxError: invalid syntax
+
 
 

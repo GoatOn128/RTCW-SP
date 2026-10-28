@@ -1,6 +1,6 @@
 # Build digest
 
-commit: b302bff90a2a
+commit: 6901658cf0f9
 
 - ubuntu-latest-x64-debug-: failure
 - ubuntu-latest-x64-release-: failure
@@ -20,12 +20,11 @@ commit: b302bff90a2a
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build/linux-x64-debug/client/obj/renderer/tr_md5.cpp.o
 
 ### failure context
 
@@ -36,12 +35,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o
 
 ### failure context
 
@@ -52,12 +50,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build/linux-x64-release/client/obj/renderer/tr_md5.cpp.o
 
 ### failure context
 
@@ -68,12 +65,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build/linux-x86-debug/client/obj/renderer/tr_md5.cpp.o
 
 ### failure context
 
@@ -84,12 +80,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build/linux-x86-release/client/obj/renderer/tr_md5.cpp.o
 
 ### failure context
 
@@ -116,12 +111,11 @@ UNCRUSTIFY_FAILED: src/games/game/bg_pmove.cpp
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-debug\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -132,12 +126,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -148,12 +141,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -164,12 +156,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -180,12 +171,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x64-release\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -196,12 +186,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x86-debug\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
@@ -212,12 +201,11 @@ scons: *** Two environments with different actions were specified for the same t
 
 status: failure
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-scons: *** Two environments with different actions were specified for the same target: build\windows-x86-release\client\obj\renderer\tr_md5.cpp.obj
 
 ### failure context
 
