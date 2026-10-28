@@ -616,30 +616,18 @@ void Sys_UnloadDll( void *dllHandle ) {
 /*
 =================
 Sys_LoadDll
+
+Loads a native game module and resolves its entry point by name.
+The module file name carries the build arch suffix (qagame_x64.so).
 =================
 */
 extern char   *FS_BuildOSPath( const char *base, const char *game, const char *qpath );
 
-// TTimo
-// show_bug.cgi?id=411
-// use DO_LOADDLL_WRAP to wrap a cl_noprint 1 around the call to Sys_LoadDll
-// this is a quick hack to avoid complicated messages on screen
-#ifdef NDEBUG
-#define DO_LOADDLL_WRAP
-#endif
+// bk001129 - was RTLD_LAZY
+#define Q_RTLD    RTLD_NOW
 
-#if defined( DO_LOADDLL_WRAP )
-void *Sys_LoadDll_Wrapped( const char *name,
-						   int( **entryPoint ) ( int, ... ),
-						   int ( *systemcalls )( int, ... ) )
-#else
-void *Sys_LoadDll( const char *name,
-				   int( **entryPoint ) ( int, ... ),
-				   int ( *systemcalls )( int, ... ) )
-#endif
-{
+void *QDECL Sys_LoadDll( const char *name, const char *entryPointName, void **entryPoint ) {
 	void *libHandle;
-	void ( *dllEntry )( int ( *syscallptr )( int, ... ) );
 	char fname[MAX_OSPATH];
 	char  *homepath;
 	char  *basepath;
@@ -650,23 +638,11 @@ void *Sys_LoadDll( const char *name,
 
 	// bk001206 - let's have some paranoia
 	assert( name );
+	assert( entryPointName );
 
-#if defined __i386__
-	snprintf( fname, sizeof( fname ), "%si386.so", name );
-#elif defined __powerpc__   //rcg010207 - PPC support.
-	snprintf( fname, sizeof( fname ), "%sppc.so", name );
-#elif defined __axp__
-	snprintf( fname, sizeof( fname ), "%saxp.so", name );
-#elif defined __mips__
-	snprintf( fname, sizeof( fname ), "%smips.so", name );
-#else
-#error Unknown arch
-#endif
+	Com_sprintf( fname, sizeof( fname ), "%s_" ARCH_STRING ".so", name );
 
-// bk001129 - was RTLD_LAZY
-#define Q_RTLD    RTLD_NOW
-
-		homepath = Cvar_VariableString( "fs_homepath" );
+	homepath = Cvar_VariableString( "fs_homepath" );
 	basepath = Cvar_VariableString( "fs_basepath" );
 	gamedir = Cvar_VariableString( "fs_game" );
 
@@ -674,8 +650,6 @@ void *Sys_LoadDll( const char *name,
 	fn = FS_BuildOSPath( pwdpath, gamedir, fname );
 	// bk001206 - verbose
 	Com_Printf( "Sys_LoadDll(%s)... ", fn );
-
-	// bk001129 - from cvs1.17 (mkv), was fname not fn
 	libHandle = dlopen( fn, Q_RTLD );
 
 	if ( !libHandle ) {
@@ -712,13 +686,13 @@ void *Sys_LoadDll( const char *name,
 
 						if ( !libHandle ) {
 							Com_Printf( "failed (%s)\n", dlerror() );
-							// homepath
+							// basepath
 							fn = FS_BuildOSPath( basepath, BASEGAME, fname );
 							Com_Printf( "Sys_LoadDll(%s)... ", fn );
 							libHandle = dlopen( fn, Q_RTLD );
 
 							if ( !libHandle ) {
-								// ok, this time things are really fucked
+								// ok, this time things are really hopeless
 								Com_Printf( "failed (%s)\n", dlerror() );
 							} else {
 								Com_Printf( "ok\n" );
@@ -749,39 +723,21 @@ void *Sys_LoadDll( const char *name,
 		return NULL;
 	}
 
-	dllEntry = dlsym( libHandle, "dllEntry" );
-	*entryPoint = dlsym( libHandle, "vmMain" );
-	if ( !*entryPoint || !dllEntry ) {
+	*entryPoint = dlsym( libHandle, entryPointName );
+	if ( !*entryPoint ) {
 		err = dlerror();
 #ifndef NDEBUG // bk001206 - in debug abort on failure
-		Com_Error( ERR_FATAL, "Sys_LoadDll(%s) failed dlsym(vmMain):\n\"%s\" !\n", name, err );
+		Com_Error( ERR_FATAL, "Sys_LoadDll(%s) failed dlsym(%s):\n\"%s\" !\n", name, entryPointName, err );
 #else
-		Com_Printf( "Sys_LoadDll(%s) failed dlsym(vmMain):\n\"%s\" !\n", name, err );
+		Com_Printf( "Sys_LoadDll(%s) failed dlsym(%s):\n\"%s\" !\n", name, entryPointName, err );
 #endif
 		dlclose( libHandle );
-		err = dlerror();
-		if ( err != NULL ) {
-			Com_Printf( "Sys_LoadDll(%s) failed dlcose:\n\"%s\"\n", name, err );
-		}
 		return NULL;
 	}
-	Com_Printf( "Sys_LoadDll(%s) found **vmMain** at  %p  \n", name, *entryPoint ); // bk001212
-	dllEntry( systemcalls );
+	Com_Printf( "Sys_LoadDll(%s) found %s at %p\n", name, entryPointName, *entryPoint ); // bk001212
 	Com_Printf( "Sys_LoadDll(%s) succeeded!\n", name );
 	return libHandle;
 }
-
-#if defined( DO_LOADDLL_WRAP )
-void *Sys_LoadDll( const char *name,
-				   int( **entryPoint ) ( int, ... ),
-				   int ( *systemcalls )( int, ... ) ) {
-	void *ret;
-	Cvar_Set( "cl_noprint", "1" );
-	ret = Sys_LoadDll_Wrapped( name, entryPoint, systemcalls );
-	Cvar_Set( "cl_noprint", "0" );
-	return ret;
-};
-#endif
 
 /*
 ========================================================================
@@ -1063,7 +1019,7 @@ sysEvent_t Sys_GetEvent( void ) {
 		int len;
 
 		len = strlen( s ) + 1;
-		b = Z_Malloc( len );
+		b = (char *)Z_Malloc( len );
 		strcpy( b, s );
 		Sys_QueEvent( 0, SE_CONSOLE, 0, 0, len, b );
 	}
@@ -1079,7 +1035,7 @@ sysEvent_t Sys_GetEvent( void ) {
 
 		// copy out to a seperate buffer for qeueing
 		len = sizeof( netadr_t ) + netmsg.cursize;
-		buf = Z_Malloc( len );
+		buf = (netadr_t *)Z_Malloc( len );
 		*buf = adr;
 		memcpy( buf + 1, netmsg.data, netmsg.cursize );
 		Sys_QueEvent( 0, SE_PACKET, 0, 0, len, buf );
@@ -1302,7 +1258,7 @@ int main( int argc, char* argv[] ) {
 	// merge the command line, this is kinda silly
 	for ( len = 1, i = 1; i < argc; i++ )
 		len += strlen( argv[i] ) + 1;
-	cmdline = malloc( len );
+	cmdline = (char *)malloc( len );
 	*cmdline = 0;
 	for ( i = 1; i < argc; i++ )
 	{

@@ -3068,12 +3068,14 @@ qboolean QGL_Init( const char *dllname ) {
 	qfxMesaSwapBuffers           =  GPA( "fxMesaSwapBuffers" );
 #endif
 
-	qglXChooseVisual             =  GPA( "glXChooseVisual" );
-	qglXCreateContext            =  GPA( "glXCreateContext" );
-	qglXDestroyContext           =  GPA( "glXDestroyContext" );
-	qglXMakeCurrent              =  GPA( "glXMakeCurrent" );
-	qglXCopyContext              =  GPA( "glXCopyContext" );
-	qglXSwapBuffers              =  GPA( "glXSwapBuffers" );
+	// dlsym returns void*; assign through a void* lvalue so the
+	// compiler does not see an ISO C++ function-pointer conversion
+	*(void **)&qglXChooseVisual     =  GPA( "glXChooseVisual" );
+	*(void **)&qglXCreateContext    =  GPA( "glXCreateContext" );
+	*(void **)&qglXDestroyContext   =  GPA( "glXDestroyContext" );
+	*(void **)&qglXMakeCurrent      =  GPA( "glXMakeCurrent" );
+	*(void **)&qglXCopyContext      =  GPA( "glXCopyContext" );
+	*(void **)&qglXSwapBuffers      =  GPA( "glXSwapBuffers" );
 
 	qglLockArraysEXT = 0;
 	qglUnlockArraysEXT = 0;
