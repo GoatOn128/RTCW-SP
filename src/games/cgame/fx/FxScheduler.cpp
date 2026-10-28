@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: c0566894b774e4f31d3d352d707476520628b44e)
 // this include must remain at the top of every CPP file
 #include "FxWolf.h"
 
@@ -269,35 +270,35 @@ int CFxScheduler::ParseEffect( const char *file, CGPGroup *base ) {
 		grpName = primitiveGroup->GetName();
 
 		// Huge stricmp lists suxor
-		if ( !stricmp( grpName, "controller" ) ) {
+		if ( !Q_stricmp( grpName, "controller" ) ) {
 			type = Controller;
-		}else if ( !stricmp( grpName, "ribbon" ) ) {
+		}else if ( !Q_stricmp( grpName, "ribbon" ) ) {
 			type = Ribbon;
-		}else if ( ( !stricmp( grpName, "particle" ) || !stricmp( grpName, "screenParticle" ) ) ) {
+		}else if ( ( !Q_stricmp( grpName, "particle" ) || !Q_stricmp( grpName, "screenParticle" ) ) ) {
 			type = Particle;
-		}else if ( !stricmp( grpName, "line" ) ) {
+		}else if ( !Q_stricmp( grpName, "line" ) ) {
 			type = Line;
-		}else if ( !stricmp( grpName, "tail" ) ) {
+		}else if ( !Q_stricmp( grpName, "tail" ) ) {
 			type = Tail;
-		}else if ( !stricmp( grpName, "sound" ) ) {
+		}else if ( !Q_stricmp( grpName, "sound" ) ) {
 			type = Sound;
-		}else if ( !stricmp( grpName, "cylinder" ) ) {
+		}else if ( !Q_stricmp( grpName, "cylinder" ) ) {
 			type = Cylinder;
-		}else if ( !stricmp( grpName, "electricity" ) ) {
+		}else if ( !Q_stricmp( grpName, "electricity" ) ) {
 			type = Electricity;
-		}else if ( !stricmp( grpName, "emitter" ) ) {
+		}else if ( !Q_stricmp( grpName, "emitter" ) ) {
 			type = Emitter;
-		}else if ( !stricmp( grpName, "decal" ) ) {
+		}else if ( !Q_stricmp( grpName, "decal" ) ) {
 			type = Decal;
-		}else if ( !stricmp( grpName, "orientedparticle" ) || !stricmp( grpName, "screenDecal" ) ) {
+		}else if ( !Q_stricmp( grpName, "orientedparticle" ) || !Q_stricmp( grpName, "screenDecal" ) ) {
 			type = OrientedParticle;
-		}else if ( !stricmp( grpName, "fxrunner" ) ) {
+		}else if ( !Q_stricmp( grpName, "fxrunner" ) ) {
 			type = FxRunner;
-		}else if ( !stricmp( grpName, "light" ) ) {
+		}else if ( !Q_stricmp( grpName, "light" ) ) {
 			type = Light;
-		}else if ( !stricmp( grpName, "cameraShake" ) ) {
+		}else if ( !Q_stricmp( grpName, "cameraShake" ) ) {
 			type = CameraShake;
-		}else if ( !stricmp( grpName, "flash" ) ) {
+		}else if ( !Q_stricmp( grpName, "flash" ) ) {
 			type = ScreenFlash;
 		}else
 		{
@@ -319,10 +320,10 @@ int CFxScheduler::ParseEffect( const char *file, CGPGroup *base ) {
 				return 0;
 			}
 
-			if ( !stricmp( grpName, "screenParticle" ) ) {
+			if ( !Q_stricmp( grpName, "screenParticle" ) ) {
 				prim->mRenderType = RT_SCREEN_PARTICLE; prim->mFlags |= FX_USE_ALPHA;
 			}
-			if ( !stricmp( grpName, "screenDecal" ) ) {
+			if ( !Q_stricmp( grpName, "screenDecal" ) ) {
 				prim->mRenderType = RT_SCREEN_DECAL; prim->mFlags |= FX_USE_ALPHA;
 			}
 
@@ -480,7 +481,7 @@ CPrimitiveTemplate *CFxScheduler::GetPrimitiveCopy( SEffectTemplate *effectCopy,
 
 	for ( int i = 0; i < effectCopy->mPrimitiveCount; i++ )
 	{
-		if ( !stricmp( effectCopy->mPrimitives[i]->mName, componentName ) ) {
+		if ( !Q_stricmp( effectCopy->mPrimitives[i]->mName, componentName ) ) {
 			// we found a match, so return it
 			return effectCopy->mPrimitives[i];
 		}

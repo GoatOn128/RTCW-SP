@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 40fcdcbfa7318d60ebf5db084e7e64247c9dc87b)
 
 #if !defined( FX_UTIL_H_INC )
 	#include "FxUtil.h"
@@ -417,7 +418,7 @@ struct SEffectTemplate
 	CPrimitiveTemplate  *mPrimitives[FX_MAX_EFFECT_COMPONENTS];
 
 	bool operator ==( const char * name ) const {
-		return !stricmp( mEffectName, name );
+		return !Q_stricmp( mEffectName, name );
 	}
 	void operator=( const SEffectTemplate &that );
 };

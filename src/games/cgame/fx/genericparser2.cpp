@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: ce8b4e2ef251413938dff094996c898f8a6a81c8)
 #include "FxWolf.h"
 #define MAX_TOKEN_SIZE  1024
 static char token[MAX_TOKEN_SIZE];
@@ -309,7 +310,7 @@ bool CGPValue::Parse( char **dataPtr, CTextPool **textPool ) {
 
 		if ( !token[0] ) { // end of data - error!
 			return false;
-		}else if ( strcmpi( token, "]" ) == 0 ) {      // ending brace for this list
+		}else if ( Q_stricmp( token, "]" ) == 0 ) {      // ending brace for this list
 			break;
 		}
 
@@ -505,7 +506,7 @@ void CGPGroup::SortObject( CGPObject *object, CGPObject **unsortedList, CGPObjec
 		last = 0;
 		while ( test )
 		{
-			if ( strcmpi( object->GetName(), test->GetName() ) < 0 ) {
+			if ( Q_stricmp( object->GetName(), test->GetName() ) < 0 ) {
 				break;
 			}
 
@@ -576,7 +577,7 @@ CGPGroup *CGPGroup::FindSubGroup( const char *name ) {
 	group = mSubGroups;
 	while ( group )
 	{
-		if ( !stricmp( name, group->GetName() ) ) {
+		if ( !Q_stricmp( name, group->GetName() ) ) {
 			return( group );
 		}
 		group = (CGPGroup *)group->GetNext();
@@ -601,7 +602,7 @@ bool CGPGroup::Parse( char **dataPtr, CTextPool **textPool ) {
 			{
 				break;
 			}
-		}else if ( strcmpi( token, "}" ) == 0 ) {      // ending brace for this group
+		}else if ( Q_stricmp( token, "}" ) == 0 ) {      // ending brace for this group
 			break;
 		}
 
@@ -609,13 +610,13 @@ bool CGPGroup::Parse( char **dataPtr, CTextPool **textPool ) {
 
 		// read ahead to see what we are doing
 		token = GetToken( dataPtr, true, true );
-		if ( strcmpi( token, "{" ) == 0 ) { // new sub group
+		if ( Q_stricmp( token, "{" ) == 0 ) { // new sub group
 			newSubGroup = AddGroup( lastToken, textPool );
 			newSubGroup->SetWriteable( mWriteable );
 			if ( !newSubGroup->Parse( dataPtr, textPool ) ) {
 				return false;
 			}
-		}else if ( strcmpi( token, "[" ) == 0 ) {      // new pair list
+		}else if ( Q_stricmp( token, "[" ) == 0 ) {      // new pair list
 			newPair = AddPair( lastToken, 0, textPool );
 			if ( !newPair->Parse( dataPtr, textPool ) ) {
 				return false;
@@ -677,7 +678,7 @@ CGPValue *CGPGroup::FindPair( const char *key ) {
 
 	while ( pair )
 	{
-		if ( strcmpi( pair->GetName(), key ) == 0 ) {
+		if ( Q_stricmp( pair->GetName(), key ) == 0 ) {
 			return pair;
 		}
 
