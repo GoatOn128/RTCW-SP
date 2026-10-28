@@ -778,6 +778,17 @@ else:
     detour_env.Append(CCFLAGS=['-w'], CXXFLAGS=['-w'])
 client_objs += module_objects(detour_env, 'client', detour_files)
 
+# tr_md5.cpp parses MD5 text with std::from_chars and uses try/catch, so
+# it needs C++17 and exception unwinding; the rest of the engine stays
+# on C++14 without them
+md5_env = client_env.Clone()
+if IS_WINDOWS:
+    md5_env.Append(CXXFLAGS=['/std:c++17', '/EHsc'])
+else:
+    md5_env.Append(CXXFLAGS=['-std=gnu++17'])
+renderer_files.remove('src/renderer/tr_md5.cpp')
+client_objs += module_objects(md5_env, 'client', ['src/renderer/tr_md5.cpp'])
+
 client_target = os.path.join(BIN_DIR, 'WolfSP' + ARCH_SUFFIX + EXE)
 client_res = []
 if IS_WINDOWS:

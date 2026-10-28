@@ -1,6 +1,7 @@
 // MD5 version 10 text loader. Wolf-specific rendering attributes live in an
 // optional .md5meta sidecar; the mesh and animation remain standard MD5 files.
-#include "tr_local.h"
+// The C++ standard headers must come before tr_local.h: q_shared.h
+// defines min/max macros that would otherwise mangle the STL declarations.
 #include <vector>
 #include <string>
 #include <stdexcept>
@@ -9,6 +10,8 @@
 #include <cstdlib>
 #include <cstddef>
 #include <charconv>
+
+#include "tr_local.h"
 
 namespace {
 void Require( bool ok, const char *message ) {
