@@ -217,3 +217,39 @@ gcc/clang linux x86/x64). Task complete.
   (LICENSE sections untouched); CLAUDE.md and COPILOT.md build/CI
   sections updated to CMake; .gitignore drops the scons entries.
 - Awaiting the first CMake CI digest.
+
+## CMake CI iterations (2026-10-28, session 4)
+
+- 5f984ed "Fix the engine build against the module layout":
+  CPUSTRING win-/linux- <arch>, /wd4723, -Wno-unused-result,
+  shared WOLF_MODULE_PUBLIC_INCLUDE_DIRS for the game/cgame/ui
+  headers used by wolf and renderer, bg_lib.cpp CRT rename hack,
+  win32 _M_IX86 asm guards, cgame #undef CHAR_WIDTH, midiInOpen
+  DWORD_PTR casts, win_syscon LRESULT fixes.
+- 980a441 "Fix the remaining CI build failures": unused-local
+  removals in fx, and l_script.h _MAX_PATH fallback raised from 64
+  to 260 so the fortify-checked strcpy in LoadScriptFile stops
+  aborting extractfuncs on long CI paths.
+- 0382fe8 "Fix the Linux build":
+  - common.cpp: the Com_Memcpy/Com_Memset block was compiled out on
+    Linux by the outer "#if !( __linux__ || __FreeBSD__ )" guard,
+    leaving ~83 undefined refs at wolf link. The single guard is now
+    "#if ( ( !id386 ) && ( !defined __i386__ ) ) || defined( __linux__ )
+    || defined( __FreeBSD__ )": plain C on non-x86 and on Linux/FreeBSD
+    (the optimized versions are MSVC inline asm), Windows unchanged.
+  - g_main.cpp CalculateRanks: the counter-clearing loop ran to
+    TEAM_NUM_TEAMS (4) but numteamVotingClients is [2]; iterations 2+
+    wrote past the array (-Waggressive-loop-optimizations). Loop now
+    bounds to the two real counters, matching the [0]/[1] uses below.
+- 7613c39 "Install the 32-bit GL dev packages for the x86 builds":
+  the x86 legs linked -lGL against the 64-bit libGL ("skipping
+  incompatible ... cannot find -lGL"). ci-ubuntu.yml now installs
+  libgl-dev:i386 / libglx-dev:i386 with the other :i386 X packages;
+  the arch-independent-GL comment was wrong because libGL.so itself
+  is per-arch.
+
+## RESULT: CI fully green on CMake (digest ece30a1, build of 7613c39)
+All 9 jobs success with 0 errors and 0 warnings: ubuntu x64/x86
+debug/release, windows x64/x86 debug/release, uncrustify. The full
+logs at the digest commit contain only "all ubuntu legs succeeded" /
+"all windows legs succeeded". Task complete.
