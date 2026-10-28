@@ -290,3 +290,12 @@ Removed the /wd4244 /wd4267 /wd4723 /wd4996 /wd5033 suppressions and fixed all t
 - Cast the SOCKS username and password lengths and the console event string length to int in the Windows system code
 
 Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
+
+## 2026-10-28: sort the MSVC projects into solution folders and gather the loose headers
+
+- Set the CMake FOLDER property per target type: shared libraries in dll, static libraries in libs, executables in exes, recast and detour in third-party, and the custom targets in misc
+- Added a loose_headers utility target that globs every .h/.hpp/.inl under src, drops the ones a target already lists as a source, and shows the rest in the misc folder; it is not part of the default build
+- Fixed the configure error in the gatherer: cmake_path SET takes the input path as an argument, it does not normalize a variable in place
+- Fixed the extractfuncs crash on fresh checkouts: with the committed g_funcs.h/g_func_decs.h gone, DumpReplaceFunctions freed an uninitialized newbuf on the first-generation path, which corrupted the heap on the release legs
+
+Result: all four ubuntu legs and all four windows legs build with 0 errors and 0 warnings, and uncrustify passes.
