@@ -1,0 +1,57 @@
+==== windows-latest-x64-debug- (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  122G   28G  82% /c
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 84.5 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+scons: *** No SConstruct file found.
+File "C:\hostedtoolcache\windows\Python\3.15.1\x64\Lib\site-packages\SCons\Script\Main.py", line 1032, in _main
+
+
+==== windows-latest-x64-release-game (cancelled) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  120G   31G  80% /c
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 47.3 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+
+==== windows-latest-x64-release-ui (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  122G   29G  82% /c
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 19.3 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+scons: *** No SConstruct file found.
+File "C:\hostedtoolcache\windows\Python\3.15.1\x64\Lib\site-packages\SCons\Script\Main.py", line 1032, in _main
+
+
+==== windows-latest-x86-release- (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  122G   29G  82% /c
+Collecting scons
+  Downloading scons-4.11.1-py3-none-any.whl.metadata (9.2 kB)
+Downloading scons-4.11.1-py3-none-any.whl (4.1 MB)
+   ---------------------------------------- 4.1/4.1 MB 42.2 MB/s  0:00:00
+Installing collected packages: scons
+Successfully installed scons-4.11.1
+
+scons: *** No SConstruct file found.
+File "C:\hostedtoolcache\windows\Python\3.15.1\x64\Lib\site-packages\SCons\Script\Main.py", line 1032, in _main
+
+
