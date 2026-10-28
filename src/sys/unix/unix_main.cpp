@@ -1,4 +1,4 @@
-Title: 
+Title :
 
 URL Source: https://cdn.jsdelivr.net/gh/GoatOn128/RTCW-SP@master/src/sys/unix/unix_main.cpp
 
@@ -671,7 +671,7 @@ void *Sys_LoadDll( const char *name,
 // bk001129 - was RTLD_LAZY
 #define Q_RTLD    RTLD_NOW
 
-	homepath = Cvar_VariableString( "fs_homepath" );
+		homepath = Cvar_VariableString( "fs_homepath" );
 	basepath = Cvar_VariableString( "fs_basepath" );
 	gamedir = Cvar_VariableString( "fs_game" );
 
@@ -1188,7 +1188,7 @@ UGLY HACK:
 void Sys_DoStartProcess( char *cmdline ) {
 	switch ( fork() )
 	{
-	case - 1:
+	case -1:
 		// main thread
 		break;
 	case 0:

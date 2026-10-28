@@ -2741,7 +2741,7 @@ skipClamp:
 			jmp loopie
 
 			align 16
-loopie: test byte ptr [ebx],al
+loopie:     test byte ptr [ebx],al
 			add ebx,32
 			dec ecx
 			jnz loopie
@@ -2938,4 +2938,3 @@ void Field_CompleteCommand( field_t *field ) {
 	Cmd_CommandCompletion( PrintMatches );
 	Cvar_CommandCompletion( PrintMatches );
 }
-

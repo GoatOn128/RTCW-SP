@@ -2323,7 +2323,7 @@ int PC_DollarEvaluate( source_t *source, signed long int *intvalue,
 		Log_Write( "$eval result: %d", *intvalue );
 	} else { Log_Write( "$eval result: %f", *floatvalue );}
 #endif //DEBUG_EVAL
-	   //
+	//
 	return qtrue;
 } //end of the function PC_DollarEvaluate
 //============================================================================
@@ -3081,7 +3081,7 @@ void FreeSource( source_t *source ) {
 		} //end while
 	} //end for
 #else //DEFINEHASHING
-	  //free all defines
+	//free all defines
 	while ( source->defines )
 	{
 		define = source->defines;
@@ -3089,7 +3089,7 @@ void FreeSource( source_t *source ) {
 		PC_FreeDefine( define );
 	} //end for
 #endif //DEFINEHASHING
-	   //free all indents
+	//free all indents
 	while ( source->indentstack )
 	{
 		indent = source->indentstack;
@@ -3102,7 +3102,7 @@ void FreeSource( source_t *source ) {
 		FreeMemory( source->definehash );
 	}
 #endif //DEFINEHASHING
-	   //free the source itself
+	//free the source itself
 	FreeMemory( source );
 } //end of the function FreeSource
 //============================================================================

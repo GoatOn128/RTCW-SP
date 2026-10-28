@@ -3458,11 +3458,11 @@ int     FS_FOpenFileByMode( const char *qpath, fileHandle_t *f, fsMode_t mode ) 
 		break;
 	case FS_WRITE:
 #ifdef __MACOS__    //DAJ MacOS file typing
-		{
-			extern _MSL_IMP_EXP_C long _fcreator, _ftype;
-			_ftype = 'WlfB';
-			_fcreator = 'WlfS';
-		}
+	{
+		extern _MSL_IMP_EXP_C long _fcreator, _ftype;
+		_ftype = 'WlfB';
+		_fcreator = 'WlfS';
+	}
 #endif
 		*f = FS_FOpenFileWrite( qpath );
 		r = 0;
@@ -3474,11 +3474,11 @@ int     FS_FOpenFileByMode( const char *qpath, fileHandle_t *f, fsMode_t mode ) 
 		sync = qtrue;
 	case FS_APPEND:
 #ifdef __MACOS__    //DAJ MacOS file typing
-		{
-			extern _MSL_IMP_EXP_C long _fcreator, _ftype;
-			_ftype = 'WlfB';
-			_fcreator = 'WlfS';
-		}
+	{
+		extern _MSL_IMP_EXP_C long _fcreator, _ftype;
+		_ftype = 'WlfB';
+		_fcreator = 'WlfS';
+	}
 #endif
 		*f = FS_FOpenFileAppend( qpath );
 		r = 0;
@@ -3533,4 +3533,3 @@ int     FS_FTell( fileHandle_t f ) {
 void    FS_Flush( fileHandle_t f ) {
 	fflush( fsh[f].handleFiles.file.o );
 }
-
