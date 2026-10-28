@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: f59c0e737cc1dc2b6fee275e0628bbf381858372)
 /*
 ===========================================================================
 
@@ -151,9 +152,17 @@ typedef int clipHandle_t;
 #define MIN_QINT            ( -MAX_QINT - 1 )
 
 
+#ifdef __cplusplus
+// C++ gets inline functions, the macros clash with the standard library
+template <class T> inline T max( T x, T y ) { return ( x > y ) ? x : y; }
+template <class T> inline T min( T x, T y ) { return ( x < y ) ? x : y; }
+#else
 #ifndef max
 #define max( x, y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
+#endif
+#ifndef min
 #define min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
+#endif
 #endif
 
 // angle indexes
