@@ -1,1 +1,184 @@
-all windows legs succeeded
+==== windows-latest-x64-debug (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  123G   28G  82% /c
+-- Building for: Visual Studio 18 2026
+-- The C compiler identification is MSVC 19.51.36260.0
+-- The CXX compiler identification is MSVC 19.51.36260.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at cmake/Utils.cmake:263 (message):
+  attach-debug: all=265 owned=242 loose=265 assign=265 unclaimed=0
+  pairs=[D:/a/RTCW-SP/RTCW-SP/src/third-party=>recast |
+  D:/a/RTCW-SP/RTCW-SP/src/third-party=>detour |
+  D:/a/RTCW-SP/RTCW-SP/src/splines=>splines |
+  D:/a/RTCW-SP/RTCW-SP/src/renderer=>renderer |
+  D:/a/RTCW-SP/RTCW-SP/src/games/botlib=>botlib |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>extractFunctionTables |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>qgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/cgame=>cgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/ui=>ui |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/bspc=>bspc |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/extractfuncs=>extractfuncs |
+  D:/a/RTCW-SP/RTCW-SP/src=>wolf | D:/a/RTCW-SP/RTCW-SP/src=>wolfded]
+  targets=[recast | detour | splines | renderer | botlib |
+  extractFunctionTables | qgame | cgame | ui | bspc | extractfuncs | wolf |
+  wolfded] loose_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h}
+  assign_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h=>wolf}
+Call Stack (most recent call first):
+  CMakeLists.txt:111 (attach_headers_to_targets)
+
+
+-- Configuring incomplete, errors occurred!
+
+
+==== windows-latest-x64-release (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  120G   31G  80% /c
+-- Building for: Visual Studio 18 2026
+-- The C compiler identification is MSVC 19.51.36260.0
+-- The CXX compiler identification is MSVC 19.51.36260.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at cmake/Utils.cmake:263 (message):
+  attach-debug: all=265 owned=242 loose=265 assign=265 unclaimed=0
+  pairs=[D:/a/RTCW-SP/RTCW-SP/src/third-party=>recast |
+  D:/a/RTCW-SP/RTCW-SP/src/third-party=>detour |
+  D:/a/RTCW-SP/RTCW-SP/src/splines=>splines |
+  D:/a/RTCW-SP/RTCW-SP/src/renderer=>renderer |
+  D:/a/RTCW-SP/RTCW-SP/src/games/botlib=>botlib |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>extractFunctionTables |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>qgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/cgame=>cgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/ui=>ui |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/bspc=>bspc |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/extractfuncs=>extractfuncs |
+  D:/a/RTCW-SP/RTCW-SP/src=>wolf | D:/a/RTCW-SP/RTCW-SP/src=>wolfded]
+  targets=[recast | detour | splines | renderer | botlib |
+  extractFunctionTables | qgame | cgame | ui | bspc | extractfuncs | wolf |
+  wolfded] loose_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h}
+  assign_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h=>wolf}
+Call Stack (most recent call first):
+  CMakeLists.txt:111 (attach_headers_to_targets)
+
+
+-- Configuring incomplete, errors occurred!
+
+
+==== windows-latest-x86-debug (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  120G   31G  80% /c
+-- Building for: Visual Studio 18 2026
+-- The C compiler identification is MSVC 19.51.36260.0
+-- The CXX compiler identification is MSVC 19.51.36260.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at cmake/Utils.cmake:263 (message):
+  attach-debug: all=265 owned=242 loose=265 assign=265 unclaimed=0
+  pairs=[D:/a/RTCW-SP/RTCW-SP/src/third-party=>recast |
+  D:/a/RTCW-SP/RTCW-SP/src/third-party=>detour |
+  D:/a/RTCW-SP/RTCW-SP/src/splines=>splines |
+  D:/a/RTCW-SP/RTCW-SP/src/renderer=>renderer |
+  D:/a/RTCW-SP/RTCW-SP/src/games/botlib=>botlib |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>extractFunctionTables |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>qgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/cgame=>cgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/ui=>ui |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/bspc=>bspc |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/extractfuncs=>extractfuncs |
+  D:/a/RTCW-SP/RTCW-SP/src=>wolf | D:/a/RTCW-SP/RTCW-SP/src=>wolfded]
+  targets=[recast | detour | splines | renderer | botlib |
+  extractFunctionTables | qgame | cgame | ui | bspc | extractfuncs | wolf |
+  wolfded] loose_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h}
+  assign_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h=>wolf}
+Call Stack (most recent call first):
+  CMakeLists.txt:111 (attach_headers_to_targets)
+
+
+-- Configuring incomplete, errors occurred!
+
+
+==== windows-latest-x86-release (failure) ====
+
+Filesystem      Size  Used Avail Use% Mounted on
+C:              150G  120G   31G  80% /c
+-- Building for: Visual Studio 18 2026
+-- The C compiler identification is MSVC 19.51.36260.0
+-- The CXX compiler identification is MSVC 19.51.36260.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at cmake/Utils.cmake:263 (message):
+  attach-debug: all=265 owned=242 loose=265 assign=265 unclaimed=0
+  pairs=[D:/a/RTCW-SP/RTCW-SP/src/third-party=>recast |
+  D:/a/RTCW-SP/RTCW-SP/src/third-party=>detour |
+  D:/a/RTCW-SP/RTCW-SP/src/splines=>splines |
+  D:/a/RTCW-SP/RTCW-SP/src/renderer=>renderer |
+  D:/a/RTCW-SP/RTCW-SP/src/games/botlib=>botlib |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>extractFunctionTables |
+  D:/a/RTCW-SP/RTCW-SP/src/games/game=>qgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/cgame=>cgame |
+  D:/a/RTCW-SP/RTCW-SP/src/games/ui=>ui |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/bspc=>bspc |
+  D:/a/RTCW-SP/RTCW-SP/src/tools/extractfuncs=>extractfuncs |
+  D:/a/RTCW-SP/RTCW-SP/src=>wolf | D:/a/RTCW-SP/RTCW-SP/src=>wolfded]
+  targets=[recast | detour | splines | renderer | botlib |
+  extractFunctionTables | qgame | cgame | ui | bspc | extractfuncs | wolf |
+  wolfded] loose_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h}
+  assign_sample={D:/a/RTCW-SP/RTCW-SP/src//client/client.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/keys.h=>wolf ,
+  D:/a/RTCW-SP/RTCW-SP/src//client/snd_local.h=>wolf}
+Call Stack (most recent call first):
+  CMakeLists.txt:111 (attach_headers_to_targets)
+
+
+-- Configuring incomplete, errors occurred!
+
+
