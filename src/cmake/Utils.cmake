@@ -248,6 +248,20 @@ function(attach_headers_to_targets)
 		endif()
 	endforeach()
 
+	# TEMPORARY DEBUG: print the attachment diagnostics and abort so the CI logs show them
+	list(LENGTH all_headers dbg_all)
+	list(LENGTH owned_sources dbg_owned)
+	list(LENGTH loose_headers dbg_loose)
+	list(LENGTH assignments dbg_assign)
+	list(LENGTH unclaimed_headers dbg_unclaimed)
+	list(SUBLIST loose_headers 0 3 dbg_loose_sample)
+	list(SUBLIST assignments 0 3 dbg_assign_sample)
+	string(REPLACE ";" " | " dbg_pairs "${target_pairs}")
+	string(REPLACE ";" " | " dbg_targets "${all_targets}")
+	string(REPLACE ";" " , " dbg_loose_s "${dbg_loose_sample}")
+	string(REPLACE ";" " , " dbg_assign_s "${dbg_assign_sample}")
+	message(FATAL_ERROR "attach-debug: all=${dbg_all} owned=${dbg_owned} loose=${dbg_loose} assign=${dbg_assign} unclaimed=${dbg_unclaimed} pairs=[${dbg_pairs}] targets=[${dbg_targets}] loose_sample={${dbg_loose_s}} assign_sample={${dbg_assign_s}}")
+
 	# headers that no target directory contains go into every project so they stay visible in the IDE
 	if(unclaimed_headers)
 		foreach(t IN LISTS all_targets)
