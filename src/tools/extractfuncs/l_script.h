@@ -62,8 +62,8 @@ If you have questions concerning this license or the applicable additional terms
   #define MAX_QPATH 64
 #endif
 #ifndef _MAX_PATH
-	// match the value the Windows CRT defines; the host file paths handed to
-	// this tool can be longer than the game's MAX_QPATH
+// match the value the Windows CRT defines; the host file paths handed to
+// this tool can be longer than the game's MAX_QPATH
 	#define _MAX_PATH               260
 #endif
 
