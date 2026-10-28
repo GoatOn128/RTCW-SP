@@ -168,3 +168,12 @@ previous entry all linked cleanly. Task complete.
 - stb_impl.c also defines DR_PCX_IMPLEMENTATION and includes dr_pcx.h so the vendored pcx decoder compiles in the warnings-muted C unit.
 - SConstruct: src/third-party/drlibs added to common_cpppath.
 Files: src/renderer/tr_image.cpp, src/third-party/stb/stb_impl.c, SConstruct, tools/ci-session-notes.md.
+
+## RESULT: CI fully green (digest 5ab6014, build of 92369f5)
+All 13 jobs success with 0 errors and 0 warnings after replacing the
+BMP/PCX loaders: ubuntu x64 debug/release/release-game, ubuntu x86
+debug/release, windows x64 debug/release/release-cgame/release-game/
+release-ui, windows x86 debug/release, uncrustify. stb_image (BMP),
+dr_pcx (PCX) and the drpcx implementation compiled inside the muted
+stb_impl.c unit all built clean on every compiler (msvc clang-cl x86/x64,
+gcc/clang linux x86/x64). Task complete.
