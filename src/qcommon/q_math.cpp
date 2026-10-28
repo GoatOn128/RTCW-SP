@@ -741,10 +741,10 @@ int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
 #else
 #pragma warning( disable: 4035 )
 
-__declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
-	static int bops_initialized;
-	static int Ljmptab[8];
+static int bops_initialized;
+static int Ljmptab[8];
 
+__declspec( naked ) int BoxOnPlaneSide( vec3_t emins, vec3_t emaxs, struct cplane_s *p ) {
 	__asm {
 
 		push ebx

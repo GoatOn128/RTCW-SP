@@ -1520,6 +1520,13 @@ void GLimp_RenderThreadWrapper( void ) {
 	qwglMakeCurrent( glw_state.hDC, NULL );
 }
 
+// CreateThread needs a stdcall LPTHREAD_START_ROUTINE; the wrapper is cdecl,
+// so route the call through a trampoline with the matching signature
+static DWORD WINAPI GLimp_RenderThreadStart( LPVOID ) {
+	GLimp_RenderThreadWrapper();
+	return 0;
+}
+
 /*
 =======================
 GLimp_SpawnRenderThread
@@ -1538,7 +1545,7 @@ qboolean GLimp_SpawnRenderThread( void ( *function )( void ) ) {
 	renderThreadHandle = CreateThread(
 		NULL,   // LPSECURITY_ATTRIBUTES lpsa,
 		0,      // DWORD cbStack,
-		(LPTHREAD_START_ROUTINE)GLimp_RenderThreadWrapper,  // LPTHREAD_START_ROUTINE lpStartAddr,
+		GLimp_RenderThreadStart,  // LPTHREAD_START_ROUTINE lpStartAddr,
 		0,          // LPVOID lpvThreadParm,
 		0,          //   DWORD fdwCreate,
 		&renderThreadId );

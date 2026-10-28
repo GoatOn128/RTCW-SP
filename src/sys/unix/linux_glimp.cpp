@@ -74,7 +74,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <X11/cursorfont.h>
 
 #include <X11/extensions/Xxf86dga.h>
-#include <X11/extensions/Xxf86vmode.h>
+#include <X11/extensions/xf86vmode.h>
 
 #define WINDOW_CLASS_NAME   "Return to Castle Wolfenstein"
 

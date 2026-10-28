@@ -134,3 +134,11 @@ on content, not line numbers.
 - Release x86 jobs show "cancelled" (fail-fast), not real failures.
 - Next: fetch the new digest and verify zero errors and zero
   warnings everywhere.
+
+## Session 3, iteration 1 (build of 9cf6a35, digest 7caf9c3)
+- windows x64 debug + release-game: SUCCESS, 0 warnings; all earlier warning kinds gone
+- all ubuntu legs failed on missing X11/extensions/Xxf86vmode.h. Lesson: libxxf86dga-dev ships the capital Xxf86dga.h, but libxxf86vm-dev ships the LOWERCASE xf86vmode.h (real header, no obsolete #warning). Correct mix: capital dga header, lowercase vmode header
+- windows x86 failed in clang-cl on: ds: segment overrides in snd_mix.cpp inline asm (6 sites, MSVC-only syntax), static declarations inside the naked BoxOnPlaneSide (q_math.cpp, 4 TUs), plus win_glimp.cpp cdecl->stdcall cast warning
+- splines.cpp:580 -Wunused-value only in release legs: NDEBUG branch defined CHECK_NAN_VEC as object-like macro so CHECK_NAN_VEC(origin) expanded to (origin)
+- fixes pushed: linux_glimp.cpp vmode include lowercased; snd_mix.cpp ds: dropped (6x); q_math.cpp statics moved to file scope; win_glimp.cpp static DWORD WINAPI GLimp_RenderThreadStart(LPVOID) trampoline passed to CreateThread; q_splineshared.h release CHECK_NAN/CHECK_NAN_VEC made function-like empty macros
+- awaiting next digest

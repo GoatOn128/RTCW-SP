@@ -86,11 +86,11 @@ __declspec( naked ) void S_WriteLinearBlastStereo16( void ) {
 
 		push edi
 		push ebx
-		mov ecx,ds:dword ptr[snd_linear_count]
-		mov ebx,ds:dword ptr[snd_p]
-		mov edi,ds:dword ptr[snd_out]
+		mov ecx,dword ptr[snd_linear_count]
+		mov ebx,dword ptr[snd_p]
+		mov edi,dword ptr[snd_out]
 LWLBLoopTop:
-		mov eax,ds:dword ptr[-8 + ebx + ecx * 4]
+		mov eax,dword ptr[-8 + ebx + ecx * 4]
 		sar eax,8
 		cmp eax,07FFFh
 		jg LClampHigh
@@ -101,7 +101,7 @@ LWLBLoopTop:
 LClampHigh:
 		mov eax,07FFFh
 LClampDone:
-		mov edx,ds:dword ptr[-4 + ebx + ecx * 4]
+		mov edx,dword ptr[-4 + ebx + ecx * 4]
 		sar edx,8
 		cmp edx,07FFFh
 		jg LClampHigh2
@@ -115,7 +115,7 @@ LClampDone2:
 		shl edx,16
 		and eax,0FFFFh
 		or edx,eax
-		mov ds:dword ptr[-4 + edi + ecx * 2],edx
+		mov dword ptr[-4 + edi + ecx * 2],edx
 		sub ecx,2
 		jnz LWLBLoopTop
 		pop ebx
