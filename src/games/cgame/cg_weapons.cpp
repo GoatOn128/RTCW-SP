@@ -894,7 +894,7 @@ The server says this item is used on this level
 void CG_RegisterWeapon( int weaponNum ) {
 	weaponInfo_t    *weaponInfo;
 	gitem_t         *item, *ammo;
-	char path[MAX_QPATH], comppath[MAX_QPATH];
+	char path[MAX_QPATH], comppath[MAX_QPATH] = { 0 };
 	vec3_t mins, maxs;
 	int i;
 
@@ -1002,7 +1002,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		strcpy( comppath, item->world_model[W_TP_MODEL] );  // not there, use the standard view hand
 
 	}
-	if ( ( !comppath || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
+	if ( ( !comppath[0] || !cg_drawFPGun.integer ) &&     // then if it didn't find the 1st person one or you are set to not use one
 		 item->world_model[W_TP_MODEL] ) {
 		strcpy( comppath, item->world_model[W_TP_MODEL] );  // use the standard view hand
 
