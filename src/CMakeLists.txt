@@ -105,3 +105,6 @@ target_compile_definitions(wolfded PRIVATE DEDICATED)
 configure_engine(wolfded)
 
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT wolf)
+
+# gather the headers that no project lists into a utility project so they show up in the IDE
+gather_loose_headers(loose_headers)

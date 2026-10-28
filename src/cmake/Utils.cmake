@@ -110,3 +110,60 @@ function(set_type_solution_folder target)
 	endif()
 	set_solution_folder(${target} ${folder})
 endfunction()
+
+# appends every buildsystem target defined at or below the given directory to the result variable
+function(collect_targets result dir)
+	get_property(subdirs DIRECTORY "${dir}" PROPERTY SUBDIRECTORIES)
+	foreach(subdir IN LISTS subdirs)
+		collect_targets(${result} "${subdir}")
+	endforeach()
+	get_directory_property(sub_targets DIRECTORY "${dir}" BUILDSYSTEM_TARGETS)
+	set(${result} ${${result}} ${sub_targets} PARENT_SCOPE)
+endfunction()
+
+# gathers the header files that no target lists as a source into a utility target so they show up in the IDE
+function(gather_loose_headers target)
+	file(GLOB_RECURSE all_headers
+		"${ENGINE_SOURCE_DIR}/*.h"
+		"${ENGINE_SOURCE_DIR}/*.hpp"
+		"${ENGINE_SOURCE_DIR}/*.inl"
+	)
+	list(SORT all_headers)
+	list(REMOVE_DUPLICATES all_headers)
+
+	# collect the full path of every source file the targets own
+	set(owned_sources "")
+	collect_targets(all_targets "${CMAKE_SOURCE_DIR}")
+	foreach(t IN LISTS all_targets)
+		get_target_property(target_sources ${t} SOURCES)
+		if(NOT target_sources)
+			continue()
+		endif()
+		get_target_property(target_dir ${t} SOURCE_DIR)
+		if(NOT target_dir)
+			set(target_dir "${CMAKE_SOURCE_DIR}")
+		endif()
+		foreach(s IN LISTS target_sources)
+			if(NOT IS_ABSOLUTE "${s}")
+				set(s "${target_dir}/${s}")
+			endif()
+			cmake_path(SET s NORMALIZE)
+			list(APPEND owned_sources "${s}")
+		endforeach()
+	endforeach()
+	list(REMOVE_DUPLICATES owned_sources)
+
+	# keep the headers that no target owns
+	set(loose_headers "")
+	foreach(h IN LISTS all_headers)
+		if(NOT "${h}" IN_LIST owned_sources)
+			list(APPEND loose_headers "${h}")
+		endif()
+	endforeach()
+
+	if(NOT loose_headers)
+		return()
+	endif()
+	add_custom_target(${target} SOURCES ${loose_headers})
+	set_solution_folder(${target} misc)
+endfunction()
