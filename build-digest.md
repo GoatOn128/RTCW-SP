@@ -1,11 +1,11 @@
 # Build digest
 
-commit: 0382fe81ce98
+commit: 7613c39ef132
 
 - ubuntu-latest-x64-debug: success
-- ubuntu-latest-x64-release: cancelled
-- ubuntu-latest-x86-debug: failure
-- ubuntu-latest-x86-release: cancelled
+- ubuntu-latest-x64-release: success
+- ubuntu-latest-x86-debug: success
+- ubuntu-latest-x86-release: success
 - uncrustify: success
 - windows-latest-x64-debug: success
 - windows-latest-x64-release: success
@@ -29,7 +29,7 @@ warnings: 0 in 0 kinds
 
 ## ubuntu-latest-x64-release
 
-status: cancelled
+status: success
 
 errors: 0
 warnings: 0 in 0 kinds
@@ -44,14 +44,13 @@ warnings: 0 in 0 kinds
 
 ## ubuntu-latest-x86-debug
 
-status: failure
+status: success
 
-errors: 1
+errors: 0
 warnings: 0 in 0 kinds
 
 ### errors
 
-collect2: error: ld returned 1 exit status
 
 ### failure context
 
@@ -60,7 +59,7 @@ collect2: error: ld returned 1 exit status
 
 ## ubuntu-latest-x86-release
 
-status: cancelled
+status: success
 
 errors: 0
 warnings: 0 in 0 kinds

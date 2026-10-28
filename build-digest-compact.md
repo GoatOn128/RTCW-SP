@@ -1,11 +1,11 @@
 # Compact build digest
 
-commit: 0382fe81ce98
+commit: 7613c39ef132
 
 - ubuntu-latest-x64-debug: success
-- ubuntu-latest-x64-release: cancelled
-- ubuntu-latest-x86-debug: failure
-- ubuntu-latest-x86-release: cancelled
+- ubuntu-latest-x64-release: success
+- ubuntu-latest-x86-debug: success
+- ubuntu-latest-x86-release: success
 - uncrustify: success
 - windows-latest-x64-debug: success
 - windows-latest-x64-release: success
