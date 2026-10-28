@@ -519,6 +519,7 @@ common_cpppath = [
     'src/games/cgame/fx',
     'src/games/ui',
     'src/third-party/stb',
+    'src/third-party/drlibs',
     'src/third-party/recast/Detour/Include',
 ]
 

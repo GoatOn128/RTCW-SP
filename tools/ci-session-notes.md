@@ -161,3 +161,10 @@ windows x86 debug/release, uncrustify.
 The g_gametype/g_gameskill, re, qgl* extern, Sys_SnapVector and
 portable BoxOnPlaneSide/S_WriteLinearBlastStereo16 fixes from the
 previous entry all linked cleanly. Task complete.
+
+## 2026-10-28: replace BMP/PCX loaders with stb_image / dr_pcx
+- tr_image.cpp: LoadBMP now decodes with stbi_load_from_memory and LoadPCX32 with drpcx_load_memory (dr_pcx v0.3.1 from src/third-party/drlibs), same pattern as the stb jpg loader. The 8-bit-palette-only hand-written LoadPCX and the manual BMP parser are gone, including the LoadPCX32 bug that freed the shared R_GetImageBuffer scratch while converting.
+- Output contract unchanged: top-down 32 bit RGBA in the shared image buffer, so no caller changes and texture orientation stays identical. dr_pcx applies the 256-color palette with alpha 255 like the old code.
+- stb_impl.c also defines DR_PCX_IMPLEMENTATION and includes dr_pcx.h so the vendored pcx decoder compiles in the warnings-muted C unit.
+- SConstruct: src/third-party/drlibs added to common_cpppath.
+Files: src/renderer/tr_image.cpp, src/third-party/stb/stb_impl.c, SConstruct, tools/ci-session-notes.md.
