@@ -1,5 +1,3 @@
-successfully downloaded text file( SHA:40fcdcbfa7318d60ebf5db084e7e64247c9dc87b )
-
 #if !defined( FX_UTIL_H_INC )
 	#include "FxUtil.h"
 #endif
