@@ -46,8 +46,7 @@ If you have questions concerning this license or the applicable additional terms
 #include <sys/stat.h>
 #include <string.h>
 #include <ctype.h>
-#incl
-ude <sys/wait.h>
+#include <sys/wait.h>
 #include <sys/mman.h>
 #include <errno.h>
 #ifdef __linux__ // rb010123
@@ -120,8 +119,7 @@ Sys_LowPhysicalMemory()
 qboolean Sys_LowPhysicalMemory() {
 	//MEMORYSTATUS stat;
 	//GlobalMemoryStatus (&stat);
-	//retu
-rn (stat.dwTotalPhys <= MEM_THRESHOLD) ? qtrue : qfalse;
+	//return (stat.dwTotalPhys <= MEM_THRESHOLD) ? qtrue : qfalse;
 	return qfalse; // bk001207 - FIXME
 }
 
@@ -206,8 +204,7 @@ void tty_Show() {
 void Sys_ConsoleInputShutdown() {
 	if ( ttycon_on ) {
 		Com_Printf( "Shutdown tty console\n" );
-		tcsetatt
-r( 0, TCSADRAIN, &tty_tc );
+		tcsetattr( 0, TCSADRAIN, &tty_tc );
 	}
 }
 
@@ -294,8 +291,7 @@ void Sys_Exit( int ex ) {
 
 
 void Sys_Quit( void ) {
-	CL_Shutdown
-();
+	CL_Shutdown();
 	fcntl( 0, F_SETFL, fcntl( 0, F_GETFL, 0 ) & ~FNDELAY );
 	Sys_Exit( 0 );
 }
@@ -399,8 +395,7 @@ returns -1 if not present
 int Sys_FileTime( char *path ) {
 	struct  stat buf;
 
-	if ( stat( path
-,&buf ) == -1 ) {
+	if ( stat( path,&buf ) == -1 ) {
 		return -1;
 	}
 
@@ -474,8 +469,7 @@ char *Sys_ConsoleInput( void ) {
 		if ( avail != -1 ) {
 			// we have something
 			// backspace?
-			// NOTE TTimo testing a lot of values .. seems it'
-s the only way to get it to work everywhere
+			// NOTE TTimo testing a lot of values .. seems it's the only way to get it to work everywhere
 			if ( ( key == tty_erase ) || ( key == 127 ) || ( key == 8 ) ) {
 				if ( tty_con.cursor > 0 ) {
 					tty_con.cursor--;
@@ -553,8 +547,7 @@ s the only way to get it to work everywhere
 						}
 					}
 				}
-				Com_DPrintf( "droping ISCTL sequence: %d, tty_
-erase: %d\n", key, tty_erase );
+				Com_DPrintf( "droping ISCTL sequence: %d, tty_erase: %d\n", key, tty_erase );
 				tty_FlushIn();
 				return NULL;
 			}
@@ -648,8 +641,7 @@ void *Sys_LoadDll_Wrapped( const char *name,
 void *Sys_LoadDll( const char *name,
 				   int( **entryPoint ) ( int, ... ),
 				   int ( *systemcalls )( int, ... ) )
-#
-endif
+#endif
 {
 	void *libHandle;
 	void ( *dllEntry )( int ( *syscallptr )( int, ... ) );
@@ -679,7 +671,7 @@ endif
 // bk001129 - was RTLD_LAZY
 #define Q_RTLD    RTLD_NOW
 
-		homepath = Cvar_VariableString( "fs_homepath" );
+	homepath = Cvar_VariableString( "fs_homepath" );
 	basepath = Cvar_VariableString( "fs_basepath" );
 	gamedir = Cvar_VariableString( "fs_game" );
 
@@ -717,8 +709,7 @@ endif
 					libHandle = dlopen( fn, Q_RTLD );
 
 					if ( !libHandle ) {
-	
-					Com_Printf( "failed (%s)\n", dlerror() );
+						Com_Printf( "failed (%s)\n", dlerror() );
 						// homepath
 						fn = FS_BuildOSPath( homepath, BASEGAME, fname );
 						Com_Printf( "Sys_LoadDll(%s)... ", fn );
@@ -788,8 +779,7 @@ endif
 #if defined( DO_LOADDLL_WRAP )
 void *Sys_LoadDll( const char *name,
 				   int( **entryPoint ) ( int, ... ),
-				   in
-t ( *systemcalls )( int, ... ) ) {
+				   int ( *systemcalls )( int, ... ) ) {
 	void *ret;
 	Cvar_Set( "cl_noprint", "1" );
 	ret = Sys_LoadDll_Wrapped( name, entryPoint, systemcalls );
@@ -894,8 +884,7 @@ void Sys_ShutdownStreamThread( void ) {
 
 /*
 ===============
-Sys_BeginStream
-edFile
+Sys_BeginStreamedFile
 
 ================
 */
@@ -999,8 +988,7 @@ void Sys_StreamSeek( fileHandle_t f, int offset, int origin ) {
 
 EVENT LOOP
 
-====================================================
-====================
+========================================================================
 */
 
 // bk000306: upped this from 64
@@ -1095,8 +1083,7 @@ sysEvent_t Sys_GetEvent( void ) {
 		int len;
 
 		// copy out to a seperate buffer for qeueing
-		len = sizeof( netadr_t ) + netmsg.cursi
-ze;
+		len = sizeof( netadr_t ) + netmsg.cursize;
 		buf = Z_Malloc( len );
 		*buf = adr;
 		memcpy( buf + 1, netmsg.data, netmsg.cursize );
@@ -1187,8 +1174,7 @@ actually forks and starts a process
 
 UGLY HACK:
   Sys_StartProcess works with a command line only
-  if this command line is actual
-ly a binary with command line parameters,
+  if this command line is actually a binary with command line parameters,
   the only way to do this on unix is to use a system() call
   but system doesn't replace the current process, which leads to a situation like:
   wolf.x86--spawned_process.x86
@@ -1202,7 +1188,7 @@ ly a binary with command line parameters,
 void Sys_DoStartProcess( char *cmdline ) {
 	switch ( fork() )
 	{
-	case -1:
+	case - 1:
 		// main thread
 		break;
 	case 0:
@@ -1260,8 +1246,7 @@ void Sys_OpenURL( char *url, qboolean doexit ) {
 	Q_strncpyz( fname, "openurl.sh", 20 );
 
 	pwdpath = Sys_Cwd();
-	Com_sprintf( fn, MAX_OSPATH
-, "%s/%s", pwdpath, fname );
+	Com_sprintf( fn, MAX_OSPATH, "%s/%s", pwdpath, fname );
 	if ( access( fn, X_OK ) == -1 ) {
 		Com_DPrintf( "%s not found\n", fn );
 		// try in home path
@@ -1339,8 +1324,7 @@ int main( int argc, char* argv[] ) {
 	Com_Init( cmdline );
 	NET_Init();
 
-	Sys_ConsoleInputIni
-t();
+	Sys_ConsoleInputInit();
 
 	fcntl( 0, F_SETFL, fcntl( 0, F_GETFL, 0 ) | FNDELAY );
 

@@ -45,6 +45,8 @@ If you have questions concerning this license or the applicable additional terms
 
 
 static void LoadBMP( const char *name, byte **pic, int *width, int *height );
+static void LoadPCX( const char *filename, byte **pic, byte **palette, int *width, int *height );
+static void LoadPCX32( const char *filename, byte **pic, int *width, int *height );
 static void LoadTGA( const char *name, byte **pic, int *width, int *height );
 static void LoadJPG( const char *name, byte **pic, int *width, int *height );
 
