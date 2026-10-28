@@ -15,12 +15,78 @@
       "binaryDir": "${sourceDir}/../build"
     },
     {
+      "name": "visual-studio-x64",
+      "displayName": "Visual Studio x64",
+      "description": "Visual Studio build tree in ../build-x64; products in the repository root.",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/../build-x64"
+    },
+    {
       "name": "command-line",
       "displayName": "Command Line Win32",
       "description": "Command-line build tree in ../out; products in the repository root.",
       "generator": "Visual Studio 17 2022",
       "architecture": "Win32",
       "binaryDir": "${sourceDir}/../out"
+    },
+    {
+      "name": "linux-debug",
+      "displayName": "Linux x64 Debug",
+      "description": "Ninja build tree in ../build/linux/debug; products in the repository root.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../build/linux/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Linux x64 Release",
+      "description": "Ninja build tree in ../build/linux/release; products in the repository root.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../build/linux/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-x86-debug",
+      "displayName": "Linux x86 Debug",
+      "description": "Ninja 32-bit build tree in ../build/linux-x86/debug; products in the repository root.",
+      "inherits": "linux-debug",
+      "binaryDir": "${sourceDir}/../build/linux-x86/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS": "-m32",
+        "CMAKE_CXX_FLAGS": "-m32",
+        "CMAKE_EXE_LINKER_FLAGS": "-m32",
+        "CMAKE_SHARED_LINKER_FLAGS": "-m32"
+      }
+    },
+    {
+      "name": "linux-x86-release",
+      "displayName": "Linux x86 Release",
+      "description": "Ninja 32-bit build tree in ../build/linux-x86/release; products in the repository root.",
+      "inherits": "linux-release",
+      "binaryDir": "${sourceDir}/../build/linux-x86/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS": "-m32",
+        "CMAKE_CXX_FLAGS": "-m32",
+        "CMAKE_EXE_LINKER_FLAGS": "-m32",
+        "CMAKE_SHARED_LINKER_FLAGS": "-m32"
+      }
     }
   ],
   "buildPresets": [
@@ -35,6 +101,16 @@
       "configuration": "Release"
     },
     {
+      "name": "visual-studio-x64-debug",
+      "configurePreset": "visual-studio-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "visual-studio-x64-release",
+      "configurePreset": "visual-studio-x64",
+      "configuration": "Release"
+    },
+    {
       "name": "command-line-debug",
       "configurePreset": "command-line",
       "configuration": "Debug"
@@ -43,6 +119,22 @@
       "name": "command-line-release",
       "configurePreset": "command-line",
       "configuration": "Release"
+    },
+    {
+      "name": "linux-debug",
+      "configurePreset": "linux-debug"
+    },
+    {
+      "name": "linux-release",
+      "configurePreset": "linux-release"
+    },
+    {
+      "name": "linux-x86-debug",
+      "configurePreset": "linux-x86-debug"
+    },
+    {
+      "name": "linux-x86-release",
+      "configurePreset": "linux-x86-release"
     }
   ]
 }
