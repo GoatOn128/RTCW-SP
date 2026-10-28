@@ -338,8 +338,8 @@ void Sys_ListFilteredFiles( const char *basedir, char *subdirs, char *filter, ch
 static qboolean strgtr( const char *s0, const char *s1 ) {
 	int l0, l1, i;
 
-	l0 = strlen( s0 );
-	l1 = strlen( s1 );
+	l0 = (int)strlen( s0 );
+	l1 = (int)strlen( s1 );
 
 	if ( l1 < l0 ) {
 		l0 = l1;
@@ -1078,7 +1078,7 @@ sysEvent_t Sys_GetEvent( void ) {
 		char    *b;
 		int len;
 
-		len = strlen( s ) + 1;
+		len = (int)strlen( s ) + 1;
 		b = (char *) Z_Malloc( len );
 		Q_strncpyz( b, s, len - 1 );
 		Sys_QueEvent( 0, SE_CONSOLE, 0, 0, len, b );
@@ -1163,7 +1163,7 @@ void Sys_Init( void ) {
 
 	g_wv.osversion.dwOSVersionInfoSize = sizeof( g_wv.osversion );
 
-	if ( !GetVersionEx( &g_wv.osversion ) ) {
+	if ( !Sys_GetVersion( &g_wv.osversion ) ) {
 		Sys_Error( "Couldn't get OS info" );
 	}
 

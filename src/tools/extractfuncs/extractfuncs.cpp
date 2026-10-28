@@ -375,7 +375,7 @@ void AddFunctionName( char *funcname, char *filename, tokenList_t *head ) {
 #endif
 	// -NERVE - SMF
 
-	f = (replacefunc_t *) GetMemory( sizeof( replacefunc_t ) + strlen( funcname ) + 1 + 6 + strlen( filename ) + 1 );
+	f = (replacefunc_t *) GetMemory( (unsigned long)( sizeof( replacefunc_t ) + strlen( funcname ) + 1 + 6 + strlen( filename ) + 1 ) );
 	f->name = (char *) f + sizeof( replacefunc_t );
 	strcpy( f->name, funcname );
 	f->newname = (char *) f + sizeof( replacefunc_t ) + strlen( funcname ) + 1;

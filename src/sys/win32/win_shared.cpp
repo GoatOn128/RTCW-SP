@@ -417,3 +417,42 @@ char    *Sys_DefaultHomePath( void ) {
 char *Sys_DefaultInstallPath( void ) {
 	return Sys_Cwd();
 }
+
+/*
+================
+Sys_GetVersion
+
+Fills an OSVERSIONINFO without using the deprecated GetVersionEx.
+RtlGetVersion fills the same fields and works on every Windows version.
+================
+*/
+qboolean Sys_GetVersion( OSVERSIONINFO *vinfo ) {
+	typedef LONG ( WINAPI *RtlGetVersionFn )( OSVERSIONINFOW * );
+	OSVERSIONINFOW info;
+	HMODULE ntdll;
+	RtlGetVersionFn rtlGetVersion;
+
+	if ( !vinfo ) {
+		return qfalse;
+	}
+
+	ntdll = GetModuleHandle( "ntdll.dll" );
+	rtlGetVersion = ntdll ? (RtlGetVersionFn) GetProcAddress( ntdll, "RtlGetVersion" ) : NULL;
+	if ( !rtlGetVersion ) {
+		return qfalse;
+	}
+
+	info.dwOSVersionInfoSize = sizeof( info );
+	if ( rtlGetVersion( &info ) != 0 ) {
+		return qfalse;
+	}
+
+	vinfo->dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
+	vinfo->dwMajorVersion = info.dwMajorVersion;
+	vinfo->dwMinorVersion = info.dwMinorVersion;
+	vinfo->dwBuildNumber = info.dwBuildNumber;
+	vinfo->dwPlatformId = info.dwPlatformId;
+	// no caller reads the service pack string
+	vinfo->szCSDVersion[0] = '\0';
+	return qtrue;
+}

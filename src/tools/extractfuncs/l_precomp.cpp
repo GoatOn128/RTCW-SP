@@ -763,7 +763,7 @@ void PC_AddBuiltinDefines( source_t *source ) {
 
 	for ( i = 0; builtin[i].string; i++ )
 	{
-		define = (define_t *) GetMemory( sizeof( define_t ) + strlen( builtin[i].string ) + 1 );
+		define = (define_t *) GetMemory( (unsigned long)( sizeof( define_t ) + strlen( builtin[i].string ) + 1 ) );
 		memset( define, 0, sizeof( define_t ) );
 		define->name = (char *) define + sizeof( define_t );
 		strcpy( define->name, builtin[i].string );
@@ -810,7 +810,7 @@ int PC_ExpandBuiltinDefine( source_t *source, define_t *define,
 	{
 		strcpy( token.string, source->scriptstack->filename );
 		token.type = TT_NAME;
-		token.subtype = strlen( token.string );
+		token.subtype = (int)strlen( token.string );
 		*firsttoken = &token;
 		*lasttoken = &token;
 		break;
@@ -825,7 +825,7 @@ int PC_ExpandBuiltinDefine( source_t *source, define_t *define,
 		strcat( token.string, "\"" );
 		free( curtime );
 		token.type = TT_NAME;
-		token.subtype = strlen( token.string );
+		token.subtype = (int)strlen( token.string );
 		*firsttoken = &token;
 		*lasttoken = &token;
 		break;
@@ -839,7 +839,7 @@ int PC_ExpandBuiltinDefine( source_t *source, define_t *define,
 		strcat( token.string, "\"" );
 		free( curtime );
 		token.type = TT_NAME;
-		token.subtype = strlen( token.string );
+		token.subtype = (int)strlen( token.string );
 		*firsttoken = &token;
 		*lasttoken = &token;
 		break;
@@ -1281,7 +1281,7 @@ int PC_Directive_define( source_t *source ) {
 #endif //DEFINEHASHING
 	} //end if
 	  //allocate define
-	define = (define_t *) GetMemory( sizeof( define_t ) + strlen( token.string ) + 1 );
+	define = (define_t *) GetMemory( (unsigned long)( sizeof( define_t ) + strlen( token.string ) + 1 ) );
 	memset( define, 0, sizeof( define_t ) );
 	define->name = (char *) define + sizeof( define_t );
 	strcpy( define->name, token.string );
@@ -1388,7 +1388,7 @@ define_t *PC_DefineFromString( char *string ) {
 
 	PC_InitTokenHeap();
 
-	script = LoadScriptMemory( string, strlen( string ), "*extern" );
+	script = LoadScriptMemory( string, (int)strlen( string ), "*extern" );
 	//create a new source
 	memset( &src, 0, sizeof( source_t ) );
 	strncpy( src.filename, "*extern", _MAX_PATH );
@@ -1515,7 +1515,7 @@ define_t *PC_CopyDefine( source_t *source, define_t *define ) {
 	define_t *newdefine;
 	token_t *token, *newtoken, *lasttoken;
 
-	newdefine = (define_t *) GetMemory( sizeof( define_t ) + strlen( define->name ) + 1 );
+	newdefine = (define_t *) GetMemory( (unsigned long)( sizeof( define_t ) + strlen( define->name ) + 1 ) );
 	//copy the define name
 	newdefine->name = (char *) newdefine + sizeof( define_t );
 	strcpy( newdefine->name, define->name );

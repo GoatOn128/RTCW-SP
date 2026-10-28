@@ -769,7 +769,7 @@ static void SV_Status_f( void ) {
 		}
 
 		Com_Printf( "%s", cl->name );
-		l = 16 - strlen( cl->name );
+		l = 16 - (int)strlen( cl->name );
 		for ( j = 0 ; j < l ; j++ )
 			Com_Printf( " " );
 
@@ -777,7 +777,7 @@ static void SV_Status_f( void ) {
 
 		s = NET_AdrToString( cl->netchan.remoteAddress );
 		Com_Printf( "%s", s );
-		l = 22 - strlen( s );
+		l = 22 - (int)strlen( s );
 		for ( j = 0 ; j < l ; j++ )
 			Com_Printf( " " );
 

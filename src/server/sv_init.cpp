@@ -85,7 +85,7 @@ void SV_SetConfigstring( int index, const char *val ) {
 
 //			SV_SendServerCommand( client, "cs %i \"%s\"\n", index, val );
 
-			len = strlen( val );
+			len = (int)strlen( val );
 			if ( len >= maxChunkSize ) {
 				int sent = 0;
 				int remaining = len;
@@ -314,7 +314,7 @@ qboolean SV_AddReliableCommand( client_t *cl, int index, const char *cmd ) {
 		return qfalse;
 	}
 	//
-	length = strlen( cmd );
+	length = (int)strlen( cmd );
 	//
 	if ( ( cl->reliableCommands.rover - cl->reliableCommands.buf ) + length + 1 >= cl->reliableCommands.bufSize ) {
 		// go back to the start

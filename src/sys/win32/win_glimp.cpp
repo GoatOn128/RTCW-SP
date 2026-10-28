@@ -1108,7 +1108,7 @@ static qboolean GLW_CheckOSVersion( void ) {
 
 	glw_state.allowdisplaydepthchange = qfalse;
 
-	if ( GetVersionEx( &vinfo ) ) {
+	if ( Sys_GetVersion( &vinfo ) ) {
 		if ( vinfo.dwMajorVersion > 4 ) {
 			glw_state.allowdisplaydepthchange = qtrue;
 		} else if ( vinfo.dwMajorVersion == 4 ) {
@@ -1122,7 +1122,7 @@ static qboolean GLW_CheckOSVersion( void ) {
 		}
 	} else
 	{
-		ri.Printf( PRINT_ALL, "GLW_CheckOSVersion() - GetVersionEx failed\n" );
+		ri.Printf( PRINT_ALL, "GLW_CheckOSVersion() - Sys_GetVersion failed\n" );
 		return qfalse;
 	}
 

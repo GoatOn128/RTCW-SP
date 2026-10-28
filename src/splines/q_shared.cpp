@@ -121,7 +121,7 @@ Com_StringContains
 const char *Com_StringContains( const char *str1, const char *str2, int casesensitive ) {
 	int len, i, j;
 
-	len = strlen( str1 ) - strlen( str2 );
+	len = (int)strlen( str1 ) - (int)strlen( str2 );
 	for ( i = 0; i <= len; i++, str1++ ) {
 		for ( j = 0; str2[j]; j++ ) {
 			if ( casesensitive ) {

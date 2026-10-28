@@ -67,6 +67,9 @@ char    *Sys_ConsoleInput( void );
 
 qboolean    Sys_GetPacket( netadr_t *net_from, msg_t *net_message );
 
+// fills an OSVERSIONINFO without the deprecated GetVersionEx
+qboolean    Sys_GetVersion( OSVERSIONINFO *vinfo );
+
 // Input subsystem
 
 void    IN_Init( void );
