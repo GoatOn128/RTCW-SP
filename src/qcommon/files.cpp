@@ -1221,7 +1221,7 @@ int FS_FOpenFileRead( const char *filename, fileHandle_t *file, qboolean uniqueF
 					// shaders, txt, arena files  by themselves do not count as a reference as
 					// these are loaded from all pk3s
 					// from every pk3 file..
-					l = strlen( filename );
+					l = (int)strlen( filename );
 					if ( !( pak->referenced & FS_GENERAL_REF ) ) {
 						if ( Q_stricmp( filename + l - 7, ".shader" ) != 0 &&
 							 Q_stricmp( filename + l - 4, ".txt" ) != 0 &&
@@ -1288,7 +1288,7 @@ int FS_FOpenFileRead( const char *filename, fileHandle_t *file, qboolean uniqueF
 
 			// if we are running restricted, the only files we
 			// will allow to come from the directory are .cfg files
-			l = strlen( filename );
+			l = (int)strlen( filename );
 			// FIXME TTimo I'm not sure about the fs_numServerPaks test
 			// if you are using FS_ReadFile to find out if a file exists,
 			//   this test can make the search fail although the file is in the directory
@@ -1435,7 +1435,7 @@ int FS_Read( void *buffer, int len, fileHandle_t f ) {
 		tries = 0;
 		while ( remaining ) {
 			block = remaining;
-			read = fread( buf, 1, block, fsh[f].handleFiles.file.o );
+			read = (int)fread( buf, 1, block, fsh[f].handleFiles.file.o );
 			if ( read == 0 ) {
 				// we might have been trying to read from a CD, which
 				// sometimes returns a 0 read on windows
@@ -1488,7 +1488,7 @@ int FS_Write( const void *buffer, int len, fileHandle_t h ) {
 	tries = 0;
 	while ( remaining ) {
 		block = remaining;
-		written = fwrite( buf, 1, block, f );
+		written = (int)fwrite( buf, 1, block, f );
 		if ( written == 0 ) {
 			if ( !tries ) {
 				tries = 1;
@@ -1521,7 +1521,7 @@ void QDECL FS_Printf( fileHandle_t h, const char *fmt, ... ) {
 	vsprintf( msg,fmt,argptr );
 	va_end( argptr );
 
-	FS_Write( msg, strlen( msg ), h );
+	FS_Write( msg, (int)strlen( msg ), h );
 }
 
 /*
@@ -1872,7 +1872,7 @@ static pack_t *FS_LoadZipFile( char *zipfile, const char *basename ) {
 		if ( err != UNZ_OK ) {
 			break;
 		}
-		len += strlen( filename_inzip ) + 1;
+		len += (int)strlen( filename_inzip ) + 1;
 		unzGoToNextFile( uf );
 	}
 
@@ -2028,11 +2028,11 @@ char **FS_ListFilteredFiles( const char *path, const char *extension, char *filt
 		extension = "";
 	}
 
-	pathLength = strlen( path );
+	pathLength = (int)strlen( path );
 	if ( path[pathLength - 1] == '\\' || path[pathLength - 1] == '/' ) {
 		pathLength--;
 	}
-	extensionLength = strlen( extension );
+	extensionLength = (int)strlen( extension );
 	nfiles = 0;
 	FS_ReturnPath( path, zpath, &pathDepth );
 
@@ -2075,7 +2075,7 @@ char **FS_ListFilteredFiles( const char *path, const char *extension, char *filt
 					}
 
 					// check for extension match
-					length = strlen( name );
+					length = (int)strlen( name );
 					if ( length < extensionLength ) {
 						continue;
 					}
@@ -2184,7 +2184,7 @@ int FS_GetFileList(  const char *path, const char *extension, char *listbuf, int
 	pFiles = FS_ListFiles( path, extension, &nFiles );
 
 	for ( i = 0; i < nFiles; i++ ) {
-		nLen = strlen( pFiles[i] ) + 1;
+		nLen = (int)strlen( pFiles[i] ) + 1;
 		if ( nTotal + nLen + 1 < bufsize ) {
 			strcpy( listbuf, pFiles[i] );
 			listbuf += nLen;
@@ -2350,7 +2350,7 @@ int FS_GetModList( char *listbuf, int bufsize ) {
 			}
 
 			if ( nPaks > 0 ) {
-				nLen = strlen( name ) + 1;
+				nLen = (int)strlen( name ) + 1;
 				// nLen is the length of the mod path
 				// we need to see if there is a description available
 				descPath[0] = '\0';
@@ -2361,7 +2361,7 @@ int FS_GetModList( char *listbuf, int bufsize ) {
 					FILE *file;
 					file = FS_FileForHandle( descHandle );
 					Com_Memset( descPath, 0, sizeof( descPath ) );
-					nDescLen = fread( descPath, 1, 48, file );
+					nDescLen = (int)fread( descPath, 1, 48, file );
 					if ( nDescLen >= 0 ) {
 						descPath[nDescLen] = '\0';
 					}
@@ -2369,7 +2369,7 @@ int FS_GetModList( char *listbuf, int bufsize ) {
 				} else {
 					strcpy( descPath, name );
 				}
-				nDescLen = strlen( descPath ) + 1;
+				nDescLen = (int)strlen( descPath ) + 1;
 
 				if ( nTotal + nLen + 1 + nDescLen + 1 < bufsize ) {
 					strcpy( listbuf, name );
@@ -3131,7 +3131,7 @@ const char *FS_ReferencedPakChecksums( void ) {
 	for ( search = fs_searchpaths ; search ; search = search->next ) {
 		// is the element a pak file?
 		if ( search->pack ) {
-			if ( search->pack->referenced || Q_stricmpn( search->pack->pakGamename, BASEGAME, strlen( BASEGAME ) ) ) {
+			if ( search->pack->referenced || Q_stricmpn( search->pack->pakGamename, BASEGAME, (int)strlen( BASEGAME ) ) ) {
 				Q_strcat( info, sizeof( info ), va( "%i ", search->pack->checksum ) );
 			}
 		}
@@ -3205,7 +3205,7 @@ const char *FS_ReferencedPakNames( void ) {
 			if ( *info ) {
 				Q_strcat( info, sizeof( info ), " " );
 			}
-			if ( search->pack->referenced || Q_stricmpn( search->pack->pakGamename, BASEGAME, strlen( BASEGAME ) ) ) {
+			if ( search->pack->referenced || Q_stricmpn( search->pack->pakGamename, BASEGAME, (int)strlen( BASEGAME ) ) ) {
 				Q_strcat( info, sizeof( info ), search->pack->pakGamename );
 				Q_strcat( info, sizeof( info ), "/" );
 				Q_strcat( info, sizeof( info ), search->pack->pakBasename );

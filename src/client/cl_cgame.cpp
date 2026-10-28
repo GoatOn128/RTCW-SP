@@ -249,7 +249,7 @@ void CL_ConfigstringModified( void ) {
 			continue;       // leave with the default empty string
 		}
 
-		len = strlen( dup );
+		len = (int)strlen( dup );
 
 		if ( len + 1 + cl.gameState.dataCount > MAX_GAMESTATE_CHARS ) {
 			Com_Error( ERR_DROP, "MAX_GAMESTATE_CHARS exceeded" );
@@ -961,7 +961,7 @@ void CL_UpdateLevelHunkUsage( void ) {
 			Com_Error( ERR_DROP, "cannot create %s\n", memlistfile );
 		}
 		// input file is parsed, now output to the new file
-		len = strlen( outbuf );
+		len = (int)strlen( outbuf );
 		if ( FS_Write( (void *)outbuf, len, handle ) != len ) {
 			Com_Error( ERR_DROP, "cannot write to %s\n", memlistfile );
 		}
@@ -976,7 +976,7 @@ void CL_UpdateLevelHunkUsage( void ) {
 		Com_Error( ERR_DROP, "cannot write to hunkusage.dat, check disk full\n" );
 	}
 	Com_sprintf( outstr, sizeof( outstr ), "%s %i\n", cl.mapname, memusage );
-	FS_Write( outstr, strlen( outstr ), handle );
+	FS_Write( outstr, (int)strlen( outstr ), handle );
 	FS_FCloseFile( handle );
 
 	// now just open it and close it, so it gets copied to the pak dir

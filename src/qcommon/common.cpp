@@ -200,7 +200,7 @@ void QDECL Com_Printf( const char *fmt, ... ) {
 			opening_qconsole = qfalse;
 		}
 		if ( logfile && FS_Initialized() ) {
-			FS_Write( msg, strlen( msg ), logfile );
+			FS_Write( msg, (int)strlen( msg ), logfile );
 		}
 	}
 }
@@ -543,7 +543,7 @@ Com_StringContains
 char *Com_StringContains( char *str1, char *str2, int casesensitive ) {
 	int len, i, j;
 
-	len = strlen( str1 ) - strlen( str2 );
+	len = (int)strlen( str1 ) - (int)strlen( str2 );
 	for ( i = 0; i <= len; i++, str1++ ) {
 		for ( j = 0; str2[j]; j++ ) {
 			if ( casesensitive ) {
@@ -817,7 +817,7 @@ CopyString
 char *CopyString( const char *in ) {
 	char    *out;
 
-	out = (char *) Z_Malloc( strlen( in ) + 1 );
+	out = (char *) Z_Malloc( (int)strlen( in ) + 1 );
 	strcpy( out, in );
 	return out;
 }
@@ -988,19 +988,19 @@ void Hunk_Log( void ) {
 	size = 0;
 	numBlocks = 0;
 	Com_sprintf( buf, sizeof( buf ), "\r\n================\r\nHunk log\r\n================\r\n" );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 	for ( block = hunkblocks ; block; block = block->next ) {
 #ifdef HUNK_DEBUG
 		Com_sprintf( buf, sizeof( buf ), "size = %8d: %s, line: %d (%s)\r\n", block->size, block->file, block->line, block->label );
-		FS_Write( buf, strlen( buf ), logfile );
+		FS_Write( buf, (int)strlen( buf ), logfile );
 #endif
 		size += block->size;
 		numBlocks++;
 	}
 	Com_sprintf( buf, sizeof( buf ), "%d Hunk memory\r\n", size );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 	Com_sprintf( buf, sizeof( buf ), "%d hunk blocks\r\n", numBlocks );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 }
 
 /*
@@ -1022,7 +1022,7 @@ void Hunk_SmallLog( void ) {
 	size = 0;
 	numBlocks = 0;
 	Com_sprintf( buf, sizeof( buf ), "\r\n================\r\nHunk Small log\r\n================\r\n" );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 	for ( block = hunkblocks; block; block = block->next ) {
 		if ( block->printed ) {
 			continue;
@@ -1041,15 +1041,15 @@ void Hunk_SmallLog( void ) {
 		}
 #ifdef HUNK_DEBUG
 		Com_sprintf( buf, sizeof( buf ), "size = %8d: %s, line: %d (%s)\r\n", locsize, block->file, block->line, block->label );
-		FS_Write( buf, strlen( buf ), logfile );
+		FS_Write( buf, (int)strlen( buf ), logfile );
 #endif
 		size += block->size;
 		numBlocks++;
 	}
 	Com_sprintf( buf, sizeof( buf ), "%d Hunk memory\r\n", size );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 	Com_sprintf( buf, sizeof( buf ), "%d hunk blocks\r\n", numBlocks );
-	FS_Write( buf, strlen( buf ), logfile );
+	FS_Write( buf, (int)strlen( buf ), logfile );
 }
 
 /*
@@ -2818,7 +2818,7 @@ FindMatches
 static void FindMatches( const char *s ) {
 	int i;
 
-	if ( Q_stricmpn( s, completionString, strlen( completionString ) ) ) {
+	if ( Q_stricmpn( s, completionString, (int)strlen( completionString ) ) ) {
 		return;
 	}
 	matchCount++;
@@ -2842,7 +2842,7 @@ PrintMatches
 ===============
 */
 static void PrintMatches( const char *s ) {
-	if ( !Q_stricmpn( s, shortestMatch, strlen( shortestMatch ) ) ) {
+	if ( !Q_stricmpn( s, shortestMatch, (int)strlen( shortestMatch ) ) ) {
 		Com_Printf( "    %s\n", s );
 	}
 }
@@ -2924,13 +2924,13 @@ void Field_CompleteCommand( field_t *field ) {
 		} else {
 			ConcatRemaining( temp.buffer, completionString );
 		}
-		completionField->cursor = strlen( completionField->buffer );
+		completionField->cursor = (int)strlen( completionField->buffer );
 		return;
 	}
 
 	// multiple matches, complete to shortest
 	Com_sprintf( completionField->buffer, sizeof( completionField->buffer ), "\\%s", shortestMatch );
-	completionField->cursor = strlen( completionField->buffer );
+	completionField->cursor = (int)strlen( completionField->buffer );
 	ConcatRemaining( temp.buffer, completionString );
 
 	Com_Printf( "]%s\n", completionField->buffer );

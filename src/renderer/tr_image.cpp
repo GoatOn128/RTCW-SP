@@ -1382,7 +1382,7 @@ void R_LoadImage( const char *name, byte **pic, int *width, int *height ) {
 	*width = 0;
 	*height = 0;
 
-	len = strlen( name );
+	len = (int)strlen( name );
 	if ( len < 5 ) {
 		return;
 	}
@@ -1392,7 +1392,7 @@ void R_LoadImage( const char *name, byte **pic, int *width, int *height ) {
 		if ( !*pic ) {                              //
 			char altname[MAX_QPATH];                    // try jpg in place of tga
 			strcpy( altname, name );
-			len = strlen( altname );
+			len = (int)strlen( altname );
 			altname[len - 3] = 'j';
 			altname[len - 2] = 'p';
 			altname[len - 1] = 'g';

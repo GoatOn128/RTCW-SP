@@ -84,7 +84,7 @@ COM_StripFilename
 */
 void COM_StripFilename( char *in, char *out ) {
 	char *end;
-	Q_strncpyz( out, in, strlen( in ) );
+	Q_strncpyz( out, in, (int)strlen( in ) );
 	end = COM_SkipPath( out );
 	*end = 0;
 }
@@ -876,7 +876,7 @@ char *Q_strupr( char *s1 ) {
 void Q_strcat( char *dest, int size, const char *src ) {
 	int l1;
 
-	l1 = strlen( dest );
+	l1 = (int)strlen( dest );
 	if ( l1 >= size ) {
 		Com_Error( ERR_FATAL, "Q_strcat: already overflowed" );
 	}
@@ -1005,7 +1005,7 @@ char    * QDECL va( const char *format, ... ) {
 	vsprintf( temp_buffer, format,argptr );
 	va_end( argptr );
 
-	if ( ( len = strlen( temp_buffer ) ) >= MAX_VA_STRING ) {
+	if ( ( len = (int)strlen( temp_buffer ) ) >= MAX_VA_STRING ) {
 		Com_Error( ERR_DROP, "Attempted to overrun string in call to va()\n" );
 	}
 
